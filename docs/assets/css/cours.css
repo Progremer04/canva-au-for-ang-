@@ -383,3 +383,6 @@ html { scroll-behavior: smooth; scroll-padding-top: 88px; }
 .options-faits legend { padding: 0; margin-block-end: 6px; color: var(--texte-doux); font-family: var(--font-signal); font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 .options-faits label { display: inline-flex; align-items: center; gap: 6px; min-block-size: 32px; font-family: var(--font-signal); font-size: 16px; font-weight: 600; cursor: pointer; }
 .options-faits input { inline-size: 18px; block-size: 18px; accent-color: var(--lien); }
+
+:lang(en) .sommaire-chapitre::before { content: "In this section"; }
+.entete__langue { min-inline-size: 44px; padding-inline: var(--espace-3); }

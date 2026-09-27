@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI Course, Master LGC</title>
+<meta name="description" content="The artificial intelligence course of the Master in General and Comparative Literature (Université Yahia Farès, Médéa, 2025-2026), fully explained: lessons, Python, interactive demos, solved tutorials and mini-projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;600&amp;family=IM+Fell+DW+Pica+SC&amp;family=JetBrains+Mono:wght@400;600&amp;family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&amp;family=Rajdhani:wght@500;600;700&amp;display=swap">
+<link rel="stylesheet" href="{{BASE}}assets/css/lumineux-tokens.css">
+<link rel="stylesheet" href="{{BASE}}assets/css/lumineux.css">
+<link rel="stylesheet" href="{{BASE}}assets/css/cours.css">
+<link rel="alternate" hreflang="fr" href="../index.html">
+</head>
+<body>
+<a class="lien-evitement" href="#contenu">Skip to content</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-fermer" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-contraste" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></symbol>
+  <symbol id="i-maison" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5h4v5"/></symbol>
+  <symbol id="i-fiche" viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 13h6M10 17h6"/></symbol>
+  <symbol id="i-calendrier" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-ampoule" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.5 1 2.5h6c0-1 .2-1.7 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+  <symbol id="i-crayon" viewBox="0 0 24 24"><path d="M4 20l4-1L19 8l-3-3L5 16z"/><path d="M14 7l3 3"/></symbol>
+  <symbol id="i-bulle" viewBox="0 0 24 24"><path d="M4 5h16v11H10l-5 4v-4H4z"/></symbol>
+  <symbol id="i-livre" viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></symbol>
+  <symbol id="i-boussole" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></symbol>
+  <symbol id="i-outil" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></symbol>
+</svg>
+
+<header class="entete">
+  <div class="entete__barre">
+    <button type="button" class="bouton-verre entete__burger" data-ouvre-tiroir="tiroir-nav" aria-controls="tiroir-nav" aria-label="Open the menu">
+      <svg class="icone"><use href="#i-menu"/></svg>
+    </button>
+    <a class="entete__marque" href="#accueil"><span class="anneau-prisme" aria-hidden="true"></span>AI <small>Master LGC</small></a>
+    <nav class="entete__liens" aria-label="Useful links">
+      <a class="bouton bouton--discret bouton--petit entete__lien-systeme" href="{{LIEN_SYSTEME}}">Design system</a>
+      <a class="bouton bouton--petit entete__langue" href="../index.html" hreflang="fr" lang="fr" data-lien-langue title="Lire ce cours en français">FR</a>
+      <button type="button" class="bouton-verre" data-bascule-theme aria-label="Change theme">
+        <svg class="icone"><use href="#i-contraste"/></svg>
+      </button>
+    </nav>
+  </div>
+  <div class="progression" aria-hidden="true"></div>
+</header>
+
+<div class="tiroir-voile" data-voile-tiroir="tiroir-nav"></div>
+<aside class="tiroir" id="tiroir-nav" aria-label="Course menu">
+  <div class="tiroir__tete">
+    <p class="tiroir__titre">Course contents</p>
+    <button type="button" class="bouton-verre" data-ferme-tiroir aria-label="Close the menu">
+      <svg class="icone"><use href="#i-fermer"/></svg>
+    </button>
+  </div>
+  {{NAV}}
+</aside>
+
+<main id="contenu">
+  <section class="heros" id="accueil" aria-labelledby="titre-cours">
+    <div>
+      <p class="surtitre">Master in General and Comparative Literature · Semester 3</p>
+      <h1 class="heros__titre" id="titre-cours"><span>Artificial</span> <span>intelligence</span></h1>
+      <p class="heros__chapeau">The course syllabus, fully explained: the history of AI, Python for texts, expert systems, machine learning and deep learning, five mini-projects applied to the humanities, and every tutorial exercise solved.</p>
+      <ul class="heros__fiche">
+        <li class="puce">Cross-disciplinary unit</li>
+        <li class="puce">2 credits</li>
+        <li class="puce">Coefficient 2</li>
+        <li class="puce">2025–2026</li>
+      </ul>
+      <div class="heros__actions">
+        <a class="bouton bouton--prisme" href="#chapitre-1">Start chapter 1</a>
+        <a class="bouton" href="#methode">How to learn this course</a>
+      </div>
+    </div>
+
+    <div class="cadre-lumineux">
+      <div class="cadre-lumineux__contenu" data-lecteur>
+        <div class="demo__tete">
+          <span class="anneau-prisme" aria-hidden="true"></span>
+          <p class="demo__etiquette">Interactive demo</p>
+        </div>
+        <h2 class="demo__titre">Read a sentence like a machine</h2>
+        <div class="champ">
+          <label for="lecteur-phrase">Your sentence</label>
+          <textarea id="lecteur-phrase" class="lecteur__phrase" rows="3" spellcheck="false">This novel is beautiful, but the ending is really disappointing.</textarea>
+        </div>
+        <div class="lecteur__exemples">
+          <button type="button" class="bouton bouton--petit" data-phrase="This novel is beautiful, but the ending is really disappointing.">Review</button>
+          <button type="button" class="bouton bouton--petit" data-phrase="Mother died today.">Camus, 1942 (trans.)</button>
+          <button type="button" class="bouton bouton--petit" data-phrase="I am not convinced by this speech at all.">Speech</button>
+          <button type="button" class="bouton bouton--petit" data-phrase="What a brilliant book! A joy, a delight, a true masterpiece!">Enthusiasm</button>
+        </div>
+        <div class="lecteur__resultat" aria-live="polite">
+          <div class="lecteur__verdict"><span class="lecteur__etiquette">Negative</span><span class="lecteur__score"></span></div>
+          <div class="lecteur__jauge"><span class="lecteur__curseur" style="left:50%"></span></div>
+          <div class="lecteur__echelle"><span>Negative</span><span>Neutral</span><span>Positive</span></div>
+          <p class="lecteur__mots"></p>
+        </div>
+        <p class="demo__note">A lexicon method inspired by VADER (mini-project subject 1): each known word carries a score, a negation reverses it, "very" strengthens it, and "but" gives more weight to the rest of the sentence. A real model learns these weights from thousands of examples.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="page">
+    <div class="page__rail">
+      {{NAV}}
+    </div>
+
+    <div class="page__contenu">
+
+      <section class="chapitre" id="fiche" aria-labelledby="fiche-titre">
+        <header class="chapitre-tete">
+          <p class="surtitre">Official syllabus</p>
+          <h2 class="titre-section" id="fiche-titre">Course card</h2>
+          <p class="chapeau">What the syllabus asks for, as it is written, with links to the parts of this site that cover it.</p>
+        </header>
+
+        <dl class="definitions">
+          <div><dt>Master</dt><dd>General and Comparative Literature (Littérature Générale et Comparée)</dd></div>
+          <div><dt>Semester</dt><dd>3</dd></div>
+          <div><dt>Unit</dt><dd>Cross-disciplinary teaching unit (Unité d'Enseignement Transversale)</dd></div>
+          <div><dt>Subject</dt><dd>Artificial intelligence</dd></div>
+          <div><dt>Credits</dt><dd>2</dd></div>
+          <div><dt>Coefficient</dt><dd>2</dd></div>
+          <div><dt>University</dt><dd>Université Yahia Farès, Médéa</dd></div>
+          <div><dt>Year</dt><dd>2025–2026</dd></div>
+        </dl>
+
+        <div class="fiche-grille">
+          <article class="carte">
+            <h3>Course objectives</h3>
+            <ul>
+              <li>Master AI algorithms for processing the texts of surveys <a href="#chapitre-3">(ch. 3)</a>.</li>
+              <li>Be able to use Python <a href="#chapitre-2">(ch. 2)</a>.</li>
+              <li>Understand how AI approaches problem solving <a href="#c1-approches">(ch. 1)</a>.</li>
+              <li>Be able to process a corpus of texts <a href="#c2-fichiers">(ch. 2)</a>.</li>
+            </ul>
+          </article>
+          <article class="carte">
+            <h3>Teaching method</h3>
+            <ul>
+              <li>Lectures, tutorials (TD) and lab sessions (TP) <a href="#td-tp">(TD/TP)</a>.</li>
+              <li>Mini-project: complete at least 3 of the 5 subjects offered <a href="#mini-projet">(see the note)</a>.</li>
+              <li>As much teacher–student interaction as possible.</li>
+              <li>Personal work, especially for programming.</li>
+              <li>Assessment according to the regulations in force.</li>
+              <li>Round tables <a href="#tables-rondes">(4 themes)</a>.</li>
+            </ul>
+          </article>
+          <article class="carte carte--large">
+            <h3>Target knowledge</h3>
+            <ul>
+              <li>Identify the opportunities of artificial intelligence in the humanities and social sciences <a href="#c1-perspectives">(ch. 1)</a>.</li>
+              <li>Understand the different possible applications of AI for the humanities and social sciences <a href="#c3-synthese">(ch. 3)</a>.</li>
+              <li>Understand the ethical implications of AI and good practice in using it <a href="#c1-perspectives">(ch. 1)</a>.</li>
+              <li>Cluster social behaviours in surveys and build predictive models <a href="#mp-sujet-2">(subjects 2</a> <a href="#mp-sujet-4">and 4)</a>.</li>
+              <li>Understand the sentiments expressed on social networks and know how to analyse them <a href="#mp-sujet-1">(subject 1)</a>.</li>
+              <li>Extract information from political speeches <a href="#mp-sujet-3">(subject 3)</a>.</li>
+              <li>Analyse sociological networks <a href="#mp-sujet-5">(subject 5)</a>.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="chapitre" id="parcours" aria-labelledby="parcours-titre">
+        <header class="chapitre-tete">
+          <p class="surtitre">Calendar</p>
+          <h2 class="titre-section" id="parcours-titre">The semester at a glance</h2>
+          <p class="chapeau">Nine weeks of lessons (1 + 2 + 6), a three-week mini-project handed out at the end of chapter 2, and tutorials and lab sessions throughout the semester.</p>
+        </header>
+        <div class="planning" role="group" aria-label="Indicative semester plan">
+          <div class="planning__grille">
+            <span></span>
+            <span class="planning__semaine">W1</span><span class="planning__semaine">W2</span><span class="planning__semaine">W3</span>
+            <span class="planning__semaine">W4</span><span class="planning__semaine">W5</span><span class="planning__semaine">W6</span>
+            <span class="planning__semaine">W7</span><span class="planning__semaine">W8</span><span class="planning__semaine">W9</span>
+
+            <span class="planning__ligne">Chapter 1</span>
+            <a class="planning__barre planning__barre--c1" href="#chapitre-1" style="grid-column: 2 / span 1">1 wk</a>
+            <span style="grid-column: 3 / span 8"></span>
+
+            <span class="planning__ligne">Chapter 2</span>
+            <span style="grid-column: 2 / span 1"></span>
+            <a class="planning__barre planning__barre--c2" href="#chapitre-2" style="grid-column: 3 / span 2">Python · 2 wks</a>
+            <span style="grid-column: 5 / span 6"></span>
+
+            <span class="planning__ligne">Chapter 3</span>
+            <span style="grid-column: 2 / span 3"></span>
+            <a class="planning__barre planning__barre--c3" href="#chapitre-3" style="grid-column: 5 / span 6">Types of AI and approaches · 6 weeks</a>
+
+            <span class="planning__ligne">Mini-project</span>
+            <span style="grid-column: 2 / span 3"></span>
+            <a class="planning__barre planning__barre--mp" href="#mini-projet" style="grid-column: 5 / span 3">3 wks (indicative)</a>
+            <span style="grid-column: 8 / span 3"></span>
+
+            <span class="planning__ligne">TD / TP</span>
+            <a class="planning__barre planning__barre--td" href="#td-tp" style="grid-column: 2 / span 9">Exercises on the current chapter, then Python programming and the mini-project</a>
+          </div>
+        </div>
+        <p class="planning__note">Chapter lengths are those of the syllabus. If one week is not enough for chapter 1, the syllabus allows a lab session to complete it. The syllabus only says that the mini-project is handed out at the end of chapter 2: the teacher sets its exact place in the calendar.</p>
+      </section>
+
+{{FRAGMENTS}}
+
+      <section class="chapitre" id="references" aria-labelledby="references-titre">
+        <header class="chapitre-tete">
+          <p class="surtitre">Bibliography</p>
+          <h2 class="titre-section" id="references-titre">References</h2>
+          <p class="chapeau">The syllabus references, formatted. Typos in the original document are corrected and flagged.</p>
+        </header>
+        <ol class="references">
+          <li><div><p>Inglehart, R. (1997). <em>Modernization and Postmodernization: Cultural, Economic, and Political Change in 43 Societies</em>. Princeton University Press.</p><p class="ref-note">The theory of materialist and post-materialist values; a frame for reading the survey data of subjects 2 and 4.</p></div></li>
+          <li><div><p>"Western values are diverging from the rest of the world's". <em>The Economist</em>, 2023.</p><p class="ref-note">The syllabus writes "The Economiste". A press article based on World Values Survey data.</p></div></li>
+          <li><div><p>Western Michigan University. <em>World Values Survey</em>. <a href="https://wmich.edu/economics/world-values-survey" target="_blank" rel="noopener">wmich.edu/economics/world-values-survey</a></p><p class="ref-note">An introduction to the World Values Survey. The data itself is downloaded from <a href="https://www.worldvaluessurvey.org" target="_blank" rel="noopener">worldvaluessurvey.org</a>.</p></div></li>
+          <li><div><p>Ganascia, J.-G. (2024). <em>L'IA expliquée aux humains</em>. Paris: Éditions du Seuil.</p><p class="ref-note">An accessible introduction (in French), useful for chapter 1 and the round tables.</p></div></li>
+          <li><div><p>Langlois, L., Dilhac, M.-A., Dratwa, J. <i>et al.</i> (2023). <em>L'éthique au cœur de l'IA</em>. Québec: Obvia.</p><p class="ref-note">The syllabus writes "Anglais, Lise, Dilhac, Antione"; the names are corrected from the Obvia publication.</p></div></li>
+          <li><div><p>Robert, J. (2024). "Natural Language Processing (NLP) : définition et principes". DataScientest. <a href="https://datascientest.com/introduction-au-nlp-natural-language-processing" target="_blank" rel="noopener">datascientest.com/introduction-au-nlp-natural-language-processing</a></p></div></li>
+          <li><div><p>"What is natural language processing (NLP)?". Amazon Web Services. <a href="https://aws.amazon.com/what-is/nlp/" target="_blank" rel="noopener">aws.amazon.com/what-is/nlp</a> (French version: <a href="https://aws.amazon.com/fr/what-is/nlp/" target="_blank" rel="noopener">aws.amazon.com/fr/what-is/nlp</a>)</p></div></li>
+          <li><div><p>Belhadef, H., Djemal, I. <em>Méthode TALN</em>. Course, University of M'sila, Algeria.</p><p class="ref-note">TALN (traitement automatique des langues naturelles) is the French term for NLP.</p></div></li>
+          <li><div><p>Prieur, B. <em>Traitement automatique du langage naturel avec Python. Le NLP avec spaCy et NLTK</em>.</p><p class="ref-note">A practical reference (in French) for chapter 2 and subject 3.</p></div></li>
+          <li><div><p>Baddari, K., Herzallah, A. (2015). <em>La recherche de l'information</em>. Algiers: Office des publications universitaires (OPU).</p></div></li>
+        </ol>
+
+        <h3 class="surtitre" style="margin-block-start: var(--espace-6)">Official tool documentation</h3>
+        <ul class="puces">
+          <li><a class="puce puce--outil" href="https://docs.python.org/3/tutorial/" target="_blank" rel="noopener">Python tutorial</a></li>
+          <li><a class="puce puce--outil" href="https://pandas.pydata.org/docs/" target="_blank" rel="noopener">pandas</a></li>
+          <li><a class="puce puce--outil" href="https://numpy.org/doc/" target="_blank" rel="noopener">NumPy</a></li>
+          <li><a class="puce puce--outil" href="https://scikit-learn.org/stable/" target="_blank" rel="noopener">scikit-learn</a></li>
+          <li><a class="puce puce--outil" href="https://spacy.io/usage" target="_blank" rel="noopener">spaCy</a></li>
+          <li><a class="puce puce--outil" href="https://huggingface.co/docs/transformers" target="_blank" rel="noopener">Transformers</a></li>
+          <li><a class="puce puce--outil" href="https://radimrehurek.com/gensim/" target="_blank" rel="noopener">gensim</a></li>
+          <li><a class="puce puce--outil" href="https://networkx.org/documentation/stable/" target="_blank" rel="noopener">NetworkX</a></li>
+          <li><a class="puce puce--outil" href="https://gephi.org" target="_blank" rel="noopener">Gephi</a></li>
+          <li><a class="puce puce--outil" href="https://matplotlib.org/stable/" target="_blank" rel="noopener">matplotlib</a></li>
+        </ul>
+      </section>
+
+{{GLOSSAIRE}}
+
+    </div>
+  </div>
+</main>
+
+<footer class="pied">
+  <div class="pied__interieur">
+    <div>
+      <p class="pied__signature"><span class="anneau-prisme" aria-hidden="true"></span>Artificial intelligence</p>
+      <p>Master in General and Comparative Literature, semester 3. Université Yahia Farès, Médéa. Academic year 2025–2026.</p>
+      <p>Based on the official syllabus of the subject (pages 84 to 86 of the programme). The explanations, examples and solutions support the teacher's course; they do not replace it. The course and its exam are in French: this English version is a study aid.</p>
+    </div>
+    <div>
+      <h2>Browse</h2>
+      <ul>
+        <li><a href="#methode">How to learn this course</a></li>
+        <li><a href="#chapitre-1">Chapter 1 · Introduction</a></li>
+        <li><a href="#chapitre-2">Chapter 2 · Python</a></li>
+        <li><a href="#chapitre-3">Chapter 3 · Types of AI</a></li>
+        <li><a href="#mini-projet">Mini-project</a></li>
+        <li><a href="#td-tp">Solved TD / TP</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>This site</h2>
+      <p>Designed with <a href="{{LIEN_SYSTEME}}">Lumineux</a>, a design system taken from the "Cadre Lumineux", capsule menu and slider demos in this repository.</p>
+      <p>Night or Day theme: button at the top right. French version: <a href="../index.html" hreflang="fr">FR</a>.</p>
+      <p>Source code, and <code>run.bat</code> to install everything on Windows: <a href="https://github.com/Progremer04/canva-au-for-ang-" target="_blank" rel="noopener">github.com/Progremer04/canva-au-for-ang-</a>.</p>
+    </div>
+  </div>
+</footer>
+
+{{SCRIPTS}}
+</body>
+</html>

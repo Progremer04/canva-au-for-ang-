@@ -1,0 +1,290 @@
+<section class="chapitre" id="chapitre-1" aria-labelledby="chapitre-1-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">Chapter 1 · 1 week</p>
+    <h2 class="titre-section" id="chapitre-1-titre">Introduction to artificial intelligence</h2>
+    <p class="chapeau">By the end of this chapter, you will be able to define artificial intelligence and place its main stages in time. You will be able to tell narrow AI from general AI, and supervised from unsupervised learning. You will also be able to discuss what AI offers the humanities, and where its limits lie.</p>
+    <ul class="puces"><li class="puce">Lecture</li><li class="puce">Tutorial (TD)</li><li class="puce">Independent study</li></ul>
+  </header>
+
+  <nav class="sommaire-chapitre" aria-label="Chapter 1 contents">
+    <ol>
+      <li><a href="#c1-definir">What is artificial intelligence?</a></li>
+      <li><a href="#c1-histoire">Historical overview</a></li>
+      <li><a href="#c1-faible-forte">Narrow (weak) AI and general (strong) AI</a></li>
+      <li><a href="#c1-apprentissage">Supervised and unsupervised learning</a></li>
+      <li><a href="#c1-approches">AI approaches to problem solving</a></li>
+      <li><a href="#c1-perspectives">Outlook, limits and ethics</a></li>
+    </ol>
+  </nav>
+
+  <article class="lecon" id="c1-definir">
+    <h3>What is artificial intelligence?</h3>
+    <p>The term "artificial intelligence" first appeared in 1955, in a proposal written by John McCarthy, Marvin Minsky, Nathaniel Rochester and Claude Shannon. They were asking for funding to bring researchers together at Dartmouth College, in the United States, in the summer of 1956. Their working hypothesis: every aspect of learning and intelligence could in principle be described precisely enough for a machine to simulate it. This workshop is considered the birth of the field.</p>
+    <p>Yet there is no single definition, because there is no agreement on what the word "intelligence" itself means.</p>
+
+    <h4>AI as the design of agents</h4>
+    <p>The standard textbook by Stuart Russell and Peter Norvig, <em>Artificial Intelligence: A Modern Approach</em> (1995), presents AI as the study of agents. An <dfn>agent</dfn> (<span class="terme-en" lang="fr">agent</span>) is a system that perceives its environment and acts on it to achieve a goal. A spam filter, for example, "perceives" the text of an email and "acts" by putting it in the right folder.</p>
+
+    <h4>A set of techniques rather than a single thing</h4>
+    <p>Talking about "AI" in the singular is misleading. AI is a family of very different techniques: logical rules written by experts, algorithms that explore possibilities, statistical methods that learn from examples, and artificial neural networks. So when you see a result produced by "an AI", always ask: which technique, trained on which data, for which task?</p>
+
+    <aside class="encadre encadre--definition">
+      <p class="encadre-titre">Working definition</p>
+      <p>We will call <dfn>artificial intelligence</dfn> (<span class="terme-en" lang="fr">intelligence artificielle</span>, IA) the set of computing methods that allow a machine to perform tasks that we usually associate with human intelligence: recognizing, classifying, predicting, reasoning, planning, and understanding or producing language. This definition is about observable tasks. It says nothing about what the machine "understands".</p>
+    </aside>
+
+    <h4>Why AI matters for literary studies</h4>
+    <p>The term <dfn>digital humanities</dfn> (<span class="terme-en" lang="fr">humanités numériques</span>) refers to research in literature, history or the social sciences that relies on computer tools. Its origin is often dated to 1949, when the Italian Jesuit Roberto Busa began indexing the works of Thomas Aquinas, with help from IBM.</p>
+    <p>For a comparatist, the most stimulating proposal comes from Franco Moretti ("Conjectures on World Literature", 2000; <em>Distant Reading</em>, 2013). No reader can read every novel published in the 19<sup>th</sup> century, so he proposes <dfn>distant reading</dfn> (<span class="terme-en" lang="fr">lecture distante</span>): studying thousands of texts through measurable features, such as genres, titles, character networks or the movement of forms from one language to another. AI provides the tools for this large-scale reading, without replacing close reading.</p>
+
+    <aside class="encadre encadre--shs">
+      <p class="encadre-titre">Three uses in literature and the humanities</p>
+      <ul>
+        <li><strong>Corpus studies</strong>: identify the themes and entities (people, places, dates) that dominate a set of novels, press articles or political speeches.</li>
+        <li><strong>Stylometry</strong>: measure style to discuss an attribution. In 2019, for example, Florian Cafiero and Jean-Baptiste Camps provided quantitative arguments in favor of Molière in the controversy that set him against Corneille.</li>
+        <li><strong>Translation studies</strong>: align a novel by Naguib Mahfouz sentence by sentence with its French and English translations, to compare the translators' choices.</li>
+      </ul>
+    </aside>
+  </article>
+
+  <article class="lecon" id="c1-histoire">
+    <h3>Historical overview of artificial intelligence</h3>
+    <p>The history of AI alternates between enthusiasm and disappointment. It is also a contest between two families of ideas: the <em>symbolic</em> approach, which programs explicit rules and reasoning, and the <em>connectionist</em> approach, which trains artificial neural networks. The most cited founding text, Alan Turing's article, opens with this sentence:</p>
+
+    <blockquote class="citation">
+      <p lang="en">I propose to consider the question, "Can machines think?"</p>
+      <footer><cite>Alan M. Turing, "Computing Machinery and Intelligence", <em>Mind</em>, 1950</cite></footer>
+    </blockquote>
+
+    <ol class="chronologie">
+      <li><span class="chrono-date">1943</span>
+        <div class="chrono-corps"><p class="chrono-titre">The formal neuron</p><p>Warren McCulloch and Walter Pitts proposed a mathematical model of the neuron: a unit that adds up signals and "fires" when they pass a threshold. It is the ancestor of today's neural networks.</p></div></li>
+      <li><span class="chrono-date">1950</span>
+        <div class="chrono-corps"><p class="chrono-titre">The imitation game</p><p>Turing proposed a test: an interrogator has a written conversation with a human and with a machine. If the interrogator cannot tell them apart, the machine is behaving intelligently. This has been called the "Turing test" ever since.</p></div></li>
+      <li><span class="chrono-date">1956</span>
+        <div class="chrono-corps"><p class="chrono-titre">The Dartmouth workshop</p><p>The term "artificial intelligence" became established as the name of the field. At the workshop, Allen Newell and Herbert Simon presented the <em>Logic Theorist</em>, a program that proves theorems in logic.</p></div></li>
+      <li><span class="chrono-date">1958</span>
+        <div class="chrono-corps"><p class="chrono-titre">The perceptron</p><p>Frank Rosenblatt presented a neural network that adjusts its parameters from examples. In 1969, Marvin Minsky and Seymour Papert (<em>Perceptrons</em>) showed its limits, which held back the connectionist approach for a long time.</p></div></li>
+      <li><span class="chrono-date">1966</span>
+        <div class="chrono-corps"><p class="chrono-titre">ELIZA</p><p>At MIT, Joseph Weizenbaum published a program that imitates a psychotherapist by rephrasing the user's sentences with simple rules. Yet some users believed it truly understood them: this is the "ELIZA effect".</p></div></li>
+      <li><span class="chrono-date">1973</span>
+        <div class="chrono-corps"><p class="chrono-titre">The Lighthill report and the first winter</p><p>In the United Kingdom, a report by the mathematician James Lighthill judged the results to be far below what had been promised. Funding fell, first in the United Kingdom and then in the United States. This was the first "AI winter", which lasted until around 1980.</p></div></li>
+      <li><span class="chrono-date">1970s–1980s</span>
+        <div class="chrono-corps"><p class="chrono-titre">The age of expert systems</p><p>At Stanford, MYCIN helped diagnose bacterial blood infections using a few hundred "if… then…" rules. In the 1980s, companies adopted these systems, and in 1982 Japan launched its "fifth-generation" computer program.</p></div></li>
+      <li><span class="chrono-date">Late 1980s</span>
+        <div class="chrono-corps"><p class="chrono-titre">The second winter</p><p>Expert systems were expensive to maintain and fragile outside their domain, and they disappointed. The market for Lisp machines collapsed in 1987, and budgets shrank until the early 1990s.</p></div></li>
+      <li><span class="chrono-date">1997</span>
+        <div class="chrono-corps"><p class="chrono-titre">Deep Blue beats Kasparov</p><p>IBM's computer beat the world chess champion Garry Kasparov. Its strength came mainly from exploring millions of positions very quickly, rather than from learning.</p></div></li>
+      <li><span class="chrono-date">2012</span>
+        <div class="chrono-corps"><p class="chrono-titre">AlexNet and the rise of deep learning</p><p>In the ImageNet image recognition competition, the convolutional network AlexNet (Alex Krizhevsky, Ilya Sutskever, Geoffrey Hinton) clearly outperformed the other methods. Large annotated datasets, graphics processors and deep networks came together.</p></div></li>
+      <li><span class="chrono-date">2016</span>
+        <div class="chrono-corps"><p class="chrono-titre">AlphaGo</p><p>DeepMind's program beat Lee Sedol, one of the world's best go players, by four games to one. It combined neural networks, reinforcement learning and the exploration of a tree of moves.</p></div></li>
+      <li><span class="chrono-date">2017</span>
+        <div class="chrono-corps"><p class="chrono-titre">The Transformer</p><p>The article "Attention Is All You Need" (Vaswani et al., Google) introduced the Transformer architecture, based on the attention mechanism. It is the basis of almost all of today's large language models.</p></div></li>
+      <li><span class="chrono-date">2018</span>
+        <div class="chrono-corps"><p class="chrono-titre">BERT and pre-trained models</p><p>Google presented BERT, a model pre-trained on large amounts of text that can then be adapted to many tasks. The same year, OpenAI released its first GPT model.</p></div></li>
+      <li><span class="chrono-date">2022</span>
+        <div class="chrono-corps"><p class="chrono-titre">ChatGPT</p><p>On November 30, OpenAI opened ChatGPT to the public. It is a chatbot based on a large language model. So-called generative AI entered everyday use, including at university.</p></div></li>
+      <li><span class="chrono-date">2024</span>
+        <div class="chrono-corps"><p class="chrono-titre">The European AI regulation</p><p>The European Union adopted Regulation (EU) 2024/1689, known as the <span lang="en">AI Act</span>, which classifies systems according to their level of risk. It is being applied in stages, starting in 2025.</p></div></li>
+    </ol>
+
+    <h4>Cycles of hope and disappointment</h4>
+    <p>Each technical wave brings predictions that are too optimistic. In 1958, Herbert Simon and Allen Newell announced that a computer would be world chess champion within ten years; it took nearly forty. But abandoned ideas do not disappear. Neural networks, judged to have no future in 1969, came back in 1986 with backpropagation (David Rumelhart, Geoffrey Hinton, Ronald Williams), and then dominated the field after 2012. A lesson in method: judge a system on what it actually does, measured by tests, and not on what people promise it will do.</p>
+  </article>
+
+  <article class="lecon" id="c1-faible-forte">
+    <h3>Narrow (weak) AI and general (strong) AI</h3>
+    <p>The syllabus brings together two pairs of notions that are close but distinct. The contrast between <em>weak</em> and <em>strong</em> AI comes from the philosopher John Searle (1980). It separates a machine that <em>simulates</em> intelligence from a machine that would really <em>possess</em> a mind. The contrast between <em>narrow</em> and <em>general</em> AI is about the range of abilities: one specific task, or all human intellectual tasks. The first distinction is philosophical, the second is technical; everyday usage often mixes them up.</p>
+
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>Narrow (or weak) AI</h4>
+        <p><dfn>Narrow AI</dfn> (<span class="terme-en" lang="fr">IA étroite</span>) performs a well-defined task, often better than a human, but cannot transfer this skill to anything else. The program that beats chess champions cannot read a poem.</p>
+        <ul>
+          <li>Optical character recognition (OCR) on old newspapers.</li>
+          <li>Machine translation between Arabic, French and English.</li>
+          <li>Spam filters, book recommendations.</li>
+        </ul>
+      </div>
+      <div class="comparaison-col">
+        <h4>General (or strong) AI</h4>
+        <p><dfn>Artificial general intelligence</dfn> (<span class="terme-en" lang="fr">IA générale</span>, AGI) refers to a hypothetical system able to perform any human intellectual task. In particular, we would expect it to be able to:</p>
+        <ul>
+          <li>transfer its knowledge from one domain to another;</li>
+          <li>learn a new task from very few examples;</li>
+          <li>in Searle's sense, truly understand what it processes.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Narrow AI and general AI: a point-by-point comparison</caption>
+      <thead><tr><th scope="col">Criterion</th><th scope="col">Narrow (weak) AI</th><th scope="col">General (strong) AI</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Definition</th><td>A system designed and trained for one specific task or family of tasks.</td><td>A hypothetical system as versatile as a human, or even one with a mind in the full sense of the word.</td></tr>
+        <tr><th scope="row">Examples</th><td>Deep Blue, AlphaGo, machine translation tools, speech recognition, sentiment analysis.</td><td>No recognized real example. A common figure in science fiction, such as HAL 9000 in <em>2001: A Space Odyssey</em>.</td></tr>
+        <tr><th scope="row">Current state in 2026</th><td>Everywhere: search engines, phones, public services, research tools in the humanities and social sciences (SHS).</td><td>The stated goal of several companies. There is no scientific consensus that it has been achieved; its definition and how to measure it are still debated.</td></tr>
+        <tr><th scope="row">Philosophical question</th><td>Is succeeding at a task the same as understanding it? Does a correct translation require an understanding of meaning?</td><td>Can a machine think, be conscious, have intentions? Who would answer for its actions?</td></tr>
+      </tbody>
+    </table></div>
+
+    <h4>The Chinese room argument</h4>
+    <p>In "Minds, Brains, and Programs" (1980), Searle imagines a person who does not know Chinese, locked in a room with a manual written in their own language. The manual tells them which Chinese characters to send back in reply to the ones slipped in through a slot. From outside, the room seems to answer perfectly in Chinese, yet the person understands nothing. According to Searle, a program in the same way manipulates symbols according to their form (syntax) without reaching their meaning (semantics). So passing the Turing test would not prove understanding. His critics reply that it is the system as a whole that would understand. The debate remains open.</p>
+
+    <h4>What about large language models?</h4>
+    <p>Today's chatbots write, summarize and translate on almost any subject. Whether they are a step toward general AI is hotly debated. However, they are systems trained mainly on text, first to predict how a sequence of words continues, then adjusted to hold a dialogue. They make mistakes that a human would not make. Some researchers see emerging reasoning abilities in them; others, such as Emily Bender and her co-authors (2021), see "stochastic parrots" that recombine forms they have learned. There is no consensus that they are general AI. Treat them as powerful but specialized tools, and check everything they produce.</p>
+  </article>
+
+  <article class="lecon" id="c1-apprentissage">
+    <h3>Supervised learning and unsupervised learning</h3>
+    <p>Most of today's AI is based on <dfn>machine learning</dfn> (<span class="terme-en" lang="fr">apprentissage automatique</span>), a term attributed to Arthur Samuel (1959). Instead of writing all the rules of a task, we give examples to an algorithm, which fits a <dfn>model</dfn>: a mathematical function that can then handle new cases.</p>
+
+    <h4>Supervised learning</h4>
+    <p>In <dfn>supervised learning</dfn> (<span class="terme-en" lang="fr">apprentissage supervisé</span>), each example comes with the correct answer, called a <dfn>label</dfn> (<span class="terme-en" lang="fr">étiquette</span>). Suppose that specialists have assigned 600 poems to a period: Romanticism, Parnassianism or Symbolism. The model observes features of each poem (vocabulary, line length, punctuation) and learns to associate them with the given period. It can then suggest a period for an unknown poem. When the answer is a category, we speak of <dfn>classification</dfn>; when it is a number, such as a year of composition, we speak of <dfn>regression</dfn>.</p>
+
+    <h4>Train, test, generalize</h4>
+    <p>A model is never evaluated on the examples used to train it. The data are split in two. The <dfn>training set</dfn> (<span class="terme-en" lang="fr">jeu d'entraînement</span>) is used to fit the model. The <dfn>test set</dfn> (<span class="terme-en" lang="fr">jeu de test</span>) is set aside and used at the end to measure its performance. The goal is <dfn>generalization</dfn>: handling new cases well, like a student who passes an exam made of questions they have never seen.</p>
+    <p>The main trap is <dfn>overfitting</dfn> (<span class="terme-en" lang="fr">sur-apprentissage</span>). A model that is too complex "learns by heart" the training poems with all their accidental details, instead of grasping what characterizes each period. It gets almost perfect results in training and poor results in the test, like a student who memorized the solutions without understanding the course. A large gap between the two scores is the warning sign. Another trap: if all your Romantic poems come from old editions that write "enfans" for "enfants", the model will learn the spelling of the edition rather than the style of the period.</p>
+
+    <h4>Unsupervised learning</h4>
+    <p>In <dfn>unsupervised learning</dfn> (<span class="terme-en" lang="fr">apprentissage non supervisé</span>), the data have no labels. The algorithm looks for regularities by itself, most often by forming groups of similar items: this is <dfn>clustering</dfn> (<span class="terme-en" lang="fr">partitionnement</span>). Take 200 French-language novels from the Maghreb and measure their average sentence length, the richness of their vocabulary and the frequency of function words ("de", "que", "et"). Without knowing anything about the authors or the dates, an algorithm can sort the novels into stylistic families. Interpreting them is up to you: do these groups correspond to authors, generations, genres, or to nothing meaningful?</p>
+
+    <figure class="schema">
+      <svg viewBox="0 0 640 330" role="img" aria-labelledby="c1-schema-appr-t">
+        <title id="c1-schema-appr-t">Two processing pipelines: supervised learning and unsupervised learning</title>
+        <defs><marker id="c1-fleche" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="svg-pointe" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+        <text class="svg-texte" x="24" y="34">Supervised learning</text>
+        <rect class="svg-noeud" x="24" y="50" width="160" height="64" rx="12"/>
+        <text class="svg-texte" x="104" y="77" text-anchor="middle">Labeled</text>
+        <text class="svg-texte" x="104" y="99" text-anchor="middle">data</text>
+        <line class="svg-trait" x1="184" y1="82" x2="238" y2="82" marker-end="url(#c1-fleche)"/>
+        <rect class="svg-noeud-accent" x="240" y="50" width="160" height="64" rx="12"/>
+        <text class="svg-texte" x="320" y="77" text-anchor="middle">Trained</text>
+        <text class="svg-texte" x="320" y="99" text-anchor="middle">model</text>
+        <line class="svg-trait" x1="400" y1="82" x2="454" y2="82" marker-end="url(#c1-fleche)"/>
+        <rect class="svg-noeud" x="456" y="50" width="160" height="64" rx="12"/>
+        <text class="svg-texte" x="536" y="77" text-anchor="middle">Predicted</text>
+        <text class="svg-texte" x="536" y="99" text-anchor="middle">label</text>
+        <text class="svg-texte-doux" x="24" y="142">E.g. dated poems → model → likely period of a new poem</text>
+        <text class="svg-texte" x="24" y="196">Unsupervised learning</text>
+        <rect class="svg-noeud" x="24" y="212" width="160" height="64" rx="12"/>
+        <text class="svg-texte" x="104" y="239" text-anchor="middle">Unlabeled</text>
+        <text class="svg-texte" x="104" y="261" text-anchor="middle">data</text>
+        <line class="svg-trait" x1="184" y1="244" x2="238" y2="244" marker-end="url(#c1-fleche)"/>
+        <rect class="svg-noeud-accent" x="240" y="212" width="160" height="64" rx="12"/>
+        <text class="svg-texte" x="320" y="239" text-anchor="middle">Clustering</text>
+        <text class="svg-texte" x="320" y="261" text-anchor="middle">algorithm</text>
+        <line class="svg-trait" x1="400" y1="244" x2="454" y2="244" marker-end="url(#c1-fleche)"/>
+        <rect class="svg-noeud" x="456" y="212" width="160" height="64" rx="12"/>
+        <text class="svg-texte" x="536" y="239" text-anchor="middle">Groups</text>
+        <text class="svg-texte" x="536" y="261" text-anchor="middle">(clusters)</text>
+        <text class="svg-texte-doux" x="24" y="304">E.g. unlabeled novels → algorithm → stylistic families to interpret</text>
+      </svg>
+      <figcaption>In supervised learning, the labels guide training and the model predicts the label of new cases. In unsupervised learning, the algorithm forms groups that the researcher must interpret.</figcaption>
+    </figure>
+
+    <h4>In between, and beyond</h4>
+    <p>Labeling data takes a lot of time and expertise. <dfn>Semi-supervised learning</dfn> (<span class="terme-en" lang="fr">apprentissage semi-supervisé</span>) therefore combines a few labeled examples with many unlabeled ones. Large language models rely on a form of learning called self-supervised: they learn to guess a hidden word or the next word, and the text itself provides the "right answer". Finally, in <dfn>reinforcement learning</dfn> (<span class="terme-en" lang="fr">apprentissage par renforcement</span>), an agent acts, receives rewards or penalties, and learns by trial and error. It will be studied in chapter 3.</p>
+
+    <div class="quiz">
+      <p class="quiz-question">You have 500 political speeches that political scientists have sorted into three categories (economy, security, education). You want the machine to classify 3,000 new speeches. What type of learning is this?</p>
+      <ul class="quiz-options">
+        <li><button type="button" class="quiz-option">Unsupervised learning, because the new speeches have no label.</button></li>
+        <li><button type="button" class="quiz-option" data-correct>Supervised learning, because the model learns from labeled examples.</button></li>
+        <li><button type="button" class="quiz-option">Reinforcement learning, because the machine improves its results.</button></li>
+      </ul>
+      <p class="quiz-explication" hidden>This is supervised learning: the 500 classified speeches are the labeled data that train the model. It is normal that the new speeches have no label, because that is exactly what the model must predict. We would speak of unsupervised learning if no speech were labeled and we were looking for groups.</p>
+    </div>
+  </article>
+
+  <article class="lecon" id="c1-approches">
+    <h3>AI approaches to problem solving</h3>
+    <p>To solve a problem, AI offers several strategies. They appeared at different moments in its history, and today's systems often combine them. Knowing how to tell them apart will help you choose a tool that suits your research question.</p>
+
+    <div class="grille-cartes">
+      <article class="carte">
+        <h4>State-space search</h4>
+        <p>The problem is described as a set of situations (the <em>states</em>) linked by actions, and we look for a path from the initial state to the goal state. Planning a route between Médéa and Algiers works this way, and so does a chess program. Algorithms such as A* (1968) guide the search. Limit: the number of states grows very quickly.</p>
+      </article>
+      <article class="carte">
+        <h4>Symbolic reasoning</h4>
+        <p>Knowledge is written as facts and "if… then…" rules. An <dfn>inference engine</dfn> deduces new facts from them (forward chaining) or works back from a goal to the facts (backward chaining). This is the principle of expert systems, studied in chapter 3. Strength: every conclusion can be explained. Limit: the rules take a long time to write.</p>
+      </article>
+      <article class="carte">
+        <h4>Statistical learning</h4>
+        <p>The model learns from numerical examples: regression, decision trees, probabilistic classifiers, clustering. These methods are available in scikit-learn. They work well for survey data and medium-sized corpora, as long as the measured variables are well chosen.</p>
+      </article>
+      <article class="carte">
+        <h4>Connectionism</h4>
+        <p>Artificial neural networks, organized in layers, learn by adjusting millions of parameters; when there are many layers, we speak of deep learning. This approach dominates vision, speech and text processing. But it needs a lot of data and computing power, and its decisions are hard to explain.</p>
+      </article>
+      <article class="carte">
+        <h4>Agents and reinforcement</h4>
+        <p>An agent acts in an environment, receives a reward or a penalty, and gradually learns the best behavior. This approach produced AlphaGo. It is used in robotics and helps adjust chatbots based on human judgments. It will be covered in detail in chapter 3.</p>
+      </article>
+      <article class="carte">
+        <h4>Hybrid approaches</h4>
+        <p>Several approaches are combined to add up their strengths. AlphaGo combines neural networks with search in a tree of moves. An assistant that consults a document database before answering combines information retrieval with a language model. We speak of neuro-symbolic AI when networks and logical rules work together.</p>
+      </article>
+    </div>
+
+    <aside class="encadre encadre--exemple">
+      <p class="encadre-titre">One problem, two approaches: identifying the language of a message</p>
+      <p>You are studying 10,000 messages posted on Algerian social networks, in Standard Arabic, French, English or Darja (Algerian Arabic), which is sometimes written in Latin letters. First step: identify the language of each message.</p>
+      <p><strong>With rules.</strong> If the message contains Arabic characters, it is Arabic. If it contains several of the words "le, la, les, et, est", it is French. If it contains "the, and, is, of", it is English. This approach is transparent and needs no prior data. But it fails on very short messages, on messages that mix languages, and on Darja written in Latin letters ("wach rak"), which no simple rule can capture.</p>
+      <p><strong>With learning.</strong> You have a few thousand messages labeled by hand. A model learns how often sequences of two or three characters occur in each language, a method described as early as 1994 by William Cavnar and John Trenkle. You then evaluate it on a test set. It recognizes unexpected cases, including Darja in Latin letters if it appears in the examples. But it requires annotated data, and it reproduces your annotation choices: is a message that mixes French and Darja "French" or "Darja"? This scientific decision is yours.</p>
+      <p>In practice, the two are often combined: a rule for the script (Arabic or Latin), and a trained model for the rest.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="c1-perspectives">
+    <h3>Outlook: opportunities, limits and ethics</h3>
+
+    <h4>Opportunities for the humanities and social sciences</h4>
+    <p>AI opens up fields of study that used to be out of reach for lack of time: exploring thousands of texts (digitized newspapers, archives, novels); transcribing printed or handwritten documents, including those in Arabic script; analyzing the open answers of a survey; measuring opinion on social networks; extracting the entities and themes of a political speech; rebuilding networks of correspondents or of characters. The mini-project topics draw on these uses. In every case, the tool produces clues; it is your research question that gives them meaning.</p>
+
+    <h4>Limits you should know</h4>
+    <ul>
+      <li><strong>Bias.</strong> A model reproduces the imbalances in its data. Languages that are rare on the web, such as Darja or Tamazight, are handled less well than English. For a long time, machine translation tools rendered a gender-neutral Turkish sentence, with no "he" or "she", as "he is a doctor" but "she is a nurse".</li>
+      <li><strong>Hallucinations.</strong> Generative models produce plausible sentences, not truths. They can confidently invent quotations, dates and references.</li>
+      <li><strong>Opacity.</strong> We cannot easily explain why a deep network produced a given result, and this is a problem for scientific argument.</li>
+      <li><strong>Energy cost.</strong> Training and using large models consumes a lot of electricity, as well as water to cool data centers. A small, well-chosen model is often enough.</li>
+    </ul>
+
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Invented references</p>
+      <p>Never copy a reference given by a chatbot until you have found it in a catalog, a database or the original document. In a thesis, a reference to a source that does not exist is a scholarly fault, whatever its origin.</p>
+    </aside>
+
+    <h4>Ethics and good practice</h4>
+    <p>In November 2021, UNESCO's member states adopted the <em>Recommendation on the Ethics of Artificial Intelligence</em>, the first global standard-setting framework on the subject. It sets out principles such as proportionality, respect for privacy, transparency and explainability, responsibility, human oversight and fairness. The 2024 European regulation turns some of these principles into obligations that depend on the level of risk. Social scoring of citizens is banned; systems that admit or assess students are "high-risk"; chatbots must make clear that they are machines. For your own work, four rules apply:</p>
+    <ul>
+      <li><strong>Personal data.</strong> Survey answers and online messages concern real people: obtain informed consent, keep only what is useful, and anonymize. In Algeria, Law No. 18-07 of June 10, 2018 governs the processing of personal data; in Europe, the GDPR does.</li>
+      <li><strong>Copyright.</strong> A protected text may be analyzed for research under the applicable rules, but it may not be freely distributed. Do not upload unpublished or protected texts to an online service that gives itself the right to reuse content.</li>
+      <li><strong>Transparency.</strong> Declare any use of an AI tool in a thesis: its name, version and date, the precise use (translation, rephrasing, corpus analysis) and the instructions you gave. Since 2023, the APA and MLA styles have offered citation models for these tools. Presenting a generated text as your own is plagiarism.</li>
+      <li><strong>Verification.</strong> Check every fact, quotation and figure produced by a tool. Keep a record of your processing steps so that a reader can repeat them.</li>
+    </ul>
+
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">Key points</p>
+      <ul>
+        <li>AI is a family of techniques (rules, search, statistical learning, neural networks). It was officially born at Dartmouth in 1956.</li>
+        <li>Its history alternates between enthusiasm and "winters": judge a system on what it does, not on what people promise it will do.</li>
+        <li>All existing AI systems are narrow. It has not been established that general AI exists, including in the form of large language models.</li>
+        <li>Supervised learning starts from labeled examples and is evaluated on a test set. Unsupervised learning forms groups that you must interpret.</li>
+        <li>Bias, hallucinations, opacity and energy cost call for verification and transparency, and for respect for personal data and copyright.</li>
+      </ul>
+    </aside>
+
+    <div class="quiz">
+      <p class="quiz-question">For your thesis, a chatbot suggests a complete reference: author, title, publisher, year. What is good practice?</p>
+      <ul class="quiz-options">
+        <li><button type="button" class="quiz-option">Cite it as it is, since all the bibliographic details are there.</button></li>
+        <li><button type="button" class="quiz-option">Rewrite it so that it matches your citation style.</button></li>
+        <li><button type="button" class="quiz-option" data-correct>Check that it exists in a catalog or in the original document before using it.</button></li>
+      </ul>
+      <p class="quiz-explication" hidden>Language models can invent perfectly plausible references: a real author, a believable title, a well-known publisher. Only a check in an independent source can confirm that the reference exists and that it really says what is attributed to it.</p>
+    </div>
+  </article>
+</section>

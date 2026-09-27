@@ -9,6 +9,8 @@
   "use strict";
 
   var SVG = "http://www.w3.org/2000/svg";
+  var EN = /^en/i.test(document.documentElement.lang || "");
+  function tr(fr, en) { return EN ? en : fr; }
 
   function el(nom, attrs, enfants) {
     var n = document.createElement(nom);
@@ -25,11 +27,11 @@
     Object.keys(attrs || {}).forEach(function (k) { n.setAttribute(k, attrs[k]); });
     return n;
   }
-  function nombre(x, d) { return x.toLocaleString("fr-FR", { minimumFractionDigits: d, maximumFractionDigits: d }); }
+  function nombre(x, d) { return x.toLocaleString(EN ? "en-GB" : "fr-FR", { minimumFractionDigits: d, maximumFractionDigits: d }); }
   function enTete(conteneur, titre) {
     conteneur.appendChild(el("div", { "class": "demo__tete" }, [
       el("span", { "class": "anneau-prisme", "aria-hidden": "true" }),
-      el("p", { "class": "demo__etiquette", texte: "Démonstration interactive" })
+      el("p", { "class": "demo__etiquette", texte: tr("Démonstration interactive", "Interactive demo") })
     ]));
     conteneur.appendChild(el("h4", { "class": "demo__titre", texte: titre }));
   }
@@ -60,6 +62,25 @@
   var AMPLIFICATEURS = { "très": 0.293, "trop": 0.293, "vraiment": 0.293, "tellement": 0.293, "extrêmement": 0.293,
     "absolument": 0.293, "profondément": 0.293, "si": 0.293, "totalement": 0.293, "plutôt": -0.293, "peu": -0.293, "assez": -0.15 };
 
+  var LEXIQUE_EN = {
+    "beautiful": 2, "wonderful": 3, "excellent": 3, "good": 1.5, "great": 2.5, "happy": 2.5, "joy": 2.5, "joyful": 2.5,
+    "love": 2.5, "loved": 2.5, "hope": 2, "bright": 1.5, "brilliant": 2.5, "moving": 2, "touching": 2, "captivating": 2.5,
+    "fascinating": 2.5, "interesting": 1.5, "amazing": 3, "superb": 3, "perfect": 2.5, "pleasure": 2, "delight": 2.5,
+    "smile": 1.5, "peace": 1.5, "freedom": 1.5, "proud": 1.5, "convinced": 1.5, "convincing": 2, "gentle": 1, "calm": 1,
+    "trust": 1.5, "victory": 2, "thanks": 1.5, "bravo": 2.5, "masterpiece": 3, "sublime": 3, "clear": 1, "success": 2,
+    "dead": -2.5, "died": -2.5, "die": -2.5, "death": -2.5, "sad": -2, "sadness": -2.5, "misery": -2.5, "unhappy": -2.5,
+    "bad": -2, "horrible": -3, "terrible": -2.5, "awful": -3, "disappointing": -2, "disappointed": -2, "disappointment": -2,
+    "boredom": -1.5, "boring": -2, "hate": -3, "hated": -3, "fear": -2, "anger": -2, "angry": -2, "crisis": -2, "war": -2.5,
+    "violence": -2.5, "failure": -2, "failed": -2, "weak": -1, "worst": -3, "worse": -2, "pain": -2, "suffering": -2.5,
+    "unfair": -2, "injustice": -2.5, "worried": -1.5, "danger": -2, "dangerous": -2, "corruption": -2.5, "lie": -2,
+    "confused": -1.5, "absurd": -1, "lonely": -1.5, "loneliness": -1.5, "tears": -2, "cry": -2, "heavy": -1
+  };
+  var NEGATIONS_EN = { "not": 1, "no": 1, "never": 1, "nothing": 1, "none": 1, "nor": 1, "without": 1, "n't": 1, "hardly": 1 };
+  var AMPLIFICATEURS_EN = { "very": 0.293, "really": 0.293, "extremely": 0.293, "so": 0.293, "too": 0.293, "absolutely": 0.293,
+    "deeply": 0.293, "totally": 0.293, "incredibly": 0.293, "slightly": -0.293, "somewhat": -0.293, "rather": -0.15, "quite": -0.15 };
+  if (EN) { LEXIQUE = LEXIQUE_EN; NEGATIONS = NEGATIONS_EN; AMPLIFICATEURS = AMPLIFICATEURS_EN; }
+  var MAIS = EN ? "but" : "mais";
+
   function chercher(mot) {
     if (LEXIQUE.hasOwnProperty(mot)) return LEXIQUE[mot];
     var essais = [mot.replace(/s$/, ""), mot.replace(/x$/, ""), mot.replace(/es$/, "e"), mot.replace(/es$/, "")];
@@ -69,13 +90,17 @@
 
   function analyser(phrase) {
     var jetons = [];
-    var re = /[\p{L}\p{M}]+(?:-[\p{L}\p{M}']+)*'?|[!?.,;:]/gu;
+    var re = /[\p{L}\p{M}]+(?:['\u2019][\p{L}\p{M}]+)*(?:-[\p{L}\p{M}'\u2019]+)*['\u2019]?|[!?.,;:]/gu;
     var m;
     while ((m = re.exec(phrase)) !== null) {
-      var brut = m[0];
+      var brut = m[0].replace(/\u2019/g, "'");
       // Élisions : l', d', n', j', qu', s', c', m', t'
-      var elision = /^(qu|[ldnjsmtc])'(.+)$/i.exec(brut);
-      if (elision) {
+      var elision = EN ? null : /^(qu|[ldnjsmtc])'(.+)$/i.exec(brut);
+      var contraction = EN ? /^(.+)(n't)$/i.exec(brut) : null;
+      if (contraction) {
+        jetons.push({ brut: contraction[1], mot: contraction[1].toLowerCase() });
+        jetons.push({ brut: contraction[2], mot: "n't" });
+      } else if (elision) {
         jetons.push({ brut: elision[1] + "'", mot: elision[1].toLowerCase() + "'" });
         jetons.push({ brut: elision[2], mot: elision[2].toLowerCase() });
       } else {
@@ -83,7 +108,7 @@
       }
     }
     var indexMais = -1;
-    jetons.forEach(function (j, i) { if (j.mot === "mais") indexMais = i; });
+    jetons.forEach(function (j, i) { if (j.mot === MAIS) indexMais = i; });
     var somme = 0;
     jetons.forEach(function (j, i) {
       var v = chercher(j.mot);
@@ -114,17 +139,18 @@
       var r = analyser(zone.value);
       var c = r.compose;
       curseur.style.left = ((c + 1) / 2 * 100) + "%";
-      etiquette.textContent = c >= 0.05 ? "Positif" : c <= -0.05 ? "Négatif" : "Neutre";
-      score.textContent = "score composé " + (c >= 0 ? "+" : "−") + nombre(Math.abs(c), 2);
+      etiquette.textContent = c >= 0.05 ? tr("Positif", "Positive") : c <= -0.05 ? tr("Négatif", "Negative") : tr("Neutre", "Neutral");
+      score.textContent = tr("score composé ", "compound score ") + (c >= 0 ? "+" : "−") + nombre(Math.abs(c), 2);
       mots.textContent = "";
       r.jetons.forEach(function (j, i) {
         var classe = "mot";
         if (typeof j.valeur === "number") classe += j.valeur > 0 ? " mot--pos" : " mot--neg";
-        if (NEGATIONS[j.mot] || AMPLIFICATEURS.hasOwnProperty(j.mot) || j.mot === "mais") classe += " mot--mod";
+        if (NEGATIONS[j.mot] || AMPLIFICATEURS.hasOwnProperty(j.mot) || j.mot === MAIS) classe += " mot--mod";
         var s = el("span", { "class": classe, texte: j.brut });
         if (typeof j.valeur === "number") s.appendChild(el("sup", { texte: (j.valeur > 0 ? "+" : "−") + nombre(Math.abs(j.valeur), 1) }));
         mots.appendChild(s);
-        if (i < r.jetons.length - 1 && !/^[,.;:!?]$/.test(r.jetons[i + 1].brut) && !/'$/.test(j.brut)) mots.appendChild(document.createTextNode(" "));
+        var suivant = r.jetons[i + 1];
+        if (suivant && !/^[,.;:!?]$/.test(suivant.brut) && !/'$/.test(j.brut) && suivant.mot !== "n't") mots.appendChild(document.createTextNode(" "));
       });
     }
     zone.addEventListener("input", rendre);
@@ -153,10 +179,10 @@
 
   function initChainage(racine) {
     racine.textContent = "";
-    enTete(racine, "Dérouler le chaînage avant, règle par règle");
-    racine.appendChild(el("p", { html: "Ordre d'examen : <strong>R3 R7 R1 R4 R5 R2 R6</strong>. But : <strong>C</strong>. Cochez les faits non déductibles présents au départ, puis avancez pas à pas." }));
+    enTete(racine, tr("Dérouler le chaînage avant, règle par règle", "Run forward chaining, rule by rule"));
+    racine.appendChild(el("p", { html: tr("Ordre d'examen : <strong>R3 R7 R1 R4 R5 R2 R6</strong>. But : <strong>C</strong>. Cochez les faits non déductibles présents au départ, puis avancez pas à pas.", "Rule order: <strong>R3 R7 R1 R4 R5 R2 R6</strong>. Goal: <strong>C</strong>. Tick the non-deducible facts present at the start, then go step by step.") }));
 
-    var options = el("fieldset", { "class": "options-faits" }, [el("legend", { texte: "Base de faits initiale" })]);
+    var options = el("fieldset", { "class": "options-faits" }, [el("legend", { texte: tr("Base de faits initiale", "Initial fact base") })]);
     var cases = {};
     NON_DEDUCTIBLES.forEach(function (f) {
       var id = "demo-fait-" + f;
@@ -167,10 +193,10 @@
     });
     racine.appendChild(options);
 
-    var listeFaits = el("ul", { "class": "faits", "aria-label": "Faits" });
+    var listeFaits = el("ul", { "class": "faits", "aria-label": tr("Faits", "Facts") });
     var puces = {};
     FAITS.forEach(function (f) {
-      var li = el("li", { "class": "fait" + (f === BUT ? " est-but" : ""), texte: f, title: f === BUT ? "But" : "" });
+      var li = el("li", { "class": "fait" + (f === BUT ? " est-but" : ""), texte: f, title: f === BUT ? tr("But", "Goal") : "" });
       puces[f] = li;
       listeFaits.appendChild(li);
     });
@@ -180,7 +206,7 @@
     var lignes = {};
     ORDRE.forEach(function (nom) {
       var r = REGLES[nom];
-      var etat = el("span", { "class": "regle__etat", texte: "en attente" });
+      var etat = el("span", { "class": "regle__etat", texte: tr("en attente", "waiting") });
       var li = el("li", { "class": "regle" }, [
         el("span", { "class": "regle__nom", texte: nom }),
         el("span", { texte: r.si.join(" ∧ ") + " → " + r.alors.join(" ∧ ") }),
@@ -192,9 +218,9 @@
     racine.appendChild(listeRegles);
 
     var journal = el("p", { "class": "journal", "aria-live": "polite" });
-    var bSuivant = el("button", { type: "button", "class": "bouton bouton--prisme", texte: "Examiner la règle suivante" });
-    var bTout = el("button", { type: "button", "class": "bouton", texte: "Dérouler jusqu'au bout" });
-    var bZero = el("button", { type: "button", "class": "bouton bouton--discret", texte: "Recommencer" });
+    var bSuivant = el("button", { type: "button", "class": "bouton bouton--prisme", texte: tr("Examiner la règle suivante", "Examine the next rule") });
+    var bTout = el("button", { type: "button", "class": "bouton", texte: tr("Dérouler jusqu'au bout", "Run to the end") });
+    var bZero = el("button", { type: "button", "class": "bouton bouton--discret", texte: tr("Recommencer", "Start again") });
     racine.appendChild(el("div", { "class": "demo__commandes" }, [bSuivant, bTout, bZero]));
     racine.appendChild(journal);
     var trace = el("p", { "class": "demo__note" });
@@ -205,8 +231,8 @@
       var base = {};
       NON_DEDUCTIBLES.forEach(function (f) { if (cases[f].checked) base[f] = true; });
       etat = { base: base, nouveaux: {}, declenchees: {}, pointeur: 0, cycle: 1, aDeclenche: false, fini: false, sequence: [] };
-      ORDRE.forEach(function (n) { lignes[n].li.className = "regle"; lignes[n].etat.textContent = "en attente"; });
-      journal.textContent = "Base initiale : " + (Object.keys(base).join(", ") || "vide") + ". Cliquez sur « Examiner la règle suivante ».";
+      ORDRE.forEach(function (n) { lignes[n].li.className = "regle"; lignes[n].etat.textContent = tr("en attente", "waiting"); });
+      journal.textContent = tr("Base initiale : ", "Initial base: ") + (Object.keys(base).join(", ") || tr("vide", "empty")) + tr(". Cliquez sur « Examiner la règle suivante ».", ". Click \u201cExamine the next rule\u201d.");
       trace.textContent = "";
       dessiner();
     }
@@ -215,7 +241,7 @@
         puces[f].className = "fait" + (f === BUT ? " est-but" : "") + (etat.base[f] ? (etat.nouveaux[f] ? " est-nouveau" : " est-connu") : "");
       });
       bSuivant.disabled = bTout.disabled = etat.fini;
-      trace.textContent = etat.sequence.length ? "Règles déclenchées : " + etat.sequence.join(" → ") + "." : "";
+      trace.textContent = etat.sequence.length ? tr("Règles déclenchées : ", "Rules fired: ") + etat.sequence.join(" → ") + "." : "";
     }
     function pas() {
       if (etat.fini) return;
@@ -225,17 +251,17 @@
       var r = REGLES[nom];
       var ligne = lignes[nom];
       ligne.li.classList.add("est-examinee");
-      var prefixe = "Cycle " + etat.cycle + " · " + nom + " : ";
+      var prefixe = tr("Cycle ", "Cycle ") + etat.cycle + " · " + nom + tr(" : ", ": ");
       if (etat.declenchees[nom]) {
-        journal.textContent = prefixe + "déjà " + (etat.sequence.indexOf(nom) >= 0 ? "déclenchée" : "écartée") + ", on passe.";
+        journal.textContent = prefixe + tr("déjà ", "already ") + (etat.sequence.indexOf(nom) >= 0 ? tr("déclenchée", "fired") : tr("écartée", "set aside")) + tr(", on passe.", ", skipped.");
       } else {
         var manquants = r.si.filter(function (f) { return !etat.base[f]; });
         var ajoutsPossibles = r.alors.filter(function (f) { return !etat.base[f]; });
         if (manquants.length === 0 && ajoutsPossibles.length === 0) {
           etat.declenchees[nom] = true;
           ligne.li.classList.add("est-bloquee");
-          ligne.etat.textContent = "inutile";
-          journal.textContent = prefixe + "conditions vraies, mais " + r.alors.join(", ") + (r.alors.length > 1 ? " sont" : " est") + " déjà dans la base : la règle n'apporte rien, on ne la déclenche pas.";
+          ligne.etat.textContent = tr("inutile", "useless");
+          journal.textContent = prefixe + tr("conditions vraies, mais ", "conditions true, but ") + r.alors.join(", ") + (EN ? (r.alors.length > 1 ? " are" : " is") : (r.alors.length > 1 ? " sont" : " est")) + tr(" déjà dans la base : la règle n'apporte rien, on ne la déclenche pas.", " already in the base: the rule adds nothing, so it is not fired.");
         } else if (manquants.length === 0) {
           etat.declenchees[nom] = true;
           etat.aDeclenche = true;
@@ -244,26 +270,26 @@
           ajouts.forEach(function (f) { etat.base[f] = true; etat.nouveaux[f] = true; });
           ligne.li.classList.remove("est-bloquee");
           ligne.li.classList.add("est-declenchee");
-          ligne.etat.textContent = "déclenchée";
-          journal.textContent = prefixe + r.si.join(", ") + (r.si.length > 1 ? " sont" : " est") + " dans la base → on ajoute " + (ajouts.join(", ") || "rien de nouveau") + ".";
+          ligne.etat.textContent = tr("déclenchée", "fired");
+          journal.textContent = prefixe + r.si.join(", ") + (EN ? (r.si.length > 1 ? " are" : " is") : (r.si.length > 1 ? " sont" : " est")) + tr(" dans la base → on ajoute ", " in the base → add ") + (ajouts.join(", ") || tr("rien de nouveau", "nothing new")) + ".";
           if (etat.base[BUT]) {
             etat.fini = true;
-            journal.textContent += " Le but C est atteint : on s'arrête.";
+            journal.textContent += tr(" Le but C est atteint : on s'arrête.", " Goal C is reached: stop.");
             dessiner();
             return;
           }
         } else {
           ligne.li.classList.add("est-bloquee");
-          ligne.etat.textContent = "bloquée";
+          ligne.etat.textContent = tr("bloquée", "blocked");
           var nd = manquants.filter(function (f) { return NON_DEDUCTIBLES.indexOf(f) >= 0; });
-          journal.textContent = prefixe + "il manque " + manquants.join(", ") + (nd.length ? " (" + nd.join(", ") + " non déductible" + (nd.length > 1 ? "s" : "") + ")" : "") + ".";
+          journal.textContent = prefixe + tr("il manque ", "missing ") + manquants.join(", ") + (nd.length ? " (" + nd.join(", ") + tr(" non déductible" + (nd.length > 1 ? "s" : ""), " non-deducible") + ")" : "") + ".";
         }
       }
       etat.pointeur += 1;
       if (etat.pointeur >= ORDRE.length) {
         if (!etat.aDeclenche) {
           etat.fini = true;
-          journal.textContent += " Un cycle complet sans déclenchement : le but C n'est pas démontrable avec cette base.";
+          journal.textContent += tr(" Un cycle complet sans déclenchement : le but C n'est pas démontrable avec cette base.", " A full cycle with no rule fired: goal C cannot be proved from this base.");
         } else {
           etat.pointeur = 0;
           etat.cycle += 1;
@@ -284,7 +310,7 @@
      ====================================================================== */
   function initGradient(racine) {
     racine.textContent = "";
-    enTete(racine, "Descendre la pente de J(w) = (w − 3)²");
+    enTete(racine, tr("Descendre la pente de J(w) = (w − 3)²", "Walk down the slope of J(w) = (w − 3)²"));
     var L = 560, H = 290, g = 44, d = 16, h = 30, b = 36;
     var wMin = -5, wMax = 11, jMax = 70;
     function X(w) { return g + (w - wMin) / (wMax - wMin) * (L - g - d); }
@@ -295,11 +321,11 @@
     var sEta = el("output", { "for": "demo-gd-eta" });
     var sW0 = el("output", { "for": "demo-gd-w0" });
     racine.appendChild(el("div", { "class": "reglages" }, [
-      el("div", { "class": "champ" }, [el("label", { "for": "demo-gd-eta", html: "Taux d'apprentissage <span style=\"text-transform:none\">η</span>" }), eta, sEta]),
-      el("div", { "class": "champ" }, [el("label", { "for": "demo-gd-w0", texte: "Point de départ w₀" }), w0, sW0])
+      el("div", { "class": "champ" }, [el("label", { "for": "demo-gd-eta", html: tr("Taux d'apprentissage", "Learning rate") + " <span style=\"text-transform:none\">η</span>" }), eta, sEta]),
+      el("div", { "class": "champ" }, [el("label", { "for": "demo-gd-w0", texte: tr("Point de départ w₀", "Starting point w₀") }), w0, sW0])
     ]));
 
-    var graphe = svg("svg", { viewBox: "0 0 " + L + " " + H, "class": "graphe-demo", role: "img", "aria-label": "Courbe de la fonction de coût et trajectoire de la descente" });
+    var graphe = svg("svg", { viewBox: "0 0 " + L + " " + H, "class": "graphe-demo", role: "img", "aria-label": tr("Courbe de la fonction de coût et trajectoire de la descente", "Cost function curve and the path of the descent") });
     for (var j = 0; j <= jMax; j += 10) {
       graphe.appendChild(svg("line", { x1: g, x2: L - d, y1: Y(j), y2: Y(j), "class": "grille" }));
       var t = svg("text", { x: g - 8, y: Y(j) + 4, "text-anchor": "end" }); t.textContent = j; graphe.appendChild(t);
@@ -327,14 +353,14 @@
 
     var mIter = el("strong"), mW = el("strong"), mJ = el("strong"), mPente = el("strong");
     racine.appendChild(el("ul", { "class": "mesures" }, [
-      el("li", {}, [document.createTextNode("itération "), mIter]),
+      el("li", {}, [document.createTextNode(tr("itération ", "iteration ")), mIter]),
       el("li", {}, [document.createTextNode("w = "), mW]),
       el("li", {}, [document.createTextNode("J(w) = "), mJ]),
-      el("li", {}, [document.createTextNode("pente 2(w − 3) = "), mPente])
+      el("li", {}, [document.createTextNode(tr("pente 2(w − 3) = ", "slope 2(w − 3) = ")), mPente])
     ]));
-    var b1 = el("button", { type: "button", "class": "bouton bouton--prisme", texte: "Un pas" });
-    var b10 = el("button", { type: "button", "class": "bouton", texte: "Dix pas" });
-    var b0 = el("button", { type: "button", "class": "bouton bouton--discret", texte: "Recommencer" });
+    var b1 = el("button", { type: "button", "class": "bouton bouton--prisme", texte: tr("Un pas", "One step") });
+    var b10 = el("button", { type: "button", "class": "bouton", texte: tr("Dix pas", "Ten steps") });
+    var b0 = el("button", { type: "button", "class": "bouton bouton--discret", texte: tr("Recommencer", "Start again") });
     racine.appendChild(el("div", { "class": "demo__commandes" }, [b1, b10, b0]));
     var note = el("p", { "class": "demo__note", "aria-live": "polite" });
     racine.appendChild(note);
@@ -373,11 +399,11 @@
       mJ.textContent = jw > 1e5 ? jw.toExponential(2) : nombre(jw, 4);
       mPente.textContent = Math.abs(w) > 1e5 ? (2 * (w - 3)).toExponential(2) : nombre(2 * (w - 3), 4);
       var e = valeurs().eta;
-      if (e > 1) note.textContent = "Avec η > 1, chaque pas dépasse le minimum de plus en plus loin : la descente diverge.";
-      else if (e === 1) note.textContent = "Avec η = 1, w oscille indéfiniment entre deux valeurs symétriques autour de 3.";
-      else if (e > 0.5) note.textContent = "Avec 0,5 < η < 1, w saute d'un côté à l'autre du minimum mais s'en rapproche : on converge en zigzag.";
-      else if (e < 0.05) note.textContent = "Avec un η très petit, la descente est sûre mais lente : il faut beaucoup d'itérations.";
-      else note.textContent = "Chaque pas applique w ← w − η · 2(w − 3). Le minimum est en w = 3, où la pente est nulle.";
+      if (e > 1) note.textContent = tr("Avec η > 1, chaque pas dépasse le minimum de plus en plus loin : la descente diverge.", "With η > 1, each step overshoots the minimum further and further: the descent diverges.");
+      else if (e === 1) note.textContent = tr("Avec η = 1, w oscille indéfiniment entre deux valeurs symétriques autour de 3.", "With η = 1, w swings forever between two values symmetric around 3.");
+      else if (e > 0.5) note.textContent = tr("Avec 0,5 < η < 1, w saute d'un côté à l'autre du minimum mais s'en rapproche : on converge en zigzag.", "With 0.5 < η < 1, w jumps from one side of the minimum to the other but gets closer: it converges in a zigzag.");
+      else if (e < 0.05) note.textContent = tr("Avec un η très petit, la descente est sûre mais lente : il faut beaucoup d'itérations.", "With a very small η, the descent is safe but slow: it takes many iterations.");
+      else note.textContent = tr("Chaque pas applique w ← w − η · 2(w − 3). Le minimum est en w = 3, où la pente est nulle.", "Each step applies w ← w − η · 2(w − 3). The minimum is at w = 3, where the slope is zero.");
       b1.disabled = b10.disabled = Math.abs(w) > 1e6;
     }
     eta.addEventListener("input", reinit);
@@ -399,8 +425,8 @@
 
   function initKmeans(racine) {
     racine.textContent = "";
-    enTete(racine, "Regrouper 36 textes selon deux traits de style");
-    racine.appendChild(el("p", { html: "Chaque point est un texte (données fictives) : en abscisse la <strong>longueur moyenne des phrases</strong> (en mots), en ordonnée la <strong>part de dialogue</strong> (en %). L'algorithme ne connaît aucune étiquette." }));
+    enTete(racine, tr("Regrouper 36 textes selon deux traits de style", "Group 36 texts by two style features"));
+    racine.appendChild(el("p", { html: tr("Chaque point est un texte (données fictives) : en abscisse la <strong>longueur moyenne des phrases</strong> (en mots), en ordonnée la <strong>part de dialogue</strong> (en %). L'algorithme ne connaît aucune étiquette.", "Each point is a text (made-up data): across, the <strong>average sentence length</strong> (in words); up, the <strong>share of dialogue</strong> (in %). The algorithm knows no labels.") }));
     var r = alea(7);
     var centres = [[12, 44], [29, 9], [19, 24]];
     var donnees = [];
@@ -414,10 +440,10 @@
     var k = el("input", { type: "range", id: "demo-km-k", min: "2", max: "4", step: "1", value: "3" });
     var sK = el("output", { "for": "demo-km-k" });
     racine.appendChild(el("div", { "class": "reglages" }, [
-      el("div", { "class": "champ" }, [el("label", { "for": "demo-km-k", texte: "Nombre de groupes k" }), k, sK])
+      el("div", { "class": "champ" }, [el("label", { "for": "demo-km-k", texte: tr("Nombre de groupes k", "Number of groups k") }), k, sK])
     ]));
 
-    var graphe = svg("svg", { viewBox: "0 0 " + L + " " + H, "class": "graphe-demo", role: "img", "aria-label": "Nuage de points et centres des groupes" });
+    var graphe = svg("svg", { viewBox: "0 0 " + L + " " + H, "class": "graphe-demo", role: "img", "aria-label": tr("Nuage de points et centres des groupes", "Scatter plot and group centres") });
     for (var y = 0; y <= 60; y += 10) {
       graphe.appendChild(svg("line", { x1: g, x2: L - d, y1: Y(y), y2: Y(y), "class": "grille" }));
       var t = svg("text", { x: g - 8, y: Y(y) + 4, "text-anchor": "end" }); t.textContent = y; graphe.appendChild(t);
@@ -425,21 +451,21 @@
     for (var x = 5; x <= 35; x += 5) {
       var tx = svg("text", { x: X(x), y: H - b + 20, "text-anchor": "middle" }); tx.textContent = x; graphe.appendChild(tx);
     }
-    var lx = svg("text", { x: L - d, y: H - 4, "text-anchor": "end" }); lx.textContent = "mots par phrase"; graphe.appendChild(lx);
-    var ly = svg("text", { x: g - 8, y: 16 }); ly.textContent = "% de dialogue"; graphe.appendChild(ly);
+    var lx = svg("text", { x: L - d, y: H - 4, "text-anchor": "end" }); lx.textContent = tr("mots par phrase", "words per sentence"); graphe.appendChild(lx);
+    var ly = svg("text", { x: g - 8, y: 16 }); ly.textContent = tr("% de dialogue", "% dialogue"); graphe.appendChild(ly);
     var calqueLiens = svg("g", {}), calquePoints = svg("g", {}), calqueCentres = svg("g", {});
     graphe.appendChild(calqueLiens); graphe.appendChild(calquePoints); graphe.appendChild(calqueCentres);
     racine.appendChild(graphe);
 
     var mEtape = el("strong"), mInertie = el("strong"), mPhase = el("span");
     racine.appendChild(el("ul", { "class": "mesures" }, [
-      el("li", {}, [document.createTextNode("itération "), mEtape]),
-      el("li", {}, [document.createTextNode("inertie intra-groupes "), mInertie]),
+      el("li", {}, [document.createTextNode(tr("itération ", "iteration ")), mEtape]),
+      el("li", {}, [document.createTextNode(tr("inertie intra-groupes ", "within-group inertia ")), mInertie]),
       el("li", {}, [mPhase])
     ]));
-    var bPas = el("button", { type: "button", "class": "bouton bouton--prisme", texte: "Étape suivante" });
-    var bFin = el("button", { type: "button", "class": "bouton", texte: "Aller jusqu'à la convergence" });
-    var bInit = el("button", { type: "button", "class": "bouton bouton--discret", texte: "Nouveaux centres de départ" });
+    var bPas = el("button", { type: "button", "class": "bouton bouton--prisme", texte: tr("Étape suivante", "Next step") });
+    var bFin = el("button", { type: "button", "class": "bouton", texte: tr("Aller jusqu'à la convergence", "Run until it converges") });
+    var bInit = el("button", { type: "button", "class": "bouton bouton--discret", texte: tr("Nouveaux centres de départ", "New starting centres") });
     racine.appendChild(el("div", { "class": "demo__commandes" }, [bPas, bFin, bInit]));
     var note = el("p", { "class": "demo__note", "aria-live": "polite" });
     racine.appendChild(note);
@@ -459,7 +485,7 @@
       var choisis = [];
       while (choisis.length < n) { var i = Math.floor(rr() * donnees.length); if (choisis.indexOf(i) < 0) choisis.push(i); }
       etat = { k: n, centres: choisis.map(function (i) { return donnees[i].slice(); }), groupes: donnees.map(function () { return -1; }), iteration: 0, phase: "affecter", fini: false };
-      note.textContent = "Départ : " + n + " centres tirés au hasard parmi les textes. Étape suivante : affecter chaque texte au centre le plus proche.";
+      note.textContent = tr("Départ : " + n + " centres tirés au hasard parmi les textes. Étape suivante : affecter chaque texte au centre le plus proche.", "Start: " + n + " centres picked at random among the texts. Next step: assign each text to the nearest centre.");
       dessiner();
     }
     function inertie() {
@@ -478,10 +504,10 @@
         etat.iteration += 1;
         if (!change && etat.iteration > 1) {
           etat.fini = true;
-          note.textContent = "Aucun texte n'a changé de groupe : l'algorithme a convergé.";
+          note.textContent = tr("Aucun texte n'a changé de groupe : l'algorithme a convergé.", "No text changed group: the algorithm has converged.");
         } else {
           etat.phase = "recalculer";
-          note.textContent = "Affectation : chaque texte rejoint le centre le plus proche (distance euclidienne). Étape suivante : recalculer les centres.";
+          note.textContent = tr("Affectation : chaque texte rejoint le centre le plus proche (distance euclidienne). Étape suivante : recalculer les centres.", "Assignment: each text joins the nearest centre (Euclidean distance). Next step: recompute the centres.");
         }
       } else {
         etat.centres = etat.centres.map(function (c, j) {
@@ -490,7 +516,7 @@
           return [membres.reduce(function (s, p) { return s + p[0]; }, 0) / membres.length, membres.reduce(function (s, p) { return s + p[1]; }, 0) / membres.length];
         });
         etat.phase = "affecter";
-        note.textContent = "Mise à jour : chaque centre se place à la moyenne des textes de son groupe. Étape suivante : réaffecter.";
+        note.textContent = tr("Mise à jour : chaque centre se place à la moyenne des textes de son groupe. Étape suivante : réaffecter.", "Update: each centre moves to the mean of the texts in its group. Next step: reassign.");
       }
       dessiner();
     }
@@ -514,7 +540,7 @@
       var in_ = inertie();
       mEtape.textContent = etat.iteration;
       mInertie.textContent = in_ === null ? "—" : nombre(in_, 0);
-      mPhase.textContent = etat.fini ? "convergé" : "prochaine phase : " + (etat.phase === "affecter" ? "affecter" : "recalculer les centres");
+      mPhase.textContent = etat.fini ? tr("convergé", "converged") : tr("prochaine phase : ", "next phase: ") + (etat.phase === "affecter" ? tr("affecter", "assign") : tr("recalculer les centres", "recompute the centres"));
       bPas.disabled = bFin.disabled = etat.fini;
     }
     bPas.addEventListener("click", pas);

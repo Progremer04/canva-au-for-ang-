@@ -9,7 +9,7 @@ Le programme officiel de la matière tient en trois pages : des intitulés de ch
 | Dossier | Rôle |
 | --- | --- |
 | `docs/` | Le site statique, prêt pour GitHub Pages (`index.html`, `systeme-de-design.html`, `assets/`). |
-| `docs/_sources/` | Les sources des pages : gabarit et un fragment HTML par partie du cours. |
+| `docs/_sources/` | Les sources des pages : gabarit et un fragment HTML par partie du cours ; `docs/_sources/en/` pour l'anglais. |
 | `design-system/` | Lumineux : jetons (`tokens.json`), guide d'usage (`README.md`), audit du code d'origine (`extraction.md`), composants (`composants/<Nom>/README.md` et `apercu.html`). |
 | `tools/` | Scripts Python sans dépendance : construction du site, lancement local (`lancer.py`), vérification des bibliothèques (`verifier_bibliotheques.py`). |
 | `run.bat` | Tout-en-un pour Windows : téléchargement, installation, lancement. |
@@ -18,7 +18,9 @@ Le programme officiel de la matière tient en trois pages : des intitulés de ch
 
 ## Le site
 
+- **En français et en anglais** : `docs/index.html` (FR) et `docs/en/index.html` (EN), avec un bouton FR / EN qui garde la leçon en cours.
 - **Accueil** : un lecteur de sentiments à lexique, à essayer sur une phrase (méthode du sujet 1).
+- **Comment apprendre ce cours** : habitudes de travail qui marchent, semaine type, méthode par chapitre, vocabulaire français–anglais, bon usage d'un assistant d'IA, préparation de l'examen.
 - **Fiche de la matière** et **calendrier** du semestre, avec renvois vers les parties du site.
 - **Chapitre 1** : définitions, histoire de l'IA, IA faible et forte, apprentissage supervisé et non supervisé, approches, éthique.
 - **Chapitre 2** : Python pour les textes (types, listes, dictionnaires, NumPy, pandas, objets, fichiers, rapports Excel et PDF).
@@ -63,7 +65,7 @@ Sur macOS ou Linux : `python3 tools/lancer.py` ouvre le site, `python3 -m pip in
 ```sh
 python3 tools/build_tokens.py          # design-system/tokens.json → docs/assets/css/lumineux-tokens.css
 python3 tools/construire_systeme.py    # design-system/ → docs/systeme-de-design.html
-python3 tools/assembler.py             # docs/_sources/ → docs/index.html
+python3 tools/assembler.py             # docs/_sources/ → docs/index.html et docs/en/index.html
 ```
 
 Pour voir le site en local : `python3 tools/lancer.py` (ou `python3 -m http.server --directory docs`, puis `http://localhost:8000`).

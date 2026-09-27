@@ -8,9 +8,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;600&amp;family=IM+Fell+DW+Pica+SC&amp;family=JetBrains+Mono:wght@400;600&amp;family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&amp;family=Rajdhani:wght@500;600;700&amp;display=swap">
-<link rel="stylesheet" href="assets/css/lumineux-tokens.css">
-<link rel="stylesheet" href="assets/css/lumineux.css">
-<link rel="stylesheet" href="assets/css/cours.css">
+<link rel="stylesheet" href="{{BASE}}assets/css/lumineux-tokens.css">
+<link rel="stylesheet" href="{{BASE}}assets/css/lumineux.css">
+<link rel="stylesheet" href="{{BASE}}assets/css/cours.css">
+<link rel="alternate" hreflang="en" href="en/index.html">
 </head>
 <body>
 <a class="lien-evitement" href="#contenu">Aller au contenu</a>
@@ -26,6 +27,7 @@
   <symbol id="i-crayon" viewBox="0 0 24 24"><path d="M4 20l4-1L19 8l-3-3L5 16z"/><path d="M14 7l3 3"/></symbol>
   <symbol id="i-bulle" viewBox="0 0 24 24"><path d="M4 5h16v11H10l-5 4v-4H4z"/></symbol>
   <symbol id="i-livre" viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></symbol>
+  <symbol id="i-boussole" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></symbol>
   <symbol id="i-outil" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></symbol>
 </svg>
 
@@ -37,6 +39,7 @@
     <a class="entete__marque" href="#accueil"><span class="anneau-prisme" aria-hidden="true"></span>IA <small>Master LGC</small></a>
     <nav class="entete__liens" aria-label="Liens utiles">
       <a class="bouton bouton--discret bouton--petit entete__lien-systeme" href="{{LIEN_SYSTEME}}">Système de design</a>
+      <a class="bouton bouton--petit entete__langue" href="en/index.html" hreflang="en" lang="en" data-lien-langue title="Read this course in English">EN</a>
       <button type="button" class="bouton-verre" data-bascule-theme aria-label="Changer de thème">
         <svg class="icone"><use href="#i-contraste"/></svg>
       </button>
@@ -70,7 +73,7 @@
       </ul>
       <div class="heros__actions">
         <a class="bouton bouton--prisme" href="#chapitre-1">Commencer le chapitre 1</a>
-        <a class="bouton" href="#mini-projet">Voir les mini-projets</a>
+        <a class="bouton" href="#methode">Comment apprendre ce cours</a>
       </div>
     </div>
 
@@ -253,6 +256,7 @@
     <div>
       <h2>Parcourir</h2>
       <ul>
+        <li><a href="#methode">Comment apprendre ce cours</a></li>
         <li><a href="#chapitre-1">Chapitre 1 · Introduction</a></li>
         <li><a href="#chapitre-2">Chapitre 2 · Python</a></li>
         <li><a href="#chapitre-3">Chapitre 3 · Types d'IA</a></li>
@@ -263,7 +267,7 @@
     <div>
       <h2>Ce site</h2>
       <p>Mis en forme avec <a href="{{LIEN_SYSTEME}}">Lumineux</a>, un système de design tiré des démos « Cadre Lumineux », « menu capsule » et « slider » de ce dépôt.</p>
-      <p>Thème Nuit ou Jour : bouton en haut à droite.</p>
+      <p>Thème Nuit ou Jour : bouton en haut à droite. Version anglaise : <a href="en/index.html" hreflang="en" lang="en">EN</a>.</p>
       <p>Code source, et <code>run.bat</code> pour tout installer sous Windows : <a href="https://github.com/Progremer04/canva-au-for-ang-" target="_blank" rel="noopener">github.com/Progremer04/canva-au-for-ang-</a>.</p>
     </div>
   </div>

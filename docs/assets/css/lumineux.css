@@ -874,3 +874,9 @@ blockquote.citation footer { color: var(--texte-doux); font-size: 15px; }
 .etapes > li, .comparaison > *, .grille-cartes > *, .definitions > div > *, .quiz-options > li,
 .chronologie > li > *, .encadre, .exercice, .corrige-corps { min-inline-size: 0; }
 figure.code, .tableau-defilant, figure.schema { max-inline-size: 100%; }
+
+/* ---------- Libellés générés par CSS, en anglais ---------- */
+:lang(en) .quiz::before { content: "Self-check"; }
+:lang(en) pre.sortie::before { content: "Output"; }
+:lang(en) .quiz-option.est-juste::after { content: "Correct"; }
+:lang(en) .quiz-option.est-faux::after { content: "Wrong"; }

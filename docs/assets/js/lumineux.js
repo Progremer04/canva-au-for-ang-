@@ -5,6 +5,10 @@
 (function () {
   "use strict";
 
+  var EN = /^en/i.test(document.documentElement.lang || "");
+  function t(fr, en) { return EN ? en : fr; }
+  var libelle = t;
+
   var mouvementReduit = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* Marque un élément comme initialisé ; renvoie true s'il l'était déjà. */
@@ -31,8 +35,8 @@
       }
       function etiquette() {
         var t = actuel();
-        bouton.setAttribute("aria-label", t === "dark" ? "Passer au thème Jour" : "Passer au thème Nuit");
-        bouton.setAttribute("title", t === "dark" ? "Thème Jour" : "Thème Nuit");
+        bouton.setAttribute("aria-label", t === "dark" ? libelle("Passer au thème Jour", "Switch to the Day theme") : libelle("Passer au thème Nuit", "Switch to the Night theme"));
+        bouton.setAttribute("title", t === "dark" ? libelle("Thème Jour", "Day theme") : libelle("Thème Nuit", "Night theme"));
       }
       etiquette();
       bouton.addEventListener("click", function () {
@@ -98,13 +102,13 @@
 
       diapos.forEach(function (d, i) {
         d.setAttribute("role", "group");
-        d.setAttribute("aria-roledescription", "diapositive");
-        d.setAttribute("aria-label", (i + 1) + " sur " + diapos.length);
+        d.setAttribute("aria-roledescription", t("diapositive", "slide"));
+        d.setAttribute("aria-label", (i + 1) + t(" sur ", " of ") + diapos.length);
         if (points) {
           var li = document.createElement("li");
           var b = document.createElement("button");
           b.type = "button";
-          b.setAttribute("aria-label", "Aller à la diapositive " + (i + 1));
+          b.setAttribute("aria-label", t("Aller à la diapositive ", "Go to slide ") + (i + 1));
           b.addEventListener("click", function () { aller(i); arreter(); });
           li.appendChild(b);
           points.appendChild(li);
@@ -126,13 +130,13 @@
         if (minuterie || mouvementReduit) return;
         enLecture = true;
         minuterie = window.setInterval(function () { aller(index + 1); }, 7000);
-        if (pause) { pause.setAttribute("aria-pressed", "false"); pause.textContent = "Pause"; }
+        if (pause) { pause.setAttribute("aria-pressed", "false"); pause.textContent = t("Pause", "Pause"); }
       }
       function arreter() {
         enLecture = false;
         if (minuterie) window.clearInterval(minuterie);
         minuterie = null;
-        if (pause) { pause.setAttribute("aria-pressed", "true"); pause.textContent = "Lecture"; }
+        if (pause) { pause.setAttribute("aria-pressed", "true"); pause.textContent = t("Lecture", "Play"); }
       }
 
       var attente = null;
@@ -155,7 +159,7 @@
       racine.addEventListener("focusin", function () { if (minuterie) { window.clearInterval(minuterie); minuterie = null; } });
 
       marquer();
-      if (enLecture) demarrer(); else if (pause) { pause.setAttribute("aria-pressed", "true"); pause.textContent = "Lecture"; }
+      if (enLecture) demarrer(); else if (pause) { pause.setAttribute("aria-pressed", "true"); pause.textContent = t("Lecture", "Play"); }
     });
   }
 
@@ -174,10 +178,10 @@
             option.classList.add("est-juste");
             option.classList.remove("est-faux");
             if (explication) explication.hidden = false;
-            annonce.textContent = "Bonne réponse.";
+            annonce.textContent = t("Bonne réponse.", "Correct.");
           } else {
             option.classList.add("est-faux");
-            annonce.textContent = "Ce n'est pas la bonne réponse. Essayez encore.";
+            annonce.textContent = t("Ce n'est pas la bonne réponse. Essayez encore.", "That is not the right answer. Try again.");
           }
         });
       });
@@ -200,17 +204,17 @@
       var bouton = document.createElement("button");
       bouton.type = "button";
       bouton.className = "bouton-copier";
-      bouton.textContent = "Copier";
+      bouton.textContent = t("Copier", "Copy");
       bouton.addEventListener("click", function () {
         var texte = code.textContent;
-        function ok() { bouton.textContent = "Copié"; window.setTimeout(function () { bouton.textContent = "Copier"; }, 1600); }
+        function ok() { bouton.textContent = t("Copié", "Copied"); window.setTimeout(function () { bouton.textContent = t("Copier", "Copy"); }, 1600); }
         function repli() {
           var selection = window.getSelection();
           var plage = document.createRange();
           plage.selectNodeContents(code);
           selection.removeAllRanges();
           selection.addRange(plage);
-          bouton.textContent = "Sélectionné : Ctrl+C";
+          bouton.textContent = t("Sélectionné : Ctrl+C", "Selected: Ctrl+C");
         }
         try {
           if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(texte).then(ok, repli);
@@ -252,7 +256,24 @@
     maj();
   }
 
+  /* ---------- Changer de langue en restant sur la même leçon ---------- */
+  function initLangue() {
+    document.querySelectorAll("[data-lien-langue]").forEach(function (lien) {
+      if (dejaPret(lien)) return;
+      var base = lien.getAttribute("href").split("#")[0];
+      lien.addEventListener("click", function () {
+        var repere = "";
+        var haut = window.scrollY + 120;
+        document.querySelectorAll("section.chapitre[id], article.lecon[id], section.heros[id]").forEach(function (el) {
+          if (el.getBoundingClientRect().top + window.scrollY <= haut) repere = "#" + el.id;
+        });
+        lien.setAttribute("href", base + repere);
+      });
+    });
+  }
+
   function init() {
+    initLangue();
     initTheme();
     initTiroirs();
     initCarrousels();
