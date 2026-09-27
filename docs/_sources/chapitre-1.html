@@ -1,0 +1,291 @@
+<section class="chapitre" id="chapitre-1" aria-labelledby="chapitre-1-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">Chapitre 1 · 1 semaine</p>
+    <h2 class="titre-section" id="chapitre-1-titre">Introduction à l'intelligence artificielle</h2>
+    <p class="chapeau">À la fin de ce chapitre, vous saurez définir l'intelligence artificielle, situer ses grandes étapes, distinguer IA étroite et IA générale, apprentissage supervisé et non supervisé, et discuter de ses apports et de ses limites pour les sciences humaines.</p>
+    <ul class="puces"><li class="puce">Cours magistral</li><li class="puce">TD</li><li class="puce">Travail personnel</li></ul>
+  </header>
+
+  <nav class="sommaire-chapitre" aria-label="Sommaire du chapitre 1">
+    <ol>
+      <li><a href="#c1-definir">Qu'est-ce que l'intelligence artificielle ?</a></li>
+      <li><a href="#c1-histoire">Survol historique</a></li>
+      <li><a href="#c1-faible-forte">IA étroite (faible) et IA générale (forte)</a></li>
+      <li><a href="#c1-apprentissage">Apprentissage supervisé et non supervisé</a></li>
+      <li><a href="#c1-approches">Les approches de l'IA dans la résolution de problèmes</a></li>
+      <li><a href="#c1-perspectives">Perspectives, limites et éthique</a></li>
+    </ol>
+  </nav>
+
+  <article class="lecon" id="c1-definir">
+    <h3>Qu'est-ce que l'intelligence artificielle ?</h3>
+    <p>L'expression « intelligence artificielle » apparaît en 1955 dans un projet rédigé par John McCarthy, Marvin Minsky, Nathaniel Rochester et Claude Shannon, qui demandent un financement pour réunir des chercheurs au Dartmouth College, aux États-Unis, pendant l'été 1956. Leur hypothèse de travail : chaque aspect de l'apprentissage et de l'intelligence pourrait en principe être décrit assez précisément pour qu'une machine le simule. Cet atelier est considéré comme l'acte de naissance du domaine.</p>
+    <p>Il n'existe pourtant pas de définition unique, car le mot « intelligence » lui-même ne fait pas consensus.</p>
+
+    <h4>L'IA comme conception d'agents</h4>
+    <p>Le manuel de référence de Stuart Russell et Peter Norvig, <em>Artificial Intelligence: A Modern Approach</em> (1995), présente l'IA comme l'étude des agents. Un <dfn>agent</dfn> (<span class="terme-en" lang="en">agent</span>) est un système qui perçoit son environnement et agit sur lui pour atteindre un objectif. Un filtre anti-spam, par exemple, « perçoit » le texte d'un courriel et « agit » en le rangeant dans la bonne boîte.</p>
+
+    <h4>Un ensemble de techniques plutôt qu'une chose</h4>
+    <p>Parler de « l'IA » au singulier est trompeur. Il s'agit d'une famille de techniques très différentes : règles logiques écrites par des experts, algorithmes qui explorent des possibilités, méthodes statistiques qui apprennent à partir d'exemples, réseaux de neurones artificiels. Devant un résultat produit par « une IA », posez donc toujours la question : quelle technique, entraînée sur quelles données, pour quelle tâche ?</p>
+
+    <aside class="encadre encadre--definition">
+      <p class="encadre-titre">Définition de travail</p>
+      <p>On appellera <dfn>intelligence artificielle</dfn> (<span class="terme-en" lang="en">artificial intelligence</span>, AI) l'ensemble des méthodes informatiques qui permettent à une machine d'accomplir des tâches que l'on associe habituellement à l'intelligence humaine : reconnaître, classer, prédire, raisonner, planifier, comprendre ou produire du langage. Cette définition porte sur des tâches observables ; elle ne dit rien de ce que la machine « comprend ».</p>
+    </aside>
+
+    <h4>Pourquoi l'IA concerne les études littéraires</h4>
+    <p>On appelle <dfn>humanités numériques</dfn> (<span class="terme-en" lang="en">digital humanities</span>) les recherches en lettres, en histoire ou en sciences sociales qui s'appuient sur des outils informatiques. On en situe souvent l'origine en 1949, lorsque le jésuite italien Roberto Busa entreprend, avec l'aide d'IBM, l'indexation de l'œuvre de Thomas d'Aquin.</p>
+    <p>Pour un comparatiste, la proposition la plus stimulante vient de Franco Moretti (« Conjectures on World Literature », 2000 ; <em>Distant Reading</em>, 2013). Aucun lecteur ne pouvant lire tous les romans publiés au XIX<sup>e</sup> siècle, il propose une <dfn>lecture distante</dfn> (<span class="terme-en" lang="en">distant reading</span>) : étudier des milliers de textes à travers des traits mesurables, comme les genres, les titres, les réseaux de personnages ou la circulation des formes d'une langue à l'autre. L'IA fournit les outils de cette lecture à grande échelle, sans remplacer la lecture rapprochée.</p>
+
+    <aside class="encadre encadre--shs">
+      <p class="encadre-titre">Trois usages en lettres et en sciences humaines</p>
+      <ul>
+        <li><strong>Études de corpus</strong> : repérer les thèmes et les entités (personnes, lieux, dates) qui dominent un ensemble de romans, d'articles de presse ou de discours politiques.</li>
+        <li><strong>Stylométrie</strong> : mesurer le style pour discuter une attribution. En 2019, Florian Cafiero et Jean-Baptiste Camps ont ainsi apporté des arguments quantitatifs en faveur de Molière dans la controverse qui l'opposait à Corneille.</li>
+        <li><strong>Traductologie</strong> : aligner phrase à phrase un roman de Naguib Mahfouz et ses traductions française et anglaise pour comparer les choix des traducteurs.</li>
+      </ul>
+    </aside>
+  </article>
+
+  <article class="lecon" id="c1-histoire">
+    <h3>Survol historique de l'intelligence artificielle</h3>
+    <p>L'histoire de l'IA alterne enthousiasmes et désillusions. Elle voit aussi s'opposer deux familles d'idées : l'approche <em>symbolique</em>, qui programme des règles et des raisonnements explicites, et l'approche <em>connexionniste</em>, qui fait apprendre des réseaux de neurones artificiels. Le texte fondateur le plus cité, l'article d'Alan Turing, s'ouvre sur cette phrase :</p>
+
+    <blockquote class="citation">
+      <p lang="en">I propose to consider the question, "Can machines think?"</p>
+      <p>« Je propose d'examiner la question suivante : les machines peuvent-elles penser ? »</p>
+      <footer><cite>Alan M. Turing, « Computing Machinery and Intelligence », <em>Mind</em>, 1950</cite></footer>
+    </blockquote>
+
+    <ol class="chronologie">
+      <li><span class="chrono-date">1943</span>
+        <div class="chrono-corps"><p class="chrono-titre">Le neurone formel</p><p>Warren McCulloch et Walter Pitts proposent un modèle mathématique du neurone : une unité qui additionne des signaux et « s'active » au-delà d'un seuil. C'est l'ancêtre des réseaux de neurones actuels.</p></div></li>
+      <li><span class="chrono-date">1950</span>
+        <div class="chrono-corps"><p class="chrono-titre">Le jeu de l'imitation</p><p>Turing propose une épreuve : un interrogateur dialogue par écrit avec un humain et avec une machine. S'il ne parvient pas à les distinguer, la machine se comporte de façon intelligente. On parle depuis de « test de Turing ».</p></div></li>
+      <li><span class="chrono-date">1956</span>
+        <div class="chrono-corps"><p class="chrono-titre">L'atelier de Dartmouth</p><p>L'expression « intelligence artificielle » s'impose comme nom du domaine. Allen Newell et Herbert Simon y présentent le <em>Logic Theorist</em>, un programme qui démontre des théorèmes de logique.</p></div></li>
+      <li><span class="chrono-date">1958</span>
+        <div class="chrono-corps"><p class="chrono-titre">Le perceptron</p><p>Frank Rosenblatt présente un réseau de neurones qui ajuste ses paramètres à partir d'exemples. En 1969, Marvin Minsky et Seymour Papert (<em>Perceptrons</em>) en montrent les limites, ce qui freine pour longtemps la voie connexionniste.</p></div></li>
+      <li><span class="chrono-date">1966</span>
+        <div class="chrono-corps"><p class="chrono-titre">ELIZA</p><p>Joseph Weizenbaum, au MIT, publie un programme qui imite un psychothérapeute en reformulant les phrases de l'utilisateur à l'aide de règles simples. Des utilisateurs lui prêtent pourtant une compréhension réelle : c'est l'« effet ELIZA ».</p></div></li>
+      <li><span class="chrono-date">1973</span>
+        <div class="chrono-corps"><p class="chrono-titre">Le rapport Lighthill et le premier hiver</p><p>Au Royaume-Uni, le rapport du mathématicien James Lighthill juge les résultats très inférieurs aux promesses. Les financements reculent, au Royaume-Uni puis aux États-Unis : c'est le premier « hiver de l'IA », jusque vers 1980.</p></div></li>
+      <li><span class="chrono-date">Années 1970–1980</span>
+        <div class="chrono-corps"><p class="chrono-titre">L'âge des systèmes experts</p><p>À Stanford, MYCIN aide au diagnostic des infections bactériennes du sang à partir de quelques centaines de règles « si… alors… ». Dans les années 1980, les entreprises adoptent ces systèmes et le Japon lance en 1982 son programme d'ordinateurs de « cinquième génération ».</p></div></li>
+      <li><span class="chrono-date">Fin des années 1980</span>
+        <div class="chrono-corps"><p class="chrono-titre">Le second hiver</p><p>Coûteux à entretenir et fragiles hors de leur domaine, les systèmes experts déçoivent. Le marché des machines Lisp s'effondre en 1987 et les budgets reculent jusqu'au début des années 1990.</p></div></li>
+      <li><span class="chrono-date">1997</span>
+        <div class="chrono-corps"><p class="chrono-titre">Deep Blue bat Kasparov</p><p>L'ordinateur d'IBM bat le champion du monde d'échecs Garry Kasparov. Sa force repose surtout sur l'exploration très rapide de millions de positions, plutôt que sur l'apprentissage.</p></div></li>
+      <li><span class="chrono-date">2012</span>
+        <div class="chrono-corps"><p class="chrono-titre">AlexNet et l'essor de l'apprentissage profond</p><p>Au concours de reconnaissance d'images ImageNet, le réseau convolutif AlexNet (Alex Krizhevsky, Ilya Sutskever, Geoffrey Hinton) devance nettement les autres méthodes. Grandes bases annotées, processeurs graphiques et réseaux profonds se conjuguent.</p></div></li>
+      <li><span class="chrono-date">2016</span>
+        <div class="chrono-corps"><p class="chrono-titre">AlphaGo</p><p>Le programme de DeepMind bat Lee Sedol, l'un des meilleurs joueurs de go au monde, par quatre victoires à une, en combinant réseaux de neurones, apprentissage par renforcement et exploration d'un arbre de coups.</p></div></li>
+      <li><span class="chrono-date">2017</span>
+        <div class="chrono-corps"><p class="chrono-titre">Le Transformer</p><p>L'article « Attention Is All You Need » (Vaswani et al., Google) introduit l'architecture Transformer, fondée sur le mécanisme d'attention. Elle sert de base à presque tous les grands modèles de langage actuels.</p></div></li>
+      <li><span class="chrono-date">2018</span>
+        <div class="chrono-corps"><p class="chrono-titre">BERT et les modèles pré-entraînés</p><p>Google présente BERT, un modèle pré-entraîné sur de grandes quantités de texte puis adaptable à de nombreuses tâches ; OpenAI publie la même année son premier modèle GPT.</p></div></li>
+      <li><span class="chrono-date">2022</span>
+        <div class="chrono-corps"><p class="chrono-titre">ChatGPT</p><p>Le 30 novembre, OpenAI ouvre au public ChatGPT, un agent conversationnel fondé sur un grand modèle de langage. L'IA dite générative entre dans les usages quotidiens, y compris à l'université.</p></div></li>
+      <li><span class="chrono-date">2024</span>
+        <div class="chrono-corps"><p class="chrono-titre">Le règlement européen sur l'IA</p><p>L'Union européenne adopte le règlement (UE) 2024/1689, dit <span lang="en">AI Act</span>, qui classe les systèmes selon leur niveau de risque. Son application est échelonnée par étapes à partir de 2025.</p></div></li>
+    </ol>
+
+    <h4>Des cycles d'espoir et de déception</h4>
+    <p>Chaque vague technique s'accompagne de prédictions trop optimistes : en 1958, Herbert Simon et Allen Newell annonçaient qu'un ordinateur serait champion du monde d'échecs dans les dix ans ; il en a fallu près de quarante. Mais les idées abandonnées ne disparaissent pas : les réseaux de neurones, jugés sans avenir en 1969, reviennent en 1986 avec la rétropropagation du gradient (David Rumelhart, Geoffrey Hinton, Ronald Williams), puis dominent le domaine après 2012. Leçon de méthode : jugez un système sur ce qu'il fait réellement, mesuré par des tests, et non sur ce qu'on en promet.</p>
+  </article>
+
+  <article class="lecon" id="c1-faible-forte">
+    <h3>IA étroite (faible) et IA générale (forte)</h3>
+    <p>Le programme associe deux couples de notions proches mais distincts. L'opposition entre IA <em>faible</em> et IA <em>forte</em>, due au philosophe John Searle (1980), sépare une machine qui <em>simule</em> l'intelligence d'une machine qui <em>posséderait</em> réellement un esprit. L'opposition entre IA <em>étroite</em> et IA <em>générale</em> porte sur l'étendue des capacités : une tâche précise, ou toutes les tâches intellectuelles humaines. La première distinction est philosophique, la seconde technique ; l'usage courant les confond souvent.</p>
+
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>IA étroite (ou faible)</h4>
+        <p>L'<dfn>IA étroite</dfn> (<span class="terme-en" lang="en">narrow AI</span>) accomplit une tâche délimitée, souvent mieux qu'un humain, sans pouvoir transférer cette compétence ailleurs. Le programme qui bat les champions d'échecs ne sait pas lire un poème.</p>
+        <ul>
+          <li>Reconnaissance de caractères (OCR) sur des journaux anciens.</li>
+          <li>Traduction automatique entre l'arabe, le français et l'anglais.</li>
+          <li>Filtre anti-spam, recommandation de livres.</li>
+        </ul>
+      </div>
+      <div class="comparaison-col">
+        <h4>IA générale (ou forte)</h4>
+        <p>L'<dfn>IA générale</dfn> (<span class="terme-en" lang="en">artificial general intelligence</span>, AGI) désigne un système hypothétique capable d'accomplir n'importe quelle tâche intellectuelle humaine. On en attendrait notamment la capacité de :</p>
+        <ul>
+          <li>transférer ses connaissances d'un domaine à un autre ;</li>
+          <li>apprendre une tâche nouvelle avec très peu d'exemples ;</li>
+          <li>au sens de Searle, comprendre réellement ce qu'elle traite.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>IA étroite et IA générale : comparaison point par point</caption>
+      <thead><tr><th scope="col">Critère</th><th scope="col">IA étroite (faible)</th><th scope="col">IA générale (forte)</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Définition</th><td>Système conçu et entraîné pour une tâche ou une famille de tâches précises.</td><td>Système hypothétique aussi polyvalent qu'un humain, voire doté d'un esprit au sens propre.</td></tr>
+        <tr><th scope="row">Exemples</th><td>Deep Blue, AlphaGo, traducteurs automatiques, reconnaissance vocale, analyse de sentiments.</td><td>Aucun exemple réel reconnu ; figure fréquente de la science-fiction, comme HAL 9000 dans <em>2001, l'Odyssée de l'espace</em>.</td></tr>
+        <tr><th scope="row">État actuel en 2026</th><td>Omniprésente : moteurs de recherche, téléphones, services publics, outils de recherche en SHS.</td><td>Objectif affiché de plusieurs entreprises. Aucun consensus scientifique pour dire qu'elle est atteinte ; sa définition et ses critères de mesure restent discutés.</td></tr>
+        <tr><th scope="row">Question philosophique</th><td>Réussir une tâche, est-ce la comprendre ? Une traduction correcte suppose-t-elle un sens compris ?</td><td>Une machine peut-elle penser, avoir une conscience, des intentions ? Qui répondrait de ses actes ?</td></tr>
+      </tbody>
+    </table></div>
+
+    <h4>L'argument de la chambre chinoise</h4>
+    <p>Dans « Minds, Brains, and Programs » (1980), Searle imagine une personne qui ignore le chinois, enfermée dans une pièce avec un manuel rédigé dans sa langue. Ce manuel lui indique quels caractères chinois renvoyer en réponse à ceux qu'on lui glisse par une fente. De l'extérieur, la pièce semble répondre parfaitement en chinois ; la personne ne comprend pourtant rien. Selon Searle, un programme manipule de même des symboles selon leur forme (la syntaxe) sans accéder à leur sens (la sémantique) : réussir le test de Turing ne prouverait donc pas la compréhension. Ses contradicteurs répondent que c'est le système entier qui comprendrait ; le débat reste ouvert.</p>
+
+    <h4>Et les grands modèles de langage ?</h4>
+    <p>Les agents conversationnels actuels rédigent, résument et traduisent sur presque tous les sujets ; savoir s'ils constituent un pas vers l'IA générale est vivement débattu. Ce sont toutefois des systèmes entraînés principalement sur du texte, d'abord pour prédire la suite d'une séquence de mots, puis ajustés pour dialoguer ; ils commettent des erreurs qu'un humain ne ferait pas. Certains chercheurs y voient des capacités de raisonnement émergentes ; d'autres, comme Emily Bender et ses coautrices (2021), des « perroquets stochastiques » qui recombinent des formes apprises. Aucun consensus n'en fait une IA générale. Traitez-les comme des outils puissants mais spécialisés, dont chaque production doit être vérifiée.</p>
+  </article>
+
+  <article class="lecon" id="c1-apprentissage">
+    <h3>Apprentissage supervisé et apprentissage non supervisé</h3>
+    <p>L'essentiel de l'IA actuelle repose sur l'<dfn>apprentissage automatique</dfn> (<span class="terme-en" lang="en">machine learning</span>), expression attribuée à Arthur Samuel (1959). Au lieu d'écrire toutes les règles d'une tâche, on fournit des exemples à un algorithme, qui ajuste un <dfn>modèle</dfn> : une fonction mathématique capable ensuite de traiter des cas nouveaux.</p>
+
+    <h4>L'apprentissage supervisé</h4>
+    <p>Dans l'<dfn>apprentissage supervisé</dfn> (<span class="terme-en" lang="en">supervised learning</span>), chaque exemple est accompagné de la bonne réponse, appelée <dfn>étiquette</dfn> (<span class="terme-en" lang="en">label</span>). Supposons 600 poèmes rattachés par des spécialistes à une période : romantisme, Parnasse, symbolisme. Le modèle observe des caractéristiques de chaque poème (vocabulaire, longueur des vers, ponctuation) et apprend à les associer à la période indiquée. Il peut ensuite proposer une période pour un poème inconnu. Quand la réponse est une catégorie, on parle de <dfn>classification</dfn> ; quand c'est un nombre, comme une année de composition, de <dfn>régression</dfn>.</p>
+
+    <h4>Entraîner, tester, généraliser</h4>
+    <p>On n'évalue jamais un modèle sur les exemples qui ont servi à l'entraîner. On partage les données en deux : le <dfn>jeu d'entraînement</dfn> (<span class="terme-en" lang="en">training set</span>) sert à ajuster le modèle ; le <dfn>jeu de test</dfn> (<span class="terme-en" lang="en">test set</span>), mis de côté, sert à mesurer ses performances à la fin. Le but est la <dfn>généralisation</dfn> : bien traiter des cas nouveaux, comme un étudiant qui réussit un examen fait de questions qu'il n'a jamais vues.</p>
+    <p>Le piège principal est le <dfn>sur-apprentissage</dfn> (<span class="terme-en" lang="en">overfitting</span>) : un modèle trop complexe « apprend par cœur » les poèmes d'entraînement avec leurs détails accidentels, au lieu de saisir ce qui caractérise chaque période. Il obtient des résultats presque parfaits à l'entraînement et médiocres au test, comme l'étudiant qui a mémorisé les corrigés sans comprendre le cours. Un écart important entre les deux scores est le signal d'alerte. Autre piège : si tous vos poèmes romantiques viennent d'éditions anciennes qui écrivent « enfans » pour « enfants », le modèle apprendra l'orthographe de l'édition plutôt que le style de l'époque.</p>
+
+    <h4>L'apprentissage non supervisé</h4>
+    <p>Dans l'<dfn>apprentissage non supervisé</dfn> (<span class="terme-en" lang="en">unsupervised learning</span>), les données n'ont pas d'étiquettes. L'algorithme cherche lui-même des régularités, le plus souvent en formant des groupes d'éléments semblables : c'est le <dfn>partitionnement</dfn> (<span class="terme-en" lang="en">clustering</span>). Mesurez, pour 200 romans francophones du Maghreb, la longueur moyenne des phrases, la richesse du vocabulaire et la fréquence des mots outils (« de », « que », « et ») : sans rien savoir des auteurs ni des dates, un algorithme peut les répartir en familles stylistiques. L'interprétation vous revient : ces groupes correspondent-ils à des auteurs, des générations, des genres, ou à rien de significatif ?</p>
+
+    <figure class="schema">
+      <svg viewBox="0 0 640 330" role="img" aria-labelledby="c1-schema-appr-t">
+        <title id="c1-schema-appr-t">Deux chaînes de traitement : apprentissage supervisé et apprentissage non supervisé</title>
+        <defs><marker id="c1-fleche" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="svg-pointe" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+        <text class="svg-texte" x="24" y="34">Apprentissage supervisé</text>
+        <rect class="svg-noeud" x="24" y="50" width="160" height="64" rx="12"/>
+        <text class="svg-texte" x="104" y="77" text-anchor="middle">Données</text>
+        <text class="svg-texte" x="104" y="99" text-anchor="middle">étiquetées</text>
+        <line class="svg-trait" x1="184" y1="82" x2="238" y2="82" marker-end="url(#c1-fleche)"/>
+        <rect class="svg-noeud-accent" x="240" y="50" width="160" height="64" rx="12"/>
+        <text class="svg-texte" x="320" y="77" text-anchor="middle">Modèle</text>
+        <text class="svg-texte" x="320" y="99" text-anchor="middle">entraîné</text>
+        <line class="svg-trait" x1="400" y1="82" x2="454" y2="82" marker-end="url(#c1-fleche)"/>
+        <rect class="svg-noeud" x="456" y="50" width="160" height="64" rx="12"/>
+        <text class="svg-texte" x="536" y="77" text-anchor="middle">Prédiction</text>
+        <text class="svg-texte" x="536" y="99" text-anchor="middle">d'une étiquette</text>
+        <text class="svg-texte-doux" x="24" y="142">Ex. : poèmes datés → modèle → période probable d'un poème inédit</text>
+        <text class="svg-texte" x="24" y="196">Apprentissage non supervisé</text>
+        <rect class="svg-noeud" x="24" y="212" width="160" height="64" rx="12"/>
+        <text class="svg-texte" x="104" y="239" text-anchor="middle">Données</text>
+        <text class="svg-texte" x="104" y="261" text-anchor="middle">non étiquetées</text>
+        <line class="svg-trait" x1="184" y1="244" x2="238" y2="244" marker-end="url(#c1-fleche)"/>
+        <rect class="svg-noeud-accent" x="240" y="212" width="160" height="64" rx="12"/>
+        <text class="svg-texte" x="320" y="239" text-anchor="middle">Algorithme</text>
+        <text class="svg-texte" x="320" y="261" text-anchor="middle">de regroupement</text>
+        <line class="svg-trait" x1="400" y1="244" x2="454" y2="244" marker-end="url(#c1-fleche)"/>
+        <rect class="svg-noeud" x="456" y="212" width="160" height="64" rx="12"/>
+        <text class="svg-texte" x="536" y="239" text-anchor="middle">Groupes</text>
+        <text class="svg-texte" x="536" y="261" text-anchor="middle">(clusters)</text>
+        <text class="svg-texte-doux" x="24" y="304">Ex. : romans sans étiquette → algorithme → familles stylistiques à interpréter</text>
+      </svg>
+      <figcaption>En apprentissage supervisé, les étiquettes guident l'entraînement et le modèle prédit l'étiquette de cas nouveaux ; en apprentissage non supervisé, l'algorithme forme des groupes que le chercheur doit interpréter.</figcaption>
+    </figure>
+
+    <h4>Entre les deux, et au-delà</h4>
+    <p>Étiqueter coûte cher en temps et en compétence. L'<dfn>apprentissage semi-supervisé</dfn> (<span class="terme-en" lang="en">semi-supervised learning</span>) combine donc quelques exemples étiquetés et beaucoup d'exemples qui ne le sont pas. Les grands modèles de langage reposent sur une forme dite auto-supervisée : ils apprennent à deviner un mot masqué ou le mot suivant, et le texte fournit lui-même la « bonne réponse ». Enfin, dans l'<dfn>apprentissage par renforcement</dfn> (<span class="terme-en" lang="en">reinforcement learning</span>), un agent agit, reçoit des récompenses ou des pénalités et apprend par essais et erreurs ; il sera étudié au chapitre 3.</p>
+
+    <div class="quiz">
+      <p class="quiz-question">Vous disposez de 500 discours politiques classés par des politologues en trois catégories (économie, sécurité, éducation) et voulez que la machine classe 3 000 nouveaux discours. De quel type d'apprentissage s'agit-il ?</p>
+      <ul class="quiz-options">
+        <li><button type="button" class="quiz-option">Apprentissage non supervisé, car les nouveaux discours n'ont pas d'étiquette.</button></li>
+        <li><button type="button" class="quiz-option" data-correct>Apprentissage supervisé, car le modèle apprend à partir d'exemples étiquetés.</button></li>
+        <li><button type="button" class="quiz-option">Apprentissage par renforcement, car la machine améliore ses résultats.</button></li>
+      </ul>
+      <p class="quiz-explication" hidden>C'est un apprentissage supervisé : les 500 discours classés forment les données étiquetées qui entraînent le modèle. Que les nouveaux discours n'aient pas d'étiquette est normal, c'est justement ce que le modèle doit prédire. On parlerait d'apprentissage non supervisé si aucun discours n'était étiqueté et que l'on cherchait des groupes.</p>
+    </div>
+  </article>
+
+  <article class="lecon" id="c1-approches">
+    <h3>Les approches de l'IA dans la résolution de problèmes</h3>
+    <p>Face à un problème, l'IA propose plusieurs stratégies, nées à des moments différents de son histoire et souvent combinées dans les systèmes actuels. Savoir les distinguer vous aidera à choisir un outil adapté à votre question de recherche.</p>
+
+    <div class="grille-cartes">
+      <article class="carte">
+        <h4>Recherche dans un espace d'états</h4>
+        <p>Le problème est décrit comme un ensemble de situations (les <em>états</em>) reliées par des actions ; on cherche un chemin de l'état initial à l'état but. C'est le cas d'un calcul d'itinéraire entre Médéa et Alger ou d'un programme d'échecs. Des algorithmes comme A* (1968) guident la recherche. Limite : le nombre d'états explose vite.</p>
+      </article>
+      <article class="carte">
+        <h4>Raisonnement symbolique</h4>
+        <p>Les connaissances sont écrites sous forme de faits et de règles « si… alors… ». Un <dfn>moteur d'inférence</dfn> en déduit de nouveaux faits (chaînage avant) ou remonte d'un but aux faits (chaînage arrière). C'est le principe des systèmes experts, étudiés au chapitre 3. Atout : chaque conclusion s'explique. Limite : les règles sont longues à écrire.</p>
+      </article>
+      <article class="carte">
+        <h4>Apprentissage statistique</h4>
+        <p>Le modèle apprend à partir d'exemples chiffrés : régression, arbres de décision, classifieurs probabilistes, partitionnement. Ces méthodes, disponibles dans scikit-learn, conviennent bien aux données d'enquête et aux corpus de taille moyenne, à condition de bien choisir les variables mesurées.</p>
+      </article>
+      <article class="carte">
+        <h4>Connexionnisme</h4>
+        <p>Des réseaux de neurones artificiels, organisés en couches, apprennent en ajustant des millions de paramètres ; avec de nombreuses couches, on parle d'apprentissage profond. Cette approche domine la vision, la parole et le traitement des textes, mais demande beaucoup de données et de calcul, et ses décisions s'expliquent mal.</p>
+      </article>
+      <article class="carte">
+        <h4>Agents et renforcement</h4>
+        <p>Un agent agit dans un environnement, reçoit une récompense ou une pénalité et apprend peu à peu la meilleure conduite. Cette approche a produit AlphaGo, sert en robotique et aide à ajuster les agents conversationnels à partir de jugements humains. Elle sera détaillée au chapitre 3.</p>
+      </article>
+      <article class="carte">
+        <h4>Approches hybrides</h4>
+        <p>On combine plusieurs approches pour cumuler leurs forces. AlphaGo associe réseaux de neurones et recherche dans un arbre de coups ; un assistant qui consulte une base documentaire avant de répondre associe recherche d'information et modèle de langage. On parle d'IA neuro-symbolique quand réseaux et règles logiques coopèrent.</p>
+      </article>
+    </div>
+
+    <aside class="encadre encadre--exemple">
+      <p class="encadre-titre">Un même problème, deux approches : identifier la langue d'un message</p>
+      <p>Vous étudiez 10 000 messages publiés sur des réseaux sociaux algériens, en arabe standard, en français, en anglais ou en darja (arabe algérien), parfois écrite en lettres latines. Première étape : identifier la langue de chaque message.</p>
+      <p><strong>Par des règles.</strong> Si le message contient des caractères arabes, c'est de l'arabe ; s'il contient plusieurs mots parmi « le, la, les, et, est », du français ; s'il contient « the, and, is, of », de l'anglais. L'approche est transparente et ne demande aucune donnée préalable. Mais elle échoue sur les messages très courts, sur les mélanges de langues et sur la darja en lettres latines (« wach rak »), qu'aucune règle simple ne capture.</p>
+      <p><strong>Par apprentissage.</strong> Vous faites étiqueter à la main quelques milliers de messages. Un modèle apprend la fréquence des suites de deux ou trois caractères propres à chaque langue, méthode décrite dès 1994 par William Cavnar et John Trenkle, puis vous l'évaluez sur un jeu de test. Il reconnaît des cas imprévus, y compris la darja latinisée si elle figure dans les exemples. Mais il exige des données annotées et reproduit vos choix d'annotation : un message qui mêle français et darja est-il « français » ou « darja » ? Cette décision scientifique vous appartient.</p>
+      <p>Dans la pratique, on combine souvent les deux : une règle pour l'écriture (arabe ou latine), un modèle appris pour le reste.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="c1-perspectives">
+    <h3>Perspectives : opportunités, limites et éthique</h3>
+
+    <h4>Des opportunités pour les sciences humaines et sociales</h4>
+    <p>L'IA ouvre des terrains autrefois inaccessibles faute de temps : explorer des milliers de textes (presse numérisée, archives, romans), transcrire des documents imprimés ou manuscrits, y compris en écriture arabe, analyser les réponses ouvertes d'une enquête, mesurer l'opinion sur les réseaux sociaux, extraire les entités et les thèmes d'un discours politique, reconstituer des réseaux de correspondances ou de personnages. Les sujets du mini-projet reprennent ces usages. Dans tous les cas, l'outil produit des indices ; c'est votre question de recherche qui leur donne un sens.</p>
+
+    <h4>Des limites à connaître</h4>
+    <ul>
+      <li><strong>Les biais.</strong> Un modèle reproduit les déséquilibres de ses données. Les langues peu présentes sur le web, comme la darja ou le tamazight, sont moins bien traitées que l'anglais. Des traducteurs automatiques ont longtemps rendu une phrase turque neutre, sans « il » ni « elle », par « il est médecin » mais « elle est infirmière ».</li>
+      <li><strong>Les hallucinations.</strong> Les modèles génératifs produisent des phrases plausibles, pas des vérités : ils peuvent inventer citations, dates et références avec assurance.</li>
+      <li><strong>L'opacité.</strong> On sait mal expliquer pourquoi un réseau profond a produit un résultat, ce qui gêne l'argumentation scientifique.</li>
+      <li><strong>Le coût énergétique.</strong> Entraîner et utiliser de grands modèles consomme beaucoup d'électricité, et de l'eau pour refroidir les centres de données. Un petit modèle bien choisi suffit souvent.</li>
+    </ul>
+
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Références inventées</p>
+      <p>Ne recopiez jamais une référence fournie par un agent conversationnel sans l'avoir retrouvée dans un catalogue, une base de données ou le document original. Une référence inexistante dans un mémoire est une faute scientifique, quelle que soit sa provenance.</p>
+    </aside>
+
+    <h4>Éthique et bonnes pratiques</h4>
+    <p>En novembre 2021, les États membres de l'UNESCO ont adopté la <em>Recommandation sur l'éthique de l'intelligence artificielle</em>, premier cadre normatif mondial sur le sujet. Elle pose des principes comme la proportionnalité, le respect de la vie privée, la transparence et l'explicabilité, la responsabilité, le contrôle humain et l'équité. Le règlement européen de 2024 traduit une partie de ces principes en obligations selon le niveau de risque : la notation sociale des citoyens est interdite, les systèmes qui admettent ou évaluent des étudiants sont « à haut risque », les agents conversationnels doivent signaler qu'ils sont des machines. Pour votre propre travail, quatre règles s'imposent :</p>
+    <ul>
+      <li><strong>Données personnelles.</strong> Réponses d'enquête et messages en ligne concernent des personnes réelles : recueillez un consentement éclairé, ne gardez que l'utile, anonymisez. En Algérie, la loi n° 18-07 du 10 juin 2018 encadre le traitement des données à caractère personnel ; en Europe, c'est le RGPD.</li>
+      <li><strong>Droit d'auteur.</strong> Un texte protégé peut être analysé pour la recherche selon les règles applicables, pas diffusé librement. Ne déposez pas de textes inédits ou protégés dans un service en ligne qui s'autorise à réutiliser les contenus.</li>
+      <li><strong>Transparence.</strong> Déclarez tout usage d'un outil d'IA dans un mémoire : nom, version, date, usage précis (traduction, reformulation, analyse de corpus) et consignes formulées. Les styles APA et MLA proposent depuis 2023 des modèles de citation pour ces outils. Présenter comme sien un texte généré relève du plagiat.</li>
+      <li><strong>Vérification.</strong> Contrôlez chaque fait, citation et chiffre produit par un outil, et gardez la trace de vos traitements pour qu'un lecteur puisse les refaire.</li>
+    </ul>
+
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">À retenir</p>
+      <ul>
+        <li>L'IA est une famille de techniques (règles, recherche, apprentissage statistique, réseaux de neurones), née officiellement à Dartmouth en 1956.</li>
+        <li>Son histoire alterne enthousiasmes et « hivers » : jugez un système sur ce qu'il fait, pas sur ce qu'on en promet.</li>
+        <li>Toutes les IA existantes sont étroites ; qu'une IA générale existe, y compris sous la forme des grands modèles de langage, n'est pas établi.</li>
+        <li>L'apprentissage supervisé part d'exemples étiquetés et s'évalue sur un jeu de test ; le non supervisé forme des groupes que vous devez interpréter.</li>
+        <li>Biais, hallucinations, opacité et coût énergétique imposent vérification, transparence et respect des données personnelles et du droit d'auteur.</li>
+      </ul>
+    </aside>
+
+    <div class="quiz">
+      <p class="quiz-question">Un agent conversationnel vous propose, pour votre mémoire, une référence complète : auteur, titre, éditeur, année. Quelle est la bonne pratique ?</p>
+      <ul class="quiz-options">
+        <li><button type="button" class="quiz-option">La citer telle quelle, puisque tous les éléments bibliographiques sont présents.</button></li>
+        <li><button type="button" class="quiz-option">La reformuler pour qu'elle corresponde à votre style de citation.</button></li>
+        <li><button type="button" class="quiz-option" data-correct>Vérifier son existence dans un catalogue ou dans le document original avant de l'utiliser.</button></li>
+      </ul>
+      <p class="quiz-explication" hidden>Les modèles de langage peuvent inventer des références parfaitement plausibles : auteur réel, titre vraisemblable, éditeur connu. Seule une vérification dans une source indépendante permet de s'assurer que la référence existe et qu'elle dit bien ce qu'on lui attribue.</p>
+    </div>
+  </article>
+</section>

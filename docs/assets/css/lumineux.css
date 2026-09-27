@@ -1,0 +1,875 @@
+/* ==========================================================================
+   Lumineux — composants
+   Dépend de lumineux-tokens.css (généré depuis design-system/tokens.json).
+   Chaque composant reprend un motif des démos d'origine (dossier « ليان ليان »)
+   et le corrige : responsive, focus visible, contraste, mouvement réduit.
+   ========================================================================== */
+
+:root {
+  /* Le dégradé prisme : les cinq arrêts du `.title` d'origine, dans le même ordre. */
+  --prisme: linear-gradient(90deg, var(--soleil), var(--ciel), var(--braise), var(--fuchsia), var(--cobalt));
+  --prisme-conique: conic-gradient(from var(--lx-angle, 0deg), var(--soleil), var(--ciel), var(--braise), var(--fuchsia), var(--cobalt), var(--soleil));
+  --lx-courbe: cubic-bezier(.2, .7, .2, 1);
+  --lx-duree-rapide: 150ms;
+  --lx-duree-tiroir: 500ms;   /* .sidenav { transition: 0.5s } */
+  --lx-duree-survol: 700ms;   /* .icon:hover { transition: 0.7s } */
+  --lx-duree-prisme: 6s;      /* @keyframes rotate : 2.5s à l'origine, ralenti */
+  --lx-duree-souffle: 7s;     /* @keyframes img : 7s, conservé */
+  --lx-duree-diapo: 7s;       /* @keyframes slid : 14s pour 5 diapos, rendu manuel + auto */
+}
+
+@property --lx-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* ---------- Base ---------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--texte);
+  font-family: var(--font-texte);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+:lang(ar) { font-family: var(--font-arabe); }
+
+img, svg, video, canvas { max-width: 100%; }
+
+a { color: var(--lien); text-decoration-thickness: 1px; text-underline-offset: .18em; }
+a:hover { text-decoration-thickness: 2px; }
+
+:focus-visible {
+  outline: var(--trait-controle) solid var(--focus);
+  outline-offset: 2px;
+}
+
+::selection { background: var(--cobalt); color: var(--sur-voile); }
+
+code, kbd, samp, pre { font-family: var(--font-code); }
+
+:not(pre) > code {
+  font-size: .86em;
+  padding: .1em .38em;
+  border-radius: var(--rayon-s);
+  background: var(--surface-2);
+  color: var(--texte);
+  overflow-wrap: anywhere;
+}
+
+kbd {
+  font-size: .82em;
+  padding: .08em .45em;
+  border-radius: var(--rayon-s);
+  border: var(--trait-fin) solid var(--ligne-forte);
+  border-bottom-width: 2px;
+}
+
+dfn { font-style: normal; font-weight: 600; }
+
+abbr[title] { text-decoration: underline dotted; text-underline-offset: .2em; cursor: help; }
+
+.terme-en {
+  font-style: italic;
+  color: var(--texte-doux);
+}
+
+.visuellement-cache {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Anneau prisme : le marqueur « vivant / interactif » ---------- */
+
+.anneau-prisme {
+  display: inline-block;
+  inline-size: 14px;
+  block-size: 14px;
+  flex: none;
+  border-radius: var(--rayon-rond);
+  background: var(--prisme-conique);
+  -webkit-mask: radial-gradient(circle, transparent 3.5px, #000 4px);
+          mask: radial-gradient(circle, transparent 3.5px, #000 4px);
+}
+
+/* ---------- 1. Cadre lumineux (legacy .card + @keyframes rotate) ---------- */
+
+.cadre-lumineux {
+  position: relative;
+  padding: var(--trait-prisme);
+  border-radius: var(--rayon-m);
+  background: var(--prisme-conique);
+  animation: lx-tourne var(--lx-duree-prisme) linear infinite;
+  box-shadow: var(--ombre-carte);
+}
+.cadre-lumineux--carre { border-radius: 0; }
+.cadre-lumineux--carre > .cadre-lumineux__contenu { border-radius: 0; }
+.cadre-lumineux--affiche { padding: var(--trait-affiche); }
+.cadre-lumineux__contenu {
+  position: relative;
+  border-radius: calc(var(--rayon-m) - var(--trait-prisme));
+  background: var(--surface);
+  padding: var(--espace-5);
+}
+
+@keyframes lx-tourne { to { --lx-angle: 360deg; } }
+
+/* ---------- 2. Pastille titre (legacy .title + .h1) ---------- */
+
+.pastille-titre {
+  display: inline-flex;
+  max-inline-size: 100%;
+  padding: 10px 15px;
+  border-radius: var(--rayon-pilule);
+  border: var(--trait-fin) solid var(--texte);
+  background: var(--prisme);
+  background-size: 220% 100%;
+  animation: lx-miroite 9s ease-in-out infinite alternate;
+}
+.pastille-titre > * {
+  margin: 0;
+  padding: .28em .9em .32em;
+  border-radius: calc(var(--rayon-pilule) - 8px);
+  background: var(--voile);
+  color: var(--sur-voile);
+  font-family: var(--font-affiche);
+  font-weight: 400;
+  font-size: clamp(22px, 4vw, 40px);
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+@keyframes lx-miroite { to { background-position: 100% 0; } }
+
+/* ---------- 3. Boutons ---------- */
+
+.bouton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espace-2);
+  min-block-size: 44px;
+  padding: 0 var(--espace-5);
+  border-radius: var(--rayon-pilule);
+  border: var(--trait-controle) solid var(--ligne-forte);
+  background: var(--surface);
+  color: var(--texte);
+  font-family: var(--font-signal);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color var(--lx-duree-rapide), background-color var(--lx-duree-rapide), transform var(--lx-duree-rapide);
+}
+.bouton:hover { border-color: var(--texte); }
+.bouton:active { transform: translateY(1px); }
+.bouton[disabled] { opacity: .5; cursor: not-allowed; }
+
+/* Bouton principal : bord prisme autour d'un fond neutre, pour garder le texte lisible. */
+.bouton--prisme {
+  border-color: transparent;
+  background:
+    linear-gradient(var(--surface), var(--surface)) padding-box,
+    var(--prisme) border-box;
+}
+.bouton--prisme:hover { border-color: transparent; background: linear-gradient(var(--surface-2), var(--surface-2)) padding-box, var(--prisme) border-box; }
+
+.bouton--discret { border-color: transparent; background: transparent; padding-inline: var(--espace-3); }
+.bouton--discret:hover { border-color: var(--ligne-forte); }
+.bouton--petit { min-block-size: 36px; padding-inline: var(--espace-4); font-size: 15px; }
+
+/* Bouton verre (legacy .chevronbs, .icon:hover) */
+.bouton-verre {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  inline-size: 44px;
+  block-size: 44px;
+  padding: 0;
+  border-radius: var(--rayon-rond);
+  border: var(--trait-fin) solid var(--texte);
+  background: var(--verre-blanc);
+  box-shadow: var(--halo);
+  color: var(--texte);
+  cursor: pointer;
+  transition: transform var(--lx-duree-survol), box-shadow var(--lx-duree-survol);
+}
+.bouton-verre:hover { transform: scale(1.08); box-shadow: var(--halo-survol); }
+.bouton-verre svg { inline-size: 22px; block-size: 22px; }
+
+.icone { inline-size: 1.25em; block-size: 1.25em; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- 4. Rail capsule (legacy .menu / .item / .icon) ---------- */
+
+.rail-capsule {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--espace-6) var(--espace-3);
+  border: var(--trait-cadre) solid var(--texte);
+  border-radius: var(--rayon-capsule);
+  background: var(--surface);
+  list-style: none;
+  margin: 0;
+}
+.rail-capsule a {
+  display: flex;
+  align-items: center;
+  gap: var(--espace-3);
+  min-block-size: 40px;
+  padding: 4px var(--espace-3) 4px 4px;
+  border-radius: var(--rayon-pilule);
+  color: var(--texte-doux);
+  font-family: var(--font-signal);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  line-height: 1.1;
+  text-decoration: none;
+  transition: color var(--lx-duree-rapide), background-color var(--lx-duree-rapide);
+}
+.rail-capsule a:hover { color: var(--texte); background: var(--surface-2); }
+.rail-capsule__marque {
+  display: grid;
+  place-items: center;
+  flex: none;
+  inline-size: 32px;
+  block-size: 32px;
+  border-radius: var(--rayon-rond);
+  border: var(--trait-fin) solid var(--ligne-forte);
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
+  transition: transform var(--lx-duree-survol), box-shadow var(--lx-duree-survol);
+}
+.rail-capsule a:hover .rail-capsule__marque { transform: scale(1.12); box-shadow: var(--halo-survol); }
+.rail-capsule a[aria-current="true"] { color: var(--texte); }
+.rail-capsule a[aria-current="true"] .rail-capsule__marque { background: var(--lien); border-color: var(--lien); color: var(--fond); }
+
+/* ---------- 5. Tiroir (legacy .sidenav + openNav/closeNav) ---------- */
+
+.tiroir {
+  position: fixed;
+  inset-block: 0;
+  inset-inline-start: 0;
+  z-index: 60;
+  inline-size: min(340px, 88vw);
+  overflow-y: auto;
+  padding: calc(env(safe-area-inset-top, 0px) + var(--espace-4)) var(--espace-4) calc(env(safe-area-inset-bottom, 0px) + var(--espace-5));
+  background: var(--surface);
+  border-inline-end: var(--trait-fin) solid var(--ligne);
+  box-shadow: var(--ombre-carte);
+  transform: translateX(-102%);
+  visibility: hidden;
+  transition: transform var(--lx-duree-tiroir) var(--lx-courbe), visibility 0s linear var(--lx-duree-tiroir);
+}
+.tiroir.est-ouvert { transform: none; visibility: visible; transition: transform var(--lx-duree-tiroir) var(--lx-courbe), visibility 0s; }
+.tiroir__tete { display: flex; align-items: center; justify-content: space-between; gap: var(--espace-3); margin-block-end: var(--espace-5); }
+.tiroir__titre { margin: 0; font-family: var(--font-signal); font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--texte-doux); }
+.tiroir .rail-capsule { border-radius: var(--rayon-l); border-width: var(--trait-fin); border-color: var(--ligne); padding: var(--espace-3); }
+
+.tiroir-voile {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  background: #000000a6;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--lx-duree-tiroir);
+}
+.tiroir-voile.est-visible { opacity: 1; pointer-events: auto; }
+
+/* ---------- 6. Carrousel (legacy .slider / .slid / @keyframes slid) ---------- */
+
+.carrousel {
+  position: relative;
+  border: var(--trait-anneau) solid var(--texte);
+  border-radius: var(--rayon-l);
+  background: var(--surface);
+  overflow: hidden;
+}
+.carrousel__piste {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+.carrousel__piste::-webkit-scrollbar { display: none; }
+.carrousel__diapo {
+  position: relative;
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  min-inline-size: 0;
+}
+.carrousel__diapo img { display: block; inline-size: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.carrousel__legende {
+  position: absolute;
+  inset-inline: 50% auto;
+  inset-block-end: var(--espace-4);
+  transform: translateX(-50%);
+  max-inline-size: calc(100% - 32px);
+  padding: 6px 22px 8px;
+  border-radius: var(--rayon-l);
+  background: var(--surface);
+  box-shadow: var(--lueur-interne);
+  color: var(--texte);
+  font-family: var(--font-affiche);
+  font-size: clamp(18px, 3vw, 25px);
+  line-height: 1.2;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.carrousel__commandes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espace-3);
+  padding: var(--espace-3);
+  border-block-start: var(--trait-fin) solid var(--ligne);
+}
+.carrousel__points { display: flex; gap: var(--espace-2); list-style: none; margin: 0; padding: 0; }
+.carrousel__points button {
+  inline-size: 28px;
+  block-size: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--rayon-rond);
+  background: transparent;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+.carrousel__points button::before {
+  content: "";
+  inline-size: 10px;
+  block-size: 10px;
+  border-radius: var(--rayon-rond);
+  border: var(--trait-controle) solid var(--ligne-forte);
+}
+.carrousel__points button[aria-current="true"]::before { background: var(--texte); border-color: var(--texte); }
+
+/* ---------- 7. Anneau portrait (legacy .img + @keyframes img, .dev) ---------- */
+
+.anneau-portrait {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  inline-size: 160px;
+  max-inline-size: 100%;
+  border-radius: var(--rayon-rond);
+  border: var(--trait-anneau) solid var(--grenat);
+  background: var(--surface-2);
+  overflow: hidden;
+  animation: lx-souffle var(--lx-duree-souffle) ease-in-out infinite;
+}
+.anneau-portrait img { inline-size: 100%; block-size: 100%; object-fit: cover; }
+.anneau-portrait--petit { inline-size: 56px; border-width: 4px; animation: none; }
+
+@keyframes lx-souffle { 50% { transform: scale(.94); } }
+
+/* ==========================================================================
+   Composants de contenu (ajouts intentionnels pour un site de cours)
+   ========================================================================== */
+
+/* ---------- Encadré ---------- */
+
+.encadre {
+  --teinte: var(--ciel-texte);
+  --teinte-voile: var(--ciel-voile);
+  margin-block: var(--espace-5);
+  padding: var(--espace-4) var(--espace-5) var(--espace-5);
+  border-radius: var(--rayon-m);
+  background: var(--teinte-voile);
+  border: var(--trait-fin) solid var(--ligne);
+}
+.encadre > :last-child { margin-block-end: 0; }
+.encadre > p, .encadre > ul, .encadre > ol { margin-block: .6em; }
+.encadre-titre {
+  display: flex;
+  align-items: center;
+  gap: var(--espace-2);
+  margin-block: 0 var(--espace-2) !important;
+  color: var(--teinte);
+  font-family: var(--font-signal);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+.encadre-titre::before {
+  content: "";
+  inline-size: 12px;
+  block-size: 12px;
+  flex: none;
+  border-radius: var(--rayon-rond);
+  border: var(--trait-controle) solid currentColor;
+}
+.encadre--definition { --teinte: var(--ciel-texte); --teinte-voile: var(--ciel-voile); }
+.encadre--exemple { --teinte: var(--soleil-texte); --teinte-voile: var(--soleil-voile); }
+.encadre--attention { --teinte: var(--braise-texte); --teinte-voile: var(--braise-voile); }
+.encadre--retenir { --teinte: var(--fuchsia-texte); --teinte-voile: var(--fuchsia-voile); }
+.encadre--shs { --teinte: var(--cobalt-texte); --teinte-voile: var(--cobalt-voile); }
+.encadre--attention .encadre-titre::before { border-radius: 2px; transform: rotate(45deg) scale(.85); }
+.encadre--retenir .encadre-titre::before { background: currentColor; }
+
+/* ---------- Puces ---------- */
+
+.puces { display: flex; flex-wrap: wrap; gap: var(--espace-2); margin: var(--espace-3) 0; padding: 0; list-style: none; }
+.puce {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 28px;
+  padding: 2px 12px;
+  border-radius: var(--rayon-pilule);
+  border: var(--trait-fin) solid var(--ligne-forte);
+  color: var(--texte-doux);
+  font-family: var(--font-signal);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+.puce--outil {
+  border-color: transparent;
+  background: var(--surface-2);
+  color: var(--texte);
+  font-family: var(--font-code);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* ---------- Bloc de code ---------- */
+
+figure.code {
+  margin: var(--espace-5) 0;
+  border: var(--trait-fin) solid var(--ligne);
+  border-radius: var(--rayon-m);
+  background: var(--surface);
+  overflow: hidden;
+}
+.code-legende {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espace-3);
+  min-block-size: 44px;
+  padding: 4px 8px 4px var(--espace-4);
+  border-block-end: var(--trait-fin) solid var(--ligne);
+  color: var(--texte-doux);
+  font-family: var(--font-code);
+  font-size: 13px;
+}
+figure.code pre {
+  margin: 0;
+  padding: var(--espace-4);
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 22px;
+  tab-size: 4;
+  color: var(--texte);
+  background: transparent;
+}
+figure.code pre code { font-size: inherit; background: none; padding: 0; }
+pre.sortie { border-block-start: var(--trait-fin) dashed var(--ligne-forte); background: var(--surface-2); color: var(--texte-doux); }
+pre.sortie::before {
+  content: "Sortie";
+  display: block;
+  margin-block-end: 6px;
+  font-family: var(--font-signal);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.bouton-copier {
+  min-block-size: 32px;
+  padding: 0 12px;
+  border-radius: var(--rayon-pilule);
+  border: var(--trait-fin) solid var(--ligne-forte);
+  background: transparent;
+  color: var(--texte-doux);
+  font-family: var(--font-signal);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.bouton-copier:hover { color: var(--texte); border-color: var(--texte); }
+
+/* Coloration syntaxique (Prism) : le prisme sert de palette de code. */
+.token.comment, .token.prolog, .token.doctype { color: var(--texte-doux); font-style: italic; }
+.token.string, .token.char, .token.triple-quoted-string { color: var(--soleil-texte); }
+.token.keyword, .token.important { color: var(--fuchsia-texte); }
+.token.function, .token.class-name { color: var(--ciel-texte); }
+.token.number, .token.boolean, .token.constant { color: var(--braise-texte); }
+.token.builtin, .token.decorator, .token.annotation { color: var(--cobalt-texte); }
+.token.operator, .token.punctuation { color: var(--texte-doux); }
+
+/* ---------- Tableau ---------- */
+
+.tableau-defilant {
+  margin-block: var(--espace-5);
+  overflow-x: auto;
+  border: var(--trait-fin) solid var(--ligne);
+  border-radius: var(--rayon-m);
+  background: var(--surface);
+}
+.tableau { inline-size: 100%; min-inline-size: 540px; border-collapse: collapse; font-size: 15px; line-height: 1.55; }
+.tableau caption {
+  caption-side: top;
+  padding: var(--espace-3) var(--espace-4);
+  text-align: start;
+  color: var(--texte-doux);
+  font-family: var(--font-signal);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  border-block-end: var(--trait-fin) solid var(--ligne);
+}
+.tableau th, .tableau td { padding: 10px var(--espace-4); text-align: start; vertical-align: top; border-block-start: var(--trait-fin) solid var(--ligne); }
+.tableau thead th {
+  border-block-start: 0;
+  background: var(--surface-2);
+  font-family: var(--font-signal);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.tableau tbody th { font-weight: 600; }
+.tableau td { font-variant-numeric: tabular-nums; }
+
+/* ---------- Chronologie ---------- */
+
+.chronologie { list-style: none; margin: var(--espace-5) 0; padding: 0; }
+.chronologie > li { display: grid; grid-template-columns: 4.6rem minmax(0, 1fr); column-gap: var(--espace-4); }
+.chrono-date {
+  padding-block-start: 2px;
+  text-align: end;
+  font-family: var(--font-signal);
+  font-size: 19px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .02em;
+}
+.chrono-corps { position: relative; padding: 0 0 var(--espace-5) var(--espace-5); border-inline-start: var(--trait-controle) solid var(--ligne); }
+.chronologie > li:last-child .chrono-corps { padding-block-end: 0; }
+.chrono-corps::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: -8px;
+  inset-block-start: 6px;
+  inline-size: 14px;
+  block-size: 14px;
+  border-radius: var(--rayon-rond);
+  border: var(--trait-controle) solid var(--texte);
+  background: var(--fond);
+}
+.chrono-corps > p { margin: 0 0 .4em; }
+.chrono-titre { font-weight: 600; }
+
+/* ---------- Comparaison, cartes ---------- */
+
+.comparaison { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--espace-4); margin-block: var(--espace-5); }
+.comparaison-col, .carte {
+  padding: var(--espace-4) var(--espace-5) var(--espace-5);
+  border: var(--trait-fin) solid var(--ligne);
+  border-radius: var(--rayon-m);
+  background: var(--surface);
+}
+.comparaison-col > :first-child, .carte > :first-child { margin-block-start: 0; }
+.comparaison-col > :last-child, .carte > :last-child { margin-block-end: 0; }
+.comparaison-col ul, .carte ul { padding-inline-start: 1.1em; }
+
+.grille-cartes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--espace-4); margin-block: var(--espace-5); }
+.grille-cartes:has(> :nth-child(3):last-child),
+.grille-cartes:has(> :nth-child(6):last-child),
+.grille-cartes:has(> :nth-child(9):last-child) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.carte h4 { font-size: 19px; line-height: 1.3; }
+.carte p { font-size: 15px; line-height: 1.6; }
+
+/* ---------- Étapes ---------- */
+
+.etapes { list-style: none; margin: var(--espace-5) 0; padding: 0; counter-reset: etape; display: grid; gap: var(--espace-4); }
+.etapes > li { position: relative; counter-increment: etape; padding-inline-start: 52px; min-block-size: 36px; }
+.etapes > li::before {
+  content: counter(etape);
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: -2px;
+  display: grid;
+  place-items: center;
+  inline-size: 36px;
+  block-size: 36px;
+  border-radius: var(--rayon-rond);
+  border: var(--trait-controle) solid var(--ligne-forte);
+  font-family: var(--font-signal);
+  font-size: 16px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.etapes > li > * { margin-block: 0 .35em; }
+.etapes > li > :last-child { margin-block-end: 0; }
+.etape-titre { font-weight: 600; }
+
+/* ---------- Liste de définitions ---------- */
+
+.definitions { margin: var(--espace-5) 0; border-block-start: var(--trait-fin) solid var(--ligne); }
+.definitions > div { display: grid; grid-template-columns: minmax(7rem, 11rem) minmax(0, 1fr); gap: var(--espace-4); padding-block: var(--espace-3); border-block-end: var(--trait-fin) solid var(--ligne); }
+.definitions dt {
+  padding-block-start: 4px;
+  color: var(--texte-doux);
+  font-family: var(--font-signal);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.definitions dd { margin: 0; }
+.definitions dd > :first-child { margin-block-start: 0; }
+.definitions dd > :last-child { margin-block-end: 0; }
+
+/* ---------- Exercice & corrigé ---------- */
+
+.exercice {
+  margin-block: var(--espace-5);
+  padding: var(--espace-4) var(--espace-5) var(--espace-4);
+  border: var(--trait-fin) solid var(--ligne);
+  border-radius: var(--rayon-m);
+  background: var(--surface);
+}
+.exercice-num {
+  margin: 0 0 var(--espace-2);
+  color: var(--texte-doux);
+  font-family: var(--font-signal);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.exercice-enonce > :first-child { margin-block-start: 0; }
+details.corrige { margin-block-start: var(--espace-3); border-block-start: var(--trait-fin) solid var(--ligne); }
+details.corrige > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espace-2);
+  min-block-size: 44px;
+  color: var(--lien);
+  font-family: var(--font-signal);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  list-style: none;
+  cursor: pointer;
+}
+details.corrige > summary::-webkit-details-marker { display: none; }
+details.corrige > summary::before {
+  content: "+";
+  display: grid;
+  place-items: center;
+  inline-size: 22px;
+  block-size: 22px;
+  border-radius: var(--rayon-rond);
+  border: var(--trait-controle) solid currentColor;
+  font-size: 16px;
+  line-height: 1;
+}
+details.corrige[open] > summary::before { content: "−"; }
+.corrige-corps { padding-block: var(--espace-2) var(--espace-2); }
+.corrige-corps > :first-child { margin-block-start: 0; }
+
+/* ---------- Quiz ---------- */
+
+.quiz {
+  margin-block: var(--espace-5);
+  padding: var(--espace-4) var(--espace-5) var(--espace-5);
+  border: var(--trait-fin) solid var(--ligne);
+  border-radius: var(--rayon-m);
+  background: var(--surface);
+}
+.quiz::before {
+  content: "Auto-évaluation";
+  display: block;
+  margin-block-end: var(--espace-2);
+  color: var(--texte-doux);
+  font-family: var(--font-signal);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.quiz-question { margin: 0 0 var(--espace-3); font-weight: 600; }
+.quiz-options { display: grid; gap: var(--espace-2); margin: 0; padding: 0; list-style: none; }
+.quiz-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espace-3);
+  inline-size: 100%;
+  min-block-size: 44px;
+  padding: 8px var(--espace-4);
+  border-radius: var(--rayon-s);
+  border: var(--trait-controle) solid var(--ligne-forte);
+  background: var(--surface-2);
+  color: var(--texte);
+  font: inherit;
+  font-size: 16px;
+  line-height: 1.45;
+  text-align: start;
+  cursor: pointer;
+  transition: border-color var(--lx-duree-rapide), background-color var(--lx-duree-rapide);
+}
+.quiz-option:hover { border-color: var(--texte); }
+.quiz-option::after {
+  flex: none;
+  font-family: var(--font-signal);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.quiz-option.est-juste { border-color: var(--juste); background: var(--juste-voile); }
+.quiz-option.est-juste::after { content: "Juste"; color: var(--juste); }
+.quiz-option.est-faux { border-color: var(--braise-texte); background: var(--braise-voile); }
+.quiz-option.est-faux::after { content: "Non"; color: var(--braise-texte); }
+.quiz-explication { margin: var(--espace-3) 0 0; padding-block-start: var(--espace-3); border-block-start: var(--trait-fin) solid var(--ligne); font-size: 15px; }
+
+/* ---------- Schéma SVG ---------- */
+
+figure.schema { margin: var(--espace-5) 0; overflow-x: auto; }
+figure.schema svg { display: block; inline-size: 100%; block-size: auto; min-inline-size: 560px; }
+figure.schema figcaption, figure.code + p.legende { margin-block-start: var(--espace-2); color: var(--texte-doux); font-size: 15px; line-height: 1.5; }
+.svg-noeud { fill: var(--surface); stroke: var(--ligne-forte); stroke-width: 1.5; }
+.svg-noeud-accent { fill: var(--cobalt-voile); stroke: var(--cobalt-texte); stroke-width: 2; }
+.svg-texte { fill: var(--texte); font-family: var(--font-texte); font-size: 15px; }
+.svg-texte-doux { fill: var(--texte-doux); font-family: var(--font-signal); font-size: 13px; font-weight: 600; letter-spacing: .04em; }
+.svg-trait { fill: none; stroke: var(--texte-doux); stroke-width: 1.5; }
+.svg-trait-accent { fill: none; stroke: var(--cobalt-texte); stroke-width: 2; }
+.svg-pointe { fill: var(--texte-doux); }
+
+/* ---------- Formule, citation ---------- */
+
+.formule {
+  margin: var(--espace-5) 0;
+  padding: var(--espace-3) var(--espace-4);
+  border-radius: var(--rayon-s);
+  background: var(--surface-2);
+  font-family: var(--font-code);
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+blockquote.citation {
+  position: relative;
+  margin: var(--espace-6) 0;
+  padding: 0 0 0 var(--espace-7);
+}
+blockquote.citation::before {
+  content: "«";
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: -.18em;
+  font-family: var(--font-affiche);
+  font-size: 64px;
+  line-height: 1;
+  color: var(--texte-doux);
+}
+blockquote.citation p { margin: 0 0 .5em; font-family: var(--font-affiche); font-size: clamp(21px, 2.6vw, 26px); line-height: 1.35; }
+blockquote.citation footer { color: var(--texte-doux); font-size: 15px; }
+
+/* ---------- Démonstrations ---------- */
+
+.demo {
+  margin-block: var(--espace-5);
+  padding: var(--espace-4) var(--espace-5) var(--espace-5);
+  border: var(--trait-fin) solid var(--ligne-forte);
+  border-radius: var(--rayon-m);
+  background: var(--surface);
+}
+.demo__tete { display: flex; align-items: center; gap: var(--espace-2); margin-block-end: var(--espace-3); }
+.demo__etiquette {
+  margin: 0;
+  color: var(--texte-doux);
+  font-family: var(--font-signal);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.demo__titre { margin: 0 0 var(--espace-3); font-family: var(--font-texte); font-size: 19px; font-weight: 600; line-height: 1.35; }
+.demo__commandes { display: flex; flex-wrap: wrap; align-items: center; gap: var(--espace-2) var(--espace-3); margin-block: var(--espace-3); }
+.demo__note { margin: var(--espace-3) 0 0; color: var(--texte-doux); font-size: 14px; line-height: 1.5; }
+
+.champ { display: grid; gap: 6px; }
+.champ label, .champ .champ__nom {
+  color: var(--texte-doux);
+  font-family: var(--font-signal);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.champ textarea, .champ input[type="text"], .champ select {
+  inline-size: 100%;
+  padding: 10px 12px;
+  border-radius: var(--rayon-s);
+  border: var(--trait-controle) solid var(--ligne-forte);
+  background: var(--fond);
+  color: var(--texte);
+  font: inherit;
+  font-size: 16px;
+  line-height: 1.5;
+  resize: vertical;
+}
+.champ input[type="range"] { inline-size: 100%; accent-color: var(--lien); }
+
+/* ---------- Mouvement réduit ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .cadre-lumineux, .pastille-titre, .anneau-portrait { animation: none; }
+  .carrousel__piste { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 1ms !important; }
+}
+
+/* ---------- Petits écrans ---------- */
+
+@media (max-width: 640px) {
+  .comparaison, .grille-cartes,
+  .grille-cartes:has(> :nth-child(3):last-child),
+  .grille-cartes:has(> :nth-child(6):last-child),
+  .grille-cartes:has(> :nth-child(9):last-child) { grid-template-columns: minmax(0, 1fr); }
+  .definitions > div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .chronologie > li { grid-template-columns: minmax(0, 1fr); }
+  .chrono-date { text-align: start; padding-inline-start: var(--espace-5); border-inline-start: var(--trait-controle) solid var(--ligne); }
+  .encadre, .exercice, .quiz, .demo, .comparaison-col, .carte { padding-inline: var(--espace-4); }
+  blockquote.citation { padding-inline-start: var(--espace-6); }
+}
+
+/* ---------- Garde-fou : un enfant de grille ne s'élargit jamais à son contenu ---------- */
+.etapes > li, .comparaison > *, .grille-cartes > *, .definitions > div > *, .quiz-options > li,
+.chronologie > li > *, .encadre, .exercice, .corrige-corps { min-inline-size: 0; }
+figure.code, .tableau-defilant, figure.schema { max-inline-size: 100%; }

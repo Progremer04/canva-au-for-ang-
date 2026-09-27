@@ -1,0 +1,12 @@
+<div class="apercu">
+<figure class="code">
+  <figcaption class="code-legende">compter_mots.py</figcaption>
+  <pre><code class="language-python"><span class="token keyword">from</span> collections <span class="token keyword">import</span> Counter
+
+texte <span class="token operator">=</span> <span class="token string">"la mer la mer toujours recommencée"</span>
+mots <span class="token operator">=</span> texte<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment"># Les deux mots les plus fréquents</span>
+<span class="token builtin">print</span><span class="token punctuation">(</span>Counter<span class="token punctuation">(</span>mots<span class="token punctuation">)</span><span class="token punctuation">.</span>most_common<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+  <pre class="sortie"><samp>[('la', 2), ('mer', 2)]</samp></pre>
+</figure>
+</div>
