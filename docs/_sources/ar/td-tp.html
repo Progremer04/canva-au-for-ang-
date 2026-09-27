@@ -1,0 +1,883 @@
+<section class="chapitre" id="td-tp" aria-labelledby="td-tp-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">الأعمال الموجَّهة والأعمال التطبيقية</p>
+    <h2 class="titre-section" id="td-tp-titre">TD / TP مع الحلول</h2>
+    <p class="chapeau">تمارين الأعمال الموجَّهة (TD) الخاصة بالفصول الثلاثة، مرفقةً بحلول مفصَّلة، ثم تدرُّج مقترح لحصص الأعمال التطبيقية (TP). ابحثوا أولًا بمفردكم أو ضمن مجموعة، ثم افتحوا الحل لتقارنوا طريقة استدلالكم، لا نتيجتكم فحسب.</p>
+    <ul class="puces">
+      <li class="puce">أعمال موجَّهة</li>
+      <li class="puce">أعمال تطبيقية</li>
+      <li class="puce puce--outil">Python</li>
+    </ul>
+  </header>
+
+  <nav class="sommaire-chapitre" aria-label="فهرس الأعمال الموجَّهة والأعمال التطبيقية">
+    <ol>
+      <li><a href="#td-ch1">الأعمال الموجَّهة للفصل 1: التعلم والوضع الراهن للمجال</a></li>
+      <li><a href="#td-ch2">الأعمال الموجَّهة للفصل 2: تمارين بلغة Python</a></li>
+      <li><a href="#td-ch3">الأعمال الموجَّهة للفصل 3: النظام الخبير والتعلم</a></li>
+      <li><a href="#td-travaux-pratiques">الأعمال التطبيقية</a></li>
+    </ol>
+  </nav>
+
+  <!-- ============================ TD CHAPITRE 1 ============================ -->
+  <article class="lecon" id="td-ch1">
+    <h3>الأعمال الموجَّهة للفصل 1</h3>
+    <p>تعود هذه التمارين إلى مدخل الذكاء الاصطناعي. تُعالَج التمارين الثلاثة الأولى في الحصة؛ أما الرابع فهو عمل شخصي قائم على البحث الوثائقي.</p>
+
+    <div class="exercice" id="td-ch1-ex1">
+      <p class="exercice-num">التمرين 1 · مراجعة مفاهيم الدرس</p>
+      <div class="exercice-enonce">
+        <p>راجعوا المفاهيم التي دُرست في محاضرة الفصل 1، ثم تعمَّقوا في مفهومَي التعلم الخاضع للإشراف (<span class="terme-en" lang="fr">apprentissage supervisé</span>) والتعلم غير الخاضع للإشراف (<span class="terme-en" lang="fr">apprentissage non supervisé</span>). قدِّموا لكل منهما تعريفًا، ونوع البيانات اللازمة، والمهام النموذجية، وصعوبةً عملية واحدة.</p>
+      </div>
+      <details class="corrige"><summary>عرض الحل</summary>
+        <div class="corrige-corps">
+          <p>إليكم خلاصة ممكنة، أكملوها بملاحظاتكم من المحاضرة.</p>
+          <dl class="definitions">
+            <div><dt>الذكاء الاصطناعي</dt><dd>مجال من مجالات الإعلام الآلي يصمِّم برامج قادرة على إنجاز مهام نربطها بالذكاء البشري: الاستدلال، وفهم لغة ما، والتعرُّف على صورة، واتخاذ القرار. <dfn>الذكاء الاصطناعي الضعيف</dfn> (<span class="terme-en" lang="fr">IA faible</span>)، أو الضيِّق، متخصص في مهمة واحدة أو مجال واحد؛ وإليه تنتمي الأنظمة الحالية، وإن كانت أكثرها تعدُّدًا في الاستعمالات تعيد إحياء النقاش. أما <dfn>الذكاء الاصطناعي القوي</dfn> (<span class="terme-en" lang="fr">IA forte</span>)، أو العام، فيدلّ على ذكاء اصطناعي قادر على أداء أي مهمة فكرية يؤديها الإنسان؛ وهو لا يزال هدفًا وموضوعًا للنقاش.</dd></div>
+            <div><dt>مقاربتان كبيرتان</dt><dd>المقاربة <dfn>الرمزية</dfn>: يكتب البشر المعارف في صورة قواعد (وهذا شأن الأنظمة الخبيرة). و<dfn>التعلم الآلي</dfn> (<span class="terme-en" lang="fr">apprentissage automatique</span>): يستخلص البرنامج قواعده بنفسه من عدد كبير من الأمثلة.</dd></div>
+            <div><dt>التعلم الخاضع للإشراف</dt><dd><strong>البيانات:</strong> أمثلة مرفقة بالإجابة المنتظرة، وتُسمّى <dfn>وسمًا</dfn> (<span class="terme-en" lang="fr">étiquette</span>)، مثل رسالة إلكترونية مصحوبة بالإشارة «مزعجة» أو «غير مزعجة». <strong>المبدأ:</strong> يتعلم النموذج التطابق بين المُدخَل والوسم، ثم يطبِّقه على حالات جديدة. <strong>المهام:</strong> <dfn>التصنيف</dfn> (<span class="terme-en" lang="fr">classification</span>)، أي التنبؤ بفئة، و<dfn>الانحدار</dfn> (<span class="terme-en" lang="fr">régression</span>)، أي التنبؤ بقيمة عددية. <strong>التقييم:</strong> نقارن التنبؤات بالوسوم الحقيقية لأمثلة وُضعت جانبًا، هي مجموعة الاختبار (<span class="terme-en" lang="fr">jeu de test</span>). <strong>الصعوبة:</strong> التوسيم يستغرق وقتًا، والوسوم تعكس اختيارات القائمين على التوسيم، وأحيانًا أحكامهم المسبقة.</dd></div>
+            <div><dt>التعلم غير الخاضع للإشراف</dt><dd><strong>البيانات:</strong> أمثلة بلا وسوم. <strong>المبدأ:</strong> يبحث النموذج بمفرده عن بنية في البيانات. <strong>المهام:</strong> <dfn>العنقدة</dfn> (<span class="terme-en" lang="fr">clustering</span>)، أي تجميع الحالات المتشابهة، واختزال الأبعاد (تلخيص متغيرات كثيرة في بضعة محاور)، وكشف الحالات الشاذة، والنمذجة الموضوعاتية. <strong>التقييم:</strong> لا توجد «إجابة صحيحة»؛ بل نحكم على تماسك المجموعات وعلى فائدتها في التأويل. <strong>الصعوبة:</strong> تسمية المجموعات المتحصَّل عليها وتأويلها.</dd></div>
+            <div><dt>بين الاثنين</dt><dd>يجمع التعلم <dfn>شبه الخاضع للإشراف</dfn> بين بضعة أمثلة موسومة وكثير من الأمثلة الخام. أما التعلم <dfn>الذاتي الإشراف</dfn> فيستخلص الوسم من البيانات نفسها، كأن نخفي الكلمة التالية في جملة ونطلب من النموذج تخمينها: وبهذه الطريقة تُدرَّب النماذج اللغوية الكبيرة تدريبًا مسبقًا.</dd></div>
+            <div><dt>التعلم المعزَّز</dt><dd>لا توجد أمثلة مصحَّحة: يتصرف وكيل في بيئة ما ويتلقى مكافآت أو عقوبات. ويتعلم الاستراتيجية التي تجعل مكافآته أكبر ما يمكن مع مرور الوقت.</dd></div>
+          </dl>
+          <aside class="encadre encadre--retenir">
+            <p class="encadre-titre">السؤال الصائب الذي ينبغي طرحه</p>
+            <p>هل نملك، لكل مثال، الإجابةَ المنتظرة؟ إذا كان الجواب نعم، فالتعلم خاضع للإشراف. وإلا فهو غير خاضع للإشراف. وإذا كان البرنامج يتعلم عبر الفعل وتلقي المكافآت، فالأمر يتعلق بالتعلم المعزَّز.</p>
+          </aside>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="td-ch1-ex2">
+      <p class="exercice-num">التمرين 2 · خاضع للإشراف أم غير خاضع له؟</p>
+      <div class="exercice-enonce">
+        <p>ما الفرق بين التعلم الخاضع للإشراف والتعلم غير الخاضع للإشراف؟ قدِّموا إجابتكم في شكل جدول مقارن.</p>
+      </div>
+      <details class="corrige"><summary>عرض الحل</summary>
+        <div class="corrige-corps">
+          <div class="tableau-defilant"><table class="tableau">
+            <caption>التعلم الخاضع للإشراف وغير الخاضع للإشراف</caption>
+            <thead><tr><th scope="col">المعيار</th><th scope="col">خاضع للإشراف</th><th scope="col">غير خاضع للإشراف</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">البيانات</th><td>أمثلة مرفقة بوسومها</td><td>أمثلة فقط</td></tr>
+              <tr><th scope="row">السؤال المطروح</th><td>«إلى أي فئة تنتمي هذه الحالة؟ ما القيمة التي ستأخذها؟»</td><td>«ما المجموعات، وما البنى، التي تبرز؟»</td></tr>
+              <tr><th scope="row">المهام النموذجية</th><td>التصنيف، الانحدار</td><td>العنقدة، اختزال الأبعاد، النمذجة الموضوعاتية</td></tr>
+              <tr><th scope="row">الخوارزميات</th><td>الانحدار الخطي واللوجستي، k أقرب الجيران، أشجار القرار، الشبكات العصبية</td><td>خوارزمية k-المتوسطات، التصنيف الهرمي، تحليل المكوِّنات الرئيسية (ACP)، LDA</td></tr>
+              <tr><th scope="row">التقييم</th><td>مباشر: المقارنة مع وسوم مجموعة الاختبار (الدقة، متوسط الخطأ)</td><td>غير مباشر: التماسك الداخلي للمجموعات (معامل silhouette)، القراءة البشرية</td></tr>
+              <tr><th scope="row">العمل البشري الأساسي</th><td>توسيم البيانات قبل التعلم</td><td>تأويل النتائج بعد التعلم</td></tr>
+              <tr><th scope="row">مثال من العلوم الإنسانية والاجتماعية</th><td>نسبة نص مجهول المؤلف إلى واحد من عدة مؤلفين معروفين</td><td>تجميع روايات بحسب معجمها، دون فئات محدَّدة مسبقًا</td></tr>
+            </tbody>
+          </table></div>
+          <p>في جملة واحدة: في التعلم الخاضع للإشراف نتعلم إعادة إنتاج إجابات معروفة؛ وفي التعلم غير الخاضع للإشراف نبحث عن تنظيم لا نعرفه بعد.</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="td-ch1-ex3">
+      <p class="exercice-num">التمرين 3 · أمثلة على التعلم</p>
+      <div class="exercice-enonce">
+        <p>قدِّموا ستة أمثلة على التعلم. حدِّدوا لكل مثال نوع التعلم والمهمة والبيانات المستعملة. ويجب أن يكون مثالان على الأقل من العلوم الإنسانية أو من الأدب.</p>
+      </div>
+      <details class="corrige"><summary>عرض الحل</summary>
+        <div class="corrige-corps">
+          <div class="tableau-defilant"><table class="tableau">
+            <caption>ستة أمثلة مصنَّفة حسب نوع التعلم</caption>
+            <thead><tr><th scope="col">المثال</th><th scope="col">النوع</th><th scope="col">المهمة</th><th scope="col">البيانات</th></tr></thead>
+            <tbody>
+              <tr><td>فرز الرسائل الإلكترونية إلى «مزعجة» و«غير مزعجة»</td><td>خاضع للإشراف</td><td>التصنيف</td><td>رسائل سبق أن وسمها المستخدمون</td></tr>
+              <tr><td>نسبة نص مجهول المؤلف أو متنازَع عليه إلى واحد من عدة مؤلفين محتملين (القياس الأسلوبي)، كما فعل Mosteller وWallace سنة 1964 مع بعض مقالات <em>Federalist Papers</em> (الأوراق الفيدرالية)</td><td>خاضع للإشراف</td><td>التصنيف</td><td>نصوص معروفة المؤلف</td></tr>
+              <tr><td>تقدير تاريخ نظم قصيدة انطلاقًا من معجمها</td><td>خاضع للإشراف</td><td>الانحدار</td><td>قصائد معروفة التاريخ</td></tr>
+              <tr><td>تجميع روايات مدوّنة نصية بحسب معجمها، دون فئات محدَّدة مسبقًا</td><td>غير خاضع للإشراف</td><td>العنقدة</td><td>نصوص فقط</td></tr>
+              <tr><td>استخراج أنماط من المستجوَبين في استبيان حول ممارسات القراءة</td><td>غير خاضع للإشراف</td><td>العنقدة</td><td>الإجابات عن الاستبيان، بلا وسوم</td></tr>
+              <tr><td>برنامج يتعلم لعب الغو باللعب ضد نفسه، مثل AlphaGo Zero (DeepMind، 2017)</td><td>معزَّز</td><td>اختيار أفعال متتالية</td><td>الأشواط الملعوبة؛ ويُستعمل الفوز مكافأةً</td></tr>
+            </tbody>
+          </table></div>
+          <p>إجابات أخرى ممكنة. تحقَّقوا فقط من انسجام النوع مع البيانات: إذا كانت الوسوم ضرورية، فالتعلم خاضع للإشراف.</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="td-ch1-ex4">
+      <p class="exercice-num">التمرين 4 · حالة تُنجَز عملًا شخصيًا</p>
+      <div class="exercice-enonce">
+        <p>ادرسوا الأدبيات المتعلقة بالذكاء الاصطناعي لتحدِّدوا ما إذا كانت الحواسيب الحالية قادرة على إنجاز العمليات الآتية:</p>
+        <ul>
+          <li>لعب كرة الطاولة بشكل صحيح؛</li>
+          <li>قيادة سيارة في وسط مدينة؛</li>
+          <li>اكتشاف مبرهنات رياضية والبرهنة عليها؛</li>
+          <li>كتابة قصة مضحكة؛</li>
+          <li>إبداء رأي وجيه في مجال قانوني معيَّن؛</li>
+          <li>إجراء عملية جراحية معقَّدة.</li>
+        </ul>
+      </div>
+      <details class="corrige"><summary>عرض الحل</summary>
+        <div class="corrige-corps">
+          <p>حالة المعارف في تاريخ التحرير (سبتمبر 2026). يتطور هذا المجال بسرعة كبيرة: تحقَّقوا من كل نقطة وقتَ قراءتكم، وأرِّخوا مصادركم.</p>
+          <div class="tableau-defilant"><table class="tableau">
+            <caption>ما تستطيع الحواسيب فعله سنة 2026: حصيلة حذرة</caption>
+            <thead><tr><th scope="col">المهمة</th><th scope="col">الوضع الراهن</th><th scope="col">الحكم</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>لعب كرة الطاولة بشكل صحيح</td>
+                <td>توجد روبوتات تدريب منذ عدة سنوات (مثل Forpheus من شركة Omron). وفي سنة 2024، قدَّمت Google DeepMind ذراعًا آلية خاضت مباريات كاملة ضد بشر: فقد هزمت المبتدئين، ونحو نصف اللاعبين ذوي المستوى المتوسط، وخسرت أمام اللاعبين المتمرِّسين. وجرى ذلك كله في قاعة مجهَّزة بالكاميرات، وعلى طاولة مهيَّأة لذلك.</td>
+                <td>جزئيًا: مستوى الهواة، في ظروف متحكَّم فيها.</td>
+              </tr>
+              <tr>
+                <td>قيادة سيارة في وسط مدينة</td>
+                <td>تنقل سيارات أجرة آلية بلا سائق على متنها ركابًا يدفعون الأجرة: Waymo في عدة مدن بالولايات المتحدة (منها فينيكس وسان فرانسيسكو ولوس أنجلوس)، وBaidu عبر خدمة Apollo Go في الصين (ولا سيما في ووهان). وتبقى هذه الخدمات محصورة في مناطق مُخرَّطة مسبقًا، وتعتمد على مساعدة بشرية عن بُعد، وقد شهدت حوادث أعقبتها عمليات استدعاء لتحديث البرمجيات. ولا يوجد نظام يقود في كل مكان وفي جميع الأحوال الجوية.</td>
+                <td>نعم في مناطق محدَّدة؛ لا في كل مكان ولا في جميع الظروف.</td>
+              </tr>
+              <tr>
+                <td>اكتشاف مبرهنات رياضية والبرهنة عليها</td>
+                <td>توجد برامج البرهنة الآلية منذ برنامج Logic Theorist (1956). وفي سنة 1996، برهن برنامج EQP على حدسية روبنز (Robbins)، التي ظلت مفتوحة أكثر من ستين سنة. وتتحقق مساعِدات البرهان مثل Lean أو Coq (واسمه اليوم Rocq) من براهين يكتبها البشر. وفي سنة 2024، بلغ النظامان AlphaProof وAlphaGeometry 2 (من Google DeepMind) مستوى الميدالية الفضية في الأولمبياد الدولي للرياضيات؛ وفي سنة 2025، أعلنت أنظمة من Google DeepMind ومن OpenAI عن نتائج في مستوى الميدالية الذهبية. غير أن المبرهنات الكبرى الجديدة حقًّا تظل نادرة، وقد تبيَّن أن بعض الإعلانات عن «حلّ مسائل مفتوحة» لم تكن سوى إعادة اكتشاف لنتائج سبق نشرها.</td>
+                <td>البرهنة: نعم بالنسبة إلى نصوص محكمة الصياغة. الاكتشاف: بصورة متفرقة، وبالتعاون مع علماء رياضيات.</td>
+              </tr>
+              <tr>
+                <td>كتابة قصة مضحكة</td>
+                <td>تُنتج النماذج اللغوية الكبيرة القصص والنكت دون عناء. لكن فكاهتها تبقى متفاوتة: فقد بيَّنت دراسة أُنجزت سنة 2023 (Jentzsch وKersting) أن ChatGPT كان يكرِّر في أغلب الأحيان عددًا قليلًا من النكت. ويظل التلاعب بالألفاظ والسخرية والفكاهة الخاصة بلغة أو بلهجة ما أمورًا صعبة، كما أن ما يُضحك يتوقف على الجمهور.</td>
+                <td>الكتابة: نعم. الإضحاك بشكل مضمون: لا.</td>
+              </tr>
+              <tr>
+                <td>إبداء رأي وجيه في مجال قانوني معيَّن</td>
+                <td>تساعد النماذج اللغوية على البحث والتلخيص والتحرير. وفي سنة 2023، تحصَّل GPT-4 على علامة كافية في امتحان المحاماة الأمريكي (Uniform Bar Exam)، وهي نتيجة نوقش مداها لاحقًا. لكن هذه النماذج قد تختلق أحكامًا قضائية: ففي قضية Mata v. Avianca (نيويورك، 2023)، عوقب محامون لاستشهادهم باجتهادات قضائية وهمية أنتجها ChatGPT، وقد تكاثرت حالات مشابهة منذ ذلك الحين. وتصنِّف اللائحة الأوروبية للذكاء الاصطناعي (2024) الأنظمةَ الموجَّهة لمساعدة القضاة ضمن الأنظمة «عالية المخاطر».</td>
+                <td>جزئيًا: مساعد مفيد، لا يكون موثوقًا إلا تحت رقابة مختص في القانون.</td>
+              </tr>
+              <tr>
+                <td>إجراء عملية جراحية معقَّدة</td>
+                <td>الجراحة بمساعدة الروبوت (نظام da Vinci مثلًا) شائعة، لكن الجرّاح يوجِّه الروبوت باستمرار. وفي سنة 2022، أجرى الروبوت STAR (جامعة جونز هوبكنز) بصورة مستقلة مفاغرةً معوية (أي خياطة قطعتين من الأمعاء) بالمنظار على خنازير. وفي سنة 2025، قدَّم الفريق نفسه روبوتًا أنجز بصورة مستقلة جزءًا من عملية استئصال المرارة على أعضاء خنزير منزوعة. وعلى حدّ علمنا، لا تُجرى أي عملية معقَّدة بصورة مستقلة على مرضى من البشر.</td>
+                <td>لا، باستقلالية على الإنسان؛ نعم، كمساعدة يوجِّهها الجرّاح؛ وعروض مستقلة على الحيوان.</td>
+              </tr>
+            </tbody>
+          </table></div>
+          <p>لاحظوا أن الإجابة تتوقف في الغالب على المعنى المعطى لكلمات التعليمة: «بشكل صحيح»، «وجيه»، «مضحكة». وتحديد هذه المعايير جزء من العمل.</p>
+          <h4>المنهجية: كيف تُجرون هذا البحث</h4>
+          <ol class="etapes">
+            <li><p class="etape-titre">تحديد معيار النجاح</p><p>بالمقارنة مع مَن نحكم على الآلة: مبتدئ، أم محترف، أم أفضل البشر؟ وفي أي ظروف؟</p></li>
+            <li><p class="etape-titre">العودة إلى المصادر الأولية</p><p>مقالات علمية منشورة في مجلات أو مؤتمرات محكَّمة، وتقارير تقنية. والنسخ الأولية السابقة للنشر (arXiv، HAL) مفيدة، لكنها لم تخضع دائمًا لتحكيم الأقران. ويساعد Google Scholar على العثور عليها.</p></li>
+            <li><p class="etape-titre">التمييز بين العرض التجريبي والمنتَج والإعلان</p><p>ليس لتجربة مخبرية، ولخدمة يستعملها الجمهور، ولبيان صحفي صادر عن شركة، القيمةُ نفسها. والشركة التي تقدِّم منتَجها الخاص مصدرٌ صاحب مصلحة.</p></li>
+            <li><p class="etape-titre">فحص الظروف</p><p>عدد المحاولات، والبيئة، والخصوم، ونصيب الإشراف البشري، ونسبة الإخفاق.</p></li>
+            <li><p class="etape-titre">التأريخ والمقاطعة بين المصادر</p><p>سجِّلوا تاريخ كل نتيجة وتاريخ اطلاعكم عليها. وأكِّدوا كل تصريح بمصدرين مستقلين على الأقل، مثل مقال علمي ومؤلَّف تركيبي كمؤلَّف جان غابرييل غاناسيا (Jean-Gabriel Ganascia، 2024)، المذكور في مراجع المقياس.</p></li>
+            <li><p class="etape-titre">صياغة حكم دقيق</p><p>«نعم، ولكن…»، «في ظروف متحكَّم فيها»، «ليس بعد»: هذه الفروق الدقيقة هي الإجابة المنتظرة.</p></li>
+          </ol>
+        </div></details>
+    </div>
+  </article>
+
+  <!-- ============================ TD CHAPITRE 2 ============================ -->
+  <article class="lecon" id="td-ch2">
+    <h3>الأعمال الموجَّهة للفصل 2</h3>
+    <p>تمارين بلغة Python: برامج بسيطة، والقوائم والصفوف، ومعالجة البيانات بالمكتبات التي دُرست في المحاضرة. اكتبوا الشيفرة بأنفسكم بدل نسخها: فأخطاء الكتابة جزء من التعلم. والمخرجات المعروضة هي التي تنتجها البرامج المصحَّحة باستعمال Python 3.11.</p>
+
+    <div class="exercice" id="td-ch2-ex1">
+      <p class="exercice-num">التمرين 1 · برنامج بسيط: الكلمات المتناظرة</p>
+      <div class="exercice-enonce">
+        <p><dfn>الكلمة المتناظرة</dfn> (<span class="terme-en" lang="fr">palindrome</span>) كلمة تُقرأ بالطريقة نفسها في الاتجاهين. اكتبوا دالة <code>est_palindrome(mot)</code> تُرجع <code>True</code> إذا كانت الكلمة متناظرة، دون التمييز بين الحروف الكبيرة والصغيرة. اختبروها على القائمة <code>["radar", "Kayak", "roman", "Été", "ressasser"]</code>، ثم اعرضوا أطول كلمة في القائمة وعدد حروفها.</p>
+      </div>
+      <details class="corrige"><summary>عرض الحل</summary>
+        <div class="corrige-corps">
+          <figure class="code">
+            <figcaption class="code-legende">palindromes.py</figcaption>
+            <pre><code class="language-python">def est_palindrome(mot):
+    """Renvoie True si le mot se lit de la même façon dans les deux sens."""
+    mot = mot.lower()          # on ignore les majuscules
+    return mot == mot[::-1]    # [::-1] renvoie la chaîne à l'envers
+
+mots = ["radar", "Kayak", "roman", "Été", "ressasser"]
+for m in mots:
+    if est_palindrome(m):
+        print(m, ": palindrome")
+    else:
+        print(m, ": pas un palindrome")
+
+plus_long = max(mots, key=len)   # le mot dont la longueur est maximale
+print(f"Mot le plus long : {plus_long} ({len(plus_long)} lettres)")</code></pre>
+            <pre class="sortie"><samp>radar : palindrome
+Kayak : palindrome
+roman : pas un palindrome
+Été : palindrome
+ressasser : palindrome
+Mot le plus long : ressasser (9 lettres)</samp></pre>
+          </figure>
+          <p>تمرّ <code>mot[::-1]</code> على السلسلة النصية بخطوة قدرها &#x2066;-1&#x2069;، أي من آخرها إلى أولها. ومن دون <code>lower()</code> لن يُتعرَّف على «Kayak»، لأن «K» و«k» حرفان مختلفان. وللتعمق أكثر: لاختبار جملة مثل «Ésope reste ici et se repose» ينبغي أيضًا حذف المسافات وعلامات النبر (accents).</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="td-ch2-ex2">
+      <p class="exercice-num">التمرين 2 · القوائم والصفوف</p>
+      <div class="exercice-enonce">
+        <p>نمثِّل كل عمل أدبي بـ<dfn>صفّ</dfn> (<span class="terme-en" lang="fr">tuple</span>) <code>(auteur, titre, année)</code>، أي متتالية من القيم غير قابلة للتعديل، ونمثِّل المدوّنة النصية بـ<dfn>قائمة</dfn> (<span class="terme-en" lang="fr">liste</span>) من الصفوف، قابلة للتعديل:</p>
+        <ul>
+          <li>كاتب ياسين، <em>Nedjma</em> (نجمة)، 1956</li>
+          <li>محمد ديب، <em>La Grande Maison</em> (الدار الكبيرة)، 1952</li>
+          <li>آسيا جبار، <em>L'Amour, la fantasia</em> (الحب، الفانتازيا)، 1985</li>
+          <li>مولود فرعون، <em>Le Fils du pauvre</em> (ابن الفقير)، 1950</li>
+          <li>مولود معمري، <em>La Colline oubliée</em> (الربوة المنسية)، 1952</li>
+        </ul>
+        <p>1. اعرضوا الأعمال مرتَّبة حسب السنة. 2. أنشئوا قائمة العناوين المنشورة قبل 1955. 3. أضيفوا رواية أحلام مستغانمي <em>ذاكرة الجسد</em> (Dhakirat al-jasad، 1993، وقد تُرجمت إلى الفرنسية بعنوان <em>Mémoires de la chair</em>) واعرضوا عدد الأعمال. 4. حاولوا تغيير سنة العمل الأول: ماذا يحدث، ولماذا؟</p>
+      </div>
+      <details class="corrige"><summary>عرض الحل</summary>
+        <div class="corrige-corps">
+          <figure class="code">
+            <figcaption class="code-legende">listes_tuples.py</figcaption>
+            <pre><code class="language-python"># Chaque œuvre est un tuple (auteur, titre, année)
+oeuvres = [
+    ("Kateb Yacine", "Nedjma", 1956),
+    ("Mohammed Dib", "La Grande Maison", 1952),
+    ("Assia Djebar", "L'Amour, la fantasia", 1985),
+    ("Mouloud Feraoun", "Le Fils du pauvre", 1950),
+    ("Mouloud Mammeri", "La Colline oubliée", 1952),
+]
+
+# 1. Trier par année (clé = 3e élément du tuple, indice 2)
+for auteur, titre, annee in sorted(oeuvres, key=lambda o: o[2]):
+    print(annee, "-", titre, "-", auteur)
+
+# 2. Titres publiés avant 1955 (liste en compréhension)
+avant_1955 = [titre for auteur, titre, annee in oeuvres if annee &lt; 1955]
+print(avant_1955)
+
+# 3. Ajouter une œuvre (la liste, elle, est modifiable), puis compter
+oeuvres.append(("Ahlam Mosteghanemi", "Dhakirat al-jasad", 1993))
+print(len(oeuvres), "œuvres")
+
+# 4. Essayer de modifier un tuple
+try:
+    oeuvres[0][2] = 1957
+except TypeError as erreur:
+    print("Erreur :", erreur)</code></pre>
+            <pre class="sortie"><samp>1950 - Le Fils du pauvre - Mouloud Feraoun
+1952 - La Grande Maison - Mohammed Dib
+1952 - La Colline oubliée - Mouloud Mammeri
+1956 - Nedjma - Kateb Yacine
+1985 - L'Amour, la fantasia - Assia Djebar
+['La Grande Maison', 'Le Fils du pauvre', 'La Colline oubliée']
+6 œuvres
+Erreur : 'tuple' object does not support item assignment</samp></pre>
+          </figure>
+          <ul>
+            <li>تفكّ <code>for auteur, titre, annee in …</code> كل صفّ إلى ثلاثة متغيرات.</li>
+            <li>تُرجع <code>sorted</code> قائمة جديدة مرتَّبة دون تعديل <code>oeuvres</code>. والترتيب مستقر: إذ يحتفظ العملان الصادران سنة 1952 بترتيبهما الأصلي.</li>
+            <li>الصفّ <dfn>ثابت لا يقبل التغيير</dfn> (<span class="terme-en" lang="fr">immuable</span>): لا يمكن تعديل أي عنصر من عناصره. وهذه حماية مفيدة لبطاقة بيبليوغرافية. ولتصحيح تاريخ ما، نستبدل الصفّ كاملًا: <code>oeuvres[0] = ("Kateb Yacine", "Nedjma", 1957)</code>.</li>
+          </ul>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="td-ch2-ex3">
+      <p class="exercice-num">التمرين 3 · قاموس التكرارات</p>
+      <div class="exercice-enonce">
+        <p>إليكم المقطع الأول من قصيدة فيرلين «Il pleure dans mon cœur» (<em>Romances sans paroles</em>، 1874):</p>
+        <blockquote class="citation"><p>Il pleure dans mon cœur<br>Comme il pleut sur la ville ;<br>Quelle est cette langueur<br>Qui pénètre mon cœur ?</p><footer><cite>بول فيرلين، <em>Romances sans paroles</em>، 1874</cite></footer></blockquote>
+        <p>1. احسبوا عدد الكلمات وعدد الكلمات المختلفة. 2. أنشئوا «يدويًا» <dfn>قاموسًا</dfn> (<span class="terme-en" lang="fr">dictionnaire</span>) للتكرارات يربط كل كلمة بعدد مرات ورودها. 3. اعرضوا الكلمات المكرَّرة، من الأكثر تكرارًا إلى الأقل تكرارًا. 4. استخرجوا النتيجة نفسها باستعمال <code>collections.Counter</code>.</p>
+      </div>
+      <details class="corrige"><summary>عرض الحل</summary>
+        <div class="corrige-corps">
+          <figure class="code">
+            <figcaption class="code-legende">frequences_verlaine.py</figcaption>
+            <pre><code class="language-python">import re
+from collections import Counter
+
+texte = """Il pleure dans mon cœur
+Comme il pleut sur la ville ;
+Quelle est cette langueur
+Qui pénètre mon cœur ?"""
+
+# 1. Découper en mots : minuscules, sans ponctuation
+mots = re.findall(r"\w+", texte.lower())
+print(len(mots), "mots,", len(set(mots)), "mots différents")
+
+# 2. Dictionnaire de fréquences construit « à la main »
+frequences = {}
+for mot in mots:
+    frequences[mot] = frequences.get(mot, 0) + 1
+
+# 3. Mots répétés, du plus fréquent au moins fréquent
+repetes = {m: n for m, n in frequences.items() if n &gt; 1}
+for mot, n in sorted(repetes.items(), key=lambda paire: paire[1], reverse=True):
+    print(mot, n)
+
+# 4. Même résultat avec Counter
+print(Counter(mots).most_common(3))</code></pre>
+            <pre class="sortie"><samp>19 mots, 16 mots différents
+il 2
+mon 2
+cœur 2
+[('il', 2), ('mon', 2), ('cœur', 2)]</samp></pre>
+          </figure>
+          <ul>
+            <li>تستخرج <code>re.findall(r"\w+", …)</code> متتاليات الحروف: فتختفي علامات الترقيم («;» و«?»)، ويُتعرَّف جيدًا على الحروف المنبورة مثل «é» أو «œ».</li>
+            <li>تُرجع <code>frequences.get(mot, 0)</code> التكرار المسجَّل سابقًا، أو 0 إذا لم تكن الكلمة في القاموس بعد.</li>
+            <li>تحذف <code>set(mots)</code> العناصر المكرَّرة: ويعطي طولها عدد الكلمات المختلفة.</li>
+          </ul>
+          <p>ملاحظة قارئ: يعدّ البرنامج «pleure» و«pleut» كلمتين لا علاقة بينهما، وأداة ردّ الكلمات إلى مداخلها المعجمية (<span class="terme-en" lang="fr">lemmatiseur</span>) ستردّهما إلى فعلين متمايزين، <em>pleurer</em> (بكى) و<em>pleuvoir</em> (أمطر). أما التقارب الصوتي الذي تقوم عليه القصيدة فيفلت من العدّ: وعليكم أنتم تأويله.</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="td-ch2-ex4">
+      <p class="exercice-num">التمرين 4 · pandas: التصفية والتجميع والترتيب</p>
+      <div class="exercice-enonce">
+        <p>تدرس حلقةٌ دراسية ثمانيةَ نصوص (بيانات افتراضية) موصوفة بلغتها وجنسها الأدبي وعدد كلماتها. باستعمال pandas: 1. اعرضوا الروايات التي يزيد عدد كلماتها على 70&nbsp;000 كلمة؛ 2. احسبوا، لكل لغة، عدد النصوص ومتوسط طولها؛ 3. اعرضوا أقصر ثلاثة نصوص.</p>
+      </div>
+      <details class="corrige"><summary>عرض الحل</summary>
+        <div class="corrige-corps">
+          <figure class="code">
+            <figcaption class="code-legende">corpus_pandas.py</figcaption>
+            <pre><code class="language-python">import pandas as pd
+
+# Corpus fictif de textes étudiés en séminaire
+corpus = pd.DataFrame({
+    "texte":  ["T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8"],
+    "langue": ["arabe", "français", "anglais", "arabe", "français", "arabe", "anglais", "français"],
+    "genre":  ["poésie", "roman", "roman", "roman", "poésie", "nouvelle", "poésie", "roman"],
+    "mots":   [1200, 85000, 92000, 64000, 900, 7000, 1500, 71000],
+})
+
+# 1. Filtrer : les romans de plus de 70 000 mots
+print(corpus[(corpus["genre"] == "roman") &amp; (corpus["mots"] &gt; 70000)])
+
+# 2. Regrouper : nombre de textes et longueur moyenne par langue
+resume = corpus.groupby("langue")["mots"].agg(["count", "mean"]).round(0)
+print(resume)
+
+# 3. Trier : les trois textes les plus courts
+print(corpus.sort_values("mots").head(3)[["texte", "genre", "mots"]])</code></pre>
+            <pre class="sortie"><samp>  texte    langue  genre   mots
+1    T2  français  roman  85000
+2    T3   anglais  roman  92000
+7    T8  français  roman  71000
+          count     mean
+langue
+anglais       2  46750.0
+arabe         3  24067.0
+français      3  52300.0
+  texte   genre  mots
+4    T5  poésie   900
+0    T1  poésie  1200
+6    T7  poésie  1500</samp></pre>
+          </figure>
+          <ul>
+            <li>يجمع المرشِّح بين الشروط بواسطة <code>&amp;</code> (و) أو <code>|</code> (أو)؛ ويجب وضع كل شرط بين قوسين.</li>
+            <li>تقسِّم <code>groupby("langue")</code> الجدول حسب اللغة؛ وتحسب <code>agg(["count", "mean"])</code> عدة إحصاءات دفعة واحدة. ويساوي متوسط العربية بالضبط &#x2066;(1&nbsp;200 + 64&nbsp;000 + 7&nbsp;000) / 3 = 24&nbsp;066,67&#x2069;، وقد قُرِّب هنا إلى 24&nbsp;067.</li>
+            <li>العمود الأيسر في المخرجات هو <dfn>الفهرس</dfn> (<span class="terme-en" lang="fr">index</span>): أي رقم السطر الأصلي، الذي يُحتفَظ به بعد التصفية والترتيب.</li>
+            <li>ولإنتاج تقرير Excel (الفصل 2): <code>resume.to_excel("resume.xlsx")</code>، وهو ما يتطلب مكتبة openpyxl.</li>
+          </ul>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="td-ch2-ex5">
+      <p class="exercice-num">التمرين 5 · القراءة والبحث والترتيب في ملف نصي</p>
+      <div class="exercice-enonce">
+        <p>1. اكتبوا ملفًا <code>corpus.txt</code> يحتوي على عمل واحد في كل سطر، بالصيغة <code>titre;auteur;année</code> (استعملوا الأعمال الخمسة في التمرين 2). 2. أعيدوا قراءته وقسِّموا كل سطر إلى حقول. 3. اعرضوا العناوين التي تبدأ بـ«La». 4. رتِّبوا الأعمال حسب المؤلف واكتبوا النتيجة في <code>corpus_trie.txt</code>، بالصيغة <code>auteur - titre (année)</code>. 5. اعرضوا محتوى هذا الملف الجديد.</p>
+      </div>
+      <details class="corrige"><summary>عرض الحل</summary>
+        <div class="corrige-corps">
+          <figure class="code">
+            <figcaption class="code-legende">fichier_corpus.py</figcaption>
+            <pre><code class="language-python"># 1. Écrire un petit fichier texte : une œuvre par ligne, champs séparés par ;
+lignes = [
+    "Nedjma;Kateb Yacine;1956",
+    "La Grande Maison;Mohammed Dib;1952",
+    "Le Fils du pauvre;Mouloud Feraoun;1950",
+    "L'Amour, la fantasia;Assia Djebar;1985",
+    "La Colline oubliée;Mouloud Mammeri;1952",
+]
+with open("corpus.txt", "w", encoding="utf-8") as f:
+    f.write("\n".join(lignes))
+
+# 2. Relire le fichier et découper chaque ligne en champs
+with open("corpus.txt", encoding="utf-8") as f:
+    oeuvres = [ligne.strip().split(";") for ligne in f if ligne.strip()]
+
+# 3. Rechercher : les titres qui commencent par "La "
+print([titre for titre, auteur, annee in oeuvres if titre.startswith("La ")])
+
+# 4. Trier par auteur et écrire le résultat dans un nouveau fichier
+oeuvres.sort(key=lambda o: o[1])
+with open("corpus_trie.txt", "w", encoding="utf-8") as f:
+    for titre, auteur, annee in oeuvres:
+        f.write(f"{auteur} - {titre} ({annee})\n")
+
+# 5. Afficher le fichier produit
+with open("corpus_trie.txt", encoding="utf-8") as f:
+    print(f.read(), end="")</code></pre>
+            <pre class="sortie"><samp>['La Grande Maison', 'La Colline oubliée']
+Assia Djebar - L'Amour, la fantasia (1985)
+Kateb Yacine - Nedjma (1956)
+Mohammed Dib - La Grande Maison (1952)
+Mouloud Feraoun - Le Fils du pauvre (1950)
+Mouloud Mammeri - La Colline oubliée (1952)</samp></pre>
+          </figure>
+          <ul>
+            <li>تُغلق <code>with open(…)</code> الملف تلقائيًا في نهاية الكتلة. حدِّدوا دائمًا <code>encoding="utf-8"</code>: فهذا ضروري للحروف المنبورة وللنصوص العربية.</li>
+            <li>تحذف <code>strip()</code> رمز الانتقال إلى السطر في النهاية؛ وتقسِّم <code>split(";")</code> السطر عند الفواصل المنقوطة.</li>
+            <li>يستبعد الاختبار <code>startswith("La ")</code>، بفضل المسافة، العنوانين «L'Amour, la fantasia» و«Le Fils du pauvre».</li>
+            <li>يتبع الترتيب السلسلة النصية كما كُتبت، أي هنا في الغالب الاسم الشخصي (Assia، Mohammed، Mouloud)؛ ووحده Kateb Yacine كُتب اسمه العائلي أولًا. ولإعداد فهرس حقيقي للمؤلفين، خصِّصوا عمودًا «لاسم الترتيب» (Djebar، Dib، Feraoun، Kateb، Mammeri).</li>
+          </ul>
+        </div></details>
+    </div>
+  </article>
+
+  <!-- ============================ TD CHAPITRE 3 ============================ -->
+  <article class="lecon" id="td-ch3">
+    <h3>الأعمال الموجَّهة للفصل 3</h3>
+    <p>نظام خبير يُنفَّذ يدويًا خطوة بخطوة، ثم حسابات صغيرة لفهم خوارزميات التعلم الآلي والتعلم العميق والتعلم المعزَّز من الداخل. وتكفي آلة حاسبة.</p>
+
+    <div class="exercice" id="td-ch3-ex1">
+      <p class="exercice-num">التمرين 1 · نظام خبير بالتسلسل الأمامي</p>
+      <div class="exercice-enonce">
+        <p>لتكن القواعد الآتية في <dfn>التسلسل الأمامي</dfn> (<span class="terme-en" lang="fr">chaînage avant</span>)، وهو نمط من الاستدلال ينطلق من الوقائع المعروفة ويطبِّق القواعد لاستنتاج وقائع جديدة، إلى أن يبلغ الهدف:</p>
+        <ul>
+          <li>R1: A → E</li>
+          <li>R2: B → D</li>
+          <li>R3: H → A ∧ F</li>
+          <li>R4: E ∧ G → C</li>
+          <li>R5: E ∧ K → B</li>
+          <li>R6: D ∧ E ∧ K → C</li>
+          <li>R7: G ∧ K ∧ F → A</li>
+        </ul>
+        <dl class="definitions">
+          <div><dt>ترتيب القواعد</dt><dd>R3 R7 R1 R4 R5 R2 R6</dd></div>
+          <div><dt>وقائع غير قابلة للاستنتاج</dt><dd>H، G، K</dd></div>
+          <div><dt>قاعدة الوقائع الأولية</dt><dd>H، K</dd></div>
+          <div><dt>الهدف</dt><dd>C</dd></div>
+        </dl>
+        <p>في نص البرنامج الرسمي، يُرمز إلى الوصل المنطقي بـ∩: ويعني هذا الرمز هنا «و» (ET)، ونكتبه ∧. وهكذا تُقرأ «E ∧ G → C» كما يلي: إذا ثبتت E وG، فإن C تثبت.</p>
+        <p>الأسئلة: أ) ارسموا المخطط الموافق للقواعد. ب) نفِّذوا النظام خطوة بخطوة بالتسلسل الأمامي.</p>
+      </div>
+      <details class="corrige"><summary>عرض الحل</summary>
+        <div class="corrige-corps">
+          <p><strong>أ) مخطط القواعد.</strong> تُمثَّل كل واقعة بمستطيل وكل قاعدة بدائرة. ينطلق سهم من كل شرط نحو القاعدة، ثم من القاعدة نحو كل واحدة من نتائجها. والأسهم التي تدخل القاعدة نفسها مرتبطة بـ«و»: فلا تُفعَّل القاعدة إلا إذا ثبتت جميع شروطها. وحين تؤدي قاعدتان إلى الواقعة نفسها (R3 وR7 إلى A، وR4 وR6 إلى C)، يكفي أن تُفعَّل إحداهما: فهذه المسارات مرتبطة بـ«أو». ولذلك نتحدث عن <dfn>مخطط «و/أو»</dfn> (<span class="terme-en" lang="fr">graphe ET/OU</span>).</p>
+          <figure class="schema">
+            <svg viewBox="0 0 900 460" role="img" aria-labelledby="td-graphe-regles-t td-graphe-regles-d">
+              <title id="td-graphe-regles-t">مخطط «و/أو» للقواعد من R1 إلى R7 في النظام الخبير</title>
+              <desc id="td-graphe-regles-d">الوقائع مستطيلات، والقواعد دوائر. السلسلة المتَّبعة في التسلسل الأمامي: من H إلى R3؛ من R3 إلى A وF؛ من A إلى R1؛ من R1 إلى E؛ من E وK إلى R5؛ من R5 إلى B؛ من B إلى R2؛ من R2 إلى D؛ من D وE وK إلى R6؛ من R6 إلى C. الفروع المتوقفة على G، وهي واقعة غائبة: من G وK وF إلى R7، ثم من R7 إلى A؛ من E وG إلى R4، ثم من R4 إلى C.</desc>
+              <defs><marker id="td-fleche" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path class="svg-pointe" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+              <!-- chaîne principale -->
+              <line class="svg-trait" x1="168" y1="200" x2="239" y2="200" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait-accent" x1="280" y1="200" x2="307" y2="200" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait-accent" x1="344" y1="200" x2="381" y2="200" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait-accent" x1="422" y1="200" x2="459" y2="200" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait-accent" x1="496" y1="200" x2="533" y2="200" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait-accent" x1="574" y1="200" x2="611" y2="200" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait-accent" x1="648" y1="200" x2="685" y2="200" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait-accent" x1="726" y1="200" x2="763" y2="200" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait-accent" x1="800" y1="200" x2="837" y2="200" marker-end="url(#td-fleche)"/>
+              <!-- R3 : H → A ∧ F -->
+              <line class="svg-trait-accent" x1="260" y1="393" x2="260" y2="339" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait-accent" x1="260" y1="302" x2="260" y2="218" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait-accent" x1="241" y1="320" x2="211" y2="320" marker-end="url(#td-fleche)"/>
+              <!-- R7 : G ∧ K ∧ F → A -->
+              <line class="svg-trait" x1="64.8" y1="273" x2="135.6" y2="212.4" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait" x1="64.8" y1="127" x2="135.6" y2="187.6" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait" x1="184.3" y1="303" x2="156" y2="218" marker-end="url(#td-fleche)"/>
+              <!-- R4 : E ∧ G → C -->
+              <line class="svg-trait" x1="394" y1="217" x2="394" y2="301" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait" x1="45" y1="307" x2="45" y2="446"/>
+              <line class="svg-trait" x1="44" y1="445" x2="395" y2="445"/>
+              <line class="svg-trait" x1="394" y1="446" x2="394" y2="339" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait" x1="412" y1="320" x2="859" y2="320"/>
+              <line class="svg-trait" x1="858" y1="321" x2="858" y2="218" marker-end="url(#td-fleche)"/>
+              <!-- K vers R5 et R6 -->
+              <line class="svg-trait-accent" x1="45" y1="93" x2="45" y2="39"/>
+              <line class="svg-trait-accent" x1="44" y1="40" x2="783" y2="40"/>
+              <line class="svg-trait-accent" x1="478" y1="40" x2="478" y2="181" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait-accent" x1="782" y1="40" x2="782" y2="181" marker-end="url(#td-fleche)"/>
+              <!-- E vers R6 -->
+              <line class="svg-trait-accent" x1="412" y1="217" x2="412" y2="263"/>
+              <line class="svg-trait-accent" x1="411" y1="262" x2="783" y2="262"/>
+              <line class="svg-trait-accent" x1="782" y1="262" x2="782" y2="219" marker-end="url(#td-fleche)"/>
+              <!-- faits -->
+              <rect class="svg-noeud" x="25" y="93" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="45" y="115" text-anchor="middle">K</text>
+              <rect class="svg-noeud" x="25" y="273" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="45" y="295" text-anchor="middle">G</text>
+              <rect class="svg-noeud" x="240" y="183" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="260" y="205" text-anchor="middle">A</text>
+              <rect class="svg-noeud" x="170" y="303" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="190" y="325" text-anchor="middle">F</text>
+              <rect class="svg-noeud" x="240" y="393" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="260" y="415" text-anchor="middle">H</text>
+              <rect class="svg-noeud" x="382" y="183" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="402" y="205" text-anchor="middle">E</text>
+              <rect class="svg-noeud" x="534" y="183" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="554" y="205" text-anchor="middle">B</text>
+              <rect class="svg-noeud" x="686" y="183" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="706" y="205" text-anchor="middle">D</text>
+              <rect class="svg-noeud" x="838" y="183" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="858" y="205" text-anchor="middle">C</text>
+              <!-- règles -->
+              <circle class="svg-noeud-accent" cx="150" cy="200" r="18"/>
+              <text class="svg-texte" x="150" y="205" text-anchor="middle">R7</text>
+              <circle class="svg-noeud-accent" cx="260" cy="320" r="18"/>
+              <text class="svg-texte" x="260" y="325" text-anchor="middle">R3</text>
+              <circle class="svg-noeud-accent" cx="326" cy="200" r="18"/>
+              <text class="svg-texte" x="326" y="205" text-anchor="middle">R1</text>
+              <circle class="svg-noeud-accent" cx="478" cy="200" r="18"/>
+              <text class="svg-texte" x="478" y="205" text-anchor="middle">R5</text>
+              <circle class="svg-noeud-accent" cx="630" cy="200" r="18"/>
+              <text class="svg-texte" x="630" y="205" text-anchor="middle">R2</text>
+              <circle class="svg-noeud-accent" cx="782" cy="200" r="18"/>
+              <text class="svg-texte" x="782" y="205" text-anchor="middle">R6</text>
+              <circle class="svg-noeud-accent" cx="394" cy="320" r="18"/>
+              <text class="svg-texte" x="394" y="325" text-anchor="middle">R4</text>
+              <!-- annotations -->
+              <text class="svg-texte-doux" x="72" y="80">واقعة أولية</text>
+              <text class="svg-texte-doux" x="290" y="415">واقعة أولية</text>
+              <text class="svg-texte-doux" x="72" y="295">غائبة</text>
+              <text class="svg-texte-doux" x="858" y="170" text-anchor="middle">الهدف</text>
+              <text class="svg-texte-doux" x="470" y="394">مستطيل: واقعة · دائرة: قاعدة</text>
+              <text class="svg-texte-doux" x="470" y="416">الأسهم الداخلة إلى قاعدة: شروط يربطها «و» المنطقي</text>
+              <text class="svg-texte-doux" x="470" y="438">الخط البارز: المسار المتَّبع في التسلسل الأمامي</text>
+            </svg>
+            <figcaption>مخطط «و/أو» للقواعد من R1 إلى R7. تُظهر الخطوط البارزة المسار المتَّبع فعلًا انطلاقًا من H وK (السؤال ب)؛ أما الخطوط العادية فتتوقف على G، التي ليست في قاعدة الوقائع الأولية ولا يمكن استنتاجها. ووُضعت H تحت R3 حتى لا يتقاطع أي سهم مع سهم آخر.</figcaption>
+          </figure>
+          <p>يسمح المخطط بتشخيص أولي: لا يصل أي سهم إلى G أو H أو K، وهي الوقائع غير القابلة للاستنتاج. وبما أن G ليست كذلك في قاعدة الوقائع الأولية، فإن القاعدتين R7 وR4، اللتين تحتاجان إليها، لن تُفعَّلا أبدًا. فالمسار الوحيد الممكن نحو C يمر إذن عبر R6.</p>
+
+          <p><strong>ب) التنفيذ بالتسلسل الأمامي.</strong> نفحص القواعد بالترتيب المفروض (R3، R7، R1، R4، R5، R2، R6). تُفعَّل القاعدة إذا كانت جميع شروطها في قاعدة الوقائع؛ وتُضاف نتائجها حينئذ إلى قاعدة الوقائع. ولا تُعاد القاعدة التي سبق تفعيلها. ونتوقف حالما يصبح الهدف في قاعدة الوقائع، أو حين لا يضيف مرورٌ كامل على القواعد أي شيء جديد.</p>
+          <div class="tableau-defilant"><table class="tableau">
+            <caption>التسلسل الأمامي انطلاقًا من قاعدة الوقائع {H، K}، والهدف C</caption>
+            <thead><tr><th scope="col">المرحلة</th><th scope="col">القاعدة المفحوصة</th><th scope="col">الشرط</th><th scope="col">مُفعَّلة؟</th><th scope="col">قاعدة الوقائع بعدها</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>R3</td><td>H</td><td>نعم: H موجودة في قاعدة الوقائع</td><td>H، K، A، F</td></tr>
+              <tr><td>2</td><td>R7</td><td>G ∧ K ∧ F</td><td>لا: G غائبة</td><td>H، K، A، F</td></tr>
+              <tr><td>3</td><td>R1</td><td>A</td><td>نعم</td><td>H، K، A، F، E</td></tr>
+              <tr><td>4</td><td>R4</td><td>E ∧ G</td><td>لا: G غائبة</td><td>H، K، A، F، E</td></tr>
+              <tr><td>5</td><td>R5</td><td>E ∧ K</td><td>نعم</td><td>H، K، A، F، E، B</td></tr>
+              <tr><td>6</td><td>R2</td><td>B</td><td>نعم</td><td>H، K، A، F، E، B، D</td></tr>
+              <tr><td>7</td><td>R6</td><td>D ∧ E ∧ K</td><td>نعم</td><td>H، K، A، F، E، B، D، C: تم بلوغ الهدف</td></tr>
+            </tbody>
+          </table></div>
+          <p><strong>الخلاصة.</strong> يثبت الهدف C منذ المرور الأول على القواعد. وقاعدة الوقائع النهائية هي {H، K، A، F، E، B، D، C}. والقواعد المفعَّلة هي، بالترتيب: R3، R1، R5، R2، R6. أما R4 وR7 فلا تُفعَّلان أبدًا، لأن G ليست في قاعدة الوقائع الأولية ولا يمكن استنتاجها.</p>
+          <p><strong>صيغة بديلة.</strong> تعود بعض محركات الاستدلال (<span class="terme-en" lang="fr">moteur d'inférence</span>) إلى القاعدة الأولى بعد كل تفعيل. وهنا يبقى التسلسل نفسه: بعد R3 ننطلق من جديد من R3 (المفعَّلة سابقًا)، فتفشل R7 (لغياب G)، وتُفعَّل R1؛ ثم نعود إلى البداية، فنجد R3 وR1 منجزتين، وتفشل R7 وR4، وتُفعَّل R5؛ ثم بالطريقة نفسها R2، ثم R6. فنحصل على التفعيلات نفسها (R3، R1، R5، R2، R6) وعلى قاعدة الوقائع النهائية نفسها؛ ولا يزداد إلا عدد القواعد التي يُمرّ عليها.</p>
+          <p>والاستدلال نفسه، مبرمَجًا بلغة Python، يصلح جيدًا لحصة أعمال تطبيقية:</p>
+          <figure class="code">
+            <figcaption class="code-legende">chainage_avant.py</figcaption>
+            <pre><code class="language-python"># Chaînage avant sur les règles du TD, dans l'ordre imposé
+regles = [  # (nom, conditions, conclusions)
+    ("R3", {"H"}, {"A", "F"}),
+    ("R7", {"G", "K", "F"}, {"A"}),
+    ("R1", {"A"}, {"E"}),
+    ("R4", {"E", "G"}, {"C"}),
+    ("R5", {"E", "K"}, {"B"}),
+    ("R2", {"B"}, {"D"}),
+    ("R6", {"D", "E", "K"}, {"C"}),
+]
+faits = {"H", "K"}
+but = "C"
+declenchees = []
+
+nouveau = True
+while nouveau and but not in faits:
+    nouveau = False
+    for nom, conditions, conclusions in regles:
+        if nom not in declenchees and conditions &lt;= faits:   # &lt;= : « est inclus dans »
+            faits |= conclusions                             # ajouter les conclusions
+            declenchees.append(nom)
+            nouveau = True
+            print(nom, "déclenchée -&gt;", sorted(faits))
+            if but in faits:
+                break
+
+print("But atteint :", but in faits, "| règles déclenchées :", declenchees)</code></pre>
+            <pre class="sortie"><samp>R3 déclenchée -&gt; ['A', 'F', 'H', 'K']
+R1 déclenchée -&gt; ['A', 'E', 'F', 'H', 'K']
+R5 déclenchée -&gt; ['A', 'B', 'E', 'F', 'H', 'K']
+R2 déclenchée -&gt; ['A', 'B', 'D', 'E', 'F', 'H', 'K']
+R6 déclenchée -&gt; ['A', 'B', 'C', 'D', 'E', 'F', 'H', 'K']
+But atteint : True | règles déclenchées : ['R3', 'R1', 'R5', 'R2', 'R6']</samp></pre>
+          </figure>
+          <p>أضيفوا G إلى قاعدة الوقائع الأولية وأعيدوا التشغيل: عندها يمكن أن تُفعَّل R7 وR4، ويُبلَغ الهدف في وقت أبكر، عبر R4. ويعيد <a href="#chapitre-3">العرض التفاعلي</a> في الفصل 3 هذا التنفيذ خطوة بخطوة.</p>
+        </div></details>
+    </div>
+
+    <h4>التمرين 2 · بعض خوارزميات التعلم الآلي</h4>
+    <p>أربع عمليات حسابية صغيرة، واحدة لكل خوارزمية: الانحدار الخطي، والانحدار التدرّجي، والتصنيف حسب السمات، والتجميع في عناقيد.</p>
+
+    <div class="exercice" id="td-ch3-ex2a">
+      <p class="exercice-num">التمرين 2 أ · الانحدار الخطي</p>
+      <div class="exercice-enonce">
+        <p>يبحث <dfn>الانحدار الخطي</dfn> (<span class="terme-en" lang="fr">régression linéaire</span>) عن المستقيم ŷ = a·x + b الذي يمرّ بأقرب ما يمكن من سحابة من النقاط. وتختار طريقة <dfn>المربعات الصغرى</dfn> (<span class="terme-en" lang="fr">moindres carrés</span>) قيمتَي a وb بحيث يكون مجموع مربعات الفروق بين القيم الملاحَظة y والقيم المتنبَّأ بها ŷ أصغرَ ما يمكن. وتعطي:</p>
+        <p class="formule">a = Σ(xᵢ − x̄)(yᵢ − ȳ) / Σ(xᵢ − x̄)²      b = ȳ − a·x̄</p>
+        <p>سُجِّل لخمسة طلبة (بيانات افتراضية) عدد الساعات x المخصصة أسبوعيًا للقراءة وعدد الكتب y المقروءة خلال السداسي: &#x2066;(1 ; 2), (2 ; 3), (3 ; 5), (4 ; 4), (5 ; 6)&#x2069;. احسبوا a وb، ثم تنبَّؤوا بقيمة y من أجل x = 6.</p>
+      </div>
+      <details class="corrige"><summary>عرض الحل</summary>
+        <div class="corrige-corps">
+          <p>المتوسطان: x̄ = (1 + 2 + 3 + 4 + 5) / 5 = 15 / 5 = 3 وȳ = (2 + 3 + 5 + 4 + 6) / 5 = 20 / 5 = 4.</p>
+          <div class="tableau-defilant"><table class="tableau">
+            <caption>حساب الفروق عن المتوسط</caption>
+            <thead><tr><th scope="col">x</th><th scope="col">y</th><th scope="col">x − x̄</th><th scope="col">y − ȳ</th><th scope="col">&#x2066;(x − x̄)(y − ȳ)&#x2069;</th><th scope="col">&#x2066;(x − x̄)²&#x2069;</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>2</td><td>&#x2066;−2&#x2069;</td><td>&#x2066;−2&#x2069;</td><td>4</td><td>4</td></tr>
+              <tr><td>2</td><td>3</td><td>&#x2066;−1&#x2069;</td><td>&#x2066;−1&#x2069;</td><td>1</td><td>1</td></tr>
+              <tr><td>3</td><td>5</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+              <tr><td>4</td><td>4</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+              <tr><td>5</td><td>6</td><td>2</td><td>2</td><td>4</td><td>4</td></tr>
+              <tr><th scope="row">المجموع</th><td>20</td><td>0</td><td>0</td><td>9</td><td>10</td></tr>
+            </tbody>
+          </table></div>
+          <p class="formule">a = 9 / 10 = 0,9      b = 4 − 0,9 × 3 = 4 − 2,7 = 1,3</p>
+          <p class="formule">ŷ = 0,9 x + 1,3      pour x = 6 : ŷ = 0,9 × 6 + 1,3 = 5,4 + 1,3 = 6,7</p>
+          <p>التحقق: القيم المتنبَّأ بها من أجل x = 1 إلى 5 هي &#x2066;2,2 ; 3,1 ; 4,0 ; 4,9 ; 5,8&#x2069;. والفروق y − ŷ تساوي &#x2066;−0,2 ; −0,1 ; 1,0 ; −0,9 ; 0,2&#x2069;: مجموعها منعدم، كما هو الحال دائمًا مع المربعات الصغرى، ومجموع مربعاتها يساوي 1,9.</p>
+          <p>التأويل: في هذه البيانات الافتراضية، ترتبط كل ساعة قراءة أسبوعية إضافية بزيادة قدرها 0,9 كتاب على مدى السداسي. والتنبؤ من أجل x = 6 يخرج عن المجال الملاحَظ (من 1 إلى 5): إنه <dfn>استقراء خارجي</dfn> (<span class="terme-en" lang="fr">extrapolation</span>)، ينبغي التعامل معه بحذر. وفي Python، تُرجع <code>numpy.polyfit([1, 2, 3, 4, 5], [2, 3, 5, 4, 6], 1)</code> المعاملين نفسيهما، 0,9 و1,3.</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="td-ch3-ex2b">
+      <p class="exercice-num">التمرين 2 ب · الانحدار التدرّجي</p>
+      <div class="exercice-enonce">
+        <p>يبحث <dfn>الانحدار التدرّجي</dfn> (<span class="terme-en" lang="fr">descente de gradient</span>) عن القيمة الدنيا لدالة خطأ J بالتقدم خطوة خطوة في الاتجاه الذي تتناقص فيه J. وفي كل مرحلة:</p>
+        <p class="formule">wₖ₊₁ = wₖ − η · J′(wₖ)</p>
+        <p>حيث J′ هي مشتقة J، وη (إيتا) هو <dfn>معدل التعلم</dfn> (<span class="terme-en" lang="fr">taux d'apprentissage</span>)، الذي يضبط طول الخطوة. لتكن J(w) = (w − 3)²، وw₀ = 0، وη = 0,1. احسبوا w₁ وw₂، وكذلك J(w₀) وJ(w₁) وJ(w₂). نحو أي قيمة تتجه المتتالية؟</p>
+      </div>
+      <details class="corrige"><summary>عرض الحل</summary>
+        <div class="corrige-corps">
+          <p>المشتقة هي J′(w) = 2(w − 3).</p>
+          <p class="formule">Étape 1 : J′(0) = 2 × (0 − 3) = −6      w₁ = 0 − 0,1 × (−6) = 0,6</p>
+          <p class="formule">Étape 2 : J′(0,6) = 2 × (0,6 − 3) = −4,8      w₂ = 0,6 − 0,1 × (−4,8) = 0,6 + 0,48 = 1,08</p>
+          <p>قيم الخطأ: J(w₀) = (0 − 3)² = 9 ؛ J(w₁) = (−2,4)² = 5,76 ؛ J(w₂) = (−1,92)² = 3,6864. ويتناقص الخطأ مع كل خطوة.</p>
+          <p>تتجه المتتالية نحو w = 3، حيث تبلغ J قيمتها الدنيا (J(3) = 0). ويتضح ذلك بإعادة كتابة القاعدة: wₖ₊₁ − 3 = (1 − 2η)(wₖ − 3) = 0,8 (wₖ − 3). ففي كل مرحلة، تُضرب المسافة إلى القيمة الدنيا في 0,8: 3 ؛ 2,4 ؛ 1,92 ؛ ثم 1,536، أي w₃ = 1,464، وهكذا دواليك.</p>
+          <p>دور معدل التعلم: مع η = 1، يصبح المعامل &#x2066;1 − 2 = −1&#x2069; وتتذبذب w بلا نهاية بين 0 و6؛ ومع η &gt; 1، تتسع التذبذبات وتتباعد الطريقة. وفي المقابل، تجعل الخطوةُ الصغيرة جدًّا التعلمَ بطيئًا للغاية.</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="td-ch3-ex2c">
+      <p class="exercice-num">التمرين 2 ج · التصنيف حسب السمات (k أقرب الجيران)</p>
+      <div class="exercice-enonce">
+        <p>تصنِّف طريقة <dfn>k أقرب الجيران</dfn> (<span class="terme-en" lang="fr">k plus proches voisins</span>، k-NN) حالةً جديدة بالنظر إلى فئة الأمثلة المعروفة الأقرب إليها، وعددها k. نصف ستة نصوص بسمتين تُقدَّر كل منهما من 0 إلى 10: x₁، متوسط طول الأسطر، وx₂، كثافة القوافي (قيم افتراضية).</p>
+        <div class="tableau-defilant"><table class="tableau">
+          <caption>أمثلة موسومة</caption>
+          <thead><tr><th scope="col">النص</th><th scope="col">x₁</th><th scope="col">x₂</th><th scope="col">الفئة</th></tr></thead>
+          <tbody>
+            <tr><td>T1</td><td>2</td><td>8</td><td>قصيدة</td></tr>
+            <tr><td>T2</td><td>3</td><td>10</td><td>قصيدة</td></tr>
+            <tr><td>T3</td><td>4</td><td>7</td><td>قصيدة</td></tr>
+            <tr><td>T4</td><td>9</td><td>2</td><td>نثر</td></tr>
+            <tr><td>T5</td><td>6</td><td>6</td><td>نثر</td></tr>
+            <tr><td>T6</td><td>10</td><td>1</td><td>نثر</td></tr>
+          </tbody>
+        </table></div>
+        <p>لنص جديد N السمتان &#x2066;(5 ; 6)&#x2069;. احسبوا مسافته الإقليدية عن كل مثال، &#x2066;d = √((x₁ − 5)² + (x₂ − 6)²)&#x2069;، ثم صنِّفوا N مع k = 1 ومع k = 3.</p>
+      </div>
+      <details class="corrige"><summary>عرض الحل</summary>
+        <div class="corrige-corps">
+          <div class="tableau-defilant"><table class="tableau">
+            <caption>مسافات N &#x2066;(5 ; 6)&#x2069; عن الأمثلة، مرتَّبة من الأصغر إلى الأكبر</caption>
+            <thead><tr><th scope="col">النص</th><th scope="col">الحساب</th><th scope="col">المسافة</th><th scope="col">الفئة</th></tr></thead>
+            <tbody>
+              <tr><td>T5</td><td>&#x2066;√(1² + 0²) = √1&#x2069;</td><td>1</td><td>نثر</td></tr>
+              <tr><td>T3</td><td>&#x2066;√((−1)² + 1²) = √2&#x2069;</td><td>&#x2066;≈ 1,41&#x2069;</td><td>قصيدة</td></tr>
+              <tr><td>T1</td><td>&#x2066;√((−3)² + 2²) = √13&#x2069;</td><td>&#x2066;≈ 3,61&#x2069;</td><td>قصيدة</td></tr>
+              <tr><td>T2</td><td>&#x2066;√((−2)² + 4²) = √20&#x2069;</td><td>&#x2066;≈ 4,47&#x2069;</td><td>قصيدة</td></tr>
+              <tr><td>T4</td><td>&#x2066;√(4² + (−4)²) = √32&#x2069;</td><td>&#x2066;≈ 5,66&#x2069;</td><td>نثر</td></tr>
+              <tr><td>T6</td><td>&#x2066;√(5² + (−5)²) = √50&#x2069;</td><td>&#x2066;≈ 7,07&#x2069;</td><td>نثر</td></tr>
+            </tbody>
+          </table></div>
+          <ul>
+            <li><strong>k = 1</strong>: أقرب جار هو T5، إذن يُصنَّف N في فئة «نثر».</li>
+            <li><strong>k = 3</strong>: الثلاثة الأقرب هي T5 (نثر) وT3 (قصيدة) وT1 (قصيدة). التصويت: 2 مقابل 1، إذن يُصنَّف N في فئة «قصيدة».</li>
+          </ul>
+          <p>النتيجة تتوقف إذن على k. واختيار قيمة فردية لـk يتجنب التعادل حين تكون هناك فئتان. ويجب أن تكون السمات على سلالم متقاربة، وإلا انفردت بالقرار السمةُ ذات القيم الأكبر. وأخيرًا، تذكِّرنا حالةٌ واقعة بين مجموعتين، مثل N، بأن حدود الفئات نفّاذة: فكِّروا في <em>Petits poèmes en prose</em> (قصائد صغيرة نثرية) لبودلير.</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="td-ch3-ex2d">
+      <p class="exercice-num">التمرين 2 د · التجميع في عناقيد (k-المتوسطات)</p>
+      <div class="exercice-enonce">
+        <p>تتناوب <dfn>خوارزمية k-المتوسطات</dfn> (<span class="terme-en" lang="fr">k-moyennes</span>) بين عمليتين: إسناد كل نقطة إلى أقرب مركز، ثم تعويض كل مركز بمتوسط نقاط مجموعته. لستِّ شخصيات في مسرحية عددٌ من الردود الحوارية هو على التوالي 1 و3 و4 و9 و10 و14 (بيانات افتراضية). نبحث عن مجموعتين (k = 2) انطلاقًا من المركزين μ₁ = 1 وμ₂ = 4. أنجزوا تكرارًا كاملًا واحدًا. سؤال إضافي: واصلوا إلى أن تتوقف المجموعات عن التغيُّر.</p>
+      </div>
+      <details class="corrige"><summary>عرض الحل</summary>
+        <div class="corrige-corps">
+          <p><strong>التكرار 1، الإسناد</strong> مع μ₁ = 1 وμ₂ = 4:</p>
+          <div class="tableau-defilant"><table class="tableau">
+            <caption>إسناد كل نقطة إلى أقرب مركز (التكرار 1)</caption>
+            <thead><tr><th scope="col">النقطة</th><th scope="col">المسافة إلى μ₁ = 1</th><th scope="col">المسافة إلى μ₂ = 4</th><th scope="col">المجموعة</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>0</td><td>3</td><td>1</td></tr>
+              <tr><td>3</td><td>2</td><td>1</td><td>2</td></tr>
+              <tr><td>4</td><td>3</td><td>0</td><td>2</td></tr>
+              <tr><td>9</td><td>8</td><td>5</td><td>2</td></tr>
+              <tr><td>10</td><td>9</td><td>6</td><td>2</td></tr>
+              <tr><td>14</td><td>13</td><td>10</td><td>2</td></tr>
+            </tbody>
+          </table></div>
+          <p><strong>التكرار 1، التحديث:</strong> المجموعة 1 = {1}، إذن μ₁ = 1؛ المجموعة 2 = &#x2066;{3, 4, 9, 10, 14}&#x2069;، إذن μ₂ = (3 + 4 + 9 + 10 + 14) / 5 = 40 / 5 = 8.</p>
+          <p><strong>التكرار 2 (إضافي)</strong> مع μ₁ = 1 وμ₂ = 8: تنتقل النقطة 3 إلى المجموعة 1 (المسافتان 2 و5)، وكذلك النقطة 4 (المسافتان 3 و4)؛ وتبقى النقاط 9 و10 و14 في المجموعة 2 (مسافاتها إلى 8: 1 و2 و6). المركزان الجديدان: μ₁ = (1 + 3 + 4) / 3 = 8/3 ≈ 2,67 وμ₂ = (9 + 10 + 14) / 3 = 33 / 3 = 11.</p>
+          <p><strong>التكرار 3</strong> مع μ₁ = 8/3 وμ₂ = 11: النقاط 1 و3 و4 أقرب إلى 8/3 (المسافات ≈ 1,67 ؛ 0,33 ؛ 1,33)؛ والنقاط 9 و10 و14 أقرب إلى 11 (المسافات 2 و1 و3). لم تعد المجموعات تتغير: فتتوقف الخوارزمية.</p>
+          <p>النتيجة: &#x2066;{1, 3, 4}&#x2069;، أي الأدوار الثانوية، و&#x2066;{9, 10, 14}&#x2069;، أي الأدوار الرئيسية. لم يكن تكرار واحد كافيًا: فبعد التكرار الأول، كانت المجموعة 2 لا تزال تخلط أدوارًا مختلفة جدًّا. وتؤثر نقطة الانطلاق في النتيجة؛ ولذلك يعيد scikit-learn تشغيل الخوارزمية من عدة نقاط انطلاق (المعامل <code>n_init</code>) ويحتفظ بأفضل حل.</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="td-ch3-ex3">
+      <p class="exercice-num">التمرين 3 · التصنيف، والتوصية، والتعرف على الصور</p>
+      <div class="exercice-enonce">
+        <p>قدِّموا أمثلة على تطبيقات التعلم الآلي في التصنيف، والتوصيات، والتعرف على الصور. واقترحوا لكل منها مثالًا من الحياة اليومية ومثالًا من العلوم الإنسانية أو من الأدب.</p>
+      </div>
+      <details class="corrige"><summary>عرض الحل</summary>
+        <div class="corrige-corps">
+          <div class="tableau-defilant"><table class="tableau">
+            <caption>ثلاث عائلات من التطبيقات</caption>
+            <thead><tr><th scope="col">التطبيق</th><th scope="col">المبدأ</th><th scope="col">الحياة اليومية</th><th scope="col">العلوم الإنسانية والاجتماعية والأدب</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>التصنيف</td>
+                <td>إسناد فئة إلى حالة جديدة انطلاقًا من أمثلة موسومة (تعلم خاضع للإشراف).</td>
+                <td>مرشِّح الرسائل المزعجة؛ الفرز الآلي لآراء الزبائن إلى إيجابية وسلبية؛ كشف لغة رسالة ما.</td>
+                <td>نسبة النصوص إلى مؤلفيها (القياس الأسلوبي)؛ تصنيف المقالات الصحفية حسب الموضوع؛ تحديد الجنس الأدبي لنص (شعر، مسرح، رواية)؛ كشف خطاب الكراهية في التعليقات.</td>
+              </tr>
+              <tr>
+                <td>التوصية</td>
+                <td>اقتراح محتويات انطلاقًا من أذواق مستخدمين متشابهين (<dfn>الترشيح التعاوني</dfn>) أو من أوجه التشابه بين المحتويات (التوصية القائمة على المحتوى).</td>
+                <td>اقتراح مقاطع فيديو أو موسيقى أو منتجات؛ «قرّاء هذا الكتاب أعجبهم أيضًا».</td>
+                <td>اقتراح مؤلَّفات من فهرس مكتبة انطلاقًا من الإعارات؛ اقتراح مقالات علمية قريبة من مقال مقروء. سؤال نقدي: قد تحبس هذه الأنظمة القارئ فيما يعرفه أصلًا («فقاعة التصفية» التي وصفها Eli Pariser سنة 2011).</td>
+              </tr>
+              <tr>
+                <td>التعرف على الصور</td>
+                <td>التعرف على ما تُظهره صورة ما: شيء، أو وجه، أو كتابة (غالبًا بواسطة الشبكات الالتفافية، انظروا التمرين 4 ب).</td>
+                <td>فتح قفل الهاتف بالوجه؛ الترتيب الآلي للصور؛ قراءة لوحات ترقيم السيارات.</td>
+                <td>التعرف على الكتابة اليدوية (<abbr title="التعرف على النص المكتوب بخط اليد (Handwritten Text Recognition)">HTR</abbr>) لنسخ المخطوطات والأرشيف، مثلًا بواسطة منصة Transkribus؛ التصنيف الأيقونوغرافي للوحات أو للمنمنمات؛ تأريخ الصور الفوتوغرافية القديمة.</td>
+              </tr>
+            </tbody>
+          </table></div>
+          <p>مسألة أخلاقية: يمسّ التعرف على الوجوه الحرياتِ مباشرة. وتحظر اللائحة الأوروبية للذكاء الاصطناعي (2024)، من حيث المبدأ، التعرفَ البيومتري عن بُعد وفي الوقت الحقيقي في الفضاءات العامة لأغراض إنفاذ القانون، باستثناء حالات مؤطَّرة بصرامة.</p>
+        </div></details>
+    </div>
+
+    <h4>التمرين 4 · تمرين لكل نوع من أنواع التعلم</h4>
+
+    <div class="exercice" id="td-ch3-ex4a">
+      <p class="exercice-num">التمرين 4 أ · التعلم الآلي: أي نوع من التعلم؟</p>
+      <div class="exercice-enonce">
+        <p>حدِّدوا لكل وضعية نوع التعلم (خاضع للإشراف، غير خاضع للإشراف، معزَّز) والمهمة.</p>
+        <ol>
+          <li>التنبؤ بالعلامة النهائية لطالب انطلاقًا من مواظبته وعلاماته المرحلية، بالاستناد إلى ملفات الدفعات السابقة.</li>
+          <li>تجميع 2&nbsp;000 إجابة عن سؤال مفتوح في استبيان، دون شبكة فئات مسبقة.</li>
+          <li>رصد تعليقات الكراهية، انطلاقًا من 5&nbsp;000 تعليق سبق توسيمها بـ«كراهية» أو «لا كراهية».</li>
+          <li>برنامج يتعلم لعب لعبة فيديو بكسب نقاط حين يتقدم وخسارتها حين يخفق.</li>
+          <li>تلخيص إجابات استبيان من 300 سؤال في محورين لتمثيل المستجوَبين على مستوٍ.</li>
+        </ol>
+      </div>
+      <details class="corrige"><summary>عرض الحل</summary>
+        <div class="corrige-corps">
+          <div class="tableau-defilant"><table class="tableau">
+            <caption>نوع التعلم والمهمة لكل وضعية</caption>
+            <thead><tr><th scope="col">الوضعية</th><th scope="col">النوع</th><th scope="col">المهمة</th><th scope="col">القرينة الحاسمة</th></tr></thead>
+            <tbody>
+              <tr><td>1. العلامة النهائية</td><td>خاضع للإشراف</td><td>الانحدار</td><td>علامات الدفعات السابقة تؤدي دور الوسوم؛ ونتنبأ بقيمة عددية.</td></tr>
+              <tr><td>2. الإجابات المفتوحة</td><td>غير خاضع للإشراف</td><td>العنقدة أو النمذجة الموضوعاتية</td><td>لا توجد فئات مقدَّمة مسبقًا.</td></tr>
+              <tr><td>3. تعليقات الكراهية</td><td>خاضع للإشراف</td><td>التصنيف</td><td>5&nbsp;000 مثال موسوم؛ فئتان.</td></tr>
+              <tr><td>4. لعبة الفيديو</td><td>معزَّز</td><td>تعلم استراتيجية أفعال</td><td>لا أمثلة مصحَّحة، بل مكافآت وعقوبات.</td></tr>
+              <tr><td>5. استبيان من 300 سؤال</td><td>غير خاضع للإشراف</td><td>اختزال الأبعاد (مثلًا ACP)</td><td>نبحث عن بنية، دون متغير نتنبأ به.</td></tr>
+            </tbody>
+          </table></div>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="td-ch3-ex4b">
+      <p class="exercice-num">التمرين 4 ب · التعلم العميق: CNN وRNN</p>
+      <div class="exercice-enonce">
+        <p>تُمرِّر <dfn>الشبكة الالتفافية</dfn> (<abbr title="الشبكة العصبية الالتفافية (Convolutional Neural Network)">CNN</abbr>) مرشِّحات صغيرة على الصورة. و<dfn>الخطوة</dfn> (<span class="terme-en" lang="fr">pas</span>) هي مقدار إزاحة المرشِّح في كل حركة؛ و<dfn>الهامش</dfn> (<span class="terme-en" lang="fr">marge</span>) هو عدد صفوف الأصفار المضافة حول الصورة. أما <dfn>الشبكة المتكررة</dfn> (<abbr title="الشبكة العصبية المتكررة (Recurrent Neural Network)">RNN</abbr>) فتقرأ متتالية، نصًّا مثلًا، عنصرًا عنصرًا، مع الاحتفاظ بذاكرة لما قرأته.</p>
+        <ol>
+          <li>تمرّ صورة بتدرجات الرمادي أبعادها 28 × 28 بكسل عبر طبقة التفاف بمرشِّح 3 × 3، وخطوة 1، ومن دون هامش. ما حجم المخرج؟ السؤال نفسه مع هامش قدره 1. سؤال إضافي: مع خطوة 2 ومن دون هامش.</li>
+          <li>يُطبَّق المرشِّح F = [[1, 0, −1], [1, 0, −1], [1, 0, −1]] على منطقة الصورة P = [[1, 0, 2], [0, 1, 0], [3, 0, 1]]. احسبوا القيمة المتحصَّل عليها (مجموع جداءات الحدود المتناظرة).</li>
+          <li>لماذا تجد شبكة RNN البسيطة صعوبة مع النصوص الطويلة؟ وماذا قدَّمت شبكات LSTM، ثم آلية الانتباه؟</li>
+        </ol>
+      </div>
+      <details class="corrige"><summary>عرض الحل</summary>
+        <div class="corrige-corps">
+          <p><strong>1. حجم المخرج.</strong> من أجل صورة ضلعها n، ومرشِّح ضلعه f، وهامش p، وخطوة s:</p>
+          <p class="formule">côté de la sortie = ⌊(n + 2p − f) / s⌋ + 1</p>
+          <ul>
+            <li>من دون هامش، بخطوة 1: &#x2066;(28 + 0 − 3) / 1 + 1 = 25 + 1 = 26&#x2069;، أي مخرج أبعاده 26 × 26.</li>
+            <li>بهامش 1 وخطوة 1: &#x2066;(28 + 2 − 3) / 1 + 1 = 27 + 1 = 28&#x2069;، أي 28 × 28: تحتفظ الصورة بحجمها.</li>
+            <li>السؤال الإضافي، من دون هامش، بخطوة 2: &#x2066;⌊25 / 2⌋ + 1 = 12 + 1 = 13&#x2069;، أي 13 × 13.</li>
+          </ul>
+          <p>يضم مرشِّح 3 × 3 مطبَّق على صورة بتدرجات الرمادي 9 أوزان وانحيازًا واحدًا، أي 10 معاملات ينبغي تعلُّمها، مهما كان حجم الصورة.</p>
+          <p><strong>2. عملية التفاف.</strong> نضرب الحدود المتناظرة، سطرًا سطرًا، ثم نجمع:</p>
+          <p class="formule">ligne 1 : 1×1 + 0×0 + 2×(−1) = −1      ligne 2 : 0×1 + 1×0 + 0×(−1) = 0      ligne 3 : 3×1 + 0×0 + 1×(−1) = 2</p>
+          <p class="formule">total : −1 + 0 + 2 = 1</p>
+          <p>يطرح هذا المرشِّح العمود الأيمن (&#x2066;2 + 0 + 1 = 3&#x2069;) من العمود الأيسر (&#x2066;1 + 0 + 3 = 4&#x2069;): فهو يستجيب للتباينات العمودية، أي للحواف العمودية في الصورة. وتتعلم شبكة CNN بنفسها قيم مرشِّحاتها.</p>
+          <p><strong>3. شبكات RNN والنصوص الطويلة.</strong> تلخِّص شبكة RNN كل ما قرأته في ذاكرة ثابتة الحجم، تُحدَّث عند كل كلمة. وأثناء التعلم، يسري تصحيح الخطأ عكسيًا عبر المتتالية كلمةً كلمة، ويُضرب في كل خطوة في معاملات كثيرًا ما تكون أصغر من 1: فيصبح ضئيلًا جدًّا بالنسبة إلى الكلمات الأولى. تلك هي مشكلة <dfn>تلاشي التدرّج</dfn> (<span class="terme-en" lang="fr">disparition du gradient</span>). والنتيجة: تجد الشبكة صعوبة في ربط ضمير بالشخصية التي ذُكرت قبل ثلاث فقرات. زيادة على ذلك، تمنع القراءةُ كلمةً كلمة إجراءَ الحسابات بالتوازي.</p>
+          <ul>
+            <li>تضيف شبكات <dfn>LSTM</dfn> (<span class="terme-en" lang="en">Long Short-Term Memory</span>، أي الذاكرة الطويلة قصيرة المدى، Hochreiter وSchmidhuber، 1997) ذاكرةً تحميها «بوابات» تقرِّر ما يُحتفَظ به وما يُنسى وما يُنقَل. فتنتقل المعلومة عبر مسافات أطول بكثير.</li>
+            <li>تسمح <dfn>آلية الانتباه</dfn> (Bahdanau وCho وBengio، 2014)، ثم بنية المحوِّل (Transformer) التي اقترحها Vaswani وزملاؤه (2017)، لكل كلمة بأن تطَّلع مباشرةً على جميع الكلمات الأخرى في المتتالية، مهما كانت المسافة بينها، وبمعالجة جميع الكلمات بالتوازي. وهذا هو أساس BERT ونماذج GPT. والثمن المقابل: تتزايد كلفة الحساب بتزايد مربع طول النص.</li>
+          </ul>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="td-ch3-ex4c">
+      <p class="exercice-num">التمرين 4 ج · التعلم المعزَّز: تحديثٌ في Q-learning</p>
+      <div class="exercice-enonce">
+        <p>في <dfn>Q-learning</dfn>، يقدِّر الوكيل، لكل وضعية s ولكل فعل a، قيمةً Q(s, a): وهي مجموع المكافآت التي يمكن أن يأملها إذا قام بالفعل a في الوضعية s. وبعد قيامه بالفعل a، وتلقيه المكافأة r، ووصوله إلى الوضعية s′، يصحِّح تقديره:</p>
+        <p class="formule">Q(s, a) ← Q(s, a) + α · [ r + γ · maxₐ′ Q(s′, a′) − Q(s, a) ]</p>
+        <p>α هو معدل التعلم، وγ (غاما) هو <dfn>معامل الخصم</dfn> (<span class="terme-en" lang="fr">facteur d'actualisation</span>)، الذي يحدِّد وزن المكافآت المستقبلية. يتنقل وكيل في متاهة. لدينا Q(s, a) = 2، α = 0,5، γ = 0,9، r = 1؛ وفي الوضعية الجديدة s′، Q(s′, a₁) = 4 وQ(s′, a₂) = 3. 1. احسبوا القيمة الجديدة لـQ(s, a). 2. السؤال نفسه لو كان الفعل قد كلَّف عقوبة، r = −1.</p>
+      </div>
+      <details class="corrige"><summary>عرض الحل</summary>
+        <div class="corrige-corps">
+          <p><strong>1. مع r = 1.</strong></p>
+          <ul>
+            <li>أفضل قيمة في s′: max(4 ; 3) = 4.</li>
+            <li>القيمة المستهدفة: r + γ × 4 = 1 + 0,9 × 4 = 1 + 3,6 = 4,6.</li>
+            <li>الفرق بين القيمة المستهدفة والتقدير الحالي: &#x2066;4,6 − 2 = 2,6&#x2069;.</li>
+            <li>القيمة الجديدة: Q(s, a) = 2 + 0,5 × 2,6 = 2 + 1,3 = 3,3.</li>
+          </ul>
+          <p><strong>2. مع r = −1.</strong> القيمة المستهدفة: &#x2066;−1 + 3,6 = 2,6&#x2069;؛ الفرق: &#x2066;2,6 − 2 = 0,6&#x2069;؛ القيمة الجديدة: &#x2066;2 + 0,5 × 0,6 = 2,3&#x2069;.</p>
+          <p>حتى مع العقوبة، ترتفع قيمة الفعل قليلًا، لأنه يقود إلى وضعية واعدة (قيمتها 4): فالمعامل γ يجعل المستقبل يُحسَب في الحكم الحاضر. ومع α = 0,5، لا يقطع الوكيل إلا نصف الفرق في كل تجربة، مما يجنِّبه إعادة النظر في كل شيء بناءً على محاولة واحدة. وعمليًا، على الوكيل أيضًا أن <em>يستكشف</em>: فمن حين لآخر، يختار فعلًا عشوائيًا بدل أفضل فعل معروف، ليكتشف مسارات أخرى.</p>
+        </div></details>
+    </div>
+  </article>
+
+  <!-- ============================ TRAVAUX PRATIQUES ============================ -->
+  <article class="lecon" id="td-travaux-pratiques">
+    <h3>الأعمال التطبيقية</h3>
+    <p>ينص البرنامج الرسمي على ما يلي: «تُخصَّص حصص الأعمال التطبيقية لبرمجة التمارين المدروسة في الأعمال الموجَّهة باستعمال Python، ولإنجاز مشروع مصغَّر.» وهكذا تحوِّل الأعمال التطبيقية الحسابات المنجزة يدويًا إلى برامج، ثم ترافق <a href="#mini-projet">المشروع المصغَّر</a>.</p>
+
+    <h4>التدرج المقترح للحصص</h4>
+    <ol class="etapes">
+      <li><p class="etape-titre">تثبيت بيئة العمل</p><p>تثبيت Python والمكتبات، وتشغيل Jupyter، وتنفيذ سكريبت التحقق الوارد أدناه. وإذا تأخر إنجاز الفصل 1، ينص البرنامج الرسمي على إمكانية تخصيص حصة أعمال تطبيقية لاستكماله.</p></li>
+      <li><p class="etape-titre">أساسيات Python</p><p>برمجة التمارين من 1 إلى 3 من الأعمال الموجَّهة للفصل 2: الشروط، والحلقات، والدوال، والقوائم، والصفوف، والقواميس.</p></li>
+      <li><p class="etape-titre">البيانات والملفات</p><p>التمرينان 4 و5 من الأعمال الموجَّهة للفصل 2؛ إنتاج تقرير صغير بصيغة Excel باستعمال openpyxl أو بصيغة PDF باستعمال fpdf2.</p></li>
+      <li><p class="etape-titre">النظام الخبير</p><p>برمجة التسلسل الأمامي في التمرين 1 من الأعمال الموجَّهة للفصل 3، ثم تعديل القواعد أو ترتيبها أو قاعدة الوقائع وملاحظة الأثر.</p></li>
+      <li><p class="etape-titre">خوارزميات التعلم</p><p>التحقق بلغة Python من حسابات التمرين 2 من الأعمال الموجَّهة للفصل 3: <code>numpy.polyfit</code>، وحلقة للانحدار التدرّجي، و<code>KNeighborsClassifier</code> و<code>KMeans</code> من scikit-learn.</p></li>
+      <li><p class="etape-titre">التعلم العميق والمحوِّلات (Transformers)</p><p>استعمال نموذج مدرَّب مسبقًا من مكتبة transformers (الدالة <code>pipeline</code>) لتصنيف نص قصير أو توليده، ومناقشة أخطائه.</p></li>
+      <li><p class="etape-titre">المشروع المصغَّر</p><p>حصص مرافقة: ضبط إطار الموضوع، ونقاط متابعة أسبوعية، ومراجعة دفتر Jupyter (notebook)، والتدرب على العرض الشفهي.</p></li>
+    </ol>
+
+    <h4>تهيئة بيئة العمل: قائمة تحقق</h4>
+    <aside class="encadre encadre--exemple">
+      <p class="encadre-titre">اختصار في Windows: run.bat</p>
+      <p>يحتوي مستودع المقياس، <a href="https://github.com/Progremer04/canva-au-for-ang-" target="_blank" rel="noopener">&#x2066;github.com/Progremer04/canva-au-for-ang-&#x2069;</a>، على ملف <code>run.bat</code>. وبنقرة مزدوجة عليه يُنزَّل المشروع، ويُثبَّت Python 3.12 إن لم يكن موجودًا، وتُنشأ البيئة <code>.venv</code>، وتُثبَّت فيها جميع مكتبات القائمة أدناه والنموذج الفرنسي لـspaCy، ثم يُفتح هذا الموقع. وفي المرة الأولى، توقَّعوا عدة مئات من الميغابايت ونحو عشرين دقيقة.</p>
+      <p>يعرض <code>run.bat check</code> ما هو مثبَّت؛ ويفتح <code>run.bat notebook</code> بيئة Jupyter في مجلد المشروع؛ ويفتح <code>run.bat site</code> الموقع فقط.</p>
+    </aside>
+    <ul>
+      <li>Python 3.11 مثبَّت: يعرضه الأمر <code>python --version</code>. وتثبِّت توزيعة مثل Anaconda كلًّا من Python وJupyter والمكتبات الرئيسية دفعة واحدة.</li>
+      <li>تم إنشاء بيئة افتراضية خاصة بالمقياس (<code>python -m venv ia-env</code>) وتفعيلها: <code>ia-env\Scripts\activate</code> في Windows، و<code>source ia-env/bin/activate</code> في macOS وLinux.</li>
+      <li>مكتبات المقياس مثبَّتة (الأمر أدناه). والمكتبة <code>torch</code>، الضرورية لـtransformers، كبيرة الحجم: ثبِّتوها باتصال جيد بالإنترنت.</li>
+      <li>تم تنزيل النموذج الفرنسي لـspaCy.</li>
+      <li>يُفتح Jupyter (<code>jupyter lab</code>) وتُنفَّذ خلية <code>print("Bonjour")</code>.</li>
+      <li>تم تنظيم مجلد عمل: <code>donnees/</code>، <code>notebooks/</code>، <code>resultats/</code>.</li>
+      <li>ملفاتكم النصية محفوظة بترميز UTF-8، من أجل الحروف المنبورة ومن أجل العربية.</li>
+      <li>حلّ بديل دون تثبيت: Google Colab، الذي يعمل في المتصفح بحساب Google واتصال بالإنترنت. وبعض المكتبات مثبَّت فيه مسبقًا؛ أضيفوا البقية بالأمر <code>!pip install</code>.</li>
+    </ul>
+    <figure class="code">
+      <figcaption class="code-legende">التثبيت (في الطرفية، بعد تفعيل البيئة)</figcaption>
+      <pre><code>pip install pandas numpy scikit-learn matplotlib seaborn spacy transformers torch gensim networkx textblob vaderSentiment wordcloud fpdf2 openpyxl jupyterlab
+python -m spacy download fr_core_news_sm</code></pre>
+    </figure>
+    <figure class="code">
+      <figcaption class="code-legende">verifier_installation.py</figcaption>
+      <pre><code class="language-python"># Vérifie que chaque bibliothèque du cours est importable
+import importlib
+
+modules = ["pandas", "numpy", "sklearn", "matplotlib", "seaborn", "spacy",
+           "gensim", "networkx", "textblob", "vaderSentiment", "wordcloud",
+           "fpdf", "openpyxl", "transformers"]
+for nom in modules:
+    try:
+        module = importlib.import_module(nom)
+        print(f"{nom:15} OK   {getattr(module, '__version__', '')}")
+    except ImportError:
+        print(f"{nom:15} MANQUANT : à installer")
+
+import spacy
+nlp = spacy.load("fr_core_news_sm")   # une erreur ici : modèle français non téléchargé
+print("Modèle spaCy français : OK")</code></pre>
+    </figure>
+    <p>لاحظوا أن بعض المكتبات تُثبَّت باسم وتُستورد باسم آخر: <code>scikit-learn</code> تُستورد باسم <code>sklearn</code>، و<code>fpdf2</code> تُستورد باسم <code>fpdf</code>.</p>
+  </article>
+</section>

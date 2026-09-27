@@ -5,8 +5,16 @@
 (function () {
   "use strict";
 
-  var EN = /^en/i.test(document.documentElement.lang || "");
-  function t(fr, en) { return EN ? en : fr; }
+  var LANGUE = (document.documentElement.lang || "fr").slice(0, 2).toLowerCase();
+  var EN = LANGUE === "en", AR = LANGUE === "ar";
+  var TEXTES_AR = {
+    "Switch to the Day theme": "التبديل إلى المظهر النهاري", "Switch to the Night theme": "التبديل إلى المظهر الليلي",
+    "Day theme": "المظهر النهاري", "Night theme": "المظهر الليلي",
+    "slide": "شريحة", " of ": " من ", "Go to slide ": "الانتقال إلى الشريحة ", "Pause": "إيقاف مؤقت", "Play": "تشغيل",
+    "Correct.": "إجابة صحيحة.", "That is not the right answer. Try again.": "ليست هذه الإجابة الصحيحة. حاول مرة أخرى.",
+    "Copy": "نسخ", "Copied": "تم النسخ", "Selected: Ctrl+C": "تم التحديد: Ctrl+C"
+  };
+  function t(fr, en) { return AR ? (TEXTES_AR.hasOwnProperty(en) ? TEXTES_AR[en] : en) : (EN ? en : fr); }
   var libelle = t;
 
   var mouvementReduit = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;

@@ -9,8 +9,61 @@
   "use strict";
 
   var SVG = "http://www.w3.org/2000/svg";
-  var EN = /^en/i.test(document.documentElement.lang || "");
-  function tr(fr, en) { return EN ? en : fr; }
+  var LANGUE = (document.documentElement.lang || "fr").slice(0, 2).toLowerCase();
+  var EN = LANGUE === "en", AR = LANGUE === "ar";
+  var SEP = AR ? "، " : ", ";          // séparateur de liste
+  var FLECHE = AR ? " ← " : " → ";     // flèche dans le sens de lecture
+  /* Textes arabes, indexés par le texte anglais. */
+  var TEXTES_AR = {
+    "Interactive demo": "عرض تفاعلي",
+    "Positive": "إيجابي", "Negative": "سلبي", "Neutral": "محايد",
+    "compound score ": "الدرجة المركّبة ",
+    "Run forward chaining, rule by rule": "نفّذ التسلسل الأمامي قاعدةً بقاعدة",
+    "Rule order: <strong>R3 R7 R1 R4 R5 R2 R6</strong>. Goal: <strong>C</strong>. Tick the non-deducible facts present at the start, then go step by step.":
+      "ترتيب فحص القواعد: <strong dir=\"ltr\">R3 R7 R1 R4 R5 R2 R6</strong>. الهدف: <strong>C</strong>. اختر الوقائع غير القابلة للاستنتاج الموجودة في البداية، ثم تقدّم خطوة بخطوة.",
+    "Initial fact base": "قاعدة الوقائع الابتدائية",
+    "Facts": "الوقائع", "Goal": "الهدف", "waiting": "في الانتظار",
+    "Examine the next rule": "افحص القاعدة التالية", "Run to the end": "نفّذ حتى النهاية", "Start again": "ابدأ من جديد",
+    "fired": "مفعَّلة", "blocked": "معطَّلة", "useless": "بلا فائدة",
+    "Walk down the slope of J(w) = (w − 3)²": "انزل على منحدر الدالة J(w) = (w − 3)²",
+    "Learning rate": "معدل التعلم", "Starting point w₀": "نقطة الانطلاق w₀",
+    "Cost function curve and the path of the descent": "منحنى دالة الكلفة ومسار الانحدار",
+    "iteration ": "التكرار ", "slope 2(w − 3) = ": "الميل 2(w − 3) = ",
+    "One step": "خطوة واحدة", "Ten steps": "عشر خطوات",
+    "With η > 1, each step overshoots the minimum further and further: the descent diverges.": "عندما يكون η > 1، تتجاوز كل خطوة القيمة الدنيا أكثر فأكثر: الانحدار يتباعد.",
+    "With η = 1, w swings forever between two values symmetric around 3.": "عندما يكون η = 1، يتأرجح w إلى ما لا نهاية بين قيمتين متناظرتين حول 3.",
+    "With 0.5 < η < 1, w jumps from one side of the minimum to the other but gets closer: it converges in a zigzag.": "عندما يكون 0,5 < η < 1، يقفز w من جهة القيمة الدنيا إلى الجهة الأخرى لكنه يقترب منها: يتقارب بشكل متعرّج.",
+    "With a very small η, the descent is safe but slow: it takes many iterations.": "مع η صغير جدا، يكون الانحدار آمنًا لكنه بطيء: يحتاج إلى تكرارات كثيرة.",
+    "Each step applies w ← w − η · 2(w − 3). The minimum is at w = 3, where the slope is zero.": "كل خطوة تطبّق w ← w − η · 2(w − 3). القيمة الدنيا عند w = 3، حيث يكون الميل منعدمًا.",
+    "Group 36 texts by two style features": "جمّع 36 نصًّا حسب سمتين أسلوبيتين",
+    "Each point is a text (made-up data): across, the <strong>average sentence length</strong> (in words); up, the <strong>share of dialogue</strong> (in %). The algorithm knows no labels.":
+      "كل نقطة نصٌّ (بيانات مفترضة): على المحور الأفقي <strong>متوسط طول الجمل</strong> (بالكلمات)، وعلى المحور العمودي <strong>نسبة الحوار</strong> (بالمئة). لا تعرف الخوارزمية أي وسم.",
+    "Number of groups k": "عدد المجموعات k",
+    "Scatter plot and group centres": "سحابة النقاط ومراكز المجموعات",
+    "words per sentence": "كلمة في الجملة", "% dialogue": "% حوار",
+    "within-group inertia ": "القصور الذاتي داخل المجموعات ",
+    "Next step": "الخطوة التالية", "Run until it converges": "نفّذ حتى التقارب", "New starting centres": "مراكز انطلاق جديدة",
+    "Start: {n} centres picked at random among the texts. Next step: assign each text to the nearest centre.": "البداية: {n} مراكز اختيرت عشوائيًّا من بين النصوص. الخطوة التالية: إلحاق كل نص بأقرب مركز.",
+    "No text changed group: the algorithm has converged.": "لم يغيّر أي نص مجموعته: تقاربت الخوارزمية.",
+    "Assignment: each text joins the nearest centre (Euclidean distance). Next step: recompute the centres.": "الإلحاق: ينضم كل نص إلى أقرب مركز (المسافة الإقليدية). الخطوة التالية: إعادة حساب المراكز.",
+    "Update: each centre moves to the mean of the texts in its group. Next step: reassign.": "التحديث: ينتقل كل مركز إلى متوسط نصوص مجموعته. الخطوة التالية: إعادة الإلحاق.",
+    "converged": "تقاربت", "next phase: ": "المرحلة التالية: ", "assign": "الإلحاق", "recompute the centres": "إعادة حساب المراكز",
+    "Initial base: {base}. Click \u201cExamine the next rule\u201d.": "قاعدة الوقائع الابتدائية: {base}. انقر على «افحص القاعدة التالية».",
+    "empty": "فارغة",
+    "Cycle {c} · {r}: ": "الدورة {c} · {r}: ",
+    "already fired, skipped.": "سبق تفعيلها، ننتقل إلى غيرها.",
+    "already set aside, skipped.": "سبق استبعادها، ننتقل إلى غيرها.",
+    "conditions true, but the base already contains {c}: the rule adds nothing, so it is not fired.": "الشروط محقّقة، لكن القاعدة تحتوي مسبقًا على {c}: لا تضيف هذه القاعدة شيئًا، فلا نفعّلها.",
+    "{si} in the base → add {ajouts}.": "{si} في القاعدة ← نضيف {ajouts}.",
+    "nothing new": "لا شيء جديد",
+    " Goal C is reached: stop.": " تحقّق الهدف C: نتوقف.",
+    "missing {m}{nd}.": "ينقص {m}{nd}.",
+    " ({x} non-deducible)": " ({x} غير قابلة للاستنتاج)",
+    " A full cycle with no rule fired: goal C cannot be proved from this base.": " دورة كاملة دون تفعيل أي قاعدة: لا يمكن إثبات الهدف C انطلاقًا من هذه الوقائع.",
+    "Rules fired: ": "القواعد المفعَّلة: "
+  };
+  function tr(fr, en) { return AR ? (TEXTES_AR.hasOwnProperty(en) ? TEXTES_AR[en] : en) : (EN ? en : fr); }
+  function tpl(texte, valeurs) { return texte.replace(/\{(\w+)\}/g, function (m, k) { return valeurs.hasOwnProperty(k) ? valeurs[k] : m; }); }
 
   function el(nom, attrs, enfants) {
     var n = document.createElement(nom);
@@ -78,11 +131,64 @@
   var NEGATIONS_EN = { "not": 1, "no": 1, "never": 1, "nothing": 1, "none": 1, "nor": 1, "without": 1, "n't": 1, "hardly": 1 };
   var AMPLIFICATEURS_EN = { "very": 0.293, "really": 0.293, "extremely": 0.293, "so": 0.293, "too": 0.293, "absolutely": 0.293,
     "deeply": 0.293, "totally": 0.293, "incredibly": 0.293, "slightly": -0.293, "somewhat": -0.293, "rather": -0.15, "quite": -0.15 };
+  /* Arabe : les clés sont normalisées (sans voyelles brèves, hamza unifiée) au chargement. */
+  function normAr(mot) {
+    return mot.replace(/[\u064B-\u0652\u0670\u0640]/g, "").replace(/[\u0623\u0625\u0622]/g, "\u0627").replace(/\u0649/g, "\u064A");
+  }
+  function normaliser(table) {
+    var t = {};
+    Object.keys(table).forEach(function (k) { t[normAr(k)] = table[k]; });
+    return t;
+  }
+  var LEXIQUE_AR = normaliser({
+    "جميل": 2, "جميلة": 2, "رائع": 3, "رائعة": 3, "ممتاز": 3, "ممتازة": 3, "جيد": 1.5, "جيدة": 1.5, "سعيد": 2.5, "سعيدة": 2.5,
+    "فرح": 2.5, "فرحة": 2.5, "سعادة": 2.5, "حب": 2.5, "أحب": 2.5, "يحب": 2, "أمل": 2, "مشرق": 1.5, "مشرقة": 1.5, "مبدع": 2.5,
+    "مبدعة": 2.5, "مؤثر": 2, "مؤثرة": 2, "ممتع": 2.5, "ممتعة": 2.5, "مثير": 2, "مثيرة": 2, "مدهش": 3, "مدهشة": 3, "مذهل": 3,
+    "مذهلة": 3, "متعة": 2, "بهجة": 2.5, "سلام": 1.5, "حرية": 1.5, "فخور": 1.5, "مقتنع": 1.5, "مقنع": 2, "مقنعة": 2, "هادئ": 1,
+    "ثقة": 1.5, "نجاح": 2, "ناجح": 2, "انتصار": 2, "شكرا": 1.5, "تحفة": 3, "روعة": 3, "أفضل": 2, "جمال": 2, "عظيم": 2.5,
+    "عظيمة": 2.5, "لطيف": 1.5,
+    "مات": -2.5, "ماتت": -2.5, "موت": -2.5, "ميت": -2.5, "حزين": -2, "حزينة": -2, "حزن": -2.5, "تعيس": -2.5, "تعيسة": -2.5,
+    "سيء": -2, "سيئ": -2, "سيئة": -2, "فظيع": -3, "فظيعة": -3, "مروع": -3, "مروعة": -3, "مخيب": -2, "مخيبة": -2, "خيبة": -2,
+    "ممل": -2, "مملة": -2, "ملل": -1.5, "كره": -3, "أكره": -3, "خوف": -2, "غضب": -2, "أزمة": -2, "حرب": -2.5, "عنف": -2.5,
+    "فشل": -2, "فاشل": -2, "ضعيف": -1, "ضعيفة": -1, "أسوأ": -3, "ألم": -2, "معاناة": -2.5, "ظلم": -2.5, "ظالم": -2, "قلق": -1.5,
+    "خطر": -2, "خطير": -2, "خطيرة": -2, "فساد": -2.5, "كذب": -2, "كذبة": -2, "عبث": -1, "عبثي": -1, "دموع": -2, "بكاء": -2,
+    "ثقيل": -1, "ثقيلة": -1, "كارثة": -3, "مؤلم": -2, "مؤلمة": -2
+  });
+  var NEGATIONS_AR = normaliser({ "لا": 1, "لم": 1, "لن": 1, "ليس": 1, "ليست": 1, "لست": 1, "لسنا": 1, "ما": 1, "غير": 1,
+    "بدون": 1, "دون": 1, "ولا": 1, "ولم": 1, "ولن": 1 });
+  var AMPLIFICATEURS_AR = normaliser({ "جدا": 0.293, "حقا": 0.293, "كثيرا": 0.293, "للغاية": 0.293, "تماما": 0.293, "فعلا": 0.293,
+    "قليلا": -0.293, "نوعا": -0.15 });
   if (EN) { LEXIQUE = LEXIQUE_EN; NEGATIONS = NEGATIONS_EN; AMPLIFICATEURS = AMPLIFICATEURS_EN; }
-  var MAIS = EN ? "but" : "mais";
+  if (AR) { LEXIQUE = LEXIQUE_AR; NEGATIONS = NEGATIONS_AR; AMPLIFICATEURS = AMPLIFICATEURS_AR; }
+  var MAIS = EN ? "but" : AR ? "لكن" : "mais";
+
+  /* Arabe : on essaie le mot, puis sans la conjonction (و ف), la préposition (ب ل ك), l'article (ال),
+     puis sans une terminaison courante (ا ها ه ات ون ين). */
+  function variantesAr(mot) {
+    var bases = [mot];
+    if (/^[وف]/.test(mot) && mot.length > 3) bases.push(mot.slice(1));
+    bases.slice().forEach(function (b) {
+      if (/^(بال|كال|فال|وال)/.test(b) && b.length > 4) bases.push(b.slice(3));
+      if (/^(ال|لل)/.test(b) && b.length > 3) bases.push(b.slice(2));
+      if (/^[بلك]/.test(b) && b.length > 3) bases.push(b.slice(1));
+    });
+    var tout = [];
+    bases.forEach(function (b) {
+      tout.push(b);
+      ["ها", "ات", "ون", "ين", "ا", "ه"].forEach(function (fin) {
+        if (b.length > fin.length + 2 && b.slice(-fin.length) === fin) tout.push(b.slice(0, -fin.length));
+      });
+    });
+    return tout;
+  }
 
   function chercher(mot) {
     if (LEXIQUE.hasOwnProperty(mot)) return LEXIQUE[mot];
+    if (AR) {
+      var v = variantesAr(mot);
+      for (var a = 0; a < v.length; a++) if (LEXIQUE.hasOwnProperty(v[a])) return LEXIQUE[v[a]];
+      return null;
+    }
     var essais = [mot.replace(/s$/, ""), mot.replace(/x$/, ""), mot.replace(/es$/, "e"), mot.replace(/es$/, "")];
     for (var i = 0; i < essais.length; i++) if (essais[i] !== mot && LEXIQUE.hasOwnProperty(essais[i])) return LEXIQUE[essais[i]];
     return null;
@@ -90,12 +196,12 @@
 
   function analyser(phrase) {
     var jetons = [];
-    var re = /[\p{L}\p{M}]+(?:['\u2019][\p{L}\p{M}]+)*(?:-[\p{L}\p{M}'\u2019]+)*['\u2019]?|[!?.,;:]/gu;
+    var re = /[\p{L}\p{M}]+(?:['\u2019][\p{L}\p{M}]+)*(?:-[\p{L}\p{M}'\u2019]+)*['\u2019]?|[!?.,;:\u060C\u061B\u061F]/gu;
     var m;
     while ((m = re.exec(phrase)) !== null) {
       var brut = m[0].replace(/\u2019/g, "'");
       // Élisions : l', d', n', j', qu', s', c', m', t'
-      var elision = EN ? null : /^(qu|[ldnjsmtc])'(.+)$/i.exec(brut);
+      var elision = EN || AR ? null : /^(qu|[ldnjsmtc])'(.+)$/i.exec(brut);
       var contraction = EN ? /^(.+)(n't)$/i.exec(brut) : null;
       if (contraction) {
         jetons.push({ brut: contraction[1], mot: contraction[1].toLowerCase() });
@@ -104,7 +210,7 @@
         jetons.push({ brut: elision[1] + "'", mot: elision[1].toLowerCase() + "'" });
         jetons.push({ brut: elision[2], mot: elision[2].toLowerCase() });
       } else {
-        jetons.push({ brut: brut, mot: brut.toLowerCase().replace(/'$/, "") });
+        jetons.push({ brut: brut, mot: AR ? normAr(brut) : brut.toLowerCase().replace(/'$/, "") });
       }
     }
     var indexMais = -1;
@@ -115,7 +221,9 @@
       if (v === null) return;
       var valeur = v;
       var avant = jetons.slice(Math.max(0, i - 3), i).map(function (x) { return x.mot; });
-      var amp = avant.slice(-2).reduce(function (acc, w) { return acc + (AMPLIFICATEURS[w] || 0); }, 0);
+      var voisins = avant.slice(-2);
+      if (AR && jetons[i + 1]) voisins.push(jetons[i + 1].mot);   // en arabe, « جدا » suit l'adjectif
+      var amp = voisins.reduce(function (acc, w) { return acc + (AMPLIFICATEURS[w] || 0); }, 0);
       if (amp) { valeur += valeur > 0 ? amp : -amp; j.amplifie = true; }
       if (avant.some(function (w) { return NEGATIONS[w]; })) { valeur *= -0.74; j.inverse = true; }
       if (indexMais >= 0) valeur *= i < indexMais ? 0.5 : 1.5;
@@ -140,7 +248,8 @@
       var c = r.compose;
       curseur.style.left = ((c + 1) / 2 * 100) + "%";
       etiquette.textContent = c >= 0.05 ? tr("Positif", "Positive") : c <= -0.05 ? tr("Négatif", "Negative") : tr("Neutre", "Neutral");
-      score.textContent = tr("score composé ", "compound score ") + (c >= 0 ? "+" : "−") + nombre(Math.abs(c), 2);
+      score.textContent = tr("score composé ", "compound score ");
+      score.appendChild(el("bdi", { dir: "ltr", texte: (c >= 0 ? "+" : "−") + nombre(Math.abs(c), 2) }));
       mots.textContent = "";
       r.jetons.forEach(function (j, i) {
         var classe = "mot";
@@ -150,7 +259,7 @@
         if (typeof j.valeur === "number") s.appendChild(el("sup", { texte: (j.valeur > 0 ? "+" : "−") + nombre(Math.abs(j.valeur), 1) }));
         mots.appendChild(s);
         var suivant = r.jetons[i + 1];
-        if (suivant && !/^[,.;:!?]$/.test(suivant.brut) && !/'$/.test(j.brut) && suivant.mot !== "n't") mots.appendChild(document.createTextNode(" "));
+        if (suivant && !/^[,.;:!?\u060C\u061B\u061F]$/.test(suivant.brut) && !/'$/.test(j.brut) && suivant.mot !== "n't") mots.appendChild(document.createTextNode(" "));
       });
     }
     zone.addEventListener("input", rendre);
@@ -209,7 +318,7 @@
       var etat = el("span", { "class": "regle__etat", texte: tr("en attente", "waiting") });
       var li = el("li", { "class": "regle" }, [
         el("span", { "class": "regle__nom", texte: nom }),
-        el("span", { texte: r.si.join(" ∧ ") + " → " + r.alors.join(" ∧ ") }),
+        el("span", { texte: r.si.join(" ∧ ") + " → " + r.alors.join(" ∧ "), dir: "ltr" }),
         etat
       ]);
       lignes[nom] = { li: li, etat: etat };
@@ -232,7 +341,7 @@
       NON_DEDUCTIBLES.forEach(function (f) { if (cases[f].checked) base[f] = true; });
       etat = { base: base, nouveaux: {}, declenchees: {}, pointeur: 0, cycle: 1, aDeclenche: false, fini: false, sequence: [] };
       ORDRE.forEach(function (n) { lignes[n].li.className = "regle"; lignes[n].etat.textContent = tr("en attente", "waiting"); });
-      journal.textContent = tr("Base initiale : ", "Initial base: ") + (Object.keys(base).join(", ") || tr("vide", "empty")) + tr(". Cliquez sur « Examiner la règle suivante ».", ". Click \u201cExamine the next rule\u201d.");
+      journal.textContent = tpl(tr("Base initiale : {base}. Cliquez sur « Examiner la règle suivante ».", "Initial base: {base}. Click \u201cExamine the next rule\u201d."), { base: Object.keys(base).join(SEP) || tr("vide", "empty") });
       trace.textContent = "";
       dessiner();
     }
@@ -241,7 +350,7 @@
         puces[f].className = "fait" + (f === BUT ? " est-but" : "") + (etat.base[f] ? (etat.nouveaux[f] ? " est-nouveau" : " est-connu") : "");
       });
       bSuivant.disabled = bTout.disabled = etat.fini;
-      trace.textContent = etat.sequence.length ? tr("Règles déclenchées : ", "Rules fired: ") + etat.sequence.join(" → ") + "." : "";
+      trace.textContent = etat.sequence.length ? tr("Règles déclenchées : ", "Rules fired: ") + etat.sequence.join(FLECHE) + "." : "";
     }
     function pas() {
       if (etat.fini) return;
@@ -251,9 +360,9 @@
       var r = REGLES[nom];
       var ligne = lignes[nom];
       ligne.li.classList.add("est-examinee");
-      var prefixe = tr("Cycle ", "Cycle ") + etat.cycle + " · " + nom + tr(" : ", ": ");
+      var prefixe = tpl(tr("Cycle {c} · {r} : ", "Cycle {c} · {r}: "), { c: etat.cycle, r: nom });
       if (etat.declenchees[nom]) {
-        journal.textContent = prefixe + tr("déjà ", "already ") + (etat.sequence.indexOf(nom) >= 0 ? tr("déclenchée", "fired") : tr("écartée", "set aside")) + tr(", on passe.", ", skipped.");
+        journal.textContent = prefixe + (etat.sequence.indexOf(nom) >= 0 ? tr("déjà déclenchée, on passe.", "already fired, skipped.") : tr("déjà écartée, on passe.", "already set aside, skipped."));
       } else {
         var manquants = r.si.filter(function (f) { return !etat.base[f]; });
         var ajoutsPossibles = r.alors.filter(function (f) { return !etat.base[f]; });
@@ -261,7 +370,7 @@
           etat.declenchees[nom] = true;
           ligne.li.classList.add("est-bloquee");
           ligne.etat.textContent = tr("inutile", "useless");
-          journal.textContent = prefixe + tr("conditions vraies, mais ", "conditions true, but ") + r.alors.join(", ") + (EN ? (r.alors.length > 1 ? " are" : " is") : (r.alors.length > 1 ? " sont" : " est")) + tr(" déjà dans la base : la règle n'apporte rien, on ne la déclenche pas.", " already in the base: the rule adds nothing, so it is not fired.");
+          journal.textContent = prefixe + tpl(tr("conditions vraies, mais la base contient déjà {c} : la règle n'apporte rien, on ne la déclenche pas.", "conditions true, but the base already contains {c}: the rule adds nothing, so it is not fired."), { c: r.alors.join(SEP) });
         } else if (manquants.length === 0) {
           etat.declenchees[nom] = true;
           etat.aDeclenche = true;
@@ -271,7 +380,7 @@
           ligne.li.classList.remove("est-bloquee");
           ligne.li.classList.add("est-declenchee");
           ligne.etat.textContent = tr("déclenchée", "fired");
-          journal.textContent = prefixe + r.si.join(", ") + (EN ? (r.si.length > 1 ? " are" : " is") : (r.si.length > 1 ? " sont" : " est")) + tr(" dans la base → on ajoute ", " in the base → add ") + (ajouts.join(", ") || tr("rien de nouveau", "nothing new")) + ".";
+          journal.textContent = prefixe + tpl(tr("{si} dans la base → on ajoute {ajouts}.", "{si} in the base → add {ajouts}."), { si: r.si.join(SEP), ajouts: ajouts.join(SEP) || tr("rien de nouveau", "nothing new") });
           if (etat.base[BUT]) {
             etat.fini = true;
             journal.textContent += tr(" Le but C est atteint : on s'arrête.", " Goal C is reached: stop.");
@@ -282,7 +391,7 @@
           ligne.li.classList.add("est-bloquee");
           ligne.etat.textContent = tr("bloquée", "blocked");
           var nd = manquants.filter(function (f) { return NON_DEDUCTIBLES.indexOf(f) >= 0; });
-          journal.textContent = prefixe + tr("il manque ", "missing ") + manquants.join(", ") + (nd.length ? " (" + nd.join(", ") + tr(" non déductible" + (nd.length > 1 ? "s" : ""), " non-deducible") + ")" : "") + ".";
+          journal.textContent = prefixe + tpl(tr("il manque {m}{nd}.", "missing {m}{nd}."), { m: manquants.join(SEP), nd: nd.length ? tpl(tr(nd.length > 1 ? " ({x} non déductibles)" : " ({x} non déductible)", " ({x} non-deducible)"), { x: nd.join(SEP) }) : "" });
         }
       }
       etat.pointeur += 1;
@@ -485,7 +594,7 @@
       var choisis = [];
       while (choisis.length < n) { var i = Math.floor(rr() * donnees.length); if (choisis.indexOf(i) < 0) choisis.push(i); }
       etat = { k: n, centres: choisis.map(function (i) { return donnees[i].slice(); }), groupes: donnees.map(function () { return -1; }), iteration: 0, phase: "affecter", fini: false };
-      note.textContent = tr("Départ : " + n + " centres tirés au hasard parmi les textes. Étape suivante : affecter chaque texte au centre le plus proche.", "Start: " + n + " centres picked at random among the texts. Next step: assign each text to the nearest centre.");
+      note.textContent = tpl(tr("Départ : {n} centres tirés au hasard parmi les textes. Étape suivante : affecter chaque texte au centre le plus proche.", "Start: {n} centres picked at random among the texts. Next step: assign each text to the nearest centre."), { n: n });
       dessiner();
     }
     function inertie() {

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مقياس الذكاء الاصطناعي، ماستر الأدب العام والمقارن</title>
+<meta name="description" content="مقياس الذكاء الاصطناعي لماستر الأدب العام والمقارن (جامعة يحيى فارس بالمدية، 2025-2026) مشروحًا كاملًا: دروس، بايثون، عروض تفاعلية، حلول الأعمال الموجهة والمشاريع المصغرة.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;600&amp;family=IM+Fell+DW+Pica+SC&amp;family=JetBrains+Mono:wght@400;600&amp;family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&amp;family=Noto+Naskh+Arabic:wght@400;600&amp;family=Rajdhani:wght@500;600;700&amp;display=swap">
+<link rel="stylesheet" href="{{BASE}}assets/css/lumineux-tokens.css">
+<link rel="stylesheet" href="{{BASE}}assets/css/lumineux.css">
+<link rel="stylesheet" href="{{BASE}}assets/css/cours.css">
+<link rel="alternate" hreflang="fr" href="../index.html">
+<link rel="alternate" hreflang="en" href="../en/index.html">
+</head>
+<body>
+<a class="lien-evitement" href="#contenu">الانتقال إلى المحتوى</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-fermer" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-contraste" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></symbol>
+  <symbol id="i-maison" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5h4v5"/></symbol>
+  <symbol id="i-fiche" viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 13h6M10 17h6"/></symbol>
+  <symbol id="i-calendrier" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-ampoule" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.5 1 2.5h6c0-1 .2-1.7 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+  <symbol id="i-crayon" viewBox="0 0 24 24"><path d="M4 20l4-1L19 8l-3-3L5 16z"/><path d="M14 7l3 3"/></symbol>
+  <symbol id="i-bulle" viewBox="0 0 24 24"><path d="M4 5h16v11H10l-5 4v-4H4z"/></symbol>
+  <symbol id="i-livre" viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></symbol>
+  <symbol id="i-boussole" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></symbol>
+  <symbol id="i-outil" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></symbol>
+</svg>
+
+<header class="entete">
+  <div class="entete__barre">
+    <button type="button" class="bouton-verre entete__burger" data-ouvre-tiroir="tiroir-nav" aria-controls="tiroir-nav" aria-label="فتح القائمة">
+      <svg class="icone"><use href="#i-menu"/></svg>
+    </button>
+    <a class="entete__marque" href="#accueil"><span class="anneau-prisme" aria-hidden="true"></span>ذ.ا <small>ماستر LGC</small></a>
+    <nav class="entete__liens" aria-label="روابط مفيدة">
+      <a class="bouton bouton--discret bouton--petit entete__lien-systeme" href="{{LIEN_SYSTEME}}">نظام التصميم</a>
+      <div class="langues" role="group" aria-label="لغة الدرس"><a href="../index.html" lang="fr" hreflang="fr" data-lien-langue>FR</a><a href="../en/index.html" lang="en" hreflang="en" data-lien-langue>EN</a><a href="index.html" lang="ar" hreflang="ar" aria-current="page">عربي</a></div>
+      <button type="button" class="bouton-verre" data-bascule-theme aria-label="تغيير المظهر">
+        <svg class="icone"><use href="#i-contraste"/></svg>
+      </button>
+    </nav>
+  </div>
+  <div class="progression" aria-hidden="true"></div>
+</header>
+
+<div class="tiroir-voile" data-voile-tiroir="tiroir-nav"></div>
+<aside class="tiroir" id="tiroir-nav" aria-label="قائمة المقياس">
+  <div class="tiroir__tete">
+    <p class="tiroir__titre">محتويات المقياس</p>
+    <button type="button" class="bouton-verre" data-ferme-tiroir aria-label="إغلاق القائمة">
+      <svg class="icone"><use href="#i-fermer"/></svg>
+    </button>
+  </div>
+  {{NAV}}
+</aside>
+
+<main id="contenu">
+  <section class="heros" id="accueil" aria-labelledby="titre-cours">
+    <div>
+      <p class="surtitre">ماستر الأدب العام والمقارن · السداسي الثالث</p>
+      <h1 class="heros__titre" id="titre-cours"><span>الذكاء</span> <span>الاصطناعي</span></h1>
+      <p class="heros__chapeau">البرنامج الرسمي للمقياس مشروحًا كاملًا: تاريخ الذكاء الاصطناعي، بايثون لمعالجة النصوص، الأنظمة الخبيرة، التعلم الآلي والتعلم العميق، خمسة مشاريع مصغّرة تطبيقية في العلوم الإنسانية، وحلول جميع الأعمال الموجَّهة.</p>
+      <ul class="heros__fiche">
+        <li class="puce">وحدة تعليم أفقية</li>
+        <li class="puce">رصيدان</li>
+        <li class="puce">المعامل 2</li>
+        <li class="puce">2025–2026</li>
+      </ul>
+      <div class="heros__actions">
+        <a class="bouton bouton--prisme" href="#chapitre-1">ابدأ الفصل الأول</a>
+        <a class="bouton" href="#methode">كيف تتعلّم هذا المقياس</a>
+      </div>
+    </div>
+
+    <div class="cadre-lumineux">
+      <div class="cadre-lumineux__contenu" data-lecteur>
+        <div class="demo__tete">
+          <span class="anneau-prisme" aria-hidden="true"></span>
+          <p class="demo__etiquette">عرض تفاعلي</p>
+        </div>
+        <h2 class="demo__titre">اقرأ جملة كما تقرؤها الآلة</h2>
+        <div class="champ">
+          <label for="lecteur-phrase">جملتك</label>
+          <textarea id="lecteur-phrase" class="lecteur__phrase" rows="3" spellcheck="false">هذه الرواية جميلة، لكن النهاية مخيبة حقا.</textarea>
+        </div>
+        <div class="lecteur__exemples">
+          <button type="button" class="bouton bouton--petit" data-phrase="هذه الرواية جميلة، لكن النهاية مخيبة حقا.">نقد أدبي</button>
+          <button type="button" class="bouton bouton--petit" data-phrase="اليوم ماتت أمي.">كامو، 1942 (مترجم)</button>
+          <button type="button" class="bouton bouton--petit" data-phrase="لست مقتنعا بهذا الخطاب على الإطلاق.">خطاب</button>
+          <button type="button" class="bouton bouton--petit" data-phrase="يا له من كتاب رائع! فرح وبهجة وتحفة حقيقية!">حماس</button>
+        </div>
+        <div class="lecteur__resultat" aria-live="polite">
+          <div class="lecteur__verdict"><span class="lecteur__etiquette">سلبي</span><span class="lecteur__score"></span></div>
+          <div class="lecteur__jauge"><span class="lecteur__curseur" style="left:50%"></span></div>
+          <div class="lecteur__echelle"><span>سلبي</span><span>محايد</span><span>إيجابي</span></div>
+          <p class="lecteur__mots"></p>
+        </div>
+        <p class="demo__note">طريقة معجمية مستوحاة من VADER (الموضوع الأول من المشروع المصغّر): لكل كلمة معروفة درجة، والنفي يعكسها، وكلمة «جدا» تقوّيها، وكلمة «لكن» تعطي وزنًا أكبر لما بعدها. أما النموذج الحقيقي فيتعلّم هذه الأوزان من آلاف الأمثلة.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="page">
+    <div class="page__rail">
+      {{NAV}}
+    </div>
+
+    <div class="page__contenu">
+
+      <section class="chapitre" id="fiche" aria-labelledby="fiche-titre">
+        <header class="chapitre-tete">
+          <p class="surtitre">البرنامج الرسمي</p>
+          <h2 class="titre-section" id="fiche-titre">بطاقة المقياس</h2>
+          <p class="chapeau">ما يطلبه البرنامج الرسمي كما هو مكتوب، مع إحالات إلى أقسام الموقع التي تغطّيه.</p>
+        </header>
+
+        <dl class="definitions">
+          <div><dt>الماستر</dt><dd>الأدب العام والمقارن (<span lang="fr">Littérature Générale et Comparée</span>)</dd></div>
+          <div><dt>السداسي</dt><dd>3</dd></div>
+          <div><dt>الوحدة</dt><dd>وحدة التعليم الأفقية (<span lang="fr">Unité d'Enseignement Transversale</span>)</dd></div>
+          <div><dt>المقياس</dt><dd>الذكاء الاصطناعي</dd></div>
+          <div><dt>الرصيد</dt><dd>2</dd></div>
+          <div><dt>المعامل</dt><dd>2</dd></div>
+          <div><dt>المؤسسة</dt><dd>جامعة يحيى فارس بالمدية</dd></div>
+          <div><dt>السنة</dt><dd>2025–2026</dd></div>
+        </dl>
+
+        <div class="fiche-grille">
+          <article class="carte">
+            <h3>أهداف التعليم</h3>
+            <ul>
+              <li>التحكم في خوارزميات الذكاء الاصطناعي لمعالجة نصوص الاستبيانات <a href="#chapitre-3">(الفصل 3)</a>.</li>
+              <li>القدرة على استعمال لغة بايثون <a href="#chapitre-2">(الفصل 2)</a>.</li>
+              <li>فهم مقاربات الذكاء الاصطناعي في حلّ المشكلات <a href="#c1-approches">(الفصل 1)</a>.</li>
+              <li>القدرة على معالجة مدوّنة نصية <a href="#c2-fichiers">(الفصل 2)</a>.</li>
+            </ul>
+          </article>
+          <article class="carte">
+            <h3>الطريقة البيداغوجية</h3>
+            <ul>
+              <li>محاضرات، أعمال موجَّهة، أعمال تطبيقية <a href="#td-tp">(TD/TP)</a>.</li>
+              <li>مشروع مصغَّر: إنجاز 3 مواضيع على الأقل من المواضيع الخمسة المقترحة <a href="#mini-projet">(انظر الملاحظة)</a>.</li>
+              <li>أقصى قدر من التفاعل بين الأستاذ والطلبة.</li>
+              <li>عمل شخصي، خاصة في البرمجة.</li>
+              <li>التقييم وفق النصوص المعمول بها.</li>
+              <li>موائد مستديرة <a href="#tables-rondes">(4 محاور)</a>.</li>
+            </ul>
+          </article>
+          <article class="carte carte--large">
+            <h3>المعارف المستهدفة</h3>
+            <ul>
+              <li>التعرّف على فرص الذكاء الاصطناعي في العلوم الإنسانية والاجتماعية <a href="#c1-perspectives">(الفصل 1)</a>.</li>
+              <li>فهم التطبيقات الممكنة للذكاء الاصطناعي في العلوم الإنسانية والاجتماعية <a href="#c3-synthese">(الفصل 3)</a>.</li>
+              <li>فهم الأبعاد الأخلاقية للذكاء الاصطناعي والممارسات الحسنة في استعماله <a href="#c1-perspectives">(الفصل 1)</a>.</li>
+              <li>عنقدة السلوكيات الاجتماعية في الاستبيانات وبناء نماذج تنبّؤية <a href="#mp-sujet-2">(الموضوعان 2</a> <a href="#mp-sujet-4">و4)</a>.</li>
+              <li>فهم المشاعر المعبَّر عنها في الشبكات الاجتماعية ومعرفة تحليلها <a href="#mp-sujet-1">(الموضوع 1)</a>.</li>
+              <li>استخراج المعلومات من الخطابات السياسية <a href="#mp-sujet-3">(الموضوع 3)</a>.</li>
+              <li>تحليل الشبكات الاجتماعية من منظور سوسيولوجي <a href="#mp-sujet-5">(الموضوع 5)</a>.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="chapitre" id="parcours" aria-labelledby="parcours-titre">
+        <header class="chapitre-tete">
+          <p class="surtitre">الرزنامة</p>
+          <h2 class="titre-section" id="parcours-titre">السداسي في لمحة</h2>
+          <p class="chapeau">تسعة أسابيع من الدروس (1 + 2 + 6)، ومشروع مصغَّر مدّته ثلاثة أسابيع يوزَّع في نهاية الفصل الثاني، وأعمال موجَّهة وتطبيقية طوال السداسي.</p>
+        </header>
+        <div class="planning" role="group" aria-label="رزنامة تقريبية للسداسي">
+          <div class="planning__grille">
+            <span></span>
+            <span class="planning__semaine">أ1</span><span class="planning__semaine">أ2</span><span class="planning__semaine">أ3</span>
+            <span class="planning__semaine">أ4</span><span class="planning__semaine">أ5</span><span class="planning__semaine">أ6</span>
+            <span class="planning__semaine">أ7</span><span class="planning__semaine">أ8</span><span class="planning__semaine">أ9</span>
+
+            <span class="planning__ligne">الفصل 1</span>
+            <a class="planning__barre planning__barre--c1" href="#chapitre-1" style="grid-column: 2 / span 1">أسبوع</a>
+            <span style="grid-column: 3 / span 8"></span>
+
+            <span class="planning__ligne">الفصل 2</span>
+            <span style="grid-column: 2 / span 1"></span>
+            <a class="planning__barre planning__barre--c2" href="#chapitre-2" style="grid-column: 3 / span 2">بايثون · أسبوعان</a>
+            <span style="grid-column: 5 / span 6"></span>
+
+            <span class="planning__ligne">الفصل 3</span>
+            <span style="grid-column: 2 / span 3"></span>
+            <a class="planning__barre planning__barre--c3" href="#chapitre-3" style="grid-column: 5 / span 6">أنواع الذكاء الاصطناعي ومقارباته · 6 أسابيع</a>
+
+            <span class="planning__ligne">المشروع المصغَّر</span>
+            <span style="grid-column: 2 / span 3"></span>
+            <a class="planning__barre planning__barre--mp" href="#mini-projet" style="grid-column: 5 / span 3">3 أسابيع (تقريبي)</a>
+            <span style="grid-column: 8 / span 3"></span>
+
+            <span class="planning__ligne">TD / TP</span>
+            <a class="planning__barre planning__barre--td" href="#td-tp" style="grid-column: 2 / span 9">تمارين الفصل الجاري، ثم البرمجة بلغة بايثون والمشروع المصغَّر</a>
+          </div>
+        </div>
+        <p class="planning__note">مدد الفصول هي المدد الواردة في البرنامج الرسمي. إذا لم يكفِ أسبوع واحد للفصل الأول، يسمح البرنامج باستعمال حصة أعمال تطبيقية لإتمامه. ولا يذكر البرنامج إلا أن المشروع المصغَّر يوزَّع في نهاية الفصل الثاني، أما موعده الدقيق فيحدّده الأستاذ.</p>
+      </section>
+
+{{FRAGMENTS}}
+
+      <section class="chapitre" id="references" aria-labelledby="references-titre">
+        <header class="chapitre-tete">
+          <p class="surtitre">البيبليوغرافيا</p>
+          <h2 class="titre-section" id="references-titre">المراجع</h2>
+          <p class="chapeau">مراجع البرنامج الرسمي منسّقة، مع تصحيح الأخطاء المطبعية الواردة في الوثيقة الأصلية والإشارة إليها.</p>
+        </header>
+        <ol class="references">
+          <li><div><p lang="en" dir="ltr">Inglehart, R. (1997). <em>Modernization and Postmodernization: Cultural, Economic, and Political Change in 43 Societies</em>. Princeton University Press.</p><p class="ref-note">نظرية القيم المادية وما بعد المادية؛ إطار لقراءة بيانات الاستبيانات في الموضوعين 2 و4.</p></div></li>
+          <li><div><p lang="en" dir="ltr">"Western values are diverging from the rest of the world's". <em>The Economist</em>, 2023.</p><p class="ref-note">يكتب البرنامج «The Economiste». مقال صحفي مبني على بيانات المسح العالمي للقيم.</p></div></li>
+          <li><div><p lang="en" dir="ltr">Western Michigan University. <em>World Values Survey</em>. <a href="https://wmich.edu/economics/world-values-survey" target="_blank" rel="noopener">wmich.edu/economics/world-values-survey</a></p><p class="ref-note">تقديم للمسح العالمي للقيم. أما البيانات نفسها فتُحمَّل من <a href="https://www.worldvaluessurvey.org" target="_blank" rel="noopener">worldvaluessurvey.org</a>.</p></div></li>
+          <li><div><p lang="fr" dir="ltr">Ganascia, J.-G. (2024). <em>L'IA expliquée aux humains</em>. Paris : Éditions du Seuil.</p><p class="ref-note">مدخل مبسّط (بالفرنسية)، مفيد للفصل الأول وللموائد المستديرة.</p></div></li>
+          <li><div><p lang="fr" dir="ltr">Langlois, L., Dilhac, M.-A., Dratwa, J. <i>et al.</i> (2023). <em>L'éthique au cœur de l'IA</em>. Québec : Obvia.</p><p class="ref-note">يكتب البرنامج «Anglais, Lise, Dilhac, Antione»؛ صُحّحت الأسماء اعتمادًا على منشور Obvia.</p></div></li>
+          <li><div><p lang="fr" dir="ltr">Robert, J. (2024). « Natural Language Processing (NLP) : définition et principes ». DataScientest. <a href="https://datascientest.com/introduction-au-nlp-natural-language-processing" target="_blank" rel="noopener">datascientest.com/introduction-au-nlp-natural-language-processing</a></p></div></li>
+          <li><div><p lang="fr" dir="ltr">« Qu'est-ce que le traitement du langage naturel (NLP) ? ». Amazon Web Services. <a href="https://aws.amazon.com/fr/what-is/nlp/" target="_blank" rel="noopener">aws.amazon.com/fr/what-is/nlp</a></p><p class="ref-note">توجد نسخة عربية من هذه الصفحة: <a href="https://aws.amazon.com/ar/what-is/nlp/" target="_blank" rel="noopener">aws.amazon.com/ar/what-is/nlp</a>.</p></div></li>
+          <li><div><p lang="fr" dir="ltr">Belhadef, H., Djemal, I. <em>Méthode TALN</em>. Cours de l'Université de M'sila, Algérie.</p><p class="ref-note">درس بجامعة المسيلة. TALN هي التسمية الفرنسية للمعالجة الآلية للغة الطبيعية (NLP).</p></div></li>
+          <li><div><p lang="fr" dir="ltr">Prieur, B. <em>Traitement automatique du langage naturel avec Python. Le NLP avec spaCy et NLTK</em>.</p><p class="ref-note">مرجع تطبيقي (بالفرنسية) للفصل الثاني وللموضوع 3.</p></div></li>
+          <li><div><p lang="fr" dir="ltr">Baddari, K., Herzallah, A. (2015). <em>La recherche de l'information</em>. Alger : Office des publications universitaires (OPU).</p><p class="ref-note">ديوان المطبوعات الجامعية، الجزائر.</p></div></li>
+        </ol>
+
+        <h3 class="surtitre" style="margin-block-start: var(--espace-6)">التوثيق الرسمي للأدوات</h3>
+        <ul class="puces">
+          <li><a class="puce puce--outil" href="https://docs.python.org/3/tutorial/" target="_blank" rel="noopener">Python tutorial</a></li>
+          <li><a class="puce puce--outil" href="https://pandas.pydata.org/docs/" target="_blank" rel="noopener">pandas</a></li>
+          <li><a class="puce puce--outil" href="https://numpy.org/doc/" target="_blank" rel="noopener">NumPy</a></li>
+          <li><a class="puce puce--outil" href="https://scikit-learn.org/stable/" target="_blank" rel="noopener">scikit-learn</a></li>
+          <li><a class="puce puce--outil" href="https://spacy.io/usage" target="_blank" rel="noopener">spaCy</a></li>
+          <li><a class="puce puce--outil" href="https://huggingface.co/docs/transformers" target="_blank" rel="noopener">Transformers</a></li>
+          <li><a class="puce puce--outil" href="https://radimrehurek.com/gensim/" target="_blank" rel="noopener">gensim</a></li>
+          <li><a class="puce puce--outil" href="https://networkx.org/documentation/stable/" target="_blank" rel="noopener">NetworkX</a></li>
+          <li><a class="puce puce--outil" href="https://gephi.org" target="_blank" rel="noopener">Gephi</a></li>
+          <li><a class="puce puce--outil" href="https://matplotlib.org/stable/" target="_blank" rel="noopener">matplotlib</a></li>
+        </ul>
+      </section>
+
+{{GLOSSAIRE}}
+
+    </div>
+  </div>
+</main>
+
+<footer class="pied">
+  <div class="pied__interieur">
+    <div>
+      <p class="pied__signature"><span class="anneau-prisme" aria-hidden="true"></span>الذكاء الاصطناعي</p>
+      <p>ماستر الأدب العام والمقارن، السداسي الثالث. جامعة يحيى فارس بالمدية. السنة الجامعية 2025–2026.</p>
+      <p>المحتوى مبني على البرنامج الرسمي للمقياس (الصفحات 84 إلى 86 من عرض التكوين). الشروح والأمثلة والحلول ترافق درس الأستاذ ولا تعوّضه. المقياس وامتحانه باللغة الفرنسية، وهذه النسخة العربية أداة مساعدة على المراجعة.</p>
+    </div>
+    <div>
+      <h2>تصفّح</h2>
+      <ul>
+        <li><a href="#methode">كيف تتعلّم هذا المقياس</a></li>
+        <li><a href="#chapitre-1">الفصل 1 · مدخل</a></li>
+        <li><a href="#chapitre-2">الفصل 2 · بايثون</a></li>
+        <li><a href="#chapitre-3">الفصل 3 · أنواع الذكاء الاصطناعي</a></li>
+        <li><a href="#mini-projet">المشروع المصغَّر</a></li>
+        <li><a href="#td-tp">حلول TD / TP</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>عن الموقع</h2>
+      <p>صُمّم بنظام <a href="{{LIEN_SYSTEME}}">Lumineux</a>، وهو نظام تصميم مستخرج من عروض «Cadre Lumineux» والقائمة الكبسولية وشريط الصور في هذا المستودع.</p>
+      <p>المظهر الليلي أو النهاري: الزر في أعلى الصفحة. لغات أخرى: <a href="../index.html" hreflang="fr" lang="fr">Français</a>، <a href="../en/index.html" hreflang="en" lang="en">English</a>.</p>
+      <p>الشيفرة المصدرية، وملف <code>run.bat</code> لتثبيت كل شيء على ويندوز: <a href="https://github.com/Progremer04/canva-au-for-ang-" target="_blank" rel="noopener">github.com/Progremer04/canva-au-for-ang-</a>.</p>
+    </div>
+  </div>
+</footer>
+
+{{SCRIPTS}}
+</body>
+</html>

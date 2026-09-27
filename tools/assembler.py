@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""Assemble le site du cours à partir de docs/_sources/, en français et en anglais.
+"""Assemble le site du cours à partir de docs/_sources/, en français, anglais et arabe.
 
   python3 tools/assembler.py
-      → écrit docs/index.html (français) et docs/en/index.html (anglais)
+      → écrit docs/index.html (français), docs/en/index.html (anglais), docs/ar/index.html (arabe)
 
-  python3 tools/assembler.py --autonome CHEMIN [--langue fr|en] [--lien-systeme URL]
+  python3 tools/assembler.py --autonome CHEMIN [--langue fr|en|ar] [--lien-systeme URL]
       → écrit une version en un seul fichier : CSS et JS intégrés,
         sans l'enveloppe <!DOCTYPE>/<html>/<head>/<body> (pour un hébergeur
         qui fournit lui-même ce squelette).
 
 Sources : docs/_sources/<fragment>.html pour le français,
-          docs/_sources/en/<fragment>.html pour l'anglais (mêmes id).
+          docs/_sources/en/ et docs/_sources/ar/ pour l'anglais et l'arabe (mêmes id).
 """
 import argparse
 import re
@@ -22,20 +22,20 @@ SOURCES = DOCS / "_sources"
 
 FRAGMENTS = ["methode", "chapitre-1", "chapitre-2", "chapitre-3", "mini-projet", "td-tp", "tables-rondes"]
 
-# (cible, marque, libellé français, libellé anglais)
+# (cible, marque, {langue: libellé})
 NAV = [
-    ("accueil", "i-maison", "Accueil", "Home"),
-    ("fiche", "i-fiche", "Fiche de la matière", "Course card"),
-    ("parcours", "i-calendrier", "Calendrier", "Calendar"),
-    ("methode", "i-boussole", "Comment apprendre", "How to learn"),
-    ("chapitre-1", "1", "Introduction à l'IA", "Introduction to AI"),
-    ("chapitre-2", "2", "Python", "Python"),
-    ("chapitre-3", "3", "Types d'IA", "Types of AI"),
-    ("mini-projet", "i-ampoule", "Mini-projet", "Mini-project"),
-    ("td-tp", "i-crayon", "TD / TP corrigés", "Solved TD / TP"),
-    ("tables-rondes", "i-bulle", "Tables rondes", "Round tables"),
-    ("references", "i-livre", "Références", "References"),
-    ("glossaire", "Aa", "Glossaire", "Glossary"),
+    ("accueil", "i-maison", {"fr": "Accueil", "en": "Home", "ar": "الرئيسية"}),
+    ("fiche", "i-fiche", {"fr": "Fiche de la matière", "en": "Course card", "ar": "بطاقة المقياس"}),
+    ("parcours", "i-calendrier", {"fr": "Calendrier", "en": "Calendar", "ar": "الرزنامة"}),
+    ("methode", "i-boussole", {"fr": "Comment apprendre", "en": "How to learn", "ar": "كيف تتعلّم"}),
+    ("chapitre-1", "1", {"fr": "Introduction à l'IA", "en": "Introduction to AI", "ar": "مدخل إلى الذكاء الاصطناعي"}),
+    ("chapitre-2", "2", {"fr": "Python", "en": "Python", "ar": "بايثون"}),
+    ("chapitre-3", "3", {"fr": "Types d'IA", "en": "Types of AI", "ar": "أنواع الذكاء الاصطناعي"}),
+    ("mini-projet", "i-ampoule", {"fr": "Mini-projet", "en": "Mini-project", "ar": "المشروع المصغَّر"}),
+    ("td-tp", "i-crayon", {"fr": "TD / TP corrigés", "en": "Solved TD / TP", "ar": "حلول TD / TP"}),
+    ("tables-rondes", "i-bulle", {"fr": "Tables rondes", "en": "Round tables", "ar": "الموائد المستديرة"}),
+    ("references", "i-livre", {"fr": "Références", "en": "References", "ar": "المراجع"}),
+    ("glossaire", "Aa", {"fr": "Glossaire", "en": "Glossary", "ar": "المسرد"}),
 ]
 
 # Par langue : dossier des sources, dossier de sortie, préfixe des assets, libellés des deux nav.
@@ -44,6 +44,8 @@ LANGUES = {
            "nav": ("Sommaire (menu)", "Sommaire du cours")},
     "en": {"sources": SOURCES / "en", "sortie": DOCS / "en" / "index.html", "base": "../",
            "nav": ("Contents (menu)", "Course contents")},
+    "ar": {"sources": SOURCES / "ar", "sortie": DOCS / "ar" / "index.html", "base": "../",
+           "nav": ("المحتويات (القائمة)", "محتويات المقياس")},
 }
 
 PRISM = [
@@ -54,8 +56,8 @@ PRISM = [
 
 def nav(etiquette, langue):
     items = []
-    for cible, marque, texte_fr, texte_en in NAV:
-        texte = texte_en if langue == "en" else texte_fr
+    for cible, marque, textes in NAV:
+        texte = textes[langue]
         if marque.startswith("i-"):
             signe = f'<svg class="icone" aria-hidden="true"><use href="#{marque}"/></svg>'
         else:

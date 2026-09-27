@@ -385,4 +385,31 @@ html { scroll-behavior: smooth; scroll-padding-top: 88px; }
 .options-faits input { inline-size: 18px; block-size: 18px; accent-color: var(--lien); }
 
 :lang(en) .sommaire-chapitre::before { content: "In this section"; }
-.entete__langue { min-inline-size: 44px; padding-inline: var(--espace-3); }
+
+:lang(ar) .sommaire-chapitre::before { content: "في هذا القسم"; }
+[dir="rtl"] .progression { transform-origin: 100% 50%; }
+[dir="rtl"] .lecteur__jauge, [dir="rtl"] .lecteur__echelle, [dir="rtl"] .graphe-demo, [dir="rtl"] .reglages output { direction: ltr; }
+[dir="rtl"] .heros__titre { line-height: 1.25; }
+[dir="rtl"] .lecteur__mots { line-height: 2.3; }
+
+/* Sélecteur de langue */
+.langues { display: inline-flex; align-items: center; padding: 2px; border-radius: var(--rayon-pilule); border: var(--trait-controle) solid var(--ligne-forte); }
+.langues a {
+  display: inline-grid;
+  place-items: center;
+  min-inline-size: 36px;
+  min-block-size: 32px;
+  padding: 0 8px;
+  border-radius: var(--rayon-pilule);
+  color: var(--texte-doux);
+  font-family: var(--font-signal);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-decoration: none;
+}
+.langues a[lang="ar"] { font-family: var(--font-arabe); letter-spacing: 0; font-size: 15px; }
+.langues a:hover { color: var(--texte); }
+.langues a[aria-current="page"] { background: var(--texte); color: var(--fond); }
+@media (max-width: 400px) { .entete__marque small { display: none; } }
+.mot sup { unicode-bidi: isolate; direction: ltr; }
