@@ -19,6 +19,7 @@ Le programme officiel de la matière tient en trois pages : des intitulés de ch
 ## Le site
 
 - **En français, en anglais et en arabe** : `docs/index.html` (FR), `docs/en/index.html` (EN) et `docs/ar/index.html` (AR, de droite à gauche), avec un sélecteur FR / EN / عربي qui garde la leçon en cours.
+- **Guide de l'enseignant** (`docs/enseignant.html`, et `en/`, `ar/`) : par où commencer (même sans avoir jamais programmé), carte du cours, progression semaine par semaine, fiches de séance prêtes à l'emploi, activités pour la classe, sujet d'examen corrigé et grilles d'évaluation, charte d'usage de l'IA, bibliothèque de ressources classées.
 - **Accueil** : un lecteur de sentiments à lexique, à essayer sur une phrase (méthode du sujet 1).
 - **Comment apprendre ce cours** : habitudes de travail qui marchent, semaine type, méthode par chapitre, vocabulaire français–anglais, bon usage d'un assistant d'IA, préparation de l'examen.
 - **Fiche de la matière** et **calendrier** du semestre, avec renvois vers les parties du site.

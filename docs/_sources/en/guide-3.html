@@ -1,0 +1,559 @@
+<section class="chapitre" id="guide-evaluation" aria-labelledby="guide-evaluation-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">Teacher's guide · Assessment</p>
+    <h2 class="titre-section" id="guide-evaluation-titre">Assessing students</h2>
+    <p class="chapeau">Three principles, a complete exam paper with its solution and marking scheme, two assessment grids and ideas for quick checks: all you need to assess this course without inventing everything yourself.</p>
+    <ul class="puces"><li class="puce">Final exam</li><li class="puce">Grids</li><li class="puce">Continuous assessment</li></ul>
+  </header>
+
+  <nav class="sommaire-chapitre" aria-label="Contents: assessing students">
+    <ol>
+      <li><a href="#guide-evaluation-principes">Assessment principles</a></li>
+      <li><a href="#guide-evaluation-examen">A sample exam paper and its solution</a></li>
+      <li><a href="#guide-evaluation-grilles">Grids for the mini-project and the round tables</a></li>
+      <li><a href="#guide-evaluation-controle">Continuous assessment in a few minutes</a></li>
+    </ol>
+  </nav>
+
+  <article class="lecon" id="guide-evaluation-principes">
+    <h3>Assessment principles</h3>
+    <p>The syllabus only says: "Evaluation (identical to the regulations in force)". So the split between continuous assessment and the exam, any eliminatory mark and the exam timetable depend on your faculty's regulations. Check with your head of department before the first session, then announce these arrangements in writing. The tools on this page work with any split.</p>
+    <div class="grille-cartes">
+      <article class="carte">
+        <h4>Assess what the syllabus aims at</h4>
+        <p>Understanding the approaches to AI, using Python, processing a corpus, weighing the ethical issues: each test targets one of these objectives, and nothing that has not been practiced in class. That is why the paper below gives the derivative in exercise 3: we assess the algorithm, not differential calculus.</p>
+      </article>
+      <article class="carte">
+        <h4>Combine continuous assessment and the exam</h4>
+        <p>The written exam measures concepts and calculations well. It measures poorly how students run a project or take part in a debate. The mini-project, the round tables and the checks in tutorials (TD) cover the rest. Their weight depends on the regulations in force: do not invent percentages.</p>
+      </article>
+      <article class="carte">
+        <h4>Assess understanding, not code learned by heart</h4>
+        <p>Do not ask students to write a program from memory on paper: a missing parenthesis is not an error of reasoning. Ask them to read code, predict its output, change a line, redo an algorithm by hand, interpret a result.</p>
+      </article>
+    </div>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>What is assessed, how and when (suggested schedule)</caption>
+      <thead><tr><th scope="col">What is assessed</th><th scope="col">How</th><th scope="col">When</th></tr></thead>
+      <tbody>
+        <tr><td>The concepts of chapter 1: definitions, weak and strong AI, supervised and unsupervised learning</td><td>Short course questions, situations to classify, five-minute quizzes</td><td>Quiz in the session after chapter 1; final exam</td></tr>
+        <tr><td>Reading Python code (chapter 2)</td><td>Predict the output of a short program, fix an error, change a line</td><td>Mini-exercises in each lab session (TP) of chapter 2; final exam</td></tr>
+        <tr><td>The algorithms of chapter 3</td><td>Calculation by hand on a very small example: forward chaining, gradient descent, nearest neighbors, k-means</td><td>Exit ticket after each tutorial (TD); final exam</td></tr>
+        <tr><td>Processing a corpus</td><td>Mini-project: notebook, report, oral defence</td><td>Handed out at the end of chapter 2, submitted three weeks later; oral defence on the date you set</td></tr>
+        <tr><td>Critical thinking and ethics</td><td>Reflection question in the exam; round tables</td><td>Round tables spread over the semester; final exam</td></tr>
+        <tr><td>Oral argumentation</td><td>Round table observed with a grid</td><td>During each round table</td></tr>
+      </tbody>
+    </table></div>
+  </article>
+
+  <article class="lecon" id="guide-evaluation-examen">
+    <h3>A sample exam paper and its solution</h3>
+    <p>This paper covers the three chapters. It uses the types of exercise from the <a href="index.html#td-tp">tutorials (TD)</a> with new data: students who have understood will succeed without having memorized the solutions. Each calculation was done twice, and the program in exercise 5 was run. The marking scheme is only a suggestion.</p>
+    <dl class="definitions">
+      <div><dt>Duration</dt><dd>1 hour 30 minutes</dd></div>
+      <div><dt>Marking scheme</dt><dd>Suggested, out of 20 points: 4 + 4 + 3 + 3 + 3 + 3</dd></div>
+      <div><dt>Suggested conditions</dt><dd>No documents allowed; simple calculator allowed; phones and AI tools forbidden</dd></div>
+      <div><dt>Suggested time per exercise</dt><dd>15, 20, 12, 13, 12 and 18 minutes</dd></div>
+    </dl>
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Before you photocopy</p>
+      <p>The solutions are folded away under each exercise. For the student version, copy only the questions. If you change any data, redo the whole calculation: a modified k-means exercise can produce a tie between two distances, which makes the exercise ambiguous.</p>
+    </aside>
+
+    <div class="exercice" id="guide-examen-ex1">
+      <p class="exercice-num">Exercise 1 · Course questions (4 points)</p>
+      <div class="exercice-enonce">
+        <ol>
+          <li>Give a definition of artificial intelligence in two or three sentences. (1 point)</li>
+          <li>What distinguishes weak (or narrow) AI from strong (or general) AI? Give two real examples of weak AI. Does strong AI exist today? (1.5 points)</li>
+          <li>For each situation, say whether it is supervised or unsupervised learning, and justify your answer in one sentence. (1.5 points)
+            <ul>
+              <li>a) We have 400 poems whose period (Romanticism, Parnassianism, Symbolism) has been identified by specialists; we want to assign a period to 2,000 undated poems.</li>
+              <li>b) We want to sort the 300 answers to a survey on reading habits into groups, with no categories fixed in advance.</li>
+              <li>c) Using 1,000 press articles whose year of publication is known, we want to estimate the year of undated articles.</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+      <details class="corrige"><summary>Show the solution and marking scheme</summary>
+        <div class="corrige-corps">
+          <p><strong>1. Definition (1 point).</strong> Computing methods that enable a machine to perform tasks associated with human intelligence: recognizing, classifying, predicting, reasoning, producing language. 0.5 for the "intelligent" tasks, 0.5 for the idea of methods. Accept the definition based on agents (perceiving an environment and acting to achieve a goal).</p>
+          <p><strong>2. Weak AI and strong AI (1.5 points).</strong> 0.5: weak or narrow AI performs a limited task and cannot transfer its skill; strong or general AI would be capable of any human intellectual task, or even, in Searle's sense, would really have a mind. 0.5: two real examples, 0.25 each (machine translation, spam filter, character recognition, Deep Blue, AlphaGo, book recommendation). 0.5: no, no strong AI is recognized; discussing the debate on large language models and concluding that there is no consensus earns full marks. Give credit for, but do not require, the distinction made in the course between weak/strong (philosophical) and narrow/general (technical), which the syllabus confuses.</p>
+          <p><strong>3. Situations (1.5 points: 0.25 for the type and 0.25 for the justification, per situation).</strong> a) Supervised: the 400 dated poems are labeled examples; this is classification. b) Unsupervised: no category is given, and the algorithm forms the groups itself (clustering). c) Supervised: the known year of the 1,000 articles serves as the label; since the answer is a number, this is regression. A common trap in c): answering "unsupervised" because the articles to be dated have no label. But that label is exactly what the model predicts.</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="guide-examen-ex2">
+      <p class="exercice-num">Exercise 2 · Expert system with forward chaining (4 points)</p>
+      <div class="exercice-enonce">
+        <p>Consider the following rule base, where ∧ means "AND":</p>
+        <ul>
+          <li>R1: A → C</li>
+          <li>R2: B ∧ C → E</li>
+          <li>R3: C ∧ D → F</li>
+          <li>R4: E → F</li>
+          <li>R5: E ∧ F → G</li>
+          <li>R6: D → G</li>
+        </ul>
+        <dl class="definitions">
+          <div><dt>Order of the rules</dt><dd>R6 R5 R3 R4 R2 R1</dd></div>
+          <div><dt>Non-deducible facts</dt><dd>A, B, D</dd></div>
+          <div><dt>Initial fact base</dt><dd>A, B</dd></div>
+          <div><dt>Goal</dt><dd>G</dd></div>
+        </dl>
+        <p>Strategy: in each cycle, go through the rules in the given order and fire the first applicable rule that has not been fired yet. Add its conclusion to the fact base, then start again from the top of the list. Stop as soon as the goal is in the base, or when no rule is applicable.</p>
+        <ol>
+          <li>Draw the graph that corresponds to the rules. (1 point)</li>
+          <li>Run the system in forward chaining: for each cycle, give the rules examined, the rule fired and the resulting fact base. Is the goal reached? (2 points)</li>
+          <li>Why do R3 and R6 never fire? What would happen if D were added to the initial base? (1 point)</li>
+        </ol>
+      </div>
+      <details class="corrige"><summary>Show the solution and marking scheme</summary>
+        <div class="corrige-corps">
+          <p><strong>1. The graph (1 point).</strong> Each fact is a rectangle and each rule a circle; an arrow goes from each premise to the rule, then from the rule to its conclusion. 0.5 if the six rules are correctly connected; 0.5 if the graph shows that the premises of the same rule are linked by AND and that A, B and D receive no arrow (non-deducible facts). Accept any clear representation.</p>
+          <figure class="schema">
+            <svg viewBox="0 0 820 365" role="img" aria-labelledby="guide-eval-graphe-t guide-eval-graphe-d">
+              <title id="guide-eval-graphe-t">Graph of rules R1 to R6 in exercise 2</title>
+              <desc id="guide-eval-graphe-d">Facts in rectangles, rules in circles. Path followed: A to R1, R1 to C; B and C to R2, R2 to E; E to R4, R4 to F; E and F to R5, R5 to G. Rules never fired: C and D to R3, R3 to F; D to R6, R6 to G.</desc>
+              <defs><marker id="guide-eval-fleche" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path class="svg-pointe" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+              <!-- chemin suivi -->
+              <line class="svg-trait-accent" x1="70" y1="150" x2="121" y2="150" marker-end="url(#guide-eval-fleche)"/>
+              <line class="svg-trait-accent" x1="158" y1="150" x2="209" y2="150" marker-end="url(#guide-eval-fleche)"/>
+              <line class="svg-trait-accent" x1="250" y1="150" x2="301" y2="150" marker-end="url(#guide-eval-fleche)"/>
+              <line class="svg-trait-accent" x1="320" y1="67" x2="320" y2="131" marker-end="url(#guide-eval-fleche)"/>
+              <line class="svg-trait-accent" x1="338" y1="150" x2="389" y2="150" marker-end="url(#guide-eval-fleche)"/>
+              <line class="svg-trait-accent" x1="430" y1="150" x2="481" y2="150" marker-end="url(#guide-eval-fleche)"/>
+              <line class="svg-trait-accent" x1="518" y1="150" x2="569" y2="150" marker-end="url(#guide-eval-fleche)"/>
+              <line class="svg-trait-accent" x1="610" y1="150" x2="661" y2="150" marker-end="url(#guide-eval-fleche)"/>
+              <line class="svg-trait-accent" x1="698" y1="150" x2="749" y2="150" marker-end="url(#guide-eval-fleche)"/>
+              <path class="svg-trait-accent" d="M410,133 V100 H680 V131" marker-end="url(#guide-eval-fleche)"/>
+              <!-- règles qui dépendent de D -->
+              <path class="svg-trait" d="M230,167 V250 H391" marker-end="url(#guide-eval-fleche)"/>
+              <line class="svg-trait" x1="410" y1="313" x2="410" y2="269" marker-end="url(#guide-eval-fleche)"/>
+              <path class="svg-trait" d="M428,250 H590 V168" marker-end="url(#guide-eval-fleche)"/>
+              <path class="svg-trait" d="M430,330 H770 V269" marker-end="url(#guide-eval-fleche)"/>
+              <line class="svg-trait" x1="770" y1="232" x2="770" y2="168" marker-end="url(#guide-eval-fleche)"/>
+              <!-- faits -->
+              <rect class="svg-noeud" x="30" y="133" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="50" y="155" text-anchor="middle">A</text>
+              <rect class="svg-noeud" x="300" y="33" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="320" y="55" text-anchor="middle">B</text>
+              <rect class="svg-noeud" x="210" y="133" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="230" y="155" text-anchor="middle">C</text>
+              <rect class="svg-noeud" x="390" y="313" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="410" y="335" text-anchor="middle">D</text>
+              <rect class="svg-noeud" x="390" y="133" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="410" y="155" text-anchor="middle">E</text>
+              <rect class="svg-noeud" x="570" y="133" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="590" y="155" text-anchor="middle">F</text>
+              <rect class="svg-noeud" x="750" y="133" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="770" y="155" text-anchor="middle">G</text>
+              <!-- règles -->
+              <circle class="svg-noeud-accent" cx="140" cy="150" r="18"/>
+              <text class="svg-texte" x="140" y="155" text-anchor="middle">R1</text>
+              <circle class="svg-noeud-accent" cx="320" cy="150" r="18"/>
+              <text class="svg-texte" x="320" y="155" text-anchor="middle">R2</text>
+              <circle class="svg-noeud" cx="410" cy="250" r="18"/>
+              <text class="svg-texte" x="410" y="255" text-anchor="middle">R3</text>
+              <circle class="svg-noeud-accent" cx="500" cy="150" r="18"/>
+              <text class="svg-texte" x="500" y="155" text-anchor="middle">R4</text>
+              <circle class="svg-noeud-accent" cx="680" cy="150" r="18"/>
+              <text class="svg-texte" x="680" y="155" text-anchor="middle">R5</text>
+              <circle class="svg-noeud" cx="770" cy="250" r="18"/>
+              <text class="svg-texte" x="770" y="255" text-anchor="middle">R6</text>
+              <!-- annotations -->
+              <text class="svg-texte-doux" x="30" y="190">initial fact</text>
+              <text class="svg-texte-doux" x="350" y="55">initial fact</text>
+              <text class="svg-texte-doux" x="440" y="316">non-deducible, absent</text>
+              <text class="svg-texte-doux" x="770" y="122" text-anchor="middle">goal</text>
+              <text class="svg-texte-doux" x="30" y="290">Rectangle: fact · circle: rule</text>
+              <text class="svg-texte-doux" x="30" y="312">Colored line: path followed</text>
+              <text class="svg-texte-doux" x="30" y="334">Colored circle: rule fired</text>
+            </svg>
+            <figcaption>Expected graph. Two arrows enter R2 (B and C) and R5 (E and F): these premises are linked by AND. Two rules lead to F (R3 and R4) and two to G (R5 and R6): one of them is enough.</figcaption>
+          </figure>
+          <p><strong>2. The run (2 points, 0.5 per correct cycle).</strong></p>
+          <div class="tableau-defilant"><table class="tableau">
+            <caption>Forward chaining from the base {A, B}, goal G</caption>
+            <thead><tr><th scope="col">Cycle</th><th scope="col">Rules examined</th><th scope="col">Rule fired</th><th scope="col">Fact base after</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>R6 (D absent), R5 (E and F absent), R3 (C and D absent), R4 (E absent), R2 (C absent), R1 (A present)</td><td>R1</td><td>A, B, C</td></tr>
+              <tr><td>2</td><td>R6, R5 (E absent), R3 (D absent), R4 (E absent), R2 (B and C present)</td><td>R2</td><td>A, B, C, E</td></tr>
+              <tr><td>3</td><td>R6, R5 (F absent), R3 (D absent), R4 (E present)</td><td>R4</td><td>A, B, C, E, F</td></tr>
+              <tr><td>4</td><td>R6, R5 (E and F present)</td><td>R5</td><td>A, B, C, E, F, G: goal reached</td></tr>
+            </tbody>
+          </table></div>
+          <p>The goal G is reached in the fourth cycle; the rules fired are, in order, R1, R2, R4, R5. Also accept the strategy used in the tutorial (TD), which goes through the whole list before starting again: here it fires the same rules, in the same order.</p>
+          <p><strong>3. Interpretation (1 point).</strong> R3 and R6 require D, a non-deducible fact (no rule concludes it) that is missing from the initial base: they can never fire (0.5). If D is added, R6, first in the order, is applicable from the first cycle: G is established immediately, by a single rule (0.5). The order of the rules decides the path followed.</p>
+          <p>A note for you: the chosen order puts first the rules that conclude last, so the engine has to go back to the top of the list four times. This shows whether the student has understood the loop of the inference engine (<a href="index.html#c3-symbolique">chapter 3</a>).</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="guide-examen-ex3">
+      <p class="exercice-num">Exercise 3 · Gradient descent (3 points)</p>
+      <div class="exercice-enonce">
+        <p>We are looking for the minimum of the error function J(w) = (w − 2)² + 1. You may take as given that its derivative is J′(w) = 2(w − 2). At each step, gradient descent applies:</p>
+        <p class="formule">wₖ₊₁ = wₖ − η · J′(wₖ)</p>
+        <ol>
+          <li>With w₀ = 6 and η = 0.25, calculate w₁ and w₂, as well as J(w₀), J(w₁) and J(w₂). (1.5 points)</li>
+          <li>For which value of w is the error smallest, and what is the value of J there? What is the derivative at this point? (0.5 point)</li>
+          <li>Take two steps again from w₀ = 6, this time with η = 1. What do you notice? What is the role of η? (1 point)</li>
+        </ol>
+      </div>
+      <details class="corrige"><summary>Show the solution and marking scheme</summary>
+        <div class="corrige-corps">
+          <div class="tableau-defilant"><table class="tableau">
+            <caption>Two steps of gradient descent with η = 0.25</caption>
+            <thead><tr><th scope="col">k</th><th scope="col">wₖ</th><th scope="col">J(wₖ)</th><th scope="col">J′(wₖ)</th><th scope="col">wₖ₊₁ = wₖ − 0.25 × J′(wₖ)</th></tr></thead>
+            <tbody>
+              <tr><td>0</td><td>6</td><td>(6 − 2)² + 1 = 17</td><td>2 × 4 = 8</td><td>6 − 2 = 4</td></tr>
+              <tr><td>1</td><td>4</td><td>(4 − 2)² + 1 = 5</td><td>2 × 2 = 4</td><td>4 − 1 = 3</td></tr>
+              <tr><td>2</td><td>3</td><td>(3 − 2)² + 1 = 2</td><td>2 × 1 = 2</td><td>not asked (2.5)</td></tr>
+            </tbody>
+          </table></div>
+          <p><strong>1. (1.5 points)</strong> w₁ = 4 and w₂ = 3 (0.5 each); J(w₀) = 17, J(w₁) = 5, J(w₂) = 2 (0.5 for all three). The derivative is positive because we start to the right of the minimum: w decreases and the error goes down at each step.</p>
+          <p><strong>2. (0.5 point)</strong> The minimum is at w = 2, where J′(2) = 0: the slope is zero at the bottom of the valley. There, J equals 1, not 0: the "+ 1" raises the curve without moving its minimum.</p>
+          <p><strong>3. (1 point)</strong> J′(6) = 8, so w₁ = 6 − 8 = −2; J′(−2) = 2 × (−4) = −8, so w₂ = −2 + 8 = 6 (0.5). We are back at the starting point: w oscillates endlessly between 6 and −2, and J stays at 17. The learning rate η sets the length of the step; if it is too large, the step jumps over the minimum (0.5). Remark, not required: wₖ₊₁ − 2 = (1 − 2η)(wₖ − 2), so the distance to the minimum is halved with η = 0.25 (4, 2, 1) and only changes sign with η = 1.</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="guide-examen-ex4">
+      <p class="exercice-num">Exercise 4 · Clustering with k-means (3 points)</p>
+      <div class="exercice-enonce">
+        <p>The six short stories in a collection have 2, 4, 6, 11, 13 and 18 pages respectively (fictional data). We want to divide them into k = 2 groups with the k-means algorithm, starting from the centers μ₁ = 4 and μ₂ = 6.</p>
+        <ol>
+          <li>Assignment: for each story, give its distance to μ₁ and to μ₂, then its group. (1 point)</li>
+          <li>Update: calculate the new centers. (1 point)</li>
+          <li>Redo the assignment with these new centers. Do the groups change? Has the algorithm finished? (1 point)</li>
+        </ol>
+      </div>
+      <details class="corrige"><summary>Show the solution and marking scheme</summary>
+        <div class="corrige-corps">
+          <div class="tableau-defilant"><table class="tableau">
+            <caption>First assignment, with μ₁ = 4 and μ₂ = 6</caption>
+            <thead><tr><th scope="col">Pages</th><th scope="col">Distance to μ₁ = 4</th><th scope="col">Distance to μ₂ = 6</th><th scope="col">Group</th></tr></thead>
+            <tbody>
+              <tr><td>2</td><td>2</td><td>4</td><td>1</td></tr>
+              <tr><td>4</td><td>0</td><td>2</td><td>1</td></tr>
+              <tr><td>6</td><td>2</td><td>0</td><td>2</td></tr>
+              <tr><td>11</td><td>7</td><td>5</td><td>2</td></tr>
+              <tr><td>13</td><td>9</td><td>7</td><td>2</td></tr>
+              <tr><td>18</td><td>14</td><td>12</td><td>2</td></tr>
+            </tbody>
+          </table></div>
+          <p><strong>1. (1 point)</strong> Group 1 = {2, 4}, group 2 = {6, 11, 13, 18}. Deduct 0.25 for each wrong assignment. Accept the shortcut of comparing each value with the midpoint between the two centers, here 5.</p>
+          <p><strong>2. (1 point)</strong> μ₁ = (2 + 4) / 2 = 3; μ₂ = (6 + 11 + 13 + 18) / 4 = 48 / 4 = 12 (0.5 each).</p>
+          <p><strong>3. (1 point)</strong> With μ₁ = 3 and μ₂ = 12, the distances are: 2 → 1 and 10; 4 → 1 and 8; 6 → 3 and 6; 11 → 8 and 1; 13 → 10 and 1; 18 → 15 and 6. The 6-page story moves to group 1 (0.5): the groups have changed, so the algorithm has not finished (0.5).</p>
+          <p>The next step, which the best students will give: group 1 = {2, 4, 6}, μ₁ = 12 / 3 = 4; group 2 = {11, 13, 18}, μ₂ = 42 / 3 = 14. With 4 and 14 (midpoint 9), nothing changes any more: the algorithm stops with the short stories in one group and the long ones in the other. The starting centers were too close together and gave an unbalanced first split: the result depends on the starting point.</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="guide-examen-ex5">
+      <p class="exercice-num">Exercise 5 · Reading a Python program (3 points)</p>
+      <div class="exercice-enonce">
+        <figure class="code">
+          <figcaption class="code-legende">enquete_lecture.py</figcaption>
+          <pre><code class="language-python">import pandas as pd
+
+# Fictional survey: books read during the year by six students
+df = pd.DataFrame({
+    "prenom": ["Amel", "Yacine", "Sara", "Karim", "Lina", "Omar"],
+    "langue": ["arabe", "français", "arabe", "anglais", "français", "arabe"],
+    "livres": [12, 5, 8, 3, 9, 4],
+})
+
+print(len(df), df["livres"].sum())
+lecteurs = df[df["livres"] &gt;= 8]
+print(lecteurs["prenom"].tolist())
+print(df["langue"].value_counts()["arabe"])
+
+moyennes = df.groupby("langue")["livres"].mean()
+for langue, moyenne in moyennes.items():
+    print(langue, moyenne)
+
+top = df.sort_values("livres", ascending=False).head(2)
+print(top["prenom"].tolist())</code></pre>
+        </figure>
+        <ol>
+          <li>Write down exactly what this program displays. (2 points)</li>
+          <li>Is the variable <code>lecteurs</code> a list, a Series or a DataFrame? Justify your answer. (0.5 point)</li>
+          <li>Write one line that displays the list of first names of the students whose language is French. (0.5 point)</li>
+        </ol>
+      </div>
+      <details class="corrige"><summary>Show the solution and marking scheme</summary>
+        <div class="corrige-corps">
+          <p><strong>1. (2 points)</strong> Output obtained by running the program (Python 3.11, identical with pandas 2.2 and 3.0):</p>
+          <figure class="code">
+            <figcaption class="code-legende">Expected output</figcaption>
+            <pre class="sortie"><samp>6 41
+['Amel', 'Sara', 'Lina']
+3
+anglais 3.0
+arabe 8.0
+français 7.0
+['Amel', 'Lina']</samp></pre>
+          </figure>
+          <ul>
+            <li>0.25: six rows; 12 + 5 + 8 + 3 + 9 + 4 = 41.</li>
+            <li>0.5: "≥ 8" includes Sara (8); the first names keep the order of the table.</li>
+            <li>0.25: "arabe" appears three times (Amel, Sara, Omar).</li>
+            <li>0.5: <code>groupby</code> sorts the languages in alphabetical order; means 3 / 1 = 3.0, (12 + 8 + 4) / 3 = 8.0, (5 + 9) / 2 = 7.0. A mean is displayed with one decimal place.</li>
+            <li>0.5: descending sort, then the first two rows: Amel (12), Lina (9).</li>
+          </ul>
+          <p>Be lenient on form (quotation marks, square brackets, "3" instead of "3.0") and strict on content: we are checking that the student knows what each line does.</p>
+          <p><strong>2. (0.5 point)</strong> A DataFrame: filtering a table with a condition keeps whole rows, with all their columns. <code>lecteurs["prenom"]</code> is a Series, and <code>tolist()</code> turns it into a list.</p>
+          <p><strong>3. (0.5 point)</strong> <code>print(df[df["langue"] == "français"]["prenom"].tolist())</code>, which displays <code>['Yacine', 'Lina']</code>. Accept any equivalent form, for example one that uses an intermediate variable. Deduct nothing for a typing error that has no effect on the reasoning.</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="guide-examen-ex6">
+      <p class="exercice-num">Exercise 6 · Reflection question (3 points)</p>
+      <div class="exercice-enonce">
+        <p>Answer one of the two questions in fifteen to twenty lines. Draw on at least two concepts from the course and on one specific example.</p>
+        <ul>
+          <li><strong>Topic A.</strong> "Since an AI tool can analyze a thousand novels in a minute, literary researchers no longer need to read them." Discuss.</li>
+          <li><strong>Topic B.</strong> A master's student used a chatbot to summarize her sources and translate passages from her corpus, without mentioning it in her thesis. What problems does this raise? What rules should she have followed?</li>
+        </ul>
+      </div>
+      <details class="corrige"><summary>Show the solution and marking scheme</summary>
+        <div class="corrige-corps">
+          <p><strong>Expected points, topic A.</strong> Distant reading and close reading (Moretti): the first reveals trends, and the second is still needed to interpret them. The tool produces clues, and the research question gives them meaning; groups formed without labels must be interpreted by rereading texts. Limits: bias, low-resource languages, opacity. Possible example: the study by Cafiero and Camps (2019) on Molière and Corneille, which feeds a debate among literary historians without settling it on its own. Expected conclusion: a complement, not a substitute.</p>
+          <p><strong>Expected points, topic B.</strong> Transparency: any use must be declared (tool, version, date, use, instructions); presenting a generated text as your own is plagiarism. Verification: automatic summaries and translations contain errors and inventions, and must be checked against the originals. Copyright and data: unpublished or protected texts and personal data must not be uploaded online. UNESCO principles (2021): transparency, responsibility, human oversight. See the lesson <a href="index.html#c1-perspectives">Outlook, limits and ethics</a>.</p>
+          <div class="tableau-defilant"><table class="tableau">
+            <caption>Suggested marking scheme for the reflection question</caption>
+            <thead><tr><th scope="col">Criterion</th><th scope="col">Points</th></tr></thead>
+            <tbody>
+              <tr><td>The question is understood and a clear position is stated</td><td>0.5</td></tr>
+              <tr><td>At least two concepts from the course, used correctly</td><td>1</td></tr>
+              <tr><td>A specific example (corpus, study, real case)</td><td>0.5</td></tr>
+              <tr><td>Nuance: an objection or a limit is discussed</td><td>0.5</td></tr>
+              <tr><td>Clear and organized expression</td><td>0.5</td></tr>
+            </tbody>
+          </table></div>
+        </div></details>
+    </div>
+
+    <h4>Marking tips</h4>
+    <ul>
+      <li>Mark exercise by exercise (all the scripts for exercise 1, then all of them for exercise 2): this keeps you consistent.</li>
+      <li>Penalize a calculation error only once: if a student gets μ₂ wrong but then reasons correctly with that value, give the points for the rest.</li>
+      <li>Judge content before form, except in the "expression" criterion of exercise 6: mastery of French is not the subject of this course.</li>
+    </ul>
+  </article>
+
+  <article class="lecon" id="guide-evaluation-grilles">
+    <h3>Grids for the mini-project and the round tables</h3>
+    <p>A grid makes the mark explainable, and two markers reach similar marks. Hand it out with the assignment, not afterwards. The points are suggestions, out of 20: scale them to the weight that the regulations in force give each piece of work.</p>
+    <h4>The mini-project</h4>
+    <p>The grid uses the criteria of the <a href="index.html#mp-evaluation">self-assessment grid</a> that students already have, grouped under six headings. For a criterion marked out of 3: insufficient 0 to 0.5; fair 1 to 1.5; good 2 to 2.5; very good 3. For a criterion marked out of 4: 0 to 1; 1.5 to 2; 2.5 to 3; 3.5 to 4.</p>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Assessment grid for the mini-project (suggested points out of 20)</caption>
+      <thead><tr><th scope="col">Criterion</th><th scope="col">Insufficient</th><th scope="col">Fair</th><th scope="col">Good</th><th scope="col">Very good</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Research question (/3)</th><td>Missing, or only a topic ("feelings on Facebook")</td><td>Stated, but too broad or not clearly linked to the data</td><td>Precise, linked to the humanities and social sciences (SHS) or to literature, feasible in three weeks</td><td>Precise, with a hypothesis that the results make it possible to discuss</td></tr>
+        <tr><th scope="row">Data and ethics (/3)</th><td>Unknown source; personal data not anonymized</td><td>Source given, but collection and cleaning not described</td><td>Source, date and collection given; anonymization and cleaning described</td><td>In addition: limits of the corpus discussed, copyright and consent addressed, AI use declared</td></tr>
+        <tr><th scope="row">Method and code (/4)</th><td>The notebook does not run, or the student cannot explain their code</td><td>Runs with errors or unnecessary cells; method not justified</td><td>Runs from start to finish; code commented; parameters given</td><td>In addition: choices justified, results checked on a sample read by hand</td></tr>
+        <tr><th scope="row">Results and interpretation (/4)</th><td>Figures or charts without comment; unfounded conclusions</td><td>Charts hard to read; the interpretation repeats the figures</td><td>Tables and charts with titles and comments; return to the texts or the data</td><td>Nuanced interpretation, in proportion to the corpus, illustrated by examples that were read</td></tr>
+        <tr><th scope="row">Report (/3)</th><td>No structure; references missing</td><td>Unbalanced structure; incomplete references</td><td>Recommended structure followed, 4 to 6 pages, complete references</td><td>Precise writing, numbered figures, all references checked</td></tr>
+        <tr><th scope="row">Oral defence (/3)</th><td>Reads their notes; cannot explain a code cell</td><td>Clear presentation, hesitant answers on the method</td><td>Keeps to time, explains a code cell and a limitation</td><td>Answers precisely about their own results; knows what they would do differently</td></tr>
+      </tbody>
+    </table></div>
+    <p>For group work, mark the report and the code collectively and the oral defence individually: each member answers a question on a part they did not present.</p>
+
+    <h4>The round table</h4>
+    <p>Each participant is marked individually, according to the <a href="index.html#tr-methode">preparation rules</a> that students know. During the debate, use one grid per participant and write down one observed fact per criterion; award the points right afterwards. Per criterion out of 4: 0 to 1; 1.5 to 2; 2.5 to 3; 3.5 to 4.</p>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Observation grid for a round table (suggested points out of 20)</caption>
+      <thead><tr><th scope="col">Criterion</th><th scope="col">Insufficient</th><th scope="col">Fair</th><th scope="col">Good</th><th scope="col">Very good</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Preparation (/4)</th><td>Has not read the documents</td><td>General ideas, no specific example</td><td>Two arguments and one example prepared</td><td>Clear notes, an objection anticipated with its answer</td></tr>
+        <tr><th scope="row">Argumentation (/4)</th><td>Claims without justification</td><td>Arguments placed side by side</td><td>Arguments supported by examples</td><td>Arguments ranked, nuanced, linked to course concepts</td></tr>
+        <tr><th scope="row">Listening and response (/4)</th><td>Ignores the other speakers</td><td>Repeats their own position</td><td>Takes up and discusses the others' arguments</td><td>Fairly restates an opposing position before answering it</td></tr>
+        <tr><th scope="row">Sources (/4)</th><td>No source, or an unchecked source, including one provided by an AI</td><td>Vague source ("I read it on the Internet")</td><td>At least one identified source: author, title, date</td><td>Several sources checked and compared</td></tr>
+        <tr><th scope="row">Expression (/4)</th><td>Reads a text; hard to follow</td><td>Understandable but hesitant</td><td>Clear, keeps to their speaking time</td><td>Clear, precise, correct technical terms</td></tr>
+      </tbody>
+    </table></div>
+    <p>For the special roles: the moderator is judged under "listening and response" on how they give the floor and restart the discussion; the rapporteur, under "argumentation", on a summary that separates agreements, disagreements and open questions.</p>
+  </article>
+
+  <article class="lecon" id="guide-evaluation-controle">
+    <h3>Continuous assessment in a few minutes</h3>
+    <p>These checks show where the class stands before it is too late, with almost no marking. If your faculty has a continuous assessment mark, they can count toward it under the conditions it sets.</p>
+    <div class="grille-cartes">
+      <article class="carte">
+        <h4>The five-minute quiz</h4>
+        <p>At the start of the session, ask three questions on the previous session, on half a sheet of paper. Students swap sheets and mark them while you give the answers on the board.</p>
+        <p>Example after chapter 1: 1) Who proposed the "imitation game" in 1950? 2) Is a spam filter narrow or general AI? 3) Grouping 200 survey answers with no categories: supervised or unsupervised?</p>
+      </article>
+      <article class="carte">
+        <h4>The exit ticket</h4>
+        <p>Three minutes before the end, each student writes one thing they understood and one question they still have, and answers one targeted question. Read the tickets in ten minutes; open the next session with the most common difficulty.</p>
+        <p>Example after gradient descent: "If the derivative is negative, does w increase or decrease? Why?"</p>
+      </article>
+      <article class="carte">
+        <h4>Mini-exercises in lab sessions (TP)</h4>
+        <p>Three quick formats: predict the output before running the code, fix code that contains an error, change a line to get a different result.</p>
+        <p>Example: <code>titres = ["Nedjma", "Al-Ayyam", "Bel-Ami"]</code>, then <code>titres.append("Frankenstein")</code>, then <code>print(len(titres), titres[-1])</code>. Answer: <code>4 Frankenstein</code>. For a fixing exercise, write <code>df["Livres"]</code> instead of <code>df["livres"]</code> and ask students to read the last line of the <code>KeyError</code> message.</p>
+      </article>
+      <article class="carte">
+        <h4>Peer review</h4>
+        <p>Two students swap the outline of their mini-project (research question, planned data) or the draft of their report. Each one fills in the <a href="index.html#mp-evaluation">self-assessment grid</a> for the other and notes two strengths and two questions.</p>
+        <p>If you mark the exercise, mark the quality of the review, never the work reviewed.</p>
+      </article>
+    </div>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">Key points</p>
+      <ul>
+        <li>Marking arrangements depend on the regulations in force: find out what they are, then announce them in writing.</li>
+        <li>Assess understanding: reading, predicting, calculating by hand, interpreting.</li>
+        <li>Marking schemes and grids are suggestions; hand out the grids together with the assignment.</li>
+        <li>If you change any data in an exercise, you must redo the whole solution.</li>
+      </ul>
+    </aside>
+  </article>
+</section>
+
+<section class="chapitre" id="guide-ia" aria-labelledby="guide-ia-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">Teacher's guide · Generative AI</p>
+    <h2 class="titre-section" id="guide-ia-titre">Generative AI in your classroom</h2>
+    <p class="chapeau">Your students use chatbots such as ChatGPT. Here you will find a charter ready to hand out, assignments that keep their meaning despite these tools, and careful ways to use them when you prepare your classes.</p>
+    <ul class="puces"><li class="puce">Charter</li><li class="puce">Assignment design</li><li class="puce">Class preparation</li></ul>
+  </header>
+
+  <nav class="sommaire-chapitre" aria-label="Contents: generative AI in your classroom">
+    <ol>
+      <li><a href="#guide-ia-charte">A usage charter for the class</a></li>
+      <li><a href="#guide-ia-devoirs">Assignments that keep their meaning</a></li>
+      <li><a href="#guide-ia-enseignant">Using an assistant to prepare your classes</a></li>
+    </ol>
+  </nav>
+
+  <article class="lecon" id="guide-ia-charte">
+    <h3>A usage charter for the class</h3>
+    <p>A total ban cannot be enforced; allowing everything empties assignments of their meaning. So hand out a charter at the very first session. This one follows the four rules of the lesson <a href="index.html#c1-perspectives">Outlook, limits and ethics</a> (personal data, copyright, transparency, verification) and the advice on the <a href="index.html#me-assistant">Study method</a> page. Your faculty's own rules, if there are any, take precedence. The round table <a href="index.html#tr-perspectives">The outlook for AI</a>, which ends with a charter, lets you amend it with the class.</p>
+    <h4>Preamble, to read to the students</h4>
+    <p>In this course, an AI tool can help you learn; it cannot learn for you. Your marks measure what you have understood. You must be able to explain everything you hand in, orally, without the tool.</p>
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>What is allowed</h4>
+        <ul>
+          <li>Asking for an explanation of a course concept, an extra example, a simpler rewording.</li>
+          <li>Getting the tool to quiz you and to correct your own answers.</li>
+          <li>Getting an error message or a piece of code explained, line by line.</li>
+          <li>Getting help to fix your own code, provided you can explain the fix.</li>
+          <li>Translating documentation written in English, in order to understand it.</li>
+          <li>Getting the spelling of your own text corrected, and declaring it.</li>
+        </ul>
+      </div>
+      <div class="comparaison-col">
+        <h4>What is forbidden</h4>
+        <ul>
+          <li>Using an AI tool during an exam, a quiz or written work in class, unless told otherwise.</li>
+          <li>Handing in a generated text, code or analysis as your own, even if reworded.</li>
+          <li>Citing a reference, quotation, date or figure provided by a tool without checking it in the source.</li>
+          <li>Uploading personal data (survey answers, private messages) or unpublished or protected texts to an online service.</li>
+          <li>Reading out a text produced by a tool during a round table or an oral defence.</li>
+          <li>Failing to declare a use.</li>
+        </ul>
+      </div>
+    </div>
+    <h4>How to declare use</h4>
+    <p>Every piece of work handed in (mini-project report, round table summary) ends with a "declaration of use of AI tools", even when the answer is "none". It includes:</p>
+    <dl class="definitions">
+      <div><dt>Tool</dt><dd>Name and version, or "free online version"</dd></div>
+      <div><dt>Date</dt><dd>Day or period of use</dd></div>
+      <div><dt>Use</dt><dd>What was asked: explanation, code correction, translation, rewording</dd></div>
+      <div><dt>Instructions</dt><dd>The main requests made, copied into an appendix</dd></div>
+      <div><dt>Verification</dt><dd>How the result was checked</dd></div>
+    </dl>
+    <aside class="encadre encadre--exemple">
+      <p class="encadre-titre">Sample declaration</p>
+      <p>"I used a chatbot (free online version, November 2025) to understand a pandas error message and to translate two paragraphs of the scikit-learn documentation. My requests are in the appendix. I checked the fix by running the whole notebook again. The choice of corpus, the analysis, the interpretation and the writing are my own."</p>
+    </aside>
+    <h4>If a rule is broken</h4>
+    <p>Start with a conversation: ask the student to explain their work. Proven cheating falls under the institution's rules. In Algeria, ministerial order no. 933 of 28 July 2016 sets the rules for preventing and combating plagiarism. Check the applicable regulations with your department before you announce a sanction.</p>
+  </article>
+
+  <article class="lecon" id="guide-ia-devoirs">
+    <h3>Assignments that keep their meaning</h3>
+    <p>Assume that any text written at home may have been produced by a tool. Rather than trying to detect it, move the evidence of learning toward what the tool cannot do in the student's place: explaining orally, showing a process, working on their own data, commenting on their own results.</p>
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Detectors are not reliable</p>
+      <p>Software that claims to spot generated text is often wrong. OpenAI withdrew its own detector in 2023 because it was not accurate enough. A study by Weixin Liang and co-authors (<em>Patterns</em>, 2023) showed that these tools often wrongly label as "generated" texts written in English by people whose native language is not English. A detector score proves nothing; a conversation with the student about their work tells you more.</p>
+    </aside>
+    <h4>Five levers</h4>
+    <ul>
+      <li><strong>The oral defence of the mini-project</strong>, already part of the <a href="index.html#mp-livrables">deliverables</a>, is the strongest lever. Ask questions that only the author can answer: "Show the cell that cleans the data and explain each line." "Change k = 3 to k = 4 in front of me: what changes?" "Read a text from group 2: why is it there?"</li>
+      <li><strong>The logbook</strong>: one dated entry per work session, in three lines (what I tried, what failed, what I decided and why). Example: "14 November. VADER rates ironic messages in darja written in Latin script as positive. I am reading 30 messages by hand to measure the problem." Mark regularity and clear thinking, not style.</li>
+      <li><strong>The personal corpus</strong>: each student or group works on data they have gathered themselves. For example: the editorials of an Algerian daily newspaper over one week, the poems of an author studied in another course of the master's, or the anonymous answers to a questionnaire given, with consent, to their own year group. A tool can help with the code, but it does not know this corpus, and interpreting it requires having read it.</li>
+      <li><strong>Work in class</strong>: calculations by hand in tutorials (TD), "predict before you run" in lab sessions (TP), fifteen minutes of writing on a course question. Homework becomes practice, and cheating becomes less worthwhile.</li>
+      <li><strong>Questions about their own results</strong>: "Quote three messages that your model misclassified and explain each error." "Your group 3 brings together two texts that seem unrelated: what do they share in the data?"</li>
+    </ul>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Turning a fragile assignment into a robust one</caption>
+      <thead><tr><th scope="col">Fragile assignment</th><th scope="col">Robust assignment</th></tr></thead>
+      <tbody>
+        <tr><td>Write a report on the history of AI.</td><td>Build a timeline of ten dates from chapter 1, then defend orally, in three minutes, the date that matters most for literary studies.</td></tr>
+        <tr><td>Write a program that counts the words in a text.</td><td>Here is a program that counts words: predict its output, then change it in class so that it ignores stop words.</td></tr>
+        <tr><td>Analyze the sentiment of messages about a current topic.</td><td>Analyze 50 to 200 messages that you have collected (source and dates given) and comment on three misclassified messages.</td></tr>
+        <tr><td>Explain the k-means algorithm.</td><td>Do one iteration by hand on these six values, then explain in your own words why the result depends on the starting centers.</td></tr>
+      </tbody>
+    </table></div>
+    <aside class="encadre encadre--shs">
+      <p class="encadre-titre">An exercise that uses the tool instead of avoiding it</p>
+      <p>Ask a chatbot yourself to explain a course concept, for example non-deducible facts. In class, students look for the errors, inaccuracies and unverifiable claims in its answer, then correct them using the course. They learn the concept and also how to read these tools critically. Read the answer first, so that you know what they should find.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-ia-enseignant">
+    <h3>Using an assistant to prepare your classes</h3>
+    <p>An AI assistant saves time, especially when the technical part of a course is unfamiliar to you. The rule is the same as for your students: it proposes, you check, and you remain responsible for what you hand out.</p>
+    <div class="grille-cartes">
+      <article class="carte">
+        <h4>Exercise variants</h4>
+        <p>For a resit, or to give different papers to different groups, ask for variants of a tutorial (TD) exercise. Redo each solution yourself: calculation errors are common.</p>
+      </article>
+      <article class="carte">
+        <h4>Quiz questions</h4>
+        <p>An assistant quickly produces multiple-choice questions with plausible distractors. Check that only one answer is correct and that the vocabulary is the course's own.</p>
+      </article>
+      <article class="carte">
+        <h4>Translations</h4>
+        <p>Instructions, glossary, summaries: a first draft in Arabic or English is quicker to review than to write. Check the technical terms against the course <a href="index.html#glossaire">glossary</a> and, for Arabic, with a colleague: terminology varies from one country to another.</p>
+      </article>
+      <article class="carte">
+        <h4>Explanations for you</h4>
+        <p>Before a session, have a concept or a piece of code explained to you. Ask the questions your students will ask, then compare the answers with the lesson on the website.</p>
+      </article>
+    </div>
+    <aside class="encadre encadre--exemple">
+      <p class="encadre-titre">Sample request</p>
+      <p>"Here is a k-means exercise from my course: [paste the exercise]. Suggest three variants of the same difficulty, with six whole-number values, k = 2 and two starting centers. No value may be at an equal distance from the two centers, at any step. Give the detailed solution for each variant, iteration by iteration."</p>
+      <p>The request specifies the difficulty, the form of the data and the trap to avoid. The assistant can still make mistakes: check.</p>
+    </aside>
+    <h4>Before you hand out a document prepared with an assistant</h4>
+    <ol class="etapes">
+      <li><p class="etape-titre">Redo the calculations</p><p>Do them without looking at the proposed solution, then compare. For k-means, check each distance; for chaining, check each cycle.</p></li>
+      <li><p class="etape-titre">Run the code</p><p>Run it in Jupyter or Google Colab, and copy the output you actually get, never the output the assistant announces.</p></li>
+      <li><p class="etape-titre">Check the facts</p><p>Check dates, names, quotations and references in the lessons on the website, a library catalog or the original document: assistants invent plausible references.</p></li>
+      <li><p class="etape-titre">Align with the course</p><p>Use the same notation (∧, η, μ₁), the same terms and the same level as the tutorials (TD): an unfamiliar notation confuses students on exam day.</p></li>
+    </ol>
+    <h4>Precautions</h4>
+    <ul>
+      <li><strong>No personal student data, no unpublished text.</strong> Never upload names, marks, exam scripts, emails or unpublished theses to an online service. In Algeria, Law no. 18-07 of 10 June 2018 governs the processing of personal data. To have an exam paper reviewed, send only the paper.</li>
+      <li><strong>No delegated marking.</strong> The mark is your responsibility. The European AI Act also classifies systems that assess students as "high-risk".</li>
+      <li><strong>The service settings.</strong> Check whether your conversations can be used to train the model, and whether you can turn this option off.</li>
+      <li><strong>Transparency.</strong> Tell your students when a document was prepared with an assistant and then checked: you show them the kind of use the charter asks of them.</li>
+    </ul>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">Key points</p>
+      <ul>
+        <li>A clear charter, handed out at the first session and discussed in a round table, is better than a ban that cannot be enforced.</li>
+        <li>Move the evidence of learning toward oral work, the process, the personal corpus and work in class; detectors prove nothing.</li>
+        <li>For your preparation: the assistant proposes; you redo the calculations, run the code and check the facts.</li>
+        <li>No personal student data in an online service.</li>
+      </ul>
+    </aside>
+  </article>
+</section>

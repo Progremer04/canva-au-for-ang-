@@ -413,3 +413,11 @@ html { scroll-behavior: smooth; scroll-padding-top: 88px; }
 .langues a[aria-current="page"] { background: var(--texte); color: var(--fond); }
 @media (max-width: 400px) { .entete__marque small { display: none; } }
 .mot sup { unicode-bidi: isolate; direction: ltr; }
+
+/* Guide de l'enseignant */
+.heros--guide { grid-template-columns: minmax(0, 1fr); padding-block-end: var(--espace-5); }
+.heros--guide .heros__chapeau { max-inline-size: 48rem; }
+[dir="rtl"] .fleche-retour { transform: scaleX(-1); transform-origin: 12px 12px; }
+section[id^="guide-"] .sommaire-chapitre::before { content: "Dans cette partie"; }
+:lang(en) section[id^="guide-"] .sommaire-chapitre::before { content: "In this part"; }
+:lang(ar) section[id^="guide-"] .sommaire-chapitre::before { content: "في هذا الجزء"; }

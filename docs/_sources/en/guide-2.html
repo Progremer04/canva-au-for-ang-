@@ -1,0 +1,626 @@
+<section class="chapitre" id="guide-seances" aria-labelledby="guide-seances-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">Teacher's guide · Preparing your sessions</p>
+    <h2 class="titre-section" id="guide-seances-titre">Lesson plans</h2>
+    <p class="chapeau">A lesson plan template to copy, then eight ready-to-use sessions, from the first class to Transformers. All timings are only a guide: adjust them to your group and your timetable.</p>
+    <ul class="puces"><li class="puce">8 lesson plans</li><li class="puce">Chapters 1 to 3</li><li class="puce">Suggested timings</li></ul>
+  </header>
+
+  <nav class="sommaire-chapitre" aria-label="Contents: lesson plans">
+    <ol>
+      <li><a href="#guide-seances-modele">The lesson plan template</a></li>
+      <li><a href="#guide-seance-1">Session 1 · First class</a></li>
+      <li><a href="#guide-seance-2">Session 2 · History, weak and strong AI</a></li>
+      <li><a href="#guide-seance-3">Session 3 · Tutorial (TD): supervised or not?</a></li>
+      <li><a href="#guide-seance-4">Session 4 · First Python lab session (TP)</a></li>
+      <li><a href="#guide-seance-5">Session 5 · pandas lab session (TP)</a></li>
+      <li><a href="#guide-seance-6">Session 6 · Tutorial (TD): expert system</a></li>
+      <li><a href="#guide-seance-7">Session 7 · Machine learning</a></li>
+      <li><a href="#guide-seance-8">Session 8 · Transformers and generative AI</a></li>
+    </ol>
+  </nav>
+
+  <article class="lecon" id="guide-seances-modele">
+    <h3>The lesson plan template</h3>
+    <p>A lesson plan fits on one page that you keep in front of you in class: what students will be able to do, through which steps, and how to check it. Twenty minutes of writing save you from improvising.</p>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Blank lesson plan: copy it and fill in the middle column</caption>
+      <thead><tr><th scope="col">Section</th><th scope="col">To fill in</th><th scope="col">Advice</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Title and place in the course</th><td></td><td>Chapter, week, lecture, tutorial (TD) or lab session (TP).</td></tr>
+        <tr><th scope="row">Observable objectives</th><td></td><td>Two or three, each with an action verb.</td></tr>
+        <tr><th scope="row">Prerequisites</th><td></td><td>What students must already be able to do; if in doubt, a five-minute review.</td></tr>
+        <tr><th scope="row">Duration</th><td></td><td>The length of the time slot, minus ten minutes for setting up and the unexpected.</td></tr>
+        <tr><th scope="row">Materials</th><td></td><td>Projector, printouts, computers, connection: checked the day before.</td></tr>
+        <tr><th scope="row">Outline</th><td></td><td>Timed phases (hook, teacher input, activity, sharing results, wrap-up): what you do, what the students do.</td></tr>
+        <tr><th scope="row">Assessment</th><td></td><td>How will you know, before the end, that the objective has been reached?</td></tr>
+        <tr><th scope="row">Homework</th><td></td><td>A precise task, a link to the site, a deadline.</td></tr>
+        <tr><th scope="row">Same-day review</th><td></td><td>Two lines the same evening: what worked, what needs to change.</td></tr>
+      </tbody>
+    </table></div>
+    <aside class="encadre encadre--definition">
+      <p class="encadre-titre">Observable objective</p>
+      <p>An <dfn>observable objective</dfn> describes what the student will be able to <em>do</em> at the end of the session, in a way that you can check: action verb, content, conditions, success criterion.</p>
+    </aside>
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>Avoid</h4>
+        <ul>
+          <li>"Understand supervised learning."</li>
+          <li>"Be made aware of the ethics of AI."</li>
+        </ul>
+      </div>
+      <div class="comparaison-col">
+        <h4>Prefer</h4>
+        <ul>
+          <li>"Classify at least 8 situations out of 10 as supervised or unsupervised learning, justifying each choice."</li>
+          <li>"Check in a catalogue a reference produced by a chatbot."</li>
+        </ul>
+      </div>
+    </div>
+    <p>Bloom's taxonomy (1956, revised in 2001) provides these verbs: define, classify, calculate, work through, run, justify.</p>
+    <p>Sessions 1 to 3 cover chapter 1, sessions 4 and 5 chapter 2, and sessions 6 to 8 chapter 3. Chapter 1 lasts one week, but the syllabus allows a lab session (TP) to complete it: session 2 can use this slot. You can build the other sessions with the same template.</p>
+  </article>
+
+  <article class="lecon" id="guide-seance-1">
+    <h3>Session 1 · First class: presenting the course and defining AI</h3>
+    <dl class="definitions">
+      <div><dt>Objectives</dt><dd>Define AI through observable tasks; say whether an everyday object involves AI, with a justification; describe the imitation game and what it measures.</dd></div>
+      <div><dt>Duration</dt><dd>1 hour 30 minutes (adapt as needed)</dd></div>
+      <div><dt>Materials</dt><dd>Projector, the site open at the <a href="index.html#fiche">course card</a>, a printed questionnaire, strips of paper.</dd></div>
+      <div><dt>Prerequisites</dt><dd>None.</dd></div>
+    </dl>
+    <ol class="etapes">
+      <li><p class="etape-titre">Introducing the course · 15 min</p><p>The syllabus and the <a href="index.html#parcours">calendar</a>. Say that programming starts from zero; present the assessment according to your faculty's regulations in force, and the <a href="index.html#methode">How to learn this course</a> page.</p></li>
+      <li><p class="etape-titre">Diagnostic questionnaire · 10 min</p><p>Ever used a chatbot? Ever written code? Laptop available? Connection at home? Preferred language for reading technical documentation? Expectations? The answers about equipment will help you form the pairs.</p></li>
+      <li><p class="etape-titre">AI or not AI? · 15 min</p><p>A vote on eight objects: calculator, spellchecker, spam filter, machine translator, thermostat, search engine, GPS, chatbot. The disagreements show that the word needs defining.</p></li>
+      <li><p class="etape-titre">What is AI? · 20 min</p><p>Teacher input based on the <a href="index.html#c1-definir">first lesson</a>: Dartmouth, agents, the working definition, Busa and Moretti. Then go back to the eight objects.</p></li>
+      <li><p class="etape-titre">The imitation game · 25 min</p><p>Short version of the <a href="#guide-activite-turing">activity</a>: two witnesses, five minutes of questions, vote, discussion.</p></li>
+      <li><p class="etape-titre">Wrap-up · 5 min</p><p>Exit ticket: one thing learned, one question. The best questions will open session 2.</p></li>
+    </ol>
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Common student mistakes</p>
+      <ul>
+        <li>Reducing AI to robots or to recent chatbots.</li>
+        <li>Believing that a system understands because it answers well: this is the ELIZA effect, seen in the <a href="index.html#c1-histoire">history lesson</a>.</li>
+        <li>Taking the Turing test for a definition of intelligence.</li>
+      </ul>
+    </aside>
+    <aside class="encadre encadre--exemple">
+      <p class="encadre-titre">Homework</p>
+      <ul>
+        <li>Read <a href="index.html#c1-definir">What is artificial intelligence?</a> and <a href="index.html#me-semaine">A typical week</a>.</li>
+        <li>Note one use of AI met this week, with the technique it probably relies on.</li>
+      </ul>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-seance-2">
+    <h3>Session 2 · History of AI, weak AI and strong AI</h3>
+    <dl class="definitions">
+      <div><dt>Objectives</dt><dd>Put about ten milestones in the history of AI in order and place the two winters among them; distinguish narrow and general AI, weak and strong AI; summarise the Chinese room in three sentences.</dd></div>
+      <div><dt>Duration</dt><dd>1 hour 30 minutes (adapt as needed)</dd></div>
+      <div><dt>Materials</dt><dd>One card per milestone of the <a href="index.html#c1-histoire">timeline</a> (event on the front, date on the back), magnets, markers in two colours.</dd></div>
+      <div><dt>Prerequisites</dt><dd>Session 1.</dd></div>
+    </dl>
+    <ol class="etapes">
+      <li><p class="etape-titre">Review · 5 min</p><p>Three questions taken from the exit tickets, answered from memory.</p></li>
+      <li><p class="etape-titre">Class timeline · 30 min</p><p>Each group dates its cards without looking at the back and places them on a timeline on the board; then the class corrects it: one colour for symbolic AI, another for connectionism, and the two winters.</p></li>
+      <li><p class="etape-titre">What history teaches · 10 min</p><p>The cycles of hope and disappointment, Simon and Newell's prediction in 1958: judge a system on tests, not on promises.</p></li>
+      <li><p class="etape-titre">Two pairs of notions · 20 min</p><p>The <a href="index.html#c1-faible-forte">comparison table</a>: narrow or general is about scope; weak or strong is about the question of mind (Searle, 1980). Tell the story of the Chinese room, then have students summarise it.</p></li>
+      <li><p class="etape-titre">Short debate · 20 min</p><p>"Does a machine translator understand what it translates?" Two assigned sides, two speakers per side, questions from the floor. Conclude by separating the observable (the translation is correct) from the philosophical (is there understanding?).</p></li>
+      <li><p class="etape-titre">Wrap-up · 5 min</p><p>Each student writes down three dates they will remember, and why.</p></li>
+    </ol>
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Common student mistakes</p>
+      <ul>
+        <li>Understanding "weak AI" as "performing poorly": Deep Blue beat the world champion.</li>
+        <li>Believing that Deep Blue learned, when in fact it explored millions of positions.</li>
+        <li>Presenting large language models as general AI.</li>
+      </ul>
+    </aside>
+    <aside class="encadre encadre--exemple">
+      <p class="encadre-titre">Homework</p>
+      <ul>
+        <li>Build a personal timeline of ten dates (<a href="index.html#me-parties">How to approach each part</a>).</li>
+        <li>For the group concerned: prepare the round table <a href="index.html#tr-genese">The origins and emergence of AI</a>.</li>
+      </ul>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-seance-3">
+    <h3>Session 3 · Chapter 1 tutorial (TD): supervised or unsupervised?</h3>
+    <dl class="definitions">
+      <div><dt>Objectives</dt><dd>Classify at least 8 situations out of 10 (supervised, unsupervised, reinforcement), using the labels as justification; explain the role of the test set; give two examples of learning in the humanities and social sciences (SHS).</dd></div>
+      <div><dt>Duration</dt><dd>1 hour 30 minutes (adapt as needed)</dd></div>
+      <div><dt>Materials</dt><dd>Ten situation cards per group (table below), the exercises of the <a href="index.html#td-ch1">chapter 1 tutorial (TD)</a>.</dd></div>
+      <div><dt>Prerequisites</dt><dd>The lesson <a href="index.html#c1-apprentissage">Supervised learning and unsupervised learning</a>.</dd></div>
+    </dl>
+    <ol class="etapes">
+      <li><p class="etape-titre">Card sorting · 25 min</p><p>In groups: three piles, with the decisive clue written on each card; then each group defends one card.</p></li>
+      <li><p class="etape-titre">Sharing results · 10 min</p><p>Bring out the decisive question: "Do the training examples carry the right answer?" Add the test set and overfitting (the "enfans" of the lesson).</p></li>
+      <li><p class="etape-titre">Exercises 1 and 2 · 25 min</p><p><a href="index.html#td-ch1-ex1">Exercise 1</a> and <a href="index.html#td-ch1-ex2">exercise 2</a>: alone, then in pairs, then correction. The comparison table is written from memory.</p></li>
+      <li><p class="etape-titre">Exercise 3 · 15 min</p><p><a href="index.html#td-ch1-ex3">Six examples</a> in pairs, two of them in SHS.</p></li>
+      <li><p class="etape-titre">Launching exercise 4 · 15 min</p><p>Share out the six tasks of <a href="index.html#td-ch1-ex4">exercise 4</a>: define the success criterion, look for primary, dated sources. A three-minute report at the next session.</p></li>
+    </ol>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>The ten situation cards and the expected answers</caption>
+      <thead><tr><th scope="col">Situation</th><th scope="col">Answer and clue</th></tr></thead>
+      <tbody>
+        <tr><td>Dating a poem using 600 dated poems.</td><td>Supervised: labelled examples.</td></tr>
+        <tr><td>Dividing 200 novels into stylistic families.</td><td>Unsupervised: groups to interpret.</td></tr>
+        <tr><td>Estimating the year in which a poem was written.</td><td>Supervised (regression): the label is a number.</td></tr>
+        <tr><td>Classifying 3,000 speeches using 500 classified speeches.</td><td>Supervised: training uses classified speeches.</td></tr>
+        <tr><td>Grouping 2,000 open-ended answers without a predefined grid.</td><td>Unsupervised.</td></tr>
+        <tr><td>Detecting hateful comments using 5,000 annotated examples.</td><td>Supervised.</td></tr>
+        <tr><td>Bringing out the themes of 1,000 articles.</td><td>Unsupervised.</td></tr>
+        <tr><td>Identifying the language of a message using labelled messages.</td><td>Supervised.</td></tr>
+        <tr><td>Learning Go by winning or losing games.</td><td>Reinforcement (trap): rewards.</td></tr>
+        <tr><td>Filtering based on emails marked "spam".</td><td>Supervised (trap): the click is a label.</td></tr>
+      </tbody>
+    </table></div>
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Common student mistakes</p>
+      <ul>
+        <li>Believing that "unsupervised" means "without humans": the researcher chooses the data and the number of groups, then interprets.</li>
+        <li>Concluding that it is unsupervised because the new cases have no label.</li>
+        <li>Confusing classification (known categories) with clustering (discovered groups).</li>
+      </ul>
+    </aside>
+    <aside class="encadre encadre--exemple">
+      <p class="encadre-titre">Homework</p>
+      <ul>
+        <li>Prepare exercise 4. The solution on the site dates from September 2026: have students check what has changed since then.</li>
+        <li>Reread <a href="index.html#c1-approches">AI approaches</a>; learn the <a href="index.html#glossaire">glossary</a> in French and English.</li>
+      </ul>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-seance-4">
+    <h3>Session 4 · First Python lab session (TP)</h3>
+    <dl class="definitions">
+      <div><dt>Objectives</dt><dd>Open a notebook, run and save a cell; create variables and a list; count the words of a stanza and explain the difference caused by punctuation.</dd></div>
+      <div><dt>Duration</dt><dd>1 hour 30 minutes (adapt as needed)</dd></div>
+      <div><dt>Materials</dt><dd>One computer for two, a connection, a projector; Google accounts created before the session for Colab, or Jupyter installed, for example with <code>run.bat notebook</code> (<a href="index.html#td-travaux-pratiques">Lab sessions (TP)</a>).</dd></div>
+      <div><dt>Prerequisites</dt><dd>None in programming; <a href="index.html#c2-installer">setting up the environment</a> read through.</dd></div>
+    </dl>
+    <ol class="etapes">
+      <li><p class="etape-titre">Pairs · 10 min</p><p>Formed from the questionnaire, with a driver and a navigator (<a href="#guide-activites-conseils">advice</a>). Colab by default.</p></li>
+      <li><p class="etape-titre">First notebook · 15 min</p><p>Live: <code>print("Bonjour, Médéa !")</code>, Shift + Enter. Walk round the room until everyone sees their result.</p></li>
+      <li><p class="etape-titre">Variables and types · 15 min</p><p><code>titre</code>, <code>annee</code>, <code>type()</code>, an f-string. Leave out a quotation mark on purpose and read the last line of the error.</p></li>
+      <li><p class="etape-titre">Lists · 15 min</p><p><code>append</code>, <code>sort</code>, <code>len</code>, indices. Have students predict <code>auteurs[0]</code> before running it.</p></li>
+      <li><p class="etape-titre">Counting words · 25 min</p><p>The program below. Why 21 items for 19 words? The fastest students look for the most frequent word (<a href="index.html#td-ch2-ex3">tutorial (TD) exercise 3</a>).</p></li>
+      <li><p class="etape-titre">Wrap-up · 10 min</p><p>Save the notebook. What does <code>split()</code> do? What does <code>NameError</code> mean?</p></li>
+    </ol>
+    <figure class="code">
+      <figcaption class="code-legende">compter_mots.py: Verlaine, "Il pleure dans mon cœur" (1874)</figcaption>
+      <pre><code class="language-python">poeme = """Il pleure dans mon cœur
+Comme il pleut sur la ville ;
+Quelle est cette langueur
+Qui pénètre mon cœur ?"""
+
+mots = poeme.lower().split()   # lower case, then split at spaces
+print(len(mots), "éléments")   # ";" and "?" count as words
+mots = [m for m in mots if m.isalpha()]   # keep only the words
+print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
+      <pre class="sortie"><samp>21 éléments
+19 mots, 16 mots différents</samp></pre>
+    </figure>
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Common student mistakes</p>
+      <ul>
+        <li>Copying code from Word or a PDF: curly quotation marks cause a <code>SyntaxError</code>.</li>
+        <li>Running cells in the wrong order: <code>NameError</code>.</li>
+        <li>Looking for the first element of a list at <code>[1]</code>.</li>
+      </ul>
+    </aside>
+    <aside class="encadre encadre--exemple">
+      <p class="encadre-titre">Homework</p>
+      <ul>
+        <li>Retype the examples from <a href="index.html#c2-fondamentaux">the fundamentals of the language</a> without copying and pasting, predicting each output.</li>
+        <li>Do <a href="index.html#td-ch2-ex1">tutorial (TD) exercise 1</a>; code for twenty minutes, three times during the week.</li>
+      </ul>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-seance-5">
+    <h3>Session 5 · Lab session (TP): querying a corpus with pandas</h3>
+    <dl class="definitions">
+      <div><dt>Objectives</dt><dd>Load a CSV file and describe it; filter, sort and group to answer a question asked in plain language; draw a chart with a title and interpret it with caution.</dd></div>
+      <div><dt>Duration</dt><dd>1 hour 30 minutes (adapt as needed)</dd></div>
+      <div><dt>Materials</dt><dd>The file <code>oeuvres.csv</code> from the <a href="index.html#c2-numpy-pandas">pandas lesson</a>, shared in advance; computers, in pairs.</dd></div>
+      <div><dt>Prerequisites</dt><dd>Session 4.</dd></div>
+    </dl>
+    <ol class="etapes">
+      <li><p class="etape-titre">Review · 10 min</p><p>Predict on paper the output of three lines of code, then run them.</p></li>
+      <li><p class="etape-titre">From spreadsheet to DataFrame · 15 min</p><p>The CSV file in a spreadsheet, then <code>pd.read_csv()</code>, <code>head()</code>, <code>shape</code>, <code>info()</code>. Remind students that the word counts are fictitious.</p></li>
+      <li><p class="etape-titre">Filtering and sorting · 20 min</p><p>A question in plain language first ("Which works in Arabic after 1950?"), then the filter, <code>&amp;</code> with parentheses, <code>sort_values()</code>.</p></li>
+      <li><p class="etape-titre">Grouping · 20 min</p><p><code>groupby("genre")["nb_mots"].mean()</code> and <code>value_counts()</code>. Discuss the mean of a genre represented by a single text, and the effect of <em>Les Misérables</em> on the mean.</p></li>
+      <li><p class="etape-titre">Chart · 15 min</p><p><code>plot(kind="bar")</code>, title, axes, <code>savefig()</code>.</p></li>
+      <li><p class="etape-titre">Wrap-up · 10 min</p><p>Start <a href="index.html#td-ch2-ex4">tutorial (TD) exercise 4</a>; each pair writes a sentence that begins with "In this small corpus…".</p></li>
+    </ol>
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Common student mistakes</p>
+      <ul>
+        <li><code>FileNotFoundError</code>: the file is not in the notebook's folder or in the Colab session.</li>
+        <li>A CSV file saved by Excel with French settings needs <code>sep=";"</code>.</li>
+        <li>Writing <code>df["genre", "titre"]</code> instead of <code>df[["genre", "titre"]]</code>, or <code>and</code> instead of <code>&amp;</code>.</li>
+      </ul>
+    </aside>
+    <aside class="encadre encadre--exemple">
+      <p class="encadre-titre">Homework</p>
+      <ul>
+        <li>Finish exercise 4 after twenty minutes of working on it without the solution.</li>
+        <li>Add three works to the CSV file and note what changes in the results.</li>
+      </ul>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-seance-6">
+    <h3>Session 6 · Chapter 3 tutorial (TD): expert system and forward chaining</h3>
+    <dl class="definitions">
+      <div><dt>Objectives</dt><dd>Name the three components of an expert system; draw the graph of the tutorial's rules; work through forward chaining and explain why R4 and R7 do not fire.</dd></div>
+      <div><dt>Duration</dt><dd>1 hour 30 minutes (adapt as needed)</dd></div>
+      <div><dt>Materials</dt><dd>Rule cards for the <a href="#guide-activite-chainage">role play</a>, the text of <a href="index.html#td-ch3-ex1">exercise 1</a>, a projector.</dd></div>
+      <div><dt>Prerequisites</dt><dd>The lesson <a href="index.html#c3-symbolique">Symbolic AI: expert systems</a>.</dd></div>
+    </dl>
+    <ol class="etapes">
+      <li><p class="etape-titre">Hook · 10 min</p><p>"How do you recognise a sonnet?" Write the answers in the form IF … THEN: this is a rule base.</p></li>
+      <li><p class="etape-titre">Role play · 20 min</p><p>The rules for poetic forms, as in the <a href="#guide-activite-chainage">activity</a>.</p></li>
+      <li><p class="etape-titre">Mini-lecture · 10 min</p><p>Forward and backward chaining, rule order, non-deducible facts.</p></li>
+      <li><p class="etape-titre">Question a · 15 min</p><p>The graph: one rectangle per fact, one circle per rule. No arrow leads to G, H or K.</p></li>
+      <li><p class="etape-titre">Question b · 20 min</p><p>Each student fills in a grid step by step, which is then corrected on the board: R3, R1, R5, R2, R6; C is reached.</p></li>
+      <li><p class="etape-titre">Demonstration · 10 min</p><p>The lesson's step-by-step demonstration. Have students predict the effect of adding G to the base: the goal is reached earlier, through R4.</p></li>
+      <li><p class="etape-titre">Wrap-up · 5 min</p><p>In one sentence: the difference between forward and backward chaining.</p></li>
+    </ol>
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Common student mistakes</p>
+      <ul>
+        <li>Firing a rule when only some of its premises are known.</li>
+        <li>Forgetting one of the conclusions of R3 (A and F).</li>
+        <li>Firing a rule a second time, or ignoring the required order.</li>
+        <li>Trying to deduce G, which is a non-deducible fact.</li>
+      </ul>
+    </aside>
+    <aside class="encadre encadre--exemple">
+      <p class="encadre-titre">Homework</p>
+      <ul>
+        <li>Redo the exercise without the solution three days later.</li>
+        <li>Write five rules that distinguish the fable, the tale and the short story, and work them through on two well-known texts.</li>
+      </ul>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-seance-7">
+    <h3>Session 7 · Machine learning: k-means, regression, gradient descent</h3>
+    <dl class="definitions">
+      <div><dt>Objectives</dt><dd>Define features, label, model, training and test; run k-means by hand until it stops; calculate two steps of gradient descent and explain the role of the learning rate.</dd></div>
+      <div><dt>Duration</dt><dd>1 hour 30 minutes (adapt as needed)</dd></div>
+      <div><dt>Materials</dt><dd>Calculators, a projector for the demonstrations in <a href="index.html#c3-algorithmes">Some machine learning algorithms</a>, exercises <a href="index.html#td-ch3-ex2a">2 a</a>, <a href="index.html#td-ch3-ex2b">2 b</a> and <a href="index.html#td-ch3-ex2d">2 d</a>.</dd></div>
+      <div><dt>Prerequisites</dt><dd>Sessions 3 and 6; being able to calculate a mean.</dd></div>
+    </dl>
+    <ol class="etapes">
+      <li><p class="etape-titre">From rules to examples · 10 min</p><p>"Could you write down the rules that make you recognise Kateb Yacine's prose?" Then the vocabulary of <a href="index.html#c3-ml">machine learning</a>.</p></li>
+      <li><p class="etape-titre">k-means by hand · 20 min</p><p>Exercise 2 d on a number line (1, 3, 4, 9, 10, 14; centres 1 and 4), until nothing changes: {1, 3, 4} and {9, 10, 14}.</p></li>
+      <li><p class="etape-titre">Demonstration · 10 min</p><p>Run the demonstration several times: does the result depend on the starting point? Long version: the <a href="#guide-activite-kmoyennes">novel cards activity</a>.</p></li>
+      <li><p class="etape-titre">Regression · 15 min</p><p>A line drawn by eye through the points of exercise 2 a, then ŷ = w · x + b and least squares. For reference, in the exercise's notation: a = 0.9 and b = 1.3, that is 6.7 books for 6 hours.</p></li>
+      <li><p class="etape-titre">Gradient descent · 25 min</p><p>The hiker in the fog, then exercise 2 b in pairs: w₁ = 0.6 and w₂ = 1.08; J goes from 9 to 5.76, then to about 3.69. Demonstration with η = 0.1, then 1.1, then 0.01.</p></li>
+      <li><p class="etape-titre">Wrap-up · 10 min</p><p>Class table: algorithm, supervised or not, what it produces.</p></li>
+    </ol>
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Common student mistakes</p>
+      <ul>
+        <li>Stopping k-means after one iteration, or forgetting to recalculate the centres.</li>
+        <li>Extending a regression line far beyond the observed data.</li>
+        <li>Getting the sign wrong in w ← w − η · slope, or believing that a larger step always goes faster.</li>
+      </ul>
+    </aside>
+    <aside class="encadre encadre--exemple">
+      <p class="encadre-titre">Homework</p>
+      <ul>
+        <li>Finish exercises 2 a, 2 b and 2 d, then do <a href="index.html#td-ch3-ex2c">exercise 2 c</a>.</li>
+        <li>For <a href="index.html#mp-sujet-2">mini-project subject 2</a>: read <code>kmeans_enquete.py</code> and the elbow method.</li>
+      </ul>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-seance-8">
+    <h3>Session 8 · Transformers and generative AI</h3>
+    <dl class="definitions">
+      <div><dt>Objectives</dt><dd>Explain token, embedding and attention; describe generation as the repeated prediction of the next token; check a reference produced by a chatbot.</dd></div>
+      <div><dt>Duration</dt><dd>1 hour 30 minutes (adapt as needed)</dd></div>
+      <div><dt>Materials</dt><dd>A computer with <code>transformers</code> and <code>torch</code>, and the models downloaded the day before (or Colab); screenshots of the outputs as a backup; access to a library catalogue.</dd></div>
+      <div><dt>Prerequisites</dt><dd>Session 7; the lesson <a href="index.html#c3-deep">Deep learning</a> read through.</dd></div>
+    </dl>
+    <ol class="etapes">
+      <li><p class="etape-titre">Guessing the next word · 15 min</p><p>"Il pleure dans mon…": everyone answers "cœur". "The student opened the book and…": write down each suggestion and how many students gave it; this is a probability distribution. Always taking the most frequent one is a low temperature; drawing at random is a high temperature.</p></li>
+      <li><p class="etape-titre">Tokens, embeddings, attention · 20 min</p><p>Follow the lesson: the example of "she" looking at "student", then encoders (BERT) and decoders (GPT).</p></li>
+      <li><p class="etape-titre">Demonstration · 20 min</p><p><code>generation_texte.py</code> with <code>temperature=0.3</code>, then <code>1.5</code>; then <code>sentiment_transformers.py</code>, an English model, on a sentence in French. Link this to mini-project subjects <a href="index.html#mp-sujet-1">1</a> and <a href="index.html#mp-sujet-3">3</a>.</p></li>
+      <li><p class="etape-titre">The reference test · 15 min</p><p>In advance, ask a chatbot for five references on a specific topic; each group checks one of them in a catalogue. Do not announce the result: if everything exists, the lesson is about checking.</p></li>
+      <li><p class="etape-titre">Ethics · 15 min</p><p>Declaring the use of AI in a thesis, texts uploaded online, languages that are handled less well (Darja, Tamazight). Three rules written with the class (<a href="index.html#c1-perspectives">Outlook</a>, <a href="index.html#me-assistant">AI assistant</a>).</p></li>
+      <li><p class="etape-titre">Wrap-up · 5 min</p><p>Complete: "For a model, generating text means…".</p></li>
+    </ol>
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Common student mistakes</p>
+      <ul>
+        <li>Believing that the model knows or searches, when in fact it continues a text in a plausible way.</li>
+        <li>Trusting a reference because it is well presented.</li>
+        <li>Confusing BERT, which understands and classifies, with GPT, which generates.</li>
+      </ul>
+    </aside>
+    <aside class="encadre encadre--exemple">
+      <p class="encadre-titre">Homework</p>
+      <ul>
+        <li>Reread the box on hallucinations (<a href="index.html#c3-deep">lesson</a>) and write, in five lines, your own rule for using an AI assistant.</li>
+        <li>For the group concerned: prepare the round table <a href="index.html#tr-problematiques">AI as a source of new issues</a>.</li>
+      </ul>
+    </aside>
+  </article>
+</section>
+
+<section class="chapitre" id="guide-activites" aria-labelledby="guide-activites-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">Teacher's guide · Getting students involved</p>
+    <h2 class="titre-section" id="guide-activites-titre">Classroom activities</h2>
+    <p class="chapeau">Nine activities, most of them without a computer, to act out an algorithm before programming it: a procedure you have lived through is easier to understand. The durations are only a guide.</p>
+    <ul class="puces"><li class="puce">Unplugged</li><li class="puce">Group work</li><li class="puce">Web tools without programming</li></ul>
+  </header>
+
+  <nav class="sommaire-chapitre" aria-label="Contents: activities">
+    <ol>
+      <li><a href="#guide-activite-kmoyennes">k-means with novel cards</a></li>
+      <li><a href="#guide-activite-chainage">Forward chaining as a role play</a></li>
+      <li><a href="#guide-activite-neurone">The human neuron</a></li>
+      <li><a href="#guide-activite-brouillard">Gradient descent in the fog</a></li>
+      <li><a href="#guide-activite-turing">The imitation game</a></li>
+      <li><a href="#guide-activite-spam">A spam filter based on word votes</a></li>
+      <li><a href="#guide-activite-voyant">A poem in Voyant Tools</a></li>
+      <li><a href="#guide-activite-teachable">Images with Teachable Machine</a></li>
+      <li><a href="#guide-activite-debat">Debate: can AI write a novel?</a></li>
+      <li><a href="#guide-activites-conseils">Tips for leading activities</a></li>
+    </ol>
+  </nav>
+
+  <article class="lecon" id="guide-activite-kmoyennes">
+    <h3>k-means with novel cards</h3>
+    <dl class="definitions">
+      <div><dt>Objective</dt><dd>Let students live through the steps of <a href="index.html#c3-algorithmes">k-means</a> and show the effect of the starting point.</dd></div>
+      <div><dt>Duration</dt><dd>40 min</dd></div>
+      <div><dt>Materials</dt><dd>Twelve cards, a 10 × 10 grid on a table, three coloured objects for the centres, a ruler, a calculator.</dd></div>
+    </dl>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Share of dialogue (x) and sentence length (y), rated from 0 to 10 (fictitious values)</caption>
+      <thead><tr><th scope="col">Card</th><th scope="col">A</th><th scope="col">B</th><th scope="col">C</th><th scope="col">D</th><th scope="col">E</th><th scope="col">F</th><th scope="col">G</th><th scope="col">H</th><th scope="col">I</th><th scope="col">J</th><th scope="col">K</th><th scope="col">L</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">x</th><td>1</td><td>2</td><td>2</td><td>3</td><td>8</td><td>9</td><td>7</td><td>8</td><td>5</td><td>4</td><td>6</td><td>5</td></tr>
+        <tr><th scope="row">y</th><td>8</td><td>9</td><td>7</td><td>8</td><td>2</td><td>3</td><td>2</td><td>1</td><td>5</td><td>6</td><td>5</td><td>4</td></tr>
+      </tbody>
+    </table></div>
+    <p>Replace the letters with novels the class knows, rated together: the features are human choices.</p>
+    <ol class="etapes">
+      <li><p class="etape-titre">Place · 5 min</p><p>Each card at its coordinates; k = 3, starting centres on A, E and G.</p></li>
+      <li><p class="etape-titre">Assign · 10 min</p><p>Each student measures the distance from two cards to the centres. Expected: {A, B, C, D, J}, {E, F, H}, {G, I, K, L}.</p></li>
+      <li><p class="etape-titre">Recalculate · 5 min</p><p>Group means: (2.4, 7.6), (8.33, 2) and (5.75, 4). Move the centres.</p></li>
+      <li><p class="etape-titre">Repeat · 15 min</p><p>G changes group, then J; after that, nothing moves: {A, B, C, D}, {I, J, K, L}, {E, F, G, H}.</p></li>
+      <li><p class="etape-titre">Another start · 5 min</p><p>From E, H and I: H stays alone, E, F and G form a group, and the other eight cards form a third one. The algorithm stops on this poor solution.</p></li>
+    </ol>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">What students should take away</p>
+      <p>The algorithm measures distances and calculates means without understanding anything about the novels. The result depends on the features, on k and on the starting point. Naming the groups remains the researcher's job.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-activite-chainage">
+    <h3>Forward chaining as a role play</h3>
+    <dl class="definitions">
+      <div><dt>Objective</dt><dd>Help students understand the cycle of the inference engine (<a href="index.html#c3-symbolique">lesson</a>, <a href="index.html#td-ch3-ex1">tutorial (TD) exercise 1</a>).</dd></div>
+      <div><dt>Duration</dt><dd>25 min</dd></div>
+      <div><dt>Materials</dt><dd>One A5 card per rule, the board divided into "fact base" and "fired rules".</dd></div>
+    </dl>
+    <ol class="etapes">
+      <li><p class="etape-titre">Roles · 3 min</p><p>Seven students are the rules R1 to R7 for poetic forms from the lesson; another student plays the engine, and another the secretary.</p></li>
+      <li><p class="etape-titre">Facts · 2 min</p><p>Initial base for Du Bellay's sonnet: 14 lines, 2 quatrains, 2 tercets, alexandrines.</p></li>
+      <li><p class="etape-titre">Cycles · 10 min</p><p>The engine calls the rules in order. If all the premises of the rule called are on the board and its conclusion is new, the rule fires: the secretary writes the conclusion, the rule sits down, and the engine starts again from R1. A pass in which no rule fires ends the game. Expected: R2, R4, R6.</p></li>
+      <li><p class="etape-titre">Other facts · 5 min</p><p>A haiku (R1, then R7); a sonnet printed as a single block, which fires nothing.</p></li>
+      <li><p class="etape-titre">Debriefing · 5 min</p><p>Who knew it was a sonnet? Nobody: each rule only looked at the board.</p></li>
+    </ol>
+    <p>With the tutorial (TD) rules, and H and K on the board, the expected order is R3, R1, R5, R2, R6; R4 and R7 wait for a G that never comes.</p>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">What students should take away</p>
+      <p>The engine compares symbols without understanding them; the order of the rules changes the path; outside the cases it was designed for, the system fails.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-activite-neurone">
+    <h3>The human neuron</h3>
+    <dl class="definitions">
+      <div><dt>Objective</dt><dd>Show that an <a href="index.html#c3-deep">artificial neuron</a> calculates a weighted sum, and that learning means correcting the weights after an error.</dd></div>
+      <div><dt>Duration</dt><dd>30 min</dd></div>
+      <div><dt>Materials</dt><dd>Three "0 / 1" cards, a sheet of weights written in pencil, the board.</dd></div>
+    </dl>
+    <p>Three students are the inputs: x₁ is 1 if the text is in verse, x₂ if it rhymes, x₃ if it contains dialogue. The neuron calculates z = w₁ · x₁ + w₂ · x₂ + w₃ · x₃ + b and answers "poem" if z &gt; 0, "prose" otherwise. Start: w = (0, 1, 1), b = −0.5. If the neuron wrongly says "poem", subtract 1 from the bias and from the weights of the inputs that are 1; if it wrongly says "prose", add 1.</p>
+    <ol class="etapes">
+      <li><p class="etape-titre">A sonnet by Du Bellay · 5 min</p><p>(1, 1, 0), z = 0.5: "poem". Correct.</p></li>
+      <li><p class="etape-titre">A passage of dialogue from <em>Bel-Ami</em> · 5 min</p><p>(0, 0, 1), z = 0.5: "poem". Wrong. New weights: (0, 1, 0), b = −1.5.</p></li>
+      <li><p class="etape-titre">Whitman's "Song of Myself" · 5 min</p><p>Unrhymed free verse, (1, 0, 0), z = −1.5: "prose". Wrong. New weights: (1, 1, 0), b = −0.5.</p></li>
+      <li><p class="etape-titre">Check · 5 min</p><p>The three texts and a descriptive paragraph without dialogue are correctly classified.</p></li>
+      <li><p class="etape-titre">Borderline cases · 10 min</p><p>Racine's <em>Phèdre</em> (1, 1, 1) comes out as "poem"; a poem from <em>Le Spleen de Paris</em> (0, 0, 0) comes out as "prose". Who is right?</p></li>
+    </ol>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">What students should take away</p>
+      <p>Learning means adjusting numbers after errors: the weight for dialogue fell to zero because this clue was not useful. The neuron does not see what its inputs do not describe, and the categories remain human choices.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-activite-brouillard">
+    <h3>Gradient descent in the fog</h3>
+    <dl class="definitions">
+      <div><dt>Objective</dt><dd>Let students feel that <a href="index.html#c3-algorithmes">gradient descent</a> only knows the local slope.</dd></div>
+      <div><dt>Duration</dt><dd>25 min</dd></div>
+      <div><dt>Materials</dt><dd>Eleven sheets numbered from 0 to 10, laid in a line on the floor, with the altitude written on the back.</dd></div>
+    </dl>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Altitude hidden on the back of each sheet</caption>
+      <thead><tr><th scope="col">Position</th><th scope="col">0</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th><th scope="col">7</th><th scope="col">8</th><th scope="col">9</th><th scope="col">10</th></tr></thead>
+      <tbody><tr><th scope="row">Altitude</th><td>9</td><td>7</td><td>5</td><td>4</td><td>5</td><td>6</td><td>4</td><td>2</td><td>1</td><td>3</td><td>6</td></tr></tbody>
+    </table></div>
+    <p>The hiker only turns over their own sheet and the two next to it, then takes one step towards the lower of the two if it is lower than their own; otherwise, they stop.</p>
+    <ol class="etapes">
+      <li><p class="etape-titre">Metaphor · 3 min</p><p>The position is the parameter; the altitude is the error.</p></li>
+      <li><p class="etape-titre">Start at 0 · 5 min</p><p>0, 1, 2, 3: the hiker stops at altitude 4.</p></li>
+      <li><p class="etape-titre">Start at 10 · 4 min</p><p>10, 9, 8: the hiker stops at altitude 1.</p></li>
+      <li><p class="etape-titre">Lifting the fog · 3 min</p><p>All the sheets turned over: a local dip at 3, the minimum at 8.</p></li>
+      <li><p class="etape-titre">Big steps · 5 min</p><p>Steps of four sheets from 0: 0, 4, 8; the big step jumps over the dip at 3 and finds the minimum. Steps of three sheets from 10: 10, 7, stop at altitude 2, right next to the minimum. A step that is too large can miss the bottom; real gradient descent, which moves on even when the error goes up, then starts to oscillate.</p></li>
+      <li><p class="etape-titre">Formula · 5 min</p><p>w ← w − η · slope, where η is the length of the step; the lesson's demonstration with η = 0.1, then 1.1.</p></li>
+    </ol>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">What students should take away</p>
+      <p>The algorithm only sees the local slope. The starting point can trap it in a dip; a step that is too large makes it oscillate or diverge. The function in the course has only one valley; those of neural networks are much more rugged.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-activite-turing">
+    <h3>The imitation game</h3>
+    <dl class="definitions">
+      <div><dt>Objective</dt><dd>Let students live through Turing's test (1950) and discuss what it measures (<a href="index.html#c1-histoire">history</a>, <a href="index.html#c1-faible-forte">Chinese room</a>).</dd></div>
+      <div><dt>Duration</dt><dd>25 to 40 min</dd></div>
+      <div><dt>Materials</dt><dd>Strips of paper, a place out of sight, the rule card below; optionally, a chatbot.</dd></div>
+    </dl>
+    <ol class="etapes">
+      <li><p class="etape-titre">The original game · 5 min</p><p>In Turing's version, an interrogator must guess in writing who is the man and who is the woman; then a machine takes one of the places.</p></li>
+      <li><p class="etape-titre">Roles · 3 min</p><p>X answers sincerely, Y plays the machine using the card; both are out of sight. You read the answers aloud: handwriting would give the witnesses away.</p></li>
+      <li><p class="etape-titre">Question · 10 min</p><p>Five minutes of written questions per witness, the length of time Turing mentions.</p></li>
+      <li><p class="etape-titre">Vote · 5 min</p><p>A show of hands, then the reveal.</p></li>
+      <li><p class="etape-titre">Discuss · 10 min or more</p><p>What gave the machine away? Should it imitate our mistakes? In Turing's example, it answers an addition after about thirty seconds, and gets it wrong. Is deceiving the same as thinking?</p></li>
+    </ol>
+    <aside class="encadre encadre--exemple">
+      <p class="encadre-titre">Rule card for the "machine", in the spirit of ELIZA</p>
+      <ul>
+        <li>The question contains "you": "Why are you asking me that question?"</li>
+        <li>It contains a word about family: "Tell me about your family."</li>
+        <li>It asks for a calculation: wait thirty seconds, then answer.</li>
+        <li>Otherwise: "I am not sure I understand. Could you rephrase that?"</li>
+      </ul>
+    </aside>
+    <p>Variation: Y is a chatbot whose answers you read out; the question becomes "what does deceiving prove?".</p>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">What students should take away</p>
+      <p>Turing replaces a philosophical question with an observable test. Passing the test does not prove understanding (Searle). We easily attribute intelligence to anything that talks: this is the ELIZA effect.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-activite-spam">
+    <h3>A spam filter based on word votes</h3>
+    <dl class="definitions">
+      <div><dt>Objective</dt><dd>Help students understand the training, the predictions and the errors of a <a href="index.html#c3-ml">text classifier</a>, without probabilities.</dd></div>
+      <div><dt>Duration</dt><dd>30 min</dd></div>
+      <div><dt>Materials</dt><dd>The ten messages below, printed; the board for the count.</dd></div>
+    </dl>
+    <p>Spams: "Gagnez un voyage gratuit, cliquez ici"; "Offre exceptionnelle : cliquez vite pour gagner un cadeau"; "Vous avez gagné un cadeau gratuit, cliquez ici". Non-spams: "Le cours de jeudi porte sur le chapitre 3"; "Merci de rendre le mini-projet jeudi"; "Voici le lien vers le corrigé du TD".</p>
+    <p>Stop words are ignored (le, la, les, un, une, de, du, des, à, au, pour, vous, votre, est, et, sur, en, ce). A word's vote is the number of spams that contain it minus the number of non-spams that contain it. A message's score is the sum of the votes of its words, with an unknown word counting as 0: positive means spam; negative, non-spam; zero, undecided.</p>
+    <ol class="etapes">
+      <li><p class="etape-titre">Train · 10 min</p><p>Expected: cliquez +3; gratuit, ici, cadeau +2; gagnez, gagner, gagné, offre, exceptionnelle, vite, voyage, avez +1; jeudi −2; the other words of the non-spams −1.</p></li>
+      <li><p class="etape-titre">Predict · 10 min</p><p>"Cliquez ici pour gagner un livre gratuit": +8, spam. "Le TD de jeudi est reporté": −3, non-spam. "Cliquez ici pour lire le corrigé du TD de jeudi": +1, wrongly marked as spam. "Félicitations, vous êtes sélectionné": 0, undecided.</p></li>
+      <li><p class="etape-titre">Discuss · 10 min</p><p>The third message is a false positive; the fourth has only unknown words. "Gagnez", "gagner" and "gagné" vote separately (hence lemmatisation), and "jeudi" has become a clue by chance.</p></li>
+    </ol>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">What students should take away</p>
+      <p>A classifier turns words into numbers and learns only from its examples; its two kinds of error are measured by precision and recall. The naive Bayes classifier in the lesson does the same thing with probabilities.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-activite-voyant">
+    <h3>A poem in Voyant Tools</h3>
+    <dl class="definitions">
+      <div><dt>Objective</dt><dd>Carry out a tool-assisted reading of a poem (frequencies, word cloud, concordance) without programming, and compare it with a close reading.</dd></div>
+      <div><dt>Duration</dt><dd>40 min</dd></div>
+      <div><dt>Materials</dt><dd>One connected computer for two, or a single one on the projector; <a href="https://voyant-tools.org" target="_blank" rel="noopener">Voyant Tools</a>, a free web tool designed by Stéfan Sinclair and Geoffrey Rockwell; Rimbaud's "Le Dormeur du val", whose text is given in the <a href="index.html#c2-fichiers">lesson on text files</a>.</dd></div>
+    </dl>
+    <ol class="etapes">
+      <li><p class="etape-titre">Close reading · 10 min</p><p>Without a tool: which words come back? What prepares the last line?</p></li>
+      <li><p class="etape-titre">Load the text · 5 min</p><p>Paste the poem on the home page and start the analysis (the <span class="terme-en" lang="en">Reveal</span> button).</p></li>
+      <li><p class="etape-titre">Explore · 10 min</p><p>The word cloud (Cirrus), then a click on a word to see its distribution and its KWIC concordance. By default, Voyant removes a list of stop words, which you can change in the options.</p></li>
+      <li><p class="etape-titre">Compare · 10 min</p><p>Does the tool pick out "dort"? Does it see the final twist, or the double meaning of "nue"? Compare its counts with those of the Python program in the lesson: the differences come from how a "word" is defined.</p></li>
+      <li><p class="etape-titre">Broaden · 5 min</p><p>Compare several poems. For an Arabic text, try it out before the session.</p></li>
+    </ol>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">What students should take away</p>
+      <p>The tool counts, the reader interprets: a word cloud is not an analysis. You need to know which words were removed and how a word is defined. The text is sent to a server: no copyrighted texts and no unpublished work (<a href="index.html#c1-perspectives">Ethics and good practice</a>).</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-activite-teachable">
+    <h3>Classifying images with Teachable Machine</h3>
+    <dl class="definitions">
+      <div><dt>Objective</dt><dd>Train an image classifier and observe that it also learns unintended clues (<a href="index.html#c3-ml">image identification</a>).</dd></div>
+      <div><dt>Duration</dt><dd>35 min</dd></div>
+      <div><dt>Materials</dt><dd>A connected computer with a webcam, linked to the projector; <a href="https://teachablemachine.withgoogle.com" target="_blank" rel="noopener">Teachable Machine</a> (Google, free, in the browser); about thirty cards with words in Arabic or Latin script.</dd></div>
+    </dl>
+    <ol class="etapes">
+      <li><p class="etape-titre">Prepare · 5 min</p><p>An image project, two classes: "Arabic script" and "Latin script".</p></li>
+      <li><p class="etape-titre">Collect · 10 min</p><p>Students hold the cards up to the webcam. A trap prepared in secret: all the Arabic cards are written in blue marker on coloured paper, and all the Latin ones in black marker on white paper.</p></li>
+      <li><p class="etape-titre">Train and test · 5 min</p><p>Train, then test with new cards made in the same way: everything seems to work.</p></li>
+      <li><p class="etape-titre">Uncover the trap · 10 min</p><p>Show an Arabic word in black marker on white paper and watch the answer. What might the model have learned? Retrain with varied examples.</p></li>
+      <li><p class="etape-titre">Link to the course · 5 min</p><p>Compare this trap with the "enfans" of chapter 1 and the "jeudi" of the spam filter. The tool reuses a network that has already been trained, which is why so few examples are needed.</p></li>
+    </ol>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">What students should take away</p>
+      <p>A model learns the correlations in its examples, not the concept we have in mind; the variety of the data matters more than the "train" button. Do not photograph students' faces: facial recognition raises the ethical problems seen in the lesson.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-activite-debat">
+    <h3>Debate: can AI write a novel?</h3>
+    <dl class="definitions">
+      <div><dt>Objective</dt><dd>Build and defend a documented argument about creation by machines and authorship (<a href="index.html#tr-problematiques">round table on new issues</a>).</dd></div>
+      <div><dt>Duration</dt><dd>60 min, after preparation started in the previous session</dd></div>
+      <div><dt>Materials</dt><dd>The procedure <a href="index.html#tr-methode">Preparing and running a round table</a>, a timer, an observation grid for the audience.</dd></div>
+    </dl>
+    <ol class="etapes">
+      <li><p class="etape-titre">Prepare · previous session</p><p>Two teams drawn by lot, a jury of three, the audience. Each speaker brings two arguments and one example with a source.</p></li>
+      <li><p class="etape-titre">Define the terms · 5 min</p><p>"Write": producing a text, or conceiving it? "Novel": a length, a structure, an intention?</p></li>
+      <li><p class="etape-titre">Opening statements · 10 min</p><p>Two speakers per team, two to three minutes each.</p></li>
+      <li><p class="etape-titre">Exchanges · 20 min</p><p>Each speaker answers the previous argument before putting forward a new one.</p></li>
+      <li><p class="etape-titre">Questions from the audience · 10 min</p><p>Based on the observation grid.</p></li>
+      <li><p class="etape-titre">Summing up · 15 min</p><p>The jury says which arguments were best supported, not who won; you then add what the course says.</p></li>
+    </ol>
+    <h4>Ideas to feed the debate</h4>
+    <ul>
+      <li>Ada Lovelace (1843): the Analytical Engine originates nothing; it does whatever we know how to order it to perform. Turing discusses this "Lady Lovelace's objection" in 1950.</li>
+      <li>The Oulipo, founded in 1960 by Raymond Queneau and François Le Lionnais, and <em>Cent mille milliards de poèmes</em> (1961): combinatorial literature came before AI.</li>
+      <li>The Chinese room and next-token prediction (<a href="index.html#c3-deep">lesson</a>): is producing a text the same as understanding it?</li>
+      <li>In January 2024, Rie Kudan, winner of the Akutagawa Prize, said that about 5% of her novel was taken word for word from texts generated by ChatGPT.</li>
+      <li>In the United States, the Copyright Office requires some human creative contribution; have students research the situation in Algeria.</li>
+    </ul>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">What students should take away</p>
+      <p>"Writing a novel" covers several questions: producing a text, having an intention, being answerable for it, being original. An argument is only as good as its source.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-activites-conseils">
+    <h3>Tips for leading activities</h3>
+    <div class="grille-cartes">
+      <article class="carte">
+        <h4>Group work</h4>
+        <p>Three or four students, with mixed levels and equipment, rotating roles (secretary, spokesperson, timekeeper) and a precise output. Draw the spokesperson by lot: everyone must be ready. Ask "what have you tried?" rather than giving the answer.</p>
+      </article>
+      <article class="carte">
+        <h4>Pair programming</h4>
+        <p>The driver holds the keyboard; the navigator reads the task, checks the code and makes suggestions. They swap every fifteen minutes, at your signal. The less confident student starts at the keyboard, and the navigator never takes it from them.</p>
+      </article>
+      <article class="carte">
+        <h4>Live coding</h4>
+        <p>A large font, a notebook prepared with the headings, and code typed live while you say what you are doing. Have students predict each result. Make mistakes on purpose: an unclosed quotation mark (<code>SyntaxError</code>), a badly indented block (<code>IndentationError</code>), an unknown variable (<code>NameError</code>), <code>"Nedjma" + 1956</code> (<code>TypeError</code>). Always read the last line of the message. If a real error defeats you, say so and come back to it next time.</p>
+      </article>
+      <article class="carte">
+        <h4>Students without a computer</h4>
+        <p>Identify them through the questionnaire. Put them in pairs, book the computer room if possible, and prepare tasks on paper: predict the output of printed code, find the error in it. A phone is enough to read the site, but hardly enough to program. Assessment must not depend on personal equipment.</p>
+      </article>
+    </div>
+    <aside class="encadre encadre--shs">
+      <p class="encadre-titre">The languages of the class</p>
+      <p>Let groups discuss in the language in which they think fastest, but require the technical terms in French and in English. The site also exists in Arabic and in English: a student who is stuck can reread the lesson in another language.</p>
+    </aside>
+  </article>
+</section>

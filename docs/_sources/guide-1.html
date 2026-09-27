@@ -1,0 +1,405 @@
+<section class="chapitre" id="guide-demarrer" aria-labelledby="guide-demarrer-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">Avant la rentrée · un mois</p>
+    <h2 class="titre-section" id="guide-demarrer-titre">Par où commencer</h2>
+    <p class="chapeau">Vous n'avez jamais programmé et ce cours vous est confié. La situation est courante et elle se prépare : un mois suffit pour installer les outils, vous former aux bases et préparer votre première séance.</p>
+    <ul class="puces"><li class="puce">Dix étapes</li><li class="puce">Dix séances d'autoformation</li><li class="puce">Matériel minimal</li></ul>
+  </header>
+
+  <nav class="sommaire-chapitre" aria-label="Sommaire : par où commencer">
+    <ol>
+      <li><a href="#guide-demarrer-etapes">Dix étapes avant le premier cours</a></li>
+      <li><a href="#guide-demarrer-autoformation">Deux semaines pour vous former</a></li>
+      <li><a href="#guide-demarrer-materiel">Le matériel et les logiciels</a></li>
+    </ol>
+  </nav>
+
+  <article class="lecon" id="guide-demarrer-etapes">
+    <h3>Dix étapes, d'un mois avant à la veille du premier cours</h3>
+    <p>Les délais sont indicatifs. Si la rentrée a lieu dans deux semaines, faites d'abord les étapes 1, 2, 3, 7 et 10.</p>
+
+    <ol class="etapes">
+      <li>
+        <p class="etape-titre">Un mois avant · Lire le programme, puis le site comme un étudiant</p>
+        <p>Lisez la <a href="index.html#fiche">fiche de la matière</a>, qui reprend le programme officiel, puis le <a href="index.html#parcours">calendrier</a>, la page <a href="index.html#methode">Comment apprendre ce cours</a> et le <a href="index.html#chapitre-1">chapitre 1</a> en entier. Les leçons, les <a href="index.html#td-tp">TD corrigés</a> et les sujets de <a href="index.html#mini-projet">mini-projet</a> sont déjà rédigés : votre rôle est de guider les étudiants dans ce matériel, pas de tout réécrire.</p>
+      </li>
+      <li>
+        <p class="etape-titre">Quatre semaines avant · Installer les outils sur votre ordinateur</p>
+        <p>Sous Windows, téléchargez le fichier <code>run.bat</code> depuis le <a href="https://github.com/Progremer04/canva-au-for-ang-" target="_blank" rel="noopener">dépôt du cours</a>, placez-le dans un dossier vide et double-cliquez dessus. Il télécharge le projet, installe Python et les bibliothèques du cours, puis ouvre le site. La première fois, il faut une connexion à Internet : comptez plusieurs centaines de Mo et de 5 à 20 minutes. Si Windows affiche « Windows a protégé votre ordinateur », choisissez <em>Informations complémentaires</em>, puis <em>Exécuter quand même</em>.</p>
+        <p>Pour vérifier, tapez <kbd>cmd</kbd> dans la barre d'adresse de l'Explorateur, dans le dossier de <code>run.bat</code>, puis <code>run.bat check</code> : la liste des bibliothèques installées s'affiche. <code>run.bat notebook</code> ouvre Jupyter. Si l'installation échoue, utilisez <a href="https://colab.research.google.com" target="_blank" rel="noopener">Google Colab</a> : un compte Google et une connexion suffisent. Commencez cette semaine votre <a href="#guide-demarrer-autoformation">autoformation</a>.</p>
+      </li>
+      <li>
+        <p class="etape-titre">Trois semaines et demie avant · Visiter la salle machine</p>
+        <p>Avec le responsable technique, vérifiez le nombre de postes en état, la présence de Python, le droit d'installer des bibliothèques, l'accès à Internet et le vidéoprojecteur. Si Python peut être installé, demandez-le avant la rentrée. Si seul Internet fonctionne, les étudiants travailleront dans Colab. Sans l'un ni l'autre, copiez le dossier du projet sur une clé USB et ouvrez <code>docs/index.html</code> dans un navigateur : leçons, corrigés et démonstrations interactives fonctionnent sans connexion, et les calculs se font à la main, comme en TD.</p>
+      </li>
+      <li>
+        <p class="etape-titre">Trois semaines avant · Créer l'espace de la classe</p>
+        <p>Utilisez la plateforme Moodle de votre université si elle en a une : elle garde la trace des remises. Sinon, une classe Google Classroom ou un groupe de messagerie suffit. Déposez-y le lien du site, le calendrier et les règles du cours (retards, remises, usage des outils d'IA). Un seul canal : les étudiants savent où regarder.</p>
+      </li>
+      <li>
+        <p class="etape-titre">Deux semaines et demie avant · Préparer un questionnaire de diagnostic</p>
+        <p>Une dizaine de questions, en ligne ou sur papier à la première séance :</p>
+        <ul>
+          <li>Avez-vous un ordinateur personnel ? Un accès régulier à Internet ?</li>
+          <li>Avez-vous déjà écrit un programme, même court ? Utilisez-vous un tableur ?</li>
+          <li>Lisez-vous l'anglais technique facilement, avec un dictionnaire, difficilement ?</li>
+          <li>Avez-vous déjà utilisé un assistant d'IA ? Pour quoi faire ?</li>
+          <li>Qu'attendez-vous de ce cours ? Qu'est-ce qui vous inquiète ?</li>
+        </ul>
+        <p>Les réponses servent à former des binômes mixtes.</p>
+      </li>
+      <li>
+        <p class="etape-titre">Deux semaines avant · Planifier le semestre</p>
+        <p>Reportez la <a href="#guide-progression">progression semaine par semaine</a> sur le calendrier officiel de votre faculté (vacances, jours fériés, examens) et fixez les dates qui engagent les étudiants : mini-projet, soutenances, tables rondes.</p>
+      </li>
+      <li>
+        <p class="etape-titre">Dix jours avant · Préparer la première séance</p>
+        <p>Partez de la première des <a href="#guide-seances">fiches de séance</a> et testez la projection dans la salle. Préparez une question d'ouverture (« Une machine peut-elle lire un roman ? ») et la démonstration de l'<a href="index.html#accueil">accueil du site</a>, qui calcule le sentiment d'une phrase : elle lance la discussion sur ce que « lire » veut dire pour une machine.</p>
+      </li>
+      <li>
+        <p class="etape-titre">Une semaine avant · Fixer l'évaluation selon les textes en vigueur</p>
+        <p>Pour l'évaluation, le programme renvoie seulement aux « textes en vigueur ». Demandez à votre chef de département la répartition applicable à cette UE entre examen et contrôle continu, et ce que ce dernier peut compter : TD, mini-projet, table ronde. Tranchez aussi une question que le programme laisse ouverte : la méthode pédagogique demande « au moins 3 sujets parmi les 5 proposés », la présentation du mini-projet dit « Traitez 1 sujet au choix ». Annoncez une règle claire dès la première séance (voir <a href="#guide-evaluation">Évaluation</a>).</p>
+      </li>
+      <li>
+        <p class="etape-titre">Cinq jours avant · Préparer l'énoncé du mini-projet</p>
+        <p>Il sera distribué à la fin du chapitre 2, mais préparez-le maintenant : nombre de sujets, travail individuel ou en binôme, <a href="index.html#mp-livrables">livrables</a> (notebook, rapport de 4 à 6 pages, oral), dates, <a href="index.html#mp-evaluation">grille de relecture</a>. Pour chaque sujet, vérifiez qu'une source de données accessible existe, ou prévoyez un petit jeu de données à fournir.</p>
+      </li>
+      <li>
+        <p class="etape-titre">La veille · Dernier contrôle, et votre propre formation continue</p>
+        <p>Vérifiez que le site s'ouvre sur l'ordinateur de la salle et que le questionnaire est prêt. Puis bloquez deux heures par semaine pour préparer la semaine suivante : lire la leçon, chercher le TD sans le corrigé, exécuter le code du TP. Rester une semaine en avance suffit. Si un collègue informaticien est disponible, prévoyez avec lui un court rendez-vous toutes les deux semaines.</p>
+      </li>
+    </ol>
+  </article>
+
+  <article class="lecon" id="guide-demarrer-autoformation">
+    <h3>Si vous n'avez jamais programmé : deux semaines pour vous former</h3>
+    <p>Ce cours ne vous demande pas de devenir ingénieur, mais de lire, d'exécuter et d'adapter des programmes courts et, surtout, d'aider vos étudiants à interpréter les résultats. Sur ce dernier point, votre formation littéraire est un atout : poser une question de recherche, critiquer un corpus, se méfier d'un chiffre sans contexte, c'est votre métier.</p>
+    <p>Le plan tient en dix séances d'une heure, cinq par semaine, dans Jupyter ou dans Colab. Retapez les exemples au lieu de les copier et prédisez le résultat avant d'exécuter : c'est la méthode conseillée aux étudiants, et elle vaut pour vous.</p>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Dix séances d'une heure pour vous former avec le site</caption>
+      <thead><tr><th scope="col">Séance</th><th scope="col">Ce que vous apprenez</th><th scope="col">Sur le site</th><th scope="col">À faire</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Ouvrir un notebook, exécuter une cellule ; variables et types</td><td><a href="index.html#c2-installer">Environnement</a>, <a href="index.html#c2-fondamentaux">fondamentaux</a></td><td>Afficher le titre et l'année d'un roman, puis changer une valeur.</td></tr>
+        <tr><td>2</td><td>Chaînes de caractères et listes</td><td><a href="index.html#c2-fondamentaux">Fondamentaux</a></td><td><a href="index.html#td-ch2-ex1">Exercice 1 du TD 2</a> (palindromes)</td></tr>
+        <tr><td>3</td><td>Tuples, dictionnaires, boucles</td><td><a href="index.html#c2-fondamentaux">Fondamentaux</a></td><td>Exercices <a href="index.html#td-ch2-ex2">2</a> et <a href="index.html#td-ch2-ex3">3</a> du TD 2</td></tr>
+        <tr><td>4</td><td>Conditions, fonctions ; lire un message d'erreur</td><td><a href="index.html#c2-fondamentaux">Fondamentaux</a> ; tutoriel officiel, chapitres 3 et 4</td><td>Provoquer trois erreurs et lire la dernière ligne de chaque message.</td></tr>
+        <tr><td>5</td><td>pandas : lire un CSV, filtrer, trier, regrouper</td><td><a href="index.html#c2-numpy-pandas">NumPy et pandas</a></td><td><a href="index.html#td-ch2-ex4">Exercice 4 du TD 2</a></td></tr>
+        <tr><td>6</td><td>Fichiers texte : lire, chercher, compter, trier</td><td><a href="index.html#c2-fichiers">Fichiers textes</a></td><td><a href="index.html#td-ch2-ex5">Exercice 5 du TD 2</a>, puis une concordance sur un texte de votre choix.</td></tr>
+        <tr><td>7</td><td>Rapports Excel et PDF ; survol des objets</td><td><a href="index.html#c2-rapports">Rapports</a>, <a href="index.html#c2-objet">objets</a></td><td>Exporter le résultat de la séance 6 dans un classeur Excel.</td></tr>
+        <tr><td>8</td><td>Les idées du chapitre 1</td><td><a href="index.html#chapitre-1">Chapitre 1</a>, <a href="index.html#td-ch1">TD 1</a></td><td>Exercices 2 et 3 du TD 1, avec vos propres exemples littéraires.</td></tr>
+        <tr><td>9</td><td>Système expert et chaînage avant</td><td><a href="index.html#c3-symbolique">IA symbolique</a></td><td><a href="index.html#td-ch3-ex1">Exercice 1 du TD 3</a> sur papier, puis la démonstration.</td></tr>
+        <tr><td>10</td><td>Un algorithme d'apprentissage de bout en bout</td><td><a href="index.html#c3-algorithmes">Algorithmes</a>, <a href="index.html#mp-sujet-2">sujet 2</a></td><td><a href="index.html#td-ch3-ex2d">Exercice 2d</a> à la main, la démonstration des k-moyennes, puis le code du sujet 2.</td></tr>
+      </tbody>
+    </table></div>
+
+    <h4>Trois ressources gratuites en complément</h4>
+    <ul>
+      <li><a href="https://docs.python.org/fr/3/tutorial/" target="_blank" rel="noopener">Le tutoriel officiel de Python</a>, en français : à lire par petits morceaux, surtout les chapitres 3 à 5.</li>
+      <li><a href="https://colab.research.google.com" target="_blank" rel="noopener">Google Colab</a> : pour pratiquer partout sans installation. Enregistrez vos notebooks dans Google Drive : les fichiers d'une session sont effacés à sa fermeture.</li>
+      <li><a href="https://programminghistorian.org/fr/" target="_blank" rel="noopener">Programming Historian</a> : des leçons d'humanités numériques évaluées par des pairs, écrites pour les sciences humaines ; une partie en français, le reste en anglais.</li>
+    </ul>
+
+    <aside class="encadre encadre--attention"><p class="encadre-titre">Quand vous bloquez</p><p>Au-delà de vingt minutes sur le même problème, arrêtez. Notez ce que vous avez essayé, puis demandez à un collègue, ou faites expliquer le code ligne par ligne par un assistant d'IA en vérifiant ce qu'il affirme (<a href="index.html#me-assistant">bon usage d'un assistant</a>). Vos étudiants bloqueront aux mêmes endroits, et vous saurez les aider.</p></aside>
+
+    <aside class="encadre encadre--retenir"><p class="encadre-titre">Ce que le cours exige vraiment de vous</p>
+      <ul>
+        <li>Lire un programme court et expliquer ce qu'il fait.</li>
+        <li>L'exécuter, modifier un paramètre, interpréter le changement.</li>
+        <li>Dérouler à la main le chaînage avant, une étape de descente de gradient, une itération des k-moyennes.</li>
+        <li>Savoir où trouver la réponse : leçon, corrigé, documentation.</li>
+      </ul>
+      <p>Écrire de mémoire un long programme ou maîtriser les mathématiques des réseaux de neurones n'est pas demandé.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-demarrer-materiel">
+    <h3>Le matériel et les logiciels nécessaires</h3>
+    <p>Tous les logiciels du cours sont gratuits. Commencez avec le minimum, améliorez en cours de route.</p>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Du minimum à l'idéal</caption>
+      <thead><tr><th scope="col">Besoin</th><th scope="col">Solution minimale</th><th scope="col">Solution idéale</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Préparer vos cours</th><td>Un ordinateur avec un navigateur, et Colab pour exécuter le code</td><td>Un ordinateur avec Python, les bibliothèques et Jupyter, installés par <code>run.bat</code> sous Windows</td></tr>
+        <tr><th scope="row">Montrer le cours</th><td>Un vidéoprojecteur relié à votre ordinateur, le site ouvert</td><td>Le même, avec un notebook prêt pour exécuter le code devant la classe</td></tr>
+        <tr><th scope="row">Faire programmer en séance</th><td>Colab si la salle a Internet ; sinon, votre machine projetée, les étudiants dictant le code</td><td>Un poste par étudiant ou par binôme, avec Python et les bibliothèques du cours</td></tr>
+        <tr><th scope="row">Travail personnel</th><td>Le site sur téléphone pour lire les leçons et faire les quiz</td><td>Un ordinateur personnel avec <code>run.bat</code> ou Colab</td></tr>
+        <tr><th scope="row">Connexion à Internet</th><td>Aucune pour le site et ses démonstrations, à partir d'une copie locale</td><td>Une connexion stable pour Colab, l'installation et les modèles de Transformers (téléchargés au premier usage)</td></tr>
+        <tr><th scope="row">Communication et remises</th><td>Un groupe de messagerie ; remises par courriel ou clé USB</td><td>L'espace Moodle de l'université, qui date les remises</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>Sans installation</h4>
+        <p>Colab exécute Python dans le navigateur, avec un compte Google et une connexion. Une partie des bibliothèques y est déjà installée ; les autres s'ajoutent avec <code>!pip install</code>.</p>
+        <p>Les quatre démonstrations du site tournent dans le navigateur, même hors ligne : le <a href="index.html#accueil">lecteur de sentiments</a> de l'accueil, le <a href="index.html#c3-symbolique">chaînage avant</a>, la <a href="index.html#c3-algorithmes">descente de gradient et les k-moyennes</a>.</p>
+      </div>
+      <div class="comparaison-col">
+        <h4>Sans ordinateur</h4>
+        <p>Une bonne partie du cours se fait sur papier : chaînage avant, régression sur trois points, k-moyennes avec des jetons sur une grille, mise à jour de Q-learning. Lire un programme imprimé et prédire sa sortie, c'est déjà programmer.</p>
+        <p>Les <a href="#guide-activites">activités débranchées</a> du guide sont conçues pour ce cas.</p>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="chapitre" id="guide-carte" aria-labelledby="guide-carte-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">Vue d'ensemble</p>
+    <h2 class="titre-section" id="guide-carte-titre">Carte du cours</h2>
+    <p class="chapeau">Ce que contient le cours, comment les notions s'appuient les unes sur les autres, et ce que vos étudiants doivent savoir faire à la fin du semestre.</p>
+    <ul class="puces"><li class="puce">Schéma d'ensemble</li><li class="puce">Notions clés</li><li class="puce">Compétences</li></ul>
+  </header>
+
+  <nav class="sommaire-chapitre" aria-label="Sommaire : carte du cours">
+    <ol>
+      <li><a href="#guide-carte-schema">Le cours en un schéma</a></li>
+      <li><a href="#guide-carte-notions">Les notions clés et leurs prérequis</a></li>
+      <li><a href="#guide-carte-competences">Les compétences visées</a></li>
+    </ol>
+  </nav>
+
+  <article class="lecon" id="guide-carte-schema">
+    <h3>Le cours en un schéma</h3>
+    <p>Pour enseigner, il est plus utile de voir le programme comme un ensemble de dépendances que comme une suite de chapitres : les idées du chapitre 1 préparent les approches du chapitre 3, les outils du chapitre 2 servent aux TP et au mini-projet, et l'éthique traverse le tout. Montrez ce schéma à la première séance, puis à chaque changement de chapitre, pour que les étudiants sachent où ils en sont.</p>
+
+    <figure class="schema">
+      <svg viewBox="0 0 900 560" role="img" aria-labelledby="guide-carte-schema-t">
+        <title id="guide-carte-schema-t">Carte du cours : fondements, approches et applications en colonnes, outils en bas, éthique en haut</title>
+        <defs><marker id="guide-fleche" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="svg-pointe" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+
+        <rect class="svg-noeud-accent" x="16" y="16" width="868" height="64" rx="16"/>
+        <text class="svg-texte" x="36" y="44">Éthique et usages</text>
+        <text class="svg-texte-doux" x="36" y="66">ch. 1 · tables rondes</text>
+        <text class="svg-texte" x="316" y="53" text-anchor="middle">Vie privée</text>
+        <text class="svg-texte" x="462" y="53" text-anchor="middle">Droit d'auteur</text>
+        <text class="svg-texte" x="614" y="53" text-anchor="middle">Biais et limites</text>
+        <text class="svg-texte" x="780" y="53" text-anchor="middle">Usage déclaré de l'IA</text>
+
+        <rect class="svg-noeud" x="16" y="104" width="220" height="308" rx="16"/>
+        <text class="svg-texte" x="32" y="132">Fondements</text>
+        <text class="svg-texte-doux" x="32" y="152">ch. 1 · 1 semaine</text>
+        <rect class="svg-noeud" x="32" y="170" width="188" height="58" rx="10"/>
+        <text class="svg-texte" x="126" y="195" text-anchor="middle">Histoire de l'IA</text>
+        <text class="svg-texte-doux" x="126" y="215" text-anchor="middle">de 1950 à nos jours</text>
+        <rect class="svg-noeud" x="32" y="256" width="188" height="58" rx="10"/>
+        <text class="svg-texte" x="126" y="281" text-anchor="middle">IA faible, IA forte</text>
+        <text class="svg-texte-doux" x="126" y="301" text-anchor="middle">chambre chinoise</text>
+        <rect class="svg-noeud" x="32" y="342" width="188" height="58" rx="10"/>
+        <text class="svg-texte" x="126" y="367" text-anchor="middle">Types d'apprentissage</text>
+        <text class="svg-texte-doux" x="126" y="387" text-anchor="middle">supervisé ou non</text>
+
+        <rect class="svg-noeud" x="300" y="104" width="260" height="308" rx="16"/>
+        <text class="svg-texte" x="316" y="132">Approches</text>
+        <text class="svg-texte-doux" x="316" y="152">ch. 3 · 6 semaines</text>
+        <rect class="svg-noeud" x="316" y="170" width="228" height="50" rx="10"/>
+        <text class="svg-texte" x="430" y="191" text-anchor="middle">IA symbolique</text>
+        <text class="svg-texte-doux" x="430" y="210" text-anchor="middle">systèmes experts</text>
+        <rect class="svg-noeud" x="316" y="230" width="228" height="50" rx="10"/>
+        <text class="svg-texte" x="430" y="251" text-anchor="middle">Apprentissage (ML)</text>
+        <text class="svg-texte-doux" x="430" y="270" text-anchor="middle">k-moyennes, régression</text>
+        <rect class="svg-noeud" x="316" y="290" width="228" height="50" rx="10"/>
+        <text class="svg-texte" x="430" y="311" text-anchor="middle">Apprentissage profond</text>
+        <text class="svg-texte-doux" x="430" y="330" text-anchor="middle">réseaux, Transformers</text>
+        <rect class="svg-noeud" x="316" y="350" width="228" height="50" rx="10"/>
+        <text class="svg-texte" x="430" y="371" text-anchor="middle">Renforcement (RL)</text>
+        <text class="svg-texte-doux" x="430" y="390" text-anchor="middle">agent, récompense</text>
+
+        <rect class="svg-noeud" x="624" y="104" width="260" height="308" rx="16"/>
+        <text class="svg-texte" x="640" y="132">Applications SHS</text>
+        <text class="svg-texte-doux" x="640" y="152">mini-projet · 3 sem.</text>
+        <rect class="svg-noeud-accent" x="640" y="170" width="228" height="38" rx="10"/>
+        <text class="svg-texte-doux" x="654" y="194">S1</text>
+        <text class="svg-texte" x="682" y="195">Analyse de sentiments</text>
+        <rect class="svg-noeud-accent" x="640" y="218" width="228" height="38" rx="10"/>
+        <text class="svg-texte-doux" x="654" y="242">S2</text>
+        <text class="svg-texte" x="682" y="243">Clustering d'enquêtes</text>
+        <rect class="svg-noeud-accent" x="640" y="266" width="228" height="38" rx="10"/>
+        <text class="svg-texte-doux" x="654" y="290">S3</text>
+        <text class="svg-texte" x="682" y="291">Discours politiques</text>
+        <rect class="svg-noeud-accent" x="640" y="314" width="228" height="38" rx="10"/>
+        <text class="svg-texte-doux" x="654" y="338">S4</text>
+        <text class="svg-texte" x="682" y="339">Modèle prédictif</text>
+        <rect class="svg-noeud-accent" x="640" y="362" width="228" height="38" rx="10"/>
+        <text class="svg-texte-doux" x="654" y="386">S5</text>
+        <text class="svg-texte" x="682" y="387">Analyse de réseaux</text>
+
+        <line class="svg-trait-accent" x1="236" y1="258" x2="298" y2="258" marker-end="url(#guide-fleche)"/>
+        <line class="svg-trait-accent" x1="560" y1="258" x2="622" y2="258" marker-end="url(#guide-fleche)"/>
+        <line class="svg-trait" x1="430" y1="466" x2="430" y2="414" marker-end="url(#guide-fleche)"/>
+        <text class="svg-texte-doux" x="442" y="445">TP : programmer</text>
+        <line class="svg-trait" x1="754" y1="466" x2="754" y2="414" marker-end="url(#guide-fleche)"/>
+        <text class="svg-texte-doux" x="766" y="445">code et données</text>
+
+        <rect class="svg-noeud" x="16" y="468" width="868" height="76" rx="16"/>
+        <text class="svg-texte" x="36" y="500">Outils : Python</text>
+        <text class="svg-texte-doux" x="36" y="522">ch. 2 · 2 semaines</text>
+        <rect class="svg-noeud" x="200" y="488" width="150" height="36" rx="10"/>
+        <text class="svg-texte" x="275" y="511" text-anchor="middle">Bases de Python</text>
+        <rect class="svg-noeud" x="362" y="488" width="146" height="36" rx="10"/>
+        <text class="svg-texte" x="435" y="511" text-anchor="middle">pandas, NumPy</text>
+        <rect class="svg-noeud" x="520" y="488" width="140" height="36" rx="10"/>
+        <text class="svg-texte" x="590" y="511" text-anchor="middle">Fichiers texte</text>
+        <rect class="svg-noeud" x="672" y="488" width="196" height="36" rx="10"/>
+        <text class="svg-texte" x="770" y="511" text-anchor="middle">Rapports Excel, PDF</text>
+      </svg>
+      <figcaption>Lisez la carte de gauche à droite : les fondements du chapitre 1 donnent le vocabulaire des quatre approches du chapitre 3, qui fournissent les méthodes des cinq sujets du mini-projet (S1 à S5). En bas, les outils Python du chapitre 2 servent aux TP du chapitre 3 et au mini-projet. En haut, l'éthique et les bons usages concernent toutes les parties : ils sont exposés au chapitre 1, discutés en tables rondes et vérifiés dans chaque rapport de mini-projet.</figcaption>
+    </figure>
+  </article>
+
+  <article class="lecon" id="guide-carte-notions">
+    <h3>Les notions clés et leurs prérequis</h3>
+    <p>Seize notions portent l'essentiel du cours. Si l'une ne passe pas, vérifiez d'abord son prérequis. Les activités sont détaillées dans les <a href="#guide-activites">activités en classe</a>.</p>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Seize notions, dans l'ordre du cours</caption>
+      <thead><tr><th scope="col">Notion</th><th scope="col">Prérequis</th><th scope="col">Où dans le site</th><th scope="col">Activité conseillée</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">1. Définition de l'IA, agent</th><td>Aucun</td><td><a href="index.html#c1-definir">Qu'est-ce que l'IA ?</a></td><td>Recueillir les définitions des étudiants, puis les confronter à celle du cours.</td></tr>
+        <tr><th scope="row">2. Grandes étapes de l'histoire de l'IA</th><td>Aucun</td><td><a href="index.html#c1-histoire">Survol historique</a></td><td>Frise collective de dix dates ; <a href="index.html#tr-genese">table ronde 1</a>.</td></tr>
+        <tr><th scope="row">3. IA faible et IA forte</th><td>1</td><td><a href="index.html#c1-faible-forte">IA étroite et générale</a></td><td>Débat court sur la chambre chinoise.</td></tr>
+        <tr><th scope="row">4. Apprentissage supervisé et non supervisé</th><td>1</td><td><a href="index.html#c1-apprentissage">Leçon</a>, <a href="index.html#td-ch1-ex2">TD 1, ex. 2</a></td><td>Classer des cartes-situations en deux piles, puis justifier.</td></tr>
+        <tr><th scope="row">5. Variables, listes, dictionnaires, boucles</th><td>Aucun</td><td><a href="index.html#c2-fondamentaux">Fondamentaux</a>, <a href="index.html#td-ch2">TD 2</a></td><td>Prédire la sortie d'un programme imprimé avant de l'exécuter.</td></tr>
+        <tr><th scope="row">6. Tableau de données (DataFrame)</th><td>5</td><td><a href="index.html#c2-numpy-pandas">NumPy et pandas</a>, <a href="index.html#td-ch2-ex4">TD 2, ex. 4</a></td><td>Filtrer, trier et compter un tableau d'œuvres.</td></tr>
+        <tr><th scope="row">7. Fichier texte, encodage, fréquences</th><td>5</td><td><a href="index.html#c2-fichiers">Fichiers textes</a>, <a href="index.html#td-ch2-ex5">TD 2, ex. 5</a></td><td>Concordance d'un mot dans un roman du domaine public.</td></tr>
+        <tr><th scope="row">8. Classe et objet</th><td>5</td><td><a href="index.html#c2-objet">Programmation objet</a></td><td>Lecture guidée : « un poème est un texte ».</td></tr>
+        <tr><th scope="row">9. Système expert, chaînage avant</th><td>Logique « si… alors »</td><td><a href="index.html#c3-symbolique">IA symbolique</a>, <a href="index.html#td-ch3-ex1">TD 3, ex. 1</a></td><td>Dérouler les règles au tableau, puis la démonstration.</td></tr>
+        <tr><th scope="row">10. Entraînement, test, surapprentissage</th><td>4</td><td><a href="index.html#c3-ml">Apprentissage automatique</a></td><td>Classer à la main dix courriels, puis compter les erreurs.</td></tr>
+        <tr><th scope="row">11. Régression et descente de gradient</th><td>10</td><td><a href="index.html#c3-algorithmes">Algorithmes</a>, <a href="index.html#td-ch3-ex2a">TD 3, ex. 2a</a> et <a href="index.html#td-ch3-ex2b">2b</a></td><td>Démonstration : faire varier le pas d'apprentissage.</td></tr>
+        <tr><th scope="row">12. Classification par les k plus proches voisins</th><td>10</td><td><a href="index.html#c3-algorithmes">Algorithmes</a>, <a href="index.html#td-ch3-ex2c">TD 3, ex. 2c</a></td><td>Placer un texte inconnu sur une grille, chercher ses voisins.</td></tr>
+        <tr><th scope="row">13. Clustering par k-moyennes</th><td>4</td><td><a href="index.html#c3-algorithmes">Algorithmes</a>, <a href="index.html#td-ch3-ex2d">TD 3, ex. 2d</a></td><td>Itération à la main, puis démonstration ; relier au <a href="index.html#mp-sujet-2">sujet 2</a>.</td></tr>
+        <tr><th scope="row">14. Réseau de neurones, CNN, RNN</th><td>10, 11</td><td><a href="index.html#c3-deep">Apprentissage profond</a>, <a href="index.html#td-ch3-ex4b">TD 3, ex. 4b</a></td><td>Un « neurone humain » : un étudiant pondère trois indices et décide.</td></tr>
+        <tr><th scope="row">15. Transformers, génération de texte</th><td>14</td><td><a href="index.html#c3-deep">Apprentissage profond</a></td><td>Faire générer un texte en TP et relever ses erreurs.</td></tr>
+        <tr><th scope="row">16. Renforcement, Q-learning</th><td>1</td><td><a href="index.html#c3-renforcement">Renforcement</a>, <a href="index.html#td-ch3-ex4c">TD 3, ex. 4c</a></td><td>Jeu de rôle : un agent, un labyrinthe, des récompenses.</td></tr>
+      </tbody>
+    </table></div>
+
+    <p>L'éthique n'a pas de ligne à part, car elle accompagne chaque notion : données personnelles à la collecte (6, 7), biais à l'entraînement (10 à 13), hallucinations à la génération (15). Leçon de référence : <a href="index.html#c1-perspectives">opportunités, limites et éthique</a>.</p>
+  </article>
+
+  <article class="lecon" id="guide-carte-competences">
+    <h3>Les compétences visées à la fin du semestre</h3>
+    <p>Le tableau traduit les sept connaissances visées du programme (<a href="index.html#fiche">fiche de la matière</a>) en preuves observables : ce que vous devez voir un étudiant faire pour tenir la compétence pour acquise. Les deux dernières lignes viennent des objectifs de l'enseignement.</p>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Des connaissances visées aux preuves observables</caption>
+      <thead><tr><th scope="col">Ce que dit le programme</th><th scope="col">À la fin, l'étudiant sait…</th><th scope="col">Où l'observer</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Identifier les opportunités de l'IA en SHS</th><td>citer trois usages de l'IA dans sa discipline et dire ce que l'outil apporte et ce qu'il ne fait pas</td><td><a href="index.html#c1-perspectives">Chapitre 1</a>, <a href="index.html#tr-methodes">table ronde 2</a>, examen</td></tr>
+        <tr><th scope="row">Comprendre les applications de l'IA pour les SHS</th><td>associer un problème de recherche à la famille d'IA qui convient et justifier ce choix</td><td><a href="index.html#c3-synthese">Synthèse du chapitre 3</a>, <a href="index.html#td-ch3-ex3">TD 3, ex. 3</a>, examen</td></tr>
+        <tr><th scope="row">Comprendre les implications éthiques et les bonnes pratiques</th><td>anonymiser des données, citer ses sources, déclarer l'usage d'un outil d'IA, repérer un biais ou une information inventée</td><td>Partie « limites et éthique » du rapport, <a href="index.html#tr-problematiques">table ronde 3</a></td></tr>
+        <tr><th scope="row">Réaliser le clustering de comportements sociaux et la modélisation prédictive</th><td>lancer les k-moyennes sur un tableau d'enquête et décrire les profils ; entraîner un modèle, l'évaluer sur un jeu de test, interpréter le score</td><td><a href="index.html#mp-sujet-2">Sujet 2</a>, <a href="index.html#mp-sujet-4">sujet 4</a>, TD 3</td></tr>
+        <tr><th scope="row">Comprendre les sentiments sur les réseaux et les analyser</th><td>appliquer TextBlob ou VADER à des messages, comparer au jugement humain sur un échantillon, expliquer les erreurs (ironie, langue non couverte)</td><td><a href="index.html#mp-sujet-1">Sujet 1</a></td></tr>
+        <tr><th scope="row">Extraire des informations de discours politiques</th><td>extraire entités nommées et thèmes, les compter, puis revenir au texte pour interpréter</td><td><a href="index.html#mp-sujet-3">Sujet 3</a></td></tr>
+        <tr><th scope="row">Analyser les réseaux sociologiques</th><td>construire un graphe à partir d'un tableau de liens, calculer degré et centralité, interpréter la position d'un acteur</td><td><a href="index.html#mp-sujet-5">Sujet 5</a></td></tr>
+        <tr><th scope="row">Utiliser Python (objectif)</th><td>lire, exécuter et modifier un programme court ; charger, filtrer et exporter un tableau</td><td><a href="index.html#td-ch2">TD 2</a>, TP, notebook du mini-projet</td></tr>
+        <tr><th scope="row">Traiter un corpus de textes (objectif)</th><td>lire des fichiers en UTF-8, rechercher, compter, trier, produire une concordance</td><td><a href="index.html#td-ch2-ex5">TD 2, ex. 5</a>, mini-projet</td></tr>
+      </tbody>
+    </table></div>
+
+    <aside class="encadre encadre--shs"><p class="encadre-titre">Une compétence de lettres avant tout</p><p>Dans chaque ligne, la dernière étape est une interprétation : revenir au texte, nuancer un score, discuter une limite. C'est là que votre regard d'enseignant de lettres compte le plus.</p></aside>
+  </article>
+</section>
+
+<section class="chapitre" id="guide-progression" aria-labelledby="guide-progression-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">Planifier le semestre</p>
+    <h2 class="titre-section" id="guide-progression-titre">Progression semaine par semaine</h2>
+    <p class="chapeau">Un plan de treize semaines, fidèle aux durées du programme, à ajuster au calendrier officiel de votre faculté.</p>
+    <ul class="puces"><li class="puce">Indicatif</li><li class="puce">13 semaines</li><li class="puce">4 tables rondes</li></ul>
+  </header>
+
+  <nav class="sommaire-chapitre" aria-label="Sommaire : progression">
+    <ol>
+      <li><a href="#guide-progression-tableau">Le tableau des treize semaines</a></li>
+      <li><a href="#guide-progression-conseils">Tenir le plan, et l'adapter</a></li>
+    </ol>
+  </nav>
+
+  <article class="lecon" id="guide-progression-tableau">
+    <h3>Treize semaines, à titre indicatif</h3>
+    <p>Le programme fixe quatre repères : chapitre 1 en une semaine, chapitre 2 en deux, chapitre 3 en six, mini-projet de trois semaines distribué à la fin du chapitre 2. Le reste est une proposition, qui suppose un cours, un TD et un TP par semaine ; selon le volume horaire de votre faculté, regroupez les colonnes.</p>
+    <p>Au chapitre 3, la classification et les k-moyennes passent avant la régression, pour que les sujets 2 et 4 aient leur méthode dès la deuxième semaine du mini-projet. Si vous gardez l'ordre du programme, présentez ces méthodes en TP à partir des pages des sujets, qui donnent un code de départ. Une table ronde dure environ trois quarts d'heure et peut occuper une partie du cours.</p>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Progression indicative à adapter au calendrier officiel</caption>
+      <thead><tr><th scope="col">Semaine</th><th scope="col">Cours</th><th scope="col">TD</th><th scope="col">TP</th><th scope="col">Mini-projet / table ronde</th><th scope="col">À préparer</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">1</th><td><a href="index.html#chapitre-1">Chapitre 1</a> : définitions, histoire, IA faible et forte, apprentissages, approches, perspectives</td><td><a href="index.html#td-ch1">TD 1</a>, ex. 1 à 3 ; ex. 4 en travail personnel</td><td>Installer Python ou ouvrir Colab ; si besoin, finir le chapitre 1 (prévu par le programme)</td><td>Questionnaire de diagnostic ; groupes des tables rondes</td><td>Salle vérifiée, espace de classe ouvert</td></tr>
+        <tr><th scope="row">2</th><td>Chapitre 2 : <a href="index.html#c2-fondamentaux">fondamentaux</a>, <a href="index.html#c2-numpy-pandas">NumPy et pandas</a></td><td><a href="index.html#td-ch2">TD 2</a>, ex. 1 à 3</td><td>Programmer les exercices 1 à 3</td><td>Groupe 1 : lectures pour la table ronde</td><td>Faire vous-même les exercices</td></tr>
+        <tr><th scope="row">3</th><td>Chapitre 2 : <a href="index.html#c2-objet">objets</a>, <a href="index.html#c2-fichiers">fichiers texte</a>, <a href="index.html#c2-rapports">rapports</a></td><td>TD 2, ex. 4 et 5 ; retour sur l'ex. 4 du TD 1</td><td>Exercices 4 et 5 ; un petit rapport Excel ou PDF</td><td>Distribution du <a href="index.html#mini-projet">mini-projet</a> en fin de semaine</td><td>Énoncé, dates, données vérifiées pour chaque sujet</td></tr>
+        <tr><th scope="row">4</th><td>Chapitre 3 : <a href="index.html#c3-symbolique">IA symbolique</a>, systèmes experts</td><td><a href="index.html#td-ch3-ex1">TD 3, ex. 1</a> (chaînage avant)</td><td>Programmer le chaînage avant ; cadrage des sujets</td><td>Mini-projet, semaine 1 : cadrer, réunir les données. <a href="index.html#tr-genese">Table ronde 1</a> : genèse de l'IA</td><td>Valider les questions de recherche</td></tr>
+        <tr><th scope="row">5</th><td>Chapitre 3 : <a href="index.html#c3-ml">principes de l'apprentissage automatique</a>, évaluation ; classification et k-moyennes</td><td>TD 3, ex. 2c, 2d, 3 et 4a</td><td><code>KNeighborsClassifier</code> et <code>KMeans</code> ; point d'étape du mini-projet</td><td>Mini-projet, semaine 2 : explorer, nettoyer, appliquer la méthode</td><td>Relire les notebooks en cours</td></tr>
+        <tr><th scope="row">6</th><td>Chapitre 3 : régression linéaire et descente de gradient</td><td>TD 3, ex. 2a et 2b</td><td><code>numpy.polyfit</code>, boucle de descente de gradient ; aide au mini-projet</td><td>Mini-projet, semaine 3 : interpréter, rédiger ; remise du notebook et du rapport</td><td>Grille de relecture imprimée</td></tr>
+        <tr><th scope="row">7</th><td>Chapitre 3 : <a href="index.html#c3-deep">apprentissage profond</a>, neurone, CNN, RNN</td><td>TD 3, ex. 4b</td><td>Retours individuels sur les mini-projets</td><td><a href="index.html#tr-methodes">Table ronde 2</a> : l'IA et les méthodes des SHS</td><td>Corriger les rapports</td></tr>
+        <tr><th scope="row">8</th><td>Chapitre 3 : Transformers et génération de texte</td><td>Discussion : erreurs et hallucinations d'un modèle</td><td>Fonction <code>pipeline</code> de transformers : classer, générer, critiquer</td><td>Préparation des soutenances</td><td>Modèle téléchargé à l'avance sur les postes</td></tr>
+        <tr><th scope="row">9</th><td>Chapitre 3 : <a href="index.html#c3-renforcement">renforcement</a> ; <a href="index.html#c3-synthese">synthèse</a> des quatre familles</td><td>TD 3, ex. 4c (Q-learning)</td><td>Bilan : refaire un exercice de chaque partie</td><td><a href="index.html#tr-problematiques">Table ronde 3</a> : nouvelles problématiques</td><td>Ordre de passage des soutenances</td></tr>
+        <tr><th scope="row">10</th><td>Soutenances</td><td>Soutenances</td><td>Soutenances</td><td>Oral : question, résultat, limite, une cellule expliquée</td><td>Grille d'oral</td></tr>
+        <tr><th scope="row">11</th><td><a href="index.html#tr-perspectives">Table ronde 4</a> : perspectives de l'IA ; synthèse du cours</td><td>Exercices du TD refaits en temps limité</td><td>Reprise du code mal compris</td><td>Table ronde 4</td><td>Liste des notions à revoir</td></tr>
+        <tr><th scope="row">12</th><td>Révision ; semaine de marge en cas de retard</td><td>Examen blanc</td><td>Libre ou rattrapage</td><td>Synthèses des tables rondes partagées</td><td>Sujet d'examen</td></tr>
+        <tr><th scope="row">13</th><td colspan="5">Examen, à la date fixée par le calendrier de la faculté</td></tr>
+      </tbody>
+    </table></div>
+
+    <aside class="encadre encadre--attention"><p class="encadre-titre">Un plan indicatif</p><p>Seules les durées des chapitres et la distribution du mini-projet viennent du programme. Reportez le tableau sur le calendrier officiel avant de le communiquer aux étudiants. Si vous retenez la règle des trois sujets de mini-projet, étalez-les de la semaine 4 à la semaine 9, à raison d'un sujet toutes les deux semaines.</p></aside>
+  </article>
+
+  <article class="lecon" id="guide-progression-conseils">
+    <h3>Tenir le plan, et l'adapter</h3>
+
+    <h4>Si vous prenez du retard</h4>
+    <p>Un retard est normal la première année. Coupez, dans cet ordre :</p>
+    <ul>
+      <li>la <a href="index.html#c2-objet">programmation objet</a> : dix minutes de lecture guidée, aucun code du mini-projet n'en a besoin ;</li>
+      <li>les autres algorithmes (SVM, forêts aléatoires, ACP) : à lire, pas à traiter en séance ;</li>
+      <li>le détail des CNN et des RNN : gardez l'idée (images, séquences), l'exercice 4b passe en travail personnel ;</li>
+      <li>les tables rondes 3 et 4, fusionnées en une séance ;</li>
+      <li>une partie des corrections de TD : certains corrigés se lisent à la maison, la séance va aux exercices qui résistent.</li>
+    </ul>
+    <p>Ne coupez ni l'éthique, ni le chaînage avant, ni la distinction supervisé / non supervisé, ni le temps du mini-projet : ils portent les connaissances visées.</p>
+
+    <h4>Si le groupe va beaucoup plus vite</h4>
+    <ul>
+      <li>Ajoutez le chaînage arrière sur les règles de l'exercice 1 du TD 3.</li>
+      <li>Faites comparer deux méthodes sur les mêmes données : TextBlob, VADER et une annotation manuelle pour le sujet 1 ; deux valeurs de k pour le sujet 2.</li>
+      <li>Proposez de vraies données d'enquête (le World Values Survey des <a href="index.html#references">références</a>) ou le réseau du sujet 5 dans Gephi.</li>
+      <li>Si la règle est d'un seul sujet, autorisez les plus rapides à en traiter un deuxième.</li>
+      <li>Confiez aux plus avancés un rôle de tuteur en TP : expliquer oblige à comprendre.</li>
+    </ul>
+
+    <h4>Si le groupe va beaucoup plus lentement</h4>
+    <ul>
+      <li>Passez de l'écriture à la lecture de code : prédire la sortie d'un programme qui fonctionne, puis en modifier une ligne.</li>
+      <li>Donnez des programmes à trous : trois lignes à compléter plutôt qu'une page blanche.</li>
+      <li>Suivez toujours le même ordre : calcul à la main, démonstration, puis code, comme le conseille <a href="index.html#me-parties">la méthode du site</a>.</li>
+      <li>Limitez l'outillage aux bibliothèques du sujet choisi ; rappelez que vingt minutes de code par jour valent mieux qu'une longue séance.</li>
+    </ul>
+
+    <h4>Un groupe de niveaux mélangés</h4>
+    <p>Dans un master de lettres, attendez-vous à quelques étudiants qui ont déjà programmé et à une majorité qui ne l'a jamais fait.</p>
+    <ul>
+      <li>Formez les binômes d'après le questionnaire de diagnostic : un étudiant à l'aise, un débutant. Le débutant tient le clavier, l'autre guide ; on échange toutes les quinze minutes.</li>
+      <li>Donnez à chaque TP un socle commun et un prolongement pour les plus rapides.</li>
+      <li>À l'oral du mini-projet, faites expliquer à chaque membre une cellule du notebook choisie par vous : un seul étudiant ne peut plus faire tout le code.</li>
+      <li>Valorisez l'interprétation autant que le code.</li>
+    </ul>
+
+    <h4>Utiliser le site en classe</h4>
+    <ul>
+      <li>Projetez les démonstrations en faisant prédire avant de cliquer : la règle déclenchée au cycle suivant du chaînage avant, l'effet d'un pas trop grand sur la descente de gradient, les affectations des k-moyennes avant « Étape suivante ». Tirez ensuite de nouveaux centres de départ : le résultat peut changer.</li>
+      <li>Demandez de parcourir la leçon avant le cours et d'apporter deux questions, comme le prévoit la <a href="index.html#me-semaine">semaine type</a> des étudiants. Ouvrez la séance par ces questions plutôt que par un exposé complet.</li>
+      <li>Faites les quiz à main levée, puis révélez l'explication ; en TD, imposez vingt minutes de recherche avant d'ouvrir un corrigé.</li>
+      <li>Utilisez le sélecteur FR / EN / عربي et le <a href="index.html#glossaire">glossaire</a> pour fixer le vocabulaire dans plusieurs langues.</li>
+    </ul>
+
+    <aside class="encadre encadre--retenir"><p class="encadre-titre">À retenir</p>
+      <ul>
+        <li>Gardez les repères du programme : 1, 2 et 6 semaines, mini-projet distribué à la fin du chapitre 2.</li>
+        <li>En cas de retard, coupez dans les approfondissements, jamais dans l'éthique ni dans le mini-projet.</li>
+        <li>Restez une semaine en avance sur vos étudiants : c'est suffisant.</li>
+      </ul>
+    </aside>
+  </article>
+</section>

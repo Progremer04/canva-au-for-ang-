@@ -1,0 +1,626 @@
+<section class="chapitre" id="guide-seances" aria-labelledby="guide-seances-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">Guide de l'enseignant · Préparer ses séances</p>
+    <h2 class="titre-section" id="guide-seances-titre">Fiches de séance</h2>
+    <p class="chapeau">Un modèle de fiche à recopier, puis huit séances prêtes à l'emploi, du premier cours aux Transformers. Tous les minutages sont indicatifs : réglez-les sur votre groupe et votre emploi du temps.</p>
+    <ul class="puces"><li class="puce">8 fiches</li><li class="puce">Chapitres 1 à 3</li><li class="puce">Minutages indicatifs</li></ul>
+  </header>
+
+  <nav class="sommaire-chapitre" aria-label="Sommaire des fiches de séance">
+    <ol>
+      <li><a href="#guide-seances-modele">Le modèle de fiche</a></li>
+      <li><a href="#guide-seance-1">Séance 1 · Premier cours</a></li>
+      <li><a href="#guide-seance-2">Séance 2 · Histoire, IA faible et forte</a></li>
+      <li><a href="#guide-seance-3">Séance 3 · TD : supervisé ou non ?</a></li>
+      <li><a href="#guide-seance-4">Séance 4 · Premier TP Python</a></li>
+      <li><a href="#guide-seance-5">Séance 5 · TP pandas</a></li>
+      <li><a href="#guide-seance-6">Séance 6 · TD : système expert</a></li>
+      <li><a href="#guide-seance-7">Séance 7 · Apprentissage automatique</a></li>
+      <li><a href="#guide-seance-8">Séance 8 · Transformers et IA générative</a></li>
+    </ol>
+  </nav>
+
+  <article class="lecon" id="guide-seances-modele">
+    <h3>Le modèle de fiche</h3>
+    <p>Une fiche tient sur une page gardée sous les yeux en classe : ce que sauront faire les étudiants, par quelles étapes, comment le vérifier. Vingt minutes de rédaction vous épargnent l'improvisation.</p>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Fiche de séance vierge : recopiez-la et remplissez la colonne du milieu</caption>
+      <thead><tr><th scope="col">Rubrique</th><th scope="col">À remplir</th><th scope="col">Conseil</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Titre et place</th><td></td><td>Chapitre, semaine, cours, TD ou TP.</td></tr>
+        <tr><th scope="row">Objectifs observables</th><td></td><td>Deux ou trois, chacun avec un verbe d'action.</td></tr>
+        <tr><th scope="row">Prérequis</th><td></td><td>Ce qu'il faut déjà savoir faire ; en cas de doute, cinq minutes de rappel.</td></tr>
+        <tr><th scope="row">Durée</th><td></td><td>Celle du créneau, moins dix minutes d'installation et d'imprévus.</td></tr>
+        <tr><th scope="row">Matériel</th><td></td><td>Vidéoprojecteur, impressions, ordinateurs, connexion : vérifiés la veille.</td></tr>
+        <tr><th scope="row">Déroulé</th><td></td><td>Phases minutées (accroche, apport, activité, mise en commun, bilan) : ce que vous faites, ce que font les étudiants.</td></tr>
+        <tr><th scope="row">Évaluation</th><td></td><td>Comment saurez-vous, avant la fin, que l'objectif est atteint ?</td></tr>
+        <tr><th scope="row">Travail personnel</th><td></td><td>Une tâche précise, un lien vers le site, une échéance.</td></tr>
+        <tr><th scope="row">Bilan à chaud</th><td></td><td>Deux lignes le soir même : ce qui a marché, ce qu'il faut changer.</td></tr>
+      </tbody>
+    </table></div>
+    <aside class="encadre encadre--definition">
+      <p class="encadre-titre">Objectif observable</p>
+      <p>Un <dfn>objectif observable</dfn> décrit ce que l'étudiant saura <em>faire</em> à la fin de la séance, d'une manière que vous pouvez vérifier : verbe d'action, contenu, conditions, critère de réussite.</p>
+    </aside>
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>À éviter</h4>
+        <ul>
+          <li>« Comprendre l'apprentissage supervisé. »</li>
+          <li>« Être sensibilisé à l'éthique de l'IA. »</li>
+        </ul>
+      </div>
+      <div class="comparaison-col">
+        <h4>À préférer</h4>
+        <ul>
+          <li>« Classer au moins 8 situations sur 10 en apprentissage supervisé ou non supervisé, en justifiant chaque choix. »</li>
+          <li>« Vérifier dans un catalogue une référence produite par un agent conversationnel. »</li>
+        </ul>
+      </div>
+    </div>
+    <p>La taxonomie de Bloom (1956, révisée en 2001) fournit ces verbes : définir, classer, calculer, dérouler, exécuter, justifier.</p>
+    <p>Les séances 1 à 3 couvrent le chapitre 1, les séances 4 et 5 le chapitre 2, les séances 6 à 8 le chapitre 3. Le chapitre 1 dure une semaine, mais le programme autorise une séance de TP pour le compléter : la séance 2 peut occuper ce créneau. Les autres séances se construisent avec le même modèle.</p>
+  </article>
+
+  <article class="lecon" id="guide-seance-1">
+    <h3>Séance 1 · Premier cours : présenter le cours et définir l'IA</h3>
+    <dl class="definitions">
+      <div><dt>Objectifs</dt><dd>Définir l'IA par des tâches observables ; dire d'un objet courant s'il relève de l'IA, en justifiant ; décrire le jeu de l'imitation et ce qu'il mesure.</dd></div>
+      <div><dt>Durée</dt><dd>1 h 30 (à adapter)</dd></div>
+      <div><dt>Matériel</dt><dd>Vidéoprojecteur, le site ouvert sur la <a href="index.html#fiche">fiche de la matière</a>, un questionnaire imprimé, des bandes de papier.</dd></div>
+      <div><dt>Prérequis</dt><dd>Aucun.</dd></div>
+    </dl>
+    <ol class="etapes">
+      <li><p class="etape-titre">Présentation du cours · 15 min</p><p>Le programme et le <a href="index.html#parcours">calendrier</a>. Dites que la programmation part de zéro ; présentez l'évaluation selon les textes en vigueur de votre faculté et la page <a href="index.html#methode">Comment apprendre ce cours</a>.</p></li>
+      <li><p class="etape-titre">Questionnaire diagnostique · 10 min</p><p>Agent conversationnel déjà utilisé ? Code déjà écrit ? Ordinateur portable disponible ? Connexion chez soi ? Langue de lecture préférée pour une documentation technique ? Attentes ? Les réponses sur l'équipement serviront à former les binômes.</p></li>
+      <li><p class="etape-titre">IA ou pas IA ? · 15 min</p><p>Vote sur huit objets : calculatrice, correcteur orthographique, filtre anti-spam, traducteur automatique, thermostat, moteur de recherche, GPS, agent conversationnel. Les désaccords montrent qu'il faut définir le mot.</p></li>
+      <li><p class="etape-titre">Qu'est-ce que l'IA ? · 20 min</p><p>Apport à partir de la <a href="index.html#c1-definir">première leçon</a> : Dartmouth, les agents, la définition de travail, Busa et Moretti. Revenez ensuite aux huit objets.</p></li>
+      <li><p class="etape-titre">Le jeu de l'imitation · 25 min</p><p>Version courte de l'<a href="#guide-activite-turing">activité</a> : deux témoins, cinq minutes de questions, vote, discussion.</p></li>
+      <li><p class="etape-titre">Bilan · 5 min</p><p>Ticket de sortie : une chose apprise, une question. Les meilleures questions ouvriront la séance 2.</p></li>
+    </ol>
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Erreurs fréquentes des étudiants</p>
+      <ul>
+        <li>Réduire l'IA aux robots ou aux agents conversationnels récents.</li>
+        <li>Croire qu'un système comprend parce qu'il répond bien : c'est l'effet ELIZA, vu dans la <a href="index.html#c1-histoire">leçon d'histoire</a>.</li>
+        <li>Prendre le test de Turing pour une définition de l'intelligence.</li>
+      </ul>
+    </aside>
+    <aside class="encadre encadre--exemple">
+      <p class="encadre-titre">Travail personnel</p>
+      <ul>
+        <li>Lire <a href="index.html#c1-definir">Qu'est-ce que l'intelligence artificielle ?</a> et <a href="index.html#me-semaine">Une semaine type</a>.</li>
+        <li>Noter un usage de l'IA rencontré cette semaine, avec la technique supposée.</li>
+      </ul>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-seance-2">
+    <h3>Séance 2 · Histoire de l'IA, IA faible et IA forte</h3>
+    <dl class="definitions">
+      <div><dt>Objectifs</dt><dd>Ranger une dizaine d'étapes de l'histoire de l'IA et y placer les deux hivers ; distinguer IA étroite et générale, IA faible et forte ; résumer en trois phrases la chambre chinoise.</dd></div>
+      <div><dt>Durée</dt><dd>1 h 30 (à adapter)</dd></div>
+      <div><dt>Matériel</dt><dd>Une carte par étape de la <a href="index.html#c1-histoire">chronologie</a> (événement au recto, date au verso), aimants, feutres de deux couleurs.</dd></div>
+      <div><dt>Prérequis</dt><dd>Séance 1.</dd></div>
+    </dl>
+    <ol class="etapes">
+      <li><p class="etape-titre">Rappel · 5 min</p><p>Trois questions tirées des tickets de sortie, réponses de mémoire.</p></li>
+      <li><p class="etape-titre">Frise collective · 30 min</p><p>Chaque groupe date ses cartes sans regarder le verso, les place sur une frise au tableau, puis on corrige : une couleur pour le symbolique, une autre pour le connexionnisme, et les deux hivers.</p></li>
+      <li><p class="etape-titre">Ce que l'histoire enseigne · 10 min</p><p>Les cycles d'espoir et de déception, la prédiction de Simon et Newell en 1958 : juger un système sur des tests, non sur des promesses.</p></li>
+      <li><p class="etape-titre">Deux couples de notions · 20 min</p><p>Le <a href="index.html#c1-faible-forte">tableau comparatif</a> : étroite ou générale, c'est l'étendue ; faible ou forte, c'est la question de l'esprit (Searle, 1980). Racontez la chambre chinoise, puis faites-la résumer.</p></li>
+      <li><p class="etape-titre">Débat court · 20 min</p><p>« Un traducteur automatique comprend-il ce qu'il traduit ? » Deux camps désignés, deux orateurs par camp, questions de la salle. Concluez en séparant l'observable (la traduction est juste) du philosophique (y a-t-il compréhension ?).</p></li>
+      <li><p class="etape-titre">Bilan · 5 min</p><p>Chacun écrit trois dates qu'il retient, et pourquoi.</p></li>
+    </ol>
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Erreurs fréquentes des étudiants</p>
+      <ul>
+        <li>Comprendre « IA faible » comme « peu performante » : Deep Blue a battu le champion du monde.</li>
+        <li>Croire que Deep Blue apprenait, alors qu'il explorait des millions de positions.</li>
+        <li>Présenter les grands modèles de langage comme une IA générale.</li>
+      </ul>
+    </aside>
+    <aside class="encadre encadre--exemple">
+      <p class="encadre-titre">Travail personnel</p>
+      <ul>
+        <li>Construire une frise personnelle de dix dates (<a href="index.html#me-parties">Comment aborder chaque partie</a>).</li>
+        <li>Pour le groupe concerné : préparer la table ronde <a href="index.html#tr-genese">Genèse et apparition de l'IA</a>.</li>
+      </ul>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-seance-3">
+    <h3>Séance 3 · TD du chapitre 1 : supervisé ou non supervisé ?</h3>
+    <dl class="definitions">
+      <div><dt>Objectifs</dt><dd>Classer au moins 8 situations sur 10 (supervisé, non supervisé, renforcement) en justifiant par les étiquettes ; expliquer le rôle du jeu de test ; donner deux exemples d'apprentissage en SHS.</dd></div>
+      <div><dt>Durée</dt><dd>1 h 30 (à adapter)</dd></div>
+      <div><dt>Matériel</dt><dd>Dix cartes-situations par groupe (tableau ci-dessous), les énoncés du <a href="index.html#td-ch1">TD du chapitre 1</a>.</dd></div>
+      <div><dt>Prérequis</dt><dd>Leçon <a href="index.html#c1-apprentissage">Apprentissage supervisé et non supervisé</a>.</dd></div>
+    </dl>
+    <ol class="etapes">
+      <li><p class="etape-titre">Cartes à trier · 25 min</p><p>En groupes : trois tas, l'indice décisif noté sur chaque carte ; puis chaque groupe défend une carte.</p></li>
+      <li><p class="etape-titre">Mise en commun · 10 min</p><p>Dégagez la question décisive : « Les exemples d'entraînement portent-ils la bonne réponse ? » Ajoutez le jeu de test et le surapprentissage (les « enfans » de la leçon).</p></li>
+      <li><p class="etape-titre">Exercices 1 et 2 · 25 min</p><p><a href="index.html#td-ch1-ex1">Exercice 1</a> et <a href="index.html#td-ch1-ex2">exercice 2</a> : seuls, puis en binôme, puis correction. Le tableau comparatif s'écrit de mémoire.</p></li>
+      <li><p class="etape-titre">Exercice 3 · 15 min</p><p><a href="index.html#td-ch1-ex3">Six exemples</a> en binôme, dont deux en SHS.</p></li>
+      <li><p class="etape-titre">Lancement de l'exercice 4 · 15 min</p><p>Répartissez les six tâches de l'<a href="index.html#td-ch1-ex4">exercice 4</a> : définir le critère de réussite, chercher des sources primaires et datées. Restitution de trois minutes à la séance suivante.</p></li>
+    </ol>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Les dix cartes-situations et les réponses attendues</caption>
+      <thead><tr><th scope="col">Situation</th><th scope="col">Réponse et indice</th></tr></thead>
+      <tbody>
+        <tr><td>Dater un poème d'après 600 poèmes datés.</td><td>Supervisé : exemples étiquetés.</td></tr>
+        <tr><td>Répartir 200 romans en familles stylistiques.</td><td>Non supervisé : groupes à interpréter.</td></tr>
+        <tr><td>Estimer l'année de composition d'un poème.</td><td>Supervisé (régression) : l'étiquette est un nombre.</td></tr>
+        <tr><td>Classer 3 000 discours d'après 500 discours classés.</td><td>Supervisé : l'entraînement se fait sur des discours classés.</td></tr>
+        <tr><td>Regrouper 2 000 réponses ouvertes sans grille.</td><td>Non supervisé.</td></tr>
+        <tr><td>Repérer des commentaires haineux d'après 5 000 exemples annotés.</td><td>Supervisé.</td></tr>
+        <tr><td>Faire apparaître les thèmes de 1 000 articles.</td><td>Non supervisé.</td></tr>
+        <tr><td>Identifier la langue d'un message d'après des messages étiquetés.</td><td>Supervisé.</td></tr>
+        <tr><td>Apprendre le go en gagnant ou en perdant des parties.</td><td>Renforcement (piège) : des récompenses.</td></tr>
+        <tr><td>Filtrer d'après les courriels marqués « spam ».</td><td>Supervisé (piège) : le clic est une étiquette.</td></tr>
+      </tbody>
+    </table></div>
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Erreurs fréquentes des étudiants</p>
+      <ul>
+        <li>Croire que « non supervisé » veut dire « sans humain » : le chercheur choisit les données et le nombre de groupes, puis interprète.</li>
+        <li>Conclure au non supervisé parce que les nouveaux cas n'ont pas d'étiquette.</li>
+        <li>Confondre classification (catégories connues) et partitionnement (groupes découverts).</li>
+      </ul>
+    </aside>
+    <aside class="encadre encadre--exemple">
+      <p class="encadre-titre">Travail personnel</p>
+      <ul>
+        <li>Préparer l'exercice 4. Le corrigé du site date de septembre 2026 : faites vérifier ce qui a changé depuis.</li>
+        <li>Relire <a href="index.html#c1-approches">Les approches de l'IA</a> ; apprendre le <a href="index.html#glossaire">glossaire</a> en français et en anglais.</li>
+      </ul>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-seance-4">
+    <h3>Séance 4 · Premier TP Python</h3>
+    <dl class="definitions">
+      <div><dt>Objectifs</dt><dd>Ouvrir un notebook, exécuter et enregistrer une cellule ; créer des variables et une liste ; compter les mots d'une strophe et expliquer l'écart dû à la ponctuation.</dd></div>
+      <div><dt>Durée</dt><dd>1 h 30 (à adapter)</dd></div>
+      <div><dt>Matériel</dt><dd>Un ordinateur pour deux, connexion, vidéoprojecteur ; comptes Google créés avant la séance pour Colab, ou Jupyter installé, par exemple avec <code>run.bat notebook</code> (<a href="index.html#td-travaux-pratiques">Travaux pratiques</a>).</dd></div>
+      <div><dt>Prérequis</dt><dd>Aucun en programmation ; <a href="index.html#c2-installer">mise en place de l'environnement</a> parcourue.</dd></div>
+    </dl>
+    <ol class="etapes">
+      <li><p class="etape-titre">Binômes · 10 min</p><p>Formés d'après le questionnaire, avec pilote et copilote (<a href="#guide-activites-conseils">conseils</a>). Colab par défaut.</p></li>
+      <li><p class="etape-titre">Premier notebook · 15 min</p><p>En direct : <code>print("Bonjour, Médéa !")</code>, Maj + Entrée. Passez dans les rangs jusqu'à ce que chacun voie son résultat.</p></li>
+      <li><p class="etape-titre">Variables et types · 15 min</p><p><code>titre</code>, <code>annee</code>, <code>type()</code>, une f-string. Oubliez exprès un guillemet et lisez la dernière ligne de l'erreur.</p></li>
+      <li><p class="etape-titre">Listes · 15 min</p><p><code>append</code>, <code>sort</code>, <code>len</code>, les indices. Faites prédire <code>auteurs[0]</code> avant d'exécuter.</p></li>
+      <li><p class="etape-titre">Compter les mots · 25 min</p><p>Le programme ci-dessous. Pourquoi 21 éléments pour 19 mots ? Les plus rapides cherchent le mot le plus fréquent (<a href="index.html#td-ch2-ex3">exercice 3 du TD</a>).</p></li>
+      <li><p class="etape-titre">Bilan · 10 min</p><p>Enregistrer le notebook. Que fait <code>split()</code> ? Que signifie <code>NameError</code> ?</p></li>
+    </ol>
+    <figure class="code">
+      <figcaption class="code-legende">compter_mots.py : Verlaine, « Il pleure dans mon cœur » (1874)</figcaption>
+      <pre><code class="language-python">poeme = """Il pleure dans mon cœur
+Comme il pleut sur la ville ;
+Quelle est cette langueur
+Qui pénètre mon cœur ?"""
+
+mots = poeme.lower().split()   # minuscules, puis découpage aux espaces
+print(len(mots), "éléments")   # « ; » et « ? » comptent comme des mots
+mots = [m for m in mots if m.isalpha()]   # on ne garde que les mots
+print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
+      <pre class="sortie"><samp>21 éléments
+19 mots, 16 mots différents</samp></pre>
+    </figure>
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Erreurs fréquentes des étudiants</p>
+      <ul>
+        <li>Copier du code depuis Word ou un PDF : les guillemets typographiques provoquent une <code>SyntaxError</code>.</li>
+        <li>Exécuter les cellules dans le désordre : <code>NameError</code>.</li>
+        <li>Chercher le premier élément d'une liste en <code>[1]</code>.</li>
+      </ul>
+    </aside>
+    <aside class="encadre encadre--exemple">
+      <p class="encadre-titre">Travail personnel</p>
+      <ul>
+        <li>Retaper sans copier-coller les exemples des <a href="index.html#c2-fondamentaux">fondamentaux du langage</a>, en prédisant chaque sortie.</li>
+        <li>Faire l'<a href="index.html#td-ch2-ex1">exercice 1 du TD</a> ; coder vingt minutes, trois fois dans la semaine.</li>
+      </ul>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-seance-5">
+    <h3>Séance 5 · TP : interroger un corpus avec pandas</h3>
+    <dl class="definitions">
+      <div><dt>Objectifs</dt><dd>Charger un CSV et le décrire ; filtrer, trier et regrouper pour répondre à une question posée en français ; tracer un diagramme titré et l'interpréter prudemment.</dd></div>
+      <div><dt>Durée</dt><dd>1 h 30 (à adapter)</dd></div>
+      <div><dt>Matériel</dt><dd>Le fichier <code>oeuvres.csv</code> de la <a href="index.html#c2-numpy-pandas">leçon sur pandas</a>, déposé à l'avance ; ordinateurs en binômes.</dd></div>
+      <div><dt>Prérequis</dt><dd>Séance 4.</dd></div>
+    </dl>
+    <ol class="etapes">
+      <li><p class="etape-titre">Rappel · 10 min</p><p>Prédire sur papier la sortie de trois lignes de code, puis exécuter.</p></li>
+      <li><p class="etape-titre">Du tableur au DataFrame · 15 min</p><p>Le CSV dans un tableur, puis <code>pd.read_csv()</code>, <code>head()</code>, <code>shape</code>, <code>info()</code>. Rappelez que les nombres de mots sont fictifs.</p></li>
+      <li><p class="etape-titre">Filtrer et trier · 20 min</p><p>Une question en français d'abord (« Quelles œuvres en arabe après 1950 ? »), puis le filtre, <code>&amp;</code> entre parenthèses, <code>sort_values()</code>.</p></li>
+      <li><p class="etape-titre">Regrouper · 20 min</p><p><code>groupby("genre")["nb_mots"].mean()</code> et <code>value_counts()</code>. Discutez la moyenne d'un genre représenté par un seul texte, et l'effet des <em>Misérables</em> sur la moyenne.</p></li>
+      <li><p class="etape-titre">Graphique · 15 min</p><p><code>plot(kind="bar")</code>, titre, axes, <code>savefig()</code>.</p></li>
+      <li><p class="etape-titre">Bilan · 10 min</p><p>Début de l'<a href="index.html#td-ch2-ex4">exercice 4 du TD</a> ; chaque binôme écrit une phrase qui commence par « Dans ce petit corpus… ».</p></li>
+    </ol>
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Erreurs fréquentes des étudiants</p>
+      <ul>
+        <li><code>FileNotFoundError</code> : le fichier n'est pas dans le dossier du notebook ou dans la session Colab.</li>
+        <li>Un CSV enregistré par un Excel réglé en français demande <code>sep=";"</code>.</li>
+        <li>Écrire <code>df["genre", "titre"]</code> au lieu de <code>df[["genre", "titre"]]</code>, ou <code>and</code> au lieu de <code>&amp;</code>.</li>
+      </ul>
+    </aside>
+    <aside class="encadre encadre--exemple">
+      <p class="encadre-titre">Travail personnel</p>
+      <ul>
+        <li>Finir l'exercice 4 après vingt minutes de recherche sans corrigé.</li>
+        <li>Ajouter trois œuvres au CSV et noter ce qui change dans les résultats.</li>
+      </ul>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-seance-6">
+    <h3>Séance 6 · TD du chapitre 3 : système expert et chaînage avant</h3>
+    <dl class="definitions">
+      <div><dt>Objectifs</dt><dd>Nommer les trois composants d'un système expert ; dessiner le graphe des règles du TD ; dérouler le chaînage avant et expliquer pourquoi R4 et R7 ne se déclenchent pas.</dd></div>
+      <div><dt>Durée</dt><dd>1 h 30 (à adapter)</dd></div>
+      <div><dt>Matériel</dt><dd>Cartes-règles du <a href="#guide-activite-chainage">jeu de rôle</a>, énoncé de l'<a href="index.html#td-ch3-ex1">exercice 1</a>, vidéoprojecteur.</dd></div>
+      <div><dt>Prérequis</dt><dd>Leçon <a href="index.html#c3-symbolique">IA symbolique : les systèmes experts</a>.</dd></div>
+    </dl>
+    <ol class="etapes">
+      <li><p class="etape-titre">Accroche · 10 min</p><p>« Comment reconnaissez-vous un sonnet ? » Écrivez les réponses sous la forme SI … ALORS : voilà une base de règles.</p></li>
+      <li><p class="etape-titre">Jeu de rôle · 20 min</p><p>Les règles des formes poétiques, selon l'<a href="#guide-activite-chainage">activité</a>.</p></li>
+      <li><p class="etape-titre">Mini-cours · 10 min</p><p>Chaînage avant et arrière, ordre des règles, faits non déductibles.</p></li>
+      <li><p class="etape-titre">Question a · 15 min</p><p>Le graphe : un rectangle par fait, un cercle par règle. Rien n'arrive sur G, H et K.</p></li>
+      <li><p class="etape-titre">Question b · 20 min</p><p>Chacun remplit une grille étape par étape, corrigée ensuite au tableau : R3, R1, R5, R2, R6 ; C est atteint.</p></li>
+      <li><p class="etape-titre">Démonstration · 10 min</p><p>La démonstration pas à pas de la leçon. Faites prédire l'effet d'ajouter G à la base : le but est atteint plus tôt, par R4.</p></li>
+      <li><p class="etape-titre">Bilan · 5 min</p><p>En une phrase : la différence entre chaînage avant et arrière.</p></li>
+    </ol>
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Erreurs fréquentes des étudiants</p>
+      <ul>
+        <li>Déclencher une règle dont une partie seulement des prémisses est connue.</li>
+        <li>Oublier l'une des conclusions de R3 (A et F).</li>
+        <li>Redéclencher une règle, ou ignorer l'ordre imposé.</li>
+        <li>Chercher à déduire G, fait non déductible.</li>
+      </ul>
+    </aside>
+    <aside class="encadre encadre--exemple">
+      <p class="encadre-titre">Travail personnel</p>
+      <ul>
+        <li>Refaire l'exercice sans corrigé trois jours plus tard.</li>
+        <li>Écrire cinq règles qui distinguent fable, conte et nouvelle, et les dérouler sur deux textes connus.</li>
+      </ul>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-seance-7">
+    <h3>Séance 7 · Apprentissage automatique : k-moyennes, régression, descente de gradient</h3>
+    <dl class="definitions">
+      <div><dt>Objectifs</dt><dd>Définir attributs, étiquette, modèle, entraînement et test ; mener les k-moyennes à la main jusqu'à l'arrêt ; calculer deux pas de descente de gradient et expliquer le rôle du taux d'apprentissage.</dd></div>
+      <div><dt>Durée</dt><dd>1 h 30 (à adapter)</dd></div>
+      <div><dt>Matériel</dt><dd>Calculatrices, vidéoprojecteur pour les démonstrations de <a href="index.html#c3-algorithmes">Quelques algorithmes</a>, exercices <a href="index.html#td-ch3-ex2a">2 a</a>, <a href="index.html#td-ch3-ex2b">2 b</a> et <a href="index.html#td-ch3-ex2d">2 d</a>.</dd></div>
+      <div><dt>Prérequis</dt><dd>Séances 3 et 6 ; savoir calculer une moyenne.</dd></div>
+    </dl>
+    <ol class="etapes">
+      <li><p class="etape-titre">Des règles aux exemples · 10 min</p><p>« Sauriez-vous écrire les règles qui vous font reconnaître la prose de Kateb Yacine ? » Puis le vocabulaire de l'<a href="index.html#c3-ml">apprentissage automatique</a>.</p></li>
+      <li><p class="etape-titre">k-moyennes à la main · 20 min</p><p>Exercice 2 d sur une droite graduée (1, 3, 4, 9, 10, 14 ; centres 1 et 4), jusqu'à la stabilité : {1, 3, 4} et {9, 10, 14}.</p></li>
+      <li><p class="etape-titre">Démonstration · 10 min</p><p>Relancez la démonstration plusieurs fois : le résultat dépend-il du départ ? Version longue : l'<a href="#guide-activite-kmoyennes">activité des fiches de romans</a>.</p></li>
+      <li><p class="etape-titre">Régression · 15 min</p><p>Une droite tracée à l'œil sur les points de l'exercice 2 a, puis ŷ = w · x + b et les moindres carrés. Repère, dans la notation de l'exercice : a = 0,9 et b = 1,3, soit 6,7 livres pour 6 heures.</p></li>
+      <li><p class="etape-titre">Descente de gradient · 25 min</p><p>Le randonneur dans le brouillard, puis l'exercice 2 b en binôme : w₁ = 0,6 et w₂ = 1,08 ; J passe de 9 à 5,76 puis à environ 3,69. Démonstration avec η = 0,1, puis 1,1, puis 0,01.</p></li>
+      <li><p class="etape-titre">Bilan · 10 min</p><p>Tableau collectif : algorithme, supervisé ou non, ce qu'il produit.</p></li>
+    </ol>
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Erreurs fréquentes des étudiants</p>
+      <ul>
+        <li>Arrêter les k-moyennes après une itération, ou oublier de recalculer les centres.</li>
+        <li>Prolonger une droite de régression loin des données observées.</li>
+        <li>Se tromper de signe dans w ← w − η · pente, ou croire qu'un pas plus grand va toujours plus vite.</li>
+      </ul>
+    </aside>
+    <aside class="encadre encadre--exemple">
+      <p class="encadre-titre">Travail personnel</p>
+      <ul>
+        <li>Finir les exercices 2 a, 2 b et 2 d, puis faire l'<a href="index.html#td-ch3-ex2c">exercice 2 c</a>.</li>
+        <li>Pour le <a href="index.html#mp-sujet-2">sujet 2 du mini-projet</a> : lire <code>kmeans_enquete.py</code> et la méthode du coude.</li>
+      </ul>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-seance-8">
+    <h3>Séance 8 · Transformers et IA générative</h3>
+    <dl class="definitions">
+      <div><dt>Objectifs</dt><dd>Expliquer token, plongement et attention ; décrire la génération comme la prédiction répétée du token suivant ; vérifier une référence produite par un agent conversationnel.</dd></div>
+      <div><dt>Durée</dt><dd>1 h 30 (à adapter)</dd></div>
+      <div><dt>Matériel</dt><dd>Un ordinateur avec <code>transformers</code> et <code>torch</code>, modèles téléchargés la veille (ou Colab) ; captures des sorties en secours ; accès à un catalogue de bibliothèque.</dd></div>
+      <div><dt>Prérequis</dt><dd>Séance 7 ; leçon <a href="index.html#c3-deep">L'apprentissage profond</a> parcourue.</dd></div>
+    </dl>
+    <ol class="etapes">
+      <li><p class="etape-titre">Deviner le mot suivant · 15 min</p><p>« Il pleure dans mon… » : tous répondent « cœur ». « L'étudiante ouvrit le livre et… » : notez chaque proposition et son nombre, voilà une distribution de probabilités. Prendre toujours la plus fréquente, c'est une température basse ; tirer au sort, une température haute.</p></li>
+      <li><p class="etape-titre">Tokens, plongements, attention · 20 min</p><p>Suivez la leçon : l'exemple de « elle » qui regarde « étudiante », puis encodeurs (BERT) et décodeurs (GPT).</p></li>
+      <li><p class="etape-titre">Démonstration · 20 min</p><p><code>generation_texte.py</code> avec <code>temperature=0.3</code>, puis <code>1.5</code> ; puis <code>sentiment_transformers.py</code>, modèle anglais, sur une phrase en français. Reliez aux sujets <a href="index.html#mp-sujet-1">1</a> et <a href="index.html#mp-sujet-3">3</a> du mini-projet.</p></li>
+      <li><p class="etape-titre">L'épreuve des références · 15 min</p><p>Demandez d'avance à un agent conversationnel cinq références sur un sujet précis ; chaque groupe en vérifie une dans un catalogue. N'annoncez pas le résultat : si tout existe, la leçon porte sur la vérification.</p></li>
+      <li><p class="etape-titre">Éthique · 15 min</p><p>Déclarer l'usage de l'IA dans un mémoire, textes déposés en ligne, langues moins bien traitées (darja, tamazight). Trois règles rédigées avec la classe (<a href="index.html#c1-perspectives">Perspectives</a>, <a href="index.html#me-assistant">assistant d'IA</a>).</p></li>
+      <li><p class="etape-titre">Bilan · 5 min</p><p>Compléter : « Générer du texte, pour un modèle, c'est… ».</p></li>
+    </ol>
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Erreurs fréquentes des étudiants</p>
+      <ul>
+        <li>Croire que le modèle sait ou cherche, alors qu'il prolonge un texte de façon plausible.</li>
+        <li>Se fier à une référence parce qu'elle est bien présentée.</li>
+        <li>Confondre BERT, qui comprend et classe, et GPT, qui génère.</li>
+      </ul>
+    </aside>
+    <aside class="encadre encadre--exemple">
+      <p class="encadre-titre">Travail personnel</p>
+      <ul>
+        <li>Relire l'encadré sur les hallucinations (<a href="index.html#c3-deep">leçon</a>) et écrire en cinq lignes sa règle d'usage d'un assistant d'IA.</li>
+        <li>Pour le groupe concerné : préparer la table ronde <a href="index.html#tr-problematiques">L'IA, vecteur de nouvelles problématiques</a>.</li>
+      </ul>
+    </aside>
+  </article>
+</section>
+
+<section class="chapitre" id="guide-activites" aria-labelledby="guide-activites-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">Guide de l'enseignant · Faire participer</p>
+    <h2 class="titre-section" id="guide-activites-titre">Activités en classe</h2>
+    <p class="chapeau">Neuf activités, la plupart sans ordinateur, pour jouer un algorithme avant de le programmer : une procédure que l'on a vécue se comprend mieux. Les durées sont indicatives.</p>
+    <ul class="puces"><li class="puce">Débranché</li><li class="puce">Travail en groupe</li><li class="puce">Outils web sans programmation</li></ul>
+  </header>
+
+  <nav class="sommaire-chapitre" aria-label="Sommaire des activités">
+    <ol>
+      <li><a href="#guide-activite-kmoyennes">Les k-moyennes avec des fiches de romans</a></li>
+      <li><a href="#guide-activite-chainage">Le chaînage avant en jeu de rôle</a></li>
+      <li><a href="#guide-activite-neurone">Le neurone humain</a></li>
+      <li><a href="#guide-activite-brouillard">La descente de gradient dans le brouillard</a></li>
+      <li><a href="#guide-activite-turing">Le jeu de l'imitation</a></li>
+      <li><a href="#guide-activite-spam">Un filtre anti-spam par votes de mots</a></li>
+      <li><a href="#guide-activite-voyant">Un poème dans Voyant Tools</a></li>
+      <li><a href="#guide-activite-teachable">Des images avec Teachable Machine</a></li>
+      <li><a href="#guide-activite-debat">Débat : l'IA peut-elle écrire un roman ?</a></li>
+      <li><a href="#guide-activites-conseils">Conseils d'animation</a></li>
+    </ol>
+  </nav>
+
+  <article class="lecon" id="guide-activite-kmoyennes">
+    <h3>Les k-moyennes avec des fiches de romans</h3>
+    <dl class="definitions">
+      <div><dt>Objectif</dt><dd>Faire vivre les étapes des <a href="index.html#c3-algorithmes">k-moyennes</a> et montrer l'effet du point de départ.</dd></div>
+      <div><dt>Durée</dt><dd>40 min</dd></div>
+      <div><dt>Matériel</dt><dd>Douze fiches, un quadrillage de 10 × 10 sur une table, trois objets de couleur pour les centres, une règle, une calculatrice.</dd></div>
+    </dl>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Part du dialogue (x) et longueur des phrases (y), notées de 0 à 10 (valeurs fictives)</caption>
+      <thead><tr><th scope="col">Fiche</th><th scope="col">A</th><th scope="col">B</th><th scope="col">C</th><th scope="col">D</th><th scope="col">E</th><th scope="col">F</th><th scope="col">G</th><th scope="col">H</th><th scope="col">I</th><th scope="col">J</th><th scope="col">K</th><th scope="col">L</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">x</th><td>1</td><td>2</td><td>2</td><td>3</td><td>8</td><td>9</td><td>7</td><td>8</td><td>5</td><td>4</td><td>6</td><td>5</td></tr>
+        <tr><th scope="row">y</th><td>8</td><td>9</td><td>7</td><td>8</td><td>2</td><td>3</td><td>2</td><td>1</td><td>5</td><td>6</td><td>5</td><td>4</td></tr>
+      </tbody>
+    </table></div>
+    <p>Remplacez les lettres par des romans connus de la classe, notés ensemble : les attributs sont des choix humains.</p>
+    <ol class="etapes">
+      <li><p class="etape-titre">Placer · 5 min</p><p>Chaque fiche à ses coordonnées ; k = 3, centres de départ sur A, E et G.</p></li>
+      <li><p class="etape-titre">Affecter · 10 min</p><p>Chaque étudiant mesure la distance de deux fiches aux centres. Attendu : {A, B, C, D, J}, {E, F, H}, {G, I, K, L}.</p></li>
+      <li><p class="etape-titre">Recalculer · 5 min</p><p>Moyennes des groupes : (2,4 ; 7,6), (8,33 ; 2) et (5,75 ; 4). On déplace les centres.</p></li>
+      <li><p class="etape-titre">Répéter · 15 min</p><p>G change de groupe, puis J ; ensuite plus rien ne bouge : {A, B, C, D}, {I, J, K, L}, {E, F, G, H}.</p></li>
+      <li><p class="etape-titre">Autre départ · 5 min</p><p>Depuis E, H et I : H reste seul, E, F et G forment un groupe, les huit autres fiches un troisième. L'algorithme s'arrête sur cette solution médiocre.</p></li>
+    </ol>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">Ce que les étudiants doivent en retirer</p>
+      <p>L'algorithme mesure des distances et calcule des moyennes, sans rien comprendre aux romans. Le résultat dépend des attributs, de k et du départ. Nommer les groupes reste le travail du chercheur.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-activite-chainage">
+    <h3>Le chaînage avant en jeu de rôle</h3>
+    <dl class="definitions">
+      <div><dt>Objectif</dt><dd>Faire comprendre le cycle du moteur d'inférence (<a href="index.html#c3-symbolique">leçon</a>, <a href="index.html#td-ch3-ex1">exercice 1 du TD</a>).</dd></div>
+      <div><dt>Durée</dt><dd>25 min</dd></div>
+      <div><dt>Matériel</dt><dd>Une carte A5 par règle, le tableau partagé en « base de faits » et « règles déclenchées ».</dd></div>
+    </dl>
+    <ol class="etapes">
+      <li><p class="etape-titre">Rôles · 3 min</p><p>Sept étudiants sont les règles R1 à R7 des formes poétiques de la leçon ; un autre joue le moteur, un autre le secrétaire.</p></li>
+      <li><p class="etape-titre">Faits · 2 min</p><p>Base initiale du sonnet de Du Bellay : 14 vers, 2 quatrains, 2 tercets, alexandrins.</p></li>
+      <li><p class="etape-titre">Cycles · 10 min</p><p>Le moteur appelle les règles dans l'ordre. Si toutes les prémisses de la règle appelée sont au tableau et que sa conclusion est nouvelle, elle se déclenche : le secrétaire écrit la conclusion, la règle s'assoit, on repart de R1. Un passage sans déclenchement arrête le jeu. Attendu : R2, R4, R6.</p></li>
+      <li><p class="etape-titre">Autres faits · 5 min</p><p>Un haïku (R1 puis R7) ; un sonnet imprimé d'un seul bloc, qui ne déclenche rien.</p></li>
+      <li><p class="etape-titre">Débriefing · 5 min</p><p>Qui savait que c'était un sonnet ? Personne : chaque règle ne regardait que le tableau.</p></li>
+    </ol>
+    <p>Avec les règles du TD, H et K au tableau, l'ordre attendu est R3, R1, R5, R2, R6 ; R4 et R7 attendent un G qui ne vient jamais.</p>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">Ce que les étudiants doivent en retirer</p>
+      <p>Le moteur compare des symboles sans les comprendre ; l'ordre des règles change le chemin ; hors des cas prévus, le système échoue.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-activite-neurone">
+    <h3>Le neurone humain</h3>
+    <dl class="definitions">
+      <div><dt>Objectif</dt><dd>Montrer qu'un <a href="index.html#c3-deep">neurone artificiel</a> calcule une somme pondérée, et qu'apprendre, c'est corriger les poids après une erreur.</dd></div>
+      <div><dt>Durée</dt><dd>30 min</dd></div>
+      <div><dt>Matériel</dt><dd>Trois cartes « 0 / 1 », une fiche des poids écrite au crayon, le tableau.</dd></div>
+    </dl>
+    <p>Trois étudiants sont les entrées : x₁ vaut 1 si le texte est en vers, x₂ s'il rime, x₃ s'il contient des dialogues. Le neurone calcule z = w₁ · x₁ + w₂ · x₂ + w₃ · x₃ + b et répond « poème » si z &gt; 0, « prose » sinon. Départ : w = (0 ; 1 ; 1), b = −0,5. Si le neurone dit « poème » à tort, on retire 1 au biais et aux poids des entrées qui valent 1 ; s'il dit « prose » à tort, on ajoute 1.</p>
+    <ol class="etapes">
+      <li><p class="etape-titre">Un sonnet de Du Bellay · 5 min</p><p>(1 ; 1 ; 0), z = 0,5 : « poème ». Juste.</p></li>
+      <li><p class="etape-titre">Un extrait dialogué de <em>Bel-Ami</em> · 5 min</p><p>(0 ; 0 ; 1), z = 0,5 : « poème ». Faux. Nouveaux poids : (0 ; 1 ; 0), b = −1,5.</p></li>
+      <li><p class="etape-titre">« Song of Myself » de Whitman · 5 min</p><p>Vers libres non rimés, (1 ; 0 ; 0), z = −1,5 : « prose ». Faux. Nouveaux poids : (1 ; 1 ; 0), b = −0,5.</p></li>
+      <li><p class="etape-titre">Vérifier · 5 min</p><p>Les trois textes et un paragraphe descriptif sans dialogue sont bien classés.</p></li>
+      <li><p class="etape-titre">Cas limites · 10 min</p><p><em>Phèdre</em> de Racine (1 ; 1 ; 1) sort « poème » ; un poème du <em>Spleen de Paris</em> (0 ; 0 ; 0) sort « prose ». Qui a raison ?</p></li>
+    </ol>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">Ce que les étudiants doivent en retirer</p>
+      <p>Apprendre, c'est ajuster des nombres après des erreurs : le poids du dialogue est tombé à zéro parce que cet indice ne servait pas. Le neurone ne voit pas ce que ses entrées ne décrivent pas, et les catégories restent des choix humains.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-activite-brouillard">
+    <h3>La descente de gradient dans le brouillard</h3>
+    <dl class="definitions">
+      <div><dt>Objectif</dt><dd>Faire sentir que la <a href="index.html#c3-algorithmes">descente de gradient</a> ne connaît que la pente locale.</dd></div>
+      <div><dt>Durée</dt><dd>25 min</dd></div>
+      <div><dt>Matériel</dt><dd>Onze feuilles numérotées de 0 à 10, posées au sol en ligne, l'altitude écrite au verso.</dd></div>
+    </dl>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Altitude cachée au verso de chaque feuille</caption>
+      <thead><tr><th scope="col">Position</th><th scope="col">0</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th><th scope="col">7</th><th scope="col">8</th><th scope="col">9</th><th scope="col">10</th></tr></thead>
+      <tbody><tr><th scope="row">Altitude</th><td>9</td><td>7</td><td>5</td><td>4</td><td>5</td><td>6</td><td>4</td><td>2</td><td>1</td><td>3</td><td>6</td></tr></tbody>
+    </table></div>
+    <p>Le randonneur ne retourne que sa feuille et ses deux voisines, puis avance d'un pas vers la plus basse si elle est plus basse que lui ; sinon, il s'arrête.</p>
+    <ol class="etapes">
+      <li><p class="etape-titre">Métaphore · 3 min</p><p>La position est le paramètre, l'altitude est l'erreur.</p></li>
+      <li><p class="etape-titre">Départ en 0 · 5 min</p><p>0, 1, 2, 3 : arrêt à l'altitude 4.</p></li>
+      <li><p class="etape-titre">Départ en 10 · 4 min</p><p>10, 9, 8 : arrêt à l'altitude 1.</p></li>
+      <li><p class="etape-titre">Lever le brouillard · 3 min</p><p>Toutes les feuilles retournées : un creux local en 3, le minimum en 8.</p></li>
+      <li><p class="etape-titre">Grands pas · 5 min</p><p>Pas de quatre feuilles depuis 0 : 0, 4, 8 ; le grand pas saute le creux de 3 et trouve le minimum. Pas de trois feuilles depuis 10 : 10, 7, arrêt à l'altitude 2, juste à côté du minimum. Un pas trop grand peut manquer le fond ; la vraie descente de gradient, qui avance même quand l'erreur remonte, se met alors à osciller.</p></li>
+      <li><p class="etape-titre">Formule · 5 min</p><p>w ← w − η · pente, où η est la longueur du pas ; démonstration de la leçon avec η = 0,1 puis 1,1.</p></li>
+    </ol>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">Ce que les étudiants doivent en retirer</p>
+      <p>L'algorithme ne voit que la pente locale. Le départ peut l'enfermer dans un creux ; un pas trop grand le fait osciller ou diverger. La fonction du cours n'a qu'une vallée ; celles des réseaux de neurones sont bien plus accidentées.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-activite-turing">
+    <h3>Le jeu de l'imitation</h3>
+    <dl class="definitions">
+      <div><dt>Objectif</dt><dd>Faire vivre l'épreuve de Turing (1950) et discuter ce qu'elle mesure (<a href="index.html#c1-histoire">histoire</a>, <a href="index.html#c1-faible-forte">chambre chinoise</a>).</dd></div>
+      <div><dt>Durée</dt><dd>25 à 40 min</dd></div>
+      <div><dt>Matériel</dt><dd>Bandes de papier, un lieu hors de vue, la carte de règles ci-dessous ; en option, un agent conversationnel.</dd></div>
+    </dl>
+    <ol class="etapes">
+      <li><p class="etape-titre">Le jeu original · 5 min</p><p>Chez Turing, un interrogateur doit deviner par écrit qui est l'homme et qui est la femme ; puis une machine prend l'une des places.</p></li>
+      <li><p class="etape-titre">Rôles · 3 min</p><p>X répond sincèrement, Y joue la machine avec la carte ; tous deux hors de vue. Vous lisez les réponses à voix haute : l'écriture trahirait les témoins.</p></li>
+      <li><p class="etape-titre">Interroger · 10 min</p><p>Cinq minutes de questions écrites par témoin, la durée qu'évoque Turing.</p></li>
+      <li><p class="etape-titre">Voter · 5 min</p><p>Vote à main levée, puis révélation.</p></li>
+      <li><p class="etape-titre">Discuter · 10 min ou plus</p><p>Qu'est-ce qui a trahi la machine ? Doit-elle imiter nos erreurs ? Dans l'exemple de Turing, elle répond à une addition après une trentaine de secondes, et se trompe. Tromper, est-ce penser ?</p></li>
+    </ol>
+    <aside class="encadre encadre--exemple">
+      <p class="encadre-titre">Carte de règles de la « machine », dans l'esprit d'ELIZA</p>
+      <ul>
+        <li>La question contient « vous » ou « tu » : « Pourquoi me posez-vous cette question ? »</li>
+        <li>Elle contient un mot de la famille : « Parlez-moi de votre famille. »</li>
+        <li>Elle demande un calcul : attendre trente secondes, puis répondre.</li>
+        <li>Sinon : « Je ne suis pas sûr de comprendre. Pouvez-vous reformuler ? »</li>
+      </ul>
+    </aside>
+    <p>Variante : Y est un agent conversationnel dont vous lisez les réponses ; la question devient « que prouve le fait de tromper ? ».</p>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">Ce que les étudiants doivent en retirer</p>
+      <p>Turing remplace une question philosophique par une épreuve observable. Réussir l'épreuve ne prouve pas la compréhension (Searle). Nous prêtons facilement de l'intelligence à ce qui parle : c'est l'effet ELIZA.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-activite-spam">
+    <h3>Un filtre anti-spam par votes de mots</h3>
+    <dl class="definitions">
+      <div><dt>Objectif</dt><dd>Faire comprendre l'entraînement, la prédiction et les erreurs d'un <a href="index.html#c3-ml">classifieur de textes</a>, sans probabilités.</dd></div>
+      <div><dt>Durée</dt><dd>30 min</dd></div>
+      <div><dt>Matériel</dt><dd>Les dix messages ci-dessous, imprimés ; le tableau pour le décompte.</dd></div>
+    </dl>
+    <p>Spams : « Gagnez un voyage gratuit, cliquez ici » ; « Offre exceptionnelle : cliquez vite pour gagner un cadeau » ; « Vous avez gagné un cadeau gratuit, cliquez ici ». Non-spams : « Le cours de jeudi porte sur le chapitre 3 » ; « Merci de rendre le mini-projet jeudi » ; « Voici le lien vers le corrigé du TD ».</p>
+    <p>On ignore les mots vides (le, la, les, un, une, de, du, des, à, au, pour, vous, votre, est, et, sur, en, ce). Le vote d'un mot est le nombre de spams qui le contiennent moins le nombre de non-spams qui le contiennent. Le score d'un message est la somme des votes de ses mots, un mot inconnu valant 0 : positif, spam ; négatif, non-spam ; nul, indécis.</p>
+    <ol class="etapes">
+      <li><p class="etape-titre">Entraîner · 10 min</p><p>Attendu : cliquez +3 ; gratuit, ici, cadeau +2 ; gagnez, gagner, gagné, offre, exceptionnelle, vite, voyage, avez +1 ; jeudi −2 ; les autres mots des non-spams −1.</p></li>
+      <li><p class="etape-titre">Prédire · 10 min</p><p>« Cliquez ici pour gagner un livre gratuit » : +8, spam. « Le TD de jeudi est reporté » : −3, non-spam. « Cliquez ici pour lire le corrigé du TD de jeudi » : +1, spam à tort. « Félicitations, vous êtes sélectionné » : 0, indécis.</p></li>
+      <li><p class="etape-titre">Discuter · 10 min</p><p>Le troisième message est un faux positif ; le quatrième n'a que des mots inconnus. « Gagnez », « gagner » et « gagné » votent séparément (d'où la lemmatisation), et « jeudi » est devenu un indice par hasard.</p></li>
+    </ol>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">Ce que les étudiants doivent en retirer</p>
+      <p>Un classifieur transforme des mots en nombres et n'apprend que de ses exemples ; ses deux sortes d'erreurs se mesurent par la précision et le rappel. Le classifieur bayésien naïf de la leçon fait la même chose avec des probabilités.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-activite-voyant">
+    <h3>Un poème dans Voyant Tools</h3>
+    <dl class="definitions">
+      <div><dt>Objectif</dt><dd>Mener une lecture outillée d'un poème (fréquences, nuage de mots, concordance) sans programmer, et la confronter à une lecture rapprochée.</dd></div>
+      <div><dt>Durée</dt><dd>40 min</dd></div>
+      <div><dt>Matériel</dt><dd>Un ordinateur connecté pour deux, ou un seul au vidéoprojecteur ; <a href="https://voyant-tools.org" target="_blank" rel="noopener">Voyant Tools</a>, outil web gratuit conçu par Stéfan Sinclair et Geoffrey Rockwell ; « Le Dormeur du val » de Rimbaud, dont le texte figure dans la <a href="index.html#c2-fichiers">leçon sur les fichiers textes</a>.</dd></div>
+    </dl>
+    <ol class="etapes">
+      <li><p class="etape-titre">Lecture rapprochée · 10 min</p><p>Sans outil : quels mots reviennent ? Qu'est-ce qui prépare le dernier vers ?</p></li>
+      <li><p class="etape-titre">Charger le texte · 5 min</p><p>Collez le poème sur la page d'accueil et lancez l'analyse (bouton <span class="terme-en" lang="en">Reveal</span>).</p></li>
+      <li><p class="etape-titre">Explorer · 10 min</p><p>Le nuage de mots (Cirrus), puis un clic sur un mot pour voir sa répartition et sa concordance KWIC. Voyant écarte par défaut une liste de mots vides, modifiable dans les options.</p></li>
+      <li><p class="etape-titre">Confronter · 10 min</p><p>L'outil repère-t-il « dort » ? Voit-il la chute, le double sens de « nue » ? Comparez ses comptes à ceux du programme Python de la leçon : les écarts viennent de la définition d'un « mot ».</p></li>
+      <li><p class="etape-titre">Élargir · 5 min</p><p>Comparez plusieurs poèmes. Pour un texte arabe, faites l'essai avant la séance.</p></li>
+    </ol>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">Ce que les étudiants doivent en retirer</p>
+      <p>L'outil compte, le lecteur interprète : un nuage de mots n'est pas une analyse. Il faut savoir quels mots ont été écartés et comment un mot est défini. Le texte part sur un serveur : pas de texte protégé ni de travail inédit (<a href="index.html#c1-perspectives">Éthique et bonnes pratiques</a>).</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-activite-teachable">
+    <h3>Classer des images avec Teachable Machine</h3>
+    <dl class="definitions">
+      <div><dt>Objectif</dt><dd>Entraîner un classifieur d'images et constater qu'il apprend aussi des indices non voulus (<a href="index.html#c3-ml">identification d'images</a>).</dd></div>
+      <div><dt>Durée</dt><dd>35 min</dd></div>
+      <div><dt>Matériel</dt><dd>Un ordinateur connecté avec webcam, relié au vidéoprojecteur ; <a href="https://teachablemachine.withgoogle.com" target="_blank" rel="noopener">Teachable Machine</a> (Google, gratuit, dans le navigateur) ; une trentaine de cartes portant des mots en écriture arabe ou latine.</dd></div>
+    </dl>
+    <ol class="etapes">
+      <li><p class="etape-titre">Préparer · 5 min</p><p>Un projet d'images, deux classes : « écriture arabe » et « écriture latine ».</p></li>
+      <li><p class="etape-titre">Collecter · 10 min</p><p>Les étudiants présentent les cartes à la webcam. Piège préparé en secret : toutes les cartes arabes sont au feutre bleu sur papier de couleur, toutes les latines au feutre noir sur papier blanc.</p></li>
+      <li><p class="etape-titre">Entraîner et tester · 5 min</p><p>Entraînez, puis testez avec de nouvelles cartes faites de la même façon : tout semble marcher.</p></li>
+      <li><p class="etape-titre">Débusquer le piège · 10 min</p><p>Montrez un mot arabe au feutre noir sur papier blanc et observez la réponse. Qu'a pu apprendre le modèle ? Réentraînez avec des exemples variés.</p></li>
+      <li><p class="etape-titre">Relier au cours · 5 min</p><p>Rapprochez ce piège des « enfans » du chapitre 1 et du « jeudi » du filtre anti-spam. L'outil réutilise un réseau déjà entraîné, d'où le petit nombre d'exemples nécessaires.</p></li>
+    </ol>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">Ce que les étudiants doivent en retirer</p>
+      <p>Un modèle apprend les corrélations de ses exemples, pas le concept que nous avons en tête ; la variété des données compte plus que le bouton « entraîner ». Ne photographiez pas les visages des étudiants : la reconnaissance faciale pose les problèmes éthiques vus dans la leçon.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-activite-debat">
+    <h3>Débat : l'IA peut-elle écrire un roman ?</h3>
+    <dl class="definitions">
+      <div><dt>Objectif</dt><dd>Construire et défendre un argument documenté sur la création par les machines et le statut d'auteur (<a href="index.html#tr-problematiques">table ronde sur les nouvelles problématiques</a>).</dd></div>
+      <div><dt>Durée</dt><dd>60 min, après une préparation lancée à la séance précédente</dd></div>
+      <div><dt>Matériel</dt><dd>La procédure <a href="index.html#tr-methode">Préparer et animer une table ronde</a>, un minuteur, une grille d'observation pour le public.</dd></div>
+    </dl>
+    <ol class="etapes">
+      <li><p class="etape-titre">Préparer · séance précédente</p><p>Deux équipes tirées au sort, un jury de trois, le public. Chaque orateur apporte deux arguments et un exemple sourcé.</p></li>
+      <li><p class="etape-titre">Définir les termes · 5 min</p><p>« Écrire » : produire un texte, ou le concevoir ? « Roman » : une longueur, une composition, une intention ?</p></li>
+      <li><p class="etape-titre">Ouvertures · 10 min</p><p>Deux orateurs par équipe, deux à trois minutes chacun.</p></li>
+      <li><p class="etape-titre">Échanges · 20 min</p><p>Chacun répond à l'argument précédent avant d'en avancer un nouveau.</p></li>
+      <li><p class="etape-titre">Questions du public · 10 min</p><p>À partir de la grille d'observation.</p></li>
+      <li><p class="etape-titre">Synthèse · 15 min</p><p>Le jury dit quels arguments étaient le mieux étayés, non qui a gagné ; vous complétez avec le cours.</p></li>
+    </ol>
+    <h4>Pistes pour nourrir le débat</h4>
+    <ul>
+      <li>Ada Lovelace (1843) : la machine analytique ne crée rien, elle exécute ce qu'on sait lui ordonner. Turing discute cette « objection de Lady Lovelace » en 1950.</li>
+      <li>L'Oulipo, fondé en 1960 par Raymond Queneau et François Le Lionnais, et les <em>Cent mille milliards de poèmes</em> (1961) : la littérature combinatoire précède l'IA.</li>
+      <li>La chambre chinoise et la prédiction du token suivant (<a href="index.html#c3-deep">leçon</a>) : produire un texte, est-ce le comprendre ?</li>
+      <li>En janvier 2024, Rie Kudan, lauréate du prix Akutagawa, a déclaré qu'environ 5 % de son roman reprenait mot pour mot des textes générés par ChatGPT.</li>
+      <li>Aux États-Unis, l'office du droit d'auteur exige une part de création humaine ; faites rechercher la situation algérienne.</li>
+    </ul>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">Ce que les étudiants doivent en retirer</p>
+      <p>« Écrire un roman » recouvre plusieurs questions : produire un texte, avoir une intention, en répondre, être original. Un argument vaut ce que vaut sa source.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-activites-conseils">
+    <h3>Conseils d'animation</h3>
+    <div class="grille-cartes">
+      <article class="carte">
+        <h4>Le travail de groupe</h4>
+        <p>Trois ou quatre étudiants, niveaux et équipements mêlés, des rôles qui tournent (secrétaire, porte-parole, gardien du temps) et une production précise. Tirez le porte-parole au sort : chacun doit être prêt. Demandez « qu'avez-vous essayé ? » plutôt que de donner la réponse.</p>
+      </article>
+      <article class="carte">
+        <h4>La programmation en binôme</h4>
+        <p>Le pilote tient le clavier ; le copilote lit l'énoncé, relit, propose. On échange toutes les quinze minutes, à votre signal. Le moins à l'aise commence au clavier, et le copilote ne le lui prend jamais.</p>
+      </article>
+      <article class="carte">
+        <h4>Coder en direct</h4>
+        <p>Grande police, notebook préparé avec les titres, code tapé en direct en disant ce que vous faites. Faites prédire chaque résultat. Commettez des erreurs exprès : guillemet non fermé (<code>SyntaxError</code>), bloc mal indenté (<code>IndentationError</code>), variable inconnue (<code>NameError</code>), <code>"Nedjma" + 1956</code> (<code>TypeError</code>). Lisez toujours la dernière ligne du message. Si une vraie erreur vous résiste, dites-le et revenez-y la fois suivante.</p>
+      </article>
+      <article class="carte">
+        <h4>Les étudiants sans ordinateur</h4>
+        <p>Repérez-les grâce au questionnaire. Placez-les en binôme, réservez si possible la salle informatique, préparez des tâches sur papier : prédire la sortie d'un code imprimé, y trouver l'erreur. Un téléphone suffit pour lire le site, guère pour programmer. L'évaluation ne doit pas dépendre de l'équipement personnel.</p>
+      </article>
+    </div>
+    <aside class="encadre encadre--shs">
+      <p class="encadre-titre">Les langues de la classe</p>
+      <p>Laissez les groupes discuter dans la langue où ils pensent le plus vite, mais exigez les termes techniques en français et en anglais. Le site existe aussi en arabe et en anglais : un étudiant bloqué peut relire la leçon dans une autre langue.</p>
+    </aside>
+  </article>
+</section>

@@ -3,6 +3,7 @@
 
   python3 tools/assembler.py
       → écrit docs/index.html (français), docs/en/index.html (anglais), docs/ar/index.html (arabe)
+        et, pour chaque langue, le guide de l'enseignant (enseignant.html)
 
   python3 tools/assembler.py --autonome CHEMIN [--langue fr|en|ar] [--lien-systeme URL]
       → écrit une version en un seul fichier : CSS et JS intégrés,
@@ -36,7 +37,36 @@ NAV = [
     ("tables-rondes", "i-bulle", {"fr": "Tables rondes", "en": "Round tables", "ar": "الموائد المستديرة"}),
     ("references", "i-livre", {"fr": "Références", "en": "References", "ar": "المراجع"}),
     ("glossaire", "Aa", {"fr": "Glossaire", "en": "Glossary", "ar": "المسرد"}),
+    ("enseignant.html", "i-outil", {"fr": "Guide de l'enseignant", "en": "Teacher's guide", "ar": "دليل الأستاذ"}),
 ]
+
+# Page « Guide de l'enseignant » : fragments et menu.
+FRAGMENTS_GUIDE = ["guide-1", "guide-2", "guide-3", "guide-4"]
+NAV_GUIDE = [
+    ("index.html", "i-retour", {"fr": "Retour au cours", "en": "Back to the course", "ar": "العودة إلى المقياس"}),
+    ("guide-demarrer", "i-boussole", {"fr": "Par où commencer", "en": "Where to start", "ar": "من أين تبدأ"}),
+    ("guide-carte", "i-carte", {"fr": "Carte du cours", "en": "Course map", "ar": "خريطة المقياس"}),
+    ("guide-progression", "i-calendrier", {"fr": "Progression", "en": "Week-by-week plan", "ar": "الخطة الأسبوعية"}),
+    ("guide-seances", "i-crayon", {"fr": "Fiches de séance", "en": "Lesson plans", "ar": "مذكرات الحصص"}),
+    ("guide-activites", "i-bulle", {"fr": "Activités en classe", "en": "Classroom activities", "ar": "أنشطة القسم"}),
+    ("guide-evaluation", "i-coche", {"fr": "Évaluation", "en": "Assessment", "ar": "التقييم"}),
+    ("guide-ia", "i-ampoule", {"fr": "L'IA générative en classe", "en": "Generative AI in class", "ar": "الذكاء التوليدي في القسم"}),
+    ("guide-ressources", "i-livre", {"fr": "Ressources", "en": "Resources", "ar": "المراجع والموارد"}),
+]
+TEXTES_GUIDE = {
+    "fr": {"titre": "Guide de l'enseignant · Cours d'IA", "surtitre": "Pour l'enseignant",
+           "h1": "<span>Guide de</span> <span>l'enseignant</span>",
+           "chapeau": "Tout ce qu'il faut pour enseigner ce cours, même sans avoir jamais programmé : par où commencer, la carte du cours, une progression semaine par semaine, des fiches de séance prêtes à l'emploi, des activités pour la classe, un sujet d'examen corrigé et toutes les ressources utiles.",
+           "b1": "Par où commencer", "b2": "Toutes les ressources", "nav": ("Guide (menu)", "Sommaire du guide")},
+    "en": {"titre": "Teacher's guide · AI Course", "surtitre": "For the teacher",
+           "h1": "<span>Teacher's</span> <span>guide</span>",
+           "chapeau": "Everything you need to teach this course, even if you have never programmed: where to start, a map of the course, a week-by-week plan, ready-to-use lesson plans, classroom activities, a model exam with answers, and every useful resource.",
+           "b1": "Where to start", "b2": "All resources", "nav": ("Guide (menu)", "Guide contents")},
+    "ar": {"titre": "دليل الأستاذ · مقياس الذكاء الاصطناعي", "surtitre": "للأستاذ",
+           "h1": "<span>دليل</span> <span>الأستاذ</span>",
+           "chapeau": "كل ما تحتاجه لتدريس هذا المقياس حتى لو لم تبرمج من قبل: من أين تبدأ، خريطة المقياس، خطة أسبوعًا بأسبوع، مذكرات حصص جاهزة، أنشطة للقسم، نموذج امتحان مع الحل، وكل المراجع والموارد المفيدة.",
+           "b1": "من أين تبدأ", "b2": "كل المراجع", "nav": ("الدليل (القائمة)", "محتويات الدليل")},
+}
 
 # Par langue : dossier des sources, dossier de sortie, préfixe des assets, libellés des deux nav.
 LANGUES = {
@@ -54,16 +84,16 @@ PRISM = [
 ]
 
 
-def nav(etiquette, langue):
+def nav(etiquette, langue, entrees=None):
     items = []
-    for cible, marque, textes in NAV:
+    for cible, marque, textes in (entrees or NAV):
         texte = textes[langue]
         if marque.startswith("i-"):
             signe = f'<svg class="icone" aria-hidden="true"><use href="#{marque}"/></svg>'
         else:
             signe = marque
         items.append(
-            f'<li><a href="#{cible}"><span class="rail-capsule__marque" aria-hidden="true">{signe}</span>{texte}</a></li>'
+            f'<li><a href="{cible if cible.endswith(".html") else "#" + cible}"><span class="rail-capsule__marque" aria-hidden="true">{signe}</span>{texte}</a></li>'
         )
     return (f'<nav aria-label="{etiquette}" data-rail>\n<ul class="rail-capsule">\n'
             + "\n".join(items) + "\n</ul>\n</nav>")
@@ -88,6 +118,47 @@ def assembler(langue, lien_systeme):
     page = page.replace("{{NAV}}", nav(conf["nav"][1], langue), 1)
     page = page.replace("{{LIEN_SYSTEME}}", lien_systeme)
     page = page.replace("{{BASE}}", conf["base"])
+    return page
+
+
+def guide(langue, lien_systeme):
+    """Page « Guide de l'enseignant » : l'en-tête et le pied de page du cours, un héros sobre, les fragments du guide."""
+    conf, t = LANGUES[langue], TEXTES_GUIDE[langue]
+    gabarit = (conf["sources"] / "gabarit.html").read_text(encoding="utf-8")
+    tete = gabarit[:gabarit.index('<main id="contenu">')]
+    pied = gabarit[gabarit.index("</main>") + len("</main>"):]
+    pied = pied.replace('href="#', 'href="index.html#')   # le pied de page renvoie aux sections du cours
+    tete = re.sub(r"<title>[^<]*</title>", f"<title>{t['titre']}</title>", tete, count=1)
+    tete = tete.replace('class="entete__marque" href="#accueil"', 'class="entete__marque" href="index.html"')
+    # Le sélecteur de langue pointe vers le guide dans l'autre langue.
+    tete = re.sub(r'(<div class="langues".*?</div>)', lambda m: m.group(1).replace('index.html"', 'enseignant.html"'), tete, count=1, flags=re.S)
+    fragments = "\n\n".join(lire(conf["sources"], n) for n in FRAGMENTS_GUIDE)
+    corps = f"""<main id="contenu">
+  <section class="heros heros--guide" id="guide-haut" aria-labelledby="titre-guide">
+    <div>
+      <p class="surtitre">{t['surtitre']}</p>
+      <h1 class="heros__titre" id="titre-guide">{t['h1']}</h1>
+      <p class="heros__chapeau">{t['chapeau']}</p>
+      <div class="heros__actions">
+        <a class="bouton bouton--prisme" href="#guide-demarrer">{t['b1']}</a>
+        <a class="bouton" href="#guide-ressources">{t['b2']}</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="page">
+    <div class="page__rail">
+      {{{{NAV}}}}
+    </div>
+    <div class="page__contenu">
+{fragments}
+    </div>
+  </div>
+</main>"""
+    page = tete + corps + pied
+    page = page.replace("{{NAV}}", nav(t["nav"][0], langue, NAV_GUIDE), 1)
+    page = page.replace("{{NAV}}", nav(t["nav"][1], langue, NAV_GUIDE), 1)
+    page = page.replace("{{LIEN_SYSTEME}}", lien_systeme).replace("{{BASE}}", conf["base"])
     return page
 
 
@@ -132,6 +203,9 @@ def main():
         page = assembler(langue, lien).replace("{{SCRIPTS}}", scripts_lies(conf["base"]))
         conf["sortie"].write_text(page, encoding="utf-8")
         print(f"écrit : {conf['sortie'].relative_to(RACINE)} ({conf['sortie'].stat().st_size // 1024} Ko)")
+        sortie_guide = conf["sortie"].with_name("enseignant.html")
+        sortie_guide.write_text(guide(langue, lien).replace("{{SCRIPTS}}", scripts_lies(conf["base"])), encoding="utf-8")
+        print(f"écrit : {sortie_guide.relative_to(RACINE)} ({sortie_guide.stat().st_size // 1024} Ko)")
 
 
 if __name__ == "__main__":
