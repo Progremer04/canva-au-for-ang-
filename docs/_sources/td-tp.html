@@ -839,6 +839,11 @@ But atteint : True | règles déclenchées : ['R3', 'R1', 'R5', 'R2', 'R6']</sam
     </ol>
 
     <h4>Préparer son environnement : liste de vérification</h4>
+    <aside class="encadre encadre--exemple">
+      <p class="encadre-titre">Raccourci sous Windows : run.bat</p>
+      <p>Le dépôt du cours, <a href="https://github.com/Progremer04/canva-au-for-ang-" target="_blank" rel="noopener">github.com/Progremer04/canva-au-for-ang-</a>, contient un fichier <code>run.bat</code>. Un double-clic télécharge le projet, installe Python 3.12 s'il manque, crée l'environnement <code>.venv</code>, y installe toutes les bibliothèques de la liste ci-dessous et le modèle français de spaCy, puis ouvre ce site. La première fois, comptez plusieurs centaines de Mo et une vingtaine de minutes.</p>
+      <p><code>run.bat check</code> affiche ce qui est installé ; <code>run.bat notebook</code> ouvre Jupyter dans le dossier du projet ; <code>run.bat site</code> ouvre seulement le site.</p>
+    </aside>
     <ul>
       <li>Python 3.11 est installé : la commande <code>python --version</code> l'affiche. Une distribution comme Anaconda installe Python, Jupyter et les principales bibliothèques en une fois.</li>
       <li>Un environnement virtuel est créé pour le cours (<code>python -m venv ia-env</code>) et activé : <code>ia-env\Scripts\activate</code> sous Windows, <code>source ia-env/bin/activate</code> sous macOS et Linux.</li>

@@ -1,0 +1,9 @@
+# Environnement Python cree par run.bat
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+# Fichiers produits par les exercices
+rapport*.xlsx
+rapport*.pdf
+*.gexf
