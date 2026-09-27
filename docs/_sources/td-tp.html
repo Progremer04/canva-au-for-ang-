@@ -1,0 +1,878 @@
+<section class="chapitre" id="td-tp" aria-labelledby="td-tp-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">Travaux dirigés et travaux pratiques</p>
+    <h2 class="titre-section" id="td-tp-titre">TD / TP corrigés</h2>
+    <p class="chapeau">Les exercices de TD des trois chapitres, avec des corrigés détaillés, puis une progression pour les séances de TP. Cherchez d'abord seuls ou en groupe, puis ouvrez le corrigé pour comparer votre raisonnement, pas seulement votre résultat.</p>
+    <ul class="puces">
+      <li class="puce">TD</li>
+      <li class="puce">TP</li>
+      <li class="puce puce--outil">Python</li>
+    </ul>
+  </header>
+
+  <nav class="sommaire-chapitre" aria-label="Sommaire des TD et TP">
+    <ol>
+      <li><a href="#td-ch1">TD du chapitre 1 : apprentissage et état de l'art</a></li>
+      <li><a href="#td-ch2">TD du chapitre 2 : exercices en Python</a></li>
+      <li><a href="#td-ch3">TD du chapitre 3 : système expert et apprentissage</a></li>
+      <li><a href="#td-travaux-pratiques">Travaux pratiques</a></li>
+    </ol>
+  </nav>
+
+  <!-- ============================ TD CHAPITRE 1 ============================ -->
+  <article class="lecon" id="td-ch1">
+    <h3>TD du chapitre 1</h3>
+    <p>Ces exercices reprennent l'introduction à l'intelligence artificielle. Les trois premiers se traitent en séance ; le quatrième est un travail personnel de recherche documentaire.</p>
+
+    <div class="exercice" id="td-ch1-ex1">
+      <p class="exercice-num">Exercice 1 · Reprendre les notions du cours</p>
+      <div class="exercice-enonce">
+        <p>Reprenez les notions vues dans le cours du chapitre 1, puis approfondissez les notions d'apprentissage supervisé et d'apprentissage non supervisé. Pour chacune, donnez une définition, le type de données nécessaires, les tâches typiques et une difficulté pratique.</p>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé</summary>
+        <div class="corrige-corps">
+          <p>Voici une synthèse possible, à compléter avec vos notes de cours.</p>
+          <dl class="definitions">
+            <div><dt>Intelligence artificielle</dt><dd>Domaine de l'informatique qui conçoit des programmes capables d'accomplir des tâches que l'on associe à l'intelligence humaine : raisonner, comprendre une langue, reconnaître une image, décider. L'<dfn>IA faible</dfn> (ou étroite) est spécialisée dans une tâche ou un domaine ; les systèmes actuels en relèvent, même si les plus polyvalents relancent le débat. L'<dfn>IA forte</dfn> (ou générale) désigne une IA capable de toute tâche intellectuelle humaine ; elle reste un objectif et un sujet de débat.</dd></div>
+            <div><dt>Deux grandes approches</dt><dd>L'approche <dfn>symbolique</dfn> : des humains écrivent les connaissances sous forme de règles (c'est le cas des systèmes experts). L'<dfn>apprentissage automatique</dfn> (<span class="terme-en" lang="en">machine learning</span>) : le programme tire lui-même ses règles d'un grand nombre d'exemples.</dd></div>
+            <div><dt>Apprentissage supervisé</dt><dd><strong>Données :</strong> des exemples accompagnés de la réponse attendue, appelée <dfn>étiquette</dfn> (un courriel et la mention « spam » ou « non-spam »). <strong>Principe :</strong> le modèle apprend la correspondance entre l'entrée et l'étiquette, puis l'applique à des cas nouveaux. <strong>Tâches :</strong> la <dfn>classification</dfn> (prédire une catégorie) et la <dfn>régression</dfn> (prédire une valeur numérique). <strong>Évaluation :</strong> on compare les prédictions aux vraies étiquettes d'exemples mis de côté, le jeu de test. <strong>Difficulté :</strong> annoter coûte du temps, et les étiquettes reflètent les choix, parfois les préjugés, des annotateurs.</dd></div>
+            <div><dt>Apprentissage non supervisé</dt><dd><strong>Données :</strong> des exemples sans étiquette. <strong>Principe :</strong> le modèle cherche seul une structure dans les données. <strong>Tâches :</strong> le <dfn>clustering</dfn> (regrouper les cas semblables), la réduction de dimension (résumer de nombreuses variables en quelques axes), la détection d'anomalies, la modélisation thématique. <strong>Évaluation :</strong> il n'y a pas de « bonne réponse » ; on juge la cohérence des groupes et leur intérêt pour l'interprétation. <strong>Difficulté :</strong> nommer et interpréter les groupes obtenus.</dd></div>
+            <div><dt>Entre les deux</dt><dd>L'apprentissage <dfn>semi-supervisé</dfn> combine quelques exemples étiquetés et beaucoup d'exemples bruts. L'apprentissage <dfn>auto-supervisé</dfn> tire l'étiquette des données elles-mêmes, par exemple en cachant le mot suivant d'une phrase et en demandant au modèle de le deviner : c'est ainsi que sont pré-entraînés les grands modèles de langage.</dd></div>
+            <div><dt>Apprentissage par renforcement</dt><dd>Pas d'exemples corrigés : un agent agit dans un environnement et reçoit des récompenses ou des pénalités. Il apprend la stratégie qui maximise ses récompenses au fil du temps.</dd></div>
+          </dl>
+          <aside class="encadre encadre--retenir">
+            <p class="encadre-titre">La bonne question à se poser</p>
+            <p>Dispose-t-on, pour chaque exemple, de la réponse attendue ? Si oui, l'apprentissage est supervisé. Sinon, il est non supervisé. Si le programme apprend en agissant et en recevant des récompenses, il s'agit d'apprentissage par renforcement.</p>
+          </aside>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="td-ch1-ex2">
+      <p class="exercice-num">Exercice 2 · Supervisé ou non supervisé ?</p>
+      <div class="exercice-enonce">
+        <p>Quelle est la différence entre apprentissage supervisé et apprentissage non supervisé ? Présentez votre réponse sous forme de tableau comparatif.</p>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé</summary>
+        <div class="corrige-corps">
+          <div class="tableau-defilant"><table class="tableau">
+            <caption>Apprentissage supervisé et non supervisé</caption>
+            <thead><tr><th scope="col">Critère</th><th scope="col">Supervisé</th><th scope="col">Non supervisé</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Données</th><td>Exemples accompagnés de leur étiquette</td><td>Exemples seuls</td></tr>
+              <tr><th scope="row">Question posée</th><td>« À quelle catégorie appartient ce cas ? Quelle valeur prendra-t-il ? »</td><td>« Quels groupes, quelles structures se dégagent ? »</td></tr>
+              <tr><th scope="row">Tâches typiques</th><td>Classification, régression</td><td>Clustering, réduction de dimension, modélisation thématique</td></tr>
+              <tr><th scope="row">Algorithmes</th><td>Régression linéaire et logistique, k plus proches voisins, arbres de décision, réseaux de neurones</td><td>k-moyennes, classification hiérarchique, analyse en composantes principales (ACP), LDA</td></tr>
+              <tr><th scope="row">Évaluation</th><td>Directe : comparaison avec les étiquettes du jeu de test (exactitude, erreur moyenne)</td><td>Indirecte : cohérence interne des groupes (score de silhouette), lecture humaine</td></tr>
+              <tr><th scope="row">Travail humain principal</th><td>Annoter les données avant l'apprentissage</td><td>Interpréter les résultats après l'apprentissage</td></tr>
+              <tr><th scope="row">Exemple en SHS</th><td>Attribuer un texte anonyme à l'un de plusieurs auteurs connus</td><td>Regrouper des romans selon leur vocabulaire, sans catégories prévues</td></tr>
+            </tbody>
+          </table></div>
+          <p>En une phrase : en supervisé, on apprend à reproduire des réponses connues ; en non supervisé, on cherche une organisation que l'on ne connaît pas encore.</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="td-ch1-ex3">
+      <p class="exercice-num">Exercice 3 · Des exemples d'apprentissage</p>
+      <div class="exercice-enonce">
+        <p>Donnez six exemples d'apprentissage. Pour chacun, précisez le type d'apprentissage, la tâche et les données utilisées. Au moins deux exemples doivent venir des sciences humaines ou de la littérature.</p>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé</summary>
+        <div class="corrige-corps">
+          <div class="tableau-defilant"><table class="tableau">
+            <caption>Six exemples classés par type d'apprentissage</caption>
+            <thead><tr><th scope="col">Exemple</th><th scope="col">Type</th><th scope="col">Tâche</th><th scope="col">Données</th></tr></thead>
+            <tbody>
+              <tr><td>Trier les courriels en « spam » et « non-spam »</td><td>Supervisé</td><td>Classification</td><td>Courriels déjà marqués par des utilisateurs</td></tr>
+              <tr><td>Attribuer un texte anonyme ou disputé à l'un de plusieurs auteurs possibles (stylométrie), comme l'ont fait Mosteller et Wallace en 1964 pour certains articles des <em>Federalist Papers</em></td><td>Supervisé</td><td>Classification</td><td>Textes dont l'auteur est connu</td></tr>
+              <tr><td>Estimer la date de composition d'un poème d'après son vocabulaire</td><td>Supervisé</td><td>Régression</td><td>Poèmes dont la date est connue</td></tr>
+              <tr><td>Regrouper les romans d'un corpus selon leur vocabulaire, sans catégories prévues</td><td>Non supervisé</td><td>Clustering</td><td>Textes seuls</td></tr>
+              <tr><td>Dégager des profils de répondants dans une enquête sur les pratiques de lecture</td><td>Non supervisé</td><td>Clustering</td><td>Réponses au questionnaire, sans étiquette</td></tr>
+              <tr><td>Un programme qui apprend à jouer au go en jouant contre lui-même, comme AlphaGo Zero (DeepMind, 2017)</td><td>Renforcement</td><td>Choix d'actions successives</td><td>Parties jouées ; la victoire sert de récompense</td></tr>
+            </tbody>
+          </table></div>
+          <p>D'autres réponses sont possibles. Vérifiez seulement que le type est cohérent avec les données : s'il faut des étiquettes, l'apprentissage est supervisé.</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="td-ch1-ex4">
+      <p class="exercice-num">Exercice 4 · Cas à faire en travail personnel</p>
+      <div class="exercice-enonce">
+        <p>Étudiez la littérature sur l'IA afin de déterminer si les ordinateurs actuels peuvent mener à bien les opérations suivantes :</p>
+        <ul>
+          <li>jouer correctement au ping-pong ;</li>
+          <li>conduire une voiture au centre d'une ville ;</li>
+          <li>découvrir et démontrer des théorèmes mathématiques ;</li>
+          <li>écrire une histoire drôle ;</li>
+          <li>donner un avis pertinent dans un domaine juridique donné ;</li>
+          <li>réaliser une opération chirurgicale complexe.</li>
+        </ul>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé</summary>
+        <div class="corrige-corps">
+          <p>État des connaissances à la date de rédaction (septembre 2026). Ce domaine évolue très vite : vérifiez chaque point au moment où vous lisez, et datez vos sources.</p>
+          <div class="tableau-defilant"><table class="tableau">
+            <caption>Ce que les ordinateurs savent faire en 2026 : bilan prudent</caption>
+            <thead><tr><th scope="col">Tâche</th><th scope="col">État de l'art</th><th scope="col">Verdict</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Jouer correctement au ping-pong</td>
+                <td>Des robots d'entraînement existent depuis plusieurs années (par exemple Forpheus, d'Omron). En 2024, Google DeepMind a présenté un bras robotisé qui a disputé des matchs complets contre des humains : il a battu les débutants, environ la moitié des joueurs de niveau intermédiaire, et perdu contre les joueurs confirmés. Le tout dans une salle équipée de caméras, sur une table adaptée.</td>
+                <td>Partiellement : niveau amateur, en conditions contrôlées.</td>
+              </tr>
+              <tr>
+                <td>Conduire une voiture au centre d'une ville</td>
+                <td>Des robotaxis sans conducteur à bord transportent des passagers payants : Waymo dans plusieurs villes des États-Unis (dont Phoenix, San Francisco et Los Angeles), Baidu avec Apollo Go en Chine (notamment à Wuhan). Ces services restent limités à des zones cartographiées, s'appuient sur une assistance humaine à distance et ont connu des incidents suivis de rappels logiciels. Aucun système ne conduit partout, par tous les temps.</td>
+                <td>Oui dans des zones délimitées ; non partout ni en toutes conditions.</td>
+              </tr>
+              <tr>
+                <td>Découvrir et démontrer des théorèmes mathématiques</td>
+                <td>Les démonstrateurs automatiques existent depuis le Logic Theorist (1956). En 1996, le programme EQP a démontré la conjecture de Robbins, restée ouverte pendant plus de soixante ans. Des assistants de preuve comme Lean ou Coq (aujourd'hui Rocq) vérifient des démonstrations écrites par des humains. En 2024, AlphaProof et AlphaGeometry 2 (Google DeepMind) ont atteint le niveau d'une médaille d'argent aux Olympiades internationales de mathématiques ; en 2025, des systèmes de Google DeepMind et d'OpenAI ont annoncé des résultats de niveau médaille d'or. Les grands théorèmes réellement nouveaux restent rares, et certaines annonces de « problèmes ouverts résolus » se sont révélées être des redécouvertes de résultats déjà publiés.</td>
+                <td>Démontrer : oui pour des énoncés bien posés. Découvrir : ponctuellement, avec des mathématiciens.</td>
+              </tr>
+              <tr>
+                <td>Écrire une histoire drôle</td>
+                <td>Les grands modèles de langage produisent sans peine des histoires et des blagues. Leur humour reste inégal : une étude de 2023 (Jentzsch et Kersting) a montré que ChatGPT reproduisait très souvent un petit nombre de blagues. Les jeux de mots, l'ironie et l'humour propre à une langue ou à un dialecte restent difficiles, et ce qui fait rire dépend du public.</td>
+                <td>Écrire : oui. Faire rire à coup sûr : non.</td>
+              </tr>
+              <tr>
+                <td>Donner un avis pertinent dans un domaine juridique donné</td>
+                <td>Les modèles de langage aident à chercher, résumer et rédiger. En 2023, GPT-4 a obtenu une note suffisante à l'examen américain du barreau (Uniform Bar Exam), résultat dont la portée a ensuite été discutée. Mais ces modèles peuvent inventer des décisions de justice : dans l'affaire Mata v. Avianca (New York, 2023), des avocats ont été sanctionnés pour avoir cité des jurisprudences fictives produites par ChatGPT, et des cas semblables se sont multipliés depuis. Le règlement européen sur l'IA (2024) classe les systèmes destinés à aider les juges parmi les systèmes « à haut risque ».</td>
+                <td>Partiellement : un assistant utile, fiable seulement sous le contrôle d'un juriste.</td>
+              </tr>
+              <tr>
+                <td>Réaliser une opération chirurgicale complexe</td>
+                <td>La chirurgie assistée par robot (système da Vinci, par exemple) est courante, mais le robot est piloté en permanence par le chirurgien. En 2022, le robot STAR (université Johns Hopkins) a réalisé de façon autonome une anastomose intestinale (la suture de deux segments d'intestin) par laparoscopie sur des porcs. En 2025, la même équipe a présenté un robot qui a mené de façon autonome une partie d'une ablation de la vésicule biliaire sur des organes de porc prélevés. À notre connaissance, aucune opération complexe n'est réalisée de façon autonome sur des patients humains.</td>
+                <td>Non en autonomie chez l'humain ; oui en assistance pilotée ; démonstrations autonomes chez l'animal.</td>
+              </tr>
+            </tbody>
+          </table></div>
+          <p>Remarquez que la réponse dépend souvent du sens donné aux mots de la consigne : « correctement », « pertinent », « drôle ». Préciser ces critères fait partie du travail.</p>
+          <h4>Méthode : comment mener cette recherche</h4>
+          <ol class="etapes">
+            <li><p class="etape-titre">Définir le critère de réussite</p><p>Par rapport à qui juge-t-on la machine : un débutant, un professionnel, le meilleur humain ? Dans quelles conditions ?</p></li>
+            <li><p class="etape-titre">Remonter aux sources primaires</p><p>Articles scientifiques publiés dans des revues ou des conférences à comité de lecture, rapports techniques. Les prépublications (arXiv, HAL) sont utiles mais n'ont pas toujours été relues par des pairs. Google Scholar aide à les retrouver.</p></li>
+            <li><p class="etape-titre">Distinguer démonstration, produit et annonce</p><p>Une expérience de laboratoire, un service utilisé par le public et un communiqué d'entreprise n'ont pas la même valeur. Une entreprise qui présente son propre produit est une source intéressée.</p></li>
+            <li><p class="etape-titre">Examiner les conditions</p><p>Nombre d'essais, environnement, adversaires, part de supervision humaine, taux d'échec.</p></li>
+            <li><p class="etape-titre">Dater et croiser</p><p>Notez la date de chaque résultat et la date de votre consultation. Confirmez chaque affirmation par au moins deux sources indépendantes, par exemple un article scientifique et un ouvrage de synthèse comme celui de Jean-Gabriel Ganascia (2024), cité dans les références du cours.</p></li>
+            <li><p class="etape-titre">Formuler un verdict nuancé</p><p>« Oui, mais… », « en conditions contrôlées », « pas encore » : ces nuances sont la réponse attendue.</p></li>
+          </ol>
+        </div></details>
+    </div>
+  </article>
+
+  <!-- ============================ TD CHAPITRE 2 ============================ -->
+  <article class="lecon" id="td-ch2">
+    <h3>TD du chapitre 2</h3>
+    <p>Exercices en Python : programmes simples, listes et tuples, manipulation de données avec les bibliothèques vues en cours. Tapez le code vous-même plutôt que de le copier : les erreurs de frappe font partie de l'apprentissage. Les sorties indiquées sont celles que produisent les programmes corrigés avec Python 3.11.</p>
+
+    <div class="exercice" id="td-ch2-ex1">
+      <p class="exercice-num">Exercice 1 · Programme simple : les palindromes</p>
+      <div class="exercice-enonce">
+        <p>Un <dfn>palindrome</dfn> est un mot qui se lit de la même façon dans les deux sens. Écrivez une fonction <code>est_palindrome(mot)</code> qui renvoie <code>True</code> si le mot est un palindrome, sans tenir compte des majuscules. Testez-la sur la liste <code>["radar", "Kayak", "roman", "Été", "ressasser"]</code>, puis affichez le mot le plus long de la liste et son nombre de lettres.</p>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé</summary>
+        <div class="corrige-corps">
+          <figure class="code">
+            <figcaption class="code-legende">palindromes.py</figcaption>
+            <pre><code class="language-python">def est_palindrome(mot):
+    """Renvoie True si le mot se lit de la même façon dans les deux sens."""
+    mot = mot.lower()          # on ignore les majuscules
+    return mot == mot[::-1]    # [::-1] renvoie la chaîne à l'envers
+
+mots = ["radar", "Kayak", "roman", "Été", "ressasser"]
+for m in mots:
+    if est_palindrome(m):
+        print(m, ": palindrome")
+    else:
+        print(m, ": pas un palindrome")
+
+plus_long = max(mots, key=len)   # le mot dont la longueur est maximale
+print(f"Mot le plus long : {plus_long} ({len(plus_long)} lettres)")</code></pre>
+            <pre class="sortie"><samp>radar : palindrome
+Kayak : palindrome
+roman : pas un palindrome
+Été : palindrome
+ressasser : palindrome
+Mot le plus long : ressasser (9 lettres)</samp></pre>
+          </figure>
+          <p><code>mot[::-1]</code> parcourt la chaîne avec un pas de -1, donc à l'envers. Sans <code>lower()</code>, « Kayak » ne serait pas reconnu, car « K » et « k » sont deux caractères différents. Pour aller plus loin : pour tester une phrase comme « Ésope reste ici et se repose », il faudrait aussi retirer les espaces et les accents.</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="td-ch2-ex2">
+      <p class="exercice-num">Exercice 2 · Listes et tuples</p>
+      <div class="exercice-enonce">
+        <p>On représente chaque œuvre par un <dfn>tuple</dfn> <code>(auteur, titre, année)</code>, c'est-à-dire une suite de valeurs non modifiable, et le corpus par une <dfn>liste</dfn> de tuples, modifiable :</p>
+        <ul>
+          <li>Kateb Yacine, <em>Nedjma</em>, 1956</li>
+          <li>Mohammed Dib, <em>La Grande Maison</em>, 1952</li>
+          <li>Assia Djebar, <em>L'Amour, la fantasia</em>, 1985</li>
+          <li>Mouloud Feraoun, <em>Le Fils du pauvre</em>, 1950</li>
+          <li>Mouloud Mammeri, <em>La Colline oubliée</em>, 1952</li>
+        </ul>
+        <p>1. Affichez les œuvres triées par année. 2. Construisez la liste des titres publiés avant 1955. 3. Ajoutez le roman d'Ahlam Mosteghanemi <em>Dhakirat al-jasad</em> (1993, traduit en français sous le titre <em>Mémoires de la chair</em>) et affichez le nombre d'œuvres. 4. Essayez de changer l'année de la première œuvre : que se passe-t-il, et pourquoi ?</p>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé</summary>
+        <div class="corrige-corps">
+          <figure class="code">
+            <figcaption class="code-legende">listes_tuples.py</figcaption>
+            <pre><code class="language-python"># Chaque œuvre est un tuple (auteur, titre, année)
+oeuvres = [
+    ("Kateb Yacine", "Nedjma", 1956),
+    ("Mohammed Dib", "La Grande Maison", 1952),
+    ("Assia Djebar", "L'Amour, la fantasia", 1985),
+    ("Mouloud Feraoun", "Le Fils du pauvre", 1950),
+    ("Mouloud Mammeri", "La Colline oubliée", 1952),
+]
+
+# 1. Trier par année (clé = 3e élément du tuple, indice 2)
+for auteur, titre, annee in sorted(oeuvres, key=lambda o: o[2]):
+    print(annee, "-", titre, "-", auteur)
+
+# 2. Titres publiés avant 1955 (liste en compréhension)
+avant_1955 = [titre for auteur, titre, annee in oeuvres if annee &lt; 1955]
+print(avant_1955)
+
+# 3. Ajouter une œuvre (la liste, elle, est modifiable), puis compter
+oeuvres.append(("Ahlam Mosteghanemi", "Dhakirat al-jasad", 1993))
+print(len(oeuvres), "œuvres")
+
+# 4. Essayer de modifier un tuple
+try:
+    oeuvres[0][2] = 1957
+except TypeError as erreur:
+    print("Erreur :", erreur)</code></pre>
+            <pre class="sortie"><samp>1950 - Le Fils du pauvre - Mouloud Feraoun
+1952 - La Grande Maison - Mohammed Dib
+1952 - La Colline oubliée - Mouloud Mammeri
+1956 - Nedjma - Kateb Yacine
+1985 - L'Amour, la fantasia - Assia Djebar
+['La Grande Maison', 'Le Fils du pauvre', 'La Colline oubliée']
+6 œuvres
+Erreur : 'tuple' object does not support item assignment</samp></pre>
+          </figure>
+          <ul>
+            <li><code>for auteur, titre, annee in …</code> « déballe » chaque tuple en trois variables.</li>
+            <li><code>sorted</code> renvoie une nouvelle liste triée sans modifier <code>oeuvres</code>. Le tri est stable : les deux œuvres de 1952 gardent leur ordre d'origine.</li>
+            <li>Un tuple est <dfn>immuable</dfn> : on ne peut pas modifier un de ses éléments. C'est une protection utile pour une notice bibliographique. Pour corriger une date, on remplace le tuple entier : <code>oeuvres[0] = ("Kateb Yacine", "Nedjma", 1957)</code>.</li>
+          </ul>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="td-ch2-ex3">
+      <p class="exercice-num">Exercice 3 · Dictionnaire de fréquences</p>
+      <div class="exercice-enonce">
+        <p>Voici la première strophe du poème de Verlaine « Il pleure dans mon cœur » (<em>Romances sans paroles</em>, 1874) :</p>
+        <blockquote class="citation"><p>Il pleure dans mon cœur<br>Comme il pleut sur la ville ;<br>Quelle est cette langueur<br>Qui pénètre mon cœur ?</p><footer><cite>Paul Verlaine, <em>Romances sans paroles</em>, 1874</cite></footer></blockquote>
+        <p>1. Comptez le nombre de mots et le nombre de mots différents. 2. Construisez « à la main » un <dfn>dictionnaire</dfn> de fréquences, qui associe à chaque mot son nombre d'occurrences. 3. Affichez les mots répétés, du plus fréquent au moins fréquent. 4. Retrouvez le résultat avec <code>collections.Counter</code>.</p>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé</summary>
+        <div class="corrige-corps">
+          <figure class="code">
+            <figcaption class="code-legende">frequences_verlaine.py</figcaption>
+            <pre><code class="language-python">import re
+from collections import Counter
+
+texte = """Il pleure dans mon cœur
+Comme il pleut sur la ville ;
+Quelle est cette langueur
+Qui pénètre mon cœur ?"""
+
+# 1. Découper en mots : minuscules, sans ponctuation
+mots = re.findall(r"\w+", texte.lower())
+print(len(mots), "mots,", len(set(mots)), "mots différents")
+
+# 2. Dictionnaire de fréquences construit « à la main »
+frequences = {}
+for mot in mots:
+    frequences[mot] = frequences.get(mot, 0) + 1
+
+# 3. Mots répétés, du plus fréquent au moins fréquent
+repetes = {m: n for m, n in frequences.items() if n &gt; 1}
+for mot, n in sorted(repetes.items(), key=lambda paire: paire[1], reverse=True):
+    print(mot, n)
+
+# 4. Même résultat avec Counter
+print(Counter(mots).most_common(3))</code></pre>
+            <pre class="sortie"><samp>19 mots, 16 mots différents
+il 2
+mon 2
+cœur 2
+[('il', 2), ('mon', 2), ('cœur', 2)]</samp></pre>
+          </figure>
+          <ul>
+            <li><code>re.findall(r"\w+", …)</code> extrait les suites de lettres : la ponctuation (« ; », « ? ») disparaît, et les lettres accentuées comme « é » ou « œ » sont bien reconnues.</li>
+            <li><code>frequences.get(mot, 0)</code> renvoie la fréquence déjà enregistrée, ou 0 si le mot n'est pas encore dans le dictionnaire.</li>
+            <li><code>set(mots)</code> supprime les doublons : sa longueur donne le nombre de mots différents.</li>
+          </ul>
+          <p>Remarque de lecteur : le programme compte « pleure » et « pleut » comme deux mots sans rapport, et un lemmatiseur les ramènerait à deux verbes distincts, <em>pleurer</em> et <em>pleuvoir</em>. Le rapprochement sonore qui fait le poème échappe au comptage : c'est à vous de l'interpréter.</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="td-ch2-ex4">
+      <p class="exercice-num">Exercice 4 · pandas : filtrer, regrouper, trier</p>
+      <div class="exercice-enonce">
+        <p>Un séminaire étudie huit textes (données fictives) décrits par leur langue, leur genre et leur nombre de mots. Avec pandas : 1. affichez les romans de plus de 70 000 mots ; 2. calculez, pour chaque langue, le nombre de textes et la longueur moyenne ; 3. affichez les trois textes les plus courts.</p>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé</summary>
+        <div class="corrige-corps">
+          <figure class="code">
+            <figcaption class="code-legende">corpus_pandas.py</figcaption>
+            <pre><code class="language-python">import pandas as pd
+
+# Corpus fictif de textes étudiés en séminaire
+corpus = pd.DataFrame({
+    "texte":  ["T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8"],
+    "langue": ["arabe", "français", "anglais", "arabe", "français", "arabe", "anglais", "français"],
+    "genre":  ["poésie", "roman", "roman", "roman", "poésie", "nouvelle", "poésie", "roman"],
+    "mots":   [1200, 85000, 92000, 64000, 900, 7000, 1500, 71000],
+})
+
+# 1. Filtrer : les romans de plus de 70 000 mots
+print(corpus[(corpus["genre"] == "roman") &amp; (corpus["mots"] &gt; 70000)])
+
+# 2. Regrouper : nombre de textes et longueur moyenne par langue
+resume = corpus.groupby("langue")["mots"].agg(["count", "mean"]).round(0)
+print(resume)
+
+# 3. Trier : les trois textes les plus courts
+print(corpus.sort_values("mots").head(3)[["texte", "genre", "mots"]])</code></pre>
+            <pre class="sortie"><samp>  texte    langue  genre   mots
+1    T2  français  roman  85000
+2    T3   anglais  roman  92000
+7    T8  français  roman  71000
+          count     mean
+langue
+anglais       2  46750.0
+arabe         3  24067.0
+français      3  52300.0
+  texte   genre  mots
+4    T5  poésie   900
+0    T1  poésie  1200
+6    T7  poésie  1500</samp></pre>
+          </figure>
+          <ul>
+            <li>Un filtre combine des conditions avec <code>&amp;</code> (et) ou <code>|</code> (ou) ; chaque condition doit être entre parenthèses.</li>
+            <li><code>groupby("langue")</code> découpe le tableau par langue ; <code>agg(["count", "mean"])</code> calcule plusieurs statistiques à la fois. La moyenne de l'arabe vaut exactement (1 200 + 64 000 + 7 000) / 3 = 24 066,67, arrondie ici à 24 067.</li>
+            <li>La colonne de gauche des sorties est l'<dfn>index</dfn> : le numéro de ligne d'origine, conservé après filtrage et tri.</li>
+            <li>Pour produire un rapport Excel (chapitre 2) : <code>resume.to_excel("resume.xlsx")</code>, qui nécessite la bibliothèque openpyxl.</li>
+          </ul>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="td-ch2-ex5">
+      <p class="exercice-num">Exercice 5 · Lire, chercher, trier dans un fichier texte</p>
+      <div class="exercice-enonce">
+        <p>1. Écrivez un fichier <code>corpus.txt</code> contenant une œuvre par ligne, au format <code>titre;auteur;année</code> (reprenez les cinq œuvres de l'exercice 2). 2. Relisez-le et découpez chaque ligne en champs. 3. Affichez les titres qui commencent par « La ». 4. Triez les œuvres par auteur et écrivez le résultat dans <code>corpus_trie.txt</code>, au format <code>auteur - titre (année)</code>. 5. Affichez le contenu de ce nouveau fichier.</p>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé</summary>
+        <div class="corrige-corps">
+          <figure class="code">
+            <figcaption class="code-legende">fichier_corpus.py</figcaption>
+            <pre><code class="language-python"># 1. Écrire un petit fichier texte : une œuvre par ligne, champs séparés par ;
+lignes = [
+    "Nedjma;Kateb Yacine;1956",
+    "La Grande Maison;Mohammed Dib;1952",
+    "Le Fils du pauvre;Mouloud Feraoun;1950",
+    "L'Amour, la fantasia;Assia Djebar;1985",
+    "La Colline oubliée;Mouloud Mammeri;1952",
+]
+with open("corpus.txt", "w", encoding="utf-8") as f:
+    f.write("\n".join(lignes))
+
+# 2. Relire le fichier et découper chaque ligne en champs
+with open("corpus.txt", encoding="utf-8") as f:
+    oeuvres = [ligne.strip().split(";") for ligne in f if ligne.strip()]
+
+# 3. Rechercher : les titres qui commencent par "La "
+print([titre for titre, auteur, annee in oeuvres if titre.startswith("La ")])
+
+# 4. Trier par auteur et écrire le résultat dans un nouveau fichier
+oeuvres.sort(key=lambda o: o[1])
+with open("corpus_trie.txt", "w", encoding="utf-8") as f:
+    for titre, auteur, annee in oeuvres:
+        f.write(f"{auteur} - {titre} ({annee})\n")
+
+# 5. Afficher le fichier produit
+with open("corpus_trie.txt", encoding="utf-8") as f:
+    print(f.read(), end="")</code></pre>
+            <pre class="sortie"><samp>['La Grande Maison', 'La Colline oubliée']
+Assia Djebar - L'Amour, la fantasia (1985)
+Kateb Yacine - Nedjma (1956)
+Mohammed Dib - La Grande Maison (1952)
+Mouloud Feraoun - Le Fils du pauvre (1950)
+Mouloud Mammeri - La Colline oubliée (1952)</samp></pre>
+          </figure>
+          <ul>
+            <li><code>with open(…)</code> ferme le fichier automatiquement à la fin du bloc. Précisez toujours <code>encoding="utf-8"</code> : c'est indispensable pour les accents et pour les textes en arabe.</li>
+            <li><code>strip()</code> retire le saut de ligne final ; <code>split(";")</code> découpe la ligne aux points-virgules.</li>
+            <li>Le test <code>startswith("La ")</code>, avec une espace, écarte « L'Amour, la fantasia » et « Le Fils du pauvre ».</li>
+            <li>Le tri suit la chaîne telle qu'elle est écrite, donc ici le plus souvent le prénom (Assia, Mohammed, Mouloud) ; seul Kateb Yacine est écrit nom de famille en tête. Pour un vrai index d'auteurs, prévoyez une colonne « nom de classement » (Djebar, Dib, Feraoun, Kateb, Mammeri).</li>
+          </ul>
+        </div></details>
+    </div>
+  </article>
+
+  <!-- ============================ TD CHAPITRE 3 ============================ -->
+  <article class="lecon" id="td-ch3">
+    <h3>TD du chapitre 3</h3>
+    <p>Un système expert à dérouler à la main, puis de petits calculs pour comprendre de l'intérieur les algorithmes d'apprentissage automatique, d'apprentissage profond et d'apprentissage par renforcement. Une calculatrice suffit.</p>
+
+    <div class="exercice" id="td-ch3-ex1">
+      <p class="exercice-num">Exercice 1 · Système expert en chaînage avant</p>
+      <div class="exercice-enonce">
+        <p>Soit les règles suivantes en <dfn>chaînage avant</dfn> (<span class="terme-en" lang="en">forward chaining</span>), mode de raisonnement qui part des faits connus et applique les règles pour en déduire de nouveaux faits, jusqu'à atteindre le but :</p>
+        <ul>
+          <li>R1 : A → E</li>
+          <li>R2 : B → D</li>
+          <li>R3 : H → A ∧ F</li>
+          <li>R4 : E ∧ G → C</li>
+          <li>R5 : E ∧ K → B</li>
+          <li>R6 : D ∧ E ∧ K → C</li>
+          <li>R7 : G ∧ K ∧ F → A</li>
+        </ul>
+        <dl class="definitions">
+          <div><dt>Ordre des règles</dt><dd>R3 R7 R1 R4 R5 R2 R6</dd></div>
+          <div><dt>Faits non déductibles</dt><dd>H, G, K</dd></div>
+          <div><dt>Base de faits initiale</dt><dd>H, K</dd></div>
+          <div><dt>But</dt><dd>C</dd></div>
+        </dl>
+        <p>Dans le texte du programme, la conjonction est notée ∩ : ce symbole signifie ici « ET », que nous écrivons ∧. Ainsi, « E ∧ G → C » se lit : si E et G sont établis, alors C est établi.</p>
+        <p>Questions : a) Faire le graphe correspondant aux règles. b) Dérouler le système en chaînage avant.</p>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé</summary>
+        <div class="corrige-corps">
+          <p><strong>a) Le graphe des règles.</strong> Chaque fait est représenté par un rectangle et chaque règle par un cercle. Une flèche va de chaque condition vers la règle, puis de la règle vers chacune de ses conclusions. Les flèches qui entrent dans une même règle sont liées par ET : la règle ne se déclenche que si toutes ses conditions sont établies. Quand deux règles aboutissent au même fait (R3 et R7 pour A, R4 et R6 pour C), il suffit que l'une des deux se déclenche : ces chemins sont liés par OU. On parle donc de <dfn>graphe ET/OU</dfn>.</p>
+          <figure class="schema">
+            <svg viewBox="0 0 900 460" role="img" aria-labelledby="td-graphe-regles-t td-graphe-regles-d">
+              <title id="td-graphe-regles-t">Graphe ET/OU des règles R1 à R7 du système expert</title>
+              <desc id="td-graphe-regles-d">Les faits sont des rectangles, les règles des cercles. Chaîne suivie en chaînage avant : H vers R3 ; R3 vers A et F ; A vers R1 ; R1 vers E ; E et K vers R5 ; R5 vers B ; B vers R2 ; R2 vers D ; D, E et K vers R6 ; R6 vers C. Branches qui dépendent de G, fait absent : G, K et F vers R7, puis R7 vers A ; E et G vers R4, puis R4 vers C.</desc>
+              <defs><marker id="td-fleche" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path class="svg-pointe" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+              <!-- chaîne principale -->
+              <line class="svg-trait" x1="168" y1="200" x2="239" y2="200" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait-accent" x1="280" y1="200" x2="307" y2="200" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait-accent" x1="344" y1="200" x2="381" y2="200" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait-accent" x1="422" y1="200" x2="459" y2="200" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait-accent" x1="496" y1="200" x2="533" y2="200" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait-accent" x1="574" y1="200" x2="611" y2="200" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait-accent" x1="648" y1="200" x2="685" y2="200" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait-accent" x1="726" y1="200" x2="763" y2="200" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait-accent" x1="800" y1="200" x2="837" y2="200" marker-end="url(#td-fleche)"/>
+              <!-- R3 : H → A ∧ F -->
+              <line class="svg-trait-accent" x1="260" y1="393" x2="260" y2="339" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait-accent" x1="260" y1="302" x2="260" y2="218" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait-accent" x1="241" y1="320" x2="211" y2="320" marker-end="url(#td-fleche)"/>
+              <!-- R7 : G ∧ K ∧ F → A -->
+              <line class="svg-trait" x1="64.8" y1="273" x2="135.6" y2="212.4" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait" x1="64.8" y1="127" x2="135.6" y2="187.6" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait" x1="184.3" y1="303" x2="156" y2="218" marker-end="url(#td-fleche)"/>
+              <!-- R4 : E ∧ G → C -->
+              <line class="svg-trait" x1="394" y1="217" x2="394" y2="301" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait" x1="45" y1="307" x2="45" y2="446"/>
+              <line class="svg-trait" x1="44" y1="445" x2="395" y2="445"/>
+              <line class="svg-trait" x1="394" y1="446" x2="394" y2="339" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait" x1="412" y1="320" x2="859" y2="320"/>
+              <line class="svg-trait" x1="858" y1="321" x2="858" y2="218" marker-end="url(#td-fleche)"/>
+              <!-- K vers R5 et R6 -->
+              <line class="svg-trait-accent" x1="45" y1="93" x2="45" y2="39"/>
+              <line class="svg-trait-accent" x1="44" y1="40" x2="783" y2="40"/>
+              <line class="svg-trait-accent" x1="478" y1="40" x2="478" y2="181" marker-end="url(#td-fleche)"/>
+              <line class="svg-trait-accent" x1="782" y1="40" x2="782" y2="181" marker-end="url(#td-fleche)"/>
+              <!-- E vers R6 -->
+              <line class="svg-trait-accent" x1="412" y1="217" x2="412" y2="263"/>
+              <line class="svg-trait-accent" x1="411" y1="262" x2="783" y2="262"/>
+              <line class="svg-trait-accent" x1="782" y1="262" x2="782" y2="219" marker-end="url(#td-fleche)"/>
+              <!-- faits -->
+              <rect class="svg-noeud" x="25" y="93" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="45" y="115" text-anchor="middle">K</text>
+              <rect class="svg-noeud" x="25" y="273" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="45" y="295" text-anchor="middle">G</text>
+              <rect class="svg-noeud" x="240" y="183" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="260" y="205" text-anchor="middle">A</text>
+              <rect class="svg-noeud" x="170" y="303" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="190" y="325" text-anchor="middle">F</text>
+              <rect class="svg-noeud" x="240" y="393" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="260" y="415" text-anchor="middle">H</text>
+              <rect class="svg-noeud" x="382" y="183" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="402" y="205" text-anchor="middle">E</text>
+              <rect class="svg-noeud" x="534" y="183" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="554" y="205" text-anchor="middle">B</text>
+              <rect class="svg-noeud" x="686" y="183" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="706" y="205" text-anchor="middle">D</text>
+              <rect class="svg-noeud" x="838" y="183" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="858" y="205" text-anchor="middle">C</text>
+              <!-- règles -->
+              <circle class="svg-noeud-accent" cx="150" cy="200" r="18"/>
+              <text class="svg-texte" x="150" y="205" text-anchor="middle">R7</text>
+              <circle class="svg-noeud-accent" cx="260" cy="320" r="18"/>
+              <text class="svg-texte" x="260" y="325" text-anchor="middle">R3</text>
+              <circle class="svg-noeud-accent" cx="326" cy="200" r="18"/>
+              <text class="svg-texte" x="326" y="205" text-anchor="middle">R1</text>
+              <circle class="svg-noeud-accent" cx="478" cy="200" r="18"/>
+              <text class="svg-texte" x="478" y="205" text-anchor="middle">R5</text>
+              <circle class="svg-noeud-accent" cx="630" cy="200" r="18"/>
+              <text class="svg-texte" x="630" y="205" text-anchor="middle">R2</text>
+              <circle class="svg-noeud-accent" cx="782" cy="200" r="18"/>
+              <text class="svg-texte" x="782" y="205" text-anchor="middle">R6</text>
+              <circle class="svg-noeud-accent" cx="394" cy="320" r="18"/>
+              <text class="svg-texte" x="394" y="325" text-anchor="middle">R4</text>
+              <!-- annotations -->
+              <text class="svg-texte-doux" x="72" y="80">fait initial</text>
+              <text class="svg-texte-doux" x="290" y="415">fait initial</text>
+              <text class="svg-texte-doux" x="72" y="295">absent</text>
+              <text class="svg-texte-doux" x="858" y="170" text-anchor="middle">but</text>
+              <text class="svg-texte-doux" x="470" y="394">Rectangle : fait · cercle : règle</text>
+              <text class="svg-texte-doux" x="470" y="416">Flèches entrant dans une règle : conditions liées par ET</text>
+              <text class="svg-texte-doux" x="470" y="438">Trait accentué : chemin suivi en chaînage avant</text>
+            </svg>
+            <figcaption>Graphe ET/OU des règles R1 à R7. Les traits accentués montrent le chemin effectivement suivi à partir de H et K (question b) ; les traits simples dépendent de G, qui n'est ni dans la base initiale ni déductible. H est placé sous R3 pour qu'aucune flèche n'en croise une autre.</figcaption>
+          </figure>
+          <p>Le graphe permet un premier diagnostic : aucune flèche n'arrive sur G, H ou K, qui sont les faits non déductibles. Comme G n'est pas non plus dans la base initiale, les règles R7 et R4, qui en ont besoin, ne pourront jamais se déclencher. Le seul chemin possible vers C passe donc par R6.</p>
+
+          <p><strong>b) Le déroulement en chaînage avant.</strong> On examine les règles dans l'ordre imposé (R3, R7, R1, R4, R5, R2, R6). Une règle se déclenche si toutes ses conditions sont dans la base de faits ; ses conclusions sont alors ajoutées à la base. Une règle déjà déclenchée n'est pas rejouée. On s'arrête dès que le but est dans la base, ou quand un passage complet sur les règles n'ajoute plus rien.</p>
+          <div class="tableau-defilant"><table class="tableau">
+            <caption>Chaînage avant à partir de la base {H, K}, but C</caption>
+            <thead><tr><th scope="col">Étape</th><th scope="col">Règle examinée</th><th scope="col">Condition</th><th scope="col">Déclenchée ?</th><th scope="col">Base de faits après</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>R3</td><td>H</td><td>Oui : H est dans la base</td><td>H, K, A, F</td></tr>
+              <tr><td>2</td><td>R7</td><td>G ∧ K ∧ F</td><td>Non : G est absent</td><td>H, K, A, F</td></tr>
+              <tr><td>3</td><td>R1</td><td>A</td><td>Oui</td><td>H, K, A, F, E</td></tr>
+              <tr><td>4</td><td>R4</td><td>E ∧ G</td><td>Non : G est absent</td><td>H, K, A, F, E</td></tr>
+              <tr><td>5</td><td>R5</td><td>E ∧ K</td><td>Oui</td><td>H, K, A, F, E, B</td></tr>
+              <tr><td>6</td><td>R2</td><td>B</td><td>Oui</td><td>H, K, A, F, E, B, D</td></tr>
+              <tr><td>7</td><td>R6</td><td>D ∧ E ∧ K</td><td>Oui</td><td>H, K, A, F, E, B, D, C : but atteint</td></tr>
+            </tbody>
+          </table></div>
+          <p><strong>Conclusion.</strong> Le but C est établi dès le premier passage sur les règles. La base de faits finale est {H, K, A, F, E, B, D, C}. Les règles déclenchées sont, dans l'ordre, R3, R1, R5, R2, R6. R4 et R7 ne se déclenchent jamais, puisque G n'est ni dans la base initiale ni déductible.</p>
+          <p><strong>Variante.</strong> Certains moteurs d'inférence reviennent à la première règle après chaque déclenchement. Ici, la suite est la même : après R3, on repart de R3 (déjà déclenchée), R7 échoue (G absent), R1 se déclenche ; on repart en tête, R3 et R1 sont déjà faites, R7 et R4 échouent, R5 se déclenche ; puis de la même façon R2, puis R6. On obtient les mêmes déclenchements (R3, R1, R5, R2, R6) et la même base finale ; seul le nombre de règles parcourues augmente.</p>
+          <p>Le même raisonnement, programmé en Python, se prête bien à une séance de TP :</p>
+          <figure class="code">
+            <figcaption class="code-legende">chainage_avant.py</figcaption>
+            <pre><code class="language-python"># Chaînage avant sur les règles du TD, dans l'ordre imposé
+regles = [  # (nom, conditions, conclusions)
+    ("R3", {"H"}, {"A", "F"}),
+    ("R7", {"G", "K", "F"}, {"A"}),
+    ("R1", {"A"}, {"E"}),
+    ("R4", {"E", "G"}, {"C"}),
+    ("R5", {"E", "K"}, {"B"}),
+    ("R2", {"B"}, {"D"}),
+    ("R6", {"D", "E", "K"}, {"C"}),
+]
+faits = {"H", "K"}
+but = "C"
+declenchees = []
+
+nouveau = True
+while nouveau and but not in faits:
+    nouveau = False
+    for nom, conditions, conclusions in regles:
+        if nom not in declenchees and conditions &lt;= faits:   # &lt;= : « est inclus dans »
+            faits |= conclusions                             # ajouter les conclusions
+            declenchees.append(nom)
+            nouveau = True
+            print(nom, "déclenchée -&gt;", sorted(faits))
+            if but in faits:
+                break
+
+print("But atteint :", but in faits, "| règles déclenchées :", declenchees)</code></pre>
+            <pre class="sortie"><samp>R3 déclenchée -&gt; ['A', 'F', 'H', 'K']
+R1 déclenchée -&gt; ['A', 'E', 'F', 'H', 'K']
+R5 déclenchée -&gt; ['A', 'B', 'E', 'F', 'H', 'K']
+R2 déclenchée -&gt; ['A', 'B', 'D', 'E', 'F', 'H', 'K']
+R6 déclenchée -&gt; ['A', 'B', 'C', 'D', 'E', 'F', 'H', 'K']
+But atteint : True | règles déclenchées : ['R3', 'R1', 'R5', 'R2', 'R6']</samp></pre>
+          </figure>
+          <p>Ajoutez G à la base initiale et relancez : R7 et R4 peuvent alors se déclencher, et le but est atteint plus tôt, par R4. La <a href="#chapitre-3">démonstration interactive</a> du chapitre 3 rejoue ce déroulement pas à pas.</p>
+        </div></details>
+    </div>
+
+    <h4>Exercice 2 · Quelques algorithmes de l'apprentissage automatique</h4>
+    <p>Quatre petits calculs, un par algorithme : régression linéaire, descente de gradient, classification selon les attributs, regroupement en clusters.</p>
+
+    <div class="exercice" id="td-ch3-ex2a">
+      <p class="exercice-num">Exercice 2 a · Régression linéaire</p>
+      <div class="exercice-enonce">
+        <p>La <dfn>régression linéaire</dfn> cherche la droite ŷ = a·x + b qui passe au plus près d'un nuage de points. La méthode des <dfn>moindres carrés</dfn> choisit a et b pour que la somme des carrés des écarts entre les valeurs observées y et les valeurs prédites ŷ soit la plus petite possible. Elle donne :</p>
+        <p class="formule">a = Σ(xᵢ − x̄)(yᵢ − ȳ) / Σ(xᵢ − x̄)²      b = ȳ − a·x̄</p>
+        <p>On a relevé, pour cinq étudiants (données fictives), le nombre d'heures x consacrées chaque semaine à la lecture et le nombre y de livres lus pendant le semestre : (1 ; 2), (2 ; 3), (3 ; 5), (4 ; 4), (5 ; 6). Calculez a et b, puis prédisez y pour x = 6.</p>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé</summary>
+        <div class="corrige-corps">
+          <p>Moyennes : x̄ = (1 + 2 + 3 + 4 + 5) / 5 = 15 / 5 = 3 et ȳ = (2 + 3 + 5 + 4 + 6) / 5 = 20 / 5 = 4.</p>
+          <div class="tableau-defilant"><table class="tableau">
+            <caption>Calcul des écarts à la moyenne</caption>
+            <thead><tr><th scope="col">x</th><th scope="col">y</th><th scope="col">x − x̄</th><th scope="col">y − ȳ</th><th scope="col">(x − x̄)(y − ȳ)</th><th scope="col">(x − x̄)²</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>2</td><td>−2</td><td>−2</td><td>4</td><td>4</td></tr>
+              <tr><td>2</td><td>3</td><td>−1</td><td>−1</td><td>1</td><td>1</td></tr>
+              <tr><td>3</td><td>5</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+              <tr><td>4</td><td>4</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+              <tr><td>5</td><td>6</td><td>2</td><td>2</td><td>4</td><td>4</td></tr>
+              <tr><th scope="row">Total</th><td>20</td><td>0</td><td>0</td><td>9</td><td>10</td></tr>
+            </tbody>
+          </table></div>
+          <p class="formule">a = 9 / 10 = 0,9      b = 4 − 0,9 × 3 = 4 − 2,7 = 1,3</p>
+          <p class="formule">ŷ = 0,9 x + 1,3      pour x = 6 : ŷ = 0,9 × 6 + 1,3 = 5,4 + 1,3 = 6,7</p>
+          <p>Vérification : les valeurs prédites pour x = 1 à 5 sont 2,2 ; 3,1 ; 4,0 ; 4,9 ; 5,8. Les écarts y − ŷ valent −0,2 ; −0,1 ; 1,0 ; −0,9 ; 0,2 : leur somme est nulle, comme toujours avec les moindres carrés, et la somme de leurs carrés vaut 1,9.</p>
+          <p>Interprétation : dans ces données fictives, chaque heure de lecture hebdomadaire supplémentaire est associée à 0,9 livre de plus sur le semestre. La prédiction pour x = 6 sort de l'intervalle observé (1 à 5) : c'est une <dfn>extrapolation</dfn>, à manier avec prudence. En Python, <code>numpy.polyfit([1, 2, 3, 4, 5], [2, 3, 5, 4, 6], 1)</code> renvoie les mêmes coefficients, 0,9 et 1,3.</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="td-ch3-ex2b">
+      <p class="exercice-num">Exercice 2 b · Descente de gradient</p>
+      <div class="exercice-enonce">
+        <p>La <dfn>descente de gradient</dfn> cherche le minimum d'une fonction d'erreur J en avançant pas à pas dans le sens où J diminue. À chaque étape :</p>
+        <p class="formule">wₖ₊₁ = wₖ − η · J′(wₖ)</p>
+        <p>où J′ est la dérivée de J et η (êta) le <dfn>taux d'apprentissage</dfn> (<span class="terme-en" lang="en">learning rate</span>), qui règle la longueur du pas. Soit J(w) = (w − 3)², w₀ = 0 et η = 0,1. Calculez w₁ et w₂, ainsi que J(w₀), J(w₁) et J(w₂). Vers quelle valeur la suite se dirige-t-elle ?</p>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé</summary>
+        <div class="corrige-corps">
+          <p>La dérivée est J′(w) = 2(w − 3).</p>
+          <p class="formule">Étape 1 : J′(0) = 2 × (0 − 3) = −6      w₁ = 0 − 0,1 × (−6) = 0,6</p>
+          <p class="formule">Étape 2 : J′(0,6) = 2 × (0,6 − 3) = −4,8      w₂ = 0,6 − 0,1 × (−4,8) = 0,6 + 0,48 = 1,08</p>
+          <p>Valeurs de l'erreur : J(w₀) = (0 − 3)² = 9 ; J(w₁) = (−2,4)² = 5,76 ; J(w₂) = (−1,92)² = 3,6864. L'erreur diminue à chaque pas.</p>
+          <p>La suite se dirige vers w = 3, où J est minimale (J(3) = 0). On le voit en réécrivant la règle : wₖ₊₁ − 3 = (1 − 2η)(wₖ − 3) = 0,8 (wₖ − 3). À chaque étape, la distance au minimum est multipliée par 0,8 : 3 ; 2,4 ; 1,92 ; puis 1,536, soit w₃ = 1,464, et ainsi de suite.</p>
+          <p>Rôle du taux d'apprentissage : avec η = 1, le facteur devient 1 − 2 = −1 et w oscille sans fin entre 0 et 6 ; avec η &gt; 1, les oscillations grandissent et la méthode diverge. Un pas trop petit, à l'inverse, rend l'apprentissage très lent.</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="td-ch3-ex2c">
+      <p class="exercice-num">Exercice 2 c · Classification selon les attributs (k plus proches voisins)</p>
+      <div class="exercice-enonce">
+        <p>La méthode des <dfn>k plus proches voisins</dfn> (<span class="terme-en" lang="en">k-nearest neighbors</span>, k-NN) classe un cas nouveau en regardant la catégorie des k exemples connus les plus proches de lui. On décrit six textes par deux attributs notés de 0 à 10 : x₁, la longueur moyenne des lignes, et x₂, la densité de rimes (valeurs fictives).</p>
+        <div class="tableau-defilant"><table class="tableau">
+          <caption>Exemples étiquetés</caption>
+          <thead><tr><th scope="col">Texte</th><th scope="col">x₁</th><th scope="col">x₂</th><th scope="col">Catégorie</th></tr></thead>
+          <tbody>
+            <tr><td>T1</td><td>2</td><td>8</td><td>poème</td></tr>
+            <tr><td>T2</td><td>3</td><td>10</td><td>poème</td></tr>
+            <tr><td>T3</td><td>4</td><td>7</td><td>poème</td></tr>
+            <tr><td>T4</td><td>9</td><td>2</td><td>prose</td></tr>
+            <tr><td>T5</td><td>6</td><td>6</td><td>prose</td></tr>
+            <tr><td>T6</td><td>10</td><td>1</td><td>prose</td></tr>
+          </tbody>
+        </table></div>
+        <p>Un nouveau texte N a pour attributs (5 ; 6). Calculez sa distance euclidienne à chaque exemple, d = √((x₁ − 5)² + (x₂ − 6)²), puis classez N avec k = 1 et avec k = 3.</p>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé</summary>
+        <div class="corrige-corps">
+          <div class="tableau-defilant"><table class="tableau">
+            <caption>Distances de N (5 ; 6) aux exemples, rangées de la plus petite à la plus grande</caption>
+            <thead><tr><th scope="col">Texte</th><th scope="col">Calcul</th><th scope="col">Distance</th><th scope="col">Catégorie</th></tr></thead>
+            <tbody>
+              <tr><td>T5</td><td>√(1² + 0²) = √1</td><td>1</td><td>prose</td></tr>
+              <tr><td>T3</td><td>√((−1)² + 1²) = √2</td><td>≈ 1,41</td><td>poème</td></tr>
+              <tr><td>T1</td><td>√((−3)² + 2²) = √13</td><td>≈ 3,61</td><td>poème</td></tr>
+              <tr><td>T2</td><td>√((−2)² + 4²) = √20</td><td>≈ 4,47</td><td>poème</td></tr>
+              <tr><td>T4</td><td>√(4² + (−4)²) = √32</td><td>≈ 5,66</td><td>prose</td></tr>
+              <tr><td>T6</td><td>√(5² + (−5)²) = √50</td><td>≈ 7,07</td><td>prose</td></tr>
+            </tbody>
+          </table></div>
+          <ul>
+            <li><strong>k = 1</strong> : le plus proche voisin est T5, donc N est classé « prose ».</li>
+            <li><strong>k = 3</strong> : les trois plus proches sont T5 (prose), T3 (poème) et T1 (poème). Vote : 2 contre 1, N est classé « poème ».</li>
+          </ul>
+          <p>Le résultat dépend donc de k. Un k impair évite les égalités quand il y a deux catégories. Les attributs doivent être sur des échelles comparables, sinon celui qui a les plus grandes valeurs décide seul. Enfin, un cas situé entre deux groupes, comme N, rappelle que les catégories sont poreuses : pensez aux <em>Petits poèmes en prose</em> de Baudelaire.</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="td-ch3-ex2d">
+      <p class="exercice-num">Exercice 2 d · Regroupement en clusters (k-moyennes)</p>
+      <div class="exercice-enonce">
+        <p>L'algorithme des <dfn>k-moyennes</dfn> (<span class="terme-en" lang="en">k-means</span>) alterne deux opérations : affecter chaque point au centre le plus proche, puis remplacer chaque centre par la moyenne des points de son groupe. Six personnages d'une pièce de théâtre ont respectivement 1, 3, 4, 9, 10 et 14 répliques (données fictives). On cherche k = 2 groupes en partant des centres μ₁ = 1 et μ₂ = 4. Effectuez une itération complète. Bonus : continuez jusqu'à ce que les groupes ne changent plus.</p>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé</summary>
+        <div class="corrige-corps">
+          <p><strong>Itération 1, affectation</strong> avec μ₁ = 1 et μ₂ = 4 :</p>
+          <div class="tableau-defilant"><table class="tableau">
+            <caption>Affectation de chaque point au centre le plus proche (itération 1)</caption>
+            <thead><tr><th scope="col">Point</th><th scope="col">Distance à μ₁ = 1</th><th scope="col">Distance à μ₂ = 4</th><th scope="col">Groupe</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>0</td><td>3</td><td>1</td></tr>
+              <tr><td>3</td><td>2</td><td>1</td><td>2</td></tr>
+              <tr><td>4</td><td>3</td><td>0</td><td>2</td></tr>
+              <tr><td>9</td><td>8</td><td>5</td><td>2</td></tr>
+              <tr><td>10</td><td>9</td><td>6</td><td>2</td></tr>
+              <tr><td>14</td><td>13</td><td>10</td><td>2</td></tr>
+            </tbody>
+          </table></div>
+          <p><strong>Itération 1, mise à jour :</strong> groupe 1 = {1}, donc μ₁ = 1 ; groupe 2 = {3, 4, 9, 10, 14}, donc μ₂ = (3 + 4 + 9 + 10 + 14) / 5 = 40 / 5 = 8.</p>
+          <p><strong>Itération 2 (bonus)</strong> avec μ₁ = 1 et μ₂ = 8 : 3 va au groupe 1 (distances 2 et 5), 4 aussi (distances 3 et 4) ; 9, 10 et 14 restent au groupe 2 (distances à 8 : 1, 2 et 6). Nouveaux centres : μ₁ = (1 + 3 + 4) / 3 = 8/3 ≈ 2,67 et μ₂ = (9 + 10 + 14) / 3 = 33 / 3 = 11.</p>
+          <p><strong>Itération 3</strong> avec μ₁ = 8/3 et μ₂ = 11 : 1, 3 et 4 sont plus proches de 8/3 (distances ≈ 1,67 ; 0,33 ; 1,33) ; 9, 10 et 14 sont plus proches de 11 (distances 2, 1 et 3). Les groupes ne changent plus : l'algorithme s'arrête.</p>
+          <p>Résultat : {1, 3, 4}, les rôles secondaires, et {9, 10, 14}, les rôles principaux. Une seule itération ne suffisait pas : après la première, le groupe 2 mélangeait encore des rôles très différents. Le point de départ influence le résultat ; c'est pourquoi scikit-learn relance l'algorithme depuis plusieurs départs (paramètre <code>n_init</code>) et garde la meilleure solution.</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="td-ch3-ex3">
+      <p class="exercice-num">Exercice 3 · Classification, recommandation, identification d'images</p>
+      <div class="exercice-enonce">
+        <p>Donnez des exemples d'applications de l'apprentissage automatique pour la classification, les recommandations et l'identification d'images. Pour chacune, proposez un exemple de la vie courante et un exemple en sciences humaines ou en littérature.</p>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé</summary>
+        <div class="corrige-corps">
+          <div class="tableau-defilant"><table class="tableau">
+            <caption>Trois familles d'applications</caption>
+            <thead><tr><th scope="col">Application</th><th scope="col">Principe</th><th scope="col">Vie courante</th><th scope="col">SHS et littérature</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Classification</td>
+                <td>Attribuer une catégorie à un cas nouveau à partir d'exemples étiquetés (apprentissage supervisé).</td>
+                <td>Filtre anti-spam ; tri automatique des avis clients en positifs et négatifs ; détection de la langue d'un message.</td>
+                <td>Attribution d'auteur (stylométrie) ; classement d'articles de presse par thème ; repérage du genre d'un texte (poésie, théâtre, roman) ; détection des discours de haine dans des commentaires.</td>
+              </tr>
+              <tr>
+                <td>Recommandation</td>
+                <td>Proposer des contenus à partir des goûts d'utilisateurs semblables (<dfn>filtrage collaboratif</dfn>) ou des ressemblances entre contenus (recommandation fondée sur le contenu).</td>
+                <td>Suggestions de vidéos, de musique ou de produits ; « les lecteurs de ce livre ont aussi aimé ».</td>
+                <td>Suggestion d'ouvrages dans le catalogue d'une bibliothèque à partir des emprunts ; suggestion d'articles scientifiques proches d'un article lu. Question critique : ces systèmes risquent d'enfermer le lecteur dans ce qu'il connaît déjà (la « bulle de filtre » décrite par Eli Pariser en 2011).</td>
+              </tr>
+              <tr>
+                <td>Identification d'images</td>
+                <td>Reconnaître ce que montre une image : objet, visage, écriture (souvent avec des réseaux convolutifs, voir l'exercice 4 b).</td>
+                <td>Déverrouillage d'un téléphone par le visage ; classement automatique des photos ; lecture des plaques d'immatriculation.</td>
+                <td>Reconnaissance d'écriture manuscrite (<abbr title="Handwritten Text Recognition">HTR</abbr>) pour transcrire des manuscrits et des archives, par exemple avec la plateforme Transkribus ; classement iconographique de tableaux ou d'enluminures ; datation de photographies anciennes.</td>
+              </tr>
+            </tbody>
+          </table></div>
+          <p>Point éthique : la reconnaissance faciale touche directement aux libertés. Le règlement européen sur l'IA (2024) interdit en principe l'identification biométrique à distance en temps réel dans les espaces publics à des fins répressives, sauf exceptions strictement encadrées.</p>
+        </div></details>
+    </div>
+
+    <h4>Exercice 4 · Un exercice par type d'apprentissage</h4>
+
+    <div class="exercice" id="td-ch3-ex4a">
+      <p class="exercice-num">Exercice 4 a · Apprentissage automatique : quel type d'apprentissage ?</p>
+      <div class="exercice-enonce">
+        <p>Pour chaque situation, indiquez le type d'apprentissage (supervisé, non supervisé, par renforcement) et la tâche.</p>
+        <ol>
+          <li>Prédire la note finale d'un étudiant à partir de son assiduité et de ses notes intermédiaires, grâce aux dossiers des promotions précédentes.</li>
+          <li>Regrouper 2 000 réponses à une question ouverte d'enquête, sans grille de catégories préalable.</li>
+          <li>Repérer les commentaires haineux, à partir de 5 000 commentaires déjà annotés « haineux » ou « non haineux ».</li>
+          <li>Un programme apprend à jouer à un jeu vidéo en gagnant des points quand il progresse et en en perdant quand il échoue.</li>
+          <li>Résumer les réponses d'une enquête de 300 questions en deux axes pour représenter les répondants sur un plan.</li>
+        </ol>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé</summary>
+        <div class="corrige-corps">
+          <div class="tableau-defilant"><table class="tableau">
+            <caption>Type d'apprentissage et tâche pour chaque situation</caption>
+            <thead><tr><th scope="col">Situation</th><th scope="col">Type</th><th scope="col">Tâche</th><th scope="col">Indice décisif</th></tr></thead>
+            <tbody>
+              <tr><td>1. Note finale</td><td>Supervisé</td><td>Régression</td><td>Les notes des promotions passées servent d'étiquettes ; on prédit une valeur numérique.</td></tr>
+              <tr><td>2. Réponses ouvertes</td><td>Non supervisé</td><td>Clustering ou modélisation thématique</td><td>Aucune catégorie fournie à l'avance.</td></tr>
+              <tr><td>3. Commentaires haineux</td><td>Supervisé</td><td>Classification</td><td>5 000 exemples annotés ; deux catégories.</td></tr>
+              <tr><td>4. Jeu vidéo</td><td>Par renforcement</td><td>Apprendre une stratégie d'actions</td><td>Pas d'exemples corrigés, mais des récompenses et des pénalités.</td></tr>
+              <tr><td>5. Enquête à 300 questions</td><td>Non supervisé</td><td>Réduction de dimension (par exemple ACP)</td><td>On cherche une structure, sans variable à prédire.</td></tr>
+            </tbody>
+          </table></div>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="td-ch3-ex4b">
+      <p class="exercice-num">Exercice 4 b · Apprentissage profond : CNN et RNN</p>
+      <div class="exercice-enonce">
+        <p>Un <dfn>réseau convolutif</dfn> (<abbr title="Convolutional Neural Network">CNN</abbr>) fait glisser de petits filtres sur une image. Le <dfn>pas</dfn> (<span class="terme-en" lang="en">stride</span>) est le décalage du filtre à chaque mouvement ; la <dfn>marge</dfn> (<span class="terme-en" lang="en">padding</span>) est le nombre de rangées de zéros ajoutées autour de l'image. Un <dfn>réseau récurrent</dfn> (<abbr title="Recurrent Neural Network">RNN</abbr>) lit une séquence, par exemple un texte, élément par élément, en gardant une mémoire de ce qu'il a lu.</p>
+        <ol>
+          <li>Une image en niveaux de gris de 28 × 28 pixels passe dans une couche de convolution avec un filtre 3 × 3, un pas de 1 et sans marge. Quelle est la taille de la sortie ? Même question avec une marge de 1. Bonus : avec un pas de 2 et sans marge.</li>
+          <li>Le filtre F = [[1, 0, −1], [1, 0, −1], [1, 0, −1]] est appliqué à la zone de l'image P = [[1, 0, 2], [0, 1, 0], [3, 0, 1]]. Calculez la valeur obtenue (somme des produits terme à terme).</li>
+          <li>Pourquoi un RNN simple a-t-il du mal avec les textes longs ? Qu'ont apporté les LSTM, puis le mécanisme d'attention ?</li>
+        </ol>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé</summary>
+        <div class="corrige-corps">
+          <p><strong>1. Taille de la sortie.</strong> Pour une image de côté n, un filtre de côté f, une marge p et un pas s :</p>
+          <p class="formule">côté de la sortie = ⌊(n + 2p − f) / s⌋ + 1</p>
+          <ul>
+            <li>Sans marge, pas 1 : (28 + 0 − 3) / 1 + 1 = 25 + 1 = 26, soit une sortie de 26 × 26.</li>
+            <li>Marge de 1, pas 1 : (28 + 2 − 3) / 1 + 1 = 27 + 1 = 28, soit 28 × 28 : l'image garde sa taille.</li>
+            <li>Bonus, sans marge, pas 2 : ⌊25 / 2⌋ + 1 = 12 + 1 = 13, soit 13 × 13.</li>
+          </ul>
+          <p>Un filtre 3 × 3 sur une image en niveaux de gris compte 9 poids et 1 biais, soit 10 paramètres à apprendre, quelle que soit la taille de l'image.</p>
+          <p><strong>2. Une convolution.</strong> On multiplie terme à terme, ligne par ligne, puis on additionne :</p>
+          <p class="formule">ligne 1 : 1×1 + 0×0 + 2×(−1) = −1      ligne 2 : 0×1 + 1×0 + 0×(−1) = 0      ligne 3 : 3×1 + 0×0 + 1×(−1) = 2</p>
+          <p class="formule">total : −1 + 0 + 2 = 1</p>
+          <p>Ce filtre soustrait la colonne de droite (2 + 0 + 1 = 3) de la colonne de gauche (1 + 0 + 3 = 4) : il réagit aux contrastes verticaux, c'est-à-dire aux bords verticaux dans l'image. Un CNN apprend lui-même les valeurs de ses filtres.</p>
+          <p><strong>3. RNN et textes longs.</strong> Un RNN résume tout ce qu'il a lu dans une mémoire de taille fixe, mise à jour à chaque mot. Pendant l'apprentissage, la correction de l'erreur remonte la séquence mot par mot et se trouve multipliée à chaque pas par des facteurs souvent inférieurs à 1 : elle devient infime pour les premiers mots. C'est le problème de la <dfn>disparition du gradient</dfn> (<span class="terme-en" lang="en">vanishing gradient</span>). Résultat : le réseau relie mal un pronom au personnage nommé trois paragraphes plus tôt. De plus, la lecture mot par mot empêche de paralléliser les calculs.</p>
+          <ul>
+            <li>Les <dfn>LSTM</dfn> (<span class="terme-en" lang="en">Long Short-Term Memory</span>, Hochreiter et Schmidhuber, 1997) ajoutent une mémoire protégée par des « portes » qui décident quoi garder, quoi oublier et quoi transmettre. L'information circule sur des distances bien plus longues.</li>
+            <li>Le <dfn>mécanisme d'attention</dfn> (Bahdanau, Cho et Bengio, 2014), puis l'architecture Transformer (Vaswani et collègues, 2017), permettent à chaque mot de consulter directement tous les autres mots de la séquence, quelle que soit leur distance, et de traiter tous les mots en parallèle. C'est la base de BERT et des modèles GPT. Contrepartie : le coût du calcul croît avec le carré de la longueur du texte.</li>
+          </ul>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="td-ch3-ex4c">
+      <p class="exercice-num">Exercice 4 c · Apprentissage par renforcement : une mise à jour de Q-learning</p>
+      <div class="exercice-enonce">
+        <p>Dans le <dfn>Q-learning</dfn>, un agent estime, pour chaque situation s et chaque action a, une valeur Q(s, a) : le total des récompenses qu'il peut espérer s'il fait a dans la situation s. Après avoir fait l'action a, reçu la récompense r et être arrivé dans la situation s′, il corrige son estimation :</p>
+        <p class="formule">Q(s, a) ← Q(s, a) + α · [ r + γ · maxₐ′ Q(s′, a′) − Q(s, a) ]</p>
+        <p>α est le taux d'apprentissage et γ (gamma) le <dfn>facteur d'actualisation</dfn>, qui fixe le poids des récompenses futures. Un agent se déplace dans un labyrinthe. On a Q(s, a) = 2, α = 0,5, γ = 0,9, r = 1 ; dans la nouvelle situation s′, Q(s′, a₁) = 4 et Q(s′, a₂) = 3. 1. Calculez la nouvelle valeur de Q(s, a). 2. Même question si l'action avait coûté une pénalité, r = −1.</p>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé</summary>
+        <div class="corrige-corps">
+          <p><strong>1. Avec r = 1.</strong></p>
+          <ul>
+            <li>Meilleure valeur dans s′ : max(4 ; 3) = 4.</li>
+            <li>Cible : r + γ × 4 = 1 + 0,9 × 4 = 1 + 3,6 = 4,6.</li>
+            <li>Écart entre la cible et l'estimation actuelle : 4,6 − 2 = 2,6.</li>
+            <li>Nouvelle valeur : Q(s, a) = 2 + 0,5 × 2,6 = 2 + 1,3 = 3,3.</li>
+          </ul>
+          <p><strong>2. Avec r = −1.</strong> Cible : −1 + 3,6 = 2,6 ; écart : 2,6 − 2 = 0,6 ; nouvelle valeur : 2 + 0,5 × 0,6 = 2,3.</p>
+          <p>Même pénalisée, l'action voit sa valeur augmenter légèrement, parce qu'elle mène à une situation prometteuse (valeur 4) : γ fait compter l'avenir dans le jugement présent. Avec α = 0,5, l'agent ne franchit que la moitié de l'écart à chaque expérience, ce qui évite de tout remettre en cause sur un seul essai. En pratique, l'agent doit aussi <em>explorer</em> : de temps en temps, il choisit une action au hasard plutôt que la meilleure connue, pour découvrir d'autres chemins.</p>
+        </div></details>
+    </div>
+  </article>
+
+  <!-- ============================ TRAVAUX PRATIQUES ============================ -->
+  <article class="lecon" id="td-travaux-pratiques">
+    <h3>Travaux pratiques</h3>
+    <p>Le programme précise : « Les séances de TP seront réservées pour la programmation des exercices vus en TD en utilisant Python et à la réalisation d'un mini-projet. » Les TP transforment donc les calculs faits à la main en programmes, puis accompagnent le <a href="#mini-projet">mini-projet</a>.</p>
+
+    <h4>Progression suggérée des séances</h4>
+    <ol class="etapes">
+      <li><p class="etape-titre">Installer l'environnement</p><p>Installer Python et les bibliothèques, lancer Jupyter, exécuter le script de vérification ci-dessous. Si le chapitre 1 a pris du retard, le programme prévoit qu'une séance de TP peut servir à le compléter.</p></li>
+      <li><p class="etape-titre">Bases de Python</p><p>Programmer les exercices 1 à 3 du TD du chapitre 2 : conditions, boucles, fonctions, listes, tuples, dictionnaires.</p></li>
+      <li><p class="etape-titre">Données et fichiers</p><p>Exercices 4 et 5 du TD du chapitre 2 ; produire un petit rapport Excel avec openpyxl ou PDF avec fpdf2.</p></li>
+      <li><p class="etape-titre">Système expert</p><p>Programmer le chaînage avant de l'exercice 1 du TD du chapitre 3, puis modifier les règles, leur ordre ou la base de faits et observer l'effet.</p></li>
+      <li><p class="etape-titre">Algorithmes d'apprentissage</p><p>Vérifier en Python les calculs de l'exercice 2 du TD du chapitre 3 : <code>numpy.polyfit</code>, une boucle de descente de gradient, <code>KNeighborsClassifier</code> et <code>KMeans</code> de scikit-learn.</p></li>
+      <li><p class="etape-titre">Apprentissage profond et Transformers</p><p>Utiliser un modèle pré-entraîné de la bibliothèque transformers (fonction <code>pipeline</code>) pour classer ou générer un court texte, et discuter ses erreurs.</p></li>
+      <li><p class="etape-titre">Mini-projet</p><p>Séances d'accompagnement : cadrage du sujet, points d'étape hebdomadaires, relecture du notebook, répétition de l'oral.</p></li>
+    </ol>
+
+    <h4>Préparer son environnement : liste de vérification</h4>
+    <ul>
+      <li>Python 3.11 est installé : la commande <code>python --version</code> l'affiche. Une distribution comme Anaconda installe Python, Jupyter et les principales bibliothèques en une fois.</li>
+      <li>Un environnement virtuel est créé pour le cours (<code>python -m venv ia-env</code>) et activé : <code>ia-env\Scripts\activate</code> sous Windows, <code>source ia-env/bin/activate</code> sous macOS et Linux.</li>
+      <li>Les bibliothèques du cours sont installées (commande ci-dessous). <code>torch</code>, nécessaire à transformers, est volumineux : installez-le avec une bonne connexion.</li>
+      <li>Le modèle français de spaCy est téléchargé.</li>
+      <li>Jupyter s'ouvre (<code>jupyter lab</code>) et une cellule <code>print("Bonjour")</code> s'exécute.</li>
+      <li>Un dossier de travail est organisé : <code>donnees/</code>, <code>notebooks/</code>, <code>resultats/</code>.</li>
+      <li>Vos fichiers texte sont enregistrés en UTF-8, pour les accents et pour l'arabe.</li>
+      <li>Solution de secours sans installation : Google Colab, qui fonctionne dans le navigateur avec un compte Google et une connexion à Internet. Une partie des bibliothèques y est déjà installée ; ajoutez les autres avec <code>!pip install</code>.</li>
+    </ul>
+    <figure class="code">
+      <figcaption class="code-legende">Installation (dans un terminal, environnement activé)</figcaption>
+      <pre><code>pip install pandas numpy scikit-learn matplotlib seaborn spacy transformers torch gensim networkx textblob vaderSentiment wordcloud fpdf2 openpyxl jupyterlab
+python -m spacy download fr_core_news_sm</code></pre>
+    </figure>
+    <figure class="code">
+      <figcaption class="code-legende">verifier_installation.py</figcaption>
+      <pre><code class="language-python"># Vérifie que chaque bibliothèque du cours est importable
+import importlib
+
+modules = ["pandas", "numpy", "sklearn", "matplotlib", "seaborn", "spacy",
+           "gensim", "networkx", "textblob", "vaderSentiment", "wordcloud",
+           "fpdf", "openpyxl", "transformers"]
+for nom in modules:
+    try:
+        module = importlib.import_module(nom)
+        print(f"{nom:15} OK   {getattr(module, '__version__', '')}")
+    except ImportError:
+        print(f"{nom:15} MANQUANT : à installer")
+
+import spacy
+nlp = spacy.load("fr_core_news_sm")   # une erreur ici : modèle français non téléchargé
+print("Modèle spaCy français : OK")</code></pre>
+    </figure>
+    <p>Remarquez que certaines bibliothèques s'installent sous un nom et s'importent sous un autre : <code>scikit-learn</code> s'importe <code>sklearn</code>, <code>fpdf2</code> s'importe <code>fpdf</code>.</p>
+  </article>
+</section>

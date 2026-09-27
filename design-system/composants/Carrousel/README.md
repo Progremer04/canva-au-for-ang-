@@ -7,9 +7,9 @@ Repris de `.slider`, `.slid` et `@keyframes slid` (`slidre2.html`, cinq photos).
 ## Ce que vous fournissez
 
 ```html
-<div class="carrousel" data-carrousel data-auto aria-roledescription="carrousel" aria-label="Paysages">
+<div class="carrousel" data-carrousel data-auto aria-roledescription="carrousel" aria-label="Photos">
   <div class="carrousel__piste">
-    <figure class="carrousel__diapo"><img src="…" alt="…"><figcaption class="carrousel__legende">Himalaya</figcaption></figure>
+    <figure class="carrousel__diapo"><img src="…" alt="…"><figcaption class="carrousel__legende">Latte art</figcaption></figure>
   </div>
   <div class="carrousel__commandes">
     <button class="bouton-verre" data-carrousel-precedent aria-label="Diapositive précédente">…</button>
@@ -27,4 +27,4 @@ Repris de `.slider`, `.slid` et `@keyframes slid` (`slidre2.html`, cinq photos).
 
 - Cadre `trait-anneau` en `texte`, rayon `rayon-l`.
 - Légende en `affiche`, fond `surface`, lueur `lueur-interne`, une ligne.
-- Une légende par image, en `figcaption` (pas de `h1`).
+- Une légende par image, en `figcaption` (pas de `h1`), qui décrit vraiment l'image : les légendes du slider d'origine (« Himalaya », « Désert »…) ne correspondaient pas aux photos.

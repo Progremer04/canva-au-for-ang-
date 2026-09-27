@@ -219,9 +219,12 @@ export {};
     ecrire("components/Cover/preview.html", COUVERTURE)
     ecrire("assets/Photos/README.md",
            "Les cinq photographies du slider d'origine (`slidre2.html`), copiées telles quelles : "
-           "`blog-1.jpg` (Himalaya), `blog-3.jpg` (aurores boréales), `gallery-4.jpg` (Arctique), "
-           "`menu-2.jpg` (Amazonie), `menu-5.jpg` (désert). Elles illustrent le `Carrousel` et "
-           "l'`AnneauPortrait` ; elles ne sont pas liées au sujet du cours. Recadrage en `object-fit: cover`.\n")
+           "`blog-1.jpg` (un barista verse du lait près d'une machine à expresso, 670 × 450), "
+           "`blog-3.jpg` (café turc, baklavas et halva, 670 × 450), `gallery-4.jpg` (tasse de latte art, 150 × 150), "
+           "`menu-2.jpg` (tasse de café et éclats de gaufrette sur fond noir, 200 × 200), "
+           "`menu-5.jpg` (latte macchiato en couches, 200 × 200). Le slider d'origine les légendait « Himalaya », "
+           "« Aurores Boréales », « Arctique », « Amazon », « Desert », sans rapport avec les images. Elles illustrent "
+           "le `Carrousel` et l'`AnneauPortrait` ; elles ne sont pas liées au sujet du cours. Recadrage en `object-fit: cover`.\n")
     print(f"artefact écrit dans {projet}")
 
 

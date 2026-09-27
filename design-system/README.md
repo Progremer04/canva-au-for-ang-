@@ -84,7 +84,7 @@ Lumineux reprend les démos « Cadre Lumineux », « menu capsule » et « slide
 
 ## Images
 
-- Le groupe `Photos` contient les cinq photographies du slider d'origine (Himalaya, aurores boréales, Arctique, Amazonie, désert). Elles servent d'exemple au `Carrousel` ; elles ne sont pas liées au sujet du cours.
+- Le groupe `Photos` contient les cinq photographies du slider d'origine : cinq photos de café (barista, café turc et baklava, latte art, café et gaufrette, latte macchiato). Le slider les légendait « Himalaya », « Aurores boréales », « Arctique », « Amazon », « Desert », sans rapport avec les images. Elles servent d'exemple au `Carrousel` et à l'`AnneauPortrait` ; elles ne sont pas liées au sujet du cours.
 - Une photo se recadre en `object-fit: cover` au format 4:3 dans le carrousel. Chaque image informative a un `alt` qui décrit ce qu'on voit.
 
 ## Composants

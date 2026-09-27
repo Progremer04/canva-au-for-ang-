@@ -66,3 +66,4 @@ Ombres : `0.5px 0.5px 1em white` (`halo`), `inset 2.5px 2.5px 4em black, 2.5px 2
 8. **Fichiers manquants** référencés par les démos : `style.css`, `code.js`, `1.png`, `dev.png.PNG`.
 9. **Doublon** : `color` et `color.html` ont un contenu identique.
 10. **Balisage** : `<style>` dans `<body>`, `</style>` orphelin dans `color.html`.
+11. **Légendes fausses** : le slider légende « Himalaya », « Aurores Boréales », « Arctique », « Amazon », « Desert » cinq photos qui montrent en réalité du café (barista, café turc et baklava, latte art, tasse et gaufrette, latte macchiato), toutes avec `alt=""`. L'aperçu du `Carrousel` décrit ce que montrent les images.
