@@ -730,7 +730,7 @@
   <!-- ============================================================ 0 -->
   <article class="lecon" id="c2-prompts">
     <h3>Bien formuler une demande à un assistant d'IA</h3>
-    <p>Un <dfn>assistant d'IA</dfn> (ChatGPT, Gemini, Claude, Copilot…) est un grand modèle de langage que l'on interroge en langue naturelle. Le texte qu'on lui donne s'appelle un <dfn>prompt</dfn> (<span class="terme-en" lang="en">prompt</span>, « consigne »), et l'art de l'écrire, l'<dfn>ingénierie de prompt</dfn> (<span class="terme-en" lang="en">prompt engineering</span>). Le modèle produit la suite la plus probable du texte reçu (<a href="#c3-deep">chapitre 3</a>) : plus la consigne est précise, plus cette suite ressemble à ce que vous attendez. Dans ce cours, l'assistant sert à deux choses : analyser des textes, et vous aider à lire et à écrire du code Python. Jamais à rendre un travail à votre place.</p>
+    <p>Un <dfn>assistant d'IA</dfn> (ChatGPT, Gemini, Claude, Copilot…) est un grand modèle de langage que l'on interroge en langue naturelle. Le texte qu'on lui donne s'appelle un <dfn>prompt</dfn> (<span class="terme-en" lang="en">prompt</span>, « consigne »), et l'art de l'écrire, l'<dfn>ingénierie de prompt</dfn> (<span class="terme-en" lang="en">prompt engineering</span>). Le modèle produit la suite la plus probable du texte reçu (<a href="#c3-deep">chapitre 3</a> ; voir aussi <a href="#c3-texte">comment une IA « comprend » un texte</a>) : plus la consigne est précise, plus cette suite ressemble à ce que vous attendez. Dans ce cours, l'assistant sert à deux choses : analyser des textes, et vous aider à lire et à écrire du code Python. Jamais à rendre un travail à votre place.</p>
 
     <h4>Les six éléments d'une bonne consigne</h4>
     <div class="tableau-defilant"><table class="tableau">
@@ -1695,6 +1695,7 @@ print(texte_pdf.splitlines()[:3])</code></pre>
       <li><a href="#c3-ml">Apprentissage automatique</a></li>
       <li><a href="#c3-algorithmes">Quelques algorithmes de ML</a></li>
       <li><a href="#c3-deep">Apprentissage profond</a></li>
+      <li><a href="#c3-texte">Comment une IA « comprend » un texte</a></li>
       <li><a href="#c3-renforcement">Apprentissage par renforcement</a></li>
       <li><a href="#c3-synthese">Synthèse</a></li>
     </ol>
@@ -2176,6 +2177,185 @@ NEGATIVE | The ending was a real disappointment.</samp></pre>
     <aside class="encadre encadre--attention">
       <p class="encadre-titre">Hallucinations et sources</p>
       <p>Un modèle génératif produit la suite la plus plausible, pas la plus vraie. Il peut inventer avec aplomb une citation, une date ou une référence bibliographique complète qui n'existe pas : on parle d'<dfn>hallucination</dfn>. Pour un mémoire, ne citez jamais une source que vous n'avez pas retrouvée et lue vous-même, vérifiez chaque citation dans l'édition d'origine et signalez l'usage de ces outils selon les règles de votre établissement.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="c3-texte">
+    <h3>Comment une IA « comprend » un texte</h3>
+    <p>Un ordinateur ne manipule que des nombres. Pour qu'un modèle « lise » une nouvelle de Maupassant ou un discours politique, il faut d'abord changer le texte en nombres, puis apprendre des nombres qui reflètent l'usage des mots. Ce que l'on appelle, entre guillemets, la « compréhension » d'une IA est le résultat de cette chaîne. Cette leçon la suit pas à pas, avec deux petits programmes en Python pur : aucune bibliothèque à installer.</p>
+
+    <h4>Du texte à la réponse : six étapes</h4>
+    <ol class="etapes">
+      <li><p class="etape-titre">Découper</p><p>Le texte est coupé en <dfn>tokens</dfn> : un mot courant reste souvent entier, un mot rare ou long est coupé en morceaux (radical, préfixe, terminaison), et la ponctuation forme ses propres tokens.</p></li>
+      <li><p class="etape-titre">Numéroter</p><p>Chaque token est remplacé par son numéro dans le vocabulaire du modèle (un peu plus de 50 000 entrées pour GPT-2). Le modèle ne reçoit qu'une liste de nombres entiers : il ne voit jamais les lettres.</p></li>
+      <li><p class="etape-titre">Plonger</p><p>Chaque numéro renvoie à un vecteur de plusieurs centaines de nombres, son <dfn>plongement</dfn>, appris pendant l'entraînement. On y ajoute un codage de la position du token, sans lequel l'ordre des mots serait perdu.</p></li>
+      <li><p class="etape-titre">Mettre en contexte</p><p>Couche après couche, l'attention recalcule chaque vecteur à partir de ceux des autres tokens : le vecteur d'« avocat » n'est plus le même dans « l'avocat plaide » et dans « l'avocat est mûr ».</p></li>
+      <li><p class="etape-titre">Calculer une sortie</p><p>Un décodeur (GPT) calcule une probabilité pour chaque token du vocabulaire ; un encodeur (BERT) donne une étiquette : sentiment, thème, entité nommée.</p></li>
+      <li><p class="etape-titre">Revenir au texte</p><p>Le token choisi est retraduit en caractères et ajouté au texte, puis la boucle recommence : c'est la <a href="#c3-deep">génération</a> décrite plus haut.</p></li>
+    </ol>
+
+    <h4>Première idée : le sac de mots</h4>
+    <p>La représentation la plus simple compte les mots de chaque texte sans tenir compte de leur ordre : c'est le <dfn>sac de mots</dfn> (<span class="terme-en" lang="en">bag of words</span>). Elle suffit à beaucoup de tâches : filtre anti-spam, classement d'articles par thème, nuages de mots, stylométrie. Mais elle a deux angles morts.</p>
+    <figure class="code">
+      <figcaption class="code-legende">sac_de_mots.py</figcaption>
+      <pre><code class="language-python">from collections import Counter
+
+phrase_1 = "le chien mord l'homme"
+phrase_2 = "l'homme mord le chien"
+
+sac_1 = Counter(phrase_1.split())
+sac_2 = Counter(phrase_2.split())
+print(sac_1)
+print("Même sac de mots :", sac_1 == sac_2)</code></pre>
+      <pre class="sortie"><samp>Counter({'le': 1, 'chien': 1, 'mord': 1, "l'homme": 1})
+Même sac de mots : True</samp></pre>
+    </figure>
+    <p><code>Counter</code> compte les éléments d'une liste. Les deux phrases, de sens opposés, donnent exactement le même sac : il a perdu qui mord qui. Et pour lui, tous les mots sont également différents : « chat » n'est pas plus proche de « chien » que de « livre ».</p>
+
+    <h4>Deuxième idée : des vecteurs appris par le contexte</h4>
+    <p>L'<dfn>hypothèse distributionnelle</dfn>, formulée par le linguiste Zellig Harris en 1954 et résumée par J. R. Firth en 1957 (<a href="#c3-deep">plongements</a>), dit que des mots employés dans des contextes semblables ont des sens proches. On peut donc décrire un mot par ses voisins. Le programme suivant le fait sur un corpus de six phrases : le vecteur d'un mot compte combien de fois chaque autre mot apparaît dans les mêmes phrases. Deux vecteurs se comparent par leur <dfn>similarité cosinus</dfn>, qui vaut 1 quand ils pointent dans la même direction et 0 quand ils n'ont rien en commun.</p>
+    <p class="formule">cos(a, b) = (a · b) / (‖a‖ × ‖b‖)</p>
+    <figure class="code">
+      <figcaption class="code-legende">vecteurs_de_mots.py</figcaption>
+      <pre><code class="language-python">import math
+
+corpus = [
+    "le chat boit du lait",
+    "le chien boit de l'eau",
+    "le chat dort sur le canapé",
+    "le chien dort dans sa niche",
+    "le lecteur ouvre le livre",
+    "le lecteur lit le roman",
+]
+vides = {"le", "du", "de", "sur", "dans", "sa"}   # mots-outils, présents partout
+
+# Le vecteur d'un mot : combien de fois chaque autre mot apparaît dans les mêmes phrases
+vocabulaire = sorted({m for phrase in corpus for m in phrase.split()} - vides)
+
+def vecteur(mot):
+    v = [0] * len(vocabulaire)
+    for phrase in corpus:
+        mots = [m for m in phrase.split() if m not in vides]
+        if mot in mots:
+            for autre in mots:
+                if autre != mot:
+                    v[vocabulaire.index(autre)] += 1
+    return v
+
+def cosinus(a, b):
+    produit = sum(x * y for x, y in zip(a, b))
+    return produit / (math.sqrt(sum(x * x for x in a)) * math.sqrt(sum(y * y for y in b)))
+
+print(vocabulaire)
+print("chat :", vecteur("chat"))
+for m1, m2 in [("chat", "chien"), ("chat", "livre"), ("livre", "roman")]:
+    print(f"{m1} / {m2} : {cosinus(vecteur(m1), vecteur(m2)):.2f}")</code></pre>
+      <pre class="sortie"><samp>['boit', 'canapé', 'chat', 'chien', 'dort', "l'eau", 'lait', 'lecteur', 'lit', 'livre', 'niche', 'ouvre', 'roman']
+chat : [1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0]
+chat / chien : 0.50
+chat / livre : 0.00
+livre / roman : 0.50</samp></pre>
+    </figure>
+    <p>Personne n'a dit au programme que le chat et le chien sont des animaux : il le déduit de ce qu'ils partagent deux contextes, « boit » et « dort ». De même, « livre » et « roman » se rapprochent parce que tous deux côtoient « lecteur », alors que « chat » et « livre » n'ont aucun voisin commun. Les mots-outils sont écartés : présents partout, ils rapprocheraient tout de tout.</p>
+    <p>En 2013, <dfn>word2vec</dfn> (Tomas Mikolov et ses coauteurs, Google) applique cette idée à des milliards de mots : au lieu de compter, un petit réseau de neurones apprend des vecteurs de quelques centaines de dimensions en devinant chaque mot à partir de ses voisins. Ces vecteurs encodent des relations : le calcul vecteur(roi) − vecteur(homme) + vecteur(femme) tombe près de vecteur(reine). Ils encodent aussi les stéréotypes des textes d'entraînement : en 2016, Tolga Bolukbasi et ses coauteurs ont montré qu'à la question « homme est à programmeur ce que femme est à… », des vecteurs appris sur des articles de presse répondaient « femme au foyer ».</p>
+    <figure class="schema">
+      <svg viewBox="0 0 640 300" role="img" aria-labelledby="c3-carte-t">
+        <title id="c3-carte-t">Carte de vecteurs de mots projetés sur deux dimensions</title>
+        <defs><marker id="c3-fleche-mots" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="svg-pointe" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+        <rect class="svg-trait" x="16" y="16" width="608" height="268" rx="12"/>
+        <text class="svg-texte-doux" x="40" y="46">Animaux</text>
+        <circle class="svg-noeud-accent" cx="70" cy="90" r="7"/><text class="svg-texte" x="84" y="95">chat</text>
+        <circle class="svg-noeud-accent" cx="130" cy="120" r="7"/><text class="svg-texte" x="144" y="125">chien</text>
+        <circle class="svg-noeud-accent" cx="80" cy="150" r="7"/><text class="svg-texte" x="94" y="155">cheval</text>
+        <text class="svg-texte-doux" x="40" y="212">Lecture</text>
+        <circle class="svg-noeud" cx="70" cy="245" r="7"/><text class="svg-texte" x="84" y="250">livre</text>
+        <circle class="svg-noeud" cx="150" cy="232" r="7"/><text class="svg-texte" x="164" y="237">roman</text>
+        <circle class="svg-noeud" cx="200" cy="262" r="7"/><text class="svg-texte" x="214" y="267">lecteur</text>
+        <line class="svg-trait" x1="340" y1="230" x2="510" y2="230" stroke-dasharray="5 5"/>
+        <line class="svg-trait" x1="400" y1="110" x2="570" y2="110" stroke-dasharray="5 5"/>
+        <line class="svg-trait-accent" x1="340" y1="230" x2="396" y2="116" marker-end="url(#c3-fleche-mots)"/>
+        <line class="svg-trait-accent" x1="510" y1="230" x2="566" y2="116" marker-end="url(#c3-fleche-mots)"/>
+        <circle class="svg-noeud" cx="340" cy="230" r="7"/><text class="svg-texte" x="340" y="258" text-anchor="middle">homme</text>
+        <circle class="svg-noeud" cx="400" cy="110" r="7"/><text class="svg-texte" x="400" y="92" text-anchor="middle">femme</text>
+        <circle class="svg-noeud" cx="510" cy="230" r="7"/><text class="svg-texte" x="510" y="258" text-anchor="middle">roi</text>
+        <circle class="svg-noeud" cx="570" cy="110" r="7"/><text class="svg-texte" x="570" y="92" text-anchor="middle">reine</text>
+        <text class="svg-texte-doux" x="455" y="46" text-anchor="middle">Même écart, même direction</text>
+      </svg>
+      <figcaption>Carte simplifiée : les vrais vecteurs ont des centaines de dimensions, projetées ici sur deux. Les mots de contextes semblables se regroupent, et l'écart de homme à femme est presque le même que celui de roi à reine.</figcaption>
+    </figure>
+    <p>Limite de ces vecteurs : chaque mot n'en a qu'un, quel que soit son sens dans la phrase.</p>
+
+    <h4>Troisième idée : un vecteur par mot et par contexte</h4>
+    <p>« Avocat » désigne un métier ou un fruit, « souris » un animal ou un objet, « glace » de l'eau gelée ou un miroir. Dans un Transformer, le plongement de départ d'un mot est toujours le même, mais l'attention le recalcule à partir de ses voisins : après quelques couches, « avocat » se rapproche de « juge » et de « procès » dans « l'avocat plaide », et de « fruit » dans « un avocat bien mûr ». On parle de <dfn>plongements contextuels</dfn> : ce sont eux qui distinguent les sens d'un mot, les rôles dans la phrase (qui mord qui) et les reprises, comme « elle » dans l'<a href="#c3-deep">exemple de l'attention</a>.</p>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Trois façons de représenter un texte</caption>
+      <thead><tr><th scope="col">Représentation</th><th scope="col">Ce qu'elle garde</th><th scope="col">Ce qu'elle perd</th><th scope="col">Outils</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Sac de mots</th><td>Les mots et leur fréquence</td><td>L'ordre, les proximités de sens</td><td>Filtres anti-spam, TF-IDF, nuages de mots</td></tr>
+        <tr><th scope="row">Vecteurs de mots (2013)</th><td>Les proximités de sens</td><td>Les sens multiples d'un même mot</td><td>word2vec, GloVe, fastText</td></tr>
+        <tr><th scope="row">Vecteurs contextuels (depuis 2018)</th><td>Le sens en contexte, l'ordre, les reprises</td><td>Le lien avec le monde et avec les sources</td><td>BERT, CamemBERT, AraBERT, GPT</td></tr>
+      </tbody>
+    </table></div>
+
+    <h4>Comment le modèle apprend-il tout cela ?</h4>
+    <dl class="definitions">
+      <div><dt>Pré-entraînement</dt><dd>Sur des milliards de phrases, le modèle devine le token suivant (GPT) ou un mot masqué (BERT : « Le [MASK] boit du lait »). Nul besoin d'annoter : le texte fournit lui-même la bonne réponse, d'où le nom d'apprentissage <dfn>auto-supervisé</dfn>. Pour bien deviner, le modèle doit capter la grammaire, les associations fréquentes et les styles.</dd></div>
+      <div><dt>Affinage</dt><dd>L'<dfn>affinage</dfn> (<span class="terme-en" lang="en">fine-tuning</span>) poursuit l'entraînement sur des exemples étiquetés : des critiques de films positives ou négatives pour <code>sentiment_transformers.py</code>, des paires consigne-réponse pour un assistant.</dd></div>
+      <div><dt>Retour humain</dt><dd>Des personnes classent plusieurs réponses du modèle, et l'on ajuste celui-ci pour qu'il préfère les mieux notées : c'est le RLHF (<span class="terme-en" lang="en">reinforcement learning from human feedback</span>), une application de l'<a href="#c3-renforcement">apprentissage par renforcement</a>. C'est ce qui transforme un compléteur de texte en assistant qui suit une <a href="#c2-prompts">consigne</a>.</dd></div>
+    </dl>
+    <p>Pour le voir à l'œuvre, le carnet <a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/08-ia-generative.ipynb" target="_blank" rel="noopener">Prédire le mot suivant</a> construit un modèle de langage à la main, puis fait remplir un texte à trous à CamemBERT.</p>
+
+    <h4>Mais comprend-il vraiment ?</h4>
+    <p>La question divise les chercheurs ; elle fait un bon sujet de table ronde.</p>
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>Non : il manipule des formes</h4>
+        <p>En 1980, le philosophe John Searle imagine la <dfn>chambre chinoise</dfn> : enfermée dans une pièce, une personne qui ignore le chinois répond à des messages écrits en chinois en suivant un manuel de règles. De l'extérieur, les réponses sont parfaites ; pourtant, personne dans la pièce ne comprend le chinois.</p>
+        <ul>
+          <li>En 2021, Emily Bender, Timnit Gebru, Angelina McMillan-Major et Margaret Mitchell qualifient les grands modèles de « perroquets stochastiques » : ils assemblent des formes linguistiques selon des probabilités, sans intention de communiquer ni lien avec le monde.</li>
+          <li>Indices : les erreurs sur la négation, le calcul ou les faits rares, et les hallucinations.</li>
+        </ul>
+      </div>
+      <div class="comparaison-col">
+        <h4>En partie : le sens, c'est l'usage</h4>
+        <p>Pour Ludwig Wittgenstein, « la signification d'un mot est son usage dans le langage » (<em>Recherches philosophiques</em>, 1953, § 43). Si le sens tient à l'usage, un modèle qui maîtrise l'usage de millions de mots en capte une part réelle.</p>
+        <ul>
+          <li>Les modèles résument, traduisent et répondent à des questions nouvelles, ce qui demande plus qu'un repérage de mots-clés.</li>
+          <li>Leur « compréhension » reste pourtant inégale, privée d'expérience du monde, et se juge au cas par cas.</li>
+        </ul>
+      </div>
+    </div>
+    <p>Position de travail pour ce cours : un modèle de langage modélise l'usage des mots dans ses données, pas le monde lui-même. Parlez de « compréhension » entre guillemets et jugez sur pièces, en testant.</p>
+
+    <aside class="encadre encadre--shs">
+      <p class="encadre-titre">Ce que cela change pour vos analyses</p>
+      <ul>
+        <li><strong>Toutes les langues ne sont pas égales.</strong> L'arabe et la darija sont bien moins présents que l'anglais dans les données d'entraînement, et leurs mots sont souvent coupés en davantage de tokens : le traitement coûte plus cher et le texte admis est plus court (Aleksandar Petrov et ses coauteurs, 2023). En anglais, on compte environ trois quarts de mot par token.</li>
+        <li><strong>Testez les cas difficiles.</strong> Négation (« pas mauvais du tout »), ironie, métaphore, langue ancienne ou dialectale : un modèle de sentiment affiné sur des critiques de films peut se tromper sur un poème.</li>
+        <li><strong>Lecture distante, lecture proche.</strong> Le modèle aide à parcourir des milliers de textes, ce que Franco Moretti appelle la « lecture distante » ; l'interprétation reste affaire de lecture proche : revenez toujours au texte.</li>
+        <li><strong>Des vecteurs, pas des vérités.</strong> Les représentations reflètent les corpus qui les ont produites, avec leurs manques et leurs préjugés.</li>
+      </ul>
+    </aside>
+
+    <div class="quiz">
+      <p class="quiz-question">Quelle représentation donne au mot « souris » un vecteur différent dans « le chat chasse la souris » et dans « je clique avec la souris » ?</p>
+      <ul class="quiz-options">
+        <li><button type="button" class="quiz-option">Le sac de mots</button></li>
+        <li><button type="button" class="quiz-option">Un vecteur word2vec</button></li>
+        <li><button type="button" class="quiz-option" data-correct>Un plongement contextuel calculé par l'attention</button></li>
+        <li><button type="button" class="quiz-option">Le numéro du token dans le vocabulaire</button></li>
+      </ul>
+      <p class="quiz-explication" hidden>Seul le plongement contextuel change avec les voisins : l'attention relie « souris » à « chat » dans la première phrase, à « clique » dans la seconde. Le sac de mots se contente de compter, word2vec donne un seul vecteur à « souris » quel que soit son sens, et le numéro du token est le même dans les deux phrases.</p>
+    </div>
+
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">À retenir</p>
+      <ul>
+        <li>Une IA ne lit pas des lettres mais des nombres : texte, tokens, numéros, vecteurs, vecteurs en contexte, puis sortie.</li>
+        <li>Le sac de mots compte les mots mais perd l'ordre ; les vecteurs de mots rapprochent les mots de contextes semblables ; les plongements contextuels distinguent les sens d'un même mot.</li>
+        <li>Le modèle apprend en devinant des mots sur d'immenses corpus, puis par affinage et retour humain.</li>
+        <li>Sa « compréhension » est une modélisation de l'usage : puissante, inégale selon les langues, à vérifier sur le texte.</li>
+      </ul>
     </aside>
   </article>
 

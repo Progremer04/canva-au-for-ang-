@@ -36,7 +36,7 @@ Le programme officiel de la matière tient en trois pages : des intitulés de ch
 - **Fiche de la matière** et **calendrier** du semestre, avec renvois vers les parties du site.
 - **Chapitre 1** : définitions, histoire de l'IA, IA faible et forte, apprentissage supervisé et non supervisé, approches, éthique.
 - **Chapitre 2** : bien formuler une demande à un assistant d'IA (ingénierie de prompt, atelier au TD), puis Python pour les textes (types, listes, dictionnaires, NumPy, pandas, objets, fichiers, rapports Excel et PDF).
-- **Chapitre 3** : systèmes experts, apprentissage automatique, algorithmes (régression, descente de gradient, classification, k-moyennes), apprentissage profond et Transformers, apprentissage par renforcement. Démonstrations du chaînage avant, de la descente de gradient et des k-moyennes.
+- **Chapitre 3** : systèmes experts, apprentissage automatique, algorithmes (régression, descente de gradient, classification, k-moyennes), apprentissage profond et Transformers, comment une IA « comprend » un texte (sac de mots, vecteurs de mots, plongements contextuels), apprentissage par renforcement. Démonstrations du chaînage avant, de la descente de gradient et des k-moyennes.
 - **Mini-projet** : les cinq sujets, avec démarche, données, code de départ et livrables.
 - **TD / TP corrigés**, **tables rondes**, **références** et **glossaire** (français–anglais ; arabe–français–anglais dans la version arabe).
 
