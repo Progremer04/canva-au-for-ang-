@@ -2,7 +2,7 @@
   <header class="chapitre-tete">
     <p class="surtitre">Chapitre 1 · 1 semaine</p>
     <h2 class="titre-section" id="chapitre-1-titre">Introduction à l'intelligence artificielle</h2>
-    <p class="chapeau">À la fin de ce chapitre, vous saurez définir l'intelligence artificielle, situer ses grandes étapes, distinguer IA étroite et IA générale, apprentissage supervisé et non supervisé, et discuter de ses apports et de ses limites pour les sciences humaines.</p>
+    <p class="chapeau">À la fin de ce chapitre, vous saurez définir l'intelligence artificielle, situer ses grandes étapes, distinguer IA étroite et IA générale, apprentissage supervisé et non supervisé, expliquer simplement comment une IA traite un texte, et discuter de ses apports et de ses limites pour les sciences humaines.</p>
     <ul class="puces"><li class="puce">Cours magistral</li><li class="puce">TD</li><li class="puce">Travail personnel</li></ul>
     <p class="chapitre-tete__lecon"><a class="bouton bouton--prisme" href="chapitr1_first_lesson.html">Leçon 1 en diaporama : de l'automate à l'agent</a></p>
   </header>
@@ -13,6 +13,7 @@
       <li><a href="#c1-histoire">Survol historique</a></li>
       <li><a href="#c1-faible-forte">IA étroite (faible) et IA générale (forte)</a></li>
       <li><a href="#c1-apprentissage">Apprentissage supervisé et non supervisé</a></li>
+      <li><a href="#c1-texte">Comment une IA « comprend » un texte</a></li>
       <li><a href="#c1-approches">Les approches de l'IA dans la résolution de problèmes</a></li>
       <li><a href="#c1-perspectives">Perspectives, limites et éthique</a></li>
     </ol>
@@ -198,6 +199,94 @@
       </ul>
       <p class="quiz-explication" hidden>C'est un apprentissage supervisé : les 500 discours classés forment les données étiquetées qui entraînent le modèle. Que les nouveaux discours n'aient pas d'étiquette est normal, c'est justement ce que le modèle doit prédire. On parlerait d'apprentissage non supervisé si aucun discours n'était étiqueté et que l'on cherchait des groupes.</p>
     </div>
+  </article>
+
+  <article class="lecon" id="c1-texte">
+    <h3>Comment une IA « comprend » un texte</h3>
+    <p>Quand vous écrivez une question à un assistant comme ChatGPT, la machine ne lit pas comme vous. Un ordinateur ne connaît que des nombres : il doit d'abord transformer vos mots en nombres. Voici, en quatre étapes simples, ce qui se passe.</p>
+
+    <ol class="etapes">
+      <li><p class="etape-titre">Couper le texte en morceaux</p><p>La phrase est découpée en petits morceaux appelés <dfn>tokens</dfn> (« jetons ») : un mot courant reste entier, un mot long ou rare est coupé en plusieurs bouts.</p></li>
+      <li><p class="etape-titre">Changer chaque morceau en nombres</p><p>Chaque token reçoit une longue liste de nombres, un <dfn>vecteur</dfn>. Ce vecteur fonctionne comme une adresse sur une grande « carte des sens » : les mots de sens voisin ont des adresses proches.</p></li>
+      <li><p class="etape-titre">Regarder les mots voisins</p><p>La machine relie chaque mot aux autres mots de la phrase ; c'est l'<dfn>attention</dfn>. Dans « la souris mange le fromage » et « je clique avec la souris », le mot « souris » n'a pas le même sens : les voisins « fromage » et « clique » permettent de choisir le bon.</p></li>
+      <li><p class="etape-titre">Deviner la suite</p><p>La machine calcule quel mot a le plus de chances de venir ensuite, l'écrit, puis recommence, mot après mot. Une réponse de ChatGPT est fabriquée ainsi, un token à la fois.</p></li>
+    </ol>
+
+    <h4>Un mot se reconnaît à ses voisins</h4>
+    <p>Comment la machine apprend-elle le sens des mots ? Personne ne lui donne de dictionnaire. Elle lit des milliards de phrases et joue à un jeu de devinettes : cacher un mot, puis le retrouver. Essayez : « Le ___ boit du lait et dort sur le canapé. » Vous pensez « chat » : ce sont les voisins qui vous ont aidé. La machine fait la même chose, à très grande échelle. Les mots qui ont souvent les mêmes voisins, comme « chat » et « chien », reçoivent des adresses proches sur la carte des sens. Le linguiste J. R. Firth le disait dès 1957 : « <em lang="en">You shall know a word by the company it keeps</em> », on reconnaît un mot à ses fréquentations.</p>
+    <figure class="schema">
+      <svg viewBox="0 0 640 300" role="img" aria-labelledby="c1-carte-t">
+        <title id="c1-carte-t">Carte des sens : des mots placés selon leurs voisins</title>
+        <defs><marker id="c1-fleche-mots" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="svg-pointe" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+        <rect class="svg-trait" x="16" y="16" width="608" height="268" rx="12"/>
+        <text class="svg-texte-doux" x="40" y="46">Animaux</text>
+        <circle class="svg-noeud-accent" cx="70" cy="90" r="7"/><text class="svg-texte" x="84" y="95">chat</text>
+        <circle class="svg-noeud-accent" cx="130" cy="120" r="7"/><text class="svg-texte" x="144" y="125">chien</text>
+        <circle class="svg-noeud-accent" cx="80" cy="150" r="7"/><text class="svg-texte" x="94" y="155">cheval</text>
+        <text class="svg-texte-doux" x="40" y="212">Lecture</text>
+        <circle class="svg-noeud" cx="70" cy="245" r="7"/><text class="svg-texte" x="84" y="250">livre</text>
+        <circle class="svg-noeud" cx="150" cy="232" r="7"/><text class="svg-texte" x="164" y="237">roman</text>
+        <circle class="svg-noeud" cx="200" cy="262" r="7"/><text class="svg-texte" x="214" y="267">lecteur</text>
+        <line class="svg-trait" x1="340" y1="230" x2="510" y2="230" stroke-dasharray="5 5"/>
+        <line class="svg-trait" x1="400" y1="110" x2="570" y2="110" stroke-dasharray="5 5"/>
+        <line class="svg-trait-accent" x1="340" y1="230" x2="396" y2="116" marker-end="url(#c1-fleche-mots)"/>
+        <line class="svg-trait-accent" x1="510" y1="230" x2="566" y2="116" marker-end="url(#c1-fleche-mots)"/>
+        <circle class="svg-noeud" cx="340" cy="230" r="7"/><text class="svg-texte" x="340" y="258" text-anchor="middle">homme</text>
+        <circle class="svg-noeud" cx="400" cy="110" r="7"/><text class="svg-texte" x="400" y="92" text-anchor="middle">femme</text>
+        <circle class="svg-noeud" cx="510" cy="230" r="7"/><text class="svg-texte" x="510" y="258" text-anchor="middle">roi</text>
+        <circle class="svg-noeud" cx="570" cy="110" r="7"/><text class="svg-texte" x="570" y="92" text-anchor="middle">reine</text>
+        <text class="svg-texte-doux" x="455" y="46" text-anchor="middle">Même écart, même direction</text>
+      </svg>
+      <figcaption>Les mots qui partagent les mêmes voisins se regroupent : les animaux d'un côté, la lecture de l'autre. La carte garde même des relations : on va de « homme » à « femme » comme de « roi » à « reine ».</figcaption>
+    </figure>
+
+    <h4>L'ordre des mots compte</h4>
+    <p>Les premiers programmes se contentaient de compter les mots d'un texte, comme on vide un sac sur une table : c'est le <dfn>sac de mots</dfn>. Pour eux, « le chien mord l'homme » et « l'homme mord le chien » sont la même chose, puisque ce sont les mêmes mots. Les modèles actuels, les <dfn>Transformers</dfn> (depuis 2017), tiennent compte de l'ordre et du contexte : c'est ce qui les rend si efficaces.</p>
+
+    <h4>Alors, comprend-elle vraiment ?</h4>
+    <p>Pas comme nous. La machine a appris comment les mots s'emploient ensemble, pas ce qu'ils désignent dans le monde : elle n'a jamais bu de lait ni caressé un chat. C'est pourquoi elle peut écrire une phrase parfaite et pourtant fausse, ce qu'on appelle une <a href="#c1-perspectives">hallucination</a>. Les chercheurs en débattent encore, comme on l'a vu avec la <a href="#c1-faible-forte">chambre chinoise</a>.</p>
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>Un lecteur humain</h4>
+        <ul>
+          <li>lit des lettres et des mots ;</li>
+          <li>relie les mots à son expérience du monde ;</li>
+          <li>cherche l'intention de l'auteur ;</li>
+          <li>sait souvent quand il ne sait pas.</li>
+        </ul>
+      </div>
+      <div class="comparaison-col">
+        <h4>Un modèle de langage</h4>
+        <ul>
+          <li>traite des nombres ;</li>
+          <li>relie les mots à d'autres mots ;</li>
+          <li>calcule la suite la plus probable ;</li>
+          <li>peut se tromper avec assurance.</li>
+        </ul>
+      </div>
+    </div>
+    <p>Pour aller plus loin, avec des formules et des programmes en Python : <a href="#c3-deep">l'apprentissage profond</a>, au chapitre 3.</p>
+
+    <div class="quiz">
+      <p class="quiz-question">Comment une IA sait-elle que « souris » désigne un objet dans « je clique avec la souris » ?</p>
+      <ul class="quiz-options">
+        <li><button type="button" class="quiz-option">Elle cherche le mot dans un dictionnaire.</button></li>
+        <li><button type="button" class="quiz-option" data-correct>Elle regarde les mots voisins, comme « clique ».</button></li>
+        <li><button type="button" class="quiz-option">Un programmeur a écrit une règle pour ce mot.</button></li>
+        <li><button type="button" class="quiz-option">Elle comprend la phrase exactement comme un humain.</button></li>
+      </ul>
+      <p class="quiz-explication" hidden>C'est le contexte qui décide : grâce à l'attention, la machine relie « souris » à « clique » et choisit le sens « objet ». Elle n'a pas de dictionnaire, personne n'a écrit de règle pour ce mot, et sa façon de traiter la phrase reste un calcul, très différent de notre lecture.</p>
+    </div>
+
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">À retenir</p>
+      <ul>
+        <li>Une IA transforme le texte en nombres : des morceaux (tokens), puis des vecteurs.</li>
+        <li>Elle apprend le sens d'un mot grâce à ses voisins, en devinant des mots cachés dans d'immenses quantités de textes.</li>
+        <li>Elle regarde le contexte pour choisir le bon sens, puis devine la suite, mot après mot.</li>
+        <li>Elle ne comprend pas comme nous : vérifiez toujours ce qu'elle produit.</li>
+      </ul>
+    </aside>
   </article>
 
   <article class="lecon" id="c1-approches">
