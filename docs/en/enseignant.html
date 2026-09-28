@@ -544,66 +544,66 @@
 <section class="chapitre" id="guide-langues" aria-labelledby="guide-langues-titre">
   <header class="chapitre-tete">
     <p class="surtitre">Teacher's guide · Language students</p>
-    <h2 class="titre-section" id="guide-langues-titre">Teaching AI without turning students into programmers</h2>
-    <p class="chapeau">Your six Master 2 groups (English, general and comparative literature, didactics) have never programmed, and you will not turn them into programmers. They will read, run and modify complete code, then interpret the results in their own discipline. The official syllabus is still covered.</p>
-    <ul class="puces"><li class="puce">Six groups</li><li class="puce">Ten ready-made notebooks</li><li class="puce">No code to write</li></ul>
+    <h2 class="titre-section" id="guide-langues-titre">Teaching AI and code to language students</h2>
+    <p class="chapeau">Your six Master 2 groups (English, general and comparative literature, didactics) have never programmed. The ANG and LGC groups follow exactly the same syllabus, code included: they read, predict, run and modify each example, then write their own, step by step, in the same sessions and with the same notebooks; only the working language and the data change. The DID groups follow the same progression and may stick to reading and running the code. The official syllabus is still covered.</p>
+    <ul class="puces"><li class="puce">Six groups</li><li class="puce">ANG and LGC: same syllabus, code included</li><li class="puce">Ten ready-made notebooks</li></ul>
   </header>
 
   <nav class="sommaire-chapitre" aria-label="Contents: teaching AI to language students">
     <ol>
       <li><a href="#guide-langues-principe">The diagnosis and the response</a></li>
       <li><a href="#guide-langues-outils">No-code tools for each part</a></li>
-      <li><a href="#guide-langues-parcours">Three tracks: ANG, LGC, DID</a></li>
+      <li><a href="#guide-langues-parcours">One syllabus for ANG and LGC, an adaptation for DID</a></li>
       <li><a href="#guide-langues-carnets">Ready-to-run notebooks</a></li>
       <li><a href="#guide-langues-seance">A typical session in the computer room</a></li>
-      <li><a href="#guide-langues-evaluation">Assessing without asking for code</a></li>
+      <li><a href="#guide-langues-evaluation">Assessing code and interpretation</a></li>
     </ol>
   </nav>
 
   <article class="lecon" id="guide-langues-principe">
     <h3>The diagnosis and the response</h3>
-    <p>You are right about one thing: in an hour and a half a week, language students will not learn to write programs. But they can still learn a great deal. A student who reads ten lines of Python, predicts their output, runs them, changes a value and explains why the result changed has understood what the machine does. The syllabus asks for the "ability to use the Python software", not for the skills of a professional developer. And the hardest step, saying what a number means for a text or for a class, is already part of their training.</p>
+    <p>In an hour and a half a week, language students will not become developers, but they can write short, useful programs. A student who reads ten lines of Python, predicts their output, runs them, changes a value, explains why the result changed, then rewrites these lines for their own text has understood what the machine does. The syllabus asks for the "ability to use the Python software": ANG and LGC work on it all the way to writing code, DID as far as running it. And the hardest step, saying what a number means for a text or for a class, is already part of their training.</p>
 
     <div class="comparaison">
       <div class="comparaison-col">
         <h4>What they will not do</h4>
         <ul>
-          <li>Write a program on a blank page.</li>
-          <li>Learn syntax by heart.</li>
-          <li>Be graded on handwritten code.</li>
+          <li>Start from a blank page: every program starts from an example that works.</li>
+          <li>Learn syntax by heart: the documentation and an AI assistant explain, and the students check.</li>
+          <li>Have an assistant write their code: they type it and explain it.</li>
         </ul>
       </div>
       <div class="comparaison-col">
         <h4>What they will do</h4>
         <ul>
-          <li>Run a complete notebook, cell by cell.</li>
-          <li>Predict in writing what a cell will display.</li>
+          <li>Predict in writing what a cell will display, then run it.</li>
           <li>Change a single value and observe the effect.</li>
+          <li>ANG and LGC: type the code of the tutorials (TD) and lab sessions (TP) themselves, then complete and write short programs.</li>
           <li>Interpret the result in their discipline, and write down its limits.</li>
         </ul>
       </div>
     </div>
 
     <div class="tableau-defilant"><table class="tableau">
-      <caption>The official syllabus, covered by reading and running code</caption>
+      <caption>The syllabus, part by part: ANG and LGC together, DID adapted</caption>
       <thead><tr><th scope="col">Part of the syllabus</th><th scope="col">How it is taught</th><th scope="col">Materials</th></tr></thead>
       <tbody>
-        <tr><th scope="row"><a href="cours.html#chapitre-1">Chapter 1</a></th><td>Unchanged: concepts, history, ethics, tutorials (TD) on paper</td><td>Home page demonstration, Teachable Machine</td></tr>
-        <tr><th scope="row"><a href="cours.html#chapitre-2">Chapter 2</a> · Python</th><td>The examples are read, predicted, run and modified; students learn to read an error message</td><td>Notebook 00, spreadsheet</td></tr>
+        <tr><th scope="row"><a href="cours.html#chapitre-1">Chapter 1</a></th><td>For everyone: concepts, history, AI agents, ethics, tutorials (TD) on paper</td><td>Home page demonstration, <a href="../chapitr1_first_lesson.html?lang=en">lesson 1 slideshow</a>, Teachable Machine</td></tr>
+        <tr><th scope="row"><a href="cours.html#chapitre-2">Chapter 2</a> · Prompts and Python</th><td>For everyone: the <a href="cours.html#td-ch2-prompts">prompt workshop</a>, then examples that are read, predicted, run and modified; students learn to read an error message. ANG and LGC also type the code of the TD 2 exercises; DID may stick to running it</td><td>Notebook 00, TD 2 exercises, spreadsheet</td></tr>
         <tr><th scope="row"><a href="cours.html#chapitre-3">Chapter 3</a></th><td>Hand calculations from <a href="cours.html#td-ch3">TD 3</a>, the site's demonstrations, then the same algorithm in a notebook</td><td>Notebooks 06, 07, 08</td></tr>
-        <tr><th scope="row"><a href="cours.html#mini-projet">Mini-project</a></th><td>One complete notebook per subject: the student chooses the data and the question, sets the fields, interprets and writes up</td><td>Notebooks 01 to 05, and 09</td></tr>
+        <tr><th scope="row"><a href="cours.html#mini-projet">Mini-project</a></th><td>One complete notebook per subject: the student chooses the data and the question, sets the fields, interprets and writes up. ANG and LGC add at least one cell of their own (a filter, a count, a chart) and explain it</td><td>Notebooks 01 to 05, and 09</td></tr>
       </tbody>
     </table></div>
 
     <h4>Two tried and tested approaches</h4>
     <p>The <dfn>PRIMM</dfn> approach (Predict, Run, Investigate, Modify, Make; <span class="terme-en" lang="fr">prédire, exécuter, examiner, modifier, créer</span>) was described by Sue Sentance, Jane Waite and Maria Kallia (<em lang="en">Computer Science Education</em>, 2019), based on work in English secondary schools. Pupils predict the output of a working program while discussing it with a classmate, run it to check, investigate it, modify it, and only write their own program at the end. The <dfn>Use–Modify–Create</dfn> progression of Irene Lee and her co-authors (<em lang="en">ACM Inroads</em>, 2011) follows the same logic.</p>
-    <p>Both approaches were designed for young pupils learning to program, not for master's students in languages: we borrow the order of their steps, without promising results. And we stop before their last step. In your classes, "create" means producing an analysis (choosing data, asking a question, interpreting, writing), not a program.</p>
+    <p>Both approaches were designed for young pupils learning to program, not for master's students in languages: we borrow the order of their steps, without promising results. With ANG and LGC, we go as far as the last step: "create" means writing a short program, starting from a model, and producing the analysis it makes possible. With DID, "create" can remain producing an analysis (choosing data, asking a question, interpreting, writing).</p>
 
     <h4>What changes in assessment</h4>
-    <p>You grade understanding and interpretation, never the code: a reasoned prediction, even a wrong one, the explanation of a line, a comment on a result. In the <a href="#guide-evaluation-grilles">mini-project grid</a>, "Method and code" becomes: the notebook runs, the changed values are justified, and the student explains orally a cell that you choose (<a href="#guide-langues-evaluation">details</a>).</p>
+    <p>You grade understanding and interpretation first: a reasoned prediction, even a wrong one, the explanation of a line, a comment on a result. For ANG and LGC, the code counts too: the code the student has written or completed runs, and they explain every line of it. In the <a href="#guide-evaluation-grilles">mini-project grid</a>, "Method and code" becomes: the notebook runs, the changed values are justified, the added cells work (ANG, LGC), and the student explains orally a cell that you choose (<a href="#guide-langues-evaluation">details</a>).</p>
 
     <aside class="encadre encadre--retenir"><p class="encadre-titre">The ground rule</p>
-      <p>Never a blank page of code. Each cell is read, predicted and run; only one value changes at a time; each session ends with a few lines of interpretation written in the student's discipline. The grade is based on these lines, not on the code.</p>
+      <p>Never a blank page of code. Each cell is read, predicted and run; only one value changes at a time; in ANG and LGC, the student then rewrites the cell for their own text. Each session ends with a few lines of interpretation written in the student's discipline.</p>
     </aside>
   </article>
 
@@ -631,8 +631,8 @@
   </article>
 
   <article class="lecon" id="guide-langues-parcours">
-    <h3>Three tracks: ANG, LGC, DID</h3>
-    <p>The five <a href="cours.html#mini-projet">mini-project</a> subjects remain those of the syllabus, with the same methods and the same notebooks. From one audience to another, only the data and the question change. Fictitious data must be declared as such in the report.</p>
+    <h3>One syllabus for ANG and LGC, an adaptation for DID</h3>
+    <p>ANG and LGC follow the same syllabus: the same sessions, the same prompt workshop, the same tutorials (TD) and lab sessions (TP), the same code, the same notebooks (in English for ANG, in French for LGC), the same mini-project subjects. Neither group skips any part of the code. DID follows the same progression, with the option of sticking to reading and running the code. The five <a href="cours.html#mini-projet">mini-project</a> subjects remain those of the syllabus; from one audience to another, only the data and the question change. Fictitious data must be declared as such in the report.</p>
 
     <div class="tableau-defilant"><table class="tableau">
       <caption>The five subjects, adapted to the three audiences (suggestions)</caption>
@@ -649,12 +649,12 @@
     <div class="grille-cartes">
       <article class="carte">
         <h4>ANG · working in English</h4>
-        <p>Notebooks and the <a href="cours.html">English version of the site</a>, VADER, spaCy's English model. Written answers are given in English: each notebook becomes practice in the language and its technical vocabulary.</p>
+        <p>The LGC syllabus, code included, in English: notebooks and the <a href="cours.html">English version of the site</a>, VADER, spaCy's English model. Written answers are given in English: each notebook becomes practice in the language and its technical vocabulary.</p>
         <p>For linguists: AntConc and learner corpora, preferably your own students' work, anonymised and with their consent; access to published corpora may require a licence.</p>
       </article>
       <article class="carte">
         <h4>LGC · literary corpora</h4>
-        <p>Notebooks in French, public-domain texts (<a href="#guide-ressources-donnees">Gallica, Wikisource, Gutenberg</a>). The comparative approach fits well: the same analysis on a text and its translation, on two authors, on two periods.</p>
+        <p>The ANG syllabus, code included, in French: notebooks in French, public-domain texts (<a href="#guide-ressources-donnees">Gallica, Wikisource, Gutenberg</a>). The comparative approach fits well: the same analysis on a text and its translation, on two authors, on two periods.</p>
         <p>The question to keep asking: what does calculation see that close reading does not, and the other way round?</p>
       </article>
       <article class="carte">
@@ -682,10 +682,10 @@
         <tr><th scope="row">Expert system and forward chaining<br><code>06-systeme-expert</code></th><td><a href="cours.html#c3-symbolique">Chapter 3</a></td><td>The rules of poetic forms and exercise 1 of TD 3, worked through by the program</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/06-systeme-expert.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/06-systeme-expert.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/en/06-systeme-expert.ipynb" download>Download</a></td></tr>
         <tr><th scope="row">Learning from data<br><code>07-apprentissage</code></th><td><a href="cours.html#c3-algorithmes">Chapter 3</a></td><td>Redo the TD calculations with the program, then compare with scikit-learn</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/07-apprentissage.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/07-apprentissage.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/en/07-apprentissage.ipynb" download>Download</a></td></tr>
         <tr><th scope="row">Predicting the next word: from bigrams to Transformers<br><code>08-ia-generative</code></th><td><a href="cours.html#c3-deep">Chapter 3</a></td><td>A bigram model built on a small corpus, then Transformers online (masked word, generation)</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/08-ia-generative.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/08-ia-generative.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/en/08-ia-generative.ipynb" download>Download</a></td></tr>
-        <tr><th scope="row">The language classroom: readability, vocabulary, cloze tests<br><code>09-classe-de-langue</code></th><td>DID and ANG</td><td>Readability (Flesch for English, Kandel and Moles for French), lexical profile, automatic gap-fill text, a learner's answer compared with the expected answer</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/09-classe-de-langue.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/09-classe-de-langue.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/en/09-classe-de-langue.ipynb" download>Download</a></td></tr>
+        <tr><th scope="row">The language classroom: readability, vocabulary, cloze tests<br><code>09-classe-de-langue</code></th><td>ANG, LGC and DID</td><td>Readability (Flesch for English, Kandel and Moles for French), lexical profile, automatic gap-fill text, a learner's answer compared with the expected answer</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/09-classe-de-langue.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/09-classe-de-langue.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/en/09-classe-de-langue.ipynb" download>Download</a></td></tr>
       </tbody>
     </table></div>
-    <p>To download the English version: same address, with <code>en</code> instead of <code>fr</code>. Suggested order, following the <a href="#guide-progression">week-by-week plan</a>: 00 in chapter 2; 06 in week 4; 07 in weeks 5 and 6; 08 in week 8; 01 to 05 during the mini-project; 09 after 00, for the DID and ANG groups.</p>
+    <p>To download the English version: same address, with <code>en</code> instead of <code>fr</code>. Suggested order, following the <a href="#guide-progression">week-by-week plan</a>: 00 in chapter 2; 06 in week 4; 07 in weeks 5 and 6; 08 in week 8; 01 to 05 during the mini-project; 09 after 00, for all groups.</p>
 
     <h4>Running a notebook in Colab for the first time</h4>
     <ol class="etapes">
@@ -726,14 +726,14 @@
       <li><p class="etape-titre">Opening question · 5 min</p><p>A question from their discipline: "Can a machine tell whether a review of a novel is positive?"</p><p><strong>You:</strong> write the answers on the board without correcting them; you will come back to them.</p></li>
       <li><p class="etape-titre">Predict on paper · 15 min</p><p>A printed worksheet: the main cell of the notebook and three questions (what will it display? which word will count most? what if we change this number?). In pairs, in writing, with screens off.</p><p><strong>You:</strong> read the code aloud, saying what each line does; collect a few predictions.</p></li>
       <li><p class="etape-titre">Run · 15 min</p><p>The notebook is run from top to bottom; at each cell, students compare the output with their prediction.</p><p><strong>You:</strong> walk around the room without taking the keyboard. When a student says "it doesn't work", first answer: "Read the last line of the message." Project your notebook for anyone who has lost track.</p></li>
-      <li><p class="etape-titre">Change a field · 20 min</p><p>One value at a time: the sentence, the number of groups, the text. A new prediction, then a new run.</p><p><strong>You:</strong> insist on a prediction before each attempt; spot two surprising results to show everyone.</p></li>
+      <li><p class="etape-titre">Modify, then write · 20 min</p><p>One value at a time: the sentence, the number of groups, the text. A new prediction, then a new run. In ANG and LGC, each student then rewrites the main cell without looking at it, or completes two erased lines; in DID, students keep modifying.</p><p><strong>You:</strong> insist on a prediction before each attempt; spot two surprising results to show everyone.</p></li>
       <li><p class="etape-titre">Interpret · 15 min</p><p>In pairs, then as a class: what does this result mean for a student of English, a comparatist, a future teacher? What does the method not see?</p><p><strong>You:</strong> go back to the answers from the start, link them to the lesson, and ask for an example from the output for each claim.</p></li>
       <li><p class="etape-titre">Write, save, sign out · 20 min</p><p>In the last text cell, 100 to 150 words: what I predicted, what I got, what I conclude for my discipline, one limitation. In English for the ANG groups. Then a copy in Drive, submission, sign-out.</p><p><strong>You:</strong> read two or three paragraphs over students' shoulders; record the session in "My groups".</p></li>
     </ol>
 
     <h4>Six groups, one preparation</h4>
     <ul>
-      <li><strong>Prepare once a week</strong>: the same notebook, the same prediction worksheet and the same code for all six groups.</li>
+      <li><strong>Prepare once a week</strong>: the same notebook, the same prediction worksheet and the same code for all six groups. ANG and LGC do exactly the same session; only the working language and the data change.</li>
       <li><strong>Vary the examples</strong>: half a page of values for the "TO CHANGE" fields, in three columns (ANG, LGC, DID), for example a review of a novel in English, a line by Baudelaire, a textbook instruction.</li>
       <li><strong>Use Tuesday as a rehearsal</strong>: four and a half hours in a row show where students get stuck; arrive with the worksheets sorted by group. On Thursday, the free slot from 11:00 to 12:30 is for filling in the class log and correcting the worksheet before the last group.</li>
       <li><strong>Plan for a breakdown</strong>: without a network, project your notebook or screenshots and keep the prediction on paper (<a href="#guide-demarrer-materiel">options without a computer</a>).</li>
@@ -744,29 +744,29 @@
     <ol class="etapes">
       <li><p class="etape-titre">Create the six groups</p><p>"Add a group": name (IA M02 ANG 1, ANG 2, LGC, DID 1 to 3), timetable, room, mini-project subject, one colour per audience.</p></li>
       <li><p class="etape-titre">Import the lists</p><p>"Paste a list": paste the column of names copied from the administrative list.</p></li>
-      <li><p class="etape-titre">Generate the schedules</p><p>"Generate the schedule" for each group, starting from its first session. A Thursday public holiday only affects the DID groups: "Shift" moves back their following sessions, and only theirs.</p></li>
-      <li><p class="etape-titre">After each session</p><p>The roll call ("All present", then absences and late arrivals), "What was done", "Homework set", a note if needed. At the end of the semester: the grades, and the CSV export to Excel.</p></li>
+      <li><p class="etape-titre">Prepare the year</p><p>In the "Attendance" tab, "Prepare the year": one session a week for each group, on its day and at its time, over ten months, leaving out the holidays and public holidays. If a slot changes, "Change the schedule" moves the planned sessions from a given date.</p></li>
+      <li><p class="etape-titre">At each session</p><p>The "Today" banner opens the roll call ("Take the roll"): everyone is present by default; tap the absent and late students. Then "What was done", "Homework set", a note if needed. The register counts absences and flags students at risk; at the end of the semester: the grades, and the CSV export to Excel.</p></li>
     </ol>
   </article>
 
   <article class="lecon" id="guide-langues-evaluation">
-    <h3>Assessing without asking for code</h3>
-    <p>This grid is for grading a submitted notebook (the session paragraph or the "To hand in" section). Hand it out with the first notebook: students see that a wrong but reasoned prediction earns points. The points are only a guide; the weight of this work in the final grade depends on the regulations in force.</p>
+    <h3>Assessing code and interpretation</h3>
+    <p>This grid is for grading a submitted notebook (the session paragraph or the "To hand in" section). Hand it out with the first notebook: students see that a wrong but reasoned prediction earns points. It applies to all six groups; for ANG and LGC, the "Running and code" criterion also covers the code written by the student. The points are only a guide; the weight of this work in the final grade depends on the regulations in force.</p>
 
     <div class="tableau-defilant"><table class="tableau">
       <caption>Grid for grading a notebook (suggested points out of 20)</caption>
       <thead><tr><th scope="col">Criterion</th><th scope="col">What is expected</th><th scope="col">Points</th></tr></thead>
       <tbody>
         <tr><th scope="row">Prediction</th><td>Predictions are written before running the code and justified; any gap with the output is explained. A wrong but well-reasoned prediction earns the points.</td><td>4</td></tr>
-        <tr><th scope="row">Running</th><td>The notebook runs from top to bottom; the required fields have been changed; the outputs are present.</td><td>3</td></tr>
-        <tr><th scope="row">Interpretation</th><td>The result is linked to the question of the discipline (text, learner, class), with examples taken from the output.</td><td>6</td></tr>
+        <tr><th scope="row">Running and code</th><td>The notebook runs from top to bottom; the required fields have been changed; the outputs are present. ANG and LGC: the cells written or completed by the student work, and the student explains every line of them.</td><td>4</td></tr>
+        <tr><th scope="row">Interpretation</th><td>The result is linked to the question of the discipline (text, learner, class), with examples taken from the output.</td><td>5</td></tr>
         <tr><th scope="row">Critical distance</th><td>A limitation of the method or of the data (irony, negation, small sample); ethics if the question arises (consent, anonymity).</td><td>4</td></tr>
         <tr><th scope="row">Written expression</th><td>Clarity, correct terms from the <a href="cours.html#glossaire">glossary</a>; for the ANG groups, the English language is assessed here, and only here.</td><td>3</td></tr>
       </tbody>
     </table></div>
 
     <h4>Three exam questions on printed code</h4>
-    <p>Each question gives a short program and its real output (Python 3.11, scikit-learn 1.9): students read, recover an erased line, explain and interpret, without writing code. Suggested marking scheme: 6 + 7 + 7. For the ANG groups, translate the questions and the examples, then run the code again: the outputs change with the text.</p>
+    <p>Each question gives a short program and its real output (Python 3.11, scikit-learn 1.9): students read, recover an erased line, explain and interpret. Suggested marking scheme: 6 + 7 + 7. For ANG and LGC, replace one explanation sub-question with writing or correcting three lines of code, as in the TD 2 exercises. For the ANG groups, translate the questions and the examples, then run the code again: the outputs change with the text.</p>
 
     <div class="exercice" id="guide-langues-q1">
       <p class="exercice-num">Question 1 · Counting words (6 points)</p>

@@ -163,7 +163,42 @@
   <!-- ============================ TD CHAPITRE 2 ============================ -->
   <article class="lecon" id="td-ch2">
     <h3>Chapter 2 tutorial (TD)</h3>
-    <p>Exercises in Python: simple programs, lists and tuples, data handling with the libraries seen in class. Type the code yourself instead of copying it: typing mistakes are part of learning. The outputs shown are those produced by the solution programs with Python 3.11.</p>
+    <p>A prompt workshop, then exercises in Python: simple programs, lists and tuples, data handling with the libraries seen in class. Type the code yourself instead of copying it: typing mistakes are part of learning. The outputs shown are those produced by the solution programs with Python 3.11.</p>
+
+    <div class="exercice" id="td-ch2-prompts">
+      <p class="exercice-num">Workshop · Improving a prompt given to an AI assistant</p>
+      <div class="exercice-enonce">
+        <p>A student gave this prompt to an AI assistant, followed by five readers' comments on a novel: <em>"Tell me if these comments are good."</em> (<a href="index.html#c2-prompts">lesson</a>)</p>
+        <ol>
+          <li>Identify three weaknesses in this prompt, using the six elements of a prompt.</li>
+          <li>Rewrite it: role, task, allowed answer categories, format (a table), quotation constraint.</li>
+          <li>Add two annotated examples (<span class="terme-en" lang="en">few-shot</span>).</li>
+          <li>Explain how you will check that the assistant's answers are correct.</li>
+        </ol>
+      </div>
+      <details class="corrige"><summary>Show the solution</summary>
+        <div class="corrige-corps">
+          <p><strong>1.</strong> "Good" is ambiguous: well written, positive, relevant? No answer categories are given, so the answers cannot be compared with one another. No format is requested, and nothing requires the assistant to justify its answers.</p>
+          <p><strong>2 and 3.</strong> One possible rewrite:</p>
+          <figure class="code">
+            <figcaption class="code-legende">Improved prompt</figcaption>
+            <pre><code>You are an assistant in the analysis of literary reception.
+For each reader's comment below, give its tone:
+positive, negative or mixed (one word only).
+Justify each answer with an exact quotation from the comment.
+Answer with a table: number, tone, quotation.
+
+Examples:
+"I couldn't put it down." → positive · "couldn't put it down"
+"Beautiful language, but a rushed ending." → mixed · "but a rushed ending"
+
+Comments:
+"""1. …
+2. …"""</code></pre>
+          </figure>
+          <p><strong>4.</strong> Annotate the five comments yourself before reading the answer, then count the agreements, as in <a href="index.html#mp-sujet-1">subject 1 of the mini-project</a>. Check that each quotation appears word for word in the comment. Run the same prompt a second time: an answer that changes from one run to the next is fragile.</p>
+        </div></details>
+    </div>
 
     <div class="exercice" id="td-ch2-ex1">
       <p class="exercice-num">Exercise 1 · A simple program: palindromes</p>

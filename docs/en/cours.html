@@ -694,11 +694,12 @@
   <header class="chapitre-tete">
     <p class="surtitre">Chapter 2 · 2 weeks</p>
     <h2 class="titre-section" id="chapitre-2-titre">Python language review and further topics</h2>
-    <p class="chapeau">By the end of this chapter, you will be able to write short Python programs, explore a table of literary works with pandas, organize your code into classes, query a corpus of text files, and deliver your results as an Excel workbook or a PDF.</p>
+    <p class="chapeau">By the end of this chapter, you will be able to write a precise request to an AI assistant and check its answer, write short Python programs, explore a table of literary works with pandas, organize your code into classes, query a corpus of text files, and deliver your results as an Excel workbook or a PDF.</p>
     <ul class="puces">
       <li class="puce">Lecture</li>
       <li class="puce">Tutorial (TD)</li>
       <li class="puce">Lab session (TP)</li>
+      <li class="puce puce--outil">Prompts</li>
       <li class="puce puce--outil">Python 3</li>
       <li class="puce puce--outil">NumPy</li>
       <li class="puce puce--outil">pandas</li>
@@ -710,6 +711,7 @@
 
   <nav class="sommaire-chapitre" aria-label="Chapter 2 contents">
     <ol>
+      <li><a href="#c2-prompts">Writing a clear request to an AI assistant</a></li>
       <li><a href="#c2-installer">Setting up the environment</a></li>
       <li><a href="#c2-fondamentaux">The fundamentals of the language</a></li>
       <li><a href="#c2-numpy-pandas">The NumPy and pandas libraries</a></li>
@@ -720,9 +722,103 @@
   </nav>
 
   <aside class="encadre encadre--exemple">
-    <p class="encadre-titre">Never programmed? Start with the notebooks</p>
-    <p>You study languages, not computer science: in this course you do not have to write programs. Complete notebooks, ready to run in Google Colab, go with every part: you run the cells one by one, change a sentence or a number in the “TO CHANGE” fields, then interpret the result. Start with <a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/00-prise-en-main.ipynb" target="_blank" rel="noopener">Getting started: Python without fear</a>; the full list is in the <a href="enseignant.html#guide-langues-carnets">teacher's guide</a>.</p>
+    <p class="encadre-titre">Never programmed? Everything starts from zero</p>
+    <p>You study languages, not computer science: programming starts here, step by step, and the course code is for everyone. Each example is read, predicted, run and modified before you write your own, in the lab session (TP) as in the tutorial (TD). Complete notebooks, ready to run in Google Colab, go with every part: you run the cells one by one, change a sentence or a number in the “TO CHANGE” fields, then rewrite the code yourself. Start with <a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/00-prise-en-main.ipynb" target="_blank" rel="noopener">Getting started: Python without fear</a>; the full list is in the <a href="enseignant.html#guide-langues-carnets">teacher's guide</a>.</p>
   </aside>
+
+  <!-- ============================================================ 0 -->
+  <article class="lecon" id="c2-prompts">
+    <h3>Writing a clear request to an AI assistant</h3>
+    <p>An <dfn>AI assistant</dfn> (ChatGPT, Gemini, Claude, Copilot…) is a large language model that you query in natural language. The text you give it is called a <dfn>prompt</dfn> (<span class="terme-en" lang="fr">consigne</span>), and the art of writing one is called <dfn>prompt engineering</dfn> (<span class="terme-en" lang="fr">ingénierie de prompt</span>). The model produces the most probable continuation of the text it receives (<a href="index.html#c3-deep">chapter 3</a>): the more precise the prompt, the closer this continuation comes to what you expect. In this course, the assistant is used for two things: analyzing texts, and helping you read and write Python code. Never to do your work for you.</p>
+
+    <h4>The six elements of a good prompt</h4>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Anatomy of a prompt</caption>
+      <thead><tr><th scope="col">Element</th><th scope="col">Question to ask yourself</th><th scope="col">Example</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Role</th><td>What point of view should the assistant adopt?</td><td>"You are a research assistant in comparative literature."</td></tr>
+        <tr><th scope="row">Task</th><td>What must it do, with which action verb?</td><td>"Find the passages where the narrator expresses nostalgia."</td></tr>
+        <tr><th scope="row">Context</th><td>What do you know that it does not?</td><td>"The text is an extract from an Algerian novel of the 1950s."</td></tr>
+        <tr><th scope="row">Data</th><td>What exactly is it working on?</td><td>The text, placed between two markers: <code>"""…"""</code></td></tr>
+        <tr><th scope="row">Format</th><td>In what form do you want the answer?</td><td>"A table: exact quotation, line, justification in one sentence."</td></tr>
+        <tr><th scope="row">Constraints</th><td>What must it avoid, and how far should it go?</td><td>"Quote word for word; if no passage fits, answer 'none'."</td></tr>
+      </tbody>
+    </table></div>
+
+    <h4>From a vague prompt to a precise prompt</h4>
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>Vague prompt</h4>
+        <figure class="code"><pre><code>Analyze this poem.</code></pre></figure>
+        <p>The assistant chooses the angle, the length and the vocabulary on its own: the answer is general, and there is no way to check it.</p>
+      </div>
+      <div class="comparaison-col">
+        <h4>Precise prompt</h4>
+        <figure class="code"><pre><code>You are a literature teacher. Here is a poem between triple quotes.
+1. Give its main theme in one sentence.
+2. Find three images that support it (exact quotations).
+3. State the dominant tone: positive, negative or mixed, and justify it.
+Answer with a table. Do not invent any quotation.
+"""[the poem]"""</code></pre></figure>
+        <p>A role, a task broken down into steps, a format, a constraint that allows checking: the answer can be compared with your own reading.</p>
+      </div>
+    </div>
+
+    <h4>Four useful techniques</h4>
+    <ul>
+      <li><strong>Give examples</strong> (<span class="terme-en" lang="en">few-shot prompting</span>): two or three sentences that are already annotated show the expected category better than a definition. This is, in miniature, the supervised learning of chapter 3.</li>
+      <li><strong>Break the task down</strong>: one step per numbered line, or several successive requests, checking each answer.</li>
+      <li><strong>Ask for evidence</strong>: exact quotations, line numbers, sources. You then check each quotation in the text.</li>
+      <li><strong>Iterate</strong>: if the answer is not right, say what is missing instead of rewriting everything, and keep the version that works.</li>
+    </ul>
+
+    <h4>The assistant and Python code</h4>
+    <p>An assistant writes code quickly, and sometimes wrongly. Treat it as a classmate who explains, not as the author of your work:</p>
+    <figure class="code">
+      <figcaption class="code-legende">Three prompts for learning, not for copying</figcaption>
+      <pre><code>Explain line by line what this code does, for a beginner: [code]
+My code shows this error: [message]. Explain the cause without giving me the solution.
+Write a function that counts the words in a text, then three examples to test it.</code></pre>
+    </figure>
+    <p>For the third one, run the code and its tests yourself: code that has not been run has not been checked. Then <strong>rewrite it</strong> in your notebook without looking at the answer: this is how syntax is learned. In the tutorial (TD) as in the exam, you will explain every line of what you hand in.</p>
+    <p>The program below prepares the same instruction for several texts. A string, a dictionary, a loop and an f-string: the concepts of the next lesson are already at work.</p>
+    <figure class="code">
+      <figcaption class="code-legende">prompts.py: the same instruction for each text</figcaption>
+      <pre><code class="language-python">consigne = ("You are a discourse analysis assistant. "
+            "Give the tone of the text (positive, negative or mixed) "
+            "and quote the sentence that shows it most clearly.")
+
+textes = {
+    "critique_1": "A luminous novel, carried by crystal-clear writing.",
+    "critique_2": "A muddled plot and flat characters.",
+}
+
+for nom, texte in textes.items():
+    prompt = f'{consigne}\n"""{texte}"""'
+    print(f"--- {nom} ---")
+    print(prompt)</code></pre>
+      <pre class="sortie"><samp>--- critique_1 ---
+You are a discourse analysis assistant. Give the tone of the text (positive, negative or mixed) and quote the sentence that shows it most clearly.
+"""A luminous novel, carried by crystal-clear writing."""
+--- critique_2 ---
+You are a discourse analysis assistant. Give the tone of the text (positive, negative or mixed) and quote the sentence that shows it most clearly.
+"""A muddled plot and flat characters."""</samp></pre>
+    </figure>
+    <p>Applying the same instruction to each text makes the answers comparable: this is the precondition for any corpus analysis, with or without an assistant.</p>
+
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Three rules before sending a text</p>
+      <ul>
+        <li><strong>Check</strong>: an assistant sometimes confidently invents quotations, dates or references (this is called <dfn>hallucination</dfn>). Any information you reuse must be checked against a source.</li>
+        <li><strong>Protect</strong>: the text goes to a server. Do not paste personal data (questionnaire answers, students' papers) or copyrighted texts into it (Law 18-07 on the protection of personal data).</li>
+        <li><strong>Declare</strong>: state in your work which assistant you used, what for and with which prompts (<a href="enseignant.html#guide-ia-charte">AI usage charter</a>).</li>
+      </ul>
+    </aside>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">Key points</p>
+      <p>A good prompt says what role to play, what to do, on what, in what form and within what limits. Break the task down, give examples, ask for evidence, check. The assistant explains the code; you are the one who writes it and runs it.</p>
+    </aside>
+  </article>
 
   <!-- ============================================================ 1 -->
   <article class="lecon" id="c2-installer">
@@ -2797,7 +2893,42 @@ nx.write_gexf(G, "nedjma.gexf")</code></pre>
   <!-- ============================ TD CHAPITRE 2 ============================ -->
   <article class="lecon" id="td-ch2">
     <h3>Chapter 2 tutorial (TD)</h3>
-    <p>Exercises in Python: simple programs, lists and tuples, data handling with the libraries seen in class. Type the code yourself instead of copying it: typing mistakes are part of learning. The outputs shown are those produced by the solution programs with Python 3.11.</p>
+    <p>A prompt workshop, then exercises in Python: simple programs, lists and tuples, data handling with the libraries seen in class. Type the code yourself instead of copying it: typing mistakes are part of learning. The outputs shown are those produced by the solution programs with Python 3.11.</p>
+
+    <div class="exercice" id="td-ch2-prompts">
+      <p class="exercice-num">Workshop · Improving a prompt given to an AI assistant</p>
+      <div class="exercice-enonce">
+        <p>A student gave this prompt to an AI assistant, followed by five readers' comments on a novel: <em>"Tell me if these comments are good."</em> (<a href="index.html#c2-prompts">lesson</a>)</p>
+        <ol>
+          <li>Identify three weaknesses in this prompt, using the six elements of a prompt.</li>
+          <li>Rewrite it: role, task, allowed answer categories, format (a table), quotation constraint.</li>
+          <li>Add two annotated examples (<span class="terme-en" lang="en">few-shot</span>).</li>
+          <li>Explain how you will check that the assistant's answers are correct.</li>
+        </ol>
+      </div>
+      <details class="corrige"><summary>Show the solution</summary>
+        <div class="corrige-corps">
+          <p><strong>1.</strong> "Good" is ambiguous: well written, positive, relevant? No answer categories are given, so the answers cannot be compared with one another. No format is requested, and nothing requires the assistant to justify its answers.</p>
+          <p><strong>2 and 3.</strong> One possible rewrite:</p>
+          <figure class="code">
+            <figcaption class="code-legende">Improved prompt</figcaption>
+            <pre><code>You are an assistant in the analysis of literary reception.
+For each reader's comment below, give its tone:
+positive, negative or mixed (one word only).
+Justify each answer with an exact quotation from the comment.
+Answer with a table: number, tone, quotation.
+
+Examples:
+"I couldn't put it down." → positive · "couldn't put it down"
+"Beautiful language, but a rushed ending." → mixed · "but a rushed ending"
+
+Comments:
+"""1. …
+2. …"""</code></pre>
+          </figure>
+          <p><strong>4.</strong> Annotate the five comments yourself before reading the answer, then count the agreements, as in <a href="index.html#mp-sujet-1">subject 1 of the mini-project</a>. Check that each quotation appears word for word in the comment. Run the same prompt a second time: an answer that changes from one run to the next is fragile.</p>
+        </div></details>
+    </div>
 
     <div class="exercice" id="td-ch2-ex1">
       <p class="exercice-num">Exercise 1 · A simple program: palindromes</p>
