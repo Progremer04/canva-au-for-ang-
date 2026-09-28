@@ -2,6 +2,7 @@
 """Construit la leçon 1 (« De l'automate à l'agent ») en un seul fichier : docs/chapitr1_first_lesson.html.
 
   python3 tools/lecon1.py
+  python3 tools/lecon1.py --mot-de-passe NOUVEAU   (change le mot de passe des notes, puis reconstruit)
 
 Sources : docs/_sources/lecon1/gabarit.html (le moteur de présentation)
           docs/_sources/lecon1/{fr,en,ar}.json (les 60 diapositives, une version par langue)
@@ -9,13 +10,21 @@ Sources : docs/_sources/lecon1/gabarit.html (le moteur de présentation)
 Les trois versions doivent avoir exactement la même structure : mêmes types, même nombre de points,
 mêmes valeurs pour les clés techniques (illustration, photo, vidéo, bonne réponse…).
 
+Notes de l'enseignant : elles ne figurent pas en clair dans le fichier produit. Elles y sont chiffrées
+(clé tirée du mot de passe par PBKDF2-HMAC-SHA256, flux SHA-256 en mode compteur, contrôle HMAC-SHA256) et
+ne s'affichent que dans la fenêtre du présentateur, une fois le mot de passe saisi. Le mot de passe n'est
+pas conservé : docs/_sources/lecon1/cle-notes.json ne contient que le sel et la clé dérivée.
+
 Photos : les copies de docs/_sources/lecon1/photos/ sont intégrées au fichier (visibles hors ligne) ;
 pour les autres, le fichier cherche docs/assets/img/lecon1/<clé>.jpg, puis la photo sur Wikimedia Commons
 (vignette de 500 px, puis l'original) ; sans connexion, il affiche une illustration dessinée.
 """
+import argparse
 import base64
 import hashlib
+import hmac
 import json
+import os
 import sys
 from pathlib import Path
 from urllib.parse import quote
@@ -55,6 +64,25 @@ PHOTOS = {
 # Pages de référence des photos qui ne viennent pas de Wikimedia Commons.
 PAGES = {"perceptron": "https://en.wikipedia.org/wiki/Perceptron"}
 LARGEUR = 500  # une des tailles de vignette standard de Wikimedia : les autres sont refusées
+CLE_NOTES = SOURCES / "cle-notes.json"
+ITERATIONS = 60_000
+
+
+def definir_mot_de_passe(mot_de_passe):
+    sel = os.urandom(16)
+    cle = hashlib.pbkdf2_hmac("sha256", mot_de_passe.strip().encode("utf-8"), sel, ITERATIONS, 32)
+    CLE_NOTES.write_text(json.dumps({"sel": sel.hex(), "iterations": ITERATIONS, "cle": cle.hex()}, indent=2) + "\n",
+                         encoding="utf-8")
+
+
+def chiffrer(texte, cle):
+    """Même calcul que dechiffrer() dans le gabarit. Le vecteur initial est le contrôle HMAC du texte :
+    un même texte donne le même fichier (pas de modification inutile à chaque construction)."""
+    kc = hashlib.sha256(cle + b"lx-chiffre").digest()
+    km = hashlib.sha256(cle + b"lx-controle").digest()
+    iv = hmac.new(km, texte, hashlib.sha256).digest()[:16]
+    flux = b"".join(hashlib.sha256(kc + iv + i.to_bytes(4, "big")).digest() for i in range((len(texte) + 31) // 32))
+    return iv, bytes(a ^ b for a, b in zip(texte, flux))
 
 
 def photo(cle, nom, auteur, licence, illus, fmt):
@@ -109,9 +137,20 @@ def construire(silencieux=False):
     if erreurs:
         print("[x] leçon 1 :\n  " + "\n  ".join(erreurs[:40]), file=sys.stderr)
         return 1
+    if not CLE_NOTES.exists():
+        print("[x] leçon 1 : pas de mot de passe pour les notes ; lancez python3 tools/lecon1.py --mot-de-passe …",
+              file=sys.stderr)
+        return 1
+    reglage = json.loads(CLE_NOTES.read_text(encoding="utf-8"))
+    notes = {l: [d.pop("notes", "") for d in lecon[l]["diapos"]] for l in LANGUES}
+    iv, chiffre = chiffrer(json.dumps(notes, ensure_ascii=False, separators=(",", ":")).encode("utf-8"),
+                           bytes.fromhex(reglage["cle"]))
+    notes_chiffrees = {"sel": reglage["sel"], "iterations": reglage["iterations"],
+                       "iv": base64.b64encode(iv).decode("ascii"), "donnees": base64.b64encode(chiffre).decode("ascii")}
     photos = {cle: photo(cle, *v) for cle, v in PHOTOS.items()}
     donnees = ("window.LECON = " + json.dumps(lecon, ensure_ascii=False, separators=(",", ":")) + ";\n"
-               "window.PHOTOS = " + json.dumps(photos, ensure_ascii=False, separators=(",", ":")) + ";")
+               "window.PHOTOS = " + json.dumps(photos, ensure_ascii=False, separators=(",", ":")) + ";\n"
+               "window.NOTES = " + json.dumps(notes_chiffrees, separators=(",", ":")) + ";")
     donnees = donnees.replace("</", "<\\/")
     gabarit = (SOURCES / "gabarit.html").read_text(encoding="utf-8")
     if "/*@@DONNEES@@*/" not in gabarit:
@@ -125,4 +164,10 @@ def construire(silencieux=False):
 
 
 if __name__ == "__main__":
+    p = argparse.ArgumentParser()
+    p.add_argument("--mot-de-passe", help="nouveau mot de passe des notes de l'enseignant")
+    a = p.parse_args()
+    if a.mot_de_passe:
+        definir_mot_de_passe(a.mot_de_passe)
+        print(f"mot de passe des notes changé : {CLE_NOTES.relative_to(RACINE)}")
     sys.exit(construire())

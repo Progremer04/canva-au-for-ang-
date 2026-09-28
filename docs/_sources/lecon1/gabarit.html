@@ -64,6 +64,7 @@ a { color: var(--t2); }
   background: var(--surface); cursor: pointer; transition: border-color .2s, transform .2s;
 }
 .outil:hover { border-color: var(--texte); transform: scale(1.06); }
+.outil[hidden] { display: none; }
 .outil[aria-pressed="true"] { border-color: var(--t2); color: var(--t2); }
 .outil svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 :focus-visible { outline: 2px solid var(--c1); outline-offset: 2px; }
@@ -302,6 +303,43 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
 .notes__reponse { padding: 8px 12px; border-radius: 10px; background: color-mix(in srgb, var(--juste) 18%, transparent); font-weight: 700; }
 .console__aide { margin: 0; color: var(--doux); font-size: 13px; line-height: 1.45; }
 
+/* ---------- Diaporama : plein écran, sans barre ni boutons, comme PowerPoint ---------- */
+.mode-diaporama, .mode-diaporama body { background: #000; }
+.mode-diaporama .barre, .mode-diaporama .pied { display: none; }
+.mode-diaporama .scene { inset: 0; }
+.mode-diaporama .diapo { border-radius: 0; box-shadow: none; }
+.mode-diaporama .apercu { inset: 0; }
+.curseur-cache, .curseur-cache * { cursor: none !important; }
+.commandes { position: fixed; inset-block-end: 16px; inset-inline-start: 16px; z-index: 36; display: none; align-items: center; gap: 2px; padding: 4px; border-radius: 30px; background: #000b; color: #fff; opacity: 0; transition: opacity .35s; font-family: var(--f-ui); }
+.mode-diaporama .commandes { display: flex; }
+.commandes.visible, .commandes:hover, .commandes:focus-within { opacity: 1; }
+.commandes button { display: grid; place-items: center; width: 36px; height: 36px; border: 0; border-radius: 50%; background: none; color: #fff; cursor: pointer; }
+.commandes button:hover { background: #ffffff30; }
+.commandes svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.commandes span { min-width: 64px; text-align: center; font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.ecran-noir { position: fixed; inset: 0; z-index: 35; display: none; place-items: center; background: #000; color: #9a9a9a; font: 600 20px var(--f-ui); cursor: pointer; }
+.ecran-noir[data-etat="noir"], .ecran-noir[data-etat="blanc"], .ecran-noir[data-etat="fin"] { display: grid; }
+.ecran-noir[data-etat="blanc"] { background: #fff; }
+.ecran-noir[data-etat="fin"] { place-items: start center; padding-top: 24px; }
+.astuce { position: fixed; inset-block-start: 20px; inset-inline: 16px; z-index: 37; width: max-content; max-width: calc(100% - 32px); margin: 0 auto; padding: 10px 18px; border-radius: 30px; background: #000d; color: #fff; font: 600 15px var(--f-ui); pointer-events: none; }
+.astuce[hidden] { display: none; }
+.outil--diaporama { display: flex; width: auto; gap: 6px; padding: 0 16px 0 12px; border-color: var(--texte); border-radius: 30px; background: var(--texte); color: var(--fond); font: 700 14px var(--f-ui); }
+.outil--diaporama svg { width: 16px; height: 16px; fill: currentColor; stroke: none; }
+.mode-presentateur .outil--diaporama { display: none; }
+@media (max-width: 720px) { .outil--diaporama span { display: none; } .outil--diaporama { padding: 0 12px; } }
+
+/* Notes protégées par mot de passe */
+.verrou { display: grid; gap: 10px; align-content: start; padding: 16px; border: 1px dashed var(--ligne); border-radius: 14px; background: var(--fond); font-family: var(--f-ui); }
+.verrou[hidden] { display: none; }
+.verrou__titre { display: flex; align-items: center; gap: 8px; margin: 0; font-weight: 700; }
+.verrou__titre svg, .notes__tete svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.verrou label { display: grid; gap: 4px; color: var(--doux); font-size: 13px; font-weight: 700; }
+.verrou input { height: 44px; padding: 0 12px; border: 1px solid var(--ligne); border-radius: 10px; background: var(--surface); color: var(--texte); font: 600 18px var(--f-code); letter-spacing: .12em; }
+.verrou button { justify-self: start; height: 40px; padding: 0 20px; border: 0; border-radius: 30px; background: var(--texte); color: var(--fond); font-weight: 700; cursor: pointer; }
+.verrou__message { margin: 0; color: var(--doux); font-size: 14px; }
+.verrou__message.erreur { color: var(--c3); font-weight: 700; }
+.notes__texte[hidden] { display: none; }
+
 /* Vue d'ensemble */
 .apercu { position: fixed; inset: 56px 0 0 0; z-index: 30; overflow-y: auto; padding: 24px; background: var(--fond); }
 .apercu[hidden] { display: none; }
@@ -329,7 +367,7 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
 @page { size: 1280px 720px; margin: 0; }
 @media print {
   html, body { height: auto; overflow: visible; background: #fff; }
-  .barre, .pied, .console, .apercu, .scene { display: none !important; }
+  .barre, .pied, .console, .apercu, .scene, .commandes, .ecran-noir, .astuce { display: none !important; }
   .impression { display: block !important; }
   .impression .diapo { position: relative; opacity: 1; visibility: visible; transform: none; width: 1280px; height: 720px; border-radius: 0; box-shadow: none; break-after: page; page-break-after: always; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .impression .a, .impression .bulle { opacity: 1 !important; transform: none !important; animation: none !important; }
@@ -351,7 +389,7 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     <button type="button" class="outil outil--secondaire" data-action="presentateur" data-titre="presentateur"><svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="11" height="8" rx="1.2"/><rect x="10.5" y="11" width="11" height="8" rx="1.2"/><path d="M5 15.5h3M5 18.5h3"/></svg></button>
     <button type="button" class="outil outil--secondaire" data-action="imprimer" data-titre="imprimer"><svg viewBox="0 0 24 24"><path d="M7 9V3.5h10V9"/><rect x="3.5" y="9" width="17" height="8" rx="1.5"/><path d="M7 14h10v6.5H7z"/></svg></button>
     <button type="button" class="outil" data-action="theme" data-titre="theme"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></svg></button>
-    <button type="button" class="outil" data-action="plein" data-titre="plein"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg></button>
+    <button type="button" class="outil outil--diaporama" data-action="diaporama" data-titre="diaporama_titre"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z"/></svg><span data-t="diaporama"></span></button>
   </div>
 </header>
 <main class="scene" id="scene" aria-live="polite"><div class="scene__cadre" id="cadre"></div></main>
@@ -360,11 +398,19 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     <p class="console__horloge"><span data-t="chrono"></span><strong id="chrono" dir="ltr">00:00</strong></p>
     <p class="console__horloge"><span data-t="heure"></span><strong id="heure" dir="ltr">--:--</strong></p>
     <button type="button" class="outil" data-action="zero" data-titre="zero"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4h4"/></svg></button>
+    <button type="button" class="outil" data-action="noir" data-titre="noir" aria-pressed="false"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="12" rx="1.5" fill="currentColor"/><path d="M9 20h6"/></svg></button>
   </div>
   <div class="console__suivante"><h2 data-t="suivante"></h2><div id="suivante"></div></div>
   <section class="notes" aria-labelledby="notes-titre">
     <div class="notes__tete"><h2 id="notes-titre" data-t="notes"></h2>
-      <span><button type="button" class="outil" data-action="moins" data-titre="moins">A−</button> <button type="button" class="outil" data-action="plus" data-titre="plus">A+</button></span></div>
+      <span><button type="button" class="outil" data-action="verrouiller" data-titre="verrouiller" hidden><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>
+        <button type="button" class="outil" data-action="moins" data-titre="moins">A−</button> <button type="button" class="outil" data-action="plus" data-titre="plus">A+</button></span></div>
+    <form class="verrou" id="verrou" hidden>
+      <p class="verrou__titre"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span data-t="verrouille"></span></p>
+      <label><span data-t="mdp"></span><input type="password" id="mdp" autocomplete="current-password" dir="ltr" required></label>
+      <button type="submit" data-t="ouvrir"></button>
+      <p class="verrou__message" id="mdp-message" role="status" hidden></p>
+    </form>
     <div class="notes__texte" id="notes-texte"></div>
   </section>
   <p class="console__aide" data-t="aide"></p>
@@ -374,6 +420,16 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
   <span class="pied__compteur" id="compteur"></span>
   <button type="button" class="outil" data-action="suivant" data-titre="suivant"><svg viewBox="0 0 24 24"><path class="fleche" d="M9 5l7 7-7 7"/></svg></button>
 </nav>
+<div class="commandes" id="commandes">
+  <button type="button" data-action="precedent" data-titre="precedent"><svg viewBox="0 0 24 24"><path class="fleche" d="M15 5l-7 7 7 7"/></svg></button>
+  <span id="compteur-diaporama" dir="ltr"></span>
+  <button type="button" data-action="suivant" data-titre="suivant"><svg viewBox="0 0 24 24"><path class="fleche" d="M9 5l7 7-7 7"/></svg></button>
+  <button type="button" data-action="apercu" data-titre="toutes"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></svg></button>
+  <button type="button" data-action="noir" data-titre="noir"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="12" rx="1.5" fill="currentColor"/><path d="M9 20h6"/></svg></button>
+  <button type="button" data-action="sortir" data-titre="sortir"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+</div>
+<div class="ecran-noir" id="ecran-noir" data-etat=""><p id="ecran-noir-texte"></p></div>
+<p class="astuce" id="astuce" data-t="projeter" hidden></p>
 <div class="apercu" id="apercu" hidden><div class="apercu__grille" id="apercu-grille"></div></div>
 <div class="impression" id="impression"></div>
 
@@ -388,24 +444,36 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
   var UI = {
     fr: { presentateur: "Mode présentateur : vos notes dans une seconde fenêtre, vue de vous seul (S)", chrono: "Chronomètre", heure: "Heure", zero: "Remettre le chronomètre à zéro",
           suivante: "Diapositive suivante", fin: "Fin de la présentation", reponse: "Réponse :", plus: "Agrandir les notes", moins: "Réduire les notes", ecran: "Présentateur",
-          aide: "Cette fenêtre n'est vue que par vous. Placez l'autre fenêtre sur le vidéoprojecteur (écran étendu : touches Windows + P, puis « Étendre ») et appuyez sur F pour le plein écran. Les deux fenêtres avancent ensemble.",
+          aide: "Cette fenêtre n'est vue que par vous. Placez l'autre fenêtre sur le vidéoprojecteur (écran étendu : touches Windows + P, puis « Étendre ») et appuyez sur F pour le diaporama en plein écran. Les deux fenêtres avancent ensemble ; B : écran noir.",
           popup: "Le navigateur a bloqué la fenêtre du présentateur : autorisez les fenêtres surgissantes (pop-ups) pour cette page.",
           marque: "IA · Chapitre 1", notes: "Notes de l'enseignant", apercu: "Vue d'ensemble (O)", imprimer: "Imprimer / PDF (P)", theme: "Thème Nuit ou Jour (T)",
-          plein: "Plein écran (F)", precedent: "Précédente (←)", suivant: "Suivante (→)", reveler: "Afficher la réponse", video_hors: "La vidéo demande une connexion Internet.",
+          diaporama: "Diaporama", diaporama_titre: "Lancer le diaporama en plein écran (F5 : depuis le début, Maj+F5 ou F : depuis cette diapositive)",
+          fin_diaporama: "Fin du diaporama. Cliquez pour quitter.", toutes: "Toutes les diapositives (G)", noir: "Écran noir (B)", sortir: "Quitter le diaporama (Échap)",
+          projeter: "Placez cette fenêtre sur le vidéoprojecteur, puis appuyez sur F pour le plein écran.",
+          verrouille: "Notes protégées par un mot de passe", mdp: "Mot de passe", ouvrir: "Afficher les notes", mdp_faux: "Mot de passe incorrect.",
+          calcul: "Vérification…", verrouiller: "Verrouiller les notes", precedent: "Précédente (←)", suivant: "Suivante (→)", reveler: "Afficher la réponse", video_hors: "La vidéo demande une connexion Internet.",
           video_ouvrir: "Ouvrir sur YouTube", video_lancer: "Lancer la vidéo", domaine: "domaine public", diapo: "Diapositive {n} sur {t}" },
     en: { presentateur: "Presenter view: your notes in a second window that only you see (S)", chrono: "Timer", heure: "Time", zero: "Reset the timer",
           suivante: "Next slide", fin: "End of the presentation", reponse: "Answer:", plus: "Larger notes", moins: "Smaller notes", ecran: "Presenter",
-          aide: "Only you see this window. Put the other window on the projector (extended display: Windows + P, then “Extend”) and press F for full screen. Both windows move together.",
+          aide: "Only you see this window. Put the other window on the projector (extended display: Windows + P, then “Extend”) and press F for the full-screen slide show. Both windows move together; B: black screen.",
           popup: "The browser blocked the presenter window: allow pop-ups for this page.",
           marque: "AI · Chapter 1", notes: "Teacher's notes", apercu: "Overview (O)", imprimer: "Print / PDF (P)", theme: "Night or Day theme (T)",
-          plein: "Full screen (F)", precedent: "Previous (←)", suivant: "Next (→)", reveler: "Show the answer", video_hors: "The video needs an Internet connection.",
+          diaporama: "Slide show", diaporama_titre: "Start the full-screen slide show (F5: from the beginning, Shift+F5 or F: from this slide)",
+          fin_diaporama: "End of slide show. Click to exit.", toutes: "All slides (G)", noir: "Black screen (B)", sortir: "End the show (Esc)",
+          projeter: "Put this window on the projector, then press F for full screen.",
+          verrouille: "Notes protected by a password", mdp: "Password", ouvrir: "Show the notes", mdp_faux: "Wrong password.",
+          calcul: "Checking…", verrouiller: "Lock the notes", precedent: "Previous (←)", suivant: "Next (→)", reveler: "Show the answer", video_hors: "The video needs an Internet connection.",
           video_ouvrir: "Open on YouTube", video_lancer: "Play the video", domaine: "public domain", diapo: "Slide {n} of {t}" },
     ar: { presentateur: "وضع المقدِّم: ملاحظاتكم في نافذة ثانية لا يراها غيركم (S)", chrono: "الميقاتية", heure: "الساعة", zero: "إعادة ضبط الميقاتية",
           suivante: "الشريحة التالية", fin: "نهاية العرض", reponse: "الجواب:", plus: "تكبير خط الملاحظات", moins: "تصغير خط الملاحظات", ecran: "المقدِّم",
-          aide: "لا يرى هذه النافذة أحدٌ غيركم. ضعوا النافذة الأخرى على جهاز العرض (الشاشة الممتدّة: مفتاحا Windows + P، ثم «توسيع») واضغطوا F لملء الشاشة. تتقدّم النافذتان معًا.",
+          aide: "لا يرى هذه النافذة أحدٌ غيركم. ضعوا النافذة الأخرى على جهاز العرض (الشاشة الممتدّة: مفتاحا Windows + P، ثم «توسيع») واضغطوا F لعرض الشرائح بملء الشاشة. تتقدّم النافذتان معًا؛ B: شاشة سوداء.",
           popup: "منع المتصفّح نافذة المقدِّم: اسمحوا بالنوافذ المنبثقة لهذه الصفحة.",
           marque: "الذكاء الاصطناعي · الفصل 1", notes: "ملاحظات الأستاذ", apercu: "نظرة شاملة (O)", imprimer: "طباعة / PDF ‏(P)", theme: "المظهر الليلي أو النهاري (T)",
-          plein: "ملء الشاشة (F)", precedent: "السابقة", suivant: "التالية", reveler: "إظهار الجواب", video_hors: "يحتاج الفيديو إلى اتصال بالإنترنت.",
+          diaporama: "عرض الشرائح", diaporama_titre: "بدء عرض الشرائح بملء الشاشة (F5: من البداية، Shift+F5 أو F: من هذه الشريحة)",
+          fin_diaporama: "نهاية عرض الشرائح. انقروا للخروج.", toutes: "كل الشرائح (G)", noir: "شاشة سوداء (B)", sortir: "إنهاء العرض (Esc)",
+          projeter: "ضعوا هذه النافذة على جهاز العرض، ثم اضغطوا F لملء الشاشة.",
+          verrouille: "الملاحظات محميّة بكلمة سرّ", mdp: "كلمة السرّ", ouvrir: "إظهار الملاحظات", mdp_faux: "كلمة السرّ غير صحيحة.",
+          calcul: "جارٍ التحقّق…", verrouiller: "قفل الملاحظات", precedent: "السابقة", suivant: "التالية", reveler: "إظهار الجواب", video_hors: "يحتاج الفيديو إلى اتصال بالإنترنت.",
           video_ouvrir: "فتح على YouTube", video_lancer: "تشغيل الفيديو", domaine: "ملكية عامة", diapo: "الشريحة {n} من {t}" }
   };
   var LETTRES = { fr: ["A", "B", "C", "D"], en: ["A", "B", "C", "D"], ar: ["أ", "ب", "ج", "د"] };
@@ -800,6 +868,7 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     if (!diapos.length) return;
     n = Math.max(0, Math.min(diapos.length - 1, n));
     if (n === index && !force) return;
+    if (noir) ecranNoir("", true);
     index = n;
     diapos.forEach(function (d, k) {
       var etait = d.classList.contains("active");
@@ -811,7 +880,7 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     chargerPhotos(d);
     animerChat(d);
     if (!PRESENTATEUR) preparerVideo(d);
-    document.getElementById("compteur").textContent = (n + 1) + " / " + diapos.length;
+    document.getElementById("compteur").textContent = document.getElementById("compteur-diaporama").textContent = (n + 1) + " / " + diapos.length;
     document.getElementById("titre-courant").textContent = (donnees.titre || donnees.nom || donnees.question || L[langue].titre).replace(/\*/g, "");
     if (PRESENTATEUR) majConsole(n, donnees);
     document.documentElement.style.setProperty("--avance", ((n + 1) / diapos.length).toFixed(4));
@@ -843,6 +912,8 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     try {
       if (m.type === "etat" && L[m.langue]) {
         if (m.langue !== langue) { langue = m.langue; index = m.n; construire(); } else aller(m.n);
+      } else if (m.type === "noir") {
+        ecranNoir(m.valeur, true);
       } else if (m.type === "quiz") {
         var q = diapos[m.n] && diapos[m.n].querySelector(".quiz");
         if (q) q.classList.toggle("quiz--revele", !!m.revele);
@@ -855,13 +926,22 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     if (PRESENTATEUR) return;
     var adresse = location.href.split(/[?#]/)[0] + "?presentateur&lang=" + langue + "#" + (index + 1);
     fenetre = window.open(adresse, "lx-lecon1-presentateur", "width=1200,height=760");
-    if (!fenetre) window.alert(UI[langue].popup);
+    if (!fenetre) { window.alert(UI[langue].popup); return; }
+    // Cette fenêtre-ci devient l'écran projeté : plus de barre ni de boutons, comme le diaporama de PowerPoint.
+    if (!diaporamaActif) {
+      diaporamaActif = true;
+      document.documentElement.classList.add("mode-diaporama");
+      echelle();
+      var a = document.getElementById("astuce");
+      a.hidden = false;
+      setTimeout(function () { a.hidden = true; }, 8000);
+    }
   }
   function majConsole(n, donnees) {
     var h = "";
-    if (donnees.type === "quiz") h += '<p class="notes__reponse">' + esc(UI[langue].reponse) + " " + LETTRES[langue][donnees.reponse] + " · " + riche(donnees.choix[donnees.reponse]) + '</p>';
+    if (notesOuvertes && donnees.type === "quiz") h += '<p class="notes__reponse">' + esc(UI[langue].reponse) + " " + LETTRES[langue][donnees.reponse] + " · " + riche(donnees.choix[donnees.reponse]) + '</p>';
     h += (donnees.notes ? '<p>' + riche(donnees.notes) + '</p>' : "");
-    if (donnees.explication) h += '<p><em>' + riche(donnees.explication) + '</em></p>';
+    if (donnees.explication && notesOuvertes) h += '<p><em>' + riche(donnees.explication) + '</em></p>';
     document.getElementById("notes-texte").innerHTML = h;
     document.getElementById("notes-texte").scrollTop = 0;
     var boite = document.getElementById("suivante");
@@ -935,12 +1015,175 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     });
     q.querySelector(".reveler").addEventListener("click", function (e) { e.stopPropagation(); basculerQuiz(q); });
   }
-  function suivant() { aller(index + 1); }
-  function precedent() { aller(index - 1); }
+  // Comme PowerPoint : sur un écran noir ou blanc, la touche suivante rallume ; après la dernière diapositive, un écran de fin.
+  function suivant() {
+    if (noir === "fin") { if (diaporamaActif && !PRESENTATEUR) quitterDiaporama(); else ecranNoir(""); return; }
+    if (noir) { ecranNoir(""); return; }
+    if (index >= diapos.length - 1) { if (diaporamaActif || PRESENTATEUR) ecranNoir("fin"); return; }
+    aller(index + 1);
+  }
+  function precedent() {
+    if (noir) { ecranNoir(""); return; }
+    aller(index - 1);
+  }
+
+  /* ---------- Diaporama plein écran ---------- */
+  var diaporamaActif = false, pleinEcranDemande = false, noir = "", minuteurCommandes = null;
+  function diaporama(depuisDebut) {
+    if (PRESENTATEUR) return;
+    apercu(false);
+    if (depuisDebut) aller(0);
+    diaporamaActif = true;
+    document.documentElement.classList.add("mode-diaporama");
+    document.getElementById("astuce").hidden = true;
+    if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
+      pleinEcranDemande = true;
+      document.documentElement.requestFullscreen().catch(function () { pleinEcranDemande = false; });
+    }
+    echelle();
+    montrerCommandes();
+  }
+  function quitterDiaporama() {
+    diaporamaActif = false; pleinEcranDemande = false;
+    document.documentElement.classList.remove("mode-diaporama", "curseur-cache");
+    if (noir) ecranNoir("");
+    if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(function () {});
+    echelle();
+  }
+  // Échap en plein écran : le navigateur sort du plein écran, le diaporama s'arrête avec lui.
+  document.addEventListener("fullscreenchange", function () {
+    if (!document.fullscreenElement && diaporamaActif && pleinEcranDemande) quitterDiaporama();
+    echelle();
+  });
+  function ecranNoir(valeur, local) {
+    noir = valeur || "";
+    var e = document.getElementById("ecran-noir");
+    e.dataset.etat = PRESENTATEUR ? "" : noir; // le présentateur garde ses diapositives sous les yeux
+    document.getElementById("ecran-noir-texte").textContent = noir === "fin" ? UI[langue].fin_diaporama : "";
+    Array.prototype.forEach.call(document.querySelectorAll('[data-action="noir"]'), function (b) { b.setAttribute("aria-pressed", noir === "noir" || noir === "blanc" ? "true" : "false"); });
+    if (!local) envoyer({ type: "noir", valeur: noir });
+  }
+  // Les commandes discrètes (en bas, comme PowerPoint) et le pointeur n'apparaissent que quand la souris bouge.
+  function montrerCommandes() {
+    if (!diaporamaActif) return;
+    var c = document.getElementById("commandes"), r = document.documentElement;
+    c.classList.add("visible"); r.classList.remove("curseur-cache");
+    clearTimeout(minuteurCommandes);
+    minuteurCommandes = setTimeout(function () { if (!c.matches(":hover")) { c.classList.remove("visible"); r.classList.add("curseur-cache"); } }, 2500);
+  }
+  document.addEventListener("mousemove", montrerCommandes);
+  var derniereMolette = 0;
+  document.addEventListener("wheel", function (e) {
+    if (!diaporamaActif || !document.getElementById("apercu").hidden || Math.abs(e.deltaY) < 4) return;
+    var t = Date.now();
+    if (t - derniereMolette < 450) return;
+    derniereMolette = t;
+    if (e.deltaY > 0) suivant(); else precedent();
+  }, { passive: true });
+
+  /* ---------- Notes chiffrées : SHA-256, HMAC et PBKDF2, sans dépendance (fonctionne aussi en file://) ---------- */
+  var NOTES = window.NOTES || null, notesOuvertes = !NOTES;
+  var K256 = new Uint32Array([0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2]), H0 = [0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19], W = new Uint32Array(64);
+  function compresser(h, b, o) {
+    var i, x, y;
+    for (i = 0; i < 16; i++) W[i] = (b[o + 4 * i] << 24) | (b[o + 4 * i + 1] << 16) | (b[o + 4 * i + 2] << 8) | b[o + 4 * i + 3];
+    for (i = 16; i < 64; i++) {
+      x = W[i - 15]; y = W[i - 2];
+      W[i] = (W[i - 16] + (((x >>> 7) | (x << 25)) ^ ((x >>> 18) | (x << 14)) ^ (x >>> 3)) + W[i - 7] + (((y >>> 17) | (y << 15)) ^ ((y >>> 19) | (y << 13)) ^ (y >>> 10))) | 0;
+    }
+    var a = h[0], bb = h[1], c = h[2], d = h[3], e = h[4], f = h[5], g = h[6], hh = h[7], t1, t2;
+    for (i = 0; i < 64; i++) {
+      t1 = (hh + (((e >>> 6) | (e << 26)) ^ ((e >>> 11) | (e << 21)) ^ ((e >>> 25) | (e << 7))) + ((e & f) ^ (~e & g)) + K256[i] + W[i]) | 0;
+      t2 = ((((a >>> 2) | (a << 30)) ^ ((a >>> 13) | (a << 19)) ^ ((a >>> 22) | (a << 10))) + ((a & bb) ^ (a & c) ^ (bb & c))) | 0;
+      hh = g; g = f; f = e; e = (d + t1) | 0; d = c; c = bb; bb = a; a = (t1 + t2) | 0;
+    }
+    h[0] = (h[0] + a) | 0; h[1] = (h[1] + bb) | 0; h[2] = (h[2] + c) | 0; h[3] = (h[3] + d) | 0;
+    h[4] = (h[4] + e) | 0; h[5] = (h[5] + f) | 0; h[6] = (h[6] + g) | 0; h[7] = (h[7] + hh) | 0;
+  }
+  // etat : { h, n } après un premier bloc de 64 octets (clés HMAC préparées une fois pour toutes).
+  function sha256(m, etat) {
+    var h = new Uint32Array(etat ? etat.h : H0), n = m.length, total = (etat ? etat.n : 0) + n;
+    var taille = ((n + 72) >> 6) << 6, b = new Uint8Array(taille), bits = total * 8, i;
+    b.set(m); b[n] = 0x80;
+    b[taille - 5] = Math.floor(bits / 4294967296);
+    b[taille - 4] = bits >>> 24; b[taille - 3] = (bits >>> 16) & 255; b[taille - 2] = (bits >>> 8) & 255; b[taille - 1] = bits & 255;
+    for (i = 0; i < taille; i += 64) compresser(h, b, i);
+    var sortie = new Uint8Array(32);
+    for (i = 0; i < 8; i++) { sortie[4 * i] = h[i] >>> 24; sortie[4 * i + 1] = (h[i] >>> 16) & 255; sortie[4 * i + 2] = (h[i] >>> 8) & 255; sortie[4 * i + 3] = h[i] & 255; }
+    return sortie;
+  }
+  function preparerHmac(cle) {
+    if (cle.length > 64) cle = sha256(cle);
+    var ip = new Uint8Array(64), op = new Uint8Array(64), hi = new Uint32Array(H0), ho = new Uint32Array(H0);
+    for (var i = 0; i < 64; i++) { ip[i] = (cle[i] || 0) ^ 0x36; op[i] = (cle[i] || 0) ^ 0x5c; }
+    compresser(hi, ip, 0); compresser(ho, op, 0);
+    return { i: { h: hi, n: 64 }, o: { h: ho, n: 64 } };
+  }
+  function hmac(p, m) { return sha256(sha256(m, p.i), p.o); }
+  function pbkdf2(mdp, sel, iterations) {
+    var p = preparerHmac(mdp), s = new Uint8Array(sel.length + 4);
+    s.set(sel); s[sel.length + 3] = 1;
+    var u = hmac(p, s), t = u.slice();
+    for (var k = 1; k < iterations; k++) { u = hmac(p, u); for (var j = 0; j < 32; j++) t[j] ^= u[j]; }
+    return t;
+  }
+  function joindre(a, b) { var r = new Uint8Array(a.length + b.length); r.set(a); r.set(b, a.length); return r; }
+  function octets(texte) { return new TextEncoder().encode(texte); }
+  function depuisHex(h) { var r = new Uint8Array(h.length / 2); for (var i = 0; i < r.length; i++) r[i] = parseInt(h.substr(2 * i, 2), 16); return r; }
+  function versHex(o) { return Array.prototype.map.call(o, function (x) { return ("0" + x.toString(16)).slice(-2); }).join(""); }
+  function depuisBase64(t) { var s = atob(t), r = new Uint8Array(s.length); for (var i = 0; i < s.length; i++) r[i] = s.charCodeAt(i); return r; }
+  // Même calcul que chiffrer() dans tools/lecon1.py ; renvoie null si la clé est fausse.
+  function dechiffrer(cle, iv, donnees) {
+    var kc = sha256(joindre(cle, octets("lx-chiffre"))), km = sha256(joindre(cle, octets("lx-controle")));
+    var sortie = new Uint8Array(donnees.length), bloc = new Uint8Array(52), i, j, flux;
+    bloc.set(kc); bloc.set(iv, 32);
+    for (i = 0; i * 32 < donnees.length; i++) {
+      bloc[48] = i >>> 24; bloc[49] = (i >>> 16) & 255; bloc[50] = (i >>> 8) & 255; bloc[51] = i & 255;
+      flux = sha256(bloc);
+      for (j = 0; j < 32 && i * 32 + j < donnees.length; j++) sortie[i * 32 + j] = donnees[i * 32 + j] ^ flux[j];
+    }
+    var controle = hmac(preparerHmac(km), sortie);
+    for (j = 0; j < 16; j++) if (controle[j] !== iv[j]) return null;
+    return new TextDecoder().decode(sortie);
+  }
+  function ouvrirNotes(cle) {
+    var texte = dechiffrer(cle, depuisBase64(NOTES.iv), depuisBase64(NOTES.donnees)), n;
+    if (texte === null) return false;
+    try { n = JSON.parse(texte); } catch (e) { return false; }
+    Object.keys(L).forEach(function (l) { L[l].diapos.forEach(function (d, i) { d.notes = (n[l] || [])[i] || ""; }); });
+    notesOuvertes = true;
+    try { sessionStorage.setItem("lx-lecon1-cle", versHex(cle)); } catch (e) { /* stockage indisponible */ }
+    afficherVerrou();
+    return true;
+  }
+  function verrouillerNotes() {
+    if (!NOTES) return;
+    Object.keys(L).forEach(function (l) { L[l].diapos.forEach(function (d) { delete d.notes; }); });
+    notesOuvertes = false;
+    try { sessionStorage.removeItem("lx-lecon1-cle"); } catch (e) { /* stockage indisponible */ }
+    afficherVerrou();
+  }
+  function afficherVerrou() {
+    document.getElementById("verrou").hidden = notesOuvertes;
+    document.getElementById("notes-texte").hidden = !notesOuvertes;
+    document.querySelector('[data-action="verrouiller"]').hidden = !notesOuvertes || !NOTES;
+    if (PRESENTATEUR && diapos.length) majConsole(index, L[langue].diapos[index]);
+    if (!notesOuvertes) setTimeout(function () { document.getElementById("mdp").focus(); }, 50);
+  }
+  document.getElementById("verrou").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var champ = document.getElementById("mdp"), message = document.getElementById("mdp-message");
+    message.hidden = false; message.classList.remove("erreur"); message.textContent = UI[langue].calcul;
+    setTimeout(function () {
+      var cle = pbkdf2(octets(champ.value.trim()), depuisHex(NOTES.sel), NOTES.iterations);
+      if (ouvrirNotes(cle)) { champ.value = ""; message.hidden = true; }
+      else { message.classList.add("erreur"); message.textContent = UI[langue].mdp_faux; champ.select(); }
+    }, 30);
+  });
 
   // Mise à l'échelle 16:9
   function echelle() {
-    var s = document.getElementById("scene"), w = s.clientWidth - 24, h = s.clientHeight - 24;
+    var s = document.getElementById("scene"), marge = diaporamaActif ? 0 : 24, w = s.clientWidth - marge, h = s.clientHeight - marge;
     document.getElementById("cadre").style.setProperty("--k", Math.max(.1, Math.min(w / 1280, h / 720)).toFixed(4));
     var m = document.querySelector("#suivante .miniature");
     if (m) m.firstChild.style.setProperty("--km", (m.clientWidth / 1280).toFixed(4));
@@ -973,10 +1216,6 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     var r = document.documentElement, t = r.dataset.theme === "light" ? "dark" : "light";
     r.dataset.theme = t; ecrire("lx-theme", t);
   }
-  function plein() {
-    if (document.fullscreenElement) document.exitFullscreen();
-    else if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(function () {});
-  }
   function imprimer() {
     var zone = document.getElementById("impression");
     zone.innerHTML = cadre.innerHTML;
@@ -992,28 +1231,48 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     if (b) {
       var a = b.dataset.action;
       if (a === "suivant") suivant(); else if (a === "precedent") precedent(); else if (a === "apercu") apercu();
-      else if (a === "presentateur") ouvrirPresentateur(); else if (a === "theme") theme(); else if (a === "plein") plein(); else if (a === "imprimer") imprimer();
+      else if (a === "presentateur") ouvrirPresentateur(); else if (a === "theme") theme(); else if (a === "diaporama") diaporama(false); else if (a === "imprimer") imprimer();
+      else if (a === "sortir") quitterDiaporama(); else if (a === "noir") ecranNoir(noir === "noir" ? "" : "noir"); else if (a === "verrouiller") verrouillerNotes();
       else if (a === "zero") { debut = Date.now(); horloges(); } else if (a === "plus") tailleNotes(2); else if (a === "moins") tailleNotes(-2);
       return;
     }
     var l = e.target.closest("[data-langue]");
     if (l) { langue = l.dataset.langue; construire(); return; }
-    // Un clic dans la scène fait avancer (ou reculer, sur le premier quart).
+    if (e.target.closest("#ecran-noir")) { suivant(); return; }
+    // Un clic dans la scène fait avancer (hors diaporama, le premier quart fait reculer).
     if (e.target.closest(".scene") && !e.target.closest("a, button, iframe, .video")) {
+      if (diaporamaActif) { suivant(); return; }
       var x = e.clientX / window.innerWidth, rtl = langue === "ar";
       if (rtl ? x > .75 : x < .25) precedent(); else suivant();
     }
   });
+  // Clavier : les raccourcis de PowerPoint pendant le diaporama (N/P, B/W, numéro + Entrée, Échap, F5, Maj+F5, Alt+F5).
+  var chiffres = "", minuteurChiffres = null;
   document.addEventListener("keydown", function (e) {
+    var k = e.key, rtl = langue === "ar", ppt = diaporamaActif || PRESENTATEUR;
+    // Dans le champ du mot de passe, seules les touches des télécommandes de présentation (Page préc./suiv.) font défiler.
+    if (e.target.closest && e.target.closest("input, textarea, select") && k !== "PageDown" && k !== "PageUp") return;
+    if (k === "F5") { e.preventDefault(); if (e.altKey) ouvrirPresentateur(); else diaporama(!e.shiftKey); return; }
     if (e.altKey || e.ctrlKey || e.metaKey) return;
-    var rtl = langue === "ar", k = e.key;
-    if ((k === " " || k === "Enter") && e.target.closest && e.target.closest("button, a")) return; // le bouton reçoit sa propre action
+    if ((k === " " || k === "Enter") && !chiffres && e.target.closest && e.target.closest("button, a")) return; // le bouton reçoit sa propre action
     if (!document.getElementById("apercu").hidden && k === "Escape") { apercu(false); return; }
-    if (k === (rtl ? "ArrowLeft" : "ArrowRight") || k === "ArrowDown" || k === "PageDown" || k === " " || k === "Enter") { e.preventDefault(); suivant(); }
-    else if (k === (rtl ? "ArrowRight" : "ArrowLeft") || k === "ArrowUp" || k === "PageUp" || k === "Backspace") { e.preventDefault(); precedent(); }
-    else if (k === "Home") aller(0); else if (k === "End") aller(diapos.length - 1);
-    else if (k === "o" || k === "O") apercu(); else if (k === "s" || k === "S" || k === "n" || k === "N") ouvrirPresentateur();
-    else if (k === "t" || k === "T") theme(); else if (k === "f" || k === "F") plein(); else if (k === "p" || k === "P") imprimer();
+    if (ppt && /^[0-9]$/.test(k)) {
+      chiffres += k; clearTimeout(minuteurChiffres);
+      minuteurChiffres = setTimeout(function () { chiffres = ""; }, 2000);
+      return;
+    }
+    if (k === "Enter" && chiffres) { e.preventDefault(); var c = parseInt(chiffres, 10); chiffres = ""; if (c) { if (noir) ecranNoir(""); aller(c - 1); } return; }
+    if (k === (rtl ? "ArrowLeft" : "ArrowRight") || k === "ArrowDown" || k === "PageDown" || k === " " || k === "Enter" || (ppt && (k === "n" || k === "N"))) { e.preventDefault(); suivant(); }
+    else if (k === (rtl ? "ArrowRight" : "ArrowLeft") || k === "ArrowUp" || k === "PageUp" || k === "Backspace" || (ppt && (k === "p" || k === "P"))) { e.preventDefault(); precedent(); }
+    else if (k === "Home") { if (noir) ecranNoir(""); aller(0); } else if (k === "End") { if (noir) ecranNoir(""); aller(diapos.length - 1); }
+    else if (k === "Escape" && diaporamaActif) quitterDiaporama();
+    else if (ppt && (k === "b" || k === "B" || k === ".")) ecranNoir(noir === "noir" ? "" : "noir");
+    else if (ppt && (k === "w" || k === "W" || k === ",")) ecranNoir(noir === "blanc" ? "" : "blanc");
+    else if (k === "o" || k === "O" || k === "g" || k === "G") apercu();
+    else if (k === "s" || k === "S" || k === "n" || k === "N") ouvrirPresentateur();
+    else if (k === "t" || k === "T") theme();
+    else if (k === "f" || k === "F") diaporama(false);
+    else if (k === "p" || k === "P") imprimer();
     else if (k === "r" || k === "R") { var q = diapos[index].querySelector(".quiz"); if (q) basculerQuiz(q); }
     else if (k === "l" || k === "L") { langue = { fr: "en", en: "ar", ar: "fr" }[langue]; construire(); }
   });
@@ -1042,7 +1301,12 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     setInterval(function () { try { if (window.opener && !window.opener.closed) window.opener.postMessage({ type: "presence" }, "*"); } catch (e) { /* fermée */ } }, 3000);
   }
   construire();
-  if (PRESENTATEUR) envoyer({ type: "bonjour" });
+  if (PRESENTATEUR) {
+    // Notes : déjà ouvertes dans cet onglet ? Sinon, le mot de passe est demandé.
+    var memoCle = null; try { memoCle = sessionStorage.getItem("lx-lecon1-cle"); } catch (e) { memoCle = null; }
+    if (!(NOTES && memoCle && /^[0-9a-f]{64}$/.test(memoCle) && ouvrirNotes(depuisHex(memoCle)))) afficherVerrou();
+    envoyer({ type: "bonjour" });
+  }
 })();
 </script>
 </body>
