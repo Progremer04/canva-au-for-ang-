@@ -39,7 +39,7 @@
 
   var TEXTES = {
     fr: {
-      chargement: "Ouverture de la base…",
+      chargement: "Ouverture de la base…", etape_moteur: "Chargement du moteur SQLite…", etape_base: "Lecture de la base…",
       erreur_moteur: "Le moteur SQLite n'a pas pu être chargé (dossier assets/vendor/sqljs). Rechargez la page.",
       onglet_groupes: "Groupes", onglet_etudiants: "Étudiants", onglet_seances: "Séances", onglet_notes: "Notes", onglet_donnees: "Données",
       onglets: "Parties de la page", filtre: "Groupe affiché", tous: "Tous les groupes", sans_groupe: "Sans groupe",
@@ -152,7 +152,7 @@
       }
     },
     en: {
-      chargement: "Opening the database…",
+      chargement: "Opening the database…", etape_moteur: "Loading the SQLite engine…", etape_base: "Reading the database…",
       erreur_moteur: "The SQLite engine could not be loaded (folder assets/vendor/sqljs). Please reload the page.",
       onglet_groupes: "Groups", onglet_etudiants: "Students", onglet_seances: "Sessions", onglet_notes: "Grades", onglet_donnees: "Data",
       onglets: "Parts of the page", filtre: "Group shown", tous: "All groups", sans_groupe: "No group",
@@ -265,7 +265,7 @@
       }
     },
     ar: {
-      chargement: "جارٍ فتح قاعدة البيانات…",
+      chargement: "جارٍ فتح قاعدة البيانات…", etape_moteur: "جارٍ تحميل محرّك SQLite…", etape_base: "جارٍ قراءة القاعدة…",
       erreur_moteur: "تعذّر تحميل محرّك SQLite (المجلد assets/vendor/sqljs). أعيدوا تحميل الصفحة.",
       onglet_groupes: "الأفواج", onglet_etudiants: "الطلبة", onglet_seances: "الحصص", onglet_notes: "العلامات", onglet_donnees: "البيانات",
       onglets: "أقسام الصفحة", filtre: "الفوج المعروض", tous: "كل الأفواج", sans_groupe: "دون فوج",
@@ -783,6 +783,7 @@
     var nbEtudiants = un("SELECT COUNT(*) AS n FROM etudiant").n;
     var nbAvenir = un("SELECT COUNT(*) AS n FROM seance WHERE date >= ? AND statut IN ('prevue', 'reportee')", [aujourdhui()]).n;
     var nbFaites = un("SELECT COUNT(*) AS n FROM seance WHERE statut = 'faite'").n;
+    resumerPourAccueil(gs.length, nbEtudiants);
     zones.resume.textContent = tpl(T.resume, { g: compte(gs.length, "groupe"), e: compte(nbEtudiants, "etudiant"),
       p: T.formes.avenir ? compte(nbAvenir, "avenir") : nombre(nbAvenir), f: T.formes.faite ? compte(nbFaites, "faite") : nombre(nbFaites) });
 
@@ -811,6 +812,12 @@
     vider(zones.panneau);
     zones.panneau.setAttribute("aria-label", T["onglet_" + etat.onglet]);
     ({ groupes: rendreGroupes, etudiants: rendreEtudiants, seances: rendreSeances, notes: rendreNotes, donnees: rendreDonnees })[etat.onglet](zones.panneau);
+  }
+  // Un petit résumé pour la page d'accueil, qui l'affiche sans charger la base (aucune attente).
+  function resumerPourAccueil(nbGroupes, nbEtudiants) {
+    var s = un("SELECT s.date, s.debut, g.nom AS groupe, s.titre FROM seance s JOIN groupe g ON g.id = s.groupe_id " +
+      "WHERE s.date >= ? AND s.statut IN ('prevue', 'reportee') ORDER BY s.date, s.debut LIMIT 1", [aujourdhui()]);
+    ecrireLocal("lx-classe-resume", JSON.stringify({ groupes: nbGroupes, etudiants: nbEtudiants, prochaine: s }));
   }
   function changerOnglet(nom, groupe) {
     etat.onglet = nom;
@@ -1735,13 +1742,18 @@
       .catch(function () { window.initSqlJs = undefined; return asm(); });
   }
 
+  function etape(texte) {
+    var el = racine.querySelector(".chargement__texte");
+    if (el) el.textContent = texte;
+  }
   function demarrer() {
-    racine.appendChild(h("p", { class: "outil-message", text: T.chargement }));
+    etape(T.etape_moteur);
     // Les titres des diaporamas, pour les proposer dans les séances (facultatif).
     chargerScript(BASE + "assets/diapos/diapos-" + LANGUE + ".js").catch(function () { /* pas de diaporamas : liste vide */ });
     Promise.all([chargerMoteur(), detecterServeur()]).then(function (r) {
       SQL = r[0];
       stockage.mode = r[1] ? "serveur" : "navigateur";
+      etape(T.etape_base);
       return stockage.mode === "serveur" ? lireServeur() : lireNavigateur();
     }).then(function (octets) {
       var neuve = !octets;

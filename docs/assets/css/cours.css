@@ -421,3 +421,12 @@ html { scroll-behavior: smooth; scroll-padding-top: 88px; }
 section[id^="guide-"] .sommaire-chapitre::before { content: "Dans cette partie"; }
 :lang(en) section[id^="guide-"] .sommaire-chapitre::before { content: "In this part"; }
 :lang(ar) section[id^="guide-"] .sommaire-chapitre::before { content: "في هذا الجزء"; }
+
+/* ---------- Pages longues : les sections hors de l'écran ne sont dessinées qu'en y arrivant ---------- */
+/* Le cours s'affiche environ trois fois plus vite ; lumineux.js dessine les sections voulues avant un saut d'ancre. */
+.page__contenu > section { content-visibility: auto; contain-intrinsic-size: auto 2400px; }
+@media print { .page__contenu > section { content-visibility: visible; } }
+
+/* Listes lettrées (a, b, c) : lettres arabes dans la version arabe */
+@counter-style lx-lettres-arabes { system: alphabetic; symbols: "أ" "ب" "ج" "د" "هـ" "و" "ز" "ح" "ط" "ي"; suffix: ". "; }
+[dir="rtl"] ol[type="a"] { list-style-type: lx-lettres-arabes; }

@@ -258,9 +258,9 @@ def verifier_deck(chemin, ids=None):
     ids = ids if ids is not None else ids_du_site()
     for c, page in (("lien", "index.html"), ("fiche", "enseignant.html")):
         if c in deck:
-            m = re.fullmatch(r"(index|enseignant)\.html#([\w-]+)", str(deck[c]))
+            m = re.fullmatch(r"(index|cours|enseignant)\.html#([\w-]+)", str(deck[c]))
             if not m:
-                r.err(f"racine.{c}", "forme attendue : index.html#ancre ou enseignant.html#ancre")
+                r.err(f"racine.{c}", "forme attendue : cours.html#ancre ou enseignant.html#ancre")
             elif m.group(2) not in ids:
                 r.err(f"racine.{c}", f"ancre inconnue « #{m.group(2)} »")
     diapos = deck.get("diapos")
@@ -297,6 +297,9 @@ def construire(silencieux=False):
                     print(f"[!] {langue}/{a}")
             total += len(r.erreurs)
             if deck is not None and not r.erreurs:
+                # Le cours est dans cours.html (index.html est la page d'accueil).
+                if str(deck.get("lien", "")).startswith("index.html#"):
+                    deck["lien"] = "cours.html" + deck["lien"][len("index.html"):]
                 decks.append(deck)
         js = ("/* Fichier produit par tools/diapos.py depuis docs/_sources/diapos : ne pas modifier à la main. */\n"
               f"window.LX_DIAPOS = {json.dumps(decks, ensure_ascii=False, separators=(',', ':'))};\n")

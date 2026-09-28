@@ -291,6 +291,20 @@
     if (observateur) observateur.observe(s); else window.addEventListener("resize", function () { echelonner(s); });
     return s;
   }
+  // Les vignettes ne sont dessinées qu'en arrivant à l'écran : l'ouverture reste instantanée même sur un poste lent.
+  var guetteur = window.IntersectionObserver ? new IntersectionObserver(function (entrees) {
+    entrees.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      guetteur.unobserve(e.target);
+      var f = e.target._dessiner; e.target._dessiner = null;
+      if (f) f();
+    });
+  }, { rootMargin: "300px" }) : null;
+  function plusTard(sc, dessiner) {
+    if (!guetteur) { dessiner(); return; }
+    sc._dessiner = dessiner;
+    guetteur.observe(sc);
+  }
   function placer(sc, diapo) {
     vider(sc).appendChild(diapo);
     echelonner(sc);
@@ -400,7 +414,7 @@
           bouton(T.presenter, function () { ouvrirDeck(deck.id, 0, true); projeter(); }, { icone: "i-lecture" }),
           bouton(T.pptx, function () { exporterPptx(deck); }, { icone: "i-telecharger", classe: "bouton bouton--petit bouton--discret" })));
       grille.appendChild(carte);
-      requestAnimationFrame(function () { placer(sc, rendreDiapo(deck, 0, { vignette: true, tout: true })); });
+      plusTard(sc, function () { placer(sc, rendreDiapo(deck, 0, { vignette: true, tout: true })); });
     });
     racine.appendChild(grille);
   }
@@ -453,11 +467,9 @@
           h("section", { class: "notes-panneau", "aria-label": T.notes }, h("h3", { text: T.notes }), zones.notes))),
       h("p", { class: "visionneuse__aide", text: T.aide_clavier })]);
 
-    // Les vignettes se dessinent après coup, pour afficher tout de suite la diapositive principale.
-    requestAnimationFrame(function () {
-      Array.prototype.forEach.call(zones.vignettes.querySelectorAll(".scene"), function (sc, i) {
-        placer(sc, rendreDiapo(deck, i, { vignette: true, tout: true }));
-      });
+    // Les vignettes se dessinent après coup, et seulement celles qui sont visibles.
+    Array.prototype.forEach.call(zones.vignettes.querySelectorAll(".scene"), function (sc, i) {
+      plusTard(sc, function () { placer(sc, rendreDiapo(deck, i, { vignette: true, tout: true })); });
     });
     aller(Math.max(0, Math.min(deck.diapos.length - 1, index || 0)), null, majAdresse);
     if (PRESENTATEUR) modePresentateur();
@@ -483,6 +495,7 @@
     });
     if (vue.projection) majProjection();
     if (vue.presentateur) majPresentateur();
+    try { localStorage.setItem("lx-diapos-dernier", JSON.stringify({ id: deck.id, index: i, numero: deck.numero || null, titre: brut(deck.titre) })); } catch (e) { /* facultatif */ }
     var adresse = "#" + deck.id + (i ? "/" + (i + 1) : "");
     if (location.hash !== adresse) history.replaceState(null, "", adresse + "");
     if (diffuser !== false) envoyer({ type: "aller", deck: deck.id, index: i, etape: vue.etape });

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Programme officiel · Cours d'IA</title>
+<meta name="description" content="Le cours d'intelligence artificielle du Master Littérature Générale et Comparée (Université Yahia Farès, Médéa, 2025-2026), expliqué en entier : leçons, Python, démonstrations, TD corrigés et mini-projets.">
+<link rel="preload" href="assets/fonts/literata-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/im-fell-dw-pica-sc-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/polices.css">
+<link rel="stylesheet" href="assets/css/lumineux-tokens.css">
+<link rel="stylesheet" href="assets/css/lumineux.css">
+<link rel="stylesheet" href="assets/css/cours.css">
+<link rel="stylesheet" href="assets/css/outils.css">
+<link rel="alternate" hreflang="en" href="en/programme.html">
+<link rel="alternate" hreflang="ar" href="ar/programme.html">
+</head>
+<body>
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-fermer" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-contraste" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></symbol>
+  <symbol id="i-maison" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5h4v5"/></symbol>
+  <symbol id="i-fiche" viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 13h6M10 17h6"/></symbol>
+  <symbol id="i-calendrier" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-ampoule" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.5 1 2.5h6c0-1 .2-1.7 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+  <symbol id="i-crayon" viewBox="0 0 24 24"><path d="M4 20l4-1L19 8l-3-3L5 16z"/><path d="M14 7l3 3"/></symbol>
+  <symbol id="i-bulle" viewBox="0 0 24 24"><path d="M4 5h16v11H10l-5 4v-4H4z"/></symbol>
+  <symbol id="i-livre" viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></symbol>
+  <symbol id="i-boussole" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></symbol>
+  <symbol id="i-carte" viewBox="0 0 24 24"><path d="M3 6.5l6-2.5 6 2.5 6-2.5v13.5l-6 2.5-6-2.5-6 2.5z"/><path d="M9 4v13.5M15 6.5V20"/></symbol>
+  <symbol id="i-coche" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-retour" viewBox="0 0 24 24"><path class="fleche-retour" d="M10 6l-6 6 6 6M4 12h16"/></symbol>
+  <symbol id="i-outil" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></symbol>
+  <symbol id="i-ecran" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8"/><path d="M10.5 7.8v4.4l3.6-2.2z"/></symbol>
+  <symbol id="i-groupe" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3"/><path d="M3.5 19.5a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9.5" r="2.4"/><path d="M15.6 14.3a4.6 4.6 0 0 1 5.4 4.7"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-poubelle" viewBox="0 0 24 24"><path d="M4.5 7h15M10 7V4.5h4V7M6.5 7l1 13h9l1-13"/><path d="M10 11v5.5M14 11v5.5"/></symbol>
+  <symbol id="i-telecharger" viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5"/><path d="M5 19.5h14"/></symbol>
+  <symbol id="i-importer" viewBox="0 0 24 24"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5"/><path d="M5 19.5h14"/></symbol>
+  <symbol id="i-imprimer" viewBox="0 0 24 24"><path d="M7 9V3.5h10V9"/><rect x="3.5" y="9" width="17" height="8" rx="1.5"/><path d="M7 14h10v6.5H7z"/></symbol>
+  <symbol id="i-lecture" viewBox="0 0 24 24"><path d="M7.5 5v14l11-7z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+  <symbol id="i-plein-ecran" viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></symbol>
+  <symbol id="i-grille" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></symbol>
+  <symbol id="i-precedent" viewBox="0 0 24 24"><path class="fleche-retour" d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-suivant" viewBox="0 0 24 24"><path class="fleche-retour" d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-etoile" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 17l-5.2 2.7 1-5.9-4.3-4.1 5.9-.8z"/></symbol>
+  <symbol id="i-horloge" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-recherche" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/></symbol>
+  <symbol id="i-base" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7.5" ry="2.8"/><path d="M4.5 6v12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8V6M4.5 12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8"/></symbol>
+  <symbol id="i-copier" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11" height="11" rx="1.5"/><path d="M15.5 8.5V5.5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3"/></symbol>
+</svg>
+
+<header class="entete">
+  <div class="entete__barre">
+    <button type="button" class="bouton-verre entete__burger" data-ouvre-tiroir="tiroir-nav" aria-controls="tiroir-nav" aria-label="Ouvrir le menu">
+      <svg class="icone"><use href="#i-menu"/></svg>
+    </button>
+    <a class="entete__marque" href="index.html"><span class="anneau-prisme" aria-hidden="true"></span>IA <small>Master LGC</small></a>
+    <nav class="entete__liens" aria-label="Liens utiles">
+      <a class="bouton bouton--discret bouton--petit entete__lien-systeme" href="systeme-de-design.html">Système de design</a>
+      <div class="langues" role="group" aria-label="Langue du cours"><a href="programme.html" lang="fr" hreflang="fr" aria-current="page">FR</a><a href="en/programme.html" lang="en" hreflang="en" data-lien-langue>EN</a><a href="ar/programme.html" lang="ar" hreflang="ar" data-lien-langue>عربي</a></div>
+      <button type="button" class="bouton-verre" data-bascule-theme aria-label="Changer de thème">
+        <svg class="icone"><use href="#i-contraste"/></svg>
+      </button>
+    </nav>
+  </div>
+  <div class="progression" aria-hidden="true"></div>
+</header>
+
+<div class="tiroir-voile" data-voile-tiroir="tiroir-nav"></div>
+<aside class="tiroir" id="tiroir-nav" aria-label="Menu du cours">
+  <div class="tiroir__tete">
+    <p class="tiroir__titre">Sommaire du cours</p>
+    <button type="button" class="bouton-verre" data-ferme-tiroir aria-label="Fermer le menu">
+      <svg class="icone"><use href="#i-fermer"/></svg>
+    </button>
+  </div>
+  <nav aria-label="Menu" data-rail>
+<ul class="rail-capsule">
+<li><a href="index.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-maison"/></svg></span>Accueil</a></li>
+<li><a href="cours.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-livre"/></svg></span>Le cours</a></li>
+<li><a href="enseignant.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-outil"/></svg></span>Guide de l'enseignant</a></li>
+<li><a href="diaporamas.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-ecran"/></svg></span>Diaporamas</a></li>
+<li><a href="classe.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-groupe"/></svg></span>Mes groupes</a></li>
+<li><a href="programme.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-fiche"/></svg></span>Programme officiel</a></li>
+</ul>
+</nav>
+</aside>
+
+<main id="contenu" class="page-outil">
+  <section class="outil-tete" aria-labelledby="titre-outil">
+    <p class="surtitre">Pour l'enseignant</p>
+    <h1 class="outil-tete__titre" id="titre-outil">Programme officiel</h1>
+    <p class="outil-tete__chapeau">Le texte intégral du programme de la matière (offre de formation, pages 84 à 86), reproduit sans modification. Version originale en français ; versions anglaise et arabe traduites fidèlement.</p>
+  </section>
+  <div class="page-document"><div class="page__contenu">
+<section class="chapitre" id="programme" aria-labelledby="programme-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">Établissement : Université Yahia FARÈS. Médéa · Master : Littérature Générale et Comparée · Année universitaire : 2025-2026 · Pages 84 à 86</p>
+    <h2 class="titre-section" id="programme-titre">Intelligence artificielle</h2>
+  </header>
+
+  <nav class="sommaire-chapitre" aria-label="Sommaire du programme">
+    <ol>
+      <li><a href="#programme-fiche">Fiche de la matière</a></li>
+      <li><a href="#programme-objectifs">Objectifs de l’enseignement</a></li>
+      <li><a href="#programme-connaissances">Connaissances visées</a></li>
+      <li><a href="#programme-methode">Méthode pédagogique</a></li>
+      <li><a href="#programme-contenu">Contenu de la matière</a></li>
+      <li><a href="#programme-mini-projet">Mini-projet</a></li>
+      <li><a href="#programme-td">Travaux dirigés / Travaux pratiques</a></li>
+      <li><a href="#programme-tp">Travaux pratiques</a></li>
+      <li><a href="#programme-references">Références</a></li>
+    </ol>
+  </nav>
+
+  <article class="lecon" id="programme-fiche">
+    <h3>Fiche de la matière</h3>
+    <dl class="definitions">
+      <div><dt>Intitulé du Master</dt><dd>Littérature Générale et Comparée</dd></div>
+      <div><dt>Semestre</dt><dd>3</dd></div>
+      <div><dt>Intitulé de l’UE</dt><dd>Unité d’Enseignement Transversale</dd></div>
+      <div><dt>Intitulé de la matière</dt><dd>Intelligence artificielle</dd></div>
+      <div><dt>Crédits</dt><dd>2</dd></div>
+      <div><dt>Coefficients</dt><dd>2</dd></div>
+    </dl>
+  </article>
+
+  <article class="lecon" id="programme-objectifs">
+    <h3>Objectifs de l’enseignement</h3>
+    <ul>
+      <li>Maitrise des algorithmes IA pour le traitement textuel des enquêtes</li>
+      <li>Aptitude à utiliser le logiciel Python,</li>
+      <li>Comprendre les approches de l’IA dans la résolution de problèmes,</li>
+      <li>Aptitude à traiter un corpus de textes.</li>
+    </ul>
+  </article>
+
+  <article class="lecon" id="programme-connaissances">
+    <h3>Connaissances visées</h3>
+    <ul>
+      <li>Identifier les opportunités de l’intelligence artificielle en sciences humaines et sociales.</li>
+      <li>Comprendre quelles peuvent être les différentes applications de l’IA pour les SHS.</li>
+      <li>Comprendre les implications éthiques de l’IA et les bonnes pratiques de son utilisation.</li>
+      <li>Capacité de réaliser le Clustering de comportements sociaux dans des enquêtes et modélisation prédictive.</li>
+      <li>Comprendre les sentiments sur les réseaux et comment les analyser.</li>
+      <li>Capacité d’extraire des textes dans des discours politiques.</li>
+      <li>Capacité d’analyser les réseaux sociologiques.</li>
+    </ul>
+  </article>
+
+  <article class="lecon" id="programme-methode">
+    <h3>Méthode pédagogique</h3>
+    <ul>
+      <li>Cours magistraux.</li>
+      <li>Travaux dirigés.</li>
+      <li>Travaux pratiques.</li>
+      <li>Mini-projet (réaliser au moins 3 sujets parmi les 5 proposés)</li>
+      <li>Interactivité maximale enseignant – étudiants.</li>
+      <li>Travail personnel (surtout pour la programmation).</li>
+      <li>Evaluation (identique aux textes en vigueur).</li>
+      <li>Tables rondes (Genèse et apparition de l’IA, Impact de l’IA sur la réflexion et les méthodologies en SHS, IA vecteur de nouvelles problématiques scientifiques et sociétales, Perspectives de l’IA, etc.).</li>
+    </ul>
+  </article>
+
+  <article class="lecon" id="programme-contenu">
+    <h3>Contenu de la matière</h3>
+
+    <h4>Chapitre 1 : Introduction</h4>
+    <ul>
+      <li>Introduction à l’Intelligence artificielle (IA) (1 semaine, si insuffisant utiliser 1 séance de TP pour compléter)
+        <ul>
+          <li>Survol historique de l’intelligence artificielle,</li>
+          <li>IA étroite (ou faible)</li>
+          <li>IA générale (ou forte)</li>
+        </ul>
+      </li>
+      <li>Apprentissage supervisé et apprentissage non supervisé
+        <ul>
+          <li>Les approches de l’IA dans la résolution de problèmes,</li>
+          <li>Perspectives.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h4>Chapitre 2 : Rappel et Complément sur le langage (2 semaines)</h4>
+    <ul>
+      <li>Les fondamentaux</li>
+      <li>Les bibliothèques Pandas, Numpy, etc.</li>
+      <li>Introduction à la programmation objet,</li>
+      <li>Lire et traiter des fichiers textes (recherche, tri)</li>
+      <li>gérer des rapports simples (PDF, Excel)</li>
+    </ul>
+
+    <h4>Chapitre 3 : Types d'IA et Approches (6 semaines)</h4>
+    <ul>
+      <li>IA Symbolique (système expert)</li>
+      <li>Apprentissage Automatique (Machine Learning)
+        <ul>
+          <li>Machine Learning (ML), avec les exemples comme : Classification d'emails comme "spam" ou "non-spam", recommandations, identification d'images (ex: des visages), etc.</li>
+        </ul>
+      </li>
+      <li>Apprentissage Profond (Deep Learning)
+        <ul>
+          <li>Deep Learning</li>
+          <li>Génération de texte avec Transformers (ou autre).</li>
+        </ul>
+      </li>
+      <li>IA par Renforcement (Renforcement Learning)
+        <ul>
+          <li>Apprentissage par renforcement (RL)</li>
+        </ul>
+      </li>
+    </ul>
+  </article>
+
+  <article class="lecon" id="programme-mini-projet">
+    <h3>Mini-projet</h3>
+    <p>Mini-projet (3 semaines – travail personnel encadré – à distribuer à la fin du chapitre 2) :</p>
+    <p>Traitez 1 sujet au choix parmi :</p>
+
+    <h4>Sujet 1. Analyse de Sentiments sur les Réseaux Sociaux</h4>
+    <p><strong>Objectif :</strong> Analyser des corpus de texte provenant des réseaux sociaux (Twitter, Facebook, etc.) pour déterminer les sentiments des utilisateurs à propos d'un sujet particulier (ex. : une campagne politique, une crise sanitaire, ou un événement social).</p>
+    <p><strong>Outils :</strong> Python, TextBlob, VADER, Tweepy (pour Twitter), pandas, matplotlib, GeoPandas.</p>
+
+    <h4>Sujet 2. Clustering des Comportements Sociaux dans des Enquêtes</h4>
+    <p><strong>Objectif :</strong> Utiliser des techniques de clustering pour regrouper des individus ayant des comportements sociaux similaires à partir de données d'enquête. Cela peut être utile pour segmenter une population en groupes d'intérêt distincts.</p>
+    <p><strong>Outils :</strong> Python, pandas, sklearn, matplotlib, seaborn, scikit-learn.</p>
+
+    <h4>Sujet 3. Analyse de Texte pour l'Extraction d'Informations dans des Discours Politiques</h4>
+    <p><strong>Objectif :</strong> Utiliser l'IA pour extraire des thèmes principaux et des entités nommées (noms de personnes, lieux, dates) à partir de discours politiques. Cela peut être utilisé pour comprendre les préoccupations d des politiciens et analyser leur rhétorique.</p>
+    <p><strong>Outils :</strong> Python, spaCy, Transformers (BERT), gensim (LDA), matplotlib, WordCloud.</p>
+
+    <h4>Sujet 4. Modélisation Prédictive des Comportements Sociaux à partir de Données de Consommation</h4>
+    <p><strong>Objectif :</strong> Construire un modèle prédictif pour estimer les comportements sociaux des consommateurs (par exemple, la probabilité d'achat de produits ou de participation à des événements sociaux) en fonction de diverses variables.</p>
+    <p><strong>Outils :</strong> Python, sklearn, pandas, matplotlib, seaborn.</p>
+
+    <h4>Sujet 5. Analyse des Réseaux Sociaux (Sociologie des Réseaux)</h4>
+    <p><strong>Objectif :</strong> Utiliser des techniques d'analyse des réseaux sociaux (Social Network Analysis - SNA) pour étudier les relations entre individus dans un réseau social, en utilisant des données structurées.</p>
+    <p><strong>Outils :</strong> Python, NetworkX, Gephi, matplotlib, pandas.</p>
+  </article>
+
+  <article class="lecon" id="programme-td">
+    <h3>Travaux dirigés / Travaux pratiques</h3>
+
+    <h4>Chapitre 1 :</h4>
+    <ol>
+      <li>Reprendre les notions vues dans le cours (chapitre 1) et approfondir la notion d’apprentissage supervisé et non supervisé</li>
+      <li>Quelle est la différence entre apprentissage supervisé et apprentissage non supervisé ?</li>
+      <li>Donner des exemples d’apprentissage</li>
+      <li>Cas à faire en travail personnel :
+        <p>Étudier la littérature sur l’IA afin de déterminer si les ordinateurs actuels peuvent mener à bien les opérations suivantes :</p>
+        <ul>
+          <li>Jouer correctement au ping-pong</li>
+          <li>Conduire une voiture au centre d’une ville</li>
+          <li>Découvrir et démontrer des théorèmes mathématiques</li>
+          <li>Ecrire une histoire drôle</li>
+          <li>Donner un avis pertinent dans un domaine juridique donné</li>
+          <li>Réaliser une opération chirurgicale complexe</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h4>Chapitre 2 :</h4>
+    <ul>
+      <li>Exercices en Python : programmes, les listes et les tuples, manipulation de donnée avec les bibliothèques vues au cours.</li>
+    </ul>
+
+    <h4>Chapitre 3 :</h4>
+    <ol>
+      <li>Exercice sur le système expert :
+        <ul>
+          <li>Soit les règles suivantes en chainage avant :</li>
+          <li>R1 : A → E</li>
+          <li>R2 : B → D</li>
+          <li>R3 : H → A ∩ F</li>
+          <li>R4 : E ∩ G → C</li>
+          <li>R5 : E ∩ K → B</li>
+          <li>R6 : D ∩ E ∩ K → C</li>
+          <li>R7 : G ∩ K ∩ F → A</li>
+        </ul>
+        <p>Ordre des règles : R3 R7 R1 R4 R5 R2 R6<br>
+        Faits non déductibles : H, G, K<br>
+        Base de faits initiale : H, K<br>
+        But : C</p>
+        <p>Questions :<br>
+        Faire le graphe correspondant aux règles<br>
+        Dérouler le système en chaînage avant.</p>
+      </li>
+      <li>Introduire quelques algorithmes utilisés dans le ML :
+        <ol type="a">
+          <li>Régression linéaire,</li>
+          <li>Gradient descendant</li>
+          <li>Classification en catégories basées sur les attributs</li>
+          <li>Regroupement d’objets similaires en clusters</li>
+          <li>Etc.</li>
+        </ol>
+      </li>
+      <li>Donner des exemples sur la classification, les recommandations, l’identification d’images.</li>
+      <li>Exercices sur chaque type d’apprentissage :
+        <ol type="a">
+          <li>ML</li>
+          <li>Deep learning (CNN, RNN)</li>
+          <li>renforcement</li>
+        </ol>
+      </li>
+    </ol>
+  </article>
+
+  <article class="lecon" id="programme-tp">
+    <h3>Travaux pratiques</h3>
+    <ul>
+      <li>Les séances de TP seront réservées pour la programmation des exercices vus en TD en utilisant Python et à la réalisation d’un mini-projet.</li>
+    </ul>
+  </article>
+
+  <article class="lecon" id="programme-references">
+    <h3>Références</h3>
+    <ul>
+      <li>R.Inglehart (1997) : Modernization and Postmodernization : Cultural , economic, and political chnage in 43 societies – Princeton University Press.</li>
+      <li>Western Values are Diverging from the rest of the world’s. – The Economiste – 2023.</li>
+      <li>Western Michigan University : World Values Survey. Lien : <a href="https://wmich.edu/economics/world-values-survey" target="_blank" rel="noopener">https://wmich.edu/economics/world-values-survey</a></li>
+      <li>Ganascia, J.Gabriel (2024) : l’IA expliquée aux humains. Paris France- Edition le Seuil.</li>
+      <li>Anglais, Lise, Dilhac, Antione, Dratwa, Jim et al. (2023) : L’éthique au cœur de e l’IA. Quebec Obvia.</li>
+      <li>J.Robert (2024) : Natural Language Processing (NLP) : définition et principes – Datasciences. Lien : <a href="https://datascientest.com/introduction-au-nlp-natural-language-processing" target="_blank" rel="noopener">https://datascientest.com/introduction-au-nlp-natural-language-processing</a></li>
+      <li>Qu’est-ce que le traitement du langage naturel. Lien : <a href="https://aws.amazon.com/fr/what-is/nlp/" target="_blank" rel="noopener">https://aws.amazon.com/fr/what-is/nlp/</a></li>
+      <li>H.Belhadef, I.Djemal : Méthode TALN – Cours de l’unievrsité de Msila - Algérie</li>
+      <li>B. Prieur : Traitement automatique du langage naturel avec Python. Le NLP avec SpaCy et NLTK.</li>
+      <li>Baddari Kamel et Herzallah Abdelkarim (2015) : La recherche de l’information, livre – OPU -Algérie.</li>
+    </ul>
+  </article>
+</section>
+  </div></div>
+</main>
+
+<footer class="pied">
+  <div class="pied__interieur">
+    <div>
+      <p class="pied__signature"><span class="anneau-prisme" aria-hidden="true"></span>Intelligence artificielle</p>
+      <p>Master Littérature Générale et Comparée, semestre 3. Université Yahia Farès, Médéa. Année universitaire 2025–2026.</p>
+      <p>Contenu fondé sur le programme officiel de la matière (pages 84 à 86 de l'offre de formation). Les explications, exemples et corrigés accompagnent le cours de l'enseignant et ne le remplacent pas.</p>
+    </div>
+    <div>
+      <h2>Parcourir</h2>
+      <ul>
+        <li><a href="cours.html#methode">Comment apprendre ce cours</a></li>
+        <li><a href="cours.html#chapitre-1">Chapitre 1 · Introduction</a></li>
+        <li><a href="cours.html#chapitre-2">Chapitre 2 · Python</a></li>
+        <li><a href="cours.html#chapitre-3">Chapitre 3 · Types d'IA</a></li>
+        <li><a href="cours.html#mini-projet">Mini-projet</a></li>
+        <li><a href="cours.html#td-tp">TD / TP corrigés</a></li>
+        <li><a href="enseignant.html">Guide de l'enseignant</a></li>
+        <li><a href="diaporamas.html">Diaporamas</a></li>
+        <li><a href="classe.html">Mes groupes</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Ce site</h2>
+      <p>Mis en forme avec <a href="systeme-de-design.html">Lumineux</a>, un système de design tiré des démos « Cadre Lumineux », « menu capsule » et « slider » de ce dépôt.</p>
+      <p>Thème Nuit ou Jour : bouton en haut à droite. Autres langues : <a href="en/index.html" hreflang="en" lang="en">English</a>, <a href="ar/index.html" hreflang="ar" lang="ar">العربية</a>.</p>
+      <p>Code source, et <code>run.bat</code> pour tout installer sous Windows : <a href="https://github.com/Progremer04/canva-au-for-ang-" target="_blank" rel="noopener">github.com/Progremer04/canva-au-for-ang-</a>.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/lumineux.js" defer></script>
+</body>
+</html>

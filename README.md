@@ -8,7 +8,7 @@ Le programme officiel de la matière tient en trois pages : des intitulés de ch
 
 | Dossier | Rôle |
 | --- | --- |
-| `docs/` | Le site statique, prêt pour GitHub Pages (`index.html`, `systeme-de-design.html`, `assets/`). |
+| `docs/` | Le site statique, prêt pour GitHub Pages : `index.html` (accueil), `cours.html` (le cours), `enseignant.html`, `diaporamas.html`, `classe.html`, `programme.html`, `systeme-de-design.html`, `assets/` ; les mêmes pages dans `en/` et `ar/`. |
 | `docs/_sources/` | Les sources des pages : gabarit et un fragment HTML par partie du cours ; `docs/_sources/en/` pour l'anglais, `docs/_sources/ar/` pour l'arabe. |
 | `docs/_sources/diapos/` | Les diaporamas, un fichier JSON par séance (`en/` et `ar/` pour les traductions). |
 | `docs/notebooks/` | Dix carnets Jupyter complets, prêts à exécuter dans Google Colab ou avec `run.bat notebook`, en français (`fr/`) et en anglais (`en/`). |
@@ -22,7 +22,9 @@ Le programme officiel de la matière tient en trois pages : des intitulés de ch
 
 ## Le site
 
-- **En français, en anglais et en arabe** : `docs/index.html` (FR), `docs/en/index.html` (EN) et `docs/ar/index.html` (AR, de droite à gauche), avec un sélecteur FR / EN / عربي qui garde la leçon en cours.
+- **Accueil** (`index.html`) : une page légère qui mène à tout, en deux blocs de tuiles, « Pour les étudiants » (cours, méthode, TD/TP, mini-projet, carnets, glossaire) et « Pour l'enseignant » (Mes groupes, diaporamas, guide, étudiants de langues, programme officiel, fiches de séance). Elle affiche aussitôt la prochaine séance et le dernier diaporama ouvert, et précharge le reste pendant que la page est au repos. Les anciens liens (`index.html#chapitre-3`) sont renvoyés vers le cours.
+- **En français, en anglais et en arabe** : le cours est dans `docs/cours.html` (FR), `docs/en/cours.html` (EN) et `docs/ar/cours.html` (AR, de droite à gauche), avec un sélecteur FR / EN / عربي qui garde la leçon en cours.
+- **Programme officiel** (`programme.html`, pour l'enseignant, non indexé) : le texte intégral de la matière (offre de formation, pages 84 à 86), reproduit sans modification, avec ses traductions fidèles en anglais et en arabe.
 - **Guide de l'enseignant** (`docs/enseignant.html`, et `en/`, `ar/`) : par où commencer (même sans avoir jamais programmé), carte du cours, progression semaine par semaine, fiches de séance prêtes à l'emploi, activités pour la classe, sujet d'examen corrigé et grilles d'évaluation, charte d'usage de l'IA, bibliothèque de ressources classées.
 - **Diaporamas** (`docs/diaporamas.html`) : un « PowerPoint » dans le site, une présentation par fiche de séance (8) et une pour lancer le mini-projet, en trois langues, 181 diapositives chacune. Vue normale avec vignettes et notes de l'enseignant ; projection plein écran (flèches, clic, points qui apparaissent un à un, réponses à dévoiler, minuteur pour les activités, écran noir) ; mode présentateur dans une seconde fenêtre (notes, diapositive suivante, chronomètre) ; téléchargement en PowerPoint (`.pptx`, modifiable) ou en PDF.
 - **Étudiants de langues** (guide de l'enseignant, `#guide-langues`) : enseigner l'IA à des étudiants d'anglais, de LGC et de didactique sans en faire des programmeurs. Les étudiants n'écrivent pas de code : ils exécutent des carnets complets, changent des valeurs dans des formulaires et interprètent les résultats (démarche PRIMM). Outils sans code par chapitre, parcours par spécialité, séance type, évaluation.
@@ -38,6 +40,8 @@ Le programme officiel de la matière tient en trois pages : des intitulés de ch
 - **TD / TP corrigés**, **tables rondes**, **références** et **glossaire** (français–anglais ; arabe–français–anglais dans la version arabe).
 
 Thème Nuit (par défaut) ou Jour, lisible sur téléphone, navigable au clavier, animations coupées si le système le demande.
+
+**Rapide, même hors ligne.** Polices, coloration du code, SQLite et PowerPoint sont servis par le site lui-même (`docs/assets/fonts`, `docs/assets/vendor`) : aucune requête vers un autre serveur. Les longues pages ne dessinent que les sections visibles (`content-visibility`) : le cours s'affiche environ trois fois plus vite sur un poste lent, et les liens vers une section arrivent au bon endroit. Les vignettes des diaporamas ne sont dessinées qu'à l'écran. Le serveur de `run.bat` laisse le navigateur garder les fichiers et ne renvoie que ce qui a changé.
 
 ## Lumineux, le système de design
 

@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>العروض التقديمية · مقياس الذكاء الاصطناعي</title>
 <meta name="description" content="مقياس الذكاء الاصطناعي لماستر الأدب العام والمقارن (جامعة يحيى فارس بالمدية، 2025-2026) مشروحًا كاملًا: دروس، بايثون، عروض تفاعلية، حلول الأعمال الموجهة والمشاريع المصغرة.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;600&amp;family=IM+Fell+DW+Pica+SC&amp;family=JetBrains+Mono:wght@400;600&amp;family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&amp;family=Noto+Naskh+Arabic:wght@400;600&amp;family=Rajdhani:wght@500;600;700&amp;display=swap">
+<link rel="preload" href="../assets/fonts/noto-naskh-arabic-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/el-messiri-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/polices.css">
 <link rel="stylesheet" href="../assets/css/lumineux-tokens.css">
 <link rel="stylesheet" href="../assets/css/lumineux.css">
 <link rel="stylesheet" href="../assets/css/cours.css">
 <link rel="stylesheet" href="../assets/css/outils.css">
-<link rel="alternate" hreflang="fr" href="../index.html">
-<link rel="alternate" hreflang="en" href="../en/index.html">
+<link rel="alternate" hreflang="fr" href="../diaporamas.html">
+<link rel="alternate" hreflang="en" href="../en/diaporamas.html">
 </head>
 <body>
 <a class="lien-evitement" href="#contenu">الانتقال إلى المحتوى</a>
@@ -81,10 +81,12 @@
   </div>
   <nav aria-label="القائمة" data-rail>
 <ul class="rail-capsule">
-<li><a href="index.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-retour"/></svg></span>العودة إلى المقياس</a></li>
+<li><a href="index.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-maison"/></svg></span>الرئيسية</a></li>
+<li><a href="cours.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-livre"/></svg></span>المقياس</a></li>
 <li><a href="enseignant.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-outil"/></svg></span>دليل الأستاذ</a></li>
 <li><a href="diaporamas.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-ecran"/></svg></span>العروض التقديمية</a></li>
 <li><a href="classe.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-groupe"/></svg></span>أفواجي</a></li>
+<li><a href="programme.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-fiche"/></svg></span>البرنامج الرسمي</a></li>
 </ul>
 </nav>
 </aside>
@@ -97,6 +99,7 @@
   </section>
   <div class="outil" id="outil-diaporamas" data-outil="diaporamas" data-base="../" data-langue="ar">
     <noscript><p class="outil-message">تحتاج العروض إلى JavaScript. فعّلوه في المتصفح.</p></noscript>
+    <div class="chargement" role="status"><span class="chargement__anneau" aria-hidden="true"></span><p class="chargement__texte">جارٍ تحضير العروض…</p></div>
   </div>
 </main>
 
@@ -110,12 +113,12 @@
     <div>
       <h2>تصفّح</h2>
       <ul>
-        <li><a href="index.html#methode">كيف تتعلّم هذا المقياس</a></li>
-        <li><a href="index.html#chapitre-1">الفصل 1 · مدخل</a></li>
-        <li><a href="index.html#chapitre-2">الفصل 2 · بايثون</a></li>
-        <li><a href="index.html#chapitre-3">الفصل 3 · أنواع الذكاء الاصطناعي</a></li>
-        <li><a href="index.html#mini-projet">المشروع المصغَّر</a></li>
-        <li><a href="index.html#td-tp">حلول TD / TP</a></li>
+        <li><a href="cours.html#methode">كيف تتعلّم هذا المقياس</a></li>
+        <li><a href="cours.html#chapitre-1">الفصل 1 · مدخل</a></li>
+        <li><a href="cours.html#chapitre-2">الفصل 2 · بايثون</a></li>
+        <li><a href="cours.html#chapitre-3">الفصل 3 · أنواع الذكاء الاصطناعي</a></li>
+        <li><a href="cours.html#mini-projet">المشروع المصغَّر</a></li>
+        <li><a href="cours.html#td-tp">حلول TD / TP</a></li>
         <li><a href="enseignant.html">دليل الأستاذ</a></li>
         <li><a href="diaporamas.html">العروض التقديمية</a></li>
         <li><a href="classe.html">أفواجي</a></li>
@@ -130,8 +133,9 @@
   </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+<script src="../assets/vendor/prism/prism-core.min.js"></script>
+<script src="../assets/vendor/prism/prism-clike.min.js"></script>
+<script src="../assets/vendor/prism/prism-python.min.js"></script>
 <script src="../assets/js/lumineux.js"></script>
 <script src="../assets/diapos/diapos-ar.js"></script>
 <script src="../assets/js/diaporama.js"></script>

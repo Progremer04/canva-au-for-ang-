@@ -264,6 +264,66 @@
     maj();
   }
 
+  /* ---------- Sauts d'ancre exacts malgré le dessin à la demande (content-visibility) ---------- */
+  // Avant d'aller à une section, on dessine celles qui la précèdent : leur vraie hauteur est connue,
+  // le navigateur arrive donc au bon endroit (au lieu d'une position estimée).
+  var ancresPretes = false;
+  function initAncres() {
+    if (ancresPretes) return;
+    ancresPretes = true;
+    function cibleDe(hash) {
+      try { return hash && hash.length > 1 ? document.getElementById(decodeURIComponent(hash.slice(1))) : null; } catch (e) { return null; }
+    }
+    function reveler(cible) {
+      var sections = document.querySelectorAll(".page__contenu > section");
+      for (var i = 0; i < sections.length; i++) {
+        sections[i].style.contentVisibility = "visible";
+        if (sections[i].contains(cible)) break;
+      }
+    }
+    // Quand le défilement s'arrête, les sections du dessus ont pu changer de hauteur (polices, images) :
+    // on recale la cible sous l'en-tête, sauf si le lecteur a déjà bougé.
+    var recalage = null;
+    function aligner(cible) {
+      if (recalage) recalage.fin();
+      var essais = 0, minuteur = null, fini = false;
+      function voulu() { return parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0; }
+      function verifier() {
+        if (fini) return;
+        var ecart = cible.getBoundingClientRect().top - voulu();
+        if (Math.abs(ecart) > 3 && essais < 4) { essais++; window.scrollBy({ top: ecart, behavior: "instant" }); attendre(); }
+        else if (essais < 4) { essais++; minuteur = setTimeout(verifier, 400); }
+        else arreter();
+      }
+      function attendre() { clearTimeout(minuteur); minuteur = setTimeout(verifier, 180); }
+      function arreter() {
+        fini = true; clearTimeout(minuteur);
+        window.removeEventListener("scroll", attendre);
+        ["wheel", "touchstart", "keydown", "mousedown"].forEach(function (ev) { window.removeEventListener(ev, arreter); });
+      }
+      window.addEventListener("scroll", attendre, { passive: true });
+      ["wheel", "touchstart", "keydown", "mousedown"].forEach(function (ev) { window.addEventListener(ev, arreter, { passive: true }); });
+      attendre();
+      recalage = { fin: arreter };
+    }
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest("a[href^='#']");
+      var c = a && cibleDe(a.getAttribute("href"));
+      if (!c) return;
+      reveler(c);
+      setTimeout(function () { aligner(c); }, 0);
+    }, true);
+    window.addEventListener("hashchange", function () {
+      var c = cibleDe(location.hash);
+      if (c) { reveler(c); c.scrollIntoView({ block: "start" }); aligner(c); }
+    });
+    var depart = cibleDe(location.hash);
+    if (depart) {
+      reveler(depart);
+      window.requestAnimationFrame(function () { depart.scrollIntoView({ block: "start", behavior: "instant" }); aligner(depart); });
+    }
+  }
+
   /* ---------- Changer de langue en restant sur la même leçon ---------- */
   function initLangue() {
     document.querySelectorAll("[data-lien-langue]").forEach(function (lien) {
@@ -287,6 +347,7 @@
     initCarrousels();
     initQuiz();
     initCopie();
+    initAncres();
     initRail();
   }
 

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>البرنامج الرسمي · مقياس الذكاء الاصطناعي</title>
+<meta name="description" content="مقياس الذكاء الاصطناعي لماستر الأدب العام والمقارن (جامعة يحيى فارس بالمدية، 2025-2026) مشروحًا كاملًا: دروس، بايثون، عروض تفاعلية، حلول الأعمال الموجهة والمشاريع المصغرة.">
+<link rel="preload" href="../assets/fonts/noto-naskh-arabic-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/el-messiri-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/polices.css">
+<link rel="stylesheet" href="../assets/css/lumineux-tokens.css">
+<link rel="stylesheet" href="../assets/css/lumineux.css">
+<link rel="stylesheet" href="../assets/css/cours.css">
+<link rel="stylesheet" href="../assets/css/outils.css">
+<link rel="alternate" hreflang="fr" href="../programme.html">
+<link rel="alternate" hreflang="en" href="../en/programme.html">
+</head>
+<body>
+<a class="lien-evitement" href="#contenu">الانتقال إلى المحتوى</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-fermer" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-contraste" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></symbol>
+  <symbol id="i-maison" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5h4v5"/></symbol>
+  <symbol id="i-fiche" viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 13h6M10 17h6"/></symbol>
+  <symbol id="i-calendrier" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-ampoule" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.5 1 2.5h6c0-1 .2-1.7 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+  <symbol id="i-crayon" viewBox="0 0 24 24"><path d="M4 20l4-1L19 8l-3-3L5 16z"/><path d="M14 7l3 3"/></symbol>
+  <symbol id="i-bulle" viewBox="0 0 24 24"><path d="M4 5h16v11H10l-5 4v-4H4z"/></symbol>
+  <symbol id="i-livre" viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></symbol>
+  <symbol id="i-boussole" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></symbol>
+  <symbol id="i-carte" viewBox="0 0 24 24"><path d="M3 6.5l6-2.5 6 2.5 6-2.5v13.5l-6 2.5-6-2.5-6 2.5z"/><path d="M9 4v13.5M15 6.5V20"/></symbol>
+  <symbol id="i-coche" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-retour" viewBox="0 0 24 24"><path class="fleche-retour" d="M10 6l-6 6 6 6M4 12h16"/></symbol>
+  <symbol id="i-outil" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></symbol>
+  <symbol id="i-ecran" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8"/><path d="M10.5 7.8v4.4l3.6-2.2z"/></symbol>
+  <symbol id="i-groupe" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3"/><path d="M3.5 19.5a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9.5" r="2.4"/><path d="M15.6 14.3a4.6 4.6 0 0 1 5.4 4.7"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-poubelle" viewBox="0 0 24 24"><path d="M4.5 7h15M10 7V4.5h4V7M6.5 7l1 13h9l1-13"/><path d="M10 11v5.5M14 11v5.5"/></symbol>
+  <symbol id="i-telecharger" viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5"/><path d="M5 19.5h14"/></symbol>
+  <symbol id="i-importer" viewBox="0 0 24 24"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5"/><path d="M5 19.5h14"/></symbol>
+  <symbol id="i-imprimer" viewBox="0 0 24 24"><path d="M7 9V3.5h10V9"/><rect x="3.5" y="9" width="17" height="8" rx="1.5"/><path d="M7 14h10v6.5H7z"/></symbol>
+  <symbol id="i-lecture" viewBox="0 0 24 24"><path d="M7.5 5v14l11-7z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+  <symbol id="i-plein-ecran" viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></symbol>
+  <symbol id="i-grille" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></symbol>
+  <symbol id="i-precedent" viewBox="0 0 24 24"><path class="fleche-retour" d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-suivant" viewBox="0 0 24 24"><path class="fleche-retour" d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-etoile" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 17l-5.2 2.7 1-5.9-4.3-4.1 5.9-.8z"/></symbol>
+  <symbol id="i-horloge" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-recherche" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/></symbol>
+  <symbol id="i-base" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7.5" ry="2.8"/><path d="M4.5 6v12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8V6M4.5 12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8"/></symbol>
+  <symbol id="i-copier" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11" height="11" rx="1.5"/><path d="M15.5 8.5V5.5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3"/></symbol>
+</svg>
+
+<header class="entete">
+  <div class="entete__barre">
+    <button type="button" class="bouton-verre entete__burger" data-ouvre-tiroir="tiroir-nav" aria-controls="tiroir-nav" aria-label="فتح القائمة">
+      <svg class="icone"><use href="#i-menu"/></svg>
+    </button>
+    <a class="entete__marque" href="index.html"><span class="anneau-prisme" aria-hidden="true"></span>ذ.ا <small>ماستر LGC</small></a>
+    <nav class="entete__liens" aria-label="روابط مفيدة">
+      <a class="bouton bouton--discret bouton--petit entete__lien-systeme" href="../systeme-de-design.html">نظام التصميم</a>
+      <div class="langues" role="group" aria-label="لغة الدرس"><a href="../programme.html" lang="fr" hreflang="fr" data-lien-langue>FR</a><a href="../en/programme.html" lang="en" hreflang="en" data-lien-langue>EN</a><a href="programme.html" lang="ar" hreflang="ar" aria-current="page">عربي</a></div>
+      <button type="button" class="bouton-verre" data-bascule-theme aria-label="تغيير المظهر">
+        <svg class="icone"><use href="#i-contraste"/></svg>
+      </button>
+    </nav>
+  </div>
+  <div class="progression" aria-hidden="true"></div>
+</header>
+
+<div class="tiroir-voile" data-voile-tiroir="tiroir-nav"></div>
+<aside class="tiroir" id="tiroir-nav" aria-label="قائمة المقياس">
+  <div class="tiroir__tete">
+    <p class="tiroir__titre">محتويات المقياس</p>
+    <button type="button" class="bouton-verre" data-ferme-tiroir aria-label="إغلاق القائمة">
+      <svg class="icone"><use href="#i-fermer"/></svg>
+    </button>
+  </div>
+  <nav aria-label="القائمة" data-rail>
+<ul class="rail-capsule">
+<li><a href="index.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-maison"/></svg></span>الرئيسية</a></li>
+<li><a href="cours.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-livre"/></svg></span>المقياس</a></li>
+<li><a href="enseignant.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-outil"/></svg></span>دليل الأستاذ</a></li>
+<li><a href="diaporamas.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-ecran"/></svg></span>العروض التقديمية</a></li>
+<li><a href="classe.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-groupe"/></svg></span>أفواجي</a></li>
+<li><a href="programme.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-fiche"/></svg></span>البرنامج الرسمي</a></li>
+</ul>
+</nav>
+</aside>
+
+<main id="contenu" class="page-outil">
+  <section class="outil-tete" aria-labelledby="titre-outil">
+    <p class="surtitre">للأستاذ</p>
+    <h1 class="outil-tete__titre" id="titre-outil">البرنامج الرسمي</h1>
+    <p class="outil-tete__chapeau">النص الكامل لبرنامج المقياس (عرض التكوين، الصفحات من 84 إلى 86)، مترجمًا بأمانة عن الأصل الفرنسي دون أي تغيير.</p>
+  </section>
+  <div class="page-document"><div class="page__contenu">
+<section class="chapitre" id="programme" aria-labelledby="programme-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">المؤسسة: جامعة يحيى فارس بالمدية · الماستر: الأدب العام والمقارن · السنة الجامعية: 2025-2026 · الصفحات 84 إلى 86</p>
+    <h2 class="titre-section" id="programme-titre">الذكاء الاصطناعي</h2>
+  </header>
+
+  <nav class="sommaire-chapitre" aria-label="فهرس البرنامج">
+    <ol>
+      <li><a href="#programme-fiche">بطاقة المقياس</a></li>
+      <li><a href="#programme-objectifs">أهداف التعليم</a></li>
+      <li><a href="#programme-connaissances">المعارف المستهدفة</a></li>
+      <li><a href="#programme-methode">الطريقة البيداغوجية</a></li>
+      <li><a href="#programme-contenu">محتوى المقياس</a></li>
+      <li><a href="#programme-mini-projet">المشروع المصغَّر</a></li>
+      <li><a href="#programme-td">الأعمال الموجَّهة / الأعمال التطبيقية</a></li>
+      <li><a href="#programme-tp">الأعمال التطبيقية</a></li>
+      <li><a href="#programme-references">المراجع</a></li>
+    </ol>
+  </nav>
+
+  <article class="lecon" id="programme-fiche">
+    <h3>بطاقة المقياس</h3>
+    <dl class="definitions">
+      <div><dt>عنوان الماستر</dt><dd>الأدب العام والمقارن</dd></div>
+      <div><dt>السداسي</dt><dd>3</dd></div>
+      <div><dt>عنوان وحدة التعليم</dt><dd>وحدة التعليم الأفقية</dd></div>
+      <div><dt>عنوان المقياس</dt><dd>الذكاء الاصطناعي</dd></div>
+      <div><dt>الأرصدة</dt><dd>2</dd></div>
+      <div><dt>المعاملات</dt><dd>2</dd></div>
+    </dl>
+  </article>
+
+  <article class="lecon" id="programme-objectifs">
+    <h3>أهداف التعليم</h3>
+    <ul>
+      <li>التحكم في خوارزميات الذكاء الاصطناعي من أجل المعالجة النصية للاستبيانات</li>
+      <li>القدرة على استعمال برمجية Python،</li>
+      <li>فهم مقاربات الذكاء الاصطناعي في حل المشكلات،</li>
+      <li>القدرة على معالجة مدوّنة من النصوص.</li>
+    </ul>
+  </article>
+
+  <article class="lecon" id="programme-connaissances">
+    <h3>المعارف المستهدفة</h3>
+    <ul>
+      <li>تحديد فرص الذكاء الاصطناعي في العلوم الإنسانية والاجتماعية.</li>
+      <li>فهم ما يمكن أن تكون عليه مختلف تطبيقات الذكاء الاصطناعي بالنسبة إلى العلوم الإنسانية والاجتماعية.</li>
+      <li>فهم الانعكاسات الأخلاقية للذكاء الاصطناعي والممارسات الحسنة في استعماله.</li>
+      <li>القدرة على إنجاز عنقدة السلوكيات الاجتماعية في الاستبيانات والنمذجة التنبؤية.</li>
+      <li>فهم المشاعر على الشبكات وكيفية تحليلها.</li>
+      <li>القدرة على استخراج نصوص من الخطابات السياسية.</li>
+      <li>القدرة على تحليل الشبكات السوسيولوجية.</li>
+    </ul>
+  </article>
+
+  <article class="lecon" id="programme-methode">
+    <h3>الطريقة البيداغوجية</h3>
+    <ul>
+      <li>محاضرات.</li>
+      <li>أعمال موجَّهة.</li>
+      <li>أعمال تطبيقية.</li>
+      <li>مشروع مصغَّر (إنجاز 3 مواضيع على الأقل من بين المواضيع الخمسة المقترحة)</li>
+      <li>تفاعلية قصوى بين الأستاذ والطلبة.</li>
+      <li>عمل شخصي (لا سيما في البرمجة).</li>
+      <li>تقييم (مطابق للنصوص المعمول بها).</li>
+      <li>موائد مستديرة (نشأة الذكاء الاصطناعي وظهوره، أثر الذكاء الاصطناعي في التفكير والمناهج في العلوم الإنسانية والاجتماعية، الذكاء الاصطناعي مولِّدًا لإشكاليات علمية ومجتمعية جديدة، آفاق الذكاء الاصطناعي، إلخ).</li>
+    </ul>
+  </article>
+
+  <article class="lecon" id="programme-contenu">
+    <h3>محتوى المقياس</h3>
+
+    <h4>الفصل 1: مدخل</h4>
+    <ul>
+      <li>مدخل إلى الذكاء الاصطناعي (IA) (أسبوع واحد، وإذا لم يكفِ تُستعمل حصة واحدة من الأعمال التطبيقية (TP) للإتمام)
+        <ul>
+          <li>لمحة تاريخية عن الذكاء الاصطناعي،</li>
+          <li>الذكاء الاصطناعي الضيّق (أو الضعيف)</li>
+          <li>الذكاء الاصطناعي العام (أو القوي)</li>
+        </ul>
+      </li>
+      <li>التعلم الخاضع للإشراف والتعلم غير الخاضع للإشراف
+        <ul>
+          <li>مقاربات الذكاء الاصطناعي في حل المشكلات،</li>
+          <li>آفاق.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h4>الفصل 2: تذكير واستكمال حول اللغة (أسبوعان)</h4>
+    <ul>
+      <li>الأساسيات</li>
+      <li>المكتبات Pandas، Numpy، إلخ.</li>
+      <li>مدخل إلى البرمجة الكائنية،</li>
+      <li>قراءة الملفات النصية ومعالجتها (البحث، الفرز)</li>
+      <li>إدارة تقارير بسيطة (PDF، Excel)</li>
+    </ul>
+
+    <h4>الفصل 3: أنواع الذكاء الاصطناعي ومقارباته (6 أسابيع)</h4>
+    <ul>
+      <li>الذكاء الاصطناعي الرمزي (النظام الخبير)</li>
+      <li>التعلم الآلي (<span lang="en">Machine Learning</span>)
+        <ul>
+          <li><span lang="en">Machine Learning</span> (ML)، مع أمثلة مثل: تصنيف الرسائل الإلكترونية على أنها «مزعجة» أو «غير مزعجة»، التوصيات، التعرّف على الصور (مثال: الوجوه)، إلخ.</li>
+        </ul>
+      </li>
+      <li>التعلم العميق (<span lang="en">Deep Learning</span>)
+        <ul>
+          <li><span lang="en">Deep Learning</span></li>
+          <li>توليد النص باستعمال Transformers (أو غيرها).</li>
+        </ul>
+      </li>
+      <li>الذكاء الاصطناعي بالتعزيز (<span lang="en">Renforcement Learning</span>)
+        <ul>
+          <li>التعلم المعزَّز (RL)</li>
+        </ul>
+      </li>
+    </ul>
+  </article>
+
+  <article class="lecon" id="programme-mini-projet">
+    <h3>المشروع المصغَّر</h3>
+    <p>مشروع مصغَّر (3 أسابيع – عمل شخصي مؤطَّر – يُوزَّع في نهاية الفصل 2):</p>
+    <p>عالِج موضوعًا واحدًا تختاره من بين:</p>
+
+    <h4>الموضوع 1. تحليل المشاعر في شبكات التواصل الاجتماعي</h4>
+    <p><strong>الهدف:</strong> تحليل مدوّنات نصية مأخوذة من شبكات التواصل الاجتماعي (Twitter، Facebook، إلخ) لتحديد مشاعر المستخدمين إزاء موضوع معيّن (مثال: حملة سياسية، أو أزمة صحية، أو حدث اجتماعي).</p>
+    <p><strong>الأدوات:</strong> Python، TextBlob، VADER، Tweepy (لـ Twitter)، pandas، matplotlib، GeoPandas.</p>
+
+    <h4>الموضوع 2. عنقدة السلوكيات الاجتماعية في الاستبيانات</h4>
+    <p><strong>الهدف:</strong> استعمال تقنيات العنقدة لتجميع الأفراد ذوي السلوكيات الاجتماعية المتشابهة انطلاقًا من بيانات الاستبيانات. ويمكن أن يكون ذلك مفيدًا لتقسيم مجتمع ما إلى مجموعات اهتمام متمايزة.</p>
+    <p><strong>الأدوات:</strong> Python، pandas، sklearn، matplotlib، seaborn، scikit-learn.</p>
+
+    <h4>الموضوع 3. تحليل النصوص لاستخراج المعلومات من الخطابات السياسية</h4>
+    <p><strong>الهدف:</strong> استعمال الذكاء الاصطناعي لاستخراج الموضوعات الرئيسية والكيانات المسمّاة (أسماء الأشخاص، الأماكن، التواريخ) من الخطابات السياسية. ويمكن استعمال ذلك لفهم انشغالات السياسيين وتحليل بلاغتهم.</p>
+    <p><strong>الأدوات:</strong> Python، spaCy، Transformers (BERT)، gensim (LDA)، matplotlib، WordCloud.</p>
+
+    <h4>الموضوع 4. النمذجة التنبؤية للسلوكيات الاجتماعية انطلاقًا من بيانات الاستهلاك</h4>
+    <p><strong>الهدف:</strong> بناء نموذج تنبؤي لتقدير السلوكيات الاجتماعية للمستهلكين (مثلًا، احتمال شراء منتجات أو المشاركة في أحداث اجتماعية) بدلالة متغيّرات مختلفة.</p>
+    <p><strong>الأدوات:</strong> Python، sklearn، pandas، matplotlib، seaborn.</p>
+
+    <h4>الموضوع 5. تحليل الشبكات الاجتماعية (سوسيولوجيا الشبكات)</h4>
+    <p><strong>الهدف:</strong> استعمال تقنيات تحليل الشبكات الاجتماعية (<span lang="en">Social Network Analysis - SNA</span>) لدراسة العلاقات بين الأفراد في شبكة اجتماعية، باستعمال بيانات مهيكلة.</p>
+    <p><strong>الأدوات:</strong> Python، NetworkX، Gephi، matplotlib، pandas.</p>
+  </article>
+
+  <article class="lecon" id="programme-td">
+    <h3>الأعمال الموجَّهة / الأعمال التطبيقية</h3>
+
+    <h4>الفصل 1:</h4>
+    <ol>
+      <li>مراجعة المفاهيم التي تناولها الدرس (الفصل 1) والتعمق في مفهوم التعلم الخاضع للإشراف وغير الخاضع للإشراف</li>
+      <li>ما الفرق بين التعلم الخاضع للإشراف والتعلم غير الخاضع للإشراف؟</li>
+      <li>تقديم أمثلة على التعلم</li>
+      <li>حالة تُنجَز عملًا شخصيًا:
+        <p>دراسة الأدبيات المتعلقة بالذكاء الاصطناعي لتحديد ما إذا كانت الحواسيب الحالية قادرة على إنجاز العمليات الآتية بنجاح:</p>
+        <ul>
+          <li>لعب كرة الطاولة بشكل صحيح</li>
+          <li>قيادة سيارة في وسط مدينة</li>
+          <li>اكتشاف مبرهنات رياضية والبرهنة عليها</li>
+          <li>كتابة قصة مضحكة</li>
+          <li>إبداء رأي وجيه في مجال قانوني معيَّن</li>
+          <li>إجراء عملية جراحية معقَّدة</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h4>الفصل 2:</h4>
+    <ul>
+      <li>تمارين بلغة Python: برامج، القوائم والصفوف، معالجة البيانات بواسطة المكتبات المدروسة في الدرس.</li>
+    </ul>
+
+    <h4>الفصل 3:</h4>
+    <ol>
+      <li>تمرين حول النظام الخبير:
+        <ul>
+          <li>لتكن القواعد الآتية في التسلسل الأمامي:</li>
+          <li>R1: &#x2066;A → E&#x2069;</li>
+          <li>R2: &#x2066;B → D&#x2069;</li>
+          <li>R3: &#x2066;H → A ∩ F&#x2069;</li>
+          <li>R4: &#x2066;E ∩ G → C&#x2069;</li>
+          <li>R5: &#x2066;E ∩ K → B&#x2069;</li>
+          <li>R6: &#x2066;D ∩ E ∩ K → C&#x2069;</li>
+          <li>R7: &#x2066;G ∩ K ∩ F → A&#x2069;</li>
+        </ul>
+        <p>ترتيب القواعد: &#x2066;R3 R7 R1 R4 R5 R2 R6&#x2069;<br>
+        الوقائع غير القابلة للاستنتاج: H، G، K<br>
+        قاعدة الوقائع الأولية: H، K<br>
+        الهدف: C</p>
+        <p>الأسئلة:<br>
+        رسم المخطط الموافق للقواعد<br>
+        تتبُّع سير النظام بالتسلسل الأمامي.</p>
+      </li>
+      <li>تقديم بعض الخوارزميات المستعملة في التعلم الآلي (ML):
+        <ol type="a">
+          <li>الانحدار الخطي،</li>
+          <li>الانحدار التدرّجي</li>
+          <li>التصنيف في فئات قائمة على السمات</li>
+          <li>تجميع الكائنات المتشابهة في عناقيد</li>
+          <li>إلخ.</li>
+        </ol>
+      </li>
+      <li>تقديم أمثلة عن التصنيف، والتوصيات، والتعرّف على الصور.</li>
+      <li>تمارين حول كل نوع من أنواع التعلم:
+        <ol type="a">
+          <li>ML</li>
+          <li><span lang="en">Deep learning</span> (CNN، RNN)</li>
+          <li>التعزيز</li>
+        </ol>
+      </li>
+    </ol>
+  </article>
+
+  <article class="lecon" id="programme-tp">
+    <h3>الأعمال التطبيقية</h3>
+    <ul>
+      <li>ستُخصَّص حصص الأعمال التطبيقية (TP) لبرمجة التمارين المدروسة في الأعمال الموجَّهة (TD) باستعمال Python ولإنجاز مشروع مصغَّر.</li>
+    </ul>
+  </article>
+
+  <article class="lecon" id="programme-references">
+    <h3>المراجع</h3>
+    <ul>
+      <li><span lang="en">&#x2066;R.Inglehart (1997) : Modernization and Postmodernization : Cultural , economic, and political chnage in 43 societies – Princeton University Press.&#x2069;</span></li>
+      <li><span lang="en">&#x2066;Western Values are Diverging from the rest of the world’s. – The Economiste – 2023.&#x2069;</span></li>
+      <li><span lang="en">&#x2066;Western Michigan University : World Values Survey.&#x2069;</span> الرابط: &#x2066;<a href="https://wmich.edu/economics/world-values-survey" target="_blank" rel="noopener">https://wmich.edu/economics/world-values-survey</a>&#x2069;</li>
+      <li><span lang="fr">&#x2066;Ganascia, J.Gabriel (2024) : l’IA expliquée aux humains. Paris France- Edition le Seuil.&#x2069;</span></li>
+      <li><span lang="fr">&#x2066;Anglais, Lise, Dilhac, Antione, Dratwa, Jim et al. (2023) : L’éthique au cœur de e l’IA. Quebec Obvia.&#x2069;</span></li>
+      <li><span lang="fr">&#x2066;J.Robert (2024) : Natural Language Processing (NLP) : définition et principes – Datasciences.&#x2069;</span> الرابط: &#x2066;<a href="https://datascientest.com/introduction-au-nlp-natural-language-processing" target="_blank" rel="noopener">https://datascientest.com/introduction-au-nlp-natural-language-processing</a>&#x2069;</li>
+      <li><span lang="fr">&#x2066;Qu’est-ce que le traitement du langage naturel.&#x2069;</span> الرابط: &#x2066;<a href="https://aws.amazon.com/fr/what-is/nlp/" target="_blank" rel="noopener">https://aws.amazon.com/fr/what-is/nlp/</a>&#x2069;</li>
+      <li><span lang="fr">&#x2066;H.Belhadef, I.Djemal : Méthode TALN – Cours de l’unievrsité de Msila - Algérie&#x2069;</span></li>
+      <li><span lang="fr">&#x2066;B. Prieur : Traitement automatique du langage naturel avec Python. Le NLP avec SpaCy et NLTK.&#x2069;</span></li>
+      <li><span lang="fr">&#x2066;Baddari Kamel et Herzallah Abdelkarim (2015) : La recherche de l’information&#x2069;</span>، كتاب – <span lang="fr">&#x2066;OPU -Algérie.&#x2069;</span></li>
+    </ul>
+  </article>
+</section>
+  </div></div>
+</main>
+
+<footer class="pied">
+  <div class="pied__interieur">
+    <div>
+      <p class="pied__signature"><span class="anneau-prisme" aria-hidden="true"></span>الذكاء الاصطناعي</p>
+      <p>ماستر الأدب العام والمقارن، السداسي الثالث. جامعة يحيى فارس بالمدية. السنة الجامعية 2025–2026.</p>
+      <p>المحتوى مبني على البرنامج الرسمي للمقياس (الصفحات 84 إلى 86 من عرض التكوين). الشروح والأمثلة والحلول ترافق درس الأستاذ ولا تعوّضه. المقياس وامتحانه باللغة الفرنسية، وهذه النسخة العربية أداة مساعدة على المراجعة.</p>
+    </div>
+    <div>
+      <h2>تصفّح</h2>
+      <ul>
+        <li><a href="cours.html#methode">كيف تتعلّم هذا المقياس</a></li>
+        <li><a href="cours.html#chapitre-1">الفصل 1 · مدخل</a></li>
+        <li><a href="cours.html#chapitre-2">الفصل 2 · بايثون</a></li>
+        <li><a href="cours.html#chapitre-3">الفصل 3 · أنواع الذكاء الاصطناعي</a></li>
+        <li><a href="cours.html#mini-projet">المشروع المصغَّر</a></li>
+        <li><a href="cours.html#td-tp">حلول TD / TP</a></li>
+        <li><a href="enseignant.html">دليل الأستاذ</a></li>
+        <li><a href="diaporamas.html">العروض التقديمية</a></li>
+        <li><a href="classe.html">أفواجي</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>عن الموقع</h2>
+      <p>صُمّم بنظام <a href="../systeme-de-design.html">Lumineux</a>، وهو نظام تصميم مستخرج من عروض «Cadre Lumineux» والقائمة الكبسولية وشريط الصور في هذا المستودع.</p>
+      <p>المظهر الليلي أو النهاري: الزر في أعلى الصفحة. لغات أخرى: <a href="../index.html" hreflang="fr" lang="fr">Français</a>، <a href="../en/index.html" hreflang="en" lang="en">English</a>.</p>
+      <p>الشيفرة المصدرية، وملف <code>run.bat</code> لتثبيت كل شيء على ويندوز: <a href="https://github.com/Progremer04/canva-au-for-ang-" target="_blank" rel="noopener">github.com/Progremer04/canva-au-for-ang-</a>.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/lumineux.js" defer></script>
+</body>
+</html>

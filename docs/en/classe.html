@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>My groups · AI Course</title>
 <meta name="description" content="The artificial intelligence course of the Master in General and Comparative Literature (Université Yahia Farès, Médéa, 2025-2026), fully explained: lessons, Python, interactive demos, solved tutorials and mini-projects.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;600&amp;family=IM+Fell+DW+Pica+SC&amp;family=JetBrains+Mono:wght@400;600&amp;family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&amp;family=Rajdhani:wght@500;600;700&amp;display=swap">
+<link rel="preload" href="../assets/fonts/literata-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/im-fell-dw-pica-sc-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/polices.css">
 <link rel="stylesheet" href="../assets/css/lumineux-tokens.css">
 <link rel="stylesheet" href="../assets/css/lumineux.css">
 <link rel="stylesheet" href="../assets/css/cours.css">
 <link rel="stylesheet" href="../assets/css/outils.css">
-<link rel="alternate" hreflang="fr" href="../index.html">
-<link rel="alternate" hreflang="ar" href="../ar/index.html">
+<link rel="alternate" hreflang="fr" href="../classe.html">
+<link rel="alternate" hreflang="ar" href="../ar/classe.html">
 </head>
 <body>
 <a class="lien-evitement" href="#contenu">Skip to content</a>
@@ -81,10 +81,12 @@
   </div>
   <nav aria-label="Menu" data-rail>
 <ul class="rail-capsule">
-<li><a href="index.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-retour"/></svg></span>Back to the course</a></li>
+<li><a href="index.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-maison"/></svg></span>Home</a></li>
+<li><a href="cours.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-livre"/></svg></span>The course</a></li>
 <li><a href="enseignant.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-outil"/></svg></span>Teacher's guide</a></li>
 <li><a href="diaporamas.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-ecran"/></svg></span>Slides</a></li>
 <li><a href="classe.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-groupe"/></svg></span>My groups</a></li>
+<li><a href="programme.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-fiche"/></svg></span>Official syllabus</a></li>
 </ul>
 </nav>
 </aside>
@@ -97,6 +99,7 @@
   </section>
   <div class="outil" id="outil-classe" data-outil="classe" data-base="../" data-langue="en">
     <noscript><p class="outil-message">This page needs JavaScript. Please enable it in your browser.</p></noscript>
+    <div class="chargement" role="status"><span class="chargement__anneau" aria-hidden="true"></span><p class="chargement__texte">Opening the database…</p></div>
   </div>
 </main>
 
@@ -110,12 +113,12 @@
     <div>
       <h2>Browse</h2>
       <ul>
-        <li><a href="index.html#methode">How to learn this course</a></li>
-        <li><a href="index.html#chapitre-1">Chapter 1 · Introduction</a></li>
-        <li><a href="index.html#chapitre-2">Chapter 2 · Python</a></li>
-        <li><a href="index.html#chapitre-3">Chapter 3 · Types of AI</a></li>
-        <li><a href="index.html#mini-projet">Mini-project</a></li>
-        <li><a href="index.html#td-tp">Solved TD / TP</a></li>
+        <li><a href="cours.html#methode">How to learn this course</a></li>
+        <li><a href="cours.html#chapitre-1">Chapter 1 · Introduction</a></li>
+        <li><a href="cours.html#chapitre-2">Chapter 2 · Python</a></li>
+        <li><a href="cours.html#chapitre-3">Chapter 3 · Types of AI</a></li>
+        <li><a href="cours.html#mini-projet">Mini-project</a></li>
+        <li><a href="cours.html#td-tp">Solved TD / TP</a></li>
         <li><a href="enseignant.html">Teacher's guide</a></li>
         <li><a href="diaporamas.html">Slides</a></li>
         <li><a href="classe.html">My groups</a></li>

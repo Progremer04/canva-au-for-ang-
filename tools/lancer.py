@@ -98,11 +98,14 @@ class Gestionnaire(http.server.SimpleHTTPRequestHandler):
         ".svg": "image/svg+xml",
         ".md": "text/markdown; charset=utf-8",
         ".wasm": "application/wasm",
+        ".woff2": "font/woff2",
+        ".ipynb": "application/x-ipynb+json",
     }
 
     def end_headers(self):
-        # Toujours la dernière version des fichiers pendant qu'on travaille.
-        self.send_header("Cache-Control", "no-store")
+        # Le navigateur garde les fichiers mais vérifie à chaque fois qu'ils n'ont pas changé
+        # (réponse 304, sans les retélécharger) : toujours la dernière version, sans attente.
+        self.send_header("Cache-Control", "no-cache")
         super().end_headers()
 
     # --- API de la base « Mes groupes » -------------------------------------------------

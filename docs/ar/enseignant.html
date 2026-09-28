@@ -5,14 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>دليل الأستاذ · مقياس الذكاء الاصطناعي</title>
 <meta name="description" content="مقياس الذكاء الاصطناعي لماستر الأدب العام والمقارن (جامعة يحيى فارس بالمدية، 2025-2026) مشروحًا كاملًا: دروس، بايثون، عروض تفاعلية، حلول الأعمال الموجهة والمشاريع المصغرة.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;600&amp;family=IM+Fell+DW+Pica+SC&amp;family=JetBrains+Mono:wght@400;600&amp;family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&amp;family=Noto+Naskh+Arabic:wght@400;600&amp;family=Rajdhani:wght@500;600;700&amp;display=swap">
+<link rel="preload" href="../assets/fonts/noto-naskh-arabic-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/el-messiri-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/polices.css">
 <link rel="stylesheet" href="../assets/css/lumineux-tokens.css">
 <link rel="stylesheet" href="../assets/css/lumineux.css">
 <link rel="stylesheet" href="../assets/css/cours.css">
-<link rel="alternate" hreflang="fr" href="../index.html">
-<link rel="alternate" hreflang="en" href="../en/index.html">
+<link rel="stylesheet" href="../assets/css/outils.css">
+<link rel="alternate" hreflang="fr" href="../enseignant.html">
+<link rel="alternate" hreflang="en" href="../en/enseignant.html">
 </head>
 <body>
 <a class="lien-evitement" href="#contenu">الانتقال إلى المحتوى</a>
@@ -80,7 +81,7 @@
   </div>
   <nav aria-label="الدليل (القائمة)" data-rail>
 <ul class="rail-capsule">
-<li><a href="index.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-retour"/></svg></span>العودة إلى المقياس</a></li>
+<li><a href="cours.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-retour"/></svg></span>العودة إلى المقياس</a></li>
 <li><a href="#guide-demarrer"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-boussole"/></svg></span>من أين تبدأ</a></li>
 <li><a href="#guide-carte"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-carte"/></svg></span>خريطة المقياس</a></li>
 <li><a href="#guide-progression"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-calendrier"/></svg></span>الخطة الأسبوعية</a></li>
@@ -92,6 +93,7 @@
 <li><a href="#guide-ressources"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-livre"/></svg></span>المراجع والموارد</a></li>
 <li><a href="diaporamas.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-ecran"/></svg></span>العروض التقديمية</a></li>
 <li><a href="classe.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-groupe"/></svg></span>أفواجي</a></li>
+<li><a href="programme.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-fiche"/></svg></span>البرنامج الرسمي</a></li>
 </ul>
 </nav>
 </aside>
@@ -115,7 +117,7 @@
     <div class="page__rail">
       <nav aria-label="محتويات الدليل" data-rail>
 <ul class="rail-capsule">
-<li><a href="index.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-retour"/></svg></span>العودة إلى المقياس</a></li>
+<li><a href="cours.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-retour"/></svg></span>العودة إلى المقياس</a></li>
 <li><a href="#guide-demarrer"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-boussole"/></svg></span>من أين تبدأ</a></li>
 <li><a href="#guide-carte"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-carte"/></svg></span>خريطة المقياس</a></li>
 <li><a href="#guide-progression"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-calendrier"/></svg></span>الخطة الأسبوعية</a></li>
@@ -127,6 +129,7 @@
 <li><a href="#guide-ressources"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-livre"/></svg></span>المراجع والموارد</a></li>
 <li><a href="diaporamas.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-ecran"/></svg></span>العروض التقديمية</a></li>
 <li><a href="classe.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-groupe"/></svg></span>أفواجي</a></li>
+<li><a href="programme.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-fiche"/></svg></span>البرنامج الرسمي</a></li>
 </ul>
 </nav>
     </div>
@@ -154,7 +157,7 @@
     <ol class="etapes">
       <li>
         <p class="etape-titre">قبل شهر · قراءة البرنامج الرسمي، ثم الموقع بعين الطالب</p>
-        <p>اقرؤوا <a href="index.html#fiche">بطاقة المقياس</a> التي تتضمّن البرنامج الرسمي، ثم <a href="index.html#parcours">الرزنامة</a>، وصفحة <a href="index.html#methode">كيف تتعلّم هذا المقياس</a>، و<a href="index.html#chapitre-1">الفصل 1</a> كاملًا. فالدروس و<a href="index.html#td-tp">الأعمال الموجَّهة (TD) المرفقة بحلولها</a> ومواضيع <a href="index.html#mini-projet">المشروع المصغَّر</a> محرَّرة سلفًا: ودوركم أن توجّهوا الطلبة في هذا المحتوى، لا أن تعيدوا كتابته كله.</p>
+        <p>اقرؤوا <a href="cours.html#fiche">بطاقة المقياس</a> التي تتضمّن البرنامج الرسمي، ثم <a href="cours.html#parcours">الرزنامة</a>، وصفحة <a href="cours.html#methode">كيف تتعلّم هذا المقياس</a>، و<a href="cours.html#chapitre-1">الفصل 1</a> كاملًا. فالدروس و<a href="cours.html#td-tp">الأعمال الموجَّهة (TD) المرفقة بحلولها</a> ومواضيع <a href="cours.html#mini-projet">المشروع المصغَّر</a> محرَّرة سلفًا: ودوركم أن توجّهوا الطلبة في هذا المحتوى، لا أن تعيدوا كتابته كله.</p>
       </li>
       <li>
         <p class="etape-titre">قبل أربعة أسابيع · تثبيت الأدوات على حاسوبكم</p>
@@ -187,7 +190,7 @@
       </li>
       <li>
         <p class="etape-titre">قبل عشرة أيام · تحضير الحصة الأولى</p>
-        <p>انطلقوا من أولى <a href="#guide-seances">مذكرات الحصص</a>، وجرّبوا العرض الضوئي في القاعة. وحضّروا سؤالًا افتتاحيًّا («هل تستطيع آلة أن تقرأ رواية؟»)، والعرض التفاعلي في <a href="index.html#accueil">الصفحة الرئيسية للموقع</a> الذي يحسب المشاعر التي تحملها جملة: فهو يفتح النقاش حول معنى «القراءة» بالنسبة إلى آلة.</p>
+        <p>انطلقوا من أولى <a href="#guide-seances">مذكرات الحصص</a>، وجرّبوا العرض الضوئي في القاعة. وحضّروا سؤالًا افتتاحيًّا («هل تستطيع آلة أن تقرأ رواية؟»)، والعرض التفاعلي في <a href="cours.html#accueil">الصفحة الرئيسية للموقع</a> الذي يحسب المشاعر التي تحملها جملة: فهو يفتح النقاش حول معنى «القراءة» بالنسبة إلى آلة.</p>
       </li>
       <li>
         <p class="etape-titre">قبل أسبوع · ضبط التقييم وفق النصوص السارية</p>
@@ -195,7 +198,7 @@
       </li>
       <li>
         <p class="etape-titre">قبل خمسة أيام · تحضير نص المشروع المصغَّر</p>
-        <p>سيُوزَّع في نهاية الفصل 2، لكن حضّروه من الآن: عدد المواضيع، والعمل الفردي أو الثنائي، و<a href="index.html#mp-livrables">المُخرَجات</a> (دفتر notebook، وتقرير من 4 إلى 6 صفحات، وعرض شفهي)، والمواعيد، و<a href="index.html#mp-evaluation">شبكة المراجعة</a>. وتحقّقوا، لكل موضوع، من وجود مصدر بيانات متاح، أو هيّئوا مجموعة بيانات صغيرة تقدّمونها للطلبة.</p>
+        <p>سيُوزَّع في نهاية الفصل 2، لكن حضّروه من الآن: عدد المواضيع، والعمل الفردي أو الثنائي، و<a href="cours.html#mp-livrables">المُخرَجات</a> (دفتر notebook، وتقرير من 4 إلى 6 صفحات، وعرض شفهي)، والمواعيد، و<a href="cours.html#mp-evaluation">شبكة المراجعة</a>. وتحقّقوا، لكل موضوع، من وجود مصدر بيانات متاح، أو هيّئوا مجموعة بيانات صغيرة تقدّمونها للطلبة.</p>
       </li>
       <li>
         <p class="etape-titre">العشيّة · آخر مراجعة، وتكوينكم المستمر</p>
@@ -213,16 +216,16 @@
       <caption>عشر حصص من ساعة واحدة لتكوين أنفسكم بالاستعانة بالموقع</caption>
       <thead><tr><th scope="col">الحصة</th><th scope="col">ما تتعلّمونه</th><th scope="col">في الموقع</th><th scope="col">المطلوب إنجازه</th></tr></thead>
       <tbody>
-        <tr><td>1</td><td>فتح دفتر (notebook) وتنفيذ خلية؛ المتغيّرات والأنواع</td><td><a href="index.html#c2-installer">بيئة العمل</a>، <a href="index.html#c2-fondamentaux">الأساسيات</a></td><td>إظهار عنوان رواية وسنة صدورها، ثم تغيير قيمة.</td></tr>
-        <tr><td>2</td><td>السلاسل النصية والقوائم</td><td><a href="index.html#c2-fondamentaux">الأساسيات</a></td><td><a href="index.html#td-ch2-ex1">التمرين 1 من TD 2</a> (الكلمات المتناظرة)</td></tr>
-        <tr><td>3</td><td>الصفوف (tuples)، والقواميس، والحلقات</td><td><a href="index.html#c2-fondamentaux">الأساسيات</a></td><td>التمرينان <a href="index.html#td-ch2-ex2">2</a> و<a href="index.html#td-ch2-ex3">3</a> من TD 2</td></tr>
-        <tr><td>4</td><td>الشروط، والدوال؛ قراءة رسالة خطأ</td><td><a href="index.html#c2-fondamentaux">الأساسيات</a>؛ الدليل التعليمي الرسمي، الفصلان 3 و4</td><td>افتعال ثلاثة أخطاء وقراءة السطر الأخير من كل رسالة.</td></tr>
-        <tr><td>5</td><td>pandas: قراءة ملف CSV، والتصفية، والترتيب، والتجميع</td><td><a href="index.html#c2-numpy-pandas">NumPy وpandas</a></td><td><a href="index.html#td-ch2-ex4">التمرين 4 من TD 2</a></td></tr>
-        <tr><td>6</td><td>الملفات النصية: القراءة، والبحث، والعدّ، والترتيب</td><td><a href="index.html#c2-fichiers">الملفات النصية</a></td><td><a href="index.html#td-ch2-ex5">التمرين 5 من TD 2</a>، ثم فهرس سياقي (<span class="terme-en" lang="fr">concordance</span>) لنص من اختياركم.</td></tr>
-        <tr><td>7</td><td>تقارير Excel وPDF؛ لمحة عن الكائنات</td><td><a href="index.html#c2-rapports">التقارير</a>، <a href="index.html#c2-objet">الكائنات</a></td><td>تصدير نتيجة الحصة 6 إلى مصنَّف Excel.</td></tr>
-        <tr><td>8</td><td>أفكار الفصل 1</td><td><a href="index.html#chapitre-1">الفصل 1</a>، <a href="index.html#td-ch1">TD 1</a></td><td>التمرينان 2 و3 من TD 1، بأمثلة أدبية من اختياركم.</td></tr>
-        <tr><td>9</td><td>النظام الخبير والتسلسل الأمامي</td><td><a href="index.html#c3-symbolique">الذكاء الاصطناعي الرمزي</a></td><td><a href="index.html#td-ch3-ex1">التمرين 1 من TD 3</a> على الورق، ثم العرض التفاعلي.</td></tr>
-        <tr><td>10</td><td>خوارزمية تعلّم من البداية إلى النهاية</td><td><a href="index.html#c3-algorithmes">الخوارزميات</a>، <a href="index.html#mp-sujet-2">الموضوع 2</a></td><td><a href="index.html#td-ch3-ex2d">التمرين 2d</a> يدويًّا، والعرض التفاعلي لخوارزمية k-المتوسطات، ثم شيفرة الموضوع 2.</td></tr>
+        <tr><td>1</td><td>فتح دفتر (notebook) وتنفيذ خلية؛ المتغيّرات والأنواع</td><td><a href="cours.html#c2-installer">بيئة العمل</a>، <a href="cours.html#c2-fondamentaux">الأساسيات</a></td><td>إظهار عنوان رواية وسنة صدورها، ثم تغيير قيمة.</td></tr>
+        <tr><td>2</td><td>السلاسل النصية والقوائم</td><td><a href="cours.html#c2-fondamentaux">الأساسيات</a></td><td><a href="cours.html#td-ch2-ex1">التمرين 1 من TD 2</a> (الكلمات المتناظرة)</td></tr>
+        <tr><td>3</td><td>الصفوف (tuples)، والقواميس، والحلقات</td><td><a href="cours.html#c2-fondamentaux">الأساسيات</a></td><td>التمرينان <a href="cours.html#td-ch2-ex2">2</a> و<a href="cours.html#td-ch2-ex3">3</a> من TD 2</td></tr>
+        <tr><td>4</td><td>الشروط، والدوال؛ قراءة رسالة خطأ</td><td><a href="cours.html#c2-fondamentaux">الأساسيات</a>؛ الدليل التعليمي الرسمي، الفصلان 3 و4</td><td>افتعال ثلاثة أخطاء وقراءة السطر الأخير من كل رسالة.</td></tr>
+        <tr><td>5</td><td>pandas: قراءة ملف CSV، والتصفية، والترتيب، والتجميع</td><td><a href="cours.html#c2-numpy-pandas">NumPy وpandas</a></td><td><a href="cours.html#td-ch2-ex4">التمرين 4 من TD 2</a></td></tr>
+        <tr><td>6</td><td>الملفات النصية: القراءة، والبحث، والعدّ، والترتيب</td><td><a href="cours.html#c2-fichiers">الملفات النصية</a></td><td><a href="cours.html#td-ch2-ex5">التمرين 5 من TD 2</a>، ثم فهرس سياقي (<span class="terme-en" lang="fr">concordance</span>) لنص من اختياركم.</td></tr>
+        <tr><td>7</td><td>تقارير Excel وPDF؛ لمحة عن الكائنات</td><td><a href="cours.html#c2-rapports">التقارير</a>، <a href="cours.html#c2-objet">الكائنات</a></td><td>تصدير نتيجة الحصة 6 إلى مصنَّف Excel.</td></tr>
+        <tr><td>8</td><td>أفكار الفصل 1</td><td><a href="cours.html#chapitre-1">الفصل 1</a>، <a href="cours.html#td-ch1">TD 1</a></td><td>التمرينان 2 و3 من TD 1، بأمثلة أدبية من اختياركم.</td></tr>
+        <tr><td>9</td><td>النظام الخبير والتسلسل الأمامي</td><td><a href="cours.html#c3-symbolique">الذكاء الاصطناعي الرمزي</a></td><td><a href="cours.html#td-ch3-ex1">التمرين 1 من TD 3</a> على الورق، ثم العرض التفاعلي.</td></tr>
+        <tr><td>10</td><td>خوارزمية تعلّم من البداية إلى النهاية</td><td><a href="cours.html#c3-algorithmes">الخوارزميات</a>، <a href="cours.html#mp-sujet-2">الموضوع 2</a></td><td><a href="cours.html#td-ch3-ex2d">التمرين 2d</a> يدويًّا، والعرض التفاعلي لخوارزمية k-المتوسطات، ثم شيفرة الموضوع 2.</td></tr>
       </tbody>
     </table></div>
 
@@ -233,7 +236,7 @@
       <li><a href="https://programminghistorian.org/fr/" target="_blank" rel="noopener">Programming Historian</a>: دروس في الإنسانيات الرقمية محكَّمة من قِبل النظراء، مكتوبة للعلوم الإنسانية؛ بعضها بالفرنسية والباقي بالإنجليزية.</li>
     </ul>
 
-    <aside class="encadre encadre--attention"><p class="encadre-titre">حين تتعثّرون</p><p>إذا تجاوزتم عشرين دقيقة في المشكلة نفسها، فتوقّفوا. دوّنوا ما جرّبتموه، ثم اسألوا زميلًا، أو اطلبوا من مساعد ذكاء اصطناعي أن يشرح لكم الشيفرة سطرًا سطرًا، مع التحقّق مما يؤكّده (<a href="index.html#me-assistant">حسن استعمال المساعد</a>). سيتعثّر طلبتكم في المواضع نفسها، وستعرفون كيف تساعدونهم.</p></aside>
+    <aside class="encadre encadre--attention"><p class="encadre-titre">حين تتعثّرون</p><p>إذا تجاوزتم عشرين دقيقة في المشكلة نفسها، فتوقّفوا. دوّنوا ما جرّبتموه، ثم اسألوا زميلًا، أو اطلبوا من مساعد ذكاء اصطناعي أن يشرح لكم الشيفرة سطرًا سطرًا، مع التحقّق مما يؤكّده (<a href="cours.html#me-assistant">حسن استعمال المساعد</a>). سيتعثّر طلبتكم في المواضع نفسها، وستعرفون كيف تساعدونهم.</p></aside>
 
     <aside class="encadre encadre--retenir"><p class="encadre-titre">ما يتطلّبه منكم المقياس فعلًا</p>
       <ul>
@@ -267,7 +270,7 @@
       <div class="comparaison-col">
         <h4>دون تثبيت</h4>
         <p>ينفّذ Colab لغة Python داخل المتصفّح، بحساب Google واتصال بالإنترنت. وبعض المكتبات مثبَّتة فيه مسبقًا؛ أما الباقي فيُضاف بالأمر <code>!pip install</code>.</p>
-        <p>تعمل العروض التفاعلية الأربعة للموقع داخل المتصفّح، حتى دون اتصال: <a href="index.html#accueil">قارئ المشاعر</a> في الصفحة الرئيسية، و<a href="index.html#c3-symbolique">التسلسل الأمامي</a>، و<a href="index.html#c3-algorithmes">الانحدار التدرّجي وخوارزمية k-المتوسطات</a>.</p>
+        <p>تعمل العروض التفاعلية الأربعة للموقع داخل المتصفّح، حتى دون اتصال: <a href="cours.html#accueil">قارئ المشاعر</a> في الصفحة الرئيسية، و<a href="cours.html#c3-symbolique">التسلسل الأمامي</a>، و<a href="cours.html#c3-algorithmes">الانحدار التدرّجي وخوارزمية k-المتوسطات</a>.</p>
       </div>
       <div class="comparaison-col">
         <h4>دون حاسوب</h4>
@@ -390,45 +393,45 @@
       <caption>ستة عشر مفهومًا، بحسب ترتيب المقياس</caption>
       <thead><tr><th scope="col">المفهوم</th><th scope="col">المكتسبات القبلية</th><th scope="col">موضعه في الموقع</th><th scope="col">النشاط المقترح</th></tr></thead>
       <tbody>
-        <tr><th scope="row">1. تعريف الذكاء الاصطناعي، الوكيل</th><td>لا شيء</td><td><a href="index.html#c1-definir">ما الذكاء الاصطناعي؟</a></td><td>جمع تعريفات الطلبة، ثم مقارنتها بتعريف الدرس.</td></tr>
-        <tr><th scope="row">2. المحطات الكبرى في تاريخ الذكاء الاصطناعي</th><td>لا شيء</td><td><a href="index.html#c1-histoire">لمحة تاريخية</a></td><td>خط زمني جماعي من عشرة تواريخ؛ <a href="index.html#tr-genese">المائدة المستديرة 1</a>.</td></tr>
-        <tr><th scope="row">3. الذكاء الاصطناعي الضعيف والقوي</th><td>1</td><td><a href="index.html#c1-faible-forte">الذكاء الاصطناعي الضيّق والعام</a></td><td>نقاش قصير حول الغرفة الصينية.</td></tr>
-        <tr><th scope="row">4. التعلم الخاضع للإشراف وغير الخاضع للإشراف</th><td>1</td><td><a href="index.html#c1-apprentissage">الدرس</a>، <a href="index.html#td-ch1-ex2">TD 1، التمرين 2</a></td><td>تصنيف بطاقات وضعيات في كومتين، ثم تعليل ذلك.</td></tr>
-        <tr><th scope="row">5. المتغيّرات، والقوائم، والقواميس، والحلقات</th><td>لا شيء</td><td><a href="index.html#c2-fondamentaux">الأساسيات</a>، <a href="index.html#td-ch2">TD 2</a></td><td>توقّع مخرجات برنامج مطبوع قبل تنفيذه.</td></tr>
-        <tr><th scope="row">6. جدول البيانات (DataFrame)</th><td>5</td><td><a href="index.html#c2-numpy-pandas">NumPy وpandas</a>، <a href="index.html#td-ch2-ex4">TD 2، التمرين 4</a></td><td>تصفية جدول للأعمال الأدبية وترتيبه وإحصاؤه.</td></tr>
-        <tr><th scope="row">7. الملف النصي، والترميز، والتكرارات</th><td>5</td><td><a href="index.html#c2-fichiers">الملفات النصية</a>، <a href="index.html#td-ch2-ex5">TD 2، التمرين 5</a></td><td>فهرس سياقي لكلمة في رواية من الملك العام.</td></tr>
-        <tr><th scope="row">8. الصنف والكائن</th><td>5</td><td><a href="index.html#c2-objet">البرمجة الكائنية</a></td><td>قراءة موجَّهة: «القصيدة نصٌّ».</td></tr>
-        <tr><th scope="row">9. النظام الخبير، التسلسل الأمامي</th><td>منطق «إذا… فإنّ»</td><td><a href="index.html#c3-symbolique">الذكاء الاصطناعي الرمزي</a>، <a href="index.html#td-ch3-ex1">TD 3، التمرين 1</a></td><td>تطبيق القواعد خطوة خطوة على السبورة، ثم العرض التفاعلي.</td></tr>
-        <tr><th scope="row">10. التدريب، والاختبار، والإفراط في التعلم</th><td>4</td><td><a href="index.html#c3-ml">التعلم الآلي</a></td><td>تصنيف عشر رسائل إلكترونية يدويًّا، ثم عدّ الأخطاء.</td></tr>
-        <tr><th scope="row">11. الانحدار والانحدار التدرّجي</th><td>10</td><td><a href="index.html#c3-algorithmes">الخوارزميات</a>، <a href="index.html#td-ch3-ex2a">TD 3، التمرين 2a</a> و<a href="index.html#td-ch3-ex2b">2b</a></td><td>العرض التفاعلي: تغيير معدل التعلم.</td></tr>
-        <tr><th scope="row">12. التصنيف بخوارزمية أقرب k جيران</th><td>10</td><td><a href="index.html#c3-algorithmes">الخوارزميات</a>، <a href="index.html#td-ch3-ex2c">TD 3، التمرين 2c</a></td><td>وضع نص مجهول على شبكة، والبحث عن جيرانه.</td></tr>
-        <tr><th scope="row">13. العنقدة بخوارزمية k-المتوسطات</th><td>4</td><td><a href="index.html#c3-algorithmes">الخوارزميات</a>، <a href="index.html#td-ch3-ex2d">TD 3، التمرين 2d</a></td><td>تكرار يدوي، ثم العرض التفاعلي؛ والربط بـ<a href="index.html#mp-sujet-2">الموضوع 2</a>.</td></tr>
-        <tr><th scope="row">14. الشبكة العصبية، CNN، RNN</th><td>10، 11</td><td><a href="index.html#c3-deep">التعلم العميق</a>، <a href="index.html#td-ch3-ex4b">TD 3، التمرين 4b</a></td><td>«عصبون بشري»: طالب يرجّح ثلاثة مؤشرات ثم يقرّر.</td></tr>
-        <tr><th scope="row">15. المحوِّلات (Transformers)، وتوليد النصوص</th><td>14</td><td><a href="index.html#c3-deep">التعلم العميق</a></td><td>توليد نص في الأعمال التطبيقية ورصد أخطائه.</td></tr>
-        <tr><th scope="row">16. التعلم المعزَّز، Q-learning</th><td>1</td><td><a href="index.html#c3-renforcement">التعلم المعزَّز</a>، <a href="index.html#td-ch3-ex4c">TD 3، التمرين 4c</a></td><td>لعب أدوار: وكيل، ومتاهة، ومكافآت.</td></tr>
+        <tr><th scope="row">1. تعريف الذكاء الاصطناعي، الوكيل</th><td>لا شيء</td><td><a href="cours.html#c1-definir">ما الذكاء الاصطناعي؟</a></td><td>جمع تعريفات الطلبة، ثم مقارنتها بتعريف الدرس.</td></tr>
+        <tr><th scope="row">2. المحطات الكبرى في تاريخ الذكاء الاصطناعي</th><td>لا شيء</td><td><a href="cours.html#c1-histoire">لمحة تاريخية</a></td><td>خط زمني جماعي من عشرة تواريخ؛ <a href="cours.html#tr-genese">المائدة المستديرة 1</a>.</td></tr>
+        <tr><th scope="row">3. الذكاء الاصطناعي الضعيف والقوي</th><td>1</td><td><a href="cours.html#c1-faible-forte">الذكاء الاصطناعي الضيّق والعام</a></td><td>نقاش قصير حول الغرفة الصينية.</td></tr>
+        <tr><th scope="row">4. التعلم الخاضع للإشراف وغير الخاضع للإشراف</th><td>1</td><td><a href="cours.html#c1-apprentissage">الدرس</a>، <a href="cours.html#td-ch1-ex2">TD 1، التمرين 2</a></td><td>تصنيف بطاقات وضعيات في كومتين، ثم تعليل ذلك.</td></tr>
+        <tr><th scope="row">5. المتغيّرات، والقوائم، والقواميس، والحلقات</th><td>لا شيء</td><td><a href="cours.html#c2-fondamentaux">الأساسيات</a>، <a href="cours.html#td-ch2">TD 2</a></td><td>توقّع مخرجات برنامج مطبوع قبل تنفيذه.</td></tr>
+        <tr><th scope="row">6. جدول البيانات (DataFrame)</th><td>5</td><td><a href="cours.html#c2-numpy-pandas">NumPy وpandas</a>، <a href="cours.html#td-ch2-ex4">TD 2، التمرين 4</a></td><td>تصفية جدول للأعمال الأدبية وترتيبه وإحصاؤه.</td></tr>
+        <tr><th scope="row">7. الملف النصي، والترميز، والتكرارات</th><td>5</td><td><a href="cours.html#c2-fichiers">الملفات النصية</a>، <a href="cours.html#td-ch2-ex5">TD 2، التمرين 5</a></td><td>فهرس سياقي لكلمة في رواية من الملك العام.</td></tr>
+        <tr><th scope="row">8. الصنف والكائن</th><td>5</td><td><a href="cours.html#c2-objet">البرمجة الكائنية</a></td><td>قراءة موجَّهة: «القصيدة نصٌّ».</td></tr>
+        <tr><th scope="row">9. النظام الخبير، التسلسل الأمامي</th><td>منطق «إذا… فإنّ»</td><td><a href="cours.html#c3-symbolique">الذكاء الاصطناعي الرمزي</a>، <a href="cours.html#td-ch3-ex1">TD 3، التمرين 1</a></td><td>تطبيق القواعد خطوة خطوة على السبورة، ثم العرض التفاعلي.</td></tr>
+        <tr><th scope="row">10. التدريب، والاختبار، والإفراط في التعلم</th><td>4</td><td><a href="cours.html#c3-ml">التعلم الآلي</a></td><td>تصنيف عشر رسائل إلكترونية يدويًّا، ثم عدّ الأخطاء.</td></tr>
+        <tr><th scope="row">11. الانحدار والانحدار التدرّجي</th><td>10</td><td><a href="cours.html#c3-algorithmes">الخوارزميات</a>، <a href="cours.html#td-ch3-ex2a">TD 3، التمرين 2a</a> و<a href="cours.html#td-ch3-ex2b">2b</a></td><td>العرض التفاعلي: تغيير معدل التعلم.</td></tr>
+        <tr><th scope="row">12. التصنيف بخوارزمية أقرب k جيران</th><td>10</td><td><a href="cours.html#c3-algorithmes">الخوارزميات</a>، <a href="cours.html#td-ch3-ex2c">TD 3، التمرين 2c</a></td><td>وضع نص مجهول على شبكة، والبحث عن جيرانه.</td></tr>
+        <tr><th scope="row">13. العنقدة بخوارزمية k-المتوسطات</th><td>4</td><td><a href="cours.html#c3-algorithmes">الخوارزميات</a>، <a href="cours.html#td-ch3-ex2d">TD 3، التمرين 2d</a></td><td>تكرار يدوي، ثم العرض التفاعلي؛ والربط بـ<a href="cours.html#mp-sujet-2">الموضوع 2</a>.</td></tr>
+        <tr><th scope="row">14. الشبكة العصبية، CNN، RNN</th><td>10، 11</td><td><a href="cours.html#c3-deep">التعلم العميق</a>، <a href="cours.html#td-ch3-ex4b">TD 3، التمرين 4b</a></td><td>«عصبون بشري»: طالب يرجّح ثلاثة مؤشرات ثم يقرّر.</td></tr>
+        <tr><th scope="row">15. المحوِّلات (Transformers)، وتوليد النصوص</th><td>14</td><td><a href="cours.html#c3-deep">التعلم العميق</a></td><td>توليد نص في الأعمال التطبيقية ورصد أخطائه.</td></tr>
+        <tr><th scope="row">16. التعلم المعزَّز، Q-learning</th><td>1</td><td><a href="cours.html#c3-renforcement">التعلم المعزَّز</a>، <a href="cours.html#td-ch3-ex4c">TD 3، التمرين 4c</a></td><td>لعب أدوار: وكيل، ومتاهة، ومكافآت.</td></tr>
       </tbody>
     </table></div>
 
-    <p>ليس للأخلاقيات سطر خاص بها، لأنها ترافق كل مفهوم: المعطيات الشخصية عند الجمع (6، 7)، والتحيّز عند التدريب (من 10 إلى 13)، والهلوسات عند التوليد (15). الدرس المرجعي: <a href="index.html#c1-perspectives">الفرص والحدود والأخلاقيات</a>.</p>
+    <p>ليس للأخلاقيات سطر خاص بها، لأنها ترافق كل مفهوم: المعطيات الشخصية عند الجمع (6، 7)، والتحيّز عند التدريب (من 10 إلى 13)، والهلوسات عند التوليد (15). الدرس المرجعي: <a href="cours.html#c1-perspectives">الفرص والحدود والأخلاقيات</a>.</p>
   </article>
 
   <article class="lecon" id="guide-carte-competences">
     <h3>الكفاءات المستهدفة في نهاية السداسي</h3>
-    <p>يترجم الجدول المعارف السبع المستهدفة في البرنامج الرسمي (<a href="index.html#fiche">بطاقة المقياس</a>) إلى أدلة قابلة للملاحظة: أي ما ينبغي أن تروا الطالب يُنجزه لتَعُدّوا الكفاءة مكتسَبة. أما السطران الأخيران فمأخوذان من أهداف التعليم.</p>
+    <p>يترجم الجدول المعارف السبع المستهدفة في البرنامج الرسمي (<a href="cours.html#fiche">بطاقة المقياس</a>) إلى أدلة قابلة للملاحظة: أي ما ينبغي أن تروا الطالب يُنجزه لتَعُدّوا الكفاءة مكتسَبة. أما السطران الأخيران فمأخوذان من أهداف التعليم.</p>
 
     <div class="tableau-defilant"><table class="tableau">
       <caption>من المعارف المستهدفة إلى الأدلة القابلة للملاحظة</caption>
       <thead><tr><th scope="col">ما ينص عليه البرنامج</th><th scope="col">في النهاية، يستطيع الطالب…</th><th scope="col">أين تُلاحَظ</th></tr></thead>
       <tbody>
-        <tr><th scope="row">تحديد الفرص التي يتيحها الذكاء الاصطناعي في العلوم الإنسانية والاجتماعية</th><td>أن يذكر ثلاثة استخدامات للذكاء الاصطناعي في تخصّصه، ويبيّن ما تضيفه الأداة وما لا تقوم به</td><td><a href="index.html#c1-perspectives">الفصل 1</a>، <a href="index.html#tr-methodes">المائدة المستديرة 2</a>، الامتحان</td></tr>
-        <tr><th scope="row">فهم تطبيقات الذكاء الاصطناعي في العلوم الإنسانية والاجتماعية</th><td>أن يربط إشكالية بحثية بعائلة الذكاء الاصطناعي الملائمة، ويعلّل اختياره</td><td><a href="index.html#c3-synthese">خلاصة الفصل 3</a>، <a href="index.html#td-ch3-ex3">TD 3، التمرين 3</a>، الامتحان</td></tr>
-        <tr><th scope="row">فهم الانعكاسات الأخلاقية والممارسات السليمة</th><td>أن يُخفي هوية الأشخاص في البيانات، ويذكر مصادره، ويصرّح باستخدامه أداة ذكاء اصطناعي، ويرصد تحيّزًا أو معلومة مختلَقة</td><td>قسم «الحدود والأخلاقيات» في التقرير، <a href="index.html#tr-problematiques">المائدة المستديرة 3</a></td></tr>
-        <tr><th scope="row">إنجاز عنقدة السلوكيات الاجتماعية والنمذجة التنبّئية</th><td>أن يطبّق خوارزمية k-المتوسطات على جدول استبيان ويصف الملامح الناتجة؛ وأن يدرّب نموذجًا، ويقيّمه على مجموعة اختبار، ويؤوّل النتيجة المحصَّلة</td><td><a href="index.html#mp-sujet-2">الموضوع 2</a>، <a href="index.html#mp-sujet-4">الموضوع 4</a>، TD 3</td></tr>
-        <tr><th scope="row">فهم المشاعر على الشبكات الاجتماعية وتحليلها</th><td>أن يطبّق TextBlob أو VADER على رسائل، ويقارن النتائج بالحكم البشري على عيّنة، ويفسّر الأخطاء (السخرية، أو لغة غير مدعومة)</td><td><a href="index.html#mp-sujet-1">الموضوع 1</a></td></tr>
-        <tr><th scope="row">استخراج المعلومات من الخطابات السياسية</th><td>أن يستخرج الكيانات المسمّاة والموضوعات، ويُحصيها، ثم يعود إلى النص لتأويلها</td><td><a href="index.html#mp-sujet-3">الموضوع 3</a></td></tr>
-        <tr><th scope="row">تحليل الشبكات السوسيولوجية</th><td>أن يبني مخططًا شبكيًّا (<span class="terme-en" lang="fr">graphe</span>) انطلاقًا من جدول روابط، ويحسب الدرجة والمركزية، ويؤوّل موقع فاعل ما</td><td><a href="index.html#mp-sujet-5">الموضوع 5</a></td></tr>
-        <tr><th scope="row">استعمال Python (هدف)</th><td>أن يقرأ برنامجًا قصيرًا وينفّذه ويعدّله؛ وأن يحمّل جدولًا ويصفّيه ويصدّره</td><td><a href="index.html#td-ch2">TD 2</a>، الأعمال التطبيقية، دفتر notebook الخاص بالمشروع المصغَّر</td></tr>
-        <tr><th scope="row">معالجة مدوّنة نصية (هدف)</th><td>أن يقرأ ملفات بترميز UTF-8، ويبحث، ويعدّ، ويرتّب، ويُنتج فهرسًا سياقيًّا</td><td><a href="index.html#td-ch2-ex5">TD 2، التمرين 5</a>، المشروع المصغَّر</td></tr>
+        <tr><th scope="row">تحديد الفرص التي يتيحها الذكاء الاصطناعي في العلوم الإنسانية والاجتماعية</th><td>أن يذكر ثلاثة استخدامات للذكاء الاصطناعي في تخصّصه، ويبيّن ما تضيفه الأداة وما لا تقوم به</td><td><a href="cours.html#c1-perspectives">الفصل 1</a>، <a href="cours.html#tr-methodes">المائدة المستديرة 2</a>، الامتحان</td></tr>
+        <tr><th scope="row">فهم تطبيقات الذكاء الاصطناعي في العلوم الإنسانية والاجتماعية</th><td>أن يربط إشكالية بحثية بعائلة الذكاء الاصطناعي الملائمة، ويعلّل اختياره</td><td><a href="cours.html#c3-synthese">خلاصة الفصل 3</a>، <a href="cours.html#td-ch3-ex3">TD 3، التمرين 3</a>، الامتحان</td></tr>
+        <tr><th scope="row">فهم الانعكاسات الأخلاقية والممارسات السليمة</th><td>أن يُخفي هوية الأشخاص في البيانات، ويذكر مصادره، ويصرّح باستخدامه أداة ذكاء اصطناعي، ويرصد تحيّزًا أو معلومة مختلَقة</td><td>قسم «الحدود والأخلاقيات» في التقرير، <a href="cours.html#tr-problematiques">المائدة المستديرة 3</a></td></tr>
+        <tr><th scope="row">إنجاز عنقدة السلوكيات الاجتماعية والنمذجة التنبّئية</th><td>أن يطبّق خوارزمية k-المتوسطات على جدول استبيان ويصف الملامح الناتجة؛ وأن يدرّب نموذجًا، ويقيّمه على مجموعة اختبار، ويؤوّل النتيجة المحصَّلة</td><td><a href="cours.html#mp-sujet-2">الموضوع 2</a>، <a href="cours.html#mp-sujet-4">الموضوع 4</a>، TD 3</td></tr>
+        <tr><th scope="row">فهم المشاعر على الشبكات الاجتماعية وتحليلها</th><td>أن يطبّق TextBlob أو VADER على رسائل، ويقارن النتائج بالحكم البشري على عيّنة، ويفسّر الأخطاء (السخرية، أو لغة غير مدعومة)</td><td><a href="cours.html#mp-sujet-1">الموضوع 1</a></td></tr>
+        <tr><th scope="row">استخراج المعلومات من الخطابات السياسية</th><td>أن يستخرج الكيانات المسمّاة والموضوعات، ويُحصيها، ثم يعود إلى النص لتأويلها</td><td><a href="cours.html#mp-sujet-3">الموضوع 3</a></td></tr>
+        <tr><th scope="row">تحليل الشبكات السوسيولوجية</th><td>أن يبني مخططًا شبكيًّا (<span class="terme-en" lang="fr">graphe</span>) انطلاقًا من جدول روابط، ويحسب الدرجة والمركزية، ويؤوّل موقع فاعل ما</td><td><a href="cours.html#mp-sujet-5">الموضوع 5</a></td></tr>
+        <tr><th scope="row">استعمال Python (هدف)</th><td>أن يقرأ برنامجًا قصيرًا وينفّذه ويعدّله؛ وأن يحمّل جدولًا ويصفّيه ويصدّره</td><td><a href="cours.html#td-ch2">TD 2</a>، الأعمال التطبيقية، دفتر notebook الخاص بالمشروع المصغَّر</td></tr>
+        <tr><th scope="row">معالجة مدوّنة نصية (هدف)</th><td>أن يقرأ ملفات بترميز UTF-8، ويبحث، ويعدّ، ويرتّب، ويُنتج فهرسًا سياقيًّا</td><td><a href="cours.html#td-ch2-ex5">TD 2، التمرين 5</a>، المشروع المصغَّر</td></tr>
       </tbody>
     </table></div>
 
@@ -460,17 +463,17 @@
       <caption>تدرّج استرشادي يُكيَّف مع الرزنامة الرسمية</caption>
       <thead><tr><th scope="col">الأسبوع</th><th scope="col">المحاضرة</th><th scope="col">الأعمال الموجَّهة</th><th scope="col">الأعمال التطبيقية</th><th scope="col">المشروع المصغَّر / المائدة المستديرة</th><th scope="col">ما يجب تحضيره</th></tr></thead>
       <tbody>
-        <tr><th scope="row">1</th><td><a href="index.html#chapitre-1">الفصل 1</a>: التعريفات، والتاريخ، والذكاء الاصطناعي الضعيف والقوي، وأنواع التعلم، والمقاربات، والآفاق</td><td><a href="index.html#td-ch1">TD 1</a>، التمارين من 1 إلى 3؛ والتمرين 4 عمل شخصي</td><td>تثبيت Python أو فتح Colab؛ وعند الحاجة، إتمام الفصل 1 (كما ينص البرنامج)</td><td>الاستبيان التشخيصي؛ أفواج الموائد المستديرة</td><td>معاينة القاعة، وفتح الفضاء الرقمي للمقياس</td></tr>
-        <tr><th scope="row">2</th><td>الفصل 2: <a href="index.html#c2-fondamentaux">الأساسيات</a>، <a href="index.html#c2-numpy-pandas">NumPy وpandas</a></td><td><a href="index.html#td-ch2">TD 2</a>، التمارين من 1 إلى 3</td><td>برمجة التمارين من 1 إلى 3</td><td>الفوج 1: قراءات تحضيرًا للمائدة المستديرة</td><td>حلّ التمارين بأنفسكم</td></tr>
-        <tr><th scope="row">3</th><td>الفصل 2: <a href="index.html#c2-objet">الكائنات</a>، <a href="index.html#c2-fichiers">الملفات النصية</a>، <a href="index.html#c2-rapports">التقارير</a></td><td>TD 2، التمرينان 4 و5؛ عودة إلى التمرين 4 من TD 1</td><td>التمرينان 4 و5؛ تقرير صغير بصيغة Excel أو PDF</td><td>توزيع <a href="index.html#mini-projet">المشروع المصغَّر</a> في نهاية الأسبوع</td><td>نص المشروع، والمواعيد، والتحقّق من البيانات لكل موضوع</td></tr>
-        <tr><th scope="row">4</th><td>الفصل 3: <a href="index.html#c3-symbolique">الذكاء الاصطناعي الرمزي</a>، الأنظمة الخبيرة</td><td><a href="index.html#td-ch3-ex1">TD 3، التمرين 1</a> (التسلسل الأمامي)</td><td>برمجة التسلسل الأمامي؛ تأطير المواضيع</td><td>المشروع المصغَّر، الأسبوع 1: التأطير وجمع البيانات. <a href="index.html#tr-genese">المائدة المستديرة 1</a>: نشأة الذكاء الاصطناعي</td><td>المصادقة على أسئلة البحث</td></tr>
-        <tr><th scope="row">5</th><td>الفصل 3: <a href="index.html#c3-ml">مبادئ التعلم الآلي</a>، والتقييم؛ التصنيف وخوارزمية k-المتوسطات</td><td>TD 3، التمارين 2c و2d و3 و4a</td><td><code>KNeighborsClassifier</code> و<code>KMeans</code>؛ نقطة مرحلية حول المشروع المصغَّر</td><td>المشروع المصغَّر، الأسبوع 2: الاستكشاف، والتنظيف، وتطبيق المنهج</td><td>مراجعة الدفاتر قيد الإنجاز</td></tr>
+        <tr><th scope="row">1</th><td><a href="cours.html#chapitre-1">الفصل 1</a>: التعريفات، والتاريخ، والذكاء الاصطناعي الضعيف والقوي، وأنواع التعلم، والمقاربات، والآفاق</td><td><a href="cours.html#td-ch1">TD 1</a>، التمارين من 1 إلى 3؛ والتمرين 4 عمل شخصي</td><td>تثبيت Python أو فتح Colab؛ وعند الحاجة، إتمام الفصل 1 (كما ينص البرنامج)</td><td>الاستبيان التشخيصي؛ أفواج الموائد المستديرة</td><td>معاينة القاعة، وفتح الفضاء الرقمي للمقياس</td></tr>
+        <tr><th scope="row">2</th><td>الفصل 2: <a href="cours.html#c2-fondamentaux">الأساسيات</a>، <a href="cours.html#c2-numpy-pandas">NumPy وpandas</a></td><td><a href="cours.html#td-ch2">TD 2</a>، التمارين من 1 إلى 3</td><td>برمجة التمارين من 1 إلى 3</td><td>الفوج 1: قراءات تحضيرًا للمائدة المستديرة</td><td>حلّ التمارين بأنفسكم</td></tr>
+        <tr><th scope="row">3</th><td>الفصل 2: <a href="cours.html#c2-objet">الكائنات</a>، <a href="cours.html#c2-fichiers">الملفات النصية</a>، <a href="cours.html#c2-rapports">التقارير</a></td><td>TD 2، التمرينان 4 و5؛ عودة إلى التمرين 4 من TD 1</td><td>التمرينان 4 و5؛ تقرير صغير بصيغة Excel أو PDF</td><td>توزيع <a href="cours.html#mini-projet">المشروع المصغَّر</a> في نهاية الأسبوع</td><td>نص المشروع، والمواعيد، والتحقّق من البيانات لكل موضوع</td></tr>
+        <tr><th scope="row">4</th><td>الفصل 3: <a href="cours.html#c3-symbolique">الذكاء الاصطناعي الرمزي</a>، الأنظمة الخبيرة</td><td><a href="cours.html#td-ch3-ex1">TD 3، التمرين 1</a> (التسلسل الأمامي)</td><td>برمجة التسلسل الأمامي؛ تأطير المواضيع</td><td>المشروع المصغَّر، الأسبوع 1: التأطير وجمع البيانات. <a href="cours.html#tr-genese">المائدة المستديرة 1</a>: نشأة الذكاء الاصطناعي</td><td>المصادقة على أسئلة البحث</td></tr>
+        <tr><th scope="row">5</th><td>الفصل 3: <a href="cours.html#c3-ml">مبادئ التعلم الآلي</a>، والتقييم؛ التصنيف وخوارزمية k-المتوسطات</td><td>TD 3، التمارين 2c و2d و3 و4a</td><td><code>KNeighborsClassifier</code> و<code>KMeans</code>؛ نقطة مرحلية حول المشروع المصغَّر</td><td>المشروع المصغَّر، الأسبوع 2: الاستكشاف، والتنظيف، وتطبيق المنهج</td><td>مراجعة الدفاتر قيد الإنجاز</td></tr>
         <tr><th scope="row">6</th><td>الفصل 3: الانحدار الخطي والانحدار التدرّجي</td><td>TD 3، التمرينان 2a و2b</td><td><code>numpy.polyfit</code>، وحلقة الانحدار التدرّجي؛ مساعدة في المشروع المصغَّر</td><td>المشروع المصغَّر، الأسبوع 3: التأويل والتحرير؛ تسليم الدفتر والتقرير</td><td>شبكة المراجعة مطبوعة</td></tr>
-        <tr><th scope="row">7</th><td>الفصل 3: <a href="index.html#c3-deep">التعلم العميق</a>، العصبون، CNN، RNN</td><td>TD 3، التمرين 4b</td><td>ملاحظات فردية حول المشاريع المصغَّرة</td><td><a href="index.html#tr-methodes">المائدة المستديرة 2</a>: الذكاء الاصطناعي ومناهج العلوم الإنسانية والاجتماعية</td><td>تصحيح التقارير</td></tr>
+        <tr><th scope="row">7</th><td>الفصل 3: <a href="cours.html#c3-deep">التعلم العميق</a>، العصبون، CNN، RNN</td><td>TD 3، التمرين 4b</td><td>ملاحظات فردية حول المشاريع المصغَّرة</td><td><a href="cours.html#tr-methodes">المائدة المستديرة 2</a>: الذكاء الاصطناعي ومناهج العلوم الإنسانية والاجتماعية</td><td>تصحيح التقارير</td></tr>
         <tr><th scope="row">8</th><td>الفصل 3: المحوِّلات (Transformers) وتوليد النصوص</td><td>نقاش: أخطاء النموذج وهلوساته</td><td>الدالة <code>pipeline</code> من مكتبة transformers: التصنيف، والتوليد، والنقد</td><td>التحضير للمناقشات</td><td>تنزيل النموذج مسبقًا على الأجهزة</td></tr>
-        <tr><th scope="row">9</th><td>الفصل 3: <a href="index.html#c3-renforcement">التعلم المعزَّز</a>؛ <a href="index.html#c3-synthese">خلاصة</a> العائلات الأربع</td><td>TD 3، التمرين 4c (Q-learning)</td><td>حصيلة: إعادة حل تمرين من كل جزء</td><td><a href="index.html#tr-problematiques">المائدة المستديرة 3</a>: إشكاليات جديدة</td><td>ترتيب المرور في المناقشات</td></tr>
+        <tr><th scope="row">9</th><td>الفصل 3: <a href="cours.html#c3-renforcement">التعلم المعزَّز</a>؛ <a href="cours.html#c3-synthese">خلاصة</a> العائلات الأربع</td><td>TD 3، التمرين 4c (Q-learning)</td><td>حصيلة: إعادة حل تمرين من كل جزء</td><td><a href="cours.html#tr-problematiques">المائدة المستديرة 3</a>: إشكاليات جديدة</td><td>ترتيب المرور في المناقشات</td></tr>
         <tr><th scope="row">10</th><td>المناقشات</td><td>المناقشات</td><td>المناقشات</td><td>العرض الشفهي: السؤال، والنتيجة، والحدود، وشرح خلية</td><td>شبكة تقييم العرض الشفهي</td></tr>
-        <tr><th scope="row">11</th><td><a href="index.html#tr-perspectives">المائدة المستديرة 4</a>: آفاق الذكاء الاصطناعي؛ خلاصة المقياس</td><td>إعادة حل تمارين الأعمال الموجَّهة في وقت محدود</td><td>العودة إلى الشيفرة التي لم تُفهم جيدًا</td><td>المائدة المستديرة 4</td><td>قائمة المفاهيم الواجب مراجعتها</td></tr>
+        <tr><th scope="row">11</th><td><a href="cours.html#tr-perspectives">المائدة المستديرة 4</a>: آفاق الذكاء الاصطناعي؛ خلاصة المقياس</td><td>إعادة حل تمارين الأعمال الموجَّهة في وقت محدود</td><td>العودة إلى الشيفرة التي لم تُفهم جيدًا</td><td>المائدة المستديرة 4</td><td>قائمة المفاهيم الواجب مراجعتها</td></tr>
         <tr><th scope="row">12</th><td>المراجعة؛ أسبوع احتياطي في حال التأخّر</td><td>امتحان تجريبي</td><td>حصة حرة أو للاستدراك</td><td>تقاسم خلاصات الموائد المستديرة</td><td>موضوع الامتحان</td></tr>
         <tr><th scope="row">13</th><td colspan="5">الامتحان، في التاريخ الذي تحدّده رزنامة الكلية</td></tr>
       </tbody>
@@ -486,7 +489,7 @@
     <h4>إذا تأخّرتم</h4>
     <p>التأخّر أمر طبيعي في السنة الأولى. اختصروا، بهذا الترتيب:</p>
     <ul>
-      <li><a href="index.html#c2-objet">البرمجة الكائنية</a>: عشر دقائق من القراءة الموجَّهة، إذ لا تحتاج إليها أي شيفرة في المشروع المصغَّر؛</li>
+      <li><a href="cours.html#c2-objet">البرمجة الكائنية</a>: عشر دقائق من القراءة الموجَّهة، إذ لا تحتاج إليها أي شيفرة في المشروع المصغَّر؛</li>
       <li>الخوارزميات الأخرى (SVM، والغابات العشوائية، وتحليل المكوّنات الرئيسية ACP): تُقرأ ولا تُعالَج في الحصة؛</li>
       <li>تفاصيل شبكات CNN وRNN: احتفظوا بالفكرة (الصور، والمتتاليات)، ويتحوّل التمرين 4b إلى عمل شخصي؛</li>
       <li>المائدتان المستديرتان 3 و4، بدمجهما في حصة واحدة؛</li>
@@ -498,7 +501,7 @@
     <ul>
       <li>أضيفوا التسلسل الخلفي على قواعد التمرين 1 من TD 3.</li>
       <li>اطلبوا مقارنة منهجين على البيانات نفسها: TextBlob وVADER والتوسيم اليدوي في الموضوع 1؛ وقيمتين لـ k في الموضوع 2.</li>
-      <li>اقترحوا بيانات استبيان حقيقية (World Values Survey الوارد في <a href="index.html#references">المراجع</a>) أو شبكة الموضوع 5 في Gephi.</li>
+      <li>اقترحوا بيانات استبيان حقيقية (World Values Survey الوارد في <a href="cours.html#references">المراجع</a>) أو شبكة الموضوع 5 في Gephi.</li>
       <li>وإذا كانت القاعدة موضوعًا واحدًا، فاسمحوا للأسرع بمعالجة موضوع ثانٍ.</li>
       <li>أسندوا إلى الأكثر تقدّمًا دور المرافق في الأعمال التطبيقية: فالشرح يُلزم بالفهم.</li>
     </ul>
@@ -507,7 +510,7 @@
     <ul>
       <li>انتقلوا من كتابة الشيفرة إلى قراءتها: توقّع مخرجات برنامج يعمل، ثم تعديل سطر منه.</li>
       <li>قدّموا برامج ناقصة: ثلاثة أسطر تُكمَل بدل صفحة بيضاء.</li>
-      <li>اتبعوا دائمًا الترتيب نفسه: الحساب اليدوي، ثم العرض التفاعلي، ثم الشيفرة، كما توصي <a href="index.html#me-parties">منهجية الموقع</a>.</li>
+      <li>اتبعوا دائمًا الترتيب نفسه: الحساب اليدوي، ثم العرض التفاعلي، ثم الشيفرة، كما توصي <a href="cours.html#me-parties">منهجية الموقع</a>.</li>
       <li>اقتصروا من الأدوات على مكتبات الموضوع المختار؛ وذكّروا بأن عشرين دقيقة من البرمجة يوميًّا خير من حصة طويلة.</li>
     </ul>
 
@@ -523,9 +526,9 @@
     <h4>استعمال الموقع أثناء الحصص</h4>
     <ul>
       <li>اعرضوا العروض التفاعلية واطلبوا من الطلبة التوقّع قبل النقر: القاعدة التي ستُفعَّل في الدورة الموالية من التسلسل الأمامي، وأثر خطوة كبيرة جدًّا في الانحدار التدرّجي، وتوزيع النصوص على المراكز في خوارزمية k-المتوسطات قبل الضغط على «الخطوة التالية». ثم اسحبوا مراكز انطلاق جديدة: فقد تتغيّر النتيجة.</li>
-      <li>اطلبوا من الطلبة تصفّح الدرس قبل المحاضرة وإحضار سؤالين، كما ينص على ذلك <a href="index.html#me-semaine">الأسبوع النموذجي</a> للطلبة. وافتتحوا الحصة بهذه الأسئلة بدل عرض كامل.</li>
+      <li>اطلبوا من الطلبة تصفّح الدرس قبل المحاضرة وإحضار سؤالين، كما ينص على ذلك <a href="cours.html#me-semaine">الأسبوع النموذجي</a> للطلبة. وافتتحوا الحصة بهذه الأسئلة بدل عرض كامل.</li>
       <li>أجروا الاختبارات القصيرة برفع الأيدي، ثم اكشفوا الشرح؛ وفي الأعمال الموجَّهة، اشترطوا عشرين دقيقة من البحث قبل فتح أي حل.</li>
-      <li>استعملوا مُبدِّل اللغات FR / EN / عربي و<a href="index.html#glossaire">مسرد المصطلحات</a> لتثبيت المفردات بعدة لغات.</li>
+      <li>استعملوا مُبدِّل اللغات FR / EN / عربي و<a href="cours.html#glossaire">مسرد المصطلحات</a> لتثبيت المفردات بعدة لغات.</li>
     </ul>
 
     <aside class="encadre encadre--retenir"><p class="encadre-titre">ما يجب تذكّره</p>
@@ -585,10 +588,10 @@
       <caption>البرنامج الرسمي، مغطًّى بالقراءة والتنفيذ</caption>
       <thead><tr><th scope="col">جزء البرنامج</th><th scope="col">كيف يُعالَج</th><th scope="col">الوسائل</th></tr></thead>
       <tbody>
-        <tr><th scope="row"><a href="index.html#chapitre-1">الفصل 1</a></th><td>دون تغيير: المفاهيم، والتاريخ، والأخلاقيات، وأعمال موجَّهة على الورق</td><td>العرض التفاعلي في الصفحة الرئيسية، وTeachable Machine</td></tr>
-        <tr><th scope="row"><a href="index.html#chapitre-2">الفصل 2</a> · Python</th><td>تُقرأ الأمثلة، ويُتوقَّع مُخرَجها، وتُنفَّذ، وتُعدَّل؛ ويتعلّم الطلبة قراءة رسالة خطأ</td><td>الدفتر 00، وبرنامج الجداول الإلكترونية</td></tr>
-        <tr><th scope="row"><a href="index.html#chapitre-3">الفصل 3</a></th><td>الحسابات اليدوية في <a href="index.html#td-ch3">TD 3</a>، والعروض التفاعلية في الموقع، ثم الخوارزمية نفسها في دفتر</td><td>الدفاتر 06 و07 و08</td></tr>
-        <tr><th scope="row"><a href="index.html#mini-projet">المشروع المصغَّر</a></th><td>دفتر كامل لكل موضوع: يختار الطالب البيانات والسؤال، ويضبط الحقول، ويؤوّل، ويحرّر</td><td>الدفاتر من 01 إلى 05، و09</td></tr>
+        <tr><th scope="row"><a href="cours.html#chapitre-1">الفصل 1</a></th><td>دون تغيير: المفاهيم، والتاريخ، والأخلاقيات، وأعمال موجَّهة على الورق</td><td>العرض التفاعلي في الصفحة الرئيسية، وTeachable Machine</td></tr>
+        <tr><th scope="row"><a href="cours.html#chapitre-2">الفصل 2</a> · Python</th><td>تُقرأ الأمثلة، ويُتوقَّع مُخرَجها، وتُنفَّذ، وتُعدَّل؛ ويتعلّم الطلبة قراءة رسالة خطأ</td><td>الدفتر 00، وبرنامج الجداول الإلكترونية</td></tr>
+        <tr><th scope="row"><a href="cours.html#chapitre-3">الفصل 3</a></th><td>الحسابات اليدوية في <a href="cours.html#td-ch3">TD 3</a>، والعروض التفاعلية في الموقع، ثم الخوارزمية نفسها في دفتر</td><td>الدفاتر 06 و07 و08</td></tr>
+        <tr><th scope="row"><a href="cours.html#mini-projet">المشروع المصغَّر</a></th><td>دفتر كامل لكل موضوع: يختار الطالب البيانات والسؤال، ويضبط الحقول، ويؤوّل، ويحرّر</td><td>الدفاتر من 01 إلى 05، و09</td></tr>
       </tbody>
     </table></div>
 
@@ -612,14 +615,14 @@
       <caption>أداة دون برمجة، أو تكاد، لكل جزء من المقياس</caption>
       <thead><tr><th scope="col">الأداة</th><th scope="col">ما يفعله الطلبة</th><th scope="col">الفصل أو الموضوع</th><th scope="col">الرابط</th></tr></thead>
       <tbody>
-        <tr><th scope="row">قارئ المشاعر في الموقع</th><td>كتابة جملة (مراجعة نقدية، أو بيت شعري، أو إجابة متعلّم)، ورؤية الكلمات التي ترفع الدرجة أو تخفضها، ثم البحث عن جملة تخدع الأداة</td><td>الفصل 1؛ الموضوع 1</td><td><a href="index.html#accueil">الصفحة الرئيسية</a></td></tr>
-        <tr><th scope="row">العروض التفاعلية للفصل 3</th><td>توقّع القاعدة التي يفعّلها التسلسل الأمامي؛ وتغيير خطوة الانحدار التدرّجي؛ وتقديم خوارزمية k-المتوسطات خطوة خطوة، ثم تغيير مراكز الانطلاق</td><td>الفصل 3؛ الموضوع 2</td><td><a href="index.html#c3-symbolique">التسلسل الأمامي</a>، <a href="index.html#c3-algorithmes">الخوارزميات</a></td></tr>
+        <tr><th scope="row">قارئ المشاعر في الموقع</th><td>كتابة جملة (مراجعة نقدية، أو بيت شعري، أو إجابة متعلّم)، ورؤية الكلمات التي ترفع الدرجة أو تخفضها، ثم البحث عن جملة تخدع الأداة</td><td>الفصل 1؛ الموضوع 1</td><td><a href="cours.html#accueil">الصفحة الرئيسية</a></td></tr>
+        <tr><th scope="row">العروض التفاعلية للفصل 3</th><td>توقّع القاعدة التي يفعّلها التسلسل الأمامي؛ وتغيير خطوة الانحدار التدرّجي؛ وتقديم خوارزمية k-المتوسطات خطوة خطوة، ثم تغيير مراكز الانطلاق</td><td>الفصل 3؛ الموضوع 2</td><td><a href="cours.html#c3-symbolique">التسلسل الأمامي</a>، <a href="cours.html#c3-algorithmes">الخوارزميات</a></td></tr>
         <tr><th scope="row">Teachable Machine</th><td>تدريب مصنِّف للصور أو الأصوات أو الوضعيات الجسدية بالأمثلة، ثم الإيقاع به. وفي الإنجليزية: كلمتان منطوقتان (<span lang="en">ship</span> و<span lang="en">sheep</span>)، تُختبران بصوت آخر</td><td>الفصلان 1 و3، التعلم الخاضع للإشراف</td><td><a href="https://teachablemachine.withgoogle.com" target="_blank" rel="noopener">teachablemachine.withgoogle.com</a></td></tr>
         <tr><th scope="row">Orange Data Mining، وحدة Text</th><td>ربط كتل بالفأرة: المدوّنة، والتنظيف، وسحابة الكلمات، والمشاعر، وخوارزمية k-المتوسطات، وشجرة القرار، ومصفوفة الالتباس. وتُضاف وحدة Text من القائمة «Options › Add-ons» (خيارات › إضافات)</td><td>المواضيع 1 و2 و4</td><td><a href="https://orangedatamining.com" target="_blank" rel="noopener">orangedatamining.com</a></td></tr>
         <tr><th scope="row">Voyant Tools</th><td>لصق نص: التواترات، وسحابة الكلمات، والفهارس السياقية، وتوزّع كلمة على امتداد النص</td><td>الفصل 2، الملفات النصية؛ الموضوع 3</td><td><a href="https://voyant-tools.org" target="_blank" rel="noopener">voyant-tools.org</a></td></tr>
         <tr><th scope="row">AntConc</th><td>برنامج الفهارس السياقية المجاني الذي طوّره Laurence Anthony، وهو شائع في لسانيات المدوّنات: الفهارس السياقية، وقوائم الكلمات، والمتلازمات اللفظية، والكلمات المفتاحية مقارنةً بمدوّنة مرجعية. يُثبَّت على الأجهزة، ويعمل دون اتصال بالإنترنت</td><td>الفصل 2؛ الموضوع 3؛ مدوّنات المتعلّمين</td><td><a href="https://www.laurenceanthony.net/software/antconc/" target="_blank" rel="noopener">laurenceanthony.net</a></td></tr>
         <tr><th scope="row">Gephi، أو Gephi Lite في المتصفح</th><td>استيراد جدول روابط بين الشخصيات، وحساب الدرجة والوساطة والجماعات، ورسم الشبكة</td><td>الموضوع 5</td><td><a href="https://gephi.org" target="_blank" rel="noopener">gephi.org</a></td></tr>
-        <tr><th scope="row">برنامج الجداول الإلكترونية (LibreOffice Calc أو Excel)</th><td>الفرز، والتصفية، والعدّ، والجدول المحوري (نظير <code>groupby</code> في pandas). والنقاط الخمس في <a href="index.html#td-ch3-ex2a">التمرين 2a من TD 3</a> في مخطط انتشار، مع خط اتجاه خطي ومعادلته: فنجد من جديد 0,9 و1,3</td><td>الفصل 2، الجداول؛ الفصل 3، الانحدار؛ الموضوعان 2 و4</td><td><a href="https://www.libreoffice.org" target="_blank" rel="noopener">libreoffice.org</a></td></tr>
+        <tr><th scope="row">برنامج الجداول الإلكترونية (LibreOffice Calc أو Excel)</th><td>الفرز، والتصفية، والعدّ، والجدول المحوري (نظير <code>groupby</code> في pandas). والنقاط الخمس في <a href="cours.html#td-ch3-ex2a">التمرين 2a من TD 3</a> في مخطط انتشار، مع خط اتجاه خطي ومعادلته: فنجد من جديد 0,9 و1,3</td><td>الفصل 2، الجداول؛ الفصل 3، الانحدار؛ الموضوعان 2 و4</td><td><a href="https://www.libreoffice.org" target="_blank" rel="noopener">libreoffice.org</a></td></tr>
         <tr><th scope="row">وكلاء المحادثة</th><td>موضوعات للدراسة، لا مساعدون: التحقّق من المراجع، ورصد أخطاء شرحٍ ما، ومقارنة الإجابات بحسب لغة السؤال</td><td>الفصل 3، المحوِّلات (Transformers)؛ الأخلاقيات</td><td><a href="#guide-ia">الذكاء الاصطناعي التوليدي في قاعة الدرس</a></td></tr>
       </tbody>
     </table></div>
@@ -629,24 +632,24 @@
 
   <article class="lecon" id="guide-langues-parcours">
     <h3>ثلاثة مسارات: ANG وLGC وDID</h3>
-    <p>تبقى مواضيع <a href="index.html#mini-projet">المشروع المصغَّر</a> الخمسة هي مواضيع البرنامج الرسمي، بالمناهج نفسها والدفاتر نفسها. ومن فئة من الطلبة إلى أخرى، لا يتغيّر إلا البيانات والسؤال. وإذا استُعملت بيانات افتراضية، صُرِّح بذلك في التقرير.</p>
+    <p>تبقى مواضيع <a href="cours.html#mini-projet">المشروع المصغَّر</a> الخمسة هي مواضيع البرنامج الرسمي، بالمناهج نفسها والدفاتر نفسها. ومن فئة من الطلبة إلى أخرى، لا يتغيّر إلا البيانات والسؤال. وإذا استُعملت بيانات افتراضية، صُرِّح بذلك في التقرير.</p>
 
     <div class="tableau-defilant"><table class="tableau">
       <caption>المواضيع الخمسة مكيَّفة مع الفئات الثلاث (اقتراحات)</caption>
       <thead><tr><th scope="col">الموضوع</th><th scope="col">ANG · الدراسات الإنجليزية</th><th scope="col">LGC · الأدب المقارن</th><th scope="col">DID · التعليمية</th></tr></thead>
       <tbody>
-        <tr><th scope="row"><a href="index.html#mp-sujet-1">1 · المشاعر</a></th><td>VADER على مراجعات روايات أو منشورات عامة، مقارَنًا بحكم الطالب على 30 مثالًا</td><td>نبرة رواية فصلًا فصلًا؛ نصٌّ مقارَنًا بترجمته الإنجليزية</td><td>تعليقات مجهولة الهوية لمتعلّمين على درس؛ نبرة ملاحظات الأساتذة على أوراق الطلبة</td></tr>
-        <tr><th scope="row"><a href="index.html#mp-sujet-2">2 · العنقدة</a></th><td>استبيان لمتعلّمي الإنجليزية: القراءة، والدافعية، والقلق من التحدّث، واستعمال الذكاء الاصطناعي</td><td>قصائد أو روايات موصوفة ببضع سمات (طول الجمل، ونسبة الحوار)، كما في <a href="#guide-activite-kmoyennes">نشاط البطاقات</a></td><td>ملامح متعلّمين مستخرجة من استبيان أُجري بموافقتهم؛ وبنود مستوحاة من سلالم منشورة، مثل قلق اللغة الأجنبية (Horwitz وHorwitz وCope، 1986)</td></tr>
-        <tr><th scope="row"><a href="index.html#mp-sujet-3">3 · الخطابات</a></th><td>خطابات تنصيب الرؤساء الأمريكيين، و<span lang="en">Gettysburg Address</span>، و<a href="#guide-ressources-donnees">UN General Debate Corpus</a>: الكلمات المفتاحية، والكيانات المسمّاة، والفهارس السياقية</td><td>خطابات كُتّاب من الملك العام: هوغو في الجمعية الوطنية، وجوريس وخطابه «Discours à la jeunesse» (خطاب إلى الشباب، 1903)</td><td>الخطاب المؤسسي وخطاب القسم: تعليمات الكتب المدرسية، والبرامج الرسمية، وتفريغات نصية مُخفاة الهوية</td></tr>
-        <tr><th scope="row"><a href="index.html#mp-sujet-4">4 · التنبّؤ</a></th><td>استهلاك الوسائط بالإنجليزية (المسلسلات، والبودكاست، والقراءة) والنتيجة في اختبار تحديد المستوى، ببيانات افتراضية</td><td>عادات القراءة وشراء الكتب، للتنبّؤ بالنوع الأدبي المفضَّل، ببيانات افتراضية</td><td>استعمال موارد درس (الفيديوهات، والتمارين) والنجاح، ببيانات افتراضية؛ وأخلاقيات التنبّؤ المدرسي</td></tr>
-        <tr><th scope="row"><a href="index.html#mp-sujet-5">5 · الشبكات</a></th><td>شخصيات مسرحية لشكسبير، تُربط فيما بينها حين تتقاسم مشهدًا</td><td>رواية <em>Les Misérables</em> (البؤساء) المرفقة بمكتبة NetworkX، ثم مسرحية لموليير أو لراسين تُستخرج روابطها يدويًّا</td><td>من يردّ على من في منتدى القسم أو في مراجعة بين الأقران، مع ترميز الأسماء</td></tr>
+        <tr><th scope="row"><a href="cours.html#mp-sujet-1">1 · المشاعر</a></th><td>VADER على مراجعات روايات أو منشورات عامة، مقارَنًا بحكم الطالب على 30 مثالًا</td><td>نبرة رواية فصلًا فصلًا؛ نصٌّ مقارَنًا بترجمته الإنجليزية</td><td>تعليقات مجهولة الهوية لمتعلّمين على درس؛ نبرة ملاحظات الأساتذة على أوراق الطلبة</td></tr>
+        <tr><th scope="row"><a href="cours.html#mp-sujet-2">2 · العنقدة</a></th><td>استبيان لمتعلّمي الإنجليزية: القراءة، والدافعية، والقلق من التحدّث، واستعمال الذكاء الاصطناعي</td><td>قصائد أو روايات موصوفة ببضع سمات (طول الجمل، ونسبة الحوار)، كما في <a href="#guide-activite-kmoyennes">نشاط البطاقات</a></td><td>ملامح متعلّمين مستخرجة من استبيان أُجري بموافقتهم؛ وبنود مستوحاة من سلالم منشورة، مثل قلق اللغة الأجنبية (Horwitz وHorwitz وCope، 1986)</td></tr>
+        <tr><th scope="row"><a href="cours.html#mp-sujet-3">3 · الخطابات</a></th><td>خطابات تنصيب الرؤساء الأمريكيين، و<span lang="en">Gettysburg Address</span>، و<a href="#guide-ressources-donnees">UN General Debate Corpus</a>: الكلمات المفتاحية، والكيانات المسمّاة، والفهارس السياقية</td><td>خطابات كُتّاب من الملك العام: هوغو في الجمعية الوطنية، وجوريس وخطابه «Discours à la jeunesse» (خطاب إلى الشباب، 1903)</td><td>الخطاب المؤسسي وخطاب القسم: تعليمات الكتب المدرسية، والبرامج الرسمية، وتفريغات نصية مُخفاة الهوية</td></tr>
+        <tr><th scope="row"><a href="cours.html#mp-sujet-4">4 · التنبّؤ</a></th><td>استهلاك الوسائط بالإنجليزية (المسلسلات، والبودكاست، والقراءة) والنتيجة في اختبار تحديد المستوى، ببيانات افتراضية</td><td>عادات القراءة وشراء الكتب، للتنبّؤ بالنوع الأدبي المفضَّل، ببيانات افتراضية</td><td>استعمال موارد درس (الفيديوهات، والتمارين) والنجاح، ببيانات افتراضية؛ وأخلاقيات التنبّؤ المدرسي</td></tr>
+        <tr><th scope="row"><a href="cours.html#mp-sujet-5">5 · الشبكات</a></th><td>شخصيات مسرحية لشكسبير، تُربط فيما بينها حين تتقاسم مشهدًا</td><td>رواية <em>Les Misérables</em> (البؤساء) المرفقة بمكتبة NetworkX، ثم مسرحية لموليير أو لراسين تُستخرج روابطها يدويًّا</td><td>من يردّ على من في منتدى القسم أو في مراجعة بين الأقران، مع ترميز الأسماء</td></tr>
       </tbody>
     </table></div>
 
     <div class="grille-cartes">
       <article class="carte">
         <h4>ANG · العمل بالإنجليزية</h4>
-        <p>دفاتر و<a href="en/index.html">موقع بالإنجليزية</a>، وVADER، والنموذج الإنجليزي لمكتبة spaCy. وتُكتب الإجابات بالإنجليزية: فيصبح كل دفتر تمرّسًا باللغة وبمفرداتها التقنية.</p>
+        <p>دفاتر و<a href="../en/cours.html">موقع بالإنجليزية</a>، وVADER، والنموذج الإنجليزي لمكتبة spaCy. وتُكتب الإجابات بالإنجليزية: فيصبح كل دفتر تمرّسًا باللغة وبمفرداتها التقنية.</p>
         <p>للّسانيين: AntConc ومدوّنات متعلّمين، ويُفضَّل أن تكون من إنتاجات طلبتكم، مُخفاة الهوية وبموافقتهم؛ وقد يتطلّب النفاذ إلى المدوّنات المنشورة رخصة.</p>
       </article>
       <article class="carte">
@@ -670,15 +673,15 @@
       <caption>الدفاتر العشرة وروابطها</caption>
       <thead><tr><th scope="col">العنوان</th><th scope="col">جزء المقياس</th><th scope="col">ما يفعله الطلبة</th><th scope="col">الفتح أو التنزيل</th></tr></thead>
       <tbody>
-        <tr><th scope="row">التعرّف على الدفتر: Python دون خوف<br><code>00-prise-en-main</code></th><td><a href="index.html#chapitre-2">الفصل 2</a></td><td>تنفيذ خلية، وتغيير قيمة، والملاحظة؛ أساسيات الفصل 2 على أمثلة من الآداب</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/00-prise-en-main.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/00-prise-en-main.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/00-prise-en-main.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/00-prise-en-main.ipynb" download>تنزيل (EN)</a></td></tr>
-        <tr><th scope="row">تحليل المشاعر: آراء القرّاء<br><code>01-sentiments</code></th><td><a href="index.html#mp-sujet-1">الموضوع 1</a></td><td>منح الجمل درجات: قوائم كلمات شفافة بالفرنسية، وVADER بالإنجليزية؛ وخلية اختيارية عبر الإنترنت بنموذج متعدد اللغات</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/01-sentiments.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/01-sentiments.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/01-sentiments.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/01-sentiments.ipynb" download>تنزيل (EN)</a></td></tr>
-        <tr><th scope="row">ملامح المتعلّمين: عنقدة استبيان<br><code>02-questionnaire</code></th><td><a href="index.html#mp-sujet-2">الموضوع 2</a></td><td>تشغيل خوارزمية k-المتوسطات على إجابات (الدافعية، والقراءة، والقلق، واستعمال الذكاء الاصطناعي)، وتغيير k، وتسمية الملامح</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/02-questionnaire.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/02-questionnaire.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/02-questionnaire.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/02-questionnaire.ipynb" download>تنزيل (EN)</a></td></tr>
-        <tr><th scope="row">ماذا تقول الخطابات<br><code>03-discours</code></th><td><a href="index.html#mp-sujet-3">الموضوع 3</a></td><td>التواترات، والكلمات المفتاحية (TF-IDF)، والفهارس السياقية؛ والكيانات المسمّاة بمكتبة spaCy، عبر الإنترنت</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/03-discours.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/03-discours.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/03-discours.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/03-discours.ipynb" download>تنزيل (EN)</a></td></tr>
-        <tr><th scope="row">التنبؤ بالنجاح في الامتحان<br><code>04-prediction</code></th><td><a href="index.html#mp-sujet-4">الموضوع 4</a></td><td>شجرة القرار والانحدار اللوجستي، ومجموعتا التدريب والاختبار، والدقة الإجمالية، ومصفوفة الالتباس، وسؤال أخلاقي</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/04-prediction.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/04-prediction.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/04-prediction.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/04-prediction.ipynb" download>تنزيل (EN)</a></td></tr>
-        <tr><th scope="row">شبكة شخصيات <em lang="fr">Les Misérables</em> (البؤساء)<br><code>05-reseaux</code></th><td><a href="index.html#mp-sujet-5">الموضوع 5</a></td><td>شبكة شخصيات <em>Les Misérables</em> (البؤساء): الدرجة، والوساطة، والرسم، والجماعات</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/05-reseaux.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/05-reseaux.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/05-reseaux.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/05-reseaux.ipynb" download>تنزيل (EN)</a></td></tr>
-        <tr><th scope="row">النظام الخبير والتسلسل الأمامي<br><code>06-systeme-expert</code></th><td><a href="index.html#c3-symbolique">الفصل 3</a></td><td>قواعد الأشكال الشعرية والتمرين 1 من TD 3، يُجريها البرنامج خطوة خطوة</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/06-systeme-expert.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/06-systeme-expert.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/06-systeme-expert.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/06-systeme-expert.ipynb" download>تنزيل (EN)</a></td></tr>
-        <tr><th scope="row">التعلّم من البيانات<br><code>07-apprentissage</code></th><td><a href="index.html#c3-algorithmes">الفصل 3</a></td><td>إعادة حسابات الأعمال الموجَّهة بواسطة البرنامج، ثم المقارنة مع scikit-learn</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/07-apprentissage.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/07-apprentissage.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/07-apprentissage.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/07-apprentissage.ipynb" download>تنزيل (EN)</a></td></tr>
-        <tr><th scope="row">التنبؤ بالكلمة التالية: من الثنائيات إلى المحوِّلات<br><code>08-ia-generative</code></th><td><a href="index.html#c3-deep">الفصل 3</a></td><td>نموذج قائم على ثنائيات الكلمات يُبنى على مدوّنة صغيرة، ثم المحوِّلات (Transformers) عبر الإنترنت (الكلمة المحجوبة، والتوليد)</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/08-ia-generative.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/08-ia-generative.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/08-ia-generative.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/08-ia-generative.ipynb" download>تنزيل (EN)</a></td></tr>
+        <tr><th scope="row">التعرّف على الدفتر: Python دون خوف<br><code>00-prise-en-main</code></th><td><a href="cours.html#chapitre-2">الفصل 2</a></td><td>تنفيذ خلية، وتغيير قيمة، والملاحظة؛ أساسيات الفصل 2 على أمثلة من الآداب</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/00-prise-en-main.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/00-prise-en-main.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/00-prise-en-main.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/00-prise-en-main.ipynb" download>تنزيل (EN)</a></td></tr>
+        <tr><th scope="row">تحليل المشاعر: آراء القرّاء<br><code>01-sentiments</code></th><td><a href="cours.html#mp-sujet-1">الموضوع 1</a></td><td>منح الجمل درجات: قوائم كلمات شفافة بالفرنسية، وVADER بالإنجليزية؛ وخلية اختيارية عبر الإنترنت بنموذج متعدد اللغات</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/01-sentiments.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/01-sentiments.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/01-sentiments.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/01-sentiments.ipynb" download>تنزيل (EN)</a></td></tr>
+        <tr><th scope="row">ملامح المتعلّمين: عنقدة استبيان<br><code>02-questionnaire</code></th><td><a href="cours.html#mp-sujet-2">الموضوع 2</a></td><td>تشغيل خوارزمية k-المتوسطات على إجابات (الدافعية، والقراءة، والقلق، واستعمال الذكاء الاصطناعي)، وتغيير k، وتسمية الملامح</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/02-questionnaire.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/02-questionnaire.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/02-questionnaire.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/02-questionnaire.ipynb" download>تنزيل (EN)</a></td></tr>
+        <tr><th scope="row">ماذا تقول الخطابات<br><code>03-discours</code></th><td><a href="cours.html#mp-sujet-3">الموضوع 3</a></td><td>التواترات، والكلمات المفتاحية (TF-IDF)، والفهارس السياقية؛ والكيانات المسمّاة بمكتبة spaCy، عبر الإنترنت</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/03-discours.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/03-discours.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/03-discours.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/03-discours.ipynb" download>تنزيل (EN)</a></td></tr>
+        <tr><th scope="row">التنبؤ بالنجاح في الامتحان<br><code>04-prediction</code></th><td><a href="cours.html#mp-sujet-4">الموضوع 4</a></td><td>شجرة القرار والانحدار اللوجستي، ومجموعتا التدريب والاختبار، والدقة الإجمالية، ومصفوفة الالتباس، وسؤال أخلاقي</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/04-prediction.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/04-prediction.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/04-prediction.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/04-prediction.ipynb" download>تنزيل (EN)</a></td></tr>
+        <tr><th scope="row">شبكة شخصيات <em lang="fr">Les Misérables</em> (البؤساء)<br><code>05-reseaux</code></th><td><a href="cours.html#mp-sujet-5">الموضوع 5</a></td><td>شبكة شخصيات <em>Les Misérables</em> (البؤساء): الدرجة، والوساطة، والرسم، والجماعات</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/05-reseaux.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/05-reseaux.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/05-reseaux.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/05-reseaux.ipynb" download>تنزيل (EN)</a></td></tr>
+        <tr><th scope="row">النظام الخبير والتسلسل الأمامي<br><code>06-systeme-expert</code></th><td><a href="cours.html#c3-symbolique">الفصل 3</a></td><td>قواعد الأشكال الشعرية والتمرين 1 من TD 3، يُجريها البرنامج خطوة خطوة</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/06-systeme-expert.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/06-systeme-expert.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/06-systeme-expert.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/06-systeme-expert.ipynb" download>تنزيل (EN)</a></td></tr>
+        <tr><th scope="row">التعلّم من البيانات<br><code>07-apprentissage</code></th><td><a href="cours.html#c3-algorithmes">الفصل 3</a></td><td>إعادة حسابات الأعمال الموجَّهة بواسطة البرنامج، ثم المقارنة مع scikit-learn</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/07-apprentissage.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/07-apprentissage.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/07-apprentissage.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/07-apprentissage.ipynb" download>تنزيل (EN)</a></td></tr>
+        <tr><th scope="row">التنبؤ بالكلمة التالية: من الثنائيات إلى المحوِّلات<br><code>08-ia-generative</code></th><td><a href="cours.html#c3-deep">الفصل 3</a></td><td>نموذج قائم على ثنائيات الكلمات يُبنى على مدوّنة صغيرة، ثم المحوِّلات (Transformers) عبر الإنترنت (الكلمة المحجوبة، والتوليد)</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/08-ia-generative.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/08-ia-generative.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/08-ia-generative.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/08-ia-generative.ipynb" download>تنزيل (EN)</a></td></tr>
         <tr><th scope="row">قسم اللغة: المقروئية والمفردات والنصوص ذات الفراغات<br><code>09-classe-de-langue</code></th><td>DID وANG</td><td>المقروئية (Flesch للإنجليزية، وKandel وMoles للفرنسية)، والملمح المعجمي، والنص ذو الفراغات المولَّد آليًّا، وإجابة المتعلّم مقارَنةً بالإجابة المنتظرة</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/09-classe-de-langue.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/09-classe-de-langue.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/09-classe-de-langue.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/09-classe-de-langue.ipynb" download>تنزيل (EN)</a></td></tr>
       </tbody>
     </table></div>
@@ -703,7 +706,7 @@
 
   <article class="lecon" id="guide-langues-seance">
     <h3>حصة نموذجية في قاعة الإعلام الآلي</h3>
-    <p>لكل فوج ساعة و30 دقيقة في الأسبوع بالمخبر 02: تجمع الحصة بين المحاضرة والأعمال الموجَّهة والأعمال التطبيقية. ويُقرأ درس الموقع قبلها، كما ينص على ذلك <a href="index.html#me-semaine">الأسبوع النموذجي</a> للطلبة.</p>
+    <p>لكل فوج ساعة و30 دقيقة في الأسبوع بالمخبر 02: تجمع الحصة بين المحاضرة والأعمال الموجَّهة والأعمال التطبيقية. ويُقرأ درس الموقع قبلها، كما ينص على ذلك <a href="cours.html#me-semaine">الأسبوع النموذجي</a> للطلبة.</p>
 
     <div class="tableau-defilant"><table class="tableau">
       <caption>أسبوعكم في المخبر 02</caption>
@@ -758,7 +761,7 @@
         <tr><th scope="row">التنفيذ</th><td>يُنفَّذ الدفتر من أعلاه إلى أسفله؛ والحقول المطلوبة معدَّلة؛ والمخرجات موجودة.</td><td>3</td></tr>
         <tr><th scope="row">التأويل</th><td>النتيجة مربوطة بسؤال التخصّص (النص، أو المتعلّم، أو القسم)، مع أمثلة مأخوذة من المُخرَج.</td><td>6</td></tr>
         <tr><th scope="row">المسافة النقدية</th><td>حدٌّ من حدود المنهج أو البيانات (السخرية، أو النفي، أو صغر العيّنة)؛ والأخلاقيات إن طُرحت (الموافقة، وإخفاء الهوية).</td><td>4</td></tr>
-        <tr><th scope="row">التعبير الكتابي</th><td>الوضوح، والمصطلحات الدقيقة من <a href="index.html#glossaire">مسرد المصطلحات</a>؛ وبالنسبة إلى أفواج ANG، تُقيَّم اللغة الإنجليزية هنا، وهنا فقط.</td><td>3</td></tr>
+        <tr><th scope="row">التعبير الكتابي</th><td>الوضوح، والمصطلحات الدقيقة من <a href="cours.html#glossaire">مسرد المصطلحات</a>؛ وبالنسبة إلى أفواج ANG، تُقيَّم اللغة الإنجليزية هنا، وهنا فقط.</td><td>3</td></tr>
       </tbody>
     </table></div>
 
@@ -881,7 +884,7 @@ print(modele.cluster_centers_)</code></pre>
       <details class="corrige"><summary>عرض الحل وسلّم التنقيط</summary>
         <div class="corrige-corps">
           <p><strong>1.</strong> غير خاضع للإشراف (0,5): لا وسم ولا إجابة صحيحة، فالدالة <code>fit_predict</code> لا تتلقّى إلا الإجابات، وتكوّن المجموعات بنفسها بواسطة خوارزمية k-المتوسطات (1).</p>
-          <p><strong>2.</strong> عدد المجموعات المطلوب (0,5). والمحلِّل هو من حدّده، لا الآلة؛ وتساعد طريقة المرفق في <a href="index.html#mp-sujet-2">الموضوع 2</a> على اختياره (0,5).</p>
+          <p><strong>2.</strong> عدد المجموعات المطلوب (0,5). والمحلِّل هو من حدّده، لا الآلة؛ وتساعد طريقة المرفق في <a href="cours.html#mp-sujet-2">الموضوع 2</a> على اختياره (0,5).</p>
           <p><strong>3.</strong> كل سطر من <code>cluster_centers_</code> ملمح متوسط. المجموعة 1، أي الأربعة الأوائل: 1,5 ساعة قراءة في الأسبوع، وقلق بدرجة 4,5، أي «يقرأ قليلًا، وقلق جدًّا عند التحدّث». المجموعة 0، أي الأربعة الأواخر: 6,5 ساعات، وقلق بدرجة 1,5، أي «يقرأ كثيرًا، وقليل القلق» (1,5). والأرقام اعتباطية وقد تنقلب بحسب نسخة scikit-learn؛ وتسمية المجموعات من شأن الباحث (0,5).</p>
           <p><strong>4.</strong> استنتاج غير مؤسَّس: بيانات افتراضية، وثمانية أشخاص، والعنقدة تصف أوجه التشابه دون أن تُثبت سببًا (0,75). وقد تسير العلاقة في الاتجاه المعاكس (الأقل قلقًا يقرؤون أكثر) أو تنتج عن عامل ثالث، مثل المستوى في الإنجليزية (0,75).</p>
           <p><strong>5.</strong> يكفي احتياط واحد معلَّل: استبيان مجهول الهوية وبموافقة المعنيين؛ ولا وسم «قلق» في ملف ولا أمام القسم؛ ولا قرار بشأن متعلّم انطلاقًا من متغيّرين؛ وملامح تُقدَّم على أنها فرضيات للنقاش.</p>
@@ -968,14 +971,14 @@ print(modele.cluster_centers_)</code></pre>
     <dl class="definitions">
       <div><dt>الأهداف</dt><dd>تعريف الذكاء الاصطناعي من خلال مهام قابلة للملاحظة؛ الحكم على شيء مألوف هل ينتمي إلى الذكاء الاصطناعي، مع التعليل؛ وصف لعبة المحاكاة وما تقيسه.</dd></div>
       <div><dt>المدة</dt><dd>ساعة و30 دقيقة (قابلة للتكييف)</dd></div>
-      <div><dt>الوسائل</dt><dd>جهاز العرض، والموقع مفتوحًا على <a href="index.html#fiche">بطاقة المقياس</a>، واستبيان مطبوع، وشرائط من الورق.</dd></div>
+      <div><dt>الوسائل</dt><dd>جهاز العرض، والموقع مفتوحًا على <a href="cours.html#fiche">بطاقة المقياس</a>، واستبيان مطبوع، وشرائط من الورق.</dd></div>
       <div><dt>المكتسبات القبلية</dt><dd>لا شيء.</dd></div>
     </dl>
     <ol class="etapes">
-      <li><p class="etape-titre">تقديم المقياس · 15 دقيقة</p><p>البرنامج الرسمي و<a href="index.html#parcours">الرزنامة</a>. وضّحوا أن البرمجة تبدأ من الصفر؛ واعرضوا طريقة التقويم وفق النصوص المعمول بها في كليتكم، وصفحة <a href="index.html#methode">كيف تتعلّم هذا المقياس</a>.</p></li>
+      <li><p class="etape-titre">تقديم المقياس · 15 دقيقة</p><p>البرنامج الرسمي و<a href="cours.html#parcours">الرزنامة</a>. وضّحوا أن البرمجة تبدأ من الصفر؛ واعرضوا طريقة التقويم وفق النصوص المعمول بها في كليتكم، وصفحة <a href="cours.html#methode">كيف تتعلّم هذا المقياس</a>.</p></li>
       <li><p class="etape-titre">استبيان تشخيصي · 10 دقائق</p><p>هل سبق لك استعمال وكيل محادثة؟ هل سبق لك أن كتبت شيفرة؟ هل لديك حاسوب محمول؟ هل لديك اتصال بالإنترنت في البيت؟ ما لغة القراءة التي تفضّلها في التوثيق التقني؟ ما توقعاتك؟ ستُستعمل الإجابات المتعلقة بالتجهيزات في تكوين الثنائيات.</p></li>
       <li><p class="etape-titre">ذكاء اصطناعي أم لا؟ · 15 دقيقة</p><p>تصويت على ثمانية أشياء: الآلة الحاسبة، والمدقق الإملائي، ومرشّح الرسائل المزعجة، والمترجم الآلي، ومنظّم الحرارة، ومحرك البحث، ونظام GPS، ووكيل المحادثة. تُبيّن الخلافات أنه لا بدّ من تعريف الكلمة.</p></li>
-      <li><p class="etape-titre">ما الذكاء الاصطناعي؟ · 20 دقيقة</p><p>عرضٌ انطلاقًا من <a href="index.html#c1-definir">الدرس الأول</a>: دارتموث، والوكلاء، والتعريف الإجرائي، وبوسا وموريتي. ثم عودوا إلى الأشياء الثمانية.</p></li>
+      <li><p class="etape-titre">ما الذكاء الاصطناعي؟ · 20 دقيقة</p><p>عرضٌ انطلاقًا من <a href="cours.html#c1-definir">الدرس الأول</a>: دارتموث، والوكلاء، والتعريف الإجرائي، وبوسا وموريتي. ثم عودوا إلى الأشياء الثمانية.</p></li>
       <li><p class="etape-titre">لعبة المحاكاة · 25 دقيقة</p><p>نسخة مختصرة من <a href="#guide-activite-turing">النشاط</a>: شاهدان، وخمس دقائق من الأسئلة، وتصويت، ونقاش.</p></li>
       <li><p class="etape-titre">الحصيلة · 5 دقائق</p><p>بطاقة الخروج: شيء تعلّمه الطالب، وسؤال. وستُفتتح الحصة 2 بأفضل الأسئلة.</p></li>
     </ol>
@@ -983,14 +986,14 @@ print(modele.cluster_centers_)</code></pre>
       <p class="encadre-titre">أخطاء شائعة لدى الطلبة</p>
       <ul>
         <li>اختزال الذكاء الاصطناعي في الروبوتات أو في وكلاء المحادثة الحديثة.</li>
-        <li>الاعتقاد بأن النظام يفهم لأنه يجيب جيدًا: إنه «أثر ELIZA»، الذي رأيناه في <a href="index.html#c1-histoire">درس التاريخ</a>.</li>
+        <li>الاعتقاد بأن النظام يفهم لأنه يجيب جيدًا: إنه «أثر ELIZA»، الذي رأيناه في <a href="cours.html#c1-histoire">درس التاريخ</a>.</li>
         <li>اعتبار اختبار تورينغ تعريفًا للذكاء.</li>
       </ul>
     </aside>
     <aside class="encadre encadre--exemple">
       <p class="encadre-titre">العمل الشخصي</p>
       <ul>
-        <li>قراءة <a href="index.html#c1-definir">ما الذكاء الاصطناعي؟</a> و<a href="index.html#me-semaine">أسبوع نموذجي</a>.</li>
+        <li>قراءة <a href="cours.html#c1-definir">ما الذكاء الاصطناعي؟</a> و<a href="cours.html#me-semaine">أسبوع نموذجي</a>.</li>
         <li>تدوين استعمال للذكاء الاصطناعي صادفه الطالب هذا الأسبوع، مع التقنية المفترضة وراءه.</li>
       </ul>
     </aside>
@@ -1002,14 +1005,14 @@ print(modele.cluster_centers_)</code></pre>
     <dl class="definitions">
       <div><dt>الأهداف</dt><dd>ترتيب نحو عشر محطات من تاريخ الذكاء الاصطناعي ووضع الشتاءين فيها؛ التمييز بين الذكاء الاصطناعي الضيّق والعام، وبين الذكاء الاصطناعي الضعيف والقوي؛ تلخيص الغرفة الصينية في ثلاث جمل.</dd></div>
       <div><dt>المدة</dt><dd>ساعة و30 دقيقة (قابلة للتكييف)</dd></div>
-      <div><dt>الوسائل</dt><dd>بطاقة لكل محطة من <a href="index.html#c1-histoire">التسلسل الزمني</a> (الحدث على الوجه، والتاريخ على الظهر)، ومغناطيسات، وأقلام لبّاد بلونين.</dd></div>
+      <div><dt>الوسائل</dt><dd>بطاقة لكل محطة من <a href="cours.html#c1-histoire">التسلسل الزمني</a> (الحدث على الوجه، والتاريخ على الظهر)، ومغناطيسات، وأقلام لبّاد بلونين.</dd></div>
       <div><dt>المكتسبات القبلية</dt><dd>الحصة 1.</dd></div>
     </dl>
     <ol class="etapes">
       <li><p class="etape-titre">تذكير · 5 دقائق</p><p>ثلاثة أسئلة مأخوذة من بطاقات الخروج، يُجاب عنها من الذاكرة.</p></li>
       <li><p class="etape-titre">خط زمني جماعي · 30 دقيقة</p><p>تؤرّخ كل مجموعة بطاقاتها دون النظر إلى ظهرها، وتضعها على خط زمني على السبورة، ثم يجري التصحيح: لون للمقاربة الرمزية، وآخر للمقاربة الاتصالية، مع الشتاءين.</p></li>
       <li><p class="etape-titre">ما يعلّمه التاريخ · 10 دقائق</p><p>دورات الأمل والخيبة، وتنبؤ سايمون ونيويل سنة 1958: الحكم على نظام ما بالاختبارات، لا بالوعود.</p></li>
-      <li><p class="etape-titre">زوجان من المفاهيم · 20 دقيقة</p><p><a href="index.html#c1-faible-forte">الجدول المقارن</a>: ضيّق أم عام، تلك مسألة النطاق؛ ضعيف أم قوي، تلك مسألة العقل (سيرل، 1980). احكوا قصة الغرفة الصينية، ثم اطلبوا من الطلبة تلخيصها.</p></li>
+      <li><p class="etape-titre">زوجان من المفاهيم · 20 دقيقة</p><p><a href="cours.html#c1-faible-forte">الجدول المقارن</a>: ضيّق أم عام، تلك مسألة النطاق؛ ضعيف أم قوي، تلك مسألة العقل (سيرل، 1980). احكوا قصة الغرفة الصينية، ثم اطلبوا من الطلبة تلخيصها.</p></li>
       <li><p class="etape-titre">نقاش قصير · 20 دقيقة</p><p>«هل يفهم المترجم الآلي ما يترجمه؟» فريقان معيَّنان، ومتحدثان لكل فريق، وأسئلة من القاعة. اختموا بالفصل بين ما يُلاحَظ (الترجمة صحيحة) وما هو فلسفي (هل ثمة فهم؟).</p></li>
       <li><p class="etape-titre">الحصيلة · 5 دقائق</p><p>يكتب كل طالب ثلاثة تواريخ يحتفظ بها، ولماذا.</p></li>
     </ol>
@@ -1024,8 +1027,8 @@ print(modele.cluster_centers_)</code></pre>
     <aside class="encadre encadre--exemple">
       <p class="encadre-titre">العمل الشخصي</p>
       <ul>
-        <li>إنجاز خط زمني شخصي من عشرة تواريخ (<a href="index.html#me-parties">كيف تتناول كل جزء</a>).</li>
-        <li>للمجموعة المعنية: تحضير المائدة المستديرة <a href="index.html#tr-genese">نشأة الذكاء الاصطناعي وظهوره</a>.</li>
+        <li>إنجاز خط زمني شخصي من عشرة تواريخ (<a href="cours.html#me-parties">كيف تتناول كل جزء</a>).</li>
+        <li>للمجموعة المعنية: تحضير المائدة المستديرة <a href="cours.html#tr-genese">نشأة الذكاء الاصطناعي وظهوره</a>.</li>
       </ul>
     </aside>
   </article>
@@ -1036,15 +1039,15 @@ print(modele.cluster_centers_)</code></pre>
     <dl class="definitions">
       <div><dt>الأهداف</dt><dd>تصنيف 8 وضعيات على الأقل من 10 (خاضع للإشراف، غير خاضع للإشراف، معزَّز) مع التعليل بالوسوم؛ شرح دور مجموعة الاختبار؛ إعطاء مثالين عن التعلم في العلوم الإنسانية والاجتماعية.</dd></div>
       <div><dt>المدة</dt><dd>ساعة و30 دقيقة (قابلة للتكييف)</dd></div>
-      <div><dt>الوسائل</dt><dd>عشر بطاقات وضعيات لكل مجموعة (الجدول أدناه)، ونصوص تمارين <a href="index.html#td-ch1">الأعمال الموجَّهة للفصل 1</a>.</dd></div>
-      <div><dt>المكتسبات القبلية</dt><dd>درس <a href="index.html#c1-apprentissage">التعلم الخاضع للإشراف والتعلم غير الخاضع للإشراف</a>.</dd></div>
+      <div><dt>الوسائل</dt><dd>عشر بطاقات وضعيات لكل مجموعة (الجدول أدناه)، ونصوص تمارين <a href="cours.html#td-ch1">الأعمال الموجَّهة للفصل 1</a>.</dd></div>
+      <div><dt>المكتسبات القبلية</dt><dd>درس <a href="cours.html#c1-apprentissage">التعلم الخاضع للإشراف والتعلم غير الخاضع للإشراف</a>.</dd></div>
     </dl>
     <ol class="etapes">
       <li><p class="etape-titre">فرز البطاقات · 25 دقيقة</p><p>ضمن مجموعات: ثلاث كومات، مع تدوين القرينة الحاسمة على كل بطاقة؛ ثم تدافع كل مجموعة عن بطاقة واحدة.</p></li>
       <li><p class="etape-titre">إثراء جماعي · 10 دقائق</p><p>استخلصوا السؤال الحاسم: «هل تحمل أمثلة التدريب الإجابة الصحيحة؟» ثم أضيفوا مجموعة الاختبار والإفراط في التعلم (مثال «enfans» في الدرس).</p></li>
-      <li><p class="etape-titre">التمرينان 1 و2 · 25 دقيقة</p><p><a href="index.html#td-ch1-ex1">التمرين 1</a> و<a href="index.html#td-ch1-ex2">التمرين 2</a>: فرديًا، ثم ضمن ثنائيات، ثم التصحيح. ويُكتب الجدول المقارن من الذاكرة.</p></li>
-      <li><p class="etape-titre">التمرين 3 · 15 دقيقة</p><p><a href="index.html#td-ch1-ex3">ستة أمثلة</a> ضمن ثنائيات، منها مثالان في العلوم الإنسانية والاجتماعية.</p></li>
-      <li><p class="etape-titre">إطلاق التمرين 4 · 15 دقيقة</p><p>وزّعوا المهام الست في <a href="index.html#td-ch1-ex4">التمرين 4</a>: تحديد معيار النجاح، والبحث عن مصادر أولية ومؤرَّخة. ويكون العرض في ثلاث دقائق خلال الحصة الموالية.</p></li>
+      <li><p class="etape-titre">التمرينان 1 و2 · 25 دقيقة</p><p><a href="cours.html#td-ch1-ex1">التمرين 1</a> و<a href="cours.html#td-ch1-ex2">التمرين 2</a>: فرديًا، ثم ضمن ثنائيات، ثم التصحيح. ويُكتب الجدول المقارن من الذاكرة.</p></li>
+      <li><p class="etape-titre">التمرين 3 · 15 دقيقة</p><p><a href="cours.html#td-ch1-ex3">ستة أمثلة</a> ضمن ثنائيات، منها مثالان في العلوم الإنسانية والاجتماعية.</p></li>
+      <li><p class="etape-titre">إطلاق التمرين 4 · 15 دقيقة</p><p>وزّعوا المهام الست في <a href="cours.html#td-ch1-ex4">التمرين 4</a>: تحديد معيار النجاح، والبحث عن مصادر أولية ومؤرَّخة. ويكون العرض في ثلاث دقائق خلال الحصة الموالية.</p></li>
     </ol>
     <div class="tableau-defilant"><table class="tableau">
       <caption>بطاقات الوضعيات العشر والإجابات المنتظرة</caption>
@@ -1074,7 +1077,7 @@ print(modele.cluster_centers_)</code></pre>
       <p class="encadre-titre">العمل الشخصي</p>
       <ul>
         <li>تحضير التمرين 4. يعود الحل المنشور في الموقع إلى سبتمبر 2026: اطلبوا من الطلبة التحقق مما تغيّر منذ ذلك الحين.</li>
-        <li>إعادة قراءة <a href="index.html#c1-approches">مقاربات الذكاء الاصطناعي</a>؛ وحفظ <a href="index.html#glossaire">مسرد المصطلحات</a> بالفرنسية والإنجليزية.</li>
+        <li>إعادة قراءة <a href="cours.html#c1-approches">مقاربات الذكاء الاصطناعي</a>؛ وحفظ <a href="cours.html#glossaire">مسرد المصطلحات</a> بالفرنسية والإنجليزية.</li>
       </ul>
     </aside>
   </article>
@@ -1085,15 +1088,15 @@ print(modele.cluster_centers_)</code></pre>
     <dl class="definitions">
       <div><dt>الأهداف</dt><dd>فتح دفتر تفاعلي (<span class="terme-en" lang="fr">notebook</span>)، وتنفيذ خلية وحفظها؛ إنشاء متغيّرات وقائمة؛ عدّ كلمات مقطع شعري وتفسير الفارق الناتج عن علامات الترقيم.</dd></div>
       <div><dt>المدة</dt><dd>ساعة و30 دقيقة (قابلة للتكييف)</dd></div>
-      <div><dt>الوسائل</dt><dd>حاسوب لكل طالبين، واتصال بالإنترنت، وجهاز العرض؛ وحسابات Google منشأة قبل الحصة لاستعمال Colab، أو Jupyter مثبَّت، مثلًا بواسطة <code>run.bat notebook</code> (<a href="index.html#td-travaux-pratiques">الأعمال التطبيقية</a>).</dd></div>
-      <div><dt>المكتسبات القبلية</dt><dd>لا شيء في البرمجة؛ مع الاطلاع على <a href="index.html#c2-installer">تهيئة بيئة العمل</a>.</dd></div>
+      <div><dt>الوسائل</dt><dd>حاسوب لكل طالبين، واتصال بالإنترنت، وجهاز العرض؛ وحسابات Google منشأة قبل الحصة لاستعمال Colab، أو Jupyter مثبَّت، مثلًا بواسطة <code>run.bat notebook</code> (<a href="cours.html#td-travaux-pratiques">الأعمال التطبيقية</a>).</dd></div>
+      <div><dt>المكتسبات القبلية</dt><dd>لا شيء في البرمجة؛ مع الاطلاع على <a href="cours.html#c2-installer">تهيئة بيئة العمل</a>.</dd></div>
     </dl>
     <ol class="etapes">
       <li><p class="etape-titre">الثنائيات · 10 دقائق</p><p>تُكوَّن وفق الاستبيان، بقائد ومساعد (<a href="#guide-activites-conseils">نصائح</a>). ويُعتمد Colab افتراضيًا.</p></li>
       <li><p class="etape-titre">أول دفتر · 15 دقيقة</p><p>مباشرةً أمام الطلبة: <code>print("Bonjour, Médéa !")</code>، ثم Shift + Enter. تجوّلوا بين الصفوف حتى يرى كل طالب نتيجته.</p></li>
       <li><p class="etape-titre">المتغيّرات والأنواع · 15 دقيقة</p><p><code>titre</code>، و<code>annee</code>، و<code>type()</code>، وسلسلة f-string. انسوا عمدًا علامة تنصيص واقرؤوا السطر الأخير من رسالة الخطأ.</p></li>
       <li><p class="etape-titre">القوائم · 15 دقيقة</p><p><code>append</code>، و<code>sort</code>، و<code>len</code>، والفهارس. اطلبوا من الطلبة توقّع <code>auteurs[0]</code> قبل التنفيذ.</p></li>
-      <li><p class="etape-titre">عدّ الكلمات · 25 دقيقة</p><p>البرنامج أدناه. لماذا 21 عنصرًا مقابل 19 كلمة؟ ويبحث الأسرع عن الكلمة الأكثر تواترًا (<a href="index.html#td-ch2-ex3">التمرين 3 من الأعمال الموجَّهة</a>).</p></li>
+      <li><p class="etape-titre">عدّ الكلمات · 25 دقيقة</p><p>البرنامج أدناه. لماذا 21 عنصرًا مقابل 19 كلمة؟ ويبحث الأسرع عن الكلمة الأكثر تواترًا (<a href="cours.html#td-ch2-ex3">التمرين 3 من الأعمال الموجَّهة</a>).</p></li>
       <li><p class="etape-titre">الحصيلة · 10 دقائق</p><p>حفظ الدفتر. ماذا تفعل <code>split()</code>؟ وماذا يعني <code>NameError</code>؟</p></li>
     </ol>
     <figure class="code">
@@ -1121,8 +1124,8 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
     <aside class="encadre encadre--exemple">
       <p class="encadre-titre">العمل الشخصي</p>
       <ul>
-        <li>إعادة كتابة أمثلة <a href="index.html#c2-fondamentaux">أساسيات اللغة</a> دون نسخ ولصق، مع توقّع كل مُخرَج.</li>
-        <li>إنجاز <a href="index.html#td-ch2-ex1">التمرين 1 من الأعمال الموجَّهة</a>؛ والبرمجة عشرين دقيقة، ثلاث مرات في الأسبوع.</li>
+        <li>إعادة كتابة أمثلة <a href="cours.html#c2-fondamentaux">أساسيات اللغة</a> دون نسخ ولصق، مع توقّع كل مُخرَج.</li>
+        <li>إنجاز <a href="cours.html#td-ch2-ex1">التمرين 1 من الأعمال الموجَّهة</a>؛ والبرمجة عشرين دقيقة، ثلاث مرات في الأسبوع.</li>
       </ul>
     </aside>
   </article>
@@ -1133,7 +1136,7 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
     <dl class="definitions">
       <div><dt>الأهداف</dt><dd>تحميل ملف CSV ووصفه؛ التصفية والفرز والتجميع للإجابة عن سؤال مصوغ بلغة عادية؛ رسم مخطط معنون وتأويله بحذر.</dd></div>
       <div><dt>المدة</dt><dd>ساعة و30 دقيقة (قابلة للتكييف)</dd></div>
-      <div><dt>الوسائل</dt><dd>الملف <code>oeuvres.csv</code> من <a href="index.html#c2-numpy-pandas">درس pandas</a>، يُودَع مسبقًا؛ وحواسيب للثنائيات.</dd></div>
+      <div><dt>الوسائل</dt><dd>الملف <code>oeuvres.csv</code> من <a href="cours.html#c2-numpy-pandas">درس pandas</a>، يُودَع مسبقًا؛ وحواسيب للثنائيات.</dd></div>
       <div><dt>المكتسبات القبلية</dt><dd>الحصة 4.</dd></div>
     </dl>
     <ol class="etapes">
@@ -1142,7 +1145,7 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
       <li><p class="etape-titre">التصفية والفرز · 20 دقيقة</p><p>سؤال بلغة عادية أولًا («ما الأعمال المكتوبة بالعربية بعد 1950؟»)، ثم شرط التصفية، و<code>&amp;</code> بين قوسين، و<code>sort_values()</code>.</p></li>
       <li><p class="etape-titre">التجميع · 20 دقيقة</p><p><code>groupby("genre")["nb_mots"].mean()</code> و<code>value_counts()</code>. ناقشوا متوسط جنس أدبي لا يمثّله إلا نص واحد، وأثر رواية <em>Les Misérables</em> (البؤساء) في المتوسط.</p></li>
       <li><p class="etape-titre">الرسم البياني · 15 دقيقة</p><p><code>plot(kind="bar")</code>، والعنوان، والمحوران، و<code>savefig()</code>.</p></li>
-      <li><p class="etape-titre">الحصيلة · 10 دقائق</p><p>الشروع في <a href="index.html#td-ch2-ex4">التمرين 4 من الأعمال الموجَّهة</a>؛ ويكتب كل ثنائي جملة تبدأ بـ«في هذه المدوّنة الصغيرة…».</p></li>
+      <li><p class="etape-titre">الحصيلة · 10 دقائق</p><p>الشروع في <a href="cours.html#td-ch2-ex4">التمرين 4 من الأعمال الموجَّهة</a>؛ ويكتب كل ثنائي جملة تبدأ بـ«في هذه المدوّنة الصغيرة…».</p></li>
     </ol>
     <aside class="encadre encadre--attention">
       <p class="encadre-titre">أخطاء شائعة لدى الطلبة</p>
@@ -1167,8 +1170,8 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
     <dl class="definitions">
       <div><dt>الأهداف</dt><dd>تسمية المكوّنات الثلاثة للنظام الخبير؛ رسم مخطط قواعد الأعمال الموجَّهة؛ تنفيذ التسلسل الأمامي خطوة بخطوة وتفسير سبب عدم تفعيل R4 وR7.</dd></div>
       <div><dt>المدة</dt><dd>ساعة و30 دقيقة (قابلة للتكييف)</dd></div>
-      <div><dt>الوسائل</dt><dd>بطاقات القواعد الخاصة بـ<a href="#guide-activite-chainage">لعب الأدوار</a>، ونص <a href="index.html#td-ch3-ex1">التمرين 1</a>، وجهاز العرض.</dd></div>
-      <div><dt>المكتسبات القبلية</dt><dd>درس <a href="index.html#c3-symbolique">الذكاء الاصطناعي الرمزي: الأنظمة الخبيرة</a>.</dd></div>
+      <div><dt>الوسائل</dt><dd>بطاقات القواعد الخاصة بـ<a href="#guide-activite-chainage">لعب الأدوار</a>، ونص <a href="cours.html#td-ch3-ex1">التمرين 1</a>، وجهاز العرض.</dd></div>
+      <div><dt>المكتسبات القبلية</dt><dd>درس <a href="cours.html#c3-symbolique">الذكاء الاصطناعي الرمزي: الأنظمة الخبيرة</a>.</dd></div>
     </dl>
     <ol class="etapes">
       <li><p class="etape-titre">تمهيد · 10 دقائق</p><p>«كيف تتعرّفون على السوناتة؟» اكتبوا الإجابات على صيغة «إذا … فإنّ»: هذه قاعدة قواعد.</p></li>
@@ -1203,11 +1206,11 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
     <dl class="definitions">
       <div><dt>الأهداف</dt><dd>تعريف السمات، والوسم، والنموذج، والتدريب، والاختبار؛ تنفيذ خوارزمية k-المتوسطات يدويًا حتى التوقف؛ حساب خطوتين من الانحدار التدرّجي وشرح دور معدل التعلم.</dd></div>
       <div><dt>المدة</dt><dd>ساعة و30 دقيقة (قابلة للتكييف)</dd></div>
-      <div><dt>الوسائل</dt><dd>آلات حاسبة، وجهاز العرض للعروض التوضيحية في درس <a href="index.html#c3-algorithmes">بعض خوارزميات التعلم الآلي</a>، والتمارين <a href="index.html#td-ch3-ex2a">2 أ</a> و<a href="index.html#td-ch3-ex2b">2 ب</a> و<a href="index.html#td-ch3-ex2d">2 د</a>.</dd></div>
+      <div><dt>الوسائل</dt><dd>آلات حاسبة، وجهاز العرض للعروض التوضيحية في درس <a href="cours.html#c3-algorithmes">بعض خوارزميات التعلم الآلي</a>، والتمارين <a href="cours.html#td-ch3-ex2a">2 أ</a> و<a href="cours.html#td-ch3-ex2b">2 ب</a> و<a href="cours.html#td-ch3-ex2d">2 د</a>.</dd></div>
       <div><dt>المكتسبات القبلية</dt><dd>الحصتان 3 و6؛ معرفة حساب المتوسط.</dd></div>
     </dl>
     <ol class="etapes">
-      <li><p class="etape-titre">من القواعد إلى الأمثلة · 10 دقائق</p><p>«هل تستطيعون كتابة القواعد التي تجعلكم تتعرّفون على نثر كاتب ياسين؟» ثم مفردات <a href="index.html#c3-ml">التعلم الآلي</a>.</p></li>
+      <li><p class="etape-titre">من القواعد إلى الأمثلة · 10 دقائق</p><p>«هل تستطيعون كتابة القواعد التي تجعلكم تتعرّفون على نثر كاتب ياسين؟» ثم مفردات <a href="cours.html#c3-ml">التعلم الآلي</a>.</p></li>
       <li><p class="etape-titre">خوارزمية k-المتوسطات يدويًا · 20 دقيقة</p><p>التمرين 2 د على مستقيم مدرَّج (1، 3، 4، 9، 10، 14؛ والمركزان 1 و4)، حتى الاستقرار: &#x2066;{1, 3, 4}&#x2069; و&#x2066;{9, 10, 14}&#x2069;.</p></li>
       <li><p class="etape-titre">عرض توضيحي · 10 دقائق</p><p>أعيدوا تشغيل العرض التوضيحي عدة مرات: هل تتوقف النتيجة على نقطة الانطلاق؟ الصيغة المطوّلة: <a href="#guide-activite-kmoyennes">نشاط بطاقات الروايات</a>.</p></li>
       <li><p class="etape-titre">الانحدار · 15 دقيقة</p><p>مستقيم يُرسم بالعين على نقاط التمرين 2 أ، ثم ŷ = w · x + b وطريقة المربعات الصغرى. للاستئناس، وبترميز التمرين: a = 0,9 وb = 1,3، أي 6,7 كتب مقابل 6 ساعات.</p></li>
@@ -1225,8 +1228,8 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
     <aside class="encadre encadre--exemple">
       <p class="encadre-titre">العمل الشخصي</p>
       <ul>
-        <li>إتمام التمارين 2 أ و2 ب و2 د، ثم إنجاز <a href="index.html#td-ch3-ex2c">التمرين 2 ج</a>.</li>
-        <li>بالنسبة إلى <a href="index.html#mp-sujet-2">الموضوع 2 من المشروع المصغَّر</a>: قراءة <code>kmeans_enquete.py</code> وطريقة المرفق.</li>
+        <li>إتمام التمارين 2 أ و2 ب و2 د، ثم إنجاز <a href="cours.html#td-ch3-ex2c">التمرين 2 ج</a>.</li>
+        <li>بالنسبة إلى <a href="cours.html#mp-sujet-2">الموضوع 2 من المشروع المصغَّر</a>: قراءة <code>kmeans_enquete.py</code> وطريقة المرفق.</li>
       </ul>
     </aside>
   </article>
@@ -1238,14 +1241,14 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
       <div><dt>الأهداف</dt><dd>شرح الرمز (<span class="terme-en" lang="fr">token</span>) والتضمين (<span class="terme-en" lang="fr">plongement</span>) والانتباه؛ وصف التوليد بوصفه تنبؤًا متكررًا بالرمز الموالي؛ التحقق من مرجع أنتجه وكيل محادثة.</dd></div>
       <div><dt>المدة</dt><dd>ساعة و30 دقيقة (قابلة للتكييف)</dd></div>
       <div><dt>الوسائل</dt><dd>حاسوب مثبَّت عليه <code>transformers</code> و<code>torch</code>، مع نماذج مُنزَّلة عشية الحصة (أو Colab)؛ ولقطات شاشة للمخرجات احتياطًا؛ وإمكانية الوصول إلى فهرس مكتبة.</dd></div>
-      <div><dt>المكتسبات القبلية</dt><dd>الحصة 7؛ والاطلاع على درس <a href="index.html#c3-deep">التعلم العميق</a>.</dd></div>
+      <div><dt>المكتسبات القبلية</dt><dd>الحصة 7؛ والاطلاع على درس <a href="cours.html#c3-deep">التعلم العميق</a>.</dd></div>
     </dl>
     <ol class="etapes">
       <li><p class="etape-titre">تخمين الكلمة الموالية · 15 دقيقة</p><p>«Il pleure dans mon…»: يجيب الجميع «cœur». «فتحت الطالبة الكتاب و…»: دوّنوا كل اقتراح وعدد مرّاته، فهذا توزيع احتمالي. أن نأخذ دائمًا الاقتراح الأكثر تواترًا، تلك درجة حرارة منخفضة؛ وأن نسحب بالقرعة، تلك درجة حرارة مرتفعة.</p></li>
       <li><p class="etape-titre">الرموز، والتضمينات، والانتباه · 20 دقيقة</p><p>اتّبعوا الدرس: مثال «ها» التي تنظر إلى «الطالبة»، ثم المرمِّزات (BERT) وفاكّات الترميز (GPT).</p></li>
-      <li><p class="etape-titre">عرض توضيحي · 20 دقيقة</p><p><code>generation_texte.py</code> مع <code>temperature=0.3</code>، ثم <code>1.5</code>؛ ثم <code>sentiment_transformers.py</code>، وهو نموذج إنجليزي، على جملة بالفرنسية. اربطوا ذلك بالموضوعين <a href="index.html#mp-sujet-1">1</a> و<a href="index.html#mp-sujet-3">3</a> من المشروع المصغَّر.</p></li>
+      <li><p class="etape-titre">عرض توضيحي · 20 دقيقة</p><p><code>generation_texte.py</code> مع <code>temperature=0.3</code>، ثم <code>1.5</code>؛ ثم <code>sentiment_transformers.py</code>، وهو نموذج إنجليزي، على جملة بالفرنسية. اربطوا ذلك بالموضوعين <a href="cours.html#mp-sujet-1">1</a> و<a href="cours.html#mp-sujet-3">3</a> من المشروع المصغَّر.</p></li>
       <li><p class="etape-titre">اختبار المراجع · 15 دقيقة</p><p>اطلبوا مسبقًا من وكيل محادثة خمسة مراجع حول موضوع محدَّد؛ وتتحقق كل مجموعة من أحدها في فهرس مكتبة. لا تُعلنوا النتيجة: فإذا كانت كلها موجودة، فالدرس يتعلّق بالتحقق نفسه.</p></li>
-      <li><p class="etape-titre">الأخلاقيات · 15 دقيقة</p><p>التصريح باستعمال الذكاء الاصطناعي في المذكرة، والنصوص المودَعة على الإنترنت، واللغات الأقل حظًّا في المعالجة (الدارجة، والأمازيغية). ثلاث قواعد تُصاغ مع الطلبة (<a href="index.html#c1-perspectives">الآفاق</a>، <a href="index.html#me-assistant">مساعد الذكاء الاصطناعي</a>).</p></li>
+      <li><p class="etape-titre">الأخلاقيات · 15 دقيقة</p><p>التصريح باستعمال الذكاء الاصطناعي في المذكرة، والنصوص المودَعة على الإنترنت، واللغات الأقل حظًّا في المعالجة (الدارجة، والأمازيغية). ثلاث قواعد تُصاغ مع الطلبة (<a href="cours.html#c1-perspectives">الآفاق</a>، <a href="cours.html#me-assistant">مساعد الذكاء الاصطناعي</a>).</p></li>
       <li><p class="etape-titre">الحصيلة · 5 دقائق</p><p>إكمال الجملة: «توليد النص، بالنسبة إلى النموذج، هو…».</p></li>
     </ol>
     <aside class="encadre encadre--attention">
@@ -1259,8 +1262,8 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
     <aside class="encadre encadre--exemple">
       <p class="encadre-titre">العمل الشخصي</p>
       <ul>
-        <li>إعادة قراءة الإطار الخاص بالهلوسات (<a href="index.html#c3-deep">الدرس</a>)، وكتابة قاعدة شخصية لاستعمال مساعد الذكاء الاصطناعي في خمسة أسطر.</li>
-        <li>للمجموعة المعنية: تحضير المائدة المستديرة <a href="index.html#tr-problematiques">الذكاء الاصطناعي مولِّدًا لإشكاليات جديدة</a>.</li>
+        <li>إعادة قراءة الإطار الخاص بالهلوسات (<a href="cours.html#c3-deep">الدرس</a>)، وكتابة قاعدة شخصية لاستعمال مساعد الذكاء الاصطناعي في خمسة أسطر.</li>
+        <li>للمجموعة المعنية: تحضير المائدة المستديرة <a href="cours.html#tr-problematiques">الذكاء الاصطناعي مولِّدًا لإشكاليات جديدة</a>.</li>
       </ul>
     </aside>
   </article>
@@ -1292,7 +1295,7 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
   <article class="lecon" id="guide-activite-kmoyennes">
     <h3>خوارزمية k-المتوسطات ببطاقات الروايات</h3>
     <dl class="definitions">
-      <div><dt>الهدف</dt><dd>جعل الطلبة يعيشون مراحل <a href="index.html#c3-algorithmes">خوارزمية k-المتوسطات</a>، وإظهار أثر نقطة الانطلاق.</dd></div>
+      <div><dt>الهدف</dt><dd>جعل الطلبة يعيشون مراحل <a href="cours.html#c3-algorithmes">خوارزمية k-المتوسطات</a>، وإظهار أثر نقطة الانطلاق.</dd></div>
       <div><dt>المدة</dt><dd>40 دقيقة</dd></div>
       <div><dt>الوسائل</dt><dd>اثنتا عشرة بطاقة، وشبكة مربّعات 10 × 10 على طاولة، وثلاثة أشياء ملوّنة تمثّل المراكز، ومسطرة، وآلة حاسبة.</dd></div>
     </dl>
@@ -1321,7 +1324,7 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
   <article class="lecon" id="guide-activite-chainage">
     <h3>التسلسل الأمامي في لعب الأدوار</h3>
     <dl class="definitions">
-      <div><dt>الهدف</dt><dd>إفهام الطلبة دورة محرك الاستدلال (<a href="index.html#c3-symbolique">الدرس</a>، <a href="index.html#td-ch3-ex1">التمرين 1 من الأعمال الموجَّهة</a>).</dd></div>
+      <div><dt>الهدف</dt><dd>إفهام الطلبة دورة محرك الاستدلال (<a href="cours.html#c3-symbolique">الدرس</a>، <a href="cours.html#td-ch3-ex1">التمرين 1 من الأعمال الموجَّهة</a>).</dd></div>
       <div><dt>المدة</dt><dd>25 دقيقة</dd></div>
       <div><dt>الوسائل</dt><dd>بطاقة بمقاس A5 لكل قاعدة، والسبورة مقسومة إلى «قاعدة الوقائع» و«القواعد المفعَّلة».</dd></div>
     </dl>
@@ -1342,7 +1345,7 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
   <article class="lecon" id="guide-activite-neurone">
     <h3>العصبون البشري</h3>
     <dl class="definitions">
-      <div><dt>الهدف</dt><dd>بيان أن <a href="index.html#c3-deep">العصبون الاصطناعي</a> يحسب مجموعًا مرجَّحًا، وأن التعلّم هو تصحيح الأوزان بعد الخطأ.</dd></div>
+      <div><dt>الهدف</dt><dd>بيان أن <a href="cours.html#c3-deep">العصبون الاصطناعي</a> يحسب مجموعًا مرجَّحًا، وأن التعلّم هو تصحيح الأوزان بعد الخطأ.</dd></div>
       <div><dt>المدة</dt><dd>30 دقيقة</dd></div>
       <div><dt>الوسائل</dt><dd>ثلاث بطاقات «&#x2066;0 / 1&#x2069;»، وبطاقة للأوزان مكتوبة بقلم الرصاص، والسبورة.</dd></div>
     </dl>
@@ -1363,7 +1366,7 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
   <article class="lecon" id="guide-activite-brouillard">
     <h3>الانحدار التدرّجي في الضباب</h3>
     <dl class="definitions">
-      <div><dt>الهدف</dt><dd>جعل الطلبة يحسّون بأن <a href="index.html#c3-algorithmes">الانحدار التدرّجي</a> لا يعرف إلا الميل المحلي.</dd></div>
+      <div><dt>الهدف</dt><dd>جعل الطلبة يحسّون بأن <a href="cours.html#c3-algorithmes">الانحدار التدرّجي</a> لا يعرف إلا الميل المحلي.</dd></div>
       <div><dt>المدة</dt><dd>25 دقيقة</dd></div>
       <div><dt>الوسائل</dt><dd>إحدى عشرة ورقة مرقّمة من 0 إلى 10، موضوعة على الأرض في صف واحد، والارتفاع مكتوب على ظهرها.</dd></div>
     </dl>
@@ -1390,7 +1393,7 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
   <article class="lecon" id="guide-activite-turing">
     <h3>لعبة المحاكاة</h3>
     <dl class="definitions">
-      <div><dt>الهدف</dt><dd>جعل الطلبة يعيشون اختبار تورينغ (1950) ومناقشة ما يقيسه (<a href="index.html#c1-histoire">التاريخ</a>، <a href="index.html#c1-faible-forte">الغرفة الصينية</a>).</dd></div>
+      <div><dt>الهدف</dt><dd>جعل الطلبة يعيشون اختبار تورينغ (1950) ومناقشة ما يقيسه (<a href="cours.html#c1-histoire">التاريخ</a>، <a href="cours.html#c1-faible-forte">الغرفة الصينية</a>).</dd></div>
       <div><dt>المدة</dt><dd>من 25 إلى 40 دقيقة</dd></div>
       <div><dt>الوسائل</dt><dd>شرائط من الورق، ومكان بعيد عن الأنظار، وبطاقة القواعد أدناه؛ واختياريًا، وكيل محادثة.</dd></div>
     </dl>
@@ -1420,7 +1423,7 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
   <article class="lecon" id="guide-activite-spam">
     <h3>مرشّح للرسائل المزعجة بتصويت الكلمات</h3>
     <dl class="definitions">
-      <div><dt>الهدف</dt><dd>إفهام الطلبة التدريب والتنبؤ والأخطاء في <a href="index.html#c3-ml">مصنِّف النصوص</a>، دون احتمالات.</dd></div>
+      <div><dt>الهدف</dt><dd>إفهام الطلبة التدريب والتنبؤ والأخطاء في <a href="cours.html#c3-ml">مصنِّف النصوص</a>، دون احتمالات.</dd></div>
       <div><dt>المدة</dt><dd>30 دقيقة</dd></div>
       <div><dt>الوسائل</dt><dd>الرسائل العشر الآتية، مطبوعة؛ والسبورة للتعداد.</dd></div>
     </dl>
@@ -1442,7 +1445,7 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
     <dl class="definitions">
       <div><dt>الهدف</dt><dd>إجراء قراءة بالأدوات لقصيدة (التواترات، وسحابة الكلمات، والفهرس السياقي) دون برمجة، ومقابلتها بالقراءة الفاحصة.</dd></div>
       <div><dt>المدة</dt><dd>40 دقيقة</dd></div>
-      <div><dt>الوسائل</dt><dd>حاسوب متصل بالإنترنت لكل طالبين، أو حاسوب واحد موصول بجهاز العرض؛ و<a href="https://voyant-tools.org" target="_blank" rel="noopener">Voyant Tools</a>، وهي أداة ويب مجانية صمّمها ستيفان سنكلير (Stéfan Sinclair) وجيفري روكويل (Geoffrey Rockwell)؛ وقصيدة «Le Dormeur du val» (النائم في الوادي) لرامبو، التي يرد نصّها في <a href="index.html#c2-fichiers">درس الملفات النصية</a>.</dd></div>
+      <div><dt>الوسائل</dt><dd>حاسوب متصل بالإنترنت لكل طالبين، أو حاسوب واحد موصول بجهاز العرض؛ و<a href="https://voyant-tools.org" target="_blank" rel="noopener">Voyant Tools</a>، وهي أداة ويب مجانية صمّمها ستيفان سنكلير (Stéfan Sinclair) وجيفري روكويل (Geoffrey Rockwell)؛ وقصيدة «Le Dormeur du val» (النائم في الوادي) لرامبو، التي يرد نصّها في <a href="cours.html#c2-fichiers">درس الملفات النصية</a>.</dd></div>
     </dl>
     <ol class="etapes">
       <li><p class="etape-titre">القراءة الفاحصة · 10 دقائق</p><p>دون أداة: ما الكلمات التي تتكرّر؟ وما الذي يمهّد للبيت الأخير؟</p></li>
@@ -1453,14 +1456,14 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
     </ol>
     <aside class="encadre encadre--retenir">
       <p class="encadre-titre">ما ينبغي أن يستخلصه الطلبة</p>
-      <p>الأداة تعُدّ، والقارئ يؤوّل: فسحابة الكلمات ليست تحليلًا. ويجب معرفة الكلمات التي استُبعدت وكيف تُعرَّف الكلمة. يُرسَل النص إلى خادم: فلا نصوص محمية ولا أعمال غير منشورة (<a href="index.html#c1-perspectives">الأخلاقيات والممارسات الجيدة</a>).</p>
+      <p>الأداة تعُدّ، والقارئ يؤوّل: فسحابة الكلمات ليست تحليلًا. ويجب معرفة الكلمات التي استُبعدت وكيف تُعرَّف الكلمة. يُرسَل النص إلى خادم: فلا نصوص محمية ولا أعمال غير منشورة (<a href="cours.html#c1-perspectives">الأخلاقيات والممارسات الجيدة</a>).</p>
     </aside>
   </article>
 
   <article class="lecon" id="guide-activite-teachable">
     <h3>تصنيف الصور مع Teachable Machine</h3>
     <dl class="definitions">
-      <div><dt>الهدف</dt><dd>تدريب مصنِّف صور وملاحظة أنه يتعلّم أيضًا قرائن غير مقصودة (<a href="index.html#c3-ml">التعرّف على الصور</a>).</dd></div>
+      <div><dt>الهدف</dt><dd>تدريب مصنِّف صور وملاحظة أنه يتعلّم أيضًا قرائن غير مقصودة (<a href="cours.html#c3-ml">التعرّف على الصور</a>).</dd></div>
       <div><dt>المدة</dt><dd>35 دقيقة</dd></div>
       <div><dt>الوسائل</dt><dd>حاسوب متصل بالإنترنت مزوَّد بكاميرا ويب، وموصول بجهاز العرض؛ و<a href="https://teachablemachine.withgoogle.com" target="_blank" rel="noopener">Teachable Machine</a> (من Google، مجاني، يعمل في المتصفح)؛ ونحو ثلاثين بطاقة تحمل كلمات بالخط العربي أو اللاتيني.</dd></div>
     </dl>
@@ -1480,9 +1483,9 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
   <article class="lecon" id="guide-activite-debat">
     <h3>مناظرة: هل يستطيع الذكاء الاصطناعي أن يكتب رواية؟</h3>
     <dl class="definitions">
-      <div><dt>الهدف</dt><dd>بناء حجة موثَّقة والدفاع عنها حول الإبداع الآلي ومكانة المؤلف (<a href="index.html#tr-problematiques">المائدة المستديرة حول الإشكاليات الجديدة</a>).</dd></div>
+      <div><dt>الهدف</dt><dd>بناء حجة موثَّقة والدفاع عنها حول الإبداع الآلي ومكانة المؤلف (<a href="cours.html#tr-problematiques">المائدة المستديرة حول الإشكاليات الجديدة</a>).</dd></div>
       <div><dt>المدة</dt><dd>60 دقيقة، بعد تحضير يُطلَق في الحصة السابقة</dd></div>
-      <div><dt>الوسائل</dt><dd>إجراءات <a href="index.html#tr-methode">تحضير مائدة مستديرة وإدارتها</a>، ومؤقِّت، وشبكة ملاحظة للجمهور.</dd></div>
+      <div><dt>الوسائل</dt><dd>إجراءات <a href="cours.html#tr-methode">تحضير مائدة مستديرة وإدارتها</a>، ومؤقِّت، وشبكة ملاحظة للجمهور.</dd></div>
     </dl>
     <ol class="etapes">
       <li><p class="etape-titre">التحضير · الحصة السابقة</p><p>فريقان يُختاران بالقرعة، ولجنة تحكيم من ثلاثة أعضاء، والجمهور. يُحضر كل متحدث حجتين ومثالًا موثَّق المصدر.</p></li>
@@ -1496,7 +1499,7 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
     <ul>
       <li>آدا لوفلايس (1843): الآلة التحليلية لا تُبدع شيئًا، بل تنفّذ ما نعرف كيف نأمرها به. وقد ناقش تورينغ سنة 1950 هذا «اعتراض الليدي لوفلايس».</li>
       <li>جماعة أوليبو (Oulipo)، التي أسّسها ريمون كونو وفرانسوا لو ليونيه سنة 1960، وكتاب <em>Cent mille milliards de poèmes</em> (مئة ألف مليار قصيدة، 1961): الأدب التوافيقي أسبق من الذكاء الاصطناعي.</li>
-      <li>الغرفة الصينية والتنبؤ بالرمز الموالي (<a href="index.html#c3-deep">الدرس</a>): هل إنتاج نص يعني فهمه؟</li>
+      <li>الغرفة الصينية والتنبؤ بالرمز الموالي (<a href="cours.html#c3-deep">الدرس</a>): هل إنتاج نص يعني فهمه؟</li>
       <li>في جانفي 2024، صرّحت ري كودان (Rie Kudan)، الفائزة بجائزة أكوتاغاوا، بأن نحو 5% من روايتها ينقل حرفيًا نصوصًا ولّدها ChatGPT.</li>
       <li>في الولايات المتحدة، يشترط مكتب حقوق المؤلف قدرًا من الإبداع البشري؛ اطلبوا من الطلبة البحث في الوضع الجزائري.</li>
     </ul>
@@ -1583,7 +1586,7 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
 
   <article class="lecon" id="guide-evaluation-examen">
     <h3>نموذج لموضوع امتحان مع حلّه</h3>
-    <p>يغطّي هذا الموضوع الفصول الثلاثة. ويستعيد أنواع تمارين <a href="index.html#td-tp">الأعمال الموجَّهة</a> ببيانات جديدة: فمن فهِم ينجح دون أن يكون قد حفظ الحلول. وقد أُعيد كل حساب مرتين، ونُفِّذ برنامج التمرين 5. وسلّم التنقيط استرشادي.</p>
+    <p>يغطّي هذا الموضوع الفصول الثلاثة. ويستعيد أنواع تمارين <a href="cours.html#td-tp">الأعمال الموجَّهة</a> ببيانات جديدة: فمن فهِم ينجح دون أن يكون قد حفظ الحلول. وقد أُعيد كل حساب مرتين، ونُفِّذ برنامج التمرين 5. وسلّم التنقيط استرشادي.</p>
     <dl class="definitions">
       <div><dt>المدة</dt><dd>1 سا 30 د</dd></div>
       <div><dt>سلّم التنقيط</dt><dd>استرشادي، على 20 نقطة: &lrm;4 + 4 + 3 + 3 + 3 + 3</dd></div>
@@ -1720,7 +1723,7 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
           </table></div>
           <p>يُبلَغ الهدف G في الدورة الرابعة؛ والقواعد المفعَّلة هي، بالترتيب: R1 ثم R2 ثم R4 ثم R5. اقبلوا أيضًا استراتيجية الأعمال الموجَّهة، التي تستعرض القائمة كلها قبل أن تبدأ من جديد: فهي تعطي هنا عمليات التفعيل نفسها، وبالترتيب نفسه.</p>
           <p><strong>3. التأويل (1 نقطة).</strong> تشترط R3 وR6 وجود D، وهي واقعة غير قابلة للاستنتاج (لا تنتهي إليها أي قاعدة) وغائبة عن القاعدة الأولية: فلا يمكن أن تُفعَّلا أبدًا (0,5). وإذا أُضيفت D، فإن R6، وهي الأولى في الترتيب، تصبح قابلة للتطبيق منذ الدورة الأولى: فتثبت G فورًا، بقاعدة واحدة (0,5). إن ترتيب القواعد هو الذي يحدد المسار المتَّبع.</p>
-          <p>ملاحظة موجّهة إليكم: يضع الترتيب المختار في الصدارة القواعدَ التي لا تُفعَّل إلا في الأخير، مما يفرض العودة أربع مرات إلى بداية القائمة. وهكذا يتبيّن هل فهم الطالب حلقة محرك الاستدلال (<a href="index.html#c3-symbolique">الفصل 3</a>).</p>
+          <p>ملاحظة موجّهة إليكم: يضع الترتيب المختار في الصدارة القواعدَ التي لا تُفعَّل إلا في الأخير، مما يفرض العودة أربع مرات إلى بداية القائمة. وهكذا يتبيّن هل فهم الطالب حلقة محرك الاستدلال (<a href="cours.html#c3-symbolique">الفصل 3</a>).</p>
         </div></details>
     </div>
 
@@ -1853,7 +1856,7 @@ français 7.0
       <details class="corrige"><summary>عرض الحل وسلّم التنقيط</summary>
         <div class="corrige-corps">
           <p><strong>العناصر المنتظرة، الموضوع أ.</strong> القراءة عن بُعد والقراءة عن قُرب (موريتي): تكشف الأولى عن اتجاهات عامة، وتبقى الثانية ضرورية لتأويلها. فالأداة تنتج مؤشرات، وسؤال البحث هو الذي يمنحها معنى؛ والمجموعات المكوَّنة دون وسوم يجب أن تُؤوَّل بالعودة إلى قراءة النصوص. الحدود: التحيّزات، واللغات قليلة الموارد، وانعدام الشفافية. مثال ممكن: دراسة كافييرو وكان (2019) حول موليير وكورناي، التي تغذّي نقاشًا بين مؤرخي الأدب دون أن تحسمه وحدها. الخلاصة المنتظرة: تكميل لا استبدال.</p>
-          <p><strong>العناصر المنتظرة، الموضوع ب.</strong> الشفافية: يجب التصريح بكل استعمال (الأداة، والإصدار، والتاريخ، ونوع الاستعمال، والتعليمات)؛ وتقديم نص مولَّد على أنه نص شخصي يُعدّ سرقة علمية. التحقق: الملخصات والترجمات الآلية تتضمن أخطاء واختلاقات، ويجب مقابلتها بالأصول. حقوق المؤلف والبيانات: لا تُودَع النصوص غير المنشورة أو المحمية ولا البيانات الشخصية في خدمات على الإنترنت. مبادئ اليونسكو (2021): الشفافية، والمسؤولية، والرقابة البشرية. انظر درس <a href="index.html#c1-perspectives">الآفاق والحدود والأخلاقيات</a>.</p>
+          <p><strong>العناصر المنتظرة، الموضوع ب.</strong> الشفافية: يجب التصريح بكل استعمال (الأداة، والإصدار، والتاريخ، ونوع الاستعمال، والتعليمات)؛ وتقديم نص مولَّد على أنه نص شخصي يُعدّ سرقة علمية. التحقق: الملخصات والترجمات الآلية تتضمن أخطاء واختلاقات، ويجب مقابلتها بالأصول. حقوق المؤلف والبيانات: لا تُودَع النصوص غير المنشورة أو المحمية ولا البيانات الشخصية في خدمات على الإنترنت. مبادئ اليونسكو (2021): الشفافية، والمسؤولية، والرقابة البشرية. انظر درس <a href="cours.html#c1-perspectives">الآفاق والحدود والأخلاقيات</a>.</p>
           <div class="tableau-defilant"><table class="tableau">
             <caption>سلّم التنقيط الاسترشادي لسؤال التفكير</caption>
             <thead><tr><th scope="col">المعيار</th><th scope="col">النقاط</th></tr></thead>
@@ -1880,7 +1883,7 @@ français 7.0
     <h3>شبكتا تقييم المشروع المصغَّر والموائد المستديرة</h3>
     <p>تجعل الشبكة العلامة قابلة للتفسير، وتجعل مصحِّحَين اثنين يصلان إلى علامتين متقاربتين. وزّعوها مع موضوع العمل، لا بعده. والنقاط استرشادية، على 20: ردّوها إلى الحصة التي تمنحها النصوص السارية المفعول لكل عمل.</p>
     <h4>المشروع المصغَّر</h4>
-    <p>تستعيد الشبكة معايير <a href="index.html#mp-evaluation">شبكة التقييم الذاتي</a> التي بين أيدي الطلبة، مجمَّعة في ستة محاور. في المعيار المنقَّط على 3: غير كافٍ من 0 إلى 0,5؛ مقبول من 1 إلى 1,5؛ جيد من 2 إلى 2,5؛ جيد جدًا 3. وفي المعيار المنقَّط على 4: من 0 إلى 1؛ من 1,5 إلى 2؛ من 2,5 إلى 3؛ من 3,5 إلى 4.</p>
+    <p>تستعيد الشبكة معايير <a href="cours.html#mp-evaluation">شبكة التقييم الذاتي</a> التي بين أيدي الطلبة، مجمَّعة في ستة محاور. في المعيار المنقَّط على 3: غير كافٍ من 0 إلى 0,5؛ مقبول من 1 إلى 1,5؛ جيد من 2 إلى 2,5؛ جيد جدًا 3. وفي المعيار المنقَّط على 4: من 0 إلى 1؛ من 1,5 إلى 2؛ من 2,5 إلى 3؛ من 3,5 إلى 4.</p>
     <div class="tableau-defilant"><table class="tableau">
       <caption>شبكة تقييم المشروع المصغَّر (نقاط استرشادية على 20)</caption>
       <thead><tr><th scope="col">المعيار</th><th scope="col">غير كافٍ</th><th scope="col">مقبول</th><th scope="col">جيد</th><th scope="col">جيد جدًا</th></tr></thead>
@@ -1896,7 +1899,7 @@ français 7.0
     <p>في حالة العمل الجماعي، نقّطوا التقرير والشيفرة جماعيًا، والمناقشة الشفوية فرديًا: فيجيب كل عضو عن سؤال يخصّ جزءًا لم يعرضه هو.</p>
 
     <h4>المائدة المستديرة</h4>
-    <p>يُنقَّط كل مشارك فرديًا، وفق <a href="index.html#tr-methode">قواعد التحضير</a> التي يعرفها الطلبة. وأثناء النقاش، دوّنوا على شبكة خاصة بكل مشارك سلوكًا ملاحَظًا واحدًا لكل معيار؛ ثم امنحوا النقاط مباشرة بعد ذلك. لكل معيار على 4: من 0 إلى 1؛ من 1,5 إلى 2؛ من 2,5 إلى 3؛ من 3,5 إلى 4.</p>
+    <p>يُنقَّط كل مشارك فرديًا، وفق <a href="cours.html#tr-methode">قواعد التحضير</a> التي يعرفها الطلبة. وأثناء النقاش، دوّنوا على شبكة خاصة بكل مشارك سلوكًا ملاحَظًا واحدًا لكل معيار؛ ثم امنحوا النقاط مباشرة بعد ذلك. لكل معيار على 4: من 0 إلى 1؛ من 1,5 إلى 2؛ من 2,5 إلى 3؛ من 3,5 إلى 4.</p>
     <div class="tableau-defilant"><table class="tableau">
       <caption>شبكة ملاحظة مائدة مستديرة (نقاط استرشادية على 20)</caption>
       <thead><tr><th scope="col">المعيار</th><th scope="col">غير كافٍ</th><th scope="col">مقبول</th><th scope="col">جيد</th><th scope="col">جيد جدًا</th></tr></thead>
@@ -1932,7 +1935,7 @@ français 7.0
       </article>
       <article class="carte">
         <h4>القراءة المتبادلة</h4>
-        <p>يتبادل طالبان تأطير مشروعيهما المصغَّرين (سؤال البحث، والبيانات المتوقعة) أو مسودة التقرير. ويملأ كل منهما <a href="index.html#mp-evaluation">شبكة التقييم الذاتي</a> لزميله، ويدوّن نقطتَي قوة وسؤالين.</p>
+        <p>يتبادل طالبان تأطير مشروعيهما المصغَّرين (سؤال البحث، والبيانات المتوقعة) أو مسودة التقرير. ويملأ كل منهما <a href="cours.html#mp-evaluation">شبكة التقييم الذاتي</a> لزميله، ويدوّن نقطتَي قوة وسؤالين.</p>
         <p>إذا نقّطتم هذا التمرين، فنقّطوا جودة القراءة، ولا تنقّطوا أبدًا العمل الذي قُرئ.</p>
       </article>
     </div>
@@ -1966,7 +1969,7 @@ français 7.0
 
   <article class="lecon" id="guide-ia-charte">
     <h3>ميثاق استعمال للطلبة</h3>
-    <p>المنع التام لا يمكن مراقبته؛ والإباحة التامة تُفرغ الأعمال من معناها. لذا وزّعوا ميثاقًا منذ الحصة الأولى. يستعيد هذا الميثاق القواعد الأربع لدرس <a href="index.html#c1-perspectives">الآفاق والحدود والأخلاقيات</a> (البيانات الشخصية، وحقوق المؤلف، والشفافية، والتحقق) ونصائح صفحة <a href="index.html#me-assistant">منهجية العمل</a>؛ وتكون الأولوية للقواعد الخاصة بكليتكم، إن وُجدت. وتتيح المائدة المستديرة <a href="index.html#tr-perspectives">آفاق الذكاء الاصطناعي</a>، التي تُختتم بميثاق، تعديله مع الطلبة.</p>
+    <p>المنع التام لا يمكن مراقبته؛ والإباحة التامة تُفرغ الأعمال من معناها. لذا وزّعوا ميثاقًا منذ الحصة الأولى. يستعيد هذا الميثاق القواعد الأربع لدرس <a href="cours.html#c1-perspectives">الآفاق والحدود والأخلاقيات</a> (البيانات الشخصية، وحقوق المؤلف، والشفافية، والتحقق) ونصائح صفحة <a href="cours.html#me-assistant">منهجية العمل</a>؛ وتكون الأولوية للقواعد الخاصة بكليتكم، إن وُجدت. وتتيح المائدة المستديرة <a href="cours.html#tr-perspectives">آفاق الذكاء الاصطناعي</a>، التي تُختتم بميثاق، تعديله مع الطلبة.</p>
     <h4>توطئة، تُقرأ على الطلبة</h4>
     <p>في هذا المقياس، يمكن لأداة ذكاء اصطناعي أن تساعدكم على التعلم؛ لكنها لا تستطيع أن تتعلم بدلًا منكم. فالعلامات تقيس ما فهمتموه. وكل ما تسلّمونه يجب أن تكونوا قادرين على شرحه بأنفسكم، شفويًا، دون الأداة.</p>
     <div class="comparaison">
@@ -2019,7 +2022,7 @@ français 7.0
     </aside>
     <h4>خمس روافع</h4>
     <ul>
-      <li><strong>المناقشة الشفوية للمشروع المصغَّر</strong>، المنصوص عليها أصلًا في <a href="index.html#mp-livrables">المُخرَجات</a>، هي أقوى الروافع. اطرحوا أسئلة لا يستطيع معالجتها إلا صاحب العمل: «اعرض الخلية التي تنظّف البيانات واشرح كل سطر فيها.» «انتقل من k = 3 إلى k = 4 أمامي: ماذا يتغيّر؟» «اقرأ نصًا من المجموعة 2: لماذا هو فيها؟»</li>
+      <li><strong>المناقشة الشفوية للمشروع المصغَّر</strong>، المنصوص عليها أصلًا في <a href="cours.html#mp-livrables">المُخرَجات</a>، هي أقوى الروافع. اطرحوا أسئلة لا يستطيع معالجتها إلا صاحب العمل: «اعرض الخلية التي تنظّف البيانات واشرح كل سطر فيها.» «انتقل من k = 3 إلى k = 4 أمامي: ماذا يتغيّر؟» «اقرأ نصًا من المجموعة 2: لماذا هو فيها؟»</li>
       <li><strong>دفتر اليوميات</strong>: مدخل مؤرَّخ لكل جلسة عمل، في ثلاثة أسطر (ما جرّبته، وما أخفق، وما قرّرته ولماذا). مثال: «14 نوفمبر. يحكم VADER بإيجابية رسائل ساخرة مكتوبة بالدارجة بالحروف اللاتينية. أقرأ 30 رسالة يدويًا لقياس حجم المشكلة.» نقّطوا الانتظام والوعي النقدي، لا الأسلوب.</li>
       <li><strong>المدوّنة الشخصية</strong>: يعمل كل طالب أو فريق على بيانات جمعها بنفسه، مثل افتتاحيات يومية جزائرية طوال أسبوع، أو قصائد شاعر يُدرَس في مقياس آخر من مقاييس الماستر، أو الإجابات المجهولة الهوية عن استبيان أُجري بموافقة زملائه في الدفعة. قد تساعد الأداة على كتابة الشيفرة؛ لكنها لا تعرف هذه المدوّنة، وتأويلها يقتضي قراءتها.</li>
       <li><strong>العمل في الحصة</strong>: الحسابات اليدوية في الأعمال الموجَّهة، و«التوقّع قبل التنفيذ» في الأعمال التطبيقية، وخمس عشرة دقيقة من الكتابة حول سؤال من الدرس. فيصبح العمل في البيت تدريبًا، ويتراجع الدافع إلى الغش.</li>
@@ -2055,7 +2058,7 @@ français 7.0
       </article>
       <article class="carte">
         <h4>ترجمات</h4>
-        <p>التعليمات، والمسرد، والملخصات: مسودة أولى بالعربية أو بالإنجليزية تُراجَع أسرع مما تُكتب. وراقبوا المصطلحات التقنية بالاستعانة بـ<a href="index.html#glossaire">مسرد</a> المقياس، وبزميل فيما يخص العربية: فالمصطلحات تختلف من بلد إلى آخر.</p>
+        <p>التعليمات، والمسرد، والملخصات: مسودة أولى بالعربية أو بالإنجليزية تُراجَع أسرع مما تُكتب. وراقبوا المصطلحات التقنية بالاستعانة بـ<a href="cours.html#glossaire">مسرد</a> المقياس، وبزميل فيما يخص العربية: فالمصطلحات تختلف من بلد إلى آخر.</p>
       </article>
       <article class="carte">
         <h4>شروح لكم</h4>
@@ -2131,7 +2134,7 @@ français 7.0
 
   <article class="lecon" id="guide-ressources-programme">
     <h3>مراجع البرنامج الرسمي</h3>
-    <p>المراجع العشرة الواردة في البرنامج الرسمي، بترتيبها فيه، مع التصحيحات التي أُجريت سلفًا في صفحة <a href="index.html#references">المراجع</a> من موقع المقياس. والمجموعة متفاوتة (أربعة كتب، وتقرير، وثلاث صفحات ويب، ومقال صحفي، ومطبوعة درس): والرفوف التالية تكمّلها.</p>
+    <p>المراجع العشرة الواردة في البرنامج الرسمي، بترتيبها فيه، مع التصحيحات التي أُجريت سلفًا في صفحة <a href="cours.html#references">المراجع</a> من موقع المقياس. والمجموعة متفاوتة (أربعة كتب، وتقرير، وثلاث صفحات ويب، ومقال صحفي، ومطبوعة درس): والرفوف التالية تكمّلها.</p>
     <dl class="definitions">
       <div><dt>Inglehart 1997</dt><dd>
         <p>Ronald Inglehart، <em lang="en">Modernization and Postmodernization: Cultural, Economic, and Political Change in 43 Societies</em>، Princeton University Press، 1997. الإطار النظري (القيم المادية وما بعد المادية) لتفسير المجموعات المتحصَّل عليها في الموضوعين 2 و4.</p>
@@ -2237,7 +2240,7 @@ français 7.0
 
   <article class="lecon" id="guide-ressources-python">
     <h3>Python وJupyter</h3>
-    <p>يشرح الفصل 2 التثبيت خطوة بخطوة (<a href="index.html#c2-installer">تثبيت Python</a>)، وتحيل صفحة <a href="index.html#references">المراجع</a> إلى توثيق كل مكتبة. وإليكم ما يساعد فوق ذلك، للتعلّم أو للشرح.</p>
+    <p>يشرح الفصل 2 التثبيت خطوة بخطوة (<a href="cours.html#c2-installer">تثبيت Python</a>)، وتحيل صفحة <a href="cours.html#references">المراجع</a> إلى توثيق كل مكتبة. وإليكم ما يساعد فوق ذلك، للتعلّم أو للشرح.</p>
     <div class="tableau-defilant"><table class="tableau">
       <caption>تثبيت Python وتعلّمه وشرحه</caption>
       <thead><tr><th scope="col">المورد</th><th scope="col">اللغة والمستوى</th><th scope="col">ما فائدته في هذا المقياس</th></tr></thead>
@@ -2274,7 +2277,7 @@ français 7.0
 
   <article class="lecon" id="guide-ressources-arabe">
     <h3>موارد بالعربية وللعربية</h3>
-    <p>صُمّمت معظم أدوات هذا المقياس للإنجليزية. وتتكرر في النصوص العربية ثلاث صعوبات: الكتابة دون الحركات القصيرة، وصرفٌ تتصل فيه أداة التعريف والضمائر بالكلمة (انظروا <a href="index.html#c2-fichiers">الفصل 2</a>)، والفجوة بين العربية الفصحى واللهجات، ومنها الدارجة الجزائرية التي تُكتب بالحروف العربية أو اللاتينية. والموارد التالية تستجيب لهذه الصعوبات. كما أن نصوص اليونسكو الواردة في رفّ <a href="#guide-ressources-ethique">الأخلاقيات</a> متوفرة بالعربية أيضًا، ومنها <a href="https://unesdoc.unesco.org/ark:/48223/pf0000381137_ara" target="_blank" rel="noopener"><span lang="fr">Recommandation sur l'éthique de l'intelligence artificielle</span></a> (توصية بشأن أخلاقيات الذكاء الاصطناعي).</p>
+    <p>صُمّمت معظم أدوات هذا المقياس للإنجليزية. وتتكرر في النصوص العربية ثلاث صعوبات: الكتابة دون الحركات القصيرة، وصرفٌ تتصل فيه أداة التعريف والضمائر بالكلمة (انظروا <a href="cours.html#c2-fichiers">الفصل 2</a>)، والفجوة بين العربية الفصحى واللهجات، ومنها الدارجة الجزائرية التي تُكتب بالحروف العربية أو اللاتينية. والموارد التالية تستجيب لهذه الصعوبات. كما أن نصوص اليونسكو الواردة في رفّ <a href="#guide-ressources-ethique">الأخلاقيات</a> متوفرة بالعربية أيضًا، ومنها <a href="https://unesdoc.unesco.org/ark:/48223/pf0000381137_ara" target="_blank" rel="noopener"><span lang="fr">Recommandation sur l'éthique de l'intelligence artificielle</span></a> (توصية بشأن أخلاقيات الذكاء الاصطناعي).</p>
 
     <h4>الأدوات والنماذج والمدوّنات الموسومة</h4>
     <div class="tableau-defilant"><table class="tableau">
@@ -2361,7 +2364,7 @@ français 7.0
 
   <article class="lecon" id="guide-ressources-ethique">
     <h3>الأخلاقيات والقانون والتنظيم</h3>
-    <p>ليس مطلوبًا من طلبتكم أن يصيروا قانونيين؛ لكن عليهم أن يعرفوا أن هذه النصوص موجودة وما الذي تحميه. وهي تغذّي الجزء الخاص بالأخلاقيات في الفصل 1 و<a href="index.html#tables-rondes">الموائد المستديرة</a>. أما تقرير Obvia فتجدونه في رفّ <a href="#guide-ressources-programme">البرنامج</a>.</p>
+    <p>ليس مطلوبًا من طلبتكم أن يصيروا قانونيين؛ لكن عليهم أن يعرفوا أن هذه النصوص موجودة وما الذي تحميه. وهي تغذّي الجزء الخاص بالأخلاقيات في الفصل 1 و<a href="cours.html#tables-rondes">الموائد المستديرة</a>. أما تقرير Obvia فتجدونه في رفّ <a href="#guide-ressources-programme">البرنامج</a>.</p>
     <dl class="definitions">
       <div><dt>UNESCO 2021</dt><dd>
         <p>UNESCO، <a href="https://unesdoc.unesco.org/ark:/48223/pf0000381137" target="_blank" rel="noopener"><em><span lang="fr">Recommandation sur l'éthique de l'intelligence artificielle</span></em></a>، اعتُمدت في نوفمبر 2021. أول إطار عالمي: حقوق الإنسان، والتنوع الثقافي، وحماية المعطيات، ورفض التنقيط الاجتماعي والمراقبة الجماعية.</p>
@@ -2396,10 +2399,10 @@ français 7.0
 
   <article class="lecon" id="guide-ressources-pedagogie">
     <h3>التدريس والتعلّم</h3>
-    <p>يطلب هذا المقياس من طلبة الأدب أن يتعلّموا البرمجة في بضعة أسابيع. وتقدّم البحوث في التعلّم بعض القواعد الموثوقة لبلوغ ذلك؛ وصفحة <a href="index.html#methode">كيف تتعلّم هذا المقياس</a> تصوغها لهم سلفًا.</p>
+    <p>يطلب هذا المقياس من طلبة الأدب أن يتعلّموا البرمجة في بضعة أسابيع. وتقدّم البحوث في التعلّم بعض القواعد الموثوقة لبلوغ ذلك؛ وصفحة <a href="cours.html#methode">كيف تتعلّم هذا المقياس</a> تصوغها لهم سلفًا.</p>
     <dl class="definitions">
       <div><dt>هذا الموقع</dt><dd>
-        <p><a href="index.html#methode">كيف تتعلّم هذا المقياس</a>، صفحة المنهجية في الموقع: اختبار النفس، والمباعدة بين المراجعات، والشرح، والمحاولة قبل الاطلاع على الحل، واستعمال مساعد ذكاء اصطناعي بنزاهة. قدّموها في الحصة الأولى؛ وهي متوفرة بثلاث لغات.</p>
+        <p><a href="cours.html#methode">كيف تتعلّم هذا المقياس</a>، صفحة المنهجية في الموقع: اختبار النفس، والمباعدة بين المراجعات، والشرح، والمحاولة قبل الاطلاع على الحل، واستعمال مساعد ذكاء اصطناعي بنزاهة. قدّموها في الحصة الأولى؛ وهي متوفرة بثلاث لغات.</p>
         <ul class="puces"><li class="puce">FR</li><li class="puce">EN</li><li class="puce">AR</li><li class="puce puce--outil">مبتدئ</li></ul>
       </dd></div>
       <div><dt>Dunlosky et al. 2013</dt><dd>
@@ -2443,12 +2446,12 @@ français 7.0
     <div>
       <h2>تصفّح</h2>
       <ul>
-        <li><a href="index.html#methode">كيف تتعلّم هذا المقياس</a></li>
-        <li><a href="index.html#chapitre-1">الفصل 1 · مدخل</a></li>
-        <li><a href="index.html#chapitre-2">الفصل 2 · بايثون</a></li>
-        <li><a href="index.html#chapitre-3">الفصل 3 · أنواع الذكاء الاصطناعي</a></li>
-        <li><a href="index.html#mini-projet">المشروع المصغَّر</a></li>
-        <li><a href="index.html#td-tp">حلول TD / TP</a></li>
+        <li><a href="cours.html#methode">كيف تتعلّم هذا المقياس</a></li>
+        <li><a href="cours.html#chapitre-1">الفصل 1 · مدخل</a></li>
+        <li><a href="cours.html#chapitre-2">الفصل 2 · بايثون</a></li>
+        <li><a href="cours.html#chapitre-3">الفصل 3 · أنواع الذكاء الاصطناعي</a></li>
+        <li><a href="cours.html#mini-projet">المشروع المصغَّر</a></li>
+        <li><a href="cours.html#td-tp">حلول TD / TP</a></li>
         <li><a href="enseignant.html">دليل الأستاذ</a></li>
         <li><a href="diaporamas.html">العروض التقديمية</a></li>
         <li><a href="classe.html">أفواجي</a></li>
@@ -2463,8 +2466,9 @@ français 7.0
   </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+<script src="../assets/vendor/prism/prism-core.min.js"></script>
+<script src="../assets/vendor/prism/prism-clike.min.js"></script>
+<script src="../assets/vendor/prism/prism-python.min.js"></script>
 <script src="../assets/js/lumineux.js"></script>
 <script src="../assets/js/cours.js"></script>
 </body>

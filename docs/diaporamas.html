@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Diaporamas · Cours d'IA</title>
 <meta name="description" content="Le cours d'intelligence artificielle du Master Littérature Générale et Comparée (Université Yahia Farès, Médéa, 2025-2026), expliqué en entier : leçons, Python, démonstrations, TD corrigés et mini-projets.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;600&amp;family=IM+Fell+DW+Pica+SC&amp;family=JetBrains+Mono:wght@400;600&amp;family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&amp;family=Rajdhani:wght@500;600;700&amp;display=swap">
+<link rel="preload" href="assets/fonts/literata-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/im-fell-dw-pica-sc-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/polices.css">
 <link rel="stylesheet" href="assets/css/lumineux-tokens.css">
 <link rel="stylesheet" href="assets/css/lumineux.css">
 <link rel="stylesheet" href="assets/css/cours.css">
 <link rel="stylesheet" href="assets/css/outils.css">
-<link rel="alternate" hreflang="en" href="en/index.html">
-<link rel="alternate" hreflang="ar" href="ar/index.html">
+<link rel="alternate" hreflang="en" href="en/diaporamas.html">
+<link rel="alternate" hreflang="ar" href="ar/diaporamas.html">
 </head>
 <body>
 <a class="lien-evitement" href="#contenu">Aller au contenu</a>
@@ -81,10 +81,12 @@
   </div>
   <nav aria-label="Menu" data-rail>
 <ul class="rail-capsule">
-<li><a href="index.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-retour"/></svg></span>Retour au cours</a></li>
+<li><a href="index.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-maison"/></svg></span>Accueil</a></li>
+<li><a href="cours.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-livre"/></svg></span>Le cours</a></li>
 <li><a href="enseignant.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-outil"/></svg></span>Guide de l'enseignant</a></li>
 <li><a href="diaporamas.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-ecran"/></svg></span>Diaporamas</a></li>
 <li><a href="classe.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-groupe"/></svg></span>Mes groupes</a></li>
+<li><a href="programme.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-fiche"/></svg></span>Programme officiel</a></li>
 </ul>
 </nav>
 </aside>
@@ -97,6 +99,7 @@
   </section>
   <div class="outil" id="outil-diaporamas" data-outil="diaporamas" data-base="" data-langue="fr">
     <noscript><p class="outil-message">Les diaporamas ont besoin de JavaScript. Activez-le dans votre navigateur.</p></noscript>
+    <div class="chargement" role="status"><span class="chargement__anneau" aria-hidden="true"></span><p class="chargement__texte">Préparation des diaporamas…</p></div>
   </div>
 </main>
 
@@ -110,12 +113,12 @@
     <div>
       <h2>Parcourir</h2>
       <ul>
-        <li><a href="index.html#methode">Comment apprendre ce cours</a></li>
-        <li><a href="index.html#chapitre-1">Chapitre 1 · Introduction</a></li>
-        <li><a href="index.html#chapitre-2">Chapitre 2 · Python</a></li>
-        <li><a href="index.html#chapitre-3">Chapitre 3 · Types d'IA</a></li>
-        <li><a href="index.html#mini-projet">Mini-projet</a></li>
-        <li><a href="index.html#td-tp">TD / TP corrigés</a></li>
+        <li><a href="cours.html#methode">Comment apprendre ce cours</a></li>
+        <li><a href="cours.html#chapitre-1">Chapitre 1 · Introduction</a></li>
+        <li><a href="cours.html#chapitre-2">Chapitre 2 · Python</a></li>
+        <li><a href="cours.html#chapitre-3">Chapitre 3 · Types d'IA</a></li>
+        <li><a href="cours.html#mini-projet">Mini-projet</a></li>
+        <li><a href="cours.html#td-tp">TD / TP corrigés</a></li>
         <li><a href="enseignant.html">Guide de l'enseignant</a></li>
         <li><a href="diaporamas.html">Diaporamas</a></li>
         <li><a href="classe.html">Mes groupes</a></li>
@@ -130,8 +133,9 @@
   </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+<script src="assets/vendor/prism/prism-core.min.js"></script>
+<script src="assets/vendor/prism/prism-clike.min.js"></script>
+<script src="assets/vendor/prism/prism-python.min.js"></script>
 <script src="assets/js/lumineux.js"></script>
 <script src="assets/diapos/diapos-fr.js"></script>
 <script src="assets/js/diaporama.js"></script>

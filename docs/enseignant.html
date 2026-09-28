@@ -5,14 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Guide de l'enseignant · Cours d'IA</title>
 <meta name="description" content="Le cours d'intelligence artificielle du Master Littérature Générale et Comparée (Université Yahia Farès, Médéa, 2025-2026), expliqué en entier : leçons, Python, démonstrations, TD corrigés et mini-projets.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;600&amp;family=IM+Fell+DW+Pica+SC&amp;family=JetBrains+Mono:wght@400;600&amp;family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&amp;family=Rajdhani:wght@500;600;700&amp;display=swap">
+<link rel="preload" href="assets/fonts/literata-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/im-fell-dw-pica-sc-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/polices.css">
 <link rel="stylesheet" href="assets/css/lumineux-tokens.css">
 <link rel="stylesheet" href="assets/css/lumineux.css">
 <link rel="stylesheet" href="assets/css/cours.css">
-<link rel="alternate" hreflang="en" href="en/index.html">
-<link rel="alternate" hreflang="ar" href="ar/index.html">
+<link rel="stylesheet" href="assets/css/outils.css">
+<link rel="alternate" hreflang="en" href="en/enseignant.html">
+<link rel="alternate" hreflang="ar" href="ar/enseignant.html">
 </head>
 <body>
 <a class="lien-evitement" href="#contenu">Aller au contenu</a>
@@ -80,7 +81,7 @@
   </div>
   <nav aria-label="Guide (menu)" data-rail>
 <ul class="rail-capsule">
-<li><a href="index.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-retour"/></svg></span>Retour au cours</a></li>
+<li><a href="cours.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-retour"/></svg></span>Retour au cours</a></li>
 <li><a href="#guide-demarrer"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-boussole"/></svg></span>Par où commencer</a></li>
 <li><a href="#guide-carte"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-carte"/></svg></span>Carte du cours</a></li>
 <li><a href="#guide-progression"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-calendrier"/></svg></span>Progression</a></li>
@@ -92,6 +93,7 @@
 <li><a href="#guide-ressources"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-livre"/></svg></span>Ressources</a></li>
 <li><a href="diaporamas.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-ecran"/></svg></span>Diaporamas</a></li>
 <li><a href="classe.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-groupe"/></svg></span>Mes groupes</a></li>
+<li><a href="programme.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-fiche"/></svg></span>Programme officiel</a></li>
 </ul>
 </nav>
 </aside>
@@ -115,7 +117,7 @@
     <div class="page__rail">
       <nav aria-label="Sommaire du guide" data-rail>
 <ul class="rail-capsule">
-<li><a href="index.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-retour"/></svg></span>Retour au cours</a></li>
+<li><a href="cours.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-retour"/></svg></span>Retour au cours</a></li>
 <li><a href="#guide-demarrer"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-boussole"/></svg></span>Par où commencer</a></li>
 <li><a href="#guide-carte"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-carte"/></svg></span>Carte du cours</a></li>
 <li><a href="#guide-progression"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-calendrier"/></svg></span>Progression</a></li>
@@ -127,6 +129,7 @@
 <li><a href="#guide-ressources"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-livre"/></svg></span>Ressources</a></li>
 <li><a href="diaporamas.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-ecran"/></svg></span>Diaporamas</a></li>
 <li><a href="classe.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-groupe"/></svg></span>Mes groupes</a></li>
+<li><a href="programme.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-fiche"/></svg></span>Programme officiel</a></li>
 </ul>
 </nav>
     </div>
@@ -154,7 +157,7 @@
     <ol class="etapes">
       <li>
         <p class="etape-titre">Un mois avant · Lire le programme, puis le site comme un étudiant</p>
-        <p>Lisez la <a href="index.html#fiche">fiche de la matière</a>, qui reprend le programme officiel, puis le <a href="index.html#parcours">calendrier</a>, la page <a href="index.html#methode">Comment apprendre ce cours</a> et le <a href="index.html#chapitre-1">chapitre 1</a> en entier. Les leçons, les <a href="index.html#td-tp">TD corrigés</a> et les sujets de <a href="index.html#mini-projet">mini-projet</a> sont déjà rédigés : votre rôle est de guider les étudiants dans ce matériel, pas de tout réécrire.</p>
+        <p>Lisez la <a href="cours.html#fiche">fiche de la matière</a>, qui reprend le programme officiel, puis le <a href="cours.html#parcours">calendrier</a>, la page <a href="cours.html#methode">Comment apprendre ce cours</a> et le <a href="cours.html#chapitre-1">chapitre 1</a> en entier. Les leçons, les <a href="cours.html#td-tp">TD corrigés</a> et les sujets de <a href="cours.html#mini-projet">mini-projet</a> sont déjà rédigés : votre rôle est de guider les étudiants dans ce matériel, pas de tout réécrire.</p>
       </li>
       <li>
         <p class="etape-titre">Quatre semaines avant · Installer les outils sur votre ordinateur</p>
@@ -187,7 +190,7 @@
       </li>
       <li>
         <p class="etape-titre">Dix jours avant · Préparer la première séance</p>
-        <p>Partez de la première des <a href="#guide-seances">fiches de séance</a> et testez la projection dans la salle. Préparez une question d'ouverture (« Une machine peut-elle lire un roman ? ») et la démonstration de l'<a href="index.html#accueil">accueil du site</a>, qui calcule le sentiment d'une phrase : elle lance la discussion sur ce que « lire » veut dire pour une machine.</p>
+        <p>Partez de la première des <a href="#guide-seances">fiches de séance</a> et testez la projection dans la salle. Préparez une question d'ouverture (« Une machine peut-elle lire un roman ? ») et la démonstration de l'<a href="cours.html#accueil">accueil du site</a>, qui calcule le sentiment d'une phrase : elle lance la discussion sur ce que « lire » veut dire pour une machine.</p>
       </li>
       <li>
         <p class="etape-titre">Une semaine avant · Fixer l'évaluation selon les textes en vigueur</p>
@@ -195,7 +198,7 @@
       </li>
       <li>
         <p class="etape-titre">Cinq jours avant · Préparer l'énoncé du mini-projet</p>
-        <p>Il sera distribué à la fin du chapitre 2, mais préparez-le maintenant : nombre de sujets, travail individuel ou en binôme, <a href="index.html#mp-livrables">livrables</a> (notebook, rapport de 4 à 6 pages, oral), dates, <a href="index.html#mp-evaluation">grille de relecture</a>. Pour chaque sujet, vérifiez qu'une source de données accessible existe, ou prévoyez un petit jeu de données à fournir.</p>
+        <p>Il sera distribué à la fin du chapitre 2, mais préparez-le maintenant : nombre de sujets, travail individuel ou en binôme, <a href="cours.html#mp-livrables">livrables</a> (notebook, rapport de 4 à 6 pages, oral), dates, <a href="cours.html#mp-evaluation">grille de relecture</a>. Pour chaque sujet, vérifiez qu'une source de données accessible existe, ou prévoyez un petit jeu de données à fournir.</p>
       </li>
       <li>
         <p class="etape-titre">La veille · Dernier contrôle, et votre propre formation continue</p>
@@ -213,16 +216,16 @@
       <caption>Dix séances d'une heure pour vous former avec le site</caption>
       <thead><tr><th scope="col">Séance</th><th scope="col">Ce que vous apprenez</th><th scope="col">Sur le site</th><th scope="col">À faire</th></tr></thead>
       <tbody>
-        <tr><td>1</td><td>Ouvrir un notebook, exécuter une cellule ; variables et types</td><td><a href="index.html#c2-installer">Environnement</a>, <a href="index.html#c2-fondamentaux">fondamentaux</a></td><td>Afficher le titre et l'année d'un roman, puis changer une valeur.</td></tr>
-        <tr><td>2</td><td>Chaînes de caractères et listes</td><td><a href="index.html#c2-fondamentaux">Fondamentaux</a></td><td><a href="index.html#td-ch2-ex1">Exercice 1 du TD 2</a> (palindromes)</td></tr>
-        <tr><td>3</td><td>Tuples, dictionnaires, boucles</td><td><a href="index.html#c2-fondamentaux">Fondamentaux</a></td><td>Exercices <a href="index.html#td-ch2-ex2">2</a> et <a href="index.html#td-ch2-ex3">3</a> du TD 2</td></tr>
-        <tr><td>4</td><td>Conditions, fonctions ; lire un message d'erreur</td><td><a href="index.html#c2-fondamentaux">Fondamentaux</a> ; tutoriel officiel, chapitres 3 et 4</td><td>Provoquer trois erreurs et lire la dernière ligne de chaque message.</td></tr>
-        <tr><td>5</td><td>pandas : lire un CSV, filtrer, trier, regrouper</td><td><a href="index.html#c2-numpy-pandas">NumPy et pandas</a></td><td><a href="index.html#td-ch2-ex4">Exercice 4 du TD 2</a></td></tr>
-        <tr><td>6</td><td>Fichiers texte : lire, chercher, compter, trier</td><td><a href="index.html#c2-fichiers">Fichiers textes</a></td><td><a href="index.html#td-ch2-ex5">Exercice 5 du TD 2</a>, puis une concordance sur un texte de votre choix.</td></tr>
-        <tr><td>7</td><td>Rapports Excel et PDF ; survol des objets</td><td><a href="index.html#c2-rapports">Rapports</a>, <a href="index.html#c2-objet">objets</a></td><td>Exporter le résultat de la séance 6 dans un classeur Excel.</td></tr>
-        <tr><td>8</td><td>Les idées du chapitre 1</td><td><a href="index.html#chapitre-1">Chapitre 1</a>, <a href="index.html#td-ch1">TD 1</a></td><td>Exercices 2 et 3 du TD 1, avec vos propres exemples littéraires.</td></tr>
-        <tr><td>9</td><td>Système expert et chaînage avant</td><td><a href="index.html#c3-symbolique">IA symbolique</a></td><td><a href="index.html#td-ch3-ex1">Exercice 1 du TD 3</a> sur papier, puis la démonstration.</td></tr>
-        <tr><td>10</td><td>Un algorithme d'apprentissage de bout en bout</td><td><a href="index.html#c3-algorithmes">Algorithmes</a>, <a href="index.html#mp-sujet-2">sujet 2</a></td><td><a href="index.html#td-ch3-ex2d">Exercice 2d</a> à la main, la démonstration des k-moyennes, puis le code du sujet 2.</td></tr>
+        <tr><td>1</td><td>Ouvrir un notebook, exécuter une cellule ; variables et types</td><td><a href="cours.html#c2-installer">Environnement</a>, <a href="cours.html#c2-fondamentaux">fondamentaux</a></td><td>Afficher le titre et l'année d'un roman, puis changer une valeur.</td></tr>
+        <tr><td>2</td><td>Chaînes de caractères et listes</td><td><a href="cours.html#c2-fondamentaux">Fondamentaux</a></td><td><a href="cours.html#td-ch2-ex1">Exercice 1 du TD 2</a> (palindromes)</td></tr>
+        <tr><td>3</td><td>Tuples, dictionnaires, boucles</td><td><a href="cours.html#c2-fondamentaux">Fondamentaux</a></td><td>Exercices <a href="cours.html#td-ch2-ex2">2</a> et <a href="cours.html#td-ch2-ex3">3</a> du TD 2</td></tr>
+        <tr><td>4</td><td>Conditions, fonctions ; lire un message d'erreur</td><td><a href="cours.html#c2-fondamentaux">Fondamentaux</a> ; tutoriel officiel, chapitres 3 et 4</td><td>Provoquer trois erreurs et lire la dernière ligne de chaque message.</td></tr>
+        <tr><td>5</td><td>pandas : lire un CSV, filtrer, trier, regrouper</td><td><a href="cours.html#c2-numpy-pandas">NumPy et pandas</a></td><td><a href="cours.html#td-ch2-ex4">Exercice 4 du TD 2</a></td></tr>
+        <tr><td>6</td><td>Fichiers texte : lire, chercher, compter, trier</td><td><a href="cours.html#c2-fichiers">Fichiers textes</a></td><td><a href="cours.html#td-ch2-ex5">Exercice 5 du TD 2</a>, puis une concordance sur un texte de votre choix.</td></tr>
+        <tr><td>7</td><td>Rapports Excel et PDF ; survol des objets</td><td><a href="cours.html#c2-rapports">Rapports</a>, <a href="cours.html#c2-objet">objets</a></td><td>Exporter le résultat de la séance 6 dans un classeur Excel.</td></tr>
+        <tr><td>8</td><td>Les idées du chapitre 1</td><td><a href="cours.html#chapitre-1">Chapitre 1</a>, <a href="cours.html#td-ch1">TD 1</a></td><td>Exercices 2 et 3 du TD 1, avec vos propres exemples littéraires.</td></tr>
+        <tr><td>9</td><td>Système expert et chaînage avant</td><td><a href="cours.html#c3-symbolique">IA symbolique</a></td><td><a href="cours.html#td-ch3-ex1">Exercice 1 du TD 3</a> sur papier, puis la démonstration.</td></tr>
+        <tr><td>10</td><td>Un algorithme d'apprentissage de bout en bout</td><td><a href="cours.html#c3-algorithmes">Algorithmes</a>, <a href="cours.html#mp-sujet-2">sujet 2</a></td><td><a href="cours.html#td-ch3-ex2d">Exercice 2d</a> à la main, la démonstration des k-moyennes, puis le code du sujet 2.</td></tr>
       </tbody>
     </table></div>
 
@@ -233,7 +236,7 @@
       <li><a href="https://programminghistorian.org/fr/" target="_blank" rel="noopener">Programming Historian</a> : des leçons d'humanités numériques évaluées par des pairs, écrites pour les sciences humaines ; une partie en français, le reste en anglais.</li>
     </ul>
 
-    <aside class="encadre encadre--attention"><p class="encadre-titre">Quand vous bloquez</p><p>Au-delà de vingt minutes sur le même problème, arrêtez. Notez ce que vous avez essayé, puis demandez à un collègue, ou faites expliquer le code ligne par ligne par un assistant d'IA en vérifiant ce qu'il affirme (<a href="index.html#me-assistant">bon usage d'un assistant</a>). Vos étudiants bloqueront aux mêmes endroits, et vous saurez les aider.</p></aside>
+    <aside class="encadre encadre--attention"><p class="encadre-titre">Quand vous bloquez</p><p>Au-delà de vingt minutes sur le même problème, arrêtez. Notez ce que vous avez essayé, puis demandez à un collègue, ou faites expliquer le code ligne par ligne par un assistant d'IA en vérifiant ce qu'il affirme (<a href="cours.html#me-assistant">bon usage d'un assistant</a>). Vos étudiants bloqueront aux mêmes endroits, et vous saurez les aider.</p></aside>
 
     <aside class="encadre encadre--retenir"><p class="encadre-titre">Ce que le cours exige vraiment de vous</p>
       <ul>
@@ -267,7 +270,7 @@
       <div class="comparaison-col">
         <h4>Sans installation</h4>
         <p>Colab exécute Python dans le navigateur, avec un compte Google et une connexion. Une partie des bibliothèques y est déjà installée ; les autres s'ajoutent avec <code>!pip install</code>.</p>
-        <p>Les quatre démonstrations du site tournent dans le navigateur, même hors ligne : le <a href="index.html#accueil">lecteur de sentiments</a> de l'accueil, le <a href="index.html#c3-symbolique">chaînage avant</a>, la <a href="index.html#c3-algorithmes">descente de gradient et les k-moyennes</a>.</p>
+        <p>Les quatre démonstrations du site tournent dans le navigateur, même hors ligne : le <a href="cours.html#accueil">lecteur de sentiments</a> de l'accueil, le <a href="cours.html#c3-symbolique">chaînage avant</a>, la <a href="cours.html#c3-algorithmes">descente de gradient et les k-moyennes</a>.</p>
       </div>
       <div class="comparaison-col">
         <h4>Sans ordinateur</h4>
@@ -390,45 +393,45 @@
       <caption>Seize notions, dans l'ordre du cours</caption>
       <thead><tr><th scope="col">Notion</th><th scope="col">Prérequis</th><th scope="col">Où dans le site</th><th scope="col">Activité conseillée</th></tr></thead>
       <tbody>
-        <tr><th scope="row">1. Définition de l'IA, agent</th><td>Aucun</td><td><a href="index.html#c1-definir">Qu'est-ce que l'IA ?</a></td><td>Recueillir les définitions des étudiants, puis les confronter à celle du cours.</td></tr>
-        <tr><th scope="row">2. Grandes étapes de l'histoire de l'IA</th><td>Aucun</td><td><a href="index.html#c1-histoire">Survol historique</a></td><td>Frise collective de dix dates ; <a href="index.html#tr-genese">table ronde 1</a>.</td></tr>
-        <tr><th scope="row">3. IA faible et IA forte</th><td>1</td><td><a href="index.html#c1-faible-forte">IA étroite et générale</a></td><td>Débat court sur la chambre chinoise.</td></tr>
-        <tr><th scope="row">4. Apprentissage supervisé et non supervisé</th><td>1</td><td><a href="index.html#c1-apprentissage">Leçon</a>, <a href="index.html#td-ch1-ex2">TD 1, ex. 2</a></td><td>Classer des cartes-situations en deux piles, puis justifier.</td></tr>
-        <tr><th scope="row">5. Variables, listes, dictionnaires, boucles</th><td>Aucun</td><td><a href="index.html#c2-fondamentaux">Fondamentaux</a>, <a href="index.html#td-ch2">TD 2</a></td><td>Prédire la sortie d'un programme imprimé avant de l'exécuter.</td></tr>
-        <tr><th scope="row">6. Tableau de données (DataFrame)</th><td>5</td><td><a href="index.html#c2-numpy-pandas">NumPy et pandas</a>, <a href="index.html#td-ch2-ex4">TD 2, ex. 4</a></td><td>Filtrer, trier et compter un tableau d'œuvres.</td></tr>
-        <tr><th scope="row">7. Fichier texte, encodage, fréquences</th><td>5</td><td><a href="index.html#c2-fichiers">Fichiers textes</a>, <a href="index.html#td-ch2-ex5">TD 2, ex. 5</a></td><td>Concordance d'un mot dans un roman du domaine public.</td></tr>
-        <tr><th scope="row">8. Classe et objet</th><td>5</td><td><a href="index.html#c2-objet">Programmation objet</a></td><td>Lecture guidée : « un poème est un texte ».</td></tr>
-        <tr><th scope="row">9. Système expert, chaînage avant</th><td>Logique « si… alors »</td><td><a href="index.html#c3-symbolique">IA symbolique</a>, <a href="index.html#td-ch3-ex1">TD 3, ex. 1</a></td><td>Dérouler les règles au tableau, puis la démonstration.</td></tr>
-        <tr><th scope="row">10. Entraînement, test, surapprentissage</th><td>4</td><td><a href="index.html#c3-ml">Apprentissage automatique</a></td><td>Classer à la main dix courriels, puis compter les erreurs.</td></tr>
-        <tr><th scope="row">11. Régression et descente de gradient</th><td>10</td><td><a href="index.html#c3-algorithmes">Algorithmes</a>, <a href="index.html#td-ch3-ex2a">TD 3, ex. 2a</a> et <a href="index.html#td-ch3-ex2b">2b</a></td><td>Démonstration : faire varier le pas d'apprentissage.</td></tr>
-        <tr><th scope="row">12. Classification par les k plus proches voisins</th><td>10</td><td><a href="index.html#c3-algorithmes">Algorithmes</a>, <a href="index.html#td-ch3-ex2c">TD 3, ex. 2c</a></td><td>Placer un texte inconnu sur une grille, chercher ses voisins.</td></tr>
-        <tr><th scope="row">13. Clustering par k-moyennes</th><td>4</td><td><a href="index.html#c3-algorithmes">Algorithmes</a>, <a href="index.html#td-ch3-ex2d">TD 3, ex. 2d</a></td><td>Itération à la main, puis démonstration ; relier au <a href="index.html#mp-sujet-2">sujet 2</a>.</td></tr>
-        <tr><th scope="row">14. Réseau de neurones, CNN, RNN</th><td>10, 11</td><td><a href="index.html#c3-deep">Apprentissage profond</a>, <a href="index.html#td-ch3-ex4b">TD 3, ex. 4b</a></td><td>Un « neurone humain » : un étudiant pondère trois indices et décide.</td></tr>
-        <tr><th scope="row">15. Transformers, génération de texte</th><td>14</td><td><a href="index.html#c3-deep">Apprentissage profond</a></td><td>Faire générer un texte en TP et relever ses erreurs.</td></tr>
-        <tr><th scope="row">16. Renforcement, Q-learning</th><td>1</td><td><a href="index.html#c3-renforcement">Renforcement</a>, <a href="index.html#td-ch3-ex4c">TD 3, ex. 4c</a></td><td>Jeu de rôle : un agent, un labyrinthe, des récompenses.</td></tr>
+        <tr><th scope="row">1. Définition de l'IA, agent</th><td>Aucun</td><td><a href="cours.html#c1-definir">Qu'est-ce que l'IA ?</a></td><td>Recueillir les définitions des étudiants, puis les confronter à celle du cours.</td></tr>
+        <tr><th scope="row">2. Grandes étapes de l'histoire de l'IA</th><td>Aucun</td><td><a href="cours.html#c1-histoire">Survol historique</a></td><td>Frise collective de dix dates ; <a href="cours.html#tr-genese">table ronde 1</a>.</td></tr>
+        <tr><th scope="row">3. IA faible et IA forte</th><td>1</td><td><a href="cours.html#c1-faible-forte">IA étroite et générale</a></td><td>Débat court sur la chambre chinoise.</td></tr>
+        <tr><th scope="row">4. Apprentissage supervisé et non supervisé</th><td>1</td><td><a href="cours.html#c1-apprentissage">Leçon</a>, <a href="cours.html#td-ch1-ex2">TD 1, ex. 2</a></td><td>Classer des cartes-situations en deux piles, puis justifier.</td></tr>
+        <tr><th scope="row">5. Variables, listes, dictionnaires, boucles</th><td>Aucun</td><td><a href="cours.html#c2-fondamentaux">Fondamentaux</a>, <a href="cours.html#td-ch2">TD 2</a></td><td>Prédire la sortie d'un programme imprimé avant de l'exécuter.</td></tr>
+        <tr><th scope="row">6. Tableau de données (DataFrame)</th><td>5</td><td><a href="cours.html#c2-numpy-pandas">NumPy et pandas</a>, <a href="cours.html#td-ch2-ex4">TD 2, ex. 4</a></td><td>Filtrer, trier et compter un tableau d'œuvres.</td></tr>
+        <tr><th scope="row">7. Fichier texte, encodage, fréquences</th><td>5</td><td><a href="cours.html#c2-fichiers">Fichiers textes</a>, <a href="cours.html#td-ch2-ex5">TD 2, ex. 5</a></td><td>Concordance d'un mot dans un roman du domaine public.</td></tr>
+        <tr><th scope="row">8. Classe et objet</th><td>5</td><td><a href="cours.html#c2-objet">Programmation objet</a></td><td>Lecture guidée : « un poème est un texte ».</td></tr>
+        <tr><th scope="row">9. Système expert, chaînage avant</th><td>Logique « si… alors »</td><td><a href="cours.html#c3-symbolique">IA symbolique</a>, <a href="cours.html#td-ch3-ex1">TD 3, ex. 1</a></td><td>Dérouler les règles au tableau, puis la démonstration.</td></tr>
+        <tr><th scope="row">10. Entraînement, test, surapprentissage</th><td>4</td><td><a href="cours.html#c3-ml">Apprentissage automatique</a></td><td>Classer à la main dix courriels, puis compter les erreurs.</td></tr>
+        <tr><th scope="row">11. Régression et descente de gradient</th><td>10</td><td><a href="cours.html#c3-algorithmes">Algorithmes</a>, <a href="cours.html#td-ch3-ex2a">TD 3, ex. 2a</a> et <a href="cours.html#td-ch3-ex2b">2b</a></td><td>Démonstration : faire varier le pas d'apprentissage.</td></tr>
+        <tr><th scope="row">12. Classification par les k plus proches voisins</th><td>10</td><td><a href="cours.html#c3-algorithmes">Algorithmes</a>, <a href="cours.html#td-ch3-ex2c">TD 3, ex. 2c</a></td><td>Placer un texte inconnu sur une grille, chercher ses voisins.</td></tr>
+        <tr><th scope="row">13. Clustering par k-moyennes</th><td>4</td><td><a href="cours.html#c3-algorithmes">Algorithmes</a>, <a href="cours.html#td-ch3-ex2d">TD 3, ex. 2d</a></td><td>Itération à la main, puis démonstration ; relier au <a href="cours.html#mp-sujet-2">sujet 2</a>.</td></tr>
+        <tr><th scope="row">14. Réseau de neurones, CNN, RNN</th><td>10, 11</td><td><a href="cours.html#c3-deep">Apprentissage profond</a>, <a href="cours.html#td-ch3-ex4b">TD 3, ex. 4b</a></td><td>Un « neurone humain » : un étudiant pondère trois indices et décide.</td></tr>
+        <tr><th scope="row">15. Transformers, génération de texte</th><td>14</td><td><a href="cours.html#c3-deep">Apprentissage profond</a></td><td>Faire générer un texte en TP et relever ses erreurs.</td></tr>
+        <tr><th scope="row">16. Renforcement, Q-learning</th><td>1</td><td><a href="cours.html#c3-renforcement">Renforcement</a>, <a href="cours.html#td-ch3-ex4c">TD 3, ex. 4c</a></td><td>Jeu de rôle : un agent, un labyrinthe, des récompenses.</td></tr>
       </tbody>
     </table></div>
 
-    <p>L'éthique n'a pas de ligne à part, car elle accompagne chaque notion : données personnelles à la collecte (6, 7), biais à l'entraînement (10 à 13), hallucinations à la génération (15). Leçon de référence : <a href="index.html#c1-perspectives">opportunités, limites et éthique</a>.</p>
+    <p>L'éthique n'a pas de ligne à part, car elle accompagne chaque notion : données personnelles à la collecte (6, 7), biais à l'entraînement (10 à 13), hallucinations à la génération (15). Leçon de référence : <a href="cours.html#c1-perspectives">opportunités, limites et éthique</a>.</p>
   </article>
 
   <article class="lecon" id="guide-carte-competences">
     <h3>Les compétences visées à la fin du semestre</h3>
-    <p>Le tableau traduit les sept connaissances visées du programme (<a href="index.html#fiche">fiche de la matière</a>) en preuves observables : ce que vous devez voir un étudiant faire pour tenir la compétence pour acquise. Les deux dernières lignes viennent des objectifs de l'enseignement.</p>
+    <p>Le tableau traduit les sept connaissances visées du programme (<a href="cours.html#fiche">fiche de la matière</a>) en preuves observables : ce que vous devez voir un étudiant faire pour tenir la compétence pour acquise. Les deux dernières lignes viennent des objectifs de l'enseignement.</p>
 
     <div class="tableau-defilant"><table class="tableau">
       <caption>Des connaissances visées aux preuves observables</caption>
       <thead><tr><th scope="col">Ce que dit le programme</th><th scope="col">À la fin, l'étudiant sait…</th><th scope="col">Où l'observer</th></tr></thead>
       <tbody>
-        <tr><th scope="row">Identifier les opportunités de l'IA en SHS</th><td>citer trois usages de l'IA dans sa discipline et dire ce que l'outil apporte et ce qu'il ne fait pas</td><td><a href="index.html#c1-perspectives">Chapitre 1</a>, <a href="index.html#tr-methodes">table ronde 2</a>, examen</td></tr>
-        <tr><th scope="row">Comprendre les applications de l'IA pour les SHS</th><td>associer un problème de recherche à la famille d'IA qui convient et justifier ce choix</td><td><a href="index.html#c3-synthese">Synthèse du chapitre 3</a>, <a href="index.html#td-ch3-ex3">TD 3, ex. 3</a>, examen</td></tr>
-        <tr><th scope="row">Comprendre les implications éthiques et les bonnes pratiques</th><td>anonymiser des données, citer ses sources, déclarer l'usage d'un outil d'IA, repérer un biais ou une information inventée</td><td>Partie « limites et éthique » du rapport, <a href="index.html#tr-problematiques">table ronde 3</a></td></tr>
-        <tr><th scope="row">Réaliser le clustering de comportements sociaux et la modélisation prédictive</th><td>lancer les k-moyennes sur un tableau d'enquête et décrire les profils ; entraîner un modèle, l'évaluer sur un jeu de test, interpréter le score</td><td><a href="index.html#mp-sujet-2">Sujet 2</a>, <a href="index.html#mp-sujet-4">sujet 4</a>, TD 3</td></tr>
-        <tr><th scope="row">Comprendre les sentiments sur les réseaux et les analyser</th><td>appliquer TextBlob ou VADER à des messages, comparer au jugement humain sur un échantillon, expliquer les erreurs (ironie, langue non couverte)</td><td><a href="index.html#mp-sujet-1">Sujet 1</a></td></tr>
-        <tr><th scope="row">Extraire des informations de discours politiques</th><td>extraire entités nommées et thèmes, les compter, puis revenir au texte pour interpréter</td><td><a href="index.html#mp-sujet-3">Sujet 3</a></td></tr>
-        <tr><th scope="row">Analyser les réseaux sociologiques</th><td>construire un graphe à partir d'un tableau de liens, calculer degré et centralité, interpréter la position d'un acteur</td><td><a href="index.html#mp-sujet-5">Sujet 5</a></td></tr>
-        <tr><th scope="row">Utiliser Python (objectif)</th><td>lire, exécuter et modifier un programme court ; charger, filtrer et exporter un tableau</td><td><a href="index.html#td-ch2">TD 2</a>, TP, notebook du mini-projet</td></tr>
-        <tr><th scope="row">Traiter un corpus de textes (objectif)</th><td>lire des fichiers en UTF-8, rechercher, compter, trier, produire une concordance</td><td><a href="index.html#td-ch2-ex5">TD 2, ex. 5</a>, mini-projet</td></tr>
+        <tr><th scope="row">Identifier les opportunités de l'IA en SHS</th><td>citer trois usages de l'IA dans sa discipline et dire ce que l'outil apporte et ce qu'il ne fait pas</td><td><a href="cours.html#c1-perspectives">Chapitre 1</a>, <a href="cours.html#tr-methodes">table ronde 2</a>, examen</td></tr>
+        <tr><th scope="row">Comprendre les applications de l'IA pour les SHS</th><td>associer un problème de recherche à la famille d'IA qui convient et justifier ce choix</td><td><a href="cours.html#c3-synthese">Synthèse du chapitre 3</a>, <a href="cours.html#td-ch3-ex3">TD 3, ex. 3</a>, examen</td></tr>
+        <tr><th scope="row">Comprendre les implications éthiques et les bonnes pratiques</th><td>anonymiser des données, citer ses sources, déclarer l'usage d'un outil d'IA, repérer un biais ou une information inventée</td><td>Partie « limites et éthique » du rapport, <a href="cours.html#tr-problematiques">table ronde 3</a></td></tr>
+        <tr><th scope="row">Réaliser le clustering de comportements sociaux et la modélisation prédictive</th><td>lancer les k-moyennes sur un tableau d'enquête et décrire les profils ; entraîner un modèle, l'évaluer sur un jeu de test, interpréter le score</td><td><a href="cours.html#mp-sujet-2">Sujet 2</a>, <a href="cours.html#mp-sujet-4">sujet 4</a>, TD 3</td></tr>
+        <tr><th scope="row">Comprendre les sentiments sur les réseaux et les analyser</th><td>appliquer TextBlob ou VADER à des messages, comparer au jugement humain sur un échantillon, expliquer les erreurs (ironie, langue non couverte)</td><td><a href="cours.html#mp-sujet-1">Sujet 1</a></td></tr>
+        <tr><th scope="row">Extraire des informations de discours politiques</th><td>extraire entités nommées et thèmes, les compter, puis revenir au texte pour interpréter</td><td><a href="cours.html#mp-sujet-3">Sujet 3</a></td></tr>
+        <tr><th scope="row">Analyser les réseaux sociologiques</th><td>construire un graphe à partir d'un tableau de liens, calculer degré et centralité, interpréter la position d'un acteur</td><td><a href="cours.html#mp-sujet-5">Sujet 5</a></td></tr>
+        <tr><th scope="row">Utiliser Python (objectif)</th><td>lire, exécuter et modifier un programme court ; charger, filtrer et exporter un tableau</td><td><a href="cours.html#td-ch2">TD 2</a>, TP, notebook du mini-projet</td></tr>
+        <tr><th scope="row">Traiter un corpus de textes (objectif)</th><td>lire des fichiers en UTF-8, rechercher, compter, trier, produire une concordance</td><td><a href="cours.html#td-ch2-ex5">TD 2, ex. 5</a>, mini-projet</td></tr>
       </tbody>
     </table></div>
 
@@ -460,17 +463,17 @@
       <caption>Progression indicative à adapter au calendrier officiel</caption>
       <thead><tr><th scope="col">Semaine</th><th scope="col">Cours</th><th scope="col">TD</th><th scope="col">TP</th><th scope="col">Mini-projet / table ronde</th><th scope="col">À préparer</th></tr></thead>
       <tbody>
-        <tr><th scope="row">1</th><td><a href="index.html#chapitre-1">Chapitre 1</a> : définitions, histoire, IA faible et forte, apprentissages, approches, perspectives</td><td><a href="index.html#td-ch1">TD 1</a>, ex. 1 à 3 ; ex. 4 en travail personnel</td><td>Installer Python ou ouvrir Colab ; si besoin, finir le chapitre 1 (prévu par le programme)</td><td>Questionnaire de diagnostic ; groupes des tables rondes</td><td>Salle vérifiée, espace de classe ouvert</td></tr>
-        <tr><th scope="row">2</th><td>Chapitre 2 : <a href="index.html#c2-fondamentaux">fondamentaux</a>, <a href="index.html#c2-numpy-pandas">NumPy et pandas</a></td><td><a href="index.html#td-ch2">TD 2</a>, ex. 1 à 3</td><td>Programmer les exercices 1 à 3</td><td>Groupe 1 : lectures pour la table ronde</td><td>Faire vous-même les exercices</td></tr>
-        <tr><th scope="row">3</th><td>Chapitre 2 : <a href="index.html#c2-objet">objets</a>, <a href="index.html#c2-fichiers">fichiers texte</a>, <a href="index.html#c2-rapports">rapports</a></td><td>TD 2, ex. 4 et 5 ; retour sur l'ex. 4 du TD 1</td><td>Exercices 4 et 5 ; un petit rapport Excel ou PDF</td><td>Distribution du <a href="index.html#mini-projet">mini-projet</a> en fin de semaine</td><td>Énoncé, dates, données vérifiées pour chaque sujet</td></tr>
-        <tr><th scope="row">4</th><td>Chapitre 3 : <a href="index.html#c3-symbolique">IA symbolique</a>, systèmes experts</td><td><a href="index.html#td-ch3-ex1">TD 3, ex. 1</a> (chaînage avant)</td><td>Programmer le chaînage avant ; cadrage des sujets</td><td>Mini-projet, semaine 1 : cadrer, réunir les données. <a href="index.html#tr-genese">Table ronde 1</a> : genèse de l'IA</td><td>Valider les questions de recherche</td></tr>
-        <tr><th scope="row">5</th><td>Chapitre 3 : <a href="index.html#c3-ml">principes de l'apprentissage automatique</a>, évaluation ; classification et k-moyennes</td><td>TD 3, ex. 2c, 2d, 3 et 4a</td><td><code>KNeighborsClassifier</code> et <code>KMeans</code> ; point d'étape du mini-projet</td><td>Mini-projet, semaine 2 : explorer, nettoyer, appliquer la méthode</td><td>Relire les notebooks en cours</td></tr>
+        <tr><th scope="row">1</th><td><a href="cours.html#chapitre-1">Chapitre 1</a> : définitions, histoire, IA faible et forte, apprentissages, approches, perspectives</td><td><a href="cours.html#td-ch1">TD 1</a>, ex. 1 à 3 ; ex. 4 en travail personnel</td><td>Installer Python ou ouvrir Colab ; si besoin, finir le chapitre 1 (prévu par le programme)</td><td>Questionnaire de diagnostic ; groupes des tables rondes</td><td>Salle vérifiée, espace de classe ouvert</td></tr>
+        <tr><th scope="row">2</th><td>Chapitre 2 : <a href="cours.html#c2-fondamentaux">fondamentaux</a>, <a href="cours.html#c2-numpy-pandas">NumPy et pandas</a></td><td><a href="cours.html#td-ch2">TD 2</a>, ex. 1 à 3</td><td>Programmer les exercices 1 à 3</td><td>Groupe 1 : lectures pour la table ronde</td><td>Faire vous-même les exercices</td></tr>
+        <tr><th scope="row">3</th><td>Chapitre 2 : <a href="cours.html#c2-objet">objets</a>, <a href="cours.html#c2-fichiers">fichiers texte</a>, <a href="cours.html#c2-rapports">rapports</a></td><td>TD 2, ex. 4 et 5 ; retour sur l'ex. 4 du TD 1</td><td>Exercices 4 et 5 ; un petit rapport Excel ou PDF</td><td>Distribution du <a href="cours.html#mini-projet">mini-projet</a> en fin de semaine</td><td>Énoncé, dates, données vérifiées pour chaque sujet</td></tr>
+        <tr><th scope="row">4</th><td>Chapitre 3 : <a href="cours.html#c3-symbolique">IA symbolique</a>, systèmes experts</td><td><a href="cours.html#td-ch3-ex1">TD 3, ex. 1</a> (chaînage avant)</td><td>Programmer le chaînage avant ; cadrage des sujets</td><td>Mini-projet, semaine 1 : cadrer, réunir les données. <a href="cours.html#tr-genese">Table ronde 1</a> : genèse de l'IA</td><td>Valider les questions de recherche</td></tr>
+        <tr><th scope="row">5</th><td>Chapitre 3 : <a href="cours.html#c3-ml">principes de l'apprentissage automatique</a>, évaluation ; classification et k-moyennes</td><td>TD 3, ex. 2c, 2d, 3 et 4a</td><td><code>KNeighborsClassifier</code> et <code>KMeans</code> ; point d'étape du mini-projet</td><td>Mini-projet, semaine 2 : explorer, nettoyer, appliquer la méthode</td><td>Relire les notebooks en cours</td></tr>
         <tr><th scope="row">6</th><td>Chapitre 3 : régression linéaire et descente de gradient</td><td>TD 3, ex. 2a et 2b</td><td><code>numpy.polyfit</code>, boucle de descente de gradient ; aide au mini-projet</td><td>Mini-projet, semaine 3 : interpréter, rédiger ; remise du notebook et du rapport</td><td>Grille de relecture imprimée</td></tr>
-        <tr><th scope="row">7</th><td>Chapitre 3 : <a href="index.html#c3-deep">apprentissage profond</a>, neurone, CNN, RNN</td><td>TD 3, ex. 4b</td><td>Retours individuels sur les mini-projets</td><td><a href="index.html#tr-methodes">Table ronde 2</a> : l'IA et les méthodes des SHS</td><td>Corriger les rapports</td></tr>
+        <tr><th scope="row">7</th><td>Chapitre 3 : <a href="cours.html#c3-deep">apprentissage profond</a>, neurone, CNN, RNN</td><td>TD 3, ex. 4b</td><td>Retours individuels sur les mini-projets</td><td><a href="cours.html#tr-methodes">Table ronde 2</a> : l'IA et les méthodes des SHS</td><td>Corriger les rapports</td></tr>
         <tr><th scope="row">8</th><td>Chapitre 3 : Transformers et génération de texte</td><td>Discussion : erreurs et hallucinations d'un modèle</td><td>Fonction <code>pipeline</code> de transformers : classer, générer, critiquer</td><td>Préparation des soutenances</td><td>Modèle téléchargé à l'avance sur les postes</td></tr>
-        <tr><th scope="row">9</th><td>Chapitre 3 : <a href="index.html#c3-renforcement">renforcement</a> ; <a href="index.html#c3-synthese">synthèse</a> des quatre familles</td><td>TD 3, ex. 4c (Q-learning)</td><td>Bilan : refaire un exercice de chaque partie</td><td><a href="index.html#tr-problematiques">Table ronde 3</a> : nouvelles problématiques</td><td>Ordre de passage des soutenances</td></tr>
+        <tr><th scope="row">9</th><td>Chapitre 3 : <a href="cours.html#c3-renforcement">renforcement</a> ; <a href="cours.html#c3-synthese">synthèse</a> des quatre familles</td><td>TD 3, ex. 4c (Q-learning)</td><td>Bilan : refaire un exercice de chaque partie</td><td><a href="cours.html#tr-problematiques">Table ronde 3</a> : nouvelles problématiques</td><td>Ordre de passage des soutenances</td></tr>
         <tr><th scope="row">10</th><td>Soutenances</td><td>Soutenances</td><td>Soutenances</td><td>Oral : question, résultat, limite, une cellule expliquée</td><td>Grille d'oral</td></tr>
-        <tr><th scope="row">11</th><td><a href="index.html#tr-perspectives">Table ronde 4</a> : perspectives de l'IA ; synthèse du cours</td><td>Exercices du TD refaits en temps limité</td><td>Reprise du code mal compris</td><td>Table ronde 4</td><td>Liste des notions à revoir</td></tr>
+        <tr><th scope="row">11</th><td><a href="cours.html#tr-perspectives">Table ronde 4</a> : perspectives de l'IA ; synthèse du cours</td><td>Exercices du TD refaits en temps limité</td><td>Reprise du code mal compris</td><td>Table ronde 4</td><td>Liste des notions à revoir</td></tr>
         <tr><th scope="row">12</th><td>Révision ; semaine de marge en cas de retard</td><td>Examen blanc</td><td>Libre ou rattrapage</td><td>Synthèses des tables rondes partagées</td><td>Sujet d'examen</td></tr>
         <tr><th scope="row">13</th><td colspan="5">Examen, à la date fixée par le calendrier de la faculté</td></tr>
       </tbody>
@@ -486,7 +489,7 @@
     <h4>Si vous prenez du retard</h4>
     <p>Un retard est normal la première année. Coupez, dans cet ordre :</p>
     <ul>
-      <li>la <a href="index.html#c2-objet">programmation objet</a> : dix minutes de lecture guidée, aucun code du mini-projet n'en a besoin ;</li>
+      <li>la <a href="cours.html#c2-objet">programmation objet</a> : dix minutes de lecture guidée, aucun code du mini-projet n'en a besoin ;</li>
       <li>les autres algorithmes (SVM, forêts aléatoires, ACP) : à lire, pas à traiter en séance ;</li>
       <li>le détail des CNN et des RNN : gardez l'idée (images, séquences), l'exercice 4b passe en travail personnel ;</li>
       <li>les tables rondes 3 et 4, fusionnées en une séance ;</li>
@@ -498,7 +501,7 @@
     <ul>
       <li>Ajoutez le chaînage arrière sur les règles de l'exercice 1 du TD 3.</li>
       <li>Faites comparer deux méthodes sur les mêmes données : TextBlob, VADER et une annotation manuelle pour le sujet 1 ; deux valeurs de k pour le sujet 2.</li>
-      <li>Proposez de vraies données d'enquête (le World Values Survey des <a href="index.html#references">références</a>) ou le réseau du sujet 5 dans Gephi.</li>
+      <li>Proposez de vraies données d'enquête (le World Values Survey des <a href="cours.html#references">références</a>) ou le réseau du sujet 5 dans Gephi.</li>
       <li>Si la règle est d'un seul sujet, autorisez les plus rapides à en traiter un deuxième.</li>
       <li>Confiez aux plus avancés un rôle de tuteur en TP : expliquer oblige à comprendre.</li>
     </ul>
@@ -507,7 +510,7 @@
     <ul>
       <li>Passez de l'écriture à la lecture de code : prédire la sortie d'un programme qui fonctionne, puis en modifier une ligne.</li>
       <li>Donnez des programmes à trous : trois lignes à compléter plutôt qu'une page blanche.</li>
-      <li>Suivez toujours le même ordre : calcul à la main, démonstration, puis code, comme le conseille <a href="index.html#me-parties">la méthode du site</a>.</li>
+      <li>Suivez toujours le même ordre : calcul à la main, démonstration, puis code, comme le conseille <a href="cours.html#me-parties">la méthode du site</a>.</li>
       <li>Limitez l'outillage aux bibliothèques du sujet choisi ; rappelez que vingt minutes de code par jour valent mieux qu'une longue séance.</li>
     </ul>
 
@@ -523,9 +526,9 @@
     <h4>Utiliser le site en classe</h4>
     <ul>
       <li>Projetez les démonstrations en faisant prédire avant de cliquer : la règle déclenchée au cycle suivant du chaînage avant, l'effet d'un pas trop grand sur la descente de gradient, les affectations des k-moyennes avant « Étape suivante ». Tirez ensuite de nouveaux centres de départ : le résultat peut changer.</li>
-      <li>Demandez de parcourir la leçon avant le cours et d'apporter deux questions, comme le prévoit la <a href="index.html#me-semaine">semaine type</a> des étudiants. Ouvrez la séance par ces questions plutôt que par un exposé complet.</li>
+      <li>Demandez de parcourir la leçon avant le cours et d'apporter deux questions, comme le prévoit la <a href="cours.html#me-semaine">semaine type</a> des étudiants. Ouvrez la séance par ces questions plutôt que par un exposé complet.</li>
       <li>Faites les quiz à main levée, puis révélez l'explication ; en TD, imposez vingt minutes de recherche avant d'ouvrir un corrigé.</li>
-      <li>Utilisez le sélecteur FR / EN / عربي et le <a href="index.html#glossaire">glossaire</a> pour fixer le vocabulaire dans plusieurs langues.</li>
+      <li>Utilisez le sélecteur FR / EN / عربي et le <a href="cours.html#glossaire">glossaire</a> pour fixer le vocabulaire dans plusieurs langues.</li>
     </ul>
 
     <aside class="encadre encadre--retenir"><p class="encadre-titre">À retenir</p>
@@ -585,10 +588,10 @@
       <caption>Le programme officiel, couvert par la lecture et l'exécution</caption>
       <thead><tr><th scope="col">Partie du programme</th><th scope="col">Comment elle est traitée</th><th scope="col">Supports</th></tr></thead>
       <tbody>
-        <tr><th scope="row"><a href="index.html#chapitre-1">Chapitre 1</a></th><td>Sans changement : notions, histoire, éthique, TD sur papier</td><td>Démonstration de l'accueil, Teachable Machine</td></tr>
-        <tr><th scope="row"><a href="index.html#chapitre-2">Chapitre 2</a> · Python</th><td>Les exemples sont lus, prédits, exécutés, modifiés ; on apprend à lire un message d'erreur</td><td>Carnet 00, tableur</td></tr>
-        <tr><th scope="row"><a href="index.html#chapitre-3">Chapitre 3</a></th><td>Calculs à la main du <a href="index.html#td-ch3">TD 3</a>, démonstrations du site, puis le même algorithme dans un carnet</td><td>Carnets 06, 07, 08</td></tr>
-        <tr><th scope="row"><a href="index.html#mini-projet">Mini-projet</a></th><td>Un carnet complet par sujet : l'étudiant choisit données et question, règle les champs, interprète, rédige</td><td>Carnets 01 à 05, et 09</td></tr>
+        <tr><th scope="row"><a href="cours.html#chapitre-1">Chapitre 1</a></th><td>Sans changement : notions, histoire, éthique, TD sur papier</td><td>Démonstration de l'accueil, Teachable Machine</td></tr>
+        <tr><th scope="row"><a href="cours.html#chapitre-2">Chapitre 2</a> · Python</th><td>Les exemples sont lus, prédits, exécutés, modifiés ; on apprend à lire un message d'erreur</td><td>Carnet 00, tableur</td></tr>
+        <tr><th scope="row"><a href="cours.html#chapitre-3">Chapitre 3</a></th><td>Calculs à la main du <a href="cours.html#td-ch3">TD 3</a>, démonstrations du site, puis le même algorithme dans un carnet</td><td>Carnets 06, 07, 08</td></tr>
+        <tr><th scope="row"><a href="cours.html#mini-projet">Mini-projet</a></th><td>Un carnet complet par sujet : l'étudiant choisit données et question, règle les champs, interprète, rédige</td><td>Carnets 01 à 05, et 09</td></tr>
       </tbody>
     </table></div>
 
@@ -612,14 +615,14 @@
       <caption>Un outil sans code ou presque pour chaque partie du cours</caption>
       <thead><tr><th scope="col">Outil</th><th scope="col">Ce que font les étudiants</th><th scope="col">Chapitre ou sujet</th><th scope="col">Lien</th></tr></thead>
       <tbody>
-        <tr><th scope="row">Lecteur de sentiments du site</th><td>Taper une phrase (critique, vers, réponse d'apprenant), voir les mots qui font monter ou baisser le score, puis chercher une phrase qui trompe l'outil</td><td>Chapitre 1 ; sujet 1</td><td><a href="index.html#accueil">Accueil</a></td></tr>
-        <tr><th scope="row">Démonstrations du chapitre 3</th><td>Prédire la règle déclenchée par le chaînage avant ; changer le pas de la descente de gradient ; avancer les k-moyennes pas à pas, puis changer de centres de départ</td><td>Chapitre 3 ; sujet 2</td><td><a href="index.html#c3-symbolique">Chaînage</a>, <a href="index.html#c3-algorithmes">algorithmes</a></td></tr>
+        <tr><th scope="row">Lecteur de sentiments du site</th><td>Taper une phrase (critique, vers, réponse d'apprenant), voir les mots qui font monter ou baisser le score, puis chercher une phrase qui trompe l'outil</td><td>Chapitre 1 ; sujet 1</td><td><a href="cours.html#accueil">Accueil</a></td></tr>
+        <tr><th scope="row">Démonstrations du chapitre 3</th><td>Prédire la règle déclenchée par le chaînage avant ; changer le pas de la descente de gradient ; avancer les k-moyennes pas à pas, puis changer de centres de départ</td><td>Chapitre 3 ; sujet 2</td><td><a href="cours.html#c3-symbolique">Chaînage</a>, <a href="cours.html#c3-algorithmes">algorithmes</a></td></tr>
         <tr><th scope="row">Teachable Machine</th><td>Entraîner par l'exemple un classifieur d'images, de sons ou de postures, puis le piéger. En anglais : deux mots prononcés (<span lang="en">ship</span>, <span lang="en">sheep</span>), testés avec une autre voix</td><td>Chapitres 1 et 3, apprentissage supervisé</td><td><a href="https://teachablemachine.withgoogle.com" target="_blank" rel="noopener">teachablemachine.withgoogle.com</a></td></tr>
         <tr><th scope="row">Orange Data Mining, module Text</th><td>Relier des blocs à la souris : corpus, nettoyage, nuage de mots, sentiment, k-moyennes, arbre de décision, matrice de confusion. Le module Text s'ajoute par Options › Add-ons</td><td>Sujets 1, 2 et 4</td><td><a href="https://orangedatamining.com" target="_blank" rel="noopener">orangedatamining.com</a></td></tr>
         <tr><th scope="row">Voyant Tools</th><td>Coller un texte : fréquences, nuage de mots, concordances, répartition d'un mot au fil du texte</td><td>Chapitre 2, fichiers texte ; sujet 3</td><td><a href="https://voyant-tools.org" target="_blank" rel="noopener">voyant-tools.org</a></td></tr>
         <tr><th scope="row">AntConc</th><td>Le concordancier gratuit de Laurence Anthony, courant en linguistique de corpus : concordances, listes de mots, collocations, mots-clés face à un corpus de référence. S'installe sur les postes, fonctionne hors ligne</td><td>Chapitre 2 ; sujet 3 ; corpus d'apprenants</td><td><a href="https://www.laurenceanthony.net/software/antconc/" target="_blank" rel="noopener">laurenceanthony.net</a></td></tr>
         <tr><th scope="row">Gephi, ou Gephi Lite dans le navigateur</th><td>Importer un tableau de liens entre personnages, calculer degré, intermédiarité et communautés, dessiner le réseau</td><td>Sujet 5</td><td><a href="https://gephi.org" target="_blank" rel="noopener">gephi.org</a></td></tr>
-        <tr><th scope="row">Tableur (LibreOffice Calc, Excel)</th><td>Trier, filtrer, compter, tableau croisé dynamique (l'équivalent du <code>groupby</code> de pandas). Les cinq points de l'<a href="index.html#td-ch3-ex2a">exercice 2 a du TD 3</a> en nuage de points, avec une courbe de tendance linéaire et son équation : on retrouve 0,9 et 1,3</td><td>Chapitre 2, tableaux ; chapitre 3, régression ; sujets 2 et 4</td><td><a href="https://www.libreoffice.org" target="_blank" rel="noopener">libreoffice.org</a></td></tr>
+        <tr><th scope="row">Tableur (LibreOffice Calc, Excel)</th><td>Trier, filtrer, compter, tableau croisé dynamique (l'équivalent du <code>groupby</code> de pandas). Les cinq points de l'<a href="cours.html#td-ch3-ex2a">exercice 2 a du TD 3</a> en nuage de points, avec une courbe de tendance linéaire et son équation : on retrouve 0,9 et 1,3</td><td>Chapitre 2, tableaux ; chapitre 3, régression ; sujets 2 et 4</td><td><a href="https://www.libreoffice.org" target="_blank" rel="noopener">libreoffice.org</a></td></tr>
         <tr><th scope="row">Agents conversationnels</th><td>Objets d'étude, pas assistants : vérifier des références, relever les erreurs d'une explication, comparer les réponses selon la langue de la question</td><td>Chapitre 3, Transformers ; éthique</td><td><a href="#guide-ia">L'IA générative en classe</a></td></tr>
       </tbody>
     </table></div>
@@ -629,24 +632,24 @@
 
   <article class="lecon" id="guide-langues-parcours">
     <h3>Trois parcours : ANG, LGC, DID</h3>
-    <p>Les cinq sujets du <a href="index.html#mini-projet">mini-projet</a> restent ceux du programme, avec les mêmes méthodes et les mêmes carnets. D'un public à l'autre, seules changent les données et la question. Des données fictives se déclarent comme telles dans le rapport.</p>
+    <p>Les cinq sujets du <a href="cours.html#mini-projet">mini-projet</a> restent ceux du programme, avec les mêmes méthodes et les mêmes carnets. D'un public à l'autre, seules changent les données et la question. Des données fictives se déclarent comme telles dans le rapport.</p>
 
     <div class="tableau-defilant"><table class="tableau">
       <caption>Les cinq sujets, adaptés aux trois publics (propositions)</caption>
       <thead><tr><th scope="col">Sujet</th><th scope="col">ANG · études anglaises</th><th scope="col">LGC · littérature comparée</th><th scope="col">DID · didactique</th></tr></thead>
       <tbody>
-        <tr><th scope="row"><a href="index.html#mp-sujet-1">1 · Sentiments</a></th><td>VADER sur des critiques de romans ou des messages publics, comparé au jugement de l'étudiant sur 30 exemples</td><td>Le ton d'un roman chapitre par chapitre ; un texte comparé à sa traduction anglaise</td><td>Commentaires anonymes d'apprenants sur un cours ; ton des annotations d'enseignants sur des copies</td></tr>
-        <tr><th scope="row"><a href="index.html#mp-sujet-2">2 · Clustering</a></th><td>Questionnaire d'apprenants d'anglais : lecture, motivation, anxiété à l'oral, usage de l'IA</td><td>Poèmes ou romans décrits par quelques traits (longueur des phrases, part du dialogue), comme dans l'<a href="#guide-activite-kmoyennes">activité des fiches</a></td><td>Profils d'apprenants tirés d'un questionnaire consenti ; items inspirés d'échelles publiées, comme l'anxiété en langue étrangère (Horwitz, Horwitz et Cope, 1986)</td></tr>
-        <tr><th scope="row"><a href="index.html#mp-sujet-3">3 · Discours</a></th><td>Discours d'investiture des présidents américains, <span lang="en">Gettysburg Address</span>, <a href="#guide-ressources-donnees">UN General Debate Corpus</a> : mots-clés, entités nommées, concordances</td><td>Discours d'écrivains du domaine public : Hugo à l'Assemblée, Jaurès et son « Discours à la jeunesse » (1903)</td><td>Discours institutionnel et discours de classe : consignes de manuels, programmes officiels, transcriptions anonymisées</td></tr>
-        <tr><th scope="row"><a href="index.html#mp-sujet-4">4 · Prédiction</a></th><td>Consommation de médias en anglais (séries, podcasts, lecture) et résultat à un test de niveau, données fictives</td><td>Habitudes de lecture et d'achat de livres, pour prédire le genre préféré, données fictives</td><td>Usage des ressources d'un cours (vidéos, exercices) et réussite, données fictives ; éthique de la prédiction scolaire</td></tr>
-        <tr><th scope="row"><a href="index.html#mp-sujet-5">5 · Réseaux</a></th><td>Les personnages d'une pièce de Shakespeare, reliés quand ils partagent une scène</td><td>Les <em>Misérables</em>, fournis avec NetworkX, puis une pièce de Molière ou de Racine relevée à la main</td><td>Qui répond à qui dans un forum de classe ou une relecture entre pairs, noms codés</td></tr>
+        <tr><th scope="row"><a href="cours.html#mp-sujet-1">1 · Sentiments</a></th><td>VADER sur des critiques de romans ou des messages publics, comparé au jugement de l'étudiant sur 30 exemples</td><td>Le ton d'un roman chapitre par chapitre ; un texte comparé à sa traduction anglaise</td><td>Commentaires anonymes d'apprenants sur un cours ; ton des annotations d'enseignants sur des copies</td></tr>
+        <tr><th scope="row"><a href="cours.html#mp-sujet-2">2 · Clustering</a></th><td>Questionnaire d'apprenants d'anglais : lecture, motivation, anxiété à l'oral, usage de l'IA</td><td>Poèmes ou romans décrits par quelques traits (longueur des phrases, part du dialogue), comme dans l'<a href="#guide-activite-kmoyennes">activité des fiches</a></td><td>Profils d'apprenants tirés d'un questionnaire consenti ; items inspirés d'échelles publiées, comme l'anxiété en langue étrangère (Horwitz, Horwitz et Cope, 1986)</td></tr>
+        <tr><th scope="row"><a href="cours.html#mp-sujet-3">3 · Discours</a></th><td>Discours d'investiture des présidents américains, <span lang="en">Gettysburg Address</span>, <a href="#guide-ressources-donnees">UN General Debate Corpus</a> : mots-clés, entités nommées, concordances</td><td>Discours d'écrivains du domaine public : Hugo à l'Assemblée, Jaurès et son « Discours à la jeunesse » (1903)</td><td>Discours institutionnel et discours de classe : consignes de manuels, programmes officiels, transcriptions anonymisées</td></tr>
+        <tr><th scope="row"><a href="cours.html#mp-sujet-4">4 · Prédiction</a></th><td>Consommation de médias en anglais (séries, podcasts, lecture) et résultat à un test de niveau, données fictives</td><td>Habitudes de lecture et d'achat de livres, pour prédire le genre préféré, données fictives</td><td>Usage des ressources d'un cours (vidéos, exercices) et réussite, données fictives ; éthique de la prédiction scolaire</td></tr>
+        <tr><th scope="row"><a href="cours.html#mp-sujet-5">5 · Réseaux</a></th><td>Les personnages d'une pièce de Shakespeare, reliés quand ils partagent une scène</td><td>Les <em>Misérables</em>, fournis avec NetworkX, puis une pièce de Molière ou de Racine relevée à la main</td><td>Qui répond à qui dans un forum de classe ou une relecture entre pairs, noms codés</td></tr>
       </tbody>
     </table></div>
 
     <div class="grille-cartes">
       <article class="carte">
         <h4>ANG · travailler en anglais</h4>
-        <p>Carnets et <a href="en/index.html">site en anglais</a>, VADER, modèle anglais de spaCy. Les réponses écrites se font en anglais : chaque carnet devient une pratique de la langue et de son vocabulaire technique.</p>
+        <p>Carnets et <a href="en/cours.html">site en anglais</a>, VADER, modèle anglais de spaCy. Les réponses écrites se font en anglais : chaque carnet devient une pratique de la langue et de son vocabulaire technique.</p>
         <p>Pour les linguistes : AntConc et des corpus d'apprenants, de préférence les productions de vos étudiants, anonymisées et avec leur accord ; l'accès aux corpus publiés peut exiger une licence.</p>
       </article>
       <article class="carte">
@@ -670,15 +673,15 @@
       <caption>Les dix carnets et leurs liens</caption>
       <thead><tr><th scope="col">Titre</th><th scope="col">Partie du cours</th><th scope="col">Ce que font les étudiants</th><th scope="col">Ouvrir ou télécharger</th></tr></thead>
       <tbody>
-        <tr><th scope="row">Prendre en main un carnet : Python sans peur<br><code>00-prise-en-main</code></th><td><a href="index.html#chapitre-2">Chapitre 2</a></td><td>Exécuter une cellule, changer une valeur, observer ; les bases du chapitre 2 sur des exemples de lettres</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/00-prise-en-main.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/00-prise-en-main.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="notebooks/fr/00-prise-en-main.ipynb" download>Télécharger</a></td></tr>
-        <tr><th scope="row">Analyse de sentiments : des avis de lecteurs<br><code>01-sentiments</code></th><td><a href="index.html#mp-sujet-1">Sujet 1</a></td><td>Scorer des phrases : listes de mots transparentes en français, VADER en anglais ; cellule facultative en ligne avec un modèle multilingue</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/01-sentiments.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/01-sentiments.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="notebooks/fr/01-sentiments.ipynb" download>Télécharger</a></td></tr>
-        <tr><th scope="row">Des profils d'apprenants : clustering d'un questionnaire<br><code>02-questionnaire</code></th><td><a href="index.html#mp-sujet-2">Sujet 2</a></td><td>Lancer les k-moyennes sur des réponses (motivation, lecture, anxiété, usage de l'IA), changer k, nommer les profils</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/02-questionnaire.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/02-questionnaire.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="notebooks/fr/02-questionnaire.ipynb" download>Télécharger</a></td></tr>
-        <tr><th scope="row">Ce que disent les discours<br><code>03-discours</code></th><td><a href="index.html#mp-sujet-3">Sujet 3</a></td><td>Fréquences, mots-clés (TF-IDF), concordances ; entités nommées avec spaCy, en ligne</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/03-discours.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/03-discours.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="notebooks/fr/03-discours.ipynb" download>Télécharger</a></td></tr>
-        <tr><th scope="row">Prédire la réussite à un examen<br><code>04-prediction</code></th><td><a href="index.html#mp-sujet-4">Sujet 4</a></td><td>Arbre de décision et régression logistique, jeux d'entraînement et de test, exactitude, matrice de confusion, question éthique</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/04-prediction.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/04-prediction.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="notebooks/fr/04-prediction.ipynb" download>Télécharger</a></td></tr>
-        <tr><th scope="row">Le réseau des personnages des <em>Misérables</em><br><code>05-reseaux</code></th><td><a href="index.html#mp-sujet-5">Sujet 5</a></td><td>Le réseau des <em>Misérables</em> : degré, intermédiarité, dessin, communautés</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/05-reseaux.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/05-reseaux.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="notebooks/fr/05-reseaux.ipynb" download>Télécharger</a></td></tr>
-        <tr><th scope="row">Système expert et chaînage avant<br><code>06-systeme-expert</code></th><td><a href="index.html#c3-symbolique">Chapitre 3</a></td><td>Les règles des formes poétiques et l'exercice 1 du TD 3, déroulés par le programme</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/06-systeme-expert.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/06-systeme-expert.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="notebooks/fr/06-systeme-expert.ipynb" download>Télécharger</a></td></tr>
-        <tr><th scope="row">Apprendre à partir des données<br><code>07-apprentissage</code></th><td><a href="index.html#c3-algorithmes">Chapitre 3</a></td><td>Refaire par le programme les calculs du TD, puis comparer avec scikit-learn</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/07-apprentissage.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/07-apprentissage.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="notebooks/fr/07-apprentissage.ipynb" download>Télécharger</a></td></tr>
-        <tr><th scope="row">Prédire le mot suivant : des bigrammes aux Transformers<br><code>08-ia-generative</code></th><td><a href="index.html#c3-deep">Chapitre 3</a></td><td>Un modèle de bigrammes construit sur un petit corpus, puis Transformers en ligne (mot masqué, génération)</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/08-ia-generative.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/08-ia-generative.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="notebooks/fr/08-ia-generative.ipynb" download>Télécharger</a></td></tr>
+        <tr><th scope="row">Prendre en main un carnet : Python sans peur<br><code>00-prise-en-main</code></th><td><a href="cours.html#chapitre-2">Chapitre 2</a></td><td>Exécuter une cellule, changer une valeur, observer ; les bases du chapitre 2 sur des exemples de lettres</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/00-prise-en-main.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/00-prise-en-main.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="notebooks/fr/00-prise-en-main.ipynb" download>Télécharger</a></td></tr>
+        <tr><th scope="row">Analyse de sentiments : des avis de lecteurs<br><code>01-sentiments</code></th><td><a href="cours.html#mp-sujet-1">Sujet 1</a></td><td>Scorer des phrases : listes de mots transparentes en français, VADER en anglais ; cellule facultative en ligne avec un modèle multilingue</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/01-sentiments.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/01-sentiments.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="notebooks/fr/01-sentiments.ipynb" download>Télécharger</a></td></tr>
+        <tr><th scope="row">Des profils d'apprenants : clustering d'un questionnaire<br><code>02-questionnaire</code></th><td><a href="cours.html#mp-sujet-2">Sujet 2</a></td><td>Lancer les k-moyennes sur des réponses (motivation, lecture, anxiété, usage de l'IA), changer k, nommer les profils</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/02-questionnaire.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/02-questionnaire.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="notebooks/fr/02-questionnaire.ipynb" download>Télécharger</a></td></tr>
+        <tr><th scope="row">Ce que disent les discours<br><code>03-discours</code></th><td><a href="cours.html#mp-sujet-3">Sujet 3</a></td><td>Fréquences, mots-clés (TF-IDF), concordances ; entités nommées avec spaCy, en ligne</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/03-discours.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/03-discours.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="notebooks/fr/03-discours.ipynb" download>Télécharger</a></td></tr>
+        <tr><th scope="row">Prédire la réussite à un examen<br><code>04-prediction</code></th><td><a href="cours.html#mp-sujet-4">Sujet 4</a></td><td>Arbre de décision et régression logistique, jeux d'entraînement et de test, exactitude, matrice de confusion, question éthique</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/04-prediction.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/04-prediction.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="notebooks/fr/04-prediction.ipynb" download>Télécharger</a></td></tr>
+        <tr><th scope="row">Le réseau des personnages des <em>Misérables</em><br><code>05-reseaux</code></th><td><a href="cours.html#mp-sujet-5">Sujet 5</a></td><td>Le réseau des <em>Misérables</em> : degré, intermédiarité, dessin, communautés</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/05-reseaux.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/05-reseaux.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="notebooks/fr/05-reseaux.ipynb" download>Télécharger</a></td></tr>
+        <tr><th scope="row">Système expert et chaînage avant<br><code>06-systeme-expert</code></th><td><a href="cours.html#c3-symbolique">Chapitre 3</a></td><td>Les règles des formes poétiques et l'exercice 1 du TD 3, déroulés par le programme</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/06-systeme-expert.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/06-systeme-expert.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="notebooks/fr/06-systeme-expert.ipynb" download>Télécharger</a></td></tr>
+        <tr><th scope="row">Apprendre à partir des données<br><code>07-apprentissage</code></th><td><a href="cours.html#c3-algorithmes">Chapitre 3</a></td><td>Refaire par le programme les calculs du TD, puis comparer avec scikit-learn</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/07-apprentissage.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/07-apprentissage.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="notebooks/fr/07-apprentissage.ipynb" download>Télécharger</a></td></tr>
+        <tr><th scope="row">Prédire le mot suivant : des bigrammes aux Transformers<br><code>08-ia-generative</code></th><td><a href="cours.html#c3-deep">Chapitre 3</a></td><td>Un modèle de bigrammes construit sur un petit corpus, puis Transformers en ligne (mot masqué, génération)</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/08-ia-generative.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/08-ia-generative.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="notebooks/fr/08-ia-generative.ipynb" download>Télécharger</a></td></tr>
         <tr><th scope="row">La classe de langue : lisibilité, vocabulaire, textes à trous<br><code>09-classe-de-langue</code></th><td>DID et ANG</td><td>Lisibilité (Flesch pour l'anglais, Kandel et Moles pour le français), profil lexical, texte à trous automatique, réponse d'apprenant comparée à la réponse attendue</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/09-classe-de-langue.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/09-classe-de-langue.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="notebooks/fr/09-classe-de-langue.ipynb" download>Télécharger</a></td></tr>
       </tbody>
     </table></div>
@@ -703,7 +706,7 @@
 
   <article class="lecon" id="guide-langues-seance">
     <h3>Une séance type en salle machine</h3>
-    <p>Chaque groupe a 1 h 30 par semaine au Labo 02 : la séance réunit cours, TD et TP. La leçon du site se lit avant, comme le prévoit la <a href="index.html#me-semaine">semaine type</a> des étudiants.</p>
+    <p>Chaque groupe a 1 h 30 par semaine au Labo 02 : la séance réunit cours, TD et TP. La leçon du site se lit avant, comme le prévoit la <a href="cours.html#me-semaine">semaine type</a> des étudiants.</p>
 
     <div class="tableau-defilant"><table class="tableau">
       <caption>Votre semaine au Labo 02</caption>
@@ -758,7 +761,7 @@
         <tr><th scope="row">Exécution</th><td>Le carnet s'exécute de haut en bas ; les champs demandés sont modifiés ; les sorties sont présentes.</td><td>3</td></tr>
         <tr><th scope="row">Interprétation</th><td>Le résultat est relié à la question de la discipline (texte, apprenant, classe), avec des exemples tirés de la sortie.</td><td>6</td></tr>
         <tr><th scope="row">Distance critique</th><td>Une limite de la méthode ou des données (ironie, négation, petit échantillon) ; l'éthique si elle se pose (consentement, anonymat).</td><td>4</td></tr>
-        <tr><th scope="row">Expression écrite</th><td>Clarté, termes justes du <a href="index.html#glossaire">glossaire</a> ; pour les groupes ANG, la langue anglaise est jugée ici, et seulement ici.</td><td>3</td></tr>
+        <tr><th scope="row">Expression écrite</th><td>Clarté, termes justes du <a href="cours.html#glossaire">glossaire</a> ; pour les groupes ANG, la langue anglaise est jugée ici, et seulement ici.</td><td>3</td></tr>
       </tbody>
     </table></div>
 
@@ -881,7 +884,7 @@ print(modele.cluster_centers_)</code></pre>
       <details class="corrige"><summary>Voir le corrigé et le barème</summary>
         <div class="corrige-corps">
           <p><strong>1.</strong> Non supervisé (0,5) : aucune étiquette ni bonne réponse, <code>fit_predict</code> ne reçoit que les réponses et forme lui-même les groupes par les k-moyennes (1).</p>
-          <p><strong>2.</strong> Le nombre de groupes demandé (0,5). C'est l'analyste qui l'a fixé, pas la machine ; la méthode du coude du <a href="index.html#mp-sujet-2">sujet 2</a> aide à le choisir (0,5).</p>
+          <p><strong>2.</strong> Le nombre de groupes demandé (0,5). C'est l'analyste qui l'a fixé, pas la machine ; la méthode du coude du <a href="cours.html#mp-sujet-2">sujet 2</a> aide à le choisir (0,5).</p>
           <p><strong>3.</strong> Chaque ligne de <code>cluster_centers_</code> est un profil moyen. Groupe 1, les quatre premiers : 1,5 heure de lecture par semaine, anxiété 4,5, soit « lit peu, très anxieux à l'oral ». Groupe 0, les quatre derniers : 6,5 heures, anxiété 1,5, soit « lit beaucoup, peu anxieux » (1,5). Les numéros sont arbitraires et peuvent s'inverser selon la version de scikit-learn ; nommer les groupes revient au chercheur (0,5).</p>
           <p><strong>4.</strong> Non fondé : données fictives, huit personnes, et le clustering décrit des ressemblances sans établir de cause (0,75). Le lien pourrait aller dans l'autre sens (les moins anxieux lisent davantage) ou venir d'un troisième facteur, comme le niveau en anglais (0,75).</p>
           <p><strong>5.</strong> Une précaution justifiée suffit : questionnaire anonyme et consenti ; pas d'étiquette « anxieux » dans un dossier ni devant la classe ; aucune décision sur un apprenant à partir de deux variables ; des profils présentés comme hypothèses à discuter.</p>
@@ -968,14 +971,14 @@ print(modele.cluster_centers_)</code></pre>
     <dl class="definitions">
       <div><dt>Objectifs</dt><dd>Définir l'IA par des tâches observables ; dire d'un objet courant s'il relève de l'IA, en justifiant ; décrire le jeu de l'imitation et ce qu'il mesure.</dd></div>
       <div><dt>Durée</dt><dd>1 h 30 (à adapter)</dd></div>
-      <div><dt>Matériel</dt><dd>Vidéoprojecteur, le site ouvert sur la <a href="index.html#fiche">fiche de la matière</a>, un questionnaire imprimé, des bandes de papier.</dd></div>
+      <div><dt>Matériel</dt><dd>Vidéoprojecteur, le site ouvert sur la <a href="cours.html#fiche">fiche de la matière</a>, un questionnaire imprimé, des bandes de papier.</dd></div>
       <div><dt>Prérequis</dt><dd>Aucun.</dd></div>
     </dl>
     <ol class="etapes">
-      <li><p class="etape-titre">Présentation du cours · 15 min</p><p>Le programme et le <a href="index.html#parcours">calendrier</a>. Dites que la programmation part de zéro ; présentez l'évaluation selon les textes en vigueur de votre faculté et la page <a href="index.html#methode">Comment apprendre ce cours</a>.</p></li>
+      <li><p class="etape-titre">Présentation du cours · 15 min</p><p>Le programme et le <a href="cours.html#parcours">calendrier</a>. Dites que la programmation part de zéro ; présentez l'évaluation selon les textes en vigueur de votre faculté et la page <a href="cours.html#methode">Comment apprendre ce cours</a>.</p></li>
       <li><p class="etape-titre">Questionnaire diagnostique · 10 min</p><p>Agent conversationnel déjà utilisé ? Code déjà écrit ? Ordinateur portable disponible ? Connexion chez soi ? Langue de lecture préférée pour une documentation technique ? Attentes ? Les réponses sur l'équipement serviront à former les binômes.</p></li>
       <li><p class="etape-titre">IA ou pas IA ? · 15 min</p><p>Vote sur huit objets : calculatrice, correcteur orthographique, filtre anti-spam, traducteur automatique, thermostat, moteur de recherche, GPS, agent conversationnel. Les désaccords montrent qu'il faut définir le mot.</p></li>
-      <li><p class="etape-titre">Qu'est-ce que l'IA ? · 20 min</p><p>Apport à partir de la <a href="index.html#c1-definir">première leçon</a> : Dartmouth, les agents, la définition de travail, Busa et Moretti. Revenez ensuite aux huit objets.</p></li>
+      <li><p class="etape-titre">Qu'est-ce que l'IA ? · 20 min</p><p>Apport à partir de la <a href="cours.html#c1-definir">première leçon</a> : Dartmouth, les agents, la définition de travail, Busa et Moretti. Revenez ensuite aux huit objets.</p></li>
       <li><p class="etape-titre">Le jeu de l'imitation · 25 min</p><p>Version courte de l'<a href="#guide-activite-turing">activité</a> : deux témoins, cinq minutes de questions, vote, discussion.</p></li>
       <li><p class="etape-titre">Bilan · 5 min</p><p>Ticket de sortie : une chose apprise, une question. Les meilleures questions ouvriront la séance 2.</p></li>
     </ol>
@@ -983,14 +986,14 @@ print(modele.cluster_centers_)</code></pre>
       <p class="encadre-titre">Erreurs fréquentes des étudiants</p>
       <ul>
         <li>Réduire l'IA aux robots ou aux agents conversationnels récents.</li>
-        <li>Croire qu'un système comprend parce qu'il répond bien : c'est l'effet ELIZA, vu dans la <a href="index.html#c1-histoire">leçon d'histoire</a>.</li>
+        <li>Croire qu'un système comprend parce qu'il répond bien : c'est l'effet ELIZA, vu dans la <a href="cours.html#c1-histoire">leçon d'histoire</a>.</li>
         <li>Prendre le test de Turing pour une définition de l'intelligence.</li>
       </ul>
     </aside>
     <aside class="encadre encadre--exemple">
       <p class="encadre-titre">Travail personnel</p>
       <ul>
-        <li>Lire <a href="index.html#c1-definir">Qu'est-ce que l'intelligence artificielle ?</a> et <a href="index.html#me-semaine">Une semaine type</a>.</li>
+        <li>Lire <a href="cours.html#c1-definir">Qu'est-ce que l'intelligence artificielle ?</a> et <a href="cours.html#me-semaine">Une semaine type</a>.</li>
         <li>Noter un usage de l'IA rencontré cette semaine, avec la technique supposée.</li>
       </ul>
     </aside>
@@ -1002,14 +1005,14 @@ print(modele.cluster_centers_)</code></pre>
     <dl class="definitions">
       <div><dt>Objectifs</dt><dd>Ranger une dizaine d'étapes de l'histoire de l'IA et y placer les deux hivers ; distinguer IA étroite et générale, IA faible et forte ; résumer en trois phrases la chambre chinoise.</dd></div>
       <div><dt>Durée</dt><dd>1 h 30 (à adapter)</dd></div>
-      <div><dt>Matériel</dt><dd>Une carte par étape de la <a href="index.html#c1-histoire">chronologie</a> (événement au recto, date au verso), aimants, feutres de deux couleurs.</dd></div>
+      <div><dt>Matériel</dt><dd>Une carte par étape de la <a href="cours.html#c1-histoire">chronologie</a> (événement au recto, date au verso), aimants, feutres de deux couleurs.</dd></div>
       <div><dt>Prérequis</dt><dd>Séance 1.</dd></div>
     </dl>
     <ol class="etapes">
       <li><p class="etape-titre">Rappel · 5 min</p><p>Trois questions tirées des tickets de sortie, réponses de mémoire.</p></li>
       <li><p class="etape-titre">Frise collective · 30 min</p><p>Chaque groupe date ses cartes sans regarder le verso, les place sur une frise au tableau, puis on corrige : une couleur pour le symbolique, une autre pour le connexionnisme, et les deux hivers.</p></li>
       <li><p class="etape-titre">Ce que l'histoire enseigne · 10 min</p><p>Les cycles d'espoir et de déception, la prédiction de Simon et Newell en 1958 : juger un système sur des tests, non sur des promesses.</p></li>
-      <li><p class="etape-titre">Deux couples de notions · 20 min</p><p>Le <a href="index.html#c1-faible-forte">tableau comparatif</a> : étroite ou générale, c'est l'étendue ; faible ou forte, c'est la question de l'esprit (Searle, 1980). Racontez la chambre chinoise, puis faites-la résumer.</p></li>
+      <li><p class="etape-titre">Deux couples de notions · 20 min</p><p>Le <a href="cours.html#c1-faible-forte">tableau comparatif</a> : étroite ou générale, c'est l'étendue ; faible ou forte, c'est la question de l'esprit (Searle, 1980). Racontez la chambre chinoise, puis faites-la résumer.</p></li>
       <li><p class="etape-titre">Débat court · 20 min</p><p>« Un traducteur automatique comprend-il ce qu'il traduit ? » Deux camps désignés, deux orateurs par camp, questions de la salle. Concluez en séparant l'observable (la traduction est juste) du philosophique (y a-t-il compréhension ?).</p></li>
       <li><p class="etape-titre">Bilan · 5 min</p><p>Chacun écrit trois dates qu'il retient, et pourquoi.</p></li>
     </ol>
@@ -1024,8 +1027,8 @@ print(modele.cluster_centers_)</code></pre>
     <aside class="encadre encadre--exemple">
       <p class="encadre-titre">Travail personnel</p>
       <ul>
-        <li>Construire une frise personnelle de dix dates (<a href="index.html#me-parties">Comment aborder chaque partie</a>).</li>
-        <li>Pour le groupe concerné : préparer la table ronde <a href="index.html#tr-genese">Genèse et apparition de l'IA</a>.</li>
+        <li>Construire une frise personnelle de dix dates (<a href="cours.html#me-parties">Comment aborder chaque partie</a>).</li>
+        <li>Pour le groupe concerné : préparer la table ronde <a href="cours.html#tr-genese">Genèse et apparition de l'IA</a>.</li>
       </ul>
     </aside>
   </article>
@@ -1036,15 +1039,15 @@ print(modele.cluster_centers_)</code></pre>
     <dl class="definitions">
       <div><dt>Objectifs</dt><dd>Classer au moins 8 situations sur 10 (supervisé, non supervisé, renforcement) en justifiant par les étiquettes ; expliquer le rôle du jeu de test ; donner deux exemples d'apprentissage en SHS.</dd></div>
       <div><dt>Durée</dt><dd>1 h 30 (à adapter)</dd></div>
-      <div><dt>Matériel</dt><dd>Dix cartes-situations par groupe (tableau ci-dessous), les énoncés du <a href="index.html#td-ch1">TD du chapitre 1</a>.</dd></div>
-      <div><dt>Prérequis</dt><dd>Leçon <a href="index.html#c1-apprentissage">Apprentissage supervisé et non supervisé</a>.</dd></div>
+      <div><dt>Matériel</dt><dd>Dix cartes-situations par groupe (tableau ci-dessous), les énoncés du <a href="cours.html#td-ch1">TD du chapitre 1</a>.</dd></div>
+      <div><dt>Prérequis</dt><dd>Leçon <a href="cours.html#c1-apprentissage">Apprentissage supervisé et non supervisé</a>.</dd></div>
     </dl>
     <ol class="etapes">
       <li><p class="etape-titre">Cartes à trier · 25 min</p><p>En groupes : trois tas, l'indice décisif noté sur chaque carte ; puis chaque groupe défend une carte.</p></li>
       <li><p class="etape-titre">Mise en commun · 10 min</p><p>Dégagez la question décisive : « Les exemples d'entraînement portent-ils la bonne réponse ? » Ajoutez le jeu de test et le surapprentissage (les « enfans » de la leçon).</p></li>
-      <li><p class="etape-titre">Exercices 1 et 2 · 25 min</p><p><a href="index.html#td-ch1-ex1">Exercice 1</a> et <a href="index.html#td-ch1-ex2">exercice 2</a> : seuls, puis en binôme, puis correction. Le tableau comparatif s'écrit de mémoire.</p></li>
-      <li><p class="etape-titre">Exercice 3 · 15 min</p><p><a href="index.html#td-ch1-ex3">Six exemples</a> en binôme, dont deux en SHS.</p></li>
-      <li><p class="etape-titre">Lancement de l'exercice 4 · 15 min</p><p>Répartissez les six tâches de l'<a href="index.html#td-ch1-ex4">exercice 4</a> : définir le critère de réussite, chercher des sources primaires et datées. Restitution de trois minutes à la séance suivante.</p></li>
+      <li><p class="etape-titre">Exercices 1 et 2 · 25 min</p><p><a href="cours.html#td-ch1-ex1">Exercice 1</a> et <a href="cours.html#td-ch1-ex2">exercice 2</a> : seuls, puis en binôme, puis correction. Le tableau comparatif s'écrit de mémoire.</p></li>
+      <li><p class="etape-titre">Exercice 3 · 15 min</p><p><a href="cours.html#td-ch1-ex3">Six exemples</a> en binôme, dont deux en SHS.</p></li>
+      <li><p class="etape-titre">Lancement de l'exercice 4 · 15 min</p><p>Répartissez les six tâches de l'<a href="cours.html#td-ch1-ex4">exercice 4</a> : définir le critère de réussite, chercher des sources primaires et datées. Restitution de trois minutes à la séance suivante.</p></li>
     </ol>
     <div class="tableau-defilant"><table class="tableau">
       <caption>Les dix cartes-situations et les réponses attendues</caption>
@@ -1074,7 +1077,7 @@ print(modele.cluster_centers_)</code></pre>
       <p class="encadre-titre">Travail personnel</p>
       <ul>
         <li>Préparer l'exercice 4. Le corrigé du site date de septembre 2026 : faites vérifier ce qui a changé depuis.</li>
-        <li>Relire <a href="index.html#c1-approches">Les approches de l'IA</a> ; apprendre le <a href="index.html#glossaire">glossaire</a> en français et en anglais.</li>
+        <li>Relire <a href="cours.html#c1-approches">Les approches de l'IA</a> ; apprendre le <a href="cours.html#glossaire">glossaire</a> en français et en anglais.</li>
       </ul>
     </aside>
   </article>
@@ -1085,15 +1088,15 @@ print(modele.cluster_centers_)</code></pre>
     <dl class="definitions">
       <div><dt>Objectifs</dt><dd>Ouvrir un notebook, exécuter et enregistrer une cellule ; créer des variables et une liste ; compter les mots d'une strophe et expliquer l'écart dû à la ponctuation.</dd></div>
       <div><dt>Durée</dt><dd>1 h 30 (à adapter)</dd></div>
-      <div><dt>Matériel</dt><dd>Un ordinateur pour deux, connexion, vidéoprojecteur ; comptes Google créés avant la séance pour Colab, ou Jupyter installé, par exemple avec <code>run.bat notebook</code> (<a href="index.html#td-travaux-pratiques">Travaux pratiques</a>).</dd></div>
-      <div><dt>Prérequis</dt><dd>Aucun en programmation ; <a href="index.html#c2-installer">mise en place de l'environnement</a> parcourue.</dd></div>
+      <div><dt>Matériel</dt><dd>Un ordinateur pour deux, connexion, vidéoprojecteur ; comptes Google créés avant la séance pour Colab, ou Jupyter installé, par exemple avec <code>run.bat notebook</code> (<a href="cours.html#td-travaux-pratiques">Travaux pratiques</a>).</dd></div>
+      <div><dt>Prérequis</dt><dd>Aucun en programmation ; <a href="cours.html#c2-installer">mise en place de l'environnement</a> parcourue.</dd></div>
     </dl>
     <ol class="etapes">
       <li><p class="etape-titre">Binômes · 10 min</p><p>Formés d'après le questionnaire, avec pilote et copilote (<a href="#guide-activites-conseils">conseils</a>). Colab par défaut.</p></li>
       <li><p class="etape-titre">Premier notebook · 15 min</p><p>En direct : <code>print("Bonjour, Médéa !")</code>, Maj + Entrée. Passez dans les rangs jusqu'à ce que chacun voie son résultat.</p></li>
       <li><p class="etape-titre">Variables et types · 15 min</p><p><code>titre</code>, <code>annee</code>, <code>type()</code>, une f-string. Oubliez exprès un guillemet et lisez la dernière ligne de l'erreur.</p></li>
       <li><p class="etape-titre">Listes · 15 min</p><p><code>append</code>, <code>sort</code>, <code>len</code>, les indices. Faites prédire <code>auteurs[0]</code> avant d'exécuter.</p></li>
-      <li><p class="etape-titre">Compter les mots · 25 min</p><p>Le programme ci-dessous. Pourquoi 21 éléments pour 19 mots ? Les plus rapides cherchent le mot le plus fréquent (<a href="index.html#td-ch2-ex3">exercice 3 du TD</a>).</p></li>
+      <li><p class="etape-titre">Compter les mots · 25 min</p><p>Le programme ci-dessous. Pourquoi 21 éléments pour 19 mots ? Les plus rapides cherchent le mot le plus fréquent (<a href="cours.html#td-ch2-ex3">exercice 3 du TD</a>).</p></li>
       <li><p class="etape-titre">Bilan · 10 min</p><p>Enregistrer le notebook. Que fait <code>split()</code> ? Que signifie <code>NameError</code> ?</p></li>
     </ol>
     <figure class="code">
@@ -1121,8 +1124,8 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
     <aside class="encadre encadre--exemple">
       <p class="encadre-titre">Travail personnel</p>
       <ul>
-        <li>Retaper sans copier-coller les exemples des <a href="index.html#c2-fondamentaux">fondamentaux du langage</a>, en prédisant chaque sortie.</li>
-        <li>Faire l'<a href="index.html#td-ch2-ex1">exercice 1 du TD</a> ; coder vingt minutes, trois fois dans la semaine.</li>
+        <li>Retaper sans copier-coller les exemples des <a href="cours.html#c2-fondamentaux">fondamentaux du langage</a>, en prédisant chaque sortie.</li>
+        <li>Faire l'<a href="cours.html#td-ch2-ex1">exercice 1 du TD</a> ; coder vingt minutes, trois fois dans la semaine.</li>
       </ul>
     </aside>
   </article>
@@ -1133,7 +1136,7 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
     <dl class="definitions">
       <div><dt>Objectifs</dt><dd>Charger un CSV et le décrire ; filtrer, trier et regrouper pour répondre à une question posée en français ; tracer un diagramme titré et l'interpréter prudemment.</dd></div>
       <div><dt>Durée</dt><dd>1 h 30 (à adapter)</dd></div>
-      <div><dt>Matériel</dt><dd>Le fichier <code>oeuvres.csv</code> de la <a href="index.html#c2-numpy-pandas">leçon sur pandas</a>, déposé à l'avance ; ordinateurs en binômes.</dd></div>
+      <div><dt>Matériel</dt><dd>Le fichier <code>oeuvres.csv</code> de la <a href="cours.html#c2-numpy-pandas">leçon sur pandas</a>, déposé à l'avance ; ordinateurs en binômes.</dd></div>
       <div><dt>Prérequis</dt><dd>Séance 4.</dd></div>
     </dl>
     <ol class="etapes">
@@ -1142,7 +1145,7 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
       <li><p class="etape-titre">Filtrer et trier · 20 min</p><p>Une question en français d'abord (« Quelles œuvres en arabe après 1950 ? »), puis le filtre, <code>&amp;</code> entre parenthèses, <code>sort_values()</code>.</p></li>
       <li><p class="etape-titre">Regrouper · 20 min</p><p><code>groupby("genre")["nb_mots"].mean()</code> et <code>value_counts()</code>. Discutez la moyenne d'un genre représenté par un seul texte, et l'effet des <em>Misérables</em> sur la moyenne.</p></li>
       <li><p class="etape-titre">Graphique · 15 min</p><p><code>plot(kind="bar")</code>, titre, axes, <code>savefig()</code>.</p></li>
-      <li><p class="etape-titre">Bilan · 10 min</p><p>Début de l'<a href="index.html#td-ch2-ex4">exercice 4 du TD</a> ; chaque binôme écrit une phrase qui commence par « Dans ce petit corpus… ».</p></li>
+      <li><p class="etape-titre">Bilan · 10 min</p><p>Début de l'<a href="cours.html#td-ch2-ex4">exercice 4 du TD</a> ; chaque binôme écrit une phrase qui commence par « Dans ce petit corpus… ».</p></li>
     </ol>
     <aside class="encadre encadre--attention">
       <p class="encadre-titre">Erreurs fréquentes des étudiants</p>
@@ -1167,8 +1170,8 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
     <dl class="definitions">
       <div><dt>Objectifs</dt><dd>Nommer les trois composants d'un système expert ; dessiner le graphe des règles du TD ; dérouler le chaînage avant et expliquer pourquoi R4 et R7 ne se déclenchent pas.</dd></div>
       <div><dt>Durée</dt><dd>1 h 30 (à adapter)</dd></div>
-      <div><dt>Matériel</dt><dd>Cartes-règles du <a href="#guide-activite-chainage">jeu de rôle</a>, énoncé de l'<a href="index.html#td-ch3-ex1">exercice 1</a>, vidéoprojecteur.</dd></div>
-      <div><dt>Prérequis</dt><dd>Leçon <a href="index.html#c3-symbolique">IA symbolique : les systèmes experts</a>.</dd></div>
+      <div><dt>Matériel</dt><dd>Cartes-règles du <a href="#guide-activite-chainage">jeu de rôle</a>, énoncé de l'<a href="cours.html#td-ch3-ex1">exercice 1</a>, vidéoprojecteur.</dd></div>
+      <div><dt>Prérequis</dt><dd>Leçon <a href="cours.html#c3-symbolique">IA symbolique : les systèmes experts</a>.</dd></div>
     </dl>
     <ol class="etapes">
       <li><p class="etape-titre">Accroche · 10 min</p><p>« Comment reconnaissez-vous un sonnet ? » Écrivez les réponses sous la forme SI … ALORS : voilà une base de règles.</p></li>
@@ -1203,11 +1206,11 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
     <dl class="definitions">
       <div><dt>Objectifs</dt><dd>Définir attributs, étiquette, modèle, entraînement et test ; mener les k-moyennes à la main jusqu'à l'arrêt ; calculer deux pas de descente de gradient et expliquer le rôle du taux d'apprentissage.</dd></div>
       <div><dt>Durée</dt><dd>1 h 30 (à adapter)</dd></div>
-      <div><dt>Matériel</dt><dd>Calculatrices, vidéoprojecteur pour les démonstrations de <a href="index.html#c3-algorithmes">Quelques algorithmes</a>, exercices <a href="index.html#td-ch3-ex2a">2 a</a>, <a href="index.html#td-ch3-ex2b">2 b</a> et <a href="index.html#td-ch3-ex2d">2 d</a>.</dd></div>
+      <div><dt>Matériel</dt><dd>Calculatrices, vidéoprojecteur pour les démonstrations de <a href="cours.html#c3-algorithmes">Quelques algorithmes</a>, exercices <a href="cours.html#td-ch3-ex2a">2 a</a>, <a href="cours.html#td-ch3-ex2b">2 b</a> et <a href="cours.html#td-ch3-ex2d">2 d</a>.</dd></div>
       <div><dt>Prérequis</dt><dd>Séances 3 et 6 ; savoir calculer une moyenne.</dd></div>
     </dl>
     <ol class="etapes">
-      <li><p class="etape-titre">Des règles aux exemples · 10 min</p><p>« Sauriez-vous écrire les règles qui vous font reconnaître la prose de Kateb Yacine ? » Puis le vocabulaire de l'<a href="index.html#c3-ml">apprentissage automatique</a>.</p></li>
+      <li><p class="etape-titre">Des règles aux exemples · 10 min</p><p>« Sauriez-vous écrire les règles qui vous font reconnaître la prose de Kateb Yacine ? » Puis le vocabulaire de l'<a href="cours.html#c3-ml">apprentissage automatique</a>.</p></li>
       <li><p class="etape-titre">k-moyennes à la main · 20 min</p><p>Exercice 2 d sur une droite graduée (1, 3, 4, 9, 10, 14 ; centres 1 et 4), jusqu'à la stabilité : {1, 3, 4} et {9, 10, 14}.</p></li>
       <li><p class="etape-titre">Démonstration · 10 min</p><p>Relancez la démonstration plusieurs fois : le résultat dépend-il du départ ? Version longue : l'<a href="#guide-activite-kmoyennes">activité des fiches de romans</a>.</p></li>
       <li><p class="etape-titre">Régression · 15 min</p><p>Une droite tracée à l'œil sur les points de l'exercice 2 a, puis ŷ = w · x + b et les moindres carrés. Repère, dans la notation de l'exercice : a = 0,9 et b = 1,3, soit 6,7 livres pour 6 heures.</p></li>
@@ -1225,8 +1228,8 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
     <aside class="encadre encadre--exemple">
       <p class="encadre-titre">Travail personnel</p>
       <ul>
-        <li>Finir les exercices 2 a, 2 b et 2 d, puis faire l'<a href="index.html#td-ch3-ex2c">exercice 2 c</a>.</li>
-        <li>Pour le <a href="index.html#mp-sujet-2">sujet 2 du mini-projet</a> : lire <code>kmeans_enquete.py</code> et la méthode du coude.</li>
+        <li>Finir les exercices 2 a, 2 b et 2 d, puis faire l'<a href="cours.html#td-ch3-ex2c">exercice 2 c</a>.</li>
+        <li>Pour le <a href="cours.html#mp-sujet-2">sujet 2 du mini-projet</a> : lire <code>kmeans_enquete.py</code> et la méthode du coude.</li>
       </ul>
     </aside>
   </article>
@@ -1238,14 +1241,14 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
       <div><dt>Objectifs</dt><dd>Expliquer token, plongement et attention ; décrire la génération comme la prédiction répétée du token suivant ; vérifier une référence produite par un agent conversationnel.</dd></div>
       <div><dt>Durée</dt><dd>1 h 30 (à adapter)</dd></div>
       <div><dt>Matériel</dt><dd>Un ordinateur avec <code>transformers</code> et <code>torch</code>, modèles téléchargés la veille (ou Colab) ; captures des sorties en secours ; accès à un catalogue de bibliothèque.</dd></div>
-      <div><dt>Prérequis</dt><dd>Séance 7 ; leçon <a href="index.html#c3-deep">L'apprentissage profond</a> parcourue.</dd></div>
+      <div><dt>Prérequis</dt><dd>Séance 7 ; leçon <a href="cours.html#c3-deep">L'apprentissage profond</a> parcourue.</dd></div>
     </dl>
     <ol class="etapes">
       <li><p class="etape-titre">Deviner le mot suivant · 15 min</p><p>« Il pleure dans mon… » : tous répondent « cœur ». « L'étudiante ouvrit le livre et… » : notez chaque proposition et son nombre, voilà une distribution de probabilités. Prendre toujours la plus fréquente, c'est une température basse ; tirer au sort, une température haute.</p></li>
       <li><p class="etape-titre">Tokens, plongements, attention · 20 min</p><p>Suivez la leçon : l'exemple de « elle » qui regarde « étudiante », puis encodeurs (BERT) et décodeurs (GPT).</p></li>
-      <li><p class="etape-titre">Démonstration · 20 min</p><p><code>generation_texte.py</code> avec <code>temperature=0.3</code>, puis <code>1.5</code> ; puis <code>sentiment_transformers.py</code>, modèle anglais, sur une phrase en français. Reliez aux sujets <a href="index.html#mp-sujet-1">1</a> et <a href="index.html#mp-sujet-3">3</a> du mini-projet.</p></li>
+      <li><p class="etape-titre">Démonstration · 20 min</p><p><code>generation_texte.py</code> avec <code>temperature=0.3</code>, puis <code>1.5</code> ; puis <code>sentiment_transformers.py</code>, modèle anglais, sur une phrase en français. Reliez aux sujets <a href="cours.html#mp-sujet-1">1</a> et <a href="cours.html#mp-sujet-3">3</a> du mini-projet.</p></li>
       <li><p class="etape-titre">L'épreuve des références · 15 min</p><p>Demandez d'avance à un agent conversationnel cinq références sur un sujet précis ; chaque groupe en vérifie une dans un catalogue. N'annoncez pas le résultat : si tout existe, la leçon porte sur la vérification.</p></li>
-      <li><p class="etape-titre">Éthique · 15 min</p><p>Déclarer l'usage de l'IA dans un mémoire, textes déposés en ligne, langues moins bien traitées (darja, tamazight). Trois règles rédigées avec la classe (<a href="index.html#c1-perspectives">Perspectives</a>, <a href="index.html#me-assistant">assistant d'IA</a>).</p></li>
+      <li><p class="etape-titre">Éthique · 15 min</p><p>Déclarer l'usage de l'IA dans un mémoire, textes déposés en ligne, langues moins bien traitées (darja, tamazight). Trois règles rédigées avec la classe (<a href="cours.html#c1-perspectives">Perspectives</a>, <a href="cours.html#me-assistant">assistant d'IA</a>).</p></li>
       <li><p class="etape-titre">Bilan · 5 min</p><p>Compléter : « Générer du texte, pour un modèle, c'est… ».</p></li>
     </ol>
     <aside class="encadre encadre--attention">
@@ -1259,8 +1262,8 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
     <aside class="encadre encadre--exemple">
       <p class="encadre-titre">Travail personnel</p>
       <ul>
-        <li>Relire l'encadré sur les hallucinations (<a href="index.html#c3-deep">leçon</a>) et écrire en cinq lignes sa règle d'usage d'un assistant d'IA.</li>
-        <li>Pour le groupe concerné : préparer la table ronde <a href="index.html#tr-problematiques">L'IA, vecteur de nouvelles problématiques</a>.</li>
+        <li>Relire l'encadré sur les hallucinations (<a href="cours.html#c3-deep">leçon</a>) et écrire en cinq lignes sa règle d'usage d'un assistant d'IA.</li>
+        <li>Pour le groupe concerné : préparer la table ronde <a href="cours.html#tr-problematiques">L'IA, vecteur de nouvelles problématiques</a>.</li>
       </ul>
     </aside>
   </article>
@@ -1292,7 +1295,7 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
   <article class="lecon" id="guide-activite-kmoyennes">
     <h3>Les k-moyennes avec des fiches de romans</h3>
     <dl class="definitions">
-      <div><dt>Objectif</dt><dd>Faire vivre les étapes des <a href="index.html#c3-algorithmes">k-moyennes</a> et montrer l'effet du point de départ.</dd></div>
+      <div><dt>Objectif</dt><dd>Faire vivre les étapes des <a href="cours.html#c3-algorithmes">k-moyennes</a> et montrer l'effet du point de départ.</dd></div>
       <div><dt>Durée</dt><dd>40 min</dd></div>
       <div><dt>Matériel</dt><dd>Douze fiches, un quadrillage de 10 × 10 sur une table, trois objets de couleur pour les centres, une règle, une calculatrice.</dd></div>
     </dl>
@@ -1321,7 +1324,7 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
   <article class="lecon" id="guide-activite-chainage">
     <h3>Le chaînage avant en jeu de rôle</h3>
     <dl class="definitions">
-      <div><dt>Objectif</dt><dd>Faire comprendre le cycle du moteur d'inférence (<a href="index.html#c3-symbolique">leçon</a>, <a href="index.html#td-ch3-ex1">exercice 1 du TD</a>).</dd></div>
+      <div><dt>Objectif</dt><dd>Faire comprendre le cycle du moteur d'inférence (<a href="cours.html#c3-symbolique">leçon</a>, <a href="cours.html#td-ch3-ex1">exercice 1 du TD</a>).</dd></div>
       <div><dt>Durée</dt><dd>25 min</dd></div>
       <div><dt>Matériel</dt><dd>Une carte A5 par règle, le tableau partagé en « base de faits » et « règles déclenchées ».</dd></div>
     </dl>
@@ -1342,7 +1345,7 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
   <article class="lecon" id="guide-activite-neurone">
     <h3>Le neurone humain</h3>
     <dl class="definitions">
-      <div><dt>Objectif</dt><dd>Montrer qu'un <a href="index.html#c3-deep">neurone artificiel</a> calcule une somme pondérée, et qu'apprendre, c'est corriger les poids après une erreur.</dd></div>
+      <div><dt>Objectif</dt><dd>Montrer qu'un <a href="cours.html#c3-deep">neurone artificiel</a> calcule une somme pondérée, et qu'apprendre, c'est corriger les poids après une erreur.</dd></div>
       <div><dt>Durée</dt><dd>30 min</dd></div>
       <div><dt>Matériel</dt><dd>Trois cartes « 0 / 1 », une fiche des poids écrite au crayon, le tableau.</dd></div>
     </dl>
@@ -1363,7 +1366,7 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
   <article class="lecon" id="guide-activite-brouillard">
     <h3>La descente de gradient dans le brouillard</h3>
     <dl class="definitions">
-      <div><dt>Objectif</dt><dd>Faire sentir que la <a href="index.html#c3-algorithmes">descente de gradient</a> ne connaît que la pente locale.</dd></div>
+      <div><dt>Objectif</dt><dd>Faire sentir que la <a href="cours.html#c3-algorithmes">descente de gradient</a> ne connaît que la pente locale.</dd></div>
       <div><dt>Durée</dt><dd>25 min</dd></div>
       <div><dt>Matériel</dt><dd>Onze feuilles numérotées de 0 à 10, posées au sol en ligne, l'altitude écrite au verso.</dd></div>
     </dl>
@@ -1390,7 +1393,7 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
   <article class="lecon" id="guide-activite-turing">
     <h3>Le jeu de l'imitation</h3>
     <dl class="definitions">
-      <div><dt>Objectif</dt><dd>Faire vivre l'épreuve de Turing (1950) et discuter ce qu'elle mesure (<a href="index.html#c1-histoire">histoire</a>, <a href="index.html#c1-faible-forte">chambre chinoise</a>).</dd></div>
+      <div><dt>Objectif</dt><dd>Faire vivre l'épreuve de Turing (1950) et discuter ce qu'elle mesure (<a href="cours.html#c1-histoire">histoire</a>, <a href="cours.html#c1-faible-forte">chambre chinoise</a>).</dd></div>
       <div><dt>Durée</dt><dd>25 à 40 min</dd></div>
       <div><dt>Matériel</dt><dd>Bandes de papier, un lieu hors de vue, la carte de règles ci-dessous ; en option, un agent conversationnel.</dd></div>
     </dl>
@@ -1420,7 +1423,7 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
   <article class="lecon" id="guide-activite-spam">
     <h3>Un filtre anti-spam par votes de mots</h3>
     <dl class="definitions">
-      <div><dt>Objectif</dt><dd>Faire comprendre l'entraînement, la prédiction et les erreurs d'un <a href="index.html#c3-ml">classifieur de textes</a>, sans probabilités.</dd></div>
+      <div><dt>Objectif</dt><dd>Faire comprendre l'entraînement, la prédiction et les erreurs d'un <a href="cours.html#c3-ml">classifieur de textes</a>, sans probabilités.</dd></div>
       <div><dt>Durée</dt><dd>30 min</dd></div>
       <div><dt>Matériel</dt><dd>Les dix messages ci-dessous, imprimés ; le tableau pour le décompte.</dd></div>
     </dl>
@@ -1442,7 +1445,7 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
     <dl class="definitions">
       <div><dt>Objectif</dt><dd>Mener une lecture outillée d'un poème (fréquences, nuage de mots, concordance) sans programmer, et la confronter à une lecture rapprochée.</dd></div>
       <div><dt>Durée</dt><dd>40 min</dd></div>
-      <div><dt>Matériel</dt><dd>Un ordinateur connecté pour deux, ou un seul au vidéoprojecteur ; <a href="https://voyant-tools.org" target="_blank" rel="noopener">Voyant Tools</a>, outil web gratuit conçu par Stéfan Sinclair et Geoffrey Rockwell ; « Le Dormeur du val » de Rimbaud, dont le texte figure dans la <a href="index.html#c2-fichiers">leçon sur les fichiers textes</a>.</dd></div>
+      <div><dt>Matériel</dt><dd>Un ordinateur connecté pour deux, ou un seul au vidéoprojecteur ; <a href="https://voyant-tools.org" target="_blank" rel="noopener">Voyant Tools</a>, outil web gratuit conçu par Stéfan Sinclair et Geoffrey Rockwell ; « Le Dormeur du val » de Rimbaud, dont le texte figure dans la <a href="cours.html#c2-fichiers">leçon sur les fichiers textes</a>.</dd></div>
     </dl>
     <ol class="etapes">
       <li><p class="etape-titre">Lecture rapprochée · 10 min</p><p>Sans outil : quels mots reviennent ? Qu'est-ce qui prépare le dernier vers ?</p></li>
@@ -1453,14 +1456,14 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
     </ol>
     <aside class="encadre encadre--retenir">
       <p class="encadre-titre">Ce que les étudiants doivent en retirer</p>
-      <p>L'outil compte, le lecteur interprète : un nuage de mots n'est pas une analyse. Il faut savoir quels mots ont été écartés et comment un mot est défini. Le texte part sur un serveur : pas de texte protégé ni de travail inédit (<a href="index.html#c1-perspectives">Éthique et bonnes pratiques</a>).</p>
+      <p>L'outil compte, le lecteur interprète : un nuage de mots n'est pas une analyse. Il faut savoir quels mots ont été écartés et comment un mot est défini. Le texte part sur un serveur : pas de texte protégé ni de travail inédit (<a href="cours.html#c1-perspectives">Éthique et bonnes pratiques</a>).</p>
     </aside>
   </article>
 
   <article class="lecon" id="guide-activite-teachable">
     <h3>Classer des images avec Teachable Machine</h3>
     <dl class="definitions">
-      <div><dt>Objectif</dt><dd>Entraîner un classifieur d'images et constater qu'il apprend aussi des indices non voulus (<a href="index.html#c3-ml">identification d'images</a>).</dd></div>
+      <div><dt>Objectif</dt><dd>Entraîner un classifieur d'images et constater qu'il apprend aussi des indices non voulus (<a href="cours.html#c3-ml">identification d'images</a>).</dd></div>
       <div><dt>Durée</dt><dd>35 min</dd></div>
       <div><dt>Matériel</dt><dd>Un ordinateur connecté avec webcam, relié au vidéoprojecteur ; <a href="https://teachablemachine.withgoogle.com" target="_blank" rel="noopener">Teachable Machine</a> (Google, gratuit, dans le navigateur) ; une trentaine de cartes portant des mots en écriture arabe ou latine.</dd></div>
     </dl>
@@ -1480,9 +1483,9 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
   <article class="lecon" id="guide-activite-debat">
     <h3>Débat : l'IA peut-elle écrire un roman ?</h3>
     <dl class="definitions">
-      <div><dt>Objectif</dt><dd>Construire et défendre un argument documenté sur la création par les machines et le statut d'auteur (<a href="index.html#tr-problematiques">table ronde sur les nouvelles problématiques</a>).</dd></div>
+      <div><dt>Objectif</dt><dd>Construire et défendre un argument documenté sur la création par les machines et le statut d'auteur (<a href="cours.html#tr-problematiques">table ronde sur les nouvelles problématiques</a>).</dd></div>
       <div><dt>Durée</dt><dd>60 min, après une préparation lancée à la séance précédente</dd></div>
-      <div><dt>Matériel</dt><dd>La procédure <a href="index.html#tr-methode">Préparer et animer une table ronde</a>, un minuteur, une grille d'observation pour le public.</dd></div>
+      <div><dt>Matériel</dt><dd>La procédure <a href="cours.html#tr-methode">Préparer et animer une table ronde</a>, un minuteur, une grille d'observation pour le public.</dd></div>
     </dl>
     <ol class="etapes">
       <li><p class="etape-titre">Préparer · séance précédente</p><p>Deux équipes tirées au sort, un jury de trois, le public. Chaque orateur apporte deux arguments et un exemple sourcé.</p></li>
@@ -1496,7 +1499,7 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
     <ul>
       <li>Ada Lovelace (1843) : la machine analytique ne crée rien, elle exécute ce qu'on sait lui ordonner. Turing discute cette « objection de Lady Lovelace » en 1950.</li>
       <li>L'Oulipo, fondé en 1960 par Raymond Queneau et François Le Lionnais, et les <em>Cent mille milliards de poèmes</em> (1961) : la littérature combinatoire précède l'IA.</li>
-      <li>La chambre chinoise et la prédiction du token suivant (<a href="index.html#c3-deep">leçon</a>) : produire un texte, est-ce le comprendre ?</li>
+      <li>La chambre chinoise et la prédiction du token suivant (<a href="cours.html#c3-deep">leçon</a>) : produire un texte, est-ce le comprendre ?</li>
       <li>En janvier 2024, Rie Kudan, lauréate du prix Akutagawa, a déclaré qu'environ 5 % de son roman reprenait mot pour mot des textes générés par ChatGPT.</li>
       <li>Aux États-Unis, l'office du droit d'auteur exige une part de création humaine ; faites rechercher la situation algérienne.</li>
     </ul>
@@ -1583,7 +1586,7 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
 
   <article class="lecon" id="guide-evaluation-examen">
     <h3>Un sujet d'examen type et son corrigé</h3>
-    <p>Ce sujet couvre les trois chapitres. Il reprend les types d'exercices du <a href="index.html#td-tp">TD</a> avec des données nouvelles : qui a compris réussit sans avoir mémorisé les corrigés. Chaque calcul a été refait deux fois et le programme de l'exercice 5 a été exécuté. Le barème est indicatif.</p>
+    <p>Ce sujet couvre les trois chapitres. Il reprend les types d'exercices du <a href="cours.html#td-tp">TD</a> avec des données nouvelles : qui a compris réussit sans avoir mémorisé les corrigés. Chaque calcul a été refait deux fois et le programme de l'exercice 5 a été exécuté. Le barème est indicatif.</p>
     <dl class="definitions">
       <div><dt>Durée</dt><dd>1 h 30</dd></div>
       <div><dt>Barème</dt><dd>Indicatif, sur 20 points : 4 + 4 + 3 + 3 + 3 + 3</dd></div>
@@ -1720,7 +1723,7 @@ print(len(mots), "mots,", len(set(mots)), "mots différents")</code></pre>
           </table></div>
           <p>Le but G est atteint au quatrième cycle ; les règles déclenchées sont, dans l'ordre, R1, R2, R4, R5. Acceptez aussi la stratégie du TD, qui parcourt toute la liste avant de recommencer : elle donne ici les mêmes déclenchements, dans le même ordre.</p>
           <p><strong>3. Interprétation (1 point).</strong> R3 et R6 exigent D, fait non déductible (aucune règle ne le conclut) et absent de la base initiale : elles ne peuvent jamais se déclencher (0,5). Si D est ajouté, R6, première dans l'ordre, est applicable dès le premier cycle : G est établi immédiatement, par une seule règle (0,5). L'ordre des règles décide du chemin suivi.</p>
-          <p>Note pour vous : l'ordre choisi place en tête les règles qui concluent en dernier, ce qui oblige à revenir quatre fois au début de la liste. On voit ainsi si l'étudiant a compris la boucle du moteur d'inférence (<a href="index.html#c3-symbolique">chapitre 3</a>).</p>
+          <p>Note pour vous : l'ordre choisi place en tête les règles qui concluent en dernier, ce qui oblige à revenir quatre fois au début de la liste. On voit ainsi si l'étudiant a compris la boucle du moteur d'inférence (<a href="cours.html#c3-symbolique">chapitre 3</a>).</p>
         </div></details>
     </div>
 
@@ -1853,7 +1856,7 @@ français 7.0
       <details class="corrige"><summary>Voir le corrigé et le barème</summary>
         <div class="corrige-corps">
           <p><strong>Éléments attendus, sujet A.</strong> Lecture distante et lecture rapprochée (Moretti) : la première révèle des tendances, la seconde reste nécessaire pour les interpréter. L'outil produit des indices, la question de recherche leur donne un sens ; des groupes formés sans étiquettes doivent être interprétés en relisant des textes. Limites : biais, langues peu dotées, opacité. Exemple possible : l'étude de Cafiero et Camps (2019) sur Molière et Corneille, qui nourrit un débat d'historiens de la littérature sans le trancher seule. Conclusion attendue : un complément, pas une substitution.</p>
-          <p><strong>Éléments attendus, sujet B.</strong> Transparence : tout usage se déclare (outil, version, date, usage, consignes) ; présenter comme sien un texte généré relève du plagiat. Vérification : résumés et traductions automatiques contiennent des erreurs et des inventions, à confronter aux originaux. Droit d'auteur et données : textes inédits ou protégés et données personnelles ne se déposent pas en ligne. Principes de l'UNESCO (2021) : transparence, responsabilité, contrôle humain. Voir la leçon <a href="index.html#c1-perspectives">Perspectives, limites et éthique</a>.</p>
+          <p><strong>Éléments attendus, sujet B.</strong> Transparence : tout usage se déclare (outil, version, date, usage, consignes) ; présenter comme sien un texte généré relève du plagiat. Vérification : résumés et traductions automatiques contiennent des erreurs et des inventions, à confronter aux originaux. Droit d'auteur et données : textes inédits ou protégés et données personnelles ne se déposent pas en ligne. Principes de l'UNESCO (2021) : transparence, responsabilité, contrôle humain. Voir la leçon <a href="cours.html#c1-perspectives">Perspectives, limites et éthique</a>.</p>
           <div class="tableau-defilant"><table class="tableau">
             <caption>Barème indicatif de la question de réflexion</caption>
             <thead><tr><th scope="col">Critère</th><th scope="col">Points</th></tr></thead>
@@ -1880,7 +1883,7 @@ français 7.0
     <h3>Grilles pour le mini-projet et les tables rondes</h3>
     <p>Une grille rend la note explicable, et deux correcteurs arrivent à des notes proches. Distribuez-la avec le sujet du travail, pas après. Les points sont indicatifs, sur 20 : ramenez-les à la part que les textes en vigueur donnent à chaque travail.</p>
     <h4>Le mini-projet</h4>
-    <p>La grille reprend les critères de la <a href="index.html#mp-evaluation">grille d'auto-évaluation</a> que les étudiants ont sous les yeux, regroupés en six rubriques. Sur un critère noté sur 3 : insuffisant 0 à 0,5 ; passable 1 à 1,5 ; bien 2 à 2,5 ; très bien 3. Sur un critère noté sur 4 : 0 à 1 ; 1,5 à 2 ; 2,5 à 3 ; 3,5 à 4.</p>
+    <p>La grille reprend les critères de la <a href="cours.html#mp-evaluation">grille d'auto-évaluation</a> que les étudiants ont sous les yeux, regroupés en six rubriques. Sur un critère noté sur 3 : insuffisant 0 à 0,5 ; passable 1 à 1,5 ; bien 2 à 2,5 ; très bien 3. Sur un critère noté sur 4 : 0 à 1 ; 1,5 à 2 ; 2,5 à 3 ; 3,5 à 4.</p>
     <div class="tableau-defilant"><table class="tableau">
       <caption>Grille d'évaluation du mini-projet (points indicatifs sur 20)</caption>
       <thead><tr><th scope="col">Critère</th><th scope="col">Insuffisant</th><th scope="col">Passable</th><th scope="col">Bien</th><th scope="col">Très bien</th></tr></thead>
@@ -1896,7 +1899,7 @@ français 7.0
     <p>En cas de travail en groupe, notez le rapport et le code collectivement, la soutenance individuellement : chaque membre répond à une question sur une partie qu'il n'a pas présentée.</p>
 
     <h4>La table ronde</h4>
-    <p>Chaque participant est noté individuellement, selon les <a href="index.html#tr-methode">règles de préparation</a> connues des étudiants. Pendant le débat, notez sur une grille par participant un fait observé par critère ; attribuez les points juste après. Par critère sur 4 : 0 à 1 ; 1,5 à 2 ; 2,5 à 3 ; 3,5 à 4.</p>
+    <p>Chaque participant est noté individuellement, selon les <a href="cours.html#tr-methode">règles de préparation</a> connues des étudiants. Pendant le débat, notez sur une grille par participant un fait observé par critère ; attribuez les points juste après. Par critère sur 4 : 0 à 1 ; 1,5 à 2 ; 2,5 à 3 ; 3,5 à 4.</p>
     <div class="tableau-defilant"><table class="tableau">
       <caption>Grille d'observation d'une table ronde (points indicatifs sur 20)</caption>
       <thead><tr><th scope="col">Critère</th><th scope="col">Insuffisant</th><th scope="col">Passable</th><th scope="col">Bien</th><th scope="col">Très bien</th></tr></thead>
@@ -1932,7 +1935,7 @@ français 7.0
       </article>
       <article class="carte">
         <h4>La relecture croisée</h4>
-        <p>Deux étudiants échangent le cadrage de leur mini-projet (question de recherche, données prévues) ou le brouillon du rapport. Chacun remplit la <a href="index.html#mp-evaluation">grille d'auto-évaluation</a> pour l'autre et note deux points forts et deux questions.</p>
+        <p>Deux étudiants échangent le cadrage de leur mini-projet (question de recherche, données prévues) ou le brouillon du rapport. Chacun remplit la <a href="cours.html#mp-evaluation">grille d'auto-évaluation</a> pour l'autre et note deux points forts et deux questions.</p>
         <p>Si vous notez l'exercice, notez la qualité de la relecture, jamais le travail relu.</p>
       </article>
     </div>
@@ -1966,7 +1969,7 @@ français 7.0
 
   <article class="lecon" id="guide-ia-charte">
     <h3>Une charte d'usage pour la classe</h3>
-    <p>Tout interdire est incontrôlable ; tout autoriser vide les travaux de leur sens. Distribuez donc une charte dès la première séance. Celle-ci reprend les quatre règles de la leçon <a href="index.html#c1-perspectives">Perspectives, limites et éthique</a> (données personnelles, droit d'auteur, transparence, vérification) et les conseils de la page <a href="index.html#me-assistant">Méthode de travail</a> ; les règles propres à votre faculté, s'il en existe, priment. La table ronde <a href="index.html#tr-perspectives">Perspectives de l'IA</a>, qui s'achève sur une charte, permet de l'amender avec la classe.</p>
+    <p>Tout interdire est incontrôlable ; tout autoriser vide les travaux de leur sens. Distribuez donc une charte dès la première séance. Celle-ci reprend les quatre règles de la leçon <a href="cours.html#c1-perspectives">Perspectives, limites et éthique</a> (données personnelles, droit d'auteur, transparence, vérification) et les conseils de la page <a href="cours.html#me-assistant">Méthode de travail</a> ; les règles propres à votre faculté, s'il en existe, priment. La table ronde <a href="cours.html#tr-perspectives">Perspectives de l'IA</a>, qui s'achève sur une charte, permet de l'amender avec la classe.</p>
     <h4>Préambule, à lire aux étudiants</h4>
     <p>Dans ce cours, un outil d'IA peut vous aider à apprendre ; il ne peut pas apprendre à votre place. Les notes mesurent ce que vous avez compris. Tout ce que vous rendez doit pouvoir être expliqué par vous, à l'oral, sans l'outil.</p>
     <div class="comparaison">
@@ -2019,7 +2022,7 @@ français 7.0
     </aside>
     <h4>Cinq leviers</h4>
     <ul>
-      <li><strong>La soutenance orale du mini-projet</strong>, déjà prévue dans les <a href="index.html#mp-livrables">livrables</a>, est le levier le plus fort. Posez des questions que seul l'auteur peut traiter : « Montrez la cellule qui nettoie les données et expliquez chaque ligne. » « Passez de k = 3 à k = 4 devant moi : que change-t-il ? » « Lisez un texte du groupe 2 : pourquoi est-il là ? »</li>
+      <li><strong>La soutenance orale du mini-projet</strong>, déjà prévue dans les <a href="cours.html#mp-livrables">livrables</a>, est le levier le plus fort. Posez des questions que seul l'auteur peut traiter : « Montrez la cellule qui nettoie les données et expliquez chaque ligne. » « Passez de k = 3 à k = 4 devant moi : que change-t-il ? » « Lisez un texte du groupe 2 : pourquoi est-il là ? »</li>
       <li><strong>Le journal de bord</strong> : une entrée datée par séance de travail, en trois lignes (ce que j'ai essayé, ce qui a échoué, ce que j'ai décidé et pourquoi). Exemple : « 14 novembre. VADER juge positifs des messages ironiques en darja latinisée. Je lis 30 messages à la main pour mesurer le problème. » Notez la régularité et la lucidité, pas le style.</li>
       <li><strong>Le corpus personnel</strong> : chaque étudiant ou groupe travaille sur des données qu'il a réunies, par exemple les éditoriaux d'un quotidien algérien pendant une semaine, les poèmes d'un auteur étudié dans un autre cours du master, les réponses anonymes d'un questionnaire passé avec consentement dans sa promotion. Un outil peut aider à coder ; il ne connaît pas ce corpus, et l'interpréter exige de l'avoir lu.</li>
       <li><strong>Le travail en classe</strong> : calculs à la main en TD, « prédire avant d'exécuter » en TP, quinze minutes d'écriture sur une question du cours. Le travail à la maison devient un entraînement, et l'intérêt de tricher baisse.</li>
@@ -2055,7 +2058,7 @@ français 7.0
       </article>
       <article class="carte">
         <h4>Des traductions</h4>
-        <p>Consignes, glossaire, résumés : un premier jet en arabe ou en anglais se relit plus vite qu'il ne s'écrit. Contrôlez les termes techniques avec le <a href="index.html#glossaire">glossaire</a> du cours et, pour l'arabe, avec un collègue : la terminologie varie d'un pays à l'autre.</p>
+        <p>Consignes, glossaire, résumés : un premier jet en arabe ou en anglais se relit plus vite qu'il ne s'écrit. Contrôlez les termes techniques avec le <a href="cours.html#glossaire">glossaire</a> du cours et, pour l'arabe, avec un collègue : la terminologie varie d'un pays à l'autre.</p>
       </article>
       <article class="carte">
         <h4>Des explications pour vous</h4>
@@ -2131,7 +2134,7 @@ français 7.0
 
   <article class="lecon" id="guide-ressources-programme">
     <h3>Les références du programme</h3>
-    <p>Les dix références du programme, dans son ordre, avec les corrections déjà faites sur la page <a href="index.html#references">Références</a> du cours. L'ensemble est inégal (quatre livres, un rapport, trois pages web, un article de presse, un support de cours) : les rayons suivants le complètent.</p>
+    <p>Les dix références du programme, dans son ordre, avec les corrections déjà faites sur la page <a href="cours.html#references">Références</a> du cours. L'ensemble est inégal (quatre livres, un rapport, trois pages web, un article de presse, un support de cours) : les rayons suivants le complètent.</p>
     <dl class="definitions">
       <div><dt>Inglehart 1997</dt><dd>
         <p>Ronald Inglehart, <em lang="en">Modernization and Postmodernization: Cultural, Economic, and Political Change in 43 Societies</em>, Princeton University Press, 1997. Le cadre théorique (valeurs matérialistes et post-matérialistes) pour interpréter les groupes obtenus dans les sujets 2 et 4.</p>
@@ -2237,7 +2240,7 @@ français 7.0
 
   <article class="lecon" id="guide-ressources-python">
     <h3>Python et Jupyter</h3>
-    <p>Le chapitre 2 explique l'installation pas à pas (<a href="index.html#c2-installer">installer Python</a>) et la page <a href="index.html#references">Références</a> renvoie à la documentation de chaque bibliothèque. Voici ce qui aide en plus, pour apprendre ou pour expliquer.</p>
+    <p>Le chapitre 2 explique l'installation pas à pas (<a href="cours.html#c2-installer">installer Python</a>) et la page <a href="cours.html#references">Références</a> renvoie à la documentation de chaque bibliothèque. Voici ce qui aide en plus, pour apprendre ou pour expliquer.</p>
     <div class="tableau-defilant"><table class="tableau">
       <caption>Installer, apprendre et expliquer Python</caption>
       <thead><tr><th scope="col">Ressource</th><th scope="col">Langue et niveau</th><th scope="col">Pour quoi faire dans ce cours</th></tr></thead>
@@ -2274,7 +2277,7 @@ français 7.0
 
   <article class="lecon" id="guide-ressources-arabe">
     <h3>Ressources en arabe et pour l'arabe</h3>
-    <p>La plupart des outils du cours ont été conçus pour l'anglais. Sur des textes arabes, trois difficultés reviennent : l'écriture sans voyelles brèves, une morphologie où l'article et les pronoms s'attachent au mot (voir le <a href="index.html#c2-fichiers">chapitre 2</a>), et l'écart entre arabe standard et dialectes, dont la darja algérienne, écrite en caractères arabes ou latins. Les ressources suivantes y répondent. Les textes de l'UNESCO du rayon <a href="#guide-ressources-ethique">Éthique</a> existent aussi en arabe, par exemple la <a href="https://unesdoc.unesco.org/ark:/48223/pf0000381137_ara" target="_blank" rel="noopener">Recommandation sur l'éthique de l'intelligence artificielle</a>.</p>
+    <p>La plupart des outils du cours ont été conçus pour l'anglais. Sur des textes arabes, trois difficultés reviennent : l'écriture sans voyelles brèves, une morphologie où l'article et les pronoms s'attachent au mot (voir le <a href="cours.html#c2-fichiers">chapitre 2</a>), et l'écart entre arabe standard et dialectes, dont la darja algérienne, écrite en caractères arabes ou latins. Les ressources suivantes y répondent. Les textes de l'UNESCO du rayon <a href="#guide-ressources-ethique">Éthique</a> existent aussi en arabe, par exemple la <a href="https://unesdoc.unesco.org/ark:/48223/pf0000381137_ara" target="_blank" rel="noopener">Recommandation sur l'éthique de l'intelligence artificielle</a>.</p>
 
     <h4>Outils, modèles et corpus annotés</h4>
     <div class="tableau-defilant"><table class="tableau">
@@ -2361,7 +2364,7 @@ français 7.0
 
   <article class="lecon" id="guide-ressources-ethique">
     <h3>Éthique, droit et régulation</h3>
-    <p>Vos étudiants n'ont pas à devenir juristes ; ils doivent savoir que ces textes existent et ce qu'ils protègent. Ils nourrissent la partie éthique du chapitre 1 et les <a href="index.html#tables-rondes">tables rondes</a>. Le rapport de l'Obvia est au rayon <a href="#guide-ressources-programme">Programme</a>.</p>
+    <p>Vos étudiants n'ont pas à devenir juristes ; ils doivent savoir que ces textes existent et ce qu'ils protègent. Ils nourrissent la partie éthique du chapitre 1 et les <a href="cours.html#tables-rondes">tables rondes</a>. Le rapport de l'Obvia est au rayon <a href="#guide-ressources-programme">Programme</a>.</p>
     <dl class="definitions">
       <div><dt>UNESCO 2021</dt><dd>
         <p>UNESCO, <a href="https://unesdoc.unesco.org/ark:/48223/pf0000381137" target="_blank" rel="noopener"><em>Recommandation sur l'éthique de l'intelligence artificielle</em></a>, adoptée en novembre 2021. Le premier cadre mondial : droits humains, diversité culturelle, protection des données, refus de la notation sociale et de la surveillance de masse.</p>
@@ -2396,10 +2399,10 @@ français 7.0
 
   <article class="lecon" id="guide-ressources-pedagogie">
     <h3>Enseigner et apprendre</h3>
-    <p>Ce cours demande à des étudiants de littérature d'apprendre à programmer en quelques semaines. La recherche sur l'apprentissage donne quelques règles sûres pour y arriver ; la page <a href="index.html#methode">Comment apprendre ce cours</a> les traduit déjà pour eux.</p>
+    <p>Ce cours demande à des étudiants de littérature d'apprendre à programmer en quelques semaines. La recherche sur l'apprentissage donne quelques règles sûres pour y arriver ; la page <a href="cours.html#methode">Comment apprendre ce cours</a> les traduit déjà pour eux.</p>
     <dl class="definitions">
       <div><dt>Ce site</dt><dd>
-        <p><a href="index.html#methode">Comment apprendre ce cours</a>, la page de méthode du site : se tester, espacer, expliquer, essayer avant le corrigé, et utiliser honnêtement un assistant d'IA. Présentez-la en première séance ; elle existe en trois langues.</p>
+        <p><a href="cours.html#methode">Comment apprendre ce cours</a>, la page de méthode du site : se tester, espacer, expliquer, essayer avant le corrigé, et utiliser honnêtement un assistant d'IA. Présentez-la en première séance ; elle existe en trois langues.</p>
         <ul class="puces"><li class="puce">FR</li><li class="puce">EN</li><li class="puce">AR</li><li class="puce puce--outil">débutant</li></ul>
       </dd></div>
       <div><dt>Dunlosky et al. 2013</dt><dd>
@@ -2443,12 +2446,12 @@ français 7.0
     <div>
       <h2>Parcourir</h2>
       <ul>
-        <li><a href="index.html#methode">Comment apprendre ce cours</a></li>
-        <li><a href="index.html#chapitre-1">Chapitre 1 · Introduction</a></li>
-        <li><a href="index.html#chapitre-2">Chapitre 2 · Python</a></li>
-        <li><a href="index.html#chapitre-3">Chapitre 3 · Types d'IA</a></li>
-        <li><a href="index.html#mini-projet">Mini-projet</a></li>
-        <li><a href="index.html#td-tp">TD / TP corrigés</a></li>
+        <li><a href="cours.html#methode">Comment apprendre ce cours</a></li>
+        <li><a href="cours.html#chapitre-1">Chapitre 1 · Introduction</a></li>
+        <li><a href="cours.html#chapitre-2">Chapitre 2 · Python</a></li>
+        <li><a href="cours.html#chapitre-3">Chapitre 3 · Types d'IA</a></li>
+        <li><a href="cours.html#mini-projet">Mini-projet</a></li>
+        <li><a href="cours.html#td-tp">TD / TP corrigés</a></li>
         <li><a href="enseignant.html">Guide de l'enseignant</a></li>
         <li><a href="diaporamas.html">Diaporamas</a></li>
         <li><a href="classe.html">Mes groupes</a></li>
@@ -2463,8 +2466,9 @@ français 7.0
   </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+<script src="assets/vendor/prism/prism-core.min.js"></script>
+<script src="assets/vendor/prism/prism-clike.min.js"></script>
+<script src="assets/vendor/prism/prism-python.min.js"></script>
 <script src="assets/js/lumineux.js"></script>
 <script src="assets/js/cours.js"></script>
 </body>

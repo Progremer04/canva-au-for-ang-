@@ -2,9 +2,10 @@
 """Assemble le site du cours à partir de docs/_sources/, en français, anglais et arabe.
 
   python3 tools/assembler.py
-      → écrit docs/index.html (français), docs/en/index.html (anglais), docs/ar/index.html (arabe)
-        et, pour chaque langue, le guide de l'enseignant (enseignant.html), les diaporamas
-        (diaporamas.html, via tools/diapos.py) et la page « Mes groupes » (classe.html)
+      → pour chaque langue (docs/, docs/en/, docs/ar/) : la page d'accueil (index.html), le cours
+        (cours.html), le guide de l'enseignant (enseignant.html), les diaporamas (diaporamas.html,
+        via tools/diapos.py), la page « Mes groupes » (classe.html) et le programme officiel
+        (programme.html)
 
   python3 tools/assembler.py --autonome CHEMIN [--langue fr|en|ar] [--lien-systeme URL]
       → écrit une version en un seul fichier : CSS et JS intégrés,
@@ -48,7 +49,7 @@ NAV = [
 # Page « Guide de l'enseignant » : fragments et menu.
 FRAGMENTS_GUIDE = ["guide-1", "guide-5", "guide-2", "guide-3", "guide-4"]
 NAV_GUIDE = [
-    ("index.html", "i-retour", {"fr": "Retour au cours", "en": "Back to the course", "ar": "العودة إلى المقياس"}),
+    ("cours.html", "i-retour", {"fr": "Retour au cours", "en": "Back to the course", "ar": "العودة إلى المقياس"}),
     ("guide-demarrer", "i-boussole", {"fr": "Par où commencer", "en": "Where to start", "ar": "من أين تبدأ"}),
     ("guide-carte", "i-carte", {"fr": "Carte du cours", "en": "Course map", "ar": "خريطة المقياس"}),
     ("guide-progression", "i-calendrier", {"fr": "Progression", "en": "Week-by-week plan", "ar": "الخطة الأسبوعية"}),
@@ -60,37 +61,40 @@ NAV_GUIDE = [
     ("guide-ressources", "i-livre", {"fr": "Ressources", "en": "Resources", "ar": "المراجع والموارد"}),
     ("diaporamas.html", "i-ecran", {"fr": "Diaporamas", "en": "Slides", "ar": "العروض التقديمية"}),
     ("classe.html", "i-groupe", {"fr": "Mes groupes", "en": "My groups", "ar": "أفواجي"}),
+    ("programme.html", "i-fiche", {"fr": "Programme officiel", "en": "Official syllabus", "ar": "البرنامج الرسمي"}),
 ]
 
 # Pages outils (diaporamas, groupes) : menu du tiroir et textes d'en-tête.
 NAV_OUTILS = [
-    ("index.html", "i-retour", {"fr": "Retour au cours", "en": "Back to the course", "ar": "العودة إلى المقياس"}),
+    ("index.html", "i-maison", {"fr": "Accueil", "en": "Home", "ar": "الرئيسية"}),
+    ("cours.html", "i-livre", {"fr": "Le cours", "en": "The course", "ar": "المقياس"}),
     ("enseignant.html", "i-outil", {"fr": "Guide de l'enseignant", "en": "Teacher's guide", "ar": "دليل الأستاذ"}),
     ("diaporamas.html", "i-ecran", {"fr": "Diaporamas", "en": "Slides", "ar": "العروض التقديمية"}),
     ("classe.html", "i-groupe", {"fr": "Mes groupes", "en": "My groups", "ar": "أفواجي"}),
+    ("programme.html", "i-fiche", {"fr": "Programme officiel", "en": "Official syllabus", "ar": "البرنامج الرسمي"}),
 ]
 TEXTES_OUTILS = {
     "diaporamas": {
         "fr": {"titre": "Diaporamas · Cours d'IA", "surtitre": "Pour projeter en classe", "h1": "Diaporamas",
                "chapeau": "Une présentation par séance, prête à projeter : plein écran, notes de l'enseignant, réponses à dévoiler, minuteur pour les activités. Chaque diaporama se télécharge aussi en PowerPoint (.pptx) ou en PDF.",
-               "nav": "Menu", "noscript": "Les diaporamas ont besoin de JavaScript. Activez-le dans votre navigateur."},
+               "nav": "Menu", "noscript": "Les diaporamas ont besoin de JavaScript. Activez-le dans votre navigateur.", "chargement": "Préparation des diaporamas…"},
         "en": {"titre": "Slides · AI Course", "surtitre": "To project in class", "h1": "Slides",
                "chapeau": "One presentation per session, ready to project: full screen, teacher's notes, answers to reveal, a timer for activities. Every deck also downloads as PowerPoint (.pptx) or PDF.",
-               "nav": "Menu", "noscript": "The slides need JavaScript. Please enable it in your browser."},
+               "nav": "Menu", "noscript": "The slides need JavaScript. Please enable it in your browser.", "chargement": "Preparing the slides…"},
         "ar": {"titre": "العروض التقديمية · مقياس الذكاء الاصطناعي", "surtitre": "للعرض في القسم", "h1": "العروض التقديمية",
                "chapeau": "عرض لكل حصة، جاهز للإسقاط على الشاشة: ملء الشاشة، ملاحظات الأستاذ، أجوبة تُكشف عند الطلب، مؤقّت للأنشطة. ويمكن تنزيل كل عرض بصيغة ⁦PowerPoint (.pptx)⁩ أو PDF.",
-               "nav": "القائمة", "noscript": "تحتاج العروض إلى JavaScript. فعّلوه في المتصفح."},
+               "nav": "القائمة", "noscript": "تحتاج العروض إلى JavaScript. فعّلوه في المتصفح.", "chargement": "جارٍ تحضير العروض…"},
     },
     "classe": {
         "fr": {"titre": "Mes groupes · Cours d'IA", "surtitre": "Pour l'enseignant", "h1": "Mes groupes",
                "chapeau": "Vos groupes et vos étudiants, le planning et le cahier de textes de chaque groupe, les présences, les observations et les notes. Tout reste sur votre ordinateur, dans une base SQLite.",
-               "nav": "Menu", "noscript": "Cette page a besoin de JavaScript. Activez-le dans votre navigateur."},
+               "nav": "Menu", "noscript": "Cette page a besoin de JavaScript. Activez-le dans votre navigateur.", "chargement": "Ouverture de la base…"},
         "en": {"titre": "My groups · AI Course", "surtitre": "For the teacher", "h1": "My groups",
                "chapeau": "Your groups and students, each group's schedule and class log, attendance, notes on students and grades. Everything stays on your computer, in an SQLite database.",
-               "nav": "Menu", "noscript": "This page needs JavaScript. Please enable it in your browser."},
+               "nav": "Menu", "noscript": "This page needs JavaScript. Please enable it in your browser.", "chargement": "Opening the database…"},
         "ar": {"titre": "أفواجي · مقياس الذكاء الاصطناعي", "surtitre": "للأستاذ", "h1": "أفواجي",
                "chapeau": "أفواجكم وطلبتكم، ورزنامة كل فوج ودفتر نصوصه، والحضور، والملاحظات على الطلبة، والعلامات. كل شيء يبقى على حاسوبكم في قاعدة بيانات SQLite.",
-               "nav": "القائمة", "noscript": "تحتاج هذه الصفحة إلى JavaScript. فعّلوه في المتصفح."},
+               "nav": "القائمة", "noscript": "تحتاج هذه الصفحة إلى JavaScript. فعّلوه في المتصفح.", "chargement": "جارٍ فتح قاعدة البيانات…"},
     },
 }
 # Scripts propres à chaque page outil ({langue} est remplacé).
@@ -115,15 +119,17 @@ TEXTES_GUIDE = {
 
 # Par langue : dossier des sources, dossier de sortie, préfixe des assets, libellés des deux nav.
 LANGUES = {
-    "fr": {"sources": SOURCES, "sortie": DOCS / "index.html", "base": "",
+    "fr": {"sources": SOURCES, "sortie": DOCS / "cours.html", "base": "",
            "nav": ("Sommaire (menu)", "Sommaire du cours")},
-    "en": {"sources": SOURCES / "en", "sortie": DOCS / "en" / "index.html", "base": "../",
+    "en": {"sources": SOURCES / "en", "sortie": DOCS / "en" / "cours.html", "base": "../",
            "nav": ("Contents (menu)", "Course contents")},
-    "ar": {"sources": SOURCES / "ar", "sortie": DOCS / "ar" / "index.html", "base": "../",
+    "ar": {"sources": SOURCES / "ar", "sortie": DOCS / "ar" / "cours.html", "base": "../",
            "nav": ("المحتويات (القائمة)", "محتويات المقياس")},
 }
 
-PRISM = [
+# Coloration du code : copie locale (docs/assets/vendor/prism) ; le fichier unique de --autonome garde le CDN.
+PRISM = ["assets/vendor/prism/prism-core.min.js", "assets/vendor/prism/prism-clike.min.js", "assets/vendor/prism/prism-python.min.js"]
+PRISM_CDN = [
     "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js",
     "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js",
 ]
@@ -163,7 +169,15 @@ def assembler(langue, lien_systeme):
     page = page.replace("{{NAV}}", nav(conf["nav"][1], langue), 1)
     page = page.replace("{{LIEN_SYSTEME}}", lien_systeme)
     page = page.replace("{{BASE}}", conf["base"])
+    page = vers_page(page, "cours.html")
+    page = page.replace('class="entete__marque" href="#accueil"', 'class="entete__marque" href="index.html"')
     return page
+
+
+def vers_page(page, nom):
+    """Le sélecteur de langue et les <link rel="alternate"> pointent vers la même page dans l'autre langue."""
+    page = re.sub(r'(<div class="langues".*?</div>)', lambda m: m.group(1).replace('index.html"', f'{nom}"'), page, count=1, flags=re.S)
+    return re.sub(r'(<link rel="alternate" hreflang="\w+" href="[^"]*?)index\.html"', rf'\1{nom}"', page)
 
 
 def habillage(langue, page, titre):
@@ -172,12 +186,18 @@ def habillage(langue, page, titre):
     gabarit = (conf["sources"] / "gabarit.html").read_text(encoding="utf-8")
     tete = gabarit[:gabarit.index('<main id="contenu">')]
     pied = gabarit[gabarit.index("</main>") + len("</main>"):]
-    pied = pied.replace('href="#', 'href="index.html#')   # le pied de page renvoie aux sections du cours
+    pied = pied.replace('href="#', 'href="cours.html#')   # le pied de page renvoie aux sections du cours
     tete = re.sub(r"<title>[^<]*</title>", f"<title>{titre}</title>", tete, count=1)
     tete = tete.replace('class="entete__marque" href="#accueil"', 'class="entete__marque" href="index.html"')
-    # Le sélecteur de langue pointe vers la même page dans l'autre langue.
-    tete = re.sub(r'(<div class="langues".*?</div>)', lambda m: m.group(1).replace('index.html"', f'{page}"'), tete, count=1, flags=re.S)
+    tete = vers_page(tete, page)
+    tete = tete.replace('<link rel="stylesheet" href="{{BASE}}assets/css/cours.css">',
+                        '<link rel="stylesheet" href="{{BASE}}assets/css/cours.css">\n<link rel="stylesheet" href="{{BASE}}assets/css/outils.css">', 1)
     return tete, pied
+
+
+def vers_cours(page):
+    """Les pages voisines renvoient aux sections du cours, désormais dans cours.html."""
+    return page.replace('href="index.html#', 'href="cours.html#')
 
 
 def guide(langue, lien_systeme):
@@ -213,15 +233,13 @@ def guide(langue, lien_systeme):
     page = page.replace("{{NAV}}", nav(t["nav"][0], langue, NAV_GUIDE), 1)
     page = page.replace("{{NAV}}", nav(t["nav"][1], langue, NAV_GUIDE), 1)
     page = page.replace("{{LIEN_SYSTEME}}", lien_systeme).replace("{{BASE}}", conf["base"])
-    return page
+    return vers_cours(page)
 
 
 def page_outil(langue, cle, lien_systeme):
     """Pages « Diaporamas » et « Mes groupes » : une application en pleine largeur, sans rail."""
     conf, t = LANGUES[langue], TEXTES_OUTILS[cle][langue]
     tete, pied = habillage(langue, f"{cle}.html", t["titre"])
-    tete = tete.replace('<link rel="stylesheet" href="{{BASE}}assets/css/cours.css">',
-                        '<link rel="stylesheet" href="{{BASE}}assets/css/cours.css">\n<link rel="stylesheet" href="{{BASE}}assets/css/outils.css">', 1)
     corps = f"""<main id="contenu" class="page-outil">
   <section class="outil-tete" aria-labelledby="titre-outil">
     <p class="surtitre">{t['surtitre']}</p>
@@ -230,19 +248,146 @@ def page_outil(langue, cle, lien_systeme):
   </section>
   <div class="outil" id="outil-{cle}" data-outil="{cle}" data-base="{{{{BASE}}}}" data-langue="{langue}">
     <noscript><p class="outil-message">{t['noscript']}</p></noscript>
+    <div class="chargement" role="status"><span class="chargement__anneau" aria-hidden="true"></span><p class="chargement__texte">{t['chargement']}</p></div>
   </div>
 </main>"""
     page = tete + corps + pied
     page = page.replace("{{NAV}}", nav(t["nav"], langue, NAV_OUTILS), 1)
     page = page.replace("{{LIEN_SYSTEME}}", lien_systeme).replace("{{BASE}}", conf["base"])
-    lignes = [f'<script src="{u}"></script>' for u in (PRISM if cle == "diaporamas" else [])]
+    lignes = [f'<script src="{conf["base"]}{u}"></script>' for u in (PRISM if cle == "diaporamas" else [])]
     lignes.append(f'<script src="{conf["base"]}assets/js/lumineux.js"></script>')
     lignes += [f'<script src="{conf["base"]}{f.format(langue=langue)}"></script>' for f in SCRIPTS_OUTILS[cle]]
-    return page.replace("{{SCRIPTS}}", "\n".join(lignes))
+    return vers_cours(page.replace("{{SCRIPTS}}", "\n".join(lignes)))
+
+
+# Page d'accueil : légère, elle mène à tout. (cible, icône, teinte, {langue: (titre, texte)}, info)
+TUILES_ETUDIANTS = [
+    ("cours.html", "i-livre", "ciel", {"fr": ("Le cours", "Les trois chapitres expliqués pas à pas, avec des démonstrations à essayer."),
+                                      "en": ("The course", "The three chapters explained step by step, with demos to try."),
+                                      "ar": ("المقياس", "الفصول الثلاثة مشروحة خطوة بخطوة، مع عروض تفاعلية للتجريب.")}),
+    ("cours.html#methode", "i-boussole", "soleil", {"fr": ("Comment apprendre", "Une semaine type, une méthode par chapitre, le vocabulaire utile."),
+                                                   "en": ("How to learn", "A typical week, a method for each chapter, the useful vocabulary."),
+                                                   "ar": ("كيف تتعلّم", "أسبوع نموذجي، وطريقة لكل فصل، والمفردات المفيدة.")}),
+    ("cours.html#td-tp", "i-crayon", "braise", {"fr": ("TD / TP corrigés", "Tous les exercices du programme, avec leur corrigé détaillé."),
+                                               "en": ("Solved TD / TP", "Every exercise of the syllabus, with a detailed solution."),
+                                               "ar": ("حلول TD / TP", "كل تمارين البرنامج مع حلولها المفصّلة.")}),
+    ("cours.html#mini-projet", "i-ampoule", "fuchsia", {"fr": ("Mini-projet", "Les cinq sujets : démarche, données, code de départ, livrables."),
+                                                       "en": ("Mini-project", "The five subjects: method, data, starter code, deliverables."),
+                                                       "ar": ("المشروع المصغَّر", "المواضيع الخمسة: المنهجية، البيانات، شيفرة الانطلاق، المطلوب تسليمه.")}),
+    ("enseignant.html#guide-langues-carnets", "i-lecture", "cobalt", {"fr": ("Carnets prêts à exécuter", "Python dans Google Colab, sans écrire de code : on lance, on change une valeur, on observe."),
+                                                                     "en": ("Ready-to-run notebooks", "Python in Google Colab without writing code: run, change a value, observe."),
+                                                                     "ar": ("دفاتر جاهزة للتشغيل", "بايثون في Google Colab دون كتابة شيفرة: شغّل، غيّر قيمة، لاحظ.")}),
+    ("cours.html#glossaire", "i-fiche", "juste", {"fr": ("Glossaire", "Les termes du cours, en français et en anglais."),
+                                                 "en": ("Glossary", "The course's terms, in French and English."),
+                                                 "ar": ("المسرد", "مصطلحات المقياس بالعربية والفرنسية والإنجليزية.")}),
+]
+TUILES_ENSEIGNANT = [
+    ("classe.html", "i-groupe", "ciel", {"fr": ("Mes groupes", "Vos six groupes : étudiants, emploi du temps, cahier de textes, appel, notes."),
+                                        "en": ("My groups", "Your six groups: students, timetable, class log, attendance, grades."),
+                                        "ar": ("أفواجي", "أفواجكم الستة: الطلبة، التوقيت، دفتر النصوص، المناداة، العلامات.")}, "classe"),
+    ("diaporamas.html", "i-ecran", "fuchsia", {"fr": ("Diaporamas", "Une présentation par séance, à projeter ou à télécharger en PowerPoint."),
+                                              "en": ("Slides", "One presentation per session, to project or download as PowerPoint."),
+                                              "ar": ("العروض التقديمية", "عرض لكل حصة، للإسقاط على الشاشة أو للتنزيل بصيغة PowerPoint.")}, "diaporamas"),
+    ("enseignant.html", "i-outil", "soleil", {"fr": ("Guide de l'enseignant", "Par où commencer, progression, fiches de séance, évaluation, ressources."),
+                                             "en": ("Teacher's guide", "Where to start, weekly plan, lesson plans, assessment, resources."),
+                                             "ar": ("دليل الأستاذ", "من أين تبدأ، الخطة الأسبوعية، مذكرات الحصص، التقييم، الموارد.")}, None),
+    ("enseignant.html#guide-langues", "i-bulle", "braise", {"fr": ("Étudiants de langues", "Enseigner l'IA en anglais, LGC et didactique sans faire des programmeurs."),
+                                                           "en": ("Language students", "Teaching AI in English studies, LGC and didactics without making programmers."),
+                                                           "ar": ("طلبة اللغات", "تدريس الذكاء الاصطناعي لطلبة الإنجليزية والأدب المقارن والتعليمية دون برمجة.")}, None),
+    ("programme.html", "i-fiche", "cobalt", {"fr": ("Programme officiel", "Le texte intégral de la matière, en français, anglais et arabe."),
+                                            "en": ("Official syllabus", "The full text of the course syllabus, in French, English and Arabic."),
+                                            "ar": ("البرنامج الرسمي", "النص الكامل لبرنامج المقياس بالفرنسية والإنجليزية والعربية.")}, None),
+    ("enseignant.html#guide-seances", "i-calendrier", "juste", {"fr": ("Fiches de séance", "Huit séances prêtes à l'emploi, minutées, avec leurs activités."),
+                                                               "en": ("Lesson plans", "Eight ready-to-use, timed sessions with their activities."),
+                                                               "ar": ("مذكرات الحصص", "ثماني حصص جاهزة ومحدَّدة التوقيت مع أنشطتها.")}, None),
+]
+TEXTES_ACCUEIL = {
+    "fr": {"titre": "Intelligence artificielle · Master 2 · Université Yahia Farès, Médéa",
+           "surtitre": "Université Yahia Farès, Médéa · Master 2 · 2025–2026", "h1": "Intelligence artificielle",
+           "chapeau": "Le cours complet, ses exercices corrigés et les outils de l'enseignant, en français, en anglais et en arabe.",
+           "b1": "Ouvrir le cours", "b2": "Guide de l'enseignant", "etudiants": "Pour les étudiants", "enseignant": "Pour l'enseignant", "nav": "Menu"},
+    "en": {"titre": "Artificial intelligence · Master 2 · Université Yahia Farès, Médéa",
+           "surtitre": "Université Yahia Farès, Médéa · Master 2 · 2025–2026", "h1": "Artificial intelligence",
+           "chapeau": "The full course, its solved exercises and the teacher's tools, in French, English and Arabic.",
+           "b1": "Open the course", "b2": "Teacher's guide", "etudiants": "For students", "enseignant": "For the teacher", "nav": "Menu"},
+    "ar": {"titre": "الذكاء الاصطناعي · ماستر 2 · جامعة يحيى فارس بالمدية",
+           "surtitre": "جامعة يحيى فارس بالمدية · ماستر 2 · 2025–2026", "h1": "الذكاء الاصطناعي",
+           "chapeau": "المقياس كاملًا، وحلول تمارينه، وأدوات الأستاذ، بالفرنسية والإنجليزية والعربية.",
+           "b1": "افتح المقياس", "b2": "دليل الأستاذ", "etudiants": "للطلبة", "enseignant": "للأستاذ", "nav": "القائمة"},
+}
+TEXTES_PROGRAMME = {
+    "fr": {"titre": "Programme officiel · Cours d'IA", "surtitre": "Pour l'enseignant", "h1": "Programme officiel",
+           "chapeau": "Le texte intégral du programme de la matière (offre de formation, pages 84 à 86), reproduit sans modification. Version originale en français ; versions anglaise et arabe traduites fidèlement.", "nav": "Menu"},
+    "en": {"titre": "Official syllabus · AI Course", "surtitre": "For the teacher", "h1": "Official syllabus",
+           "chapeau": "The full text of the course syllabus (training programme, pages 84 to 86), translated faithfully from the French original, without changes.", "nav": "Menu"},
+    "ar": {"titre": "البرنامج الرسمي · مقياس الذكاء الاصطناعي", "surtitre": "للأستاذ", "h1": "البرنامج الرسمي",
+           "chapeau": "النص الكامل لبرنامج المقياس (عرض التكوين، الصفحات من 84 إلى 86)، مترجمًا بأمانة عن الأصل الفرنسي دون أي تغيير.", "nav": "القائمة"},
+}
+# Les anciens liens (…/index.html#chapitre-3, liens des carnets) menaient au cours : l'accueil les y renvoie avant tout affichage.
+REDIRECTION = ('<script>(function () { var h = location.hash; '
+               'if (h.length > 1 && !/^#(contenu|portail-[\\w-]+)$/.test(h)) location.replace("cours.html" + h); })();</script>\n')
+
+
+def tuiles(entrees, langue):
+    items = []
+    for e in entrees:
+        cible, icone, teinte, textes = e[:4]
+        info = e[4] if len(e) > 4 else None
+        titre, texte = textes[langue]
+        attr_info = f' data-info="{info}"' if info else ""
+        items.append(f'      <li><a class="tuile teinte-{teinte}" href="{cible}"{attr_info}>'
+                     f'<span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#{icone}"/></svg></span>'
+                     f'<span class="tuile__titre">{titre}</span><span class="tuile__texte">{texte}</span>'
+                     f'<span class="tuile__info" hidden></span></a></li>')
+    return '    <ul class="tuiles">\n' + "\n".join(items) + "\n    </ul>"
+
+
+def accueil(langue, lien_systeme):
+    """Page d'accueil : un seul écran, sans contenu lourd, qui mène à tout et précharge le reste."""
+    conf, t = LANGUES[langue], TEXTES_ACCUEIL[langue]
+    tete, pied = habillage(langue, "index.html", t["titre"])
+    tete = tete.replace("</head>", REDIRECTION + "</head>", 1)
+    corps = (f'<main id="contenu" class="page-outil portail" data-base="{{{{BASE}}}}" data-langue="{langue}">\n'
+             f'  <section class="outil-tete portail__tete" aria-labelledby="titre-portail">\n'
+             f'    <p class="surtitre">{t["surtitre"]}</p>\n'
+             f'    <h1 class="outil-tete__titre" id="titre-portail">{t["h1"]}</h1>\n'
+             f'    <p class="outil-tete__chapeau">{t["chapeau"]}</p>\n'
+             f'    <div class="heros__actions"><a class="bouton bouton--prisme" href="cours.html">{t["b1"]}</a>'
+             f'<a class="bouton" href="enseignant.html">{t["b2"]}</a></div>\n'
+             f'  </section>\n'
+             f'  <section class="portail__bloc" id="portail-etudiants" aria-labelledby="portail-etudiants-titre">\n'
+             f'    <h2 class="portail__titre" id="portail-etudiants-titre">{t["etudiants"]}</h2>\n{tuiles(TUILES_ETUDIANTS, langue)}\n  </section>\n'
+             f'  <section class="portail__bloc" id="portail-enseignant" aria-labelledby="portail-enseignant-titre">\n'
+             f'    <h2 class="portail__titre" id="portail-enseignant-titre">{t["enseignant"]}</h2>\n{tuiles(TUILES_ENSEIGNANT, langue)}\n  </section>\n'
+             f'</main>')
+    page = tete + corps + pied
+    page = page.replace("{{NAV}}", nav(t["nav"], langue, NAV_OUTILS), 1)
+    page = page.replace("{{LIEN_SYSTEME}}", lien_systeme).replace("{{BASE}}", conf["base"])
+    scripts = "\n".join(f'<script src="{conf["base"]}{f}" defer></script>' for f in ("assets/js/lumineux.js", "assets/js/accueil.js"))
+    return vers_cours(page.replace("{{SCRIPTS}}", scripts))
+
+
+def programme(langue, lien_systeme):
+    """Le programme officiel, en texte intégral : pour l'enseignant, non indexé par les moteurs de recherche."""
+    conf, t = LANGUES[langue], TEXTES_PROGRAMME[langue]
+    tete, pied = habillage(langue, "programme.html", t["titre"])
+    tete = tete.replace('<meta name="viewport"', '<meta name="robots" content="noindex">\n<meta name="viewport"', 1)
+    corps = (f'<main id="contenu" class="page-outil">\n'
+             f'  <section class="outil-tete" aria-labelledby="titre-outil">\n'
+             f'    <p class="surtitre">{t["surtitre"]}</p>\n'
+             f'    <h1 class="outil-tete__titre" id="titre-outil">{t["h1"]}</h1>\n'
+             f'    <p class="outil-tete__chapeau">{t["chapeau"]}</p>\n'
+             f'  </section>\n'
+             f'  <div class="page-document"><div class="page__contenu">\n{lire(conf["sources"], "programme")}\n  </div></div>\n'
+             f'</main>')
+    page = tete + corps + pied
+    page = page.replace("{{NAV}}", nav(t["nav"], langue, NAV_OUTILS), 1)
+    page = page.replace("{{LIEN_SYSTEME}}", lien_systeme).replace("{{BASE}}", conf["base"])
+    return vers_cours(page.replace("{{SCRIPTS}}", f'<script src="{conf["base"]}assets/js/lumineux.js" defer></script>'))
 
 
 def scripts_lies(base):
-    lignes = [f'<script src="{u}"></script>' for u in PRISM]
+    lignes = [f'<script src="{base}{u}"></script>' for u in PRISM]
     lignes += [f'<script src="{base}assets/js/lumineux.js"></script>', f'<script src="{base}assets/js/cours.js"></script>']
     return "\n".join(lignes)
 
@@ -252,7 +397,7 @@ def autonome(page):
         chemin = DOCS / m.group(1)
         return "<style>\n" + chemin.read_text(encoding="utf-8") + "\n</style>"
     page = re.sub(r'<link rel="stylesheet" href="(?:\.\./)?(assets/[^"]+)">', css, page)
-    js = "\n".join(f'<script src="{u}"></script>' for u in PRISM)
+    js = "\n".join(f'<script src="{u}"></script>' for u in PRISM_CDN)
     for f in ("lumineux.js", "cours.js"):
         js += "\n<script>\n" + (DOCS / "assets" / "js" / f).read_text(encoding="utf-8") + "\n</script>"
     page = page.replace("{{SCRIPTS}}", js)
@@ -287,10 +432,13 @@ def main():
         sortie_guide = conf["sortie"].with_name("enseignant.html")
         sortie_guide.write_text(guide(langue, lien).replace("{{SCRIPTS}}", scripts_lies(conf["base"])), encoding="utf-8")
         print(f"écrit : {sortie_guide.relative_to(RACINE)} ({sortie_guide.stat().st_size // 1024} Ko)")
-        for cle in TEXTES_OUTILS:
-            sortie_outil = conf["sortie"].with_name(f"{cle}.html")
-            sortie_outil.write_text(page_outil(langue, cle, lien), encoding="utf-8")
-            print(f"écrit : {sortie_outil.relative_to(RACINE)} ({sortie_outil.stat().st_size // 1024} Ko)")
+        pages = {f"{cle}.html": page_outil(langue, cle, lien) for cle in TEXTES_OUTILS}
+        pages["index.html"] = accueil(langue, lien)
+        pages["programme.html"] = programme(langue, lien)
+        for nom, contenu in pages.items():
+            sortie_page = conf["sortie"].with_name(nom)
+            sortie_page.write_text(contenu, encoding="utf-8")
+            print(f"écrit : {sortie_page.relative_to(RACINE)} ({sortie_page.stat().st_size // 1024} Ko)")
 
 
 if __name__ == "__main__":

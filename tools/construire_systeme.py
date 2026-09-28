@@ -282,7 +282,7 @@ def page_site():
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Lumineux · système de design</title>
-<link rel="stylesheet" href="{html.escape(POLICES)}">
+<link rel="stylesheet" href="assets/css/polices.css">
 <link rel="stylesheet" href="assets/css/lumineux-tokens.css">
 <link rel="stylesheet" href="assets/css/lumineux.css">
 <link rel="stylesheet" href="assets/css/cours.css">
@@ -308,7 +308,7 @@ def page_site():
 <body>
 <header class="entete">
   <div class="entete__barre">
-    <a class="entete__marque" href="index.html"><span class="anneau-prisme" aria-hidden="true"></span>IA <small>Retour au cours</small></a>
+    <a class="entete__marque" href="cours.html"><span class="anneau-prisme" aria-hidden="true"></span>IA <small>Retour au cours</small></a>
     <button type="button" class="bouton-verre" data-bascule-theme aria-label="Changer de thème"><svg class="icone" viewBox="0 0 24 24" aria-hidden="true">{icones["contraste"]}</svg></button>
   </div>
 </header>
