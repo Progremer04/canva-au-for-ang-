@@ -35,27 +35,27 @@
       "lignes": [
         [
           "Chapter 1",
-          "Introduction: defining AI, history, types of learning, approaches",
+          "Introduction: defining AI, history, AI agents, types of learning",
           "1 week"
         ],
         [
           "Chapter 2",
-          "Python: fundamentals, pandas and NumPy, objects, text files",
+          "Prompt engineering & Python: fundamentals, text files, pandas",
           "2 weeks"
         ],
         [
           "Chapter 3",
-          "Symbolic AI, machine learning, deep learning, reinforcement",
+          "Machine learning, deep learning (NLP), AI assistants for text analysis",
           "6 weeks"
         ],
         [
           "Mini-project",
-          "Guided independent work, handed out at the end of chapter 2",
+          "Guided independent work: applying agents and Python to literature/sociology",
           "3 weeks"
         ],
         [
           "Tutorials (TD) / labs (TP)",
-          "Exercises with solutions, then Python programming",
+          "Prompt crafting, exercises with solutions, then Python programming",
           "All semester"
         ],
         [

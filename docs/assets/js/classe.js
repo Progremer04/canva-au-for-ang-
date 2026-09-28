@@ -134,8 +134,8 @@
            "Analyse des réseaux sociaux"],
       sujet_court: "Sujet {n}",
       plan: [
-        ["Chapitre 1 : définitions, histoire, IA faible et forte, apprentissages", "seance-1"],
-        ["Chapitre 2 : fondamentaux de Python, NumPy et pandas", "seance-4"],
+        ["Chapitre 1 : définitions, histoire, agents d'IA, types d'apprentissage", "seance-1"],
+        ["Chapitre 2 : atelier de prompts ; fondamentaux de Python, NumPy et pandas", "seance-4"],
         ["Chapitre 2 : objets, fichiers texte, rapports ; distribution des sujets du mini-projet", "seance-5"],
         ["Chapitre 3 : IA symbolique, systèmes experts, chaînage avant", "seance-6"],
         ["Chapitre 3 : apprentissage automatique, classification, k-moyennes", "seance-7"],
@@ -284,8 +284,8 @@
            "Social network analysis"],
       sujet_court: "Subject {n}",
       plan: [
-        ["Chapter 1: definitions, history, weak and strong AI, types of learning", "seance-1"],
-        ["Chapter 2: Python basics, NumPy and pandas", "seance-4"],
+        ["Chapter 1: definitions, history, AI agents, types of learning", "seance-1"],
+        ["Chapter 2: prompt crafting; Python basics, NumPy and pandas", "seance-4"],
         ["Chapter 2: objects, text files, reports; mini-project subjects handed out", "seance-5"],
         ["Chapter 3: symbolic AI, expert systems, forward chaining", "seance-6"],
         ["Chapter 3: machine learning, classification, k-means", "seance-7"],
@@ -434,8 +434,8 @@
            "تحليل الشبكات الاجتماعية"],
       sujet_court: "الموضوع {n}",
       plan: [
-        ["الفصل 1: التعريفات، التاريخ، الذكاء الضعيف والقوي، أنواع التعلّم", "seance-1"],
-        ["الفصل 2: أساسيات بايثون، NumPy وpandas", "seance-4"],
+        ["الفصل 1: التعريفات، التاريخ، وكلاء الذكاء الاصطناعي، أنواع التعلّم", "seance-1"],
+        ["الفصل 2: ورشة صياغة الأوامر؛ أساسيات بايثون، NumPy وpandas", "seance-4"],
         ["الفصل 2: الكائنات، الملفات النصية، التقارير؛ توزيع مواضيع المشروع المصغَّر", "seance-5"],
         ["الفصل 3: الذكاء الرمزي، الأنظمة الخبيرة، التسلسل الأمامي", "seance-6"],
         ["الفصل 3: التعلّم الآلي، التصنيف، k-المتوسطات", "seance-7"],

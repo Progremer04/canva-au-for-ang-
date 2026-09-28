@@ -35,27 +35,27 @@
       "lignes": [
         [
           "Chapitre 1",
-          "Introduction : définir l'IA, histoire, apprentissages, approches",
+          "Introduction : définir l'IA, histoire, agents, types d'apprentissage",
           "1 semaine"
         ],
         [
           "Chapitre 2",
-          "Python : fondamentaux, pandas et NumPy, objets, fichiers texte",
+          "Ingénierie de prompt et Python : fondamentaux, fichiers texte, pandas",
           "2 semaines"
         ],
         [
           "Chapitre 3",
-          "IA symbolique, machine learning, deep learning, renforcement",
+          "Machine learning, deep learning (TAL), assistants d'IA pour les textes",
           "6 semaines"
         ],
         [
           "Mini-projet",
-          "Travail personnel encadré, distribué à la fin du chapitre 2",
+          "Travail autonome guidé : agents et Python en littérature ou sociologie",
           "3 semaines"
         ],
         [
           "TD / TP",
-          "Exercices corrigés, puis programmation en Python",
+          "Atelier de prompts, exercices corrigés, puis programmation en Python",
           "Tout le semestre"
         ],
         [

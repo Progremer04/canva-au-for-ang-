@@ -2,11 +2,12 @@
   <header class="chapitre-tete">
     <p class="surtitre">Chapitre 2 · 2 semaines</p>
     <h2 class="titre-section" id="chapitre-2-titre">Rappel et compléments sur le langage Python</h2>
-    <p class="chapeau">À la fin de ce chapitre, vous saurez écrire de courts programmes Python, explorer un tableau d'œuvres avec pandas, organiser votre code en classes, interroger un corpus de fichiers textes et livrer vos résultats sous forme de classeur Excel ou de PDF.</p>
+    <p class="chapeau">À la fin de ce chapitre, vous saurez formuler une demande précise à un assistant d'IA et en vérifier la réponse, écrire de courts programmes Python, explorer un tableau d'œuvres avec pandas, organiser votre code en classes, interroger un corpus de fichiers textes et livrer vos résultats sous forme de classeur Excel ou de PDF.</p>
     <ul class="puces">
       <li class="puce">Cours magistral</li>
       <li class="puce">TD</li>
       <li class="puce">TP</li>
+      <li class="puce puce--outil">Prompts</li>
       <li class="puce puce--outil">Python 3</li>
       <li class="puce puce--outil">NumPy</li>
       <li class="puce puce--outil">pandas</li>
@@ -18,6 +19,7 @@
 
   <nav class="sommaire-chapitre" aria-label="Sommaire du chapitre 2">
     <ol>
+      <li><a href="#c2-prompts">Bien formuler une demande à un assistant d'IA</a></li>
       <li><a href="#c2-installer">Mise en place de l'environnement</a></li>
       <li><a href="#c2-fondamentaux">Les fondamentaux du langage</a></li>
       <li><a href="#c2-numpy-pandas">Les bibliothèques NumPy et pandas</a></li>
@@ -28,9 +30,103 @@
   </nav>
 
   <aside class="encadre encadre--exemple">
-    <p class="encadre-titre">Jamais programmé ? Commencez par les carnets</p>
-    <p>Vous étudiez les langues, pas l'informatique : dans ce cours, vous n'avez pas à écrire de programme. Des carnets complets, prêts à exécuter dans Google Colab, accompagnent chaque partie : vous lancez les cellules une à une, vous changez une phrase ou un nombre dans les champs « À MODIFIER », puis vous interprétez le résultat. Commencez par <a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/00-prise-en-main.ipynb" target="_blank" rel="noopener">Prendre en main un carnet</a> ; la liste complète est dans le <a href="enseignant.html#guide-langues-carnets">guide de l'enseignant</a>.</p>
+    <p class="encadre-titre">Jamais programmé ? Tout part de zéro</p>
+    <p>Vous étudiez les langues, pas l'informatique : la programmation commence ici, pas à pas, et le code du cours est pour tout le monde. Chaque exemple se lit, se prédit, s'exécute et se modifie avant que vous n'écriviez le vôtre, en TP comme au TD. Des carnets complets, prêts à exécuter dans Google Colab, accompagnent chaque partie : vous lancez les cellules une à une, vous changez une phrase ou un nombre dans les champs « À MODIFIER », puis vous réécrivez le code vous-même. Commencez par <a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/00-prise-en-main.ipynb" target="_blank" rel="noopener">Prendre en main un carnet</a> ; la liste complète est dans le <a href="enseignant.html#guide-langues-carnets">guide de l'enseignant</a>.</p>
   </aside>
+
+  <!-- ============================================================ 0 -->
+  <article class="lecon" id="c2-prompts">
+    <h3>Bien formuler une demande à un assistant d'IA</h3>
+    <p>Un <dfn>assistant d'IA</dfn> (ChatGPT, Gemini, Claude, Copilot…) est un grand modèle de langage que l'on interroge en langue naturelle. Le texte qu'on lui donne s'appelle un <dfn>prompt</dfn> (<span class="terme-en" lang="en">prompt</span>, « consigne »), et l'art de l'écrire, l'<dfn>ingénierie de prompt</dfn> (<span class="terme-en" lang="en">prompt engineering</span>). Le modèle produit la suite la plus probable du texte reçu (<a href="index.html#c3-deep">chapitre 3</a>) : plus la consigne est précise, plus cette suite ressemble à ce que vous attendez. Dans ce cours, l'assistant sert à deux choses : analyser des textes, et vous aider à lire et à écrire du code Python. Jamais à rendre un travail à votre place.</p>
+
+    <h4>Les six éléments d'une bonne consigne</h4>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Anatomie d'un prompt</caption>
+      <thead><tr><th scope="col">Élément</th><th scope="col">Question à se poser</th><th scope="col">Exemple</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Rôle</th><td>Quel point de vue l'assistant doit-il adopter ?</td><td>« Tu es un assistant de recherche en littérature comparée. »</td></tr>
+        <tr><th scope="row">Tâche</th><td>Que doit-il faire, avec quel verbe d'action ?</td><td>« Relève les passages où le narrateur exprime la nostalgie. »</td></tr>
+        <tr><th scope="row">Contexte</th><td>Que sait-il de moins que vous ?</td><td>« Le texte est un extrait de roman algérien des années 1950. »</td></tr>
+        <tr><th scope="row">Données</th><td>Sur quoi travaille-t-il, exactement ?</td><td>Le texte, placé entre deux repères : <code>"""…"""</code></td></tr>
+        <tr><th scope="row">Format</th><td>Sous quelle forme voulez-vous la réponse ?</td><td>« Un tableau : citation exacte, ligne, justification en une phrase. »</td></tr>
+        <tr><th scope="row">Contraintes</th><td>Que doit-il éviter, jusqu'où aller ?</td><td>« Cite mot pour mot ; si aucun passage ne convient, réponds “aucun”. »</td></tr>
+      </tbody>
+    </table></div>
+
+    <h4>D'une consigne vague à une consigne précise</h4>
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>Consigne vague</h4>
+        <figure class="code"><pre><code>Analyse ce poème.</code></pre></figure>
+        <p>L'assistant choisit seul l'angle, la longueur et le vocabulaire : la réponse est générale, et rien ne permet de la vérifier.</p>
+      </div>
+      <div class="comparaison-col">
+        <h4>Consigne précise</h4>
+        <figure class="code"><pre><code>Tu es professeur de littérature. Voici un poème entre triples guillemets.
+1. Donne son thème principal en une phrase.
+2. Relève trois images qui le soutiennent (citations exactes).
+3. Indique le ton dominant : positif, négatif ou mitigé, et justifie-le.
+Réponds par un tableau. N'invente aucune citation.
+"""[le poème]"""</code></pre></figure>
+        <p>Un rôle, une tâche découpée en étapes, un format, une contrainte de vérification : la réponse se compare à votre propre lecture.</p>
+      </div>
+    </div>
+
+    <h4>Quatre techniques utiles</h4>
+    <ul>
+      <li><strong>Donner des exemples</strong> (<span class="terme-en" lang="en">few-shot prompting</span>) : deux ou trois phrases déjà annotées montrent la catégorie attendue mieux qu'une définition. C'est, en miniature, l'apprentissage supervisé du chapitre 3.</li>
+      <li><strong>Découper la tâche</strong> : une étape par ligne numérotée, ou plusieurs demandes successives dont on vérifie chaque réponse.</li>
+      <li><strong>Demander des preuves</strong> : citations exactes, numéros de ligne, sources. Vous vérifiez ensuite chaque citation dans le texte.</li>
+      <li><strong>Itérer</strong> : si la réponse ne convient pas, précisez ce qui manque au lieu de tout réécrire, et gardez la version qui marche.</li>
+    </ul>
+
+    <h4>L'assistant et le code Python</h4>
+    <p>Un assistant écrit du code vite, et parfois faux. Traitez-le comme un camarade qui explique, pas comme l'auteur de votre travail :</p>
+    <figure class="code">
+      <figcaption class="code-legende">Trois prompts pour apprendre, pas pour recopier</figcaption>
+      <pre><code>Explique ligne par ligne ce que fait ce code, pour quelqu'un qui débute : [code]
+Mon code affiche cette erreur : [message]. Explique la cause sans me donner la solution.
+Écris une fonction qui compte les mots d'un texte, puis trois exemples pour la tester.</code></pre>
+    </figure>
+    <p>Pour le troisième, exécutez vous-même le code et ses tests : un code qui n'a pas tourné n'est pas vérifié. Puis <strong>réécrivez-le</strong> dans votre notebook sans regarder la réponse : c'est ainsi que la syntaxe s'apprend. Au TD comme à l'examen, vous expliquerez chaque ligne de ce que vous rendez.</p>
+    <p>Le programme ci-dessous prépare la même consigne pour plusieurs textes. Une chaîne, un dictionnaire, une boucle et une f-string : les notions de la leçon suivante servent déjà.</p>
+    <figure class="code">
+      <figcaption class="code-legende">prompts.py : la même consigne pour chaque texte</figcaption>
+      <pre><code class="language-python">consigne = ("Tu es un assistant en analyse de discours. "
+            "Donne le ton du texte (positif, négatif ou mitigé) "
+            "et cite la phrase qui le montre le mieux.")
+
+textes = {
+    "critique_1": "Un roman lumineux, porté par une écriture limpide.",
+    "critique_2": "Une intrigue confuse et des personnages sans relief.",
+}
+
+for nom, texte in textes.items():
+    prompt = f'{consigne}\n"""{texte}"""'
+    print(f"--- {nom} ---")
+    print(prompt)</code></pre>
+      <pre class="sortie"><samp>--- critique_1 ---
+Tu es un assistant en analyse de discours. Donne le ton du texte (positif, négatif ou mitigé) et cite la phrase qui le montre le mieux.
+"""Un roman lumineux, porté par une écriture limpide."""
+--- critique_2 ---
+Tu es un assistant en analyse de discours. Donne le ton du texte (positif, négatif ou mitigé) et cite la phrase qui le montre le mieux.
+"""Une intrigue confuse et des personnages sans relief."""</samp></pre>
+    </figure>
+    <p>Une même consigne appliquée à chaque texte rend les réponses comparables : c'est la condition de toute analyse de corpus, avec ou sans assistant.</p>
+
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Trois règles avant d'envoyer un texte</p>
+      <ul>
+        <li><strong>Vérifier</strong> : un assistant invente parfois, avec aplomb, des citations, des dates ou des références (on parle d'<dfn>hallucination</dfn>). Toute information reprise se vérifie dans une source.</li>
+        <li><strong>Protéger</strong> : le texte part sur un serveur. N'y collez ni données personnelles (réponses de questionnaire, copies), ni textes protégés (loi 18-07 sur la protection des données personnelles).</li>
+        <li><strong>Déclarer</strong> : indiquez dans votre travail quel assistant vous avez utilisé, pour quoi faire et avec quels prompts (<a href="enseignant.html#guide-ia-charte">charte d'usage de l'IA</a>).</li>
+      </ul>
+    </aside>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">À retenir</p>
+      <p>Un bon prompt dit quel rôle tenir, quoi faire, sur quoi, sous quelle forme et dans quelles limites. On découpe, on donne des exemples, on demande des preuves, on vérifie. L'assistant explique le code ; c'est vous qui l'écrivez et l'exécutez.</p>
+    </aside>
+  </article>
 
   <!-- ============================================================ 1 -->
   <article class="lecon" id="c2-installer">
