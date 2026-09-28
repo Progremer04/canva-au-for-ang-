@@ -2,7 +2,7 @@
   <header class="chapitre-tete">
     <p class="surtitre">الفصل 1 · أسبوع واحد</p>
     <h2 class="titre-section" id="chapitre-1-titre">مدخل إلى الذكاء الاصطناعي</h2>
-    <p class="chapeau">في نهاية هذا الفصل، ستتمكّن من تعريف الذكاء الاصطناعي، وتحديد مراحله الكبرى، والتمييز بين الذكاء الاصطناعي الضيّق والذكاء الاصطناعي العام، وبين التعلم الخاضع للإشراف والتعلم غير الخاضع للإشراف، ومناقشة إسهاماته وحدوده بالنسبة إلى العلوم الإنسانية.</p>
+    <p class="chapeau">في نهاية هذا الفصل، ستتمكّن من تعريف الذكاء الاصطناعي، وتحديد مراحله الكبرى، والتمييز بين الذكاء الاصطناعي الضيّق والذكاء الاصطناعي العام، وبين التعلم الخاضع للإشراف والتعلم غير الخاضع للإشراف، وشرح كيفية معالجة الذكاء الاصطناعي للنص بطريقة مبسّطة، ومناقشة إسهاماته وحدوده بالنسبة إلى العلوم الإنسانية.</p>
     <ul class="puces"><li class="puce">محاضرة</li><li class="puce">الأعمال الموجَّهة (TD)</li><li class="puce">عمل شخصي</li></ul>
     <p class="chapitre-tete__lecon"><a class="bouton bouton--prisme" href="../chapitr1_first_lesson.html?lang=ar">الدرس 1 في عرض تقديمي: من الآلة الذاتية الحركة إلى الوكيل الذكي</a></p>
   </header>
@@ -13,6 +13,7 @@
       <li><a href="#c1-histoire">لمحة تاريخية</a></li>
       <li><a href="#c1-faible-forte">الذكاء الاصطناعي الضيّق (الضعيف) والذكاء الاصطناعي العام (القوي)</a></li>
       <li><a href="#c1-apprentissage">التعلم الخاضع للإشراف وغير الخاضع للإشراف</a></li>
+      <li><a href="#c1-texte">كيف «يفهم» الذكاء الاصطناعي النص</a></li>
       <li><a href="#c1-approches">مقاربات الذكاء الاصطناعي في حل المشكلات</a></li>
       <li><a href="#c1-perspectives">الآفاق والحدود والأخلاقيات</a></li>
     </ol>
@@ -198,6 +199,94 @@
       </ul>
       <p class="quiz-explication" hidden>إنه تعلم خاضع للإشراف: فالخطابات المصنَّفة الـ500 تشكّل البيانات الموسومة التي تدرّب النموذج. أما كون الخطابات الجديدة بلا وسوم فأمر طبيعي، إذ هذا بالضبط ما يجب على النموذج التنبؤ به. وكنا سنتحدث عن تعلم غير خاضع للإشراف لو لم يكن أي خطاب موسومًا وكنا نبحث عن مجموعات.</p>
     </div>
+  </article>
+
+  <article class="lecon" id="c1-texte">
+    <h3>كيف «يفهم» الذكاء الاصطناعي النص</h3>
+    <p>حين تكتب سؤالًا لمساعد مثل ChatGPT، فإن الآلة لا تقرأ كما تقرأ أنت. فالحاسوب لا يعرف إلا الأعداد: لذلك عليه أولًا أن يحوّل كلماتك إلى أعداد. وإليك ما يحدث، في أربع خطوات بسيطة.</p>
+
+    <ol class="etapes">
+      <li><p class="etape-titre">تقطيع النص إلى أجزاء</p><p>تُقطَّع الجملة إلى أجزاء صغيرة نسمّيها <dfn>الرموز</dfn> (<span class="terme-en" lang="fr">tokens</span>): فالكلمة الشائعة تبقى كاملة، أما الكلمة الطويلة أو النادرة فتُقسَّم إلى عدة قطع.</p></li>
+      <li><p class="etape-titre">تحويل كل جزء إلى أعداد</p><p>يحصل كل رمز على قائمة طويلة من الأعداد نسمّيها <dfn>المتّجه</dfn> (<span class="terme-en" lang="fr">vecteur</span>). وهذا المتّجه يشبه عنوانًا على خريطة كبيرة هي «خريطة المعاني»: فالكلمات المتقاربة في المعنى لها عناوين متقاربة.</p></li>
+      <li><p class="etape-titre">النظر إلى الكلمات المجاورة</p><p>تربط الآلة كل كلمة بالكلمات الأخرى في الجملة؛ وهذا ما نسمّيه <dfn>الانتباه</dfn> (<span class="terme-en" lang="fr">attention</span>). ففي «الفأرة تأكل الجبن» وفي «نقرتُ زرّ الفأرة»، لا تحمل كلمة «الفأرة» المعنى نفسه: والكلمتان المجاورتان «الجبن» و«نقرت» هما اللتان تسمحان باختيار المعنى الصحيح.</p></li>
+      <li><p class="etape-titre">تخمين التتمّة</p><p>تحسب الآلة الكلمة التي يُرجَّح أن تأتي بعد ذلك أكثر من غيرها، فتكتبها، ثم تبدأ من جديد، كلمةً بعد كلمة. وهكذا تُبنى إجابة ChatGPT، رمزًا واحدًا في كل مرة.</p></li>
+    </ol>
+
+    <h4>تُعرَف الكلمة بجيرانها</h4>
+    <p>كيف تتعلّم الآلة معاني الكلمات؟ لا أحد يعطيها قاموسًا. بل تقرأ مليارات الجمل وتلعب لعبة تخمين: تُخفي كلمةً، ثم تحاول أن تعثر عليها. جرّب بنفسك: «الـ___ يشرب الحليب وينام على الأريكة». لا بدّ أنك فكّرت في «القط»: فالكلمات المجاورة هي التي ساعدتك. والآلة تفعل الشيء نفسه، على نطاق واسع جدًا. فالكلمات التي تجاور في الغالب الكلماتِ نفسها، مثل «القط» و«الكلب»، تحصل على عناوين متقاربة في خريطة المعاني. وقد عبّر عن ذلك اللساني فيرث (J. R. Firth) منذ سنة 1957: «<em lang="en">You shall know a word by the company it keeps</em>»، أي «تُعرف الكلمة بصحبتها».</p>
+    <figure class="schema">
+      <svg viewBox="0 0 640 300" role="img" aria-labelledby="c1-carte-t">
+        <title id="c1-carte-t">خريطة المعاني: كلمات موضوعة بحسب جيرانها</title>
+        <defs><marker id="c1-fleche-mots" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="svg-pointe" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+        <rect class="svg-trait" x="16" y="16" width="608" height="268" rx="12"/>
+        <text class="svg-texte-doux" x="40" y="46">حيوانات</text>
+        <circle class="svg-noeud-accent" cx="70" cy="90" r="7"/><text class="svg-texte" x="84" y="95">قط</text>
+        <circle class="svg-noeud-accent" cx="130" cy="120" r="7"/><text class="svg-texte" x="144" y="125">كلب</text>
+        <circle class="svg-noeud-accent" cx="80" cy="150" r="7"/><text class="svg-texte" x="94" y="155">حصان</text>
+        <text class="svg-texte-doux" x="40" y="212">قراءة</text>
+        <circle class="svg-noeud" cx="70" cy="245" r="7"/><text class="svg-texte" x="84" y="250">كتاب</text>
+        <circle class="svg-noeud" cx="150" cy="232" r="7"/><text class="svg-texte" x="164" y="237">رواية</text>
+        <circle class="svg-noeud" cx="200" cy="262" r="7"/><text class="svg-texte" x="214" y="267">قارئ</text>
+        <line class="svg-trait" x1="340" y1="230" x2="510" y2="230" stroke-dasharray="5 5"/>
+        <line class="svg-trait" x1="400" y1="110" x2="570" y2="110" stroke-dasharray="5 5"/>
+        <line class="svg-trait-accent" x1="340" y1="230" x2="396" y2="116" marker-end="url(#c1-fleche-mots)"/>
+        <line class="svg-trait-accent" x1="510" y1="230" x2="566" y2="116" marker-end="url(#c1-fleche-mots)"/>
+        <circle class="svg-noeud" cx="340" cy="230" r="7"/><text class="svg-texte" x="340" y="258" text-anchor="middle">رجل</text>
+        <circle class="svg-noeud" cx="400" cy="110" r="7"/><text class="svg-texte" x="400" y="92" text-anchor="middle">امرأة</text>
+        <circle class="svg-noeud" cx="510" cy="230" r="7"/><text class="svg-texte" x="510" y="258" text-anchor="middle">ملك</text>
+        <circle class="svg-noeud" cx="570" cy="110" r="7"/><text class="svg-texte" x="570" y="92" text-anchor="middle">ملكة</text>
+        <text class="svg-texte-doux" x="455" y="46" text-anchor="middle">الفرق نفسه، الاتجاه نفسه</text>
+      </svg>
+      <figcaption>الكلمات التي تشترك في الجيران أنفسهم تتجمّع معًا: الحيوانات في جهة، والقراءة في جهة أخرى. بل إن الخريطة تحتفظ بالعلاقات أيضًا: فالانتقال من «رجل» إلى «امرأة» يشبه الانتقال من «ملك» إلى «ملكة».</figcaption>
+    </figure>
+
+    <h4>ترتيب الكلمات مهمّ</h4>
+    <p>كانت البرامج الأولى تكتفي بعدّ كلمات النص، كما لو أننا أفرغنا كيسًا على طاولة: وهذا ما نسمّيه <dfn>كيس الكلمات</dfn> (<span class="terme-en" lang="fr">sac de mots</span>). ففي نظر هذه البرامج، الجملتان «الكلب يعض الرجل» و«الرجل يعض الكلب» شيء واحد، لأنهما تتكوّنان من الكلمات نفسها. أما النماذج الحالية، وهي <dfn>المحوِّلات</dfn> (<span class="terme-en" lang="fr">Transformers</span>) التي ظهرت سنة 2017، فتراعي ترتيب الكلمات والسياق: وهذا ما يجعلها فعّالة إلى هذا الحدّ.</p>
+
+    <h4>إذن، هل تفهم الآلة حقًّا؟</h4>
+    <p>ليس كما نفهم نحن. فقد تعلّمت الآلة كيف تُستعمَل الكلمات معًا، لا ما تدلّ عليه في العالم: فهي لم تشرب الحليب يومًا، ولم تداعب قطًّا. ولهذا قد تكتب جملةً سليمة تمامًا ومع ذلك خاطئة، وهو ما نسمّيه <a href="#c1-perspectives">الهلوسة</a>. ولا يزال الباحثون يتناقشون في هذه المسألة، كما رأينا في حجة <a href="#c1-faible-forte">الغرفة الصينية</a>.</p>
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>القارئ البشري</h4>
+        <ul>
+          <li>يقرأ حروفًا وكلمات؛</li>
+          <li>يربط الكلمات بتجربته في العالم؛</li>
+          <li>يبحث عن قصد المؤلف؛</li>
+          <li>يدرك في الغالب متى لا يعرف.</li>
+        </ul>
+      </div>
+      <div class="comparaison-col">
+        <h4>النموذج اللغوي</h4>
+        <ul>
+          <li>يعالج أعدادًا؛</li>
+          <li>يربط الكلمات بكلمات أخرى؛</li>
+          <li>يحسب التتمّة الأكثر احتمالًا؛</li>
+          <li>قد يخطئ وهو واثق من نفسه.</li>
+        </ul>
+      </div>
+    </div>
+    <p>وللتعمّق أكثر، بصيغ رياضية وبرامج مكتوبة بلغة Python، انظر <a href="#c3-deep">التعلم العميق</a> في الفصل 3.</p>
+
+    <div class="quiz">
+      <p class="quiz-question">كيف يعرف الذكاء الاصطناعي أن كلمة «الفأرة» تدلّ على أداة في جملة «نقرتُ زرّ الفأرة»؟</p>
+      <ul class="quiz-options">
+        <li><button type="button" class="quiz-option">يبحث عن الكلمة في قاموس.</button></li>
+        <li><button type="button" class="quiz-option" data-correct>ينظر إلى الكلمات المجاورة، مثل «نقرت».</button></li>
+        <li><button type="button" class="quiz-option">كتب مبرمجٌ قاعدةً خاصة بهذه الكلمة.</button></li>
+        <li><button type="button" class="quiz-option">يفهم الجملة تمامًا كما يفهمها الإنسان.</button></li>
+      </ul>
+      <p class="quiz-explication" hidden>السياق هو الذي يحسم الأمر: فبفضل الانتباه، تربط الآلة «الفأرة» بـ«نقرت» وتختار معنى «الأداة». فهي لا تملك قاموسًا، ولم يكتب أحدٌ قاعدةً لهذه الكلمة، وتبقى طريقتها في معالجة الجملة عمليةً حسابية، مختلفة جدًا عن قراءتنا.</p>
+    </div>
+
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">ما يجب تذكّره</p>
+      <ul>
+        <li>يحوّل الذكاء الاصطناعي النص إلى أعداد: فيقطّعه إلى أجزاء (رموز)، ثم يجعل كل جزء متّجهًا.</li>
+        <li>يتعلّم معنى الكلمة من جيرانها، بتخمين كلمات مخفية في كميات هائلة من النصوص.</li>
+        <li>ينظر إلى السياق ليختار المعنى الصحيح، ثم يخمّن التتمّة، كلمةً بعد كلمة.</li>
+        <li>لا يفهم كما نفهم نحن: فتحقّق دائمًا مما ينتجه.</li>
+      </ul>
+    </aside>
   </article>
 
   <article class="lecon" id="c1-approches">
