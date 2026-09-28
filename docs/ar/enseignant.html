@@ -538,7 +538,365 @@
   </article>
 </section>
 
+<section class="chapitre" id="guide-langues" aria-labelledby="guide-langues-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">دليل الأستاذ · طلبة اللغات</p>
+    <h2 class="titre-section" id="guide-langues-titre">تدريس الذكاء الاصطناعي دون تكوين مبرمجين</h2>
+    <p class="chapeau">لم يسبق لطلبة أفواجكم الستة في السنة الثانية ماستر (الإنجليزية، والأدب العام والمقارن، والتعليمية) أن برمجوا، ولن تجعلوا منهم مبرمجين. سيقرؤون شيفرة كاملة وينفّذونها ويعدّلونها، ثم يؤوّلون النتائج في تخصّصهم. ويظلّ البرنامج الرسمي مغطًّى.</p>
+    <ul class="puces"><li class="puce">ستة أفواج</li><li class="puce">عشرة دفاتر جاهزة</li><li class="puce">لا شيفرة تُكتب</li></ul>
+  </header>
 
+  <nav class="sommaire-chapitre" aria-label="فهرس: تدريس الذكاء الاصطناعي لطلبة اللغات">
+    <ol>
+      <li><a href="#guide-langues-principe">التشخيص والاستجابة</a></li>
+      <li><a href="#guide-langues-outils">أدوات دون برمجة لكل جزء</a></li>
+      <li><a href="#guide-langues-parcours">ثلاثة مسارات: ANG وLGC وDID</a></li>
+      <li><a href="#guide-langues-carnets">الدفاتر الجاهزة للتنفيذ</a></li>
+      <li><a href="#guide-langues-seance">حصة نموذجية في قاعة الإعلام الآلي</a></li>
+      <li><a href="#guide-langues-evaluation">التقييم دون مطالبة الطلبة بكتابة شيفرة</a></li>
+    </ol>
+  </nav>
+
+  <article class="lecon" id="guide-langues-principe">
+    <h3>التشخيص والاستجابة</h3>
+    <p>أنتم محقّون في نقطة واحدة: في ساعة و30 دقيقة أسبوعيًّا، لن يتعلّم طلبة اللغات كتابة البرامج. ومع ذلك يمكنهم أن يتعلّموا الكثير. فالطالب الذي يقرأ عشرة أسطر من Python، ويتوقّع مُخرَجها، وينفّذها، ويغيّر قيمة، ويشرح لماذا تغيّرت النتيجة، قد فهم ما تفعله الآلة. والبرنامج الرسمي يطلب «القدرة على استعمال لغة بايثون»، لا امتهان التطوير البرمجي. أما الخطوة الأصعب، أي بيان ما يعنيه رقمٌ ما بالنسبة إلى نص أو إلى قسم دراسي، فهي من صميم تكوينهم أصلًا.</p>
+
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>ما لن يفعلوه</h4>
+        <ul>
+          <li>كتابة برنامج انطلاقًا من صفحة بيضاء.</li>
+          <li>حفظ قواعد كتابة اللغة عن ظهر قلب.</li>
+          <li>أن يُقيَّموا على شيفرة مكتوبة باليد.</li>
+        </ul>
+      </div>
+      <div class="comparaison-col">
+        <h4>ما سيفعلونه</h4>
+        <ul>
+          <li>تنفيذ دفتر كامل، خلية خلية.</li>
+          <li>التوقّع كتابيًّا لما ستعرضه خلية ما.</li>
+          <li>تغيير قيمة واحدة وملاحظة أثرها.</li>
+          <li>تأويل النتيجة في تخصّصهم، وكتابة حدودها.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>البرنامج الرسمي، مغطًّى بالقراءة والتنفيذ</caption>
+      <thead><tr><th scope="col">جزء البرنامج</th><th scope="col">كيف يُعالَج</th><th scope="col">الوسائل</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><a href="index.html#chapitre-1">الفصل 1</a></th><td>دون تغيير: المفاهيم، والتاريخ، والأخلاقيات، وأعمال موجَّهة على الورق</td><td>العرض التفاعلي في الصفحة الرئيسية، وTeachable Machine</td></tr>
+        <tr><th scope="row"><a href="index.html#chapitre-2">الفصل 2</a> · Python</th><td>تُقرأ الأمثلة، ويُتوقَّع مُخرَجها، وتُنفَّذ، وتُعدَّل؛ ويتعلّم الطلبة قراءة رسالة خطأ</td><td>الدفتر 00، وبرنامج الجداول الإلكترونية</td></tr>
+        <tr><th scope="row"><a href="index.html#chapitre-3">الفصل 3</a></th><td>الحسابات اليدوية في <a href="index.html#td-ch3">TD 3</a>، والعروض التفاعلية في الموقع، ثم الخوارزمية نفسها في دفتر</td><td>الدفاتر 06 و07 و08</td></tr>
+        <tr><th scope="row"><a href="index.html#mini-projet">المشروع المصغَّر</a></th><td>دفتر كامل لكل موضوع: يختار الطالب البيانات والسؤال، ويضبط الحقول، ويؤوّل، ويحرّر</td><td>الدفاتر من 01 إلى 05، و09</td></tr>
+      </tbody>
+    </table></div>
+
+    <h4>مقاربتان مجرَّبتان</h4>
+    <p>مقاربة <dfn>PRIMM</dfn> (<span class="terme-en" lang="en">Predict, Run, Investigate, Modify, Make</span>: التوقّع، والتنفيذ، والفحص، والتعديل، والإنشاء) وصفتها Sue Sentance وJane Waite وMaria Kallia (<em lang="en">Computer Science Education</em>، 2019) انطلاقًا من عمل أُنجز في التعليم الثانوي الإنجليزي. يتوقّع التلميذ مُخرَج برنامج يعمل وهو يتناقش مع زميل، ثم ينفّذه للتحقّق، ويفحصه، ويعدّله، ولا يكتب برنامجه الخاص إلا في النهاية. ويتبع تدرّج <dfn>Use–Modify–Create</dfn> (الاستعمال، ثم التعديل، ثم الإنشاء) الذي اقترحته Irene Lee ومشاركوها في التأليف (<em lang="en">ACM Inroads</em>، 2011) المنطقَ نفسه.</p>
+    <p>صُمّمت هاتان المقاربتان لتلاميذ صغار يتعلّمون البرمجة، لا لطلبة ماستر في اللغات: فنحن نأخذ منهما ترتيب المراحل، دون أن نعد بنتائج. ونتوقّف قبل مرحلتهما الأخيرة. فعندكم، يعني «الإنشاء» إنتاج تحليل (اختيار البيانات، وطرح سؤال، والتأويل، والكتابة)، لا إنتاج برنامج.</p>
+
+    <h4>ما الذي يتغيّر في التقييم</h4>
+    <p>نقيّم الفهم والتأويل، لا الشيفرة أبدًا: توقّعًا معلَّلًا، ولو كان خاطئًا، وشرحَ سطر، والتعليقَ على نتيجة. وفي <a href="#guide-evaluation-grilles">شبكة تقييم المشروع المصغَّر</a>، يصبح معيار «المنهج والشيفرة»: الدفتر يُنفَّذ، والقيم المغيَّرة مبرَّرة، ويشرح الطالب شفويًّا خلية تختارونها أنتم (<a href="#guide-langues-evaluation">التفاصيل</a>).</p>
+
+    <aside class="encadre encadre--retenir"><p class="encadre-titre">قاعدة العمل</p>
+      <p>لا صفحة بيضاء للشيفرة أبدًا. كل خلية تُقرأ، ويُتوقَّع مُخرَجها، ثم تُنفَّذ؛ ولا تتغيّر إلا قيمة واحدة في كل مرة؛ وتُختتم كل حصة ببضعة أسطر من التأويل تُكتب في تخصّص الطالب. والعلامة تُمنح على هذه الأسطر، لا على الشيفرة.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-langues-outils">
+    <h3>أدوات دون برمجة لكل جزء</h3>
+    <p>أداة تعمل بالأزرار تُظهر فكرةً في عشر دقائق؛ ثم يبيّن الدفتر الحسابات نفسها الكامنة وراء الأزرار. وتجدون عروضًا مفصَّلة في رفّ <a href="#guide-ressources-outils">الأدوات</a>، وفي النشاطين <a href="#guide-activite-voyant">Voyant Tools</a> و<a href="#guide-activite-teachable">Teachable Machine</a>. جرّبوا كل أداة على شبكة المخبر 02 قبل الحصة.</p>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>أداة دون برمجة، أو تكاد، لكل جزء من المقياس</caption>
+      <thead><tr><th scope="col">الأداة</th><th scope="col">ما يفعله الطلبة</th><th scope="col">الفصل أو الموضوع</th><th scope="col">الرابط</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">قارئ المشاعر في الموقع</th><td>كتابة جملة (مراجعة نقدية، أو بيت شعري، أو إجابة متعلّم)، ورؤية الكلمات التي ترفع الدرجة أو تخفضها، ثم البحث عن جملة تخدع الأداة</td><td>الفصل 1؛ الموضوع 1</td><td><a href="index.html#accueil">الصفحة الرئيسية</a></td></tr>
+        <tr><th scope="row">العروض التفاعلية للفصل 3</th><td>توقّع القاعدة التي يفعّلها التسلسل الأمامي؛ وتغيير خطوة الانحدار التدرّجي؛ وتقديم خوارزمية k-المتوسطات خطوة خطوة، ثم تغيير مراكز الانطلاق</td><td>الفصل 3؛ الموضوع 2</td><td><a href="index.html#c3-symbolique">التسلسل الأمامي</a>، <a href="index.html#c3-algorithmes">الخوارزميات</a></td></tr>
+        <tr><th scope="row">Teachable Machine</th><td>تدريب مصنِّف للصور أو الأصوات أو الوضعيات الجسدية بالأمثلة، ثم الإيقاع به. وفي الإنجليزية: كلمتان منطوقتان (<span lang="en">ship</span> و<span lang="en">sheep</span>)، تُختبران بصوت آخر</td><td>الفصلان 1 و3، التعلم الخاضع للإشراف</td><td><a href="https://teachablemachine.withgoogle.com" target="_blank" rel="noopener">teachablemachine.withgoogle.com</a></td></tr>
+        <tr><th scope="row">Orange Data Mining، وحدة Text</th><td>ربط كتل بالفأرة: المدوّنة، والتنظيف، وسحابة الكلمات، والمشاعر، وخوارزمية k-المتوسطات، وشجرة القرار، ومصفوفة الالتباس. وتُضاف وحدة Text من القائمة «Options › Add-ons» (خيارات › إضافات)</td><td>المواضيع 1 و2 و4</td><td><a href="https://orangedatamining.com" target="_blank" rel="noopener">orangedatamining.com</a></td></tr>
+        <tr><th scope="row">Voyant Tools</th><td>لصق نص: التواترات، وسحابة الكلمات، والفهارس السياقية، وتوزّع كلمة على امتداد النص</td><td>الفصل 2، الملفات النصية؛ الموضوع 3</td><td><a href="https://voyant-tools.org" target="_blank" rel="noopener">voyant-tools.org</a></td></tr>
+        <tr><th scope="row">AntConc</th><td>برنامج الفهارس السياقية المجاني الذي طوّره Laurence Anthony، وهو شائع في لسانيات المدوّنات: الفهارس السياقية، وقوائم الكلمات، والمتلازمات اللفظية، والكلمات المفتاحية مقارنةً بمدوّنة مرجعية. يُثبَّت على الأجهزة، ويعمل دون اتصال بالإنترنت</td><td>الفصل 2؛ الموضوع 3؛ مدوّنات المتعلّمين</td><td><a href="https://www.laurenceanthony.net/software/antconc/" target="_blank" rel="noopener">laurenceanthony.net</a></td></tr>
+        <tr><th scope="row">Gephi، أو Gephi Lite في المتصفح</th><td>استيراد جدول روابط بين الشخصيات، وحساب الدرجة والوساطة والجماعات، ورسم الشبكة</td><td>الموضوع 5</td><td><a href="https://gephi.org" target="_blank" rel="noopener">gephi.org</a></td></tr>
+        <tr><th scope="row">برنامج الجداول الإلكترونية (LibreOffice Calc أو Excel)</th><td>الفرز، والتصفية، والعدّ، والجدول المحوري (نظير <code>groupby</code> في pandas). والنقاط الخمس في <a href="index.html#td-ch3-ex2a">التمرين 2a من TD 3</a> في مخطط انتشار، مع خط اتجاه خطي ومعادلته: فنجد من جديد 0,9 و1,3</td><td>الفصل 2، الجداول؛ الفصل 3، الانحدار؛ الموضوعان 2 و4</td><td><a href="https://www.libreoffice.org" target="_blank" rel="noopener">libreoffice.org</a></td></tr>
+        <tr><th scope="row">وكلاء المحادثة</th><td>موضوعات للدراسة، لا مساعدون: التحقّق من المراجع، ورصد أخطاء شرحٍ ما، ومقارنة الإجابات بحسب لغة السؤال</td><td>الفصل 3، المحوِّلات (Transformers)؛ الأخلاقيات</td><td><a href="#guide-ia">الذكاء الاصطناعي التوليدي في قاعة الدرس</a></td></tr>
+      </tbody>
+    </table></div>
+
+    <aside class="encadre encadre--attention"><p class="encadre-titre">نصوص المتعلّمين في خدمة على الإنترنت</p><p>يرسل Voyant Tools ووكلاء المحادثة النص إلى خادم: فلا تلصقوا فيها أوراق الطلبة، ولا إجابات الاستبيانات، ولا نصوصًا محمية. ولهذه البيانات، فضّلوا الأدوات المثبَّتة على الأجهزة (AntConc، وOrange، وبرنامج الجداول الإلكترونية، وJupyter).</p></aside>
+  </article>
+
+  <article class="lecon" id="guide-langues-parcours">
+    <h3>ثلاثة مسارات: ANG وLGC وDID</h3>
+    <p>تبقى مواضيع <a href="index.html#mini-projet">المشروع المصغَّر</a> الخمسة هي مواضيع البرنامج الرسمي، بالمناهج نفسها والدفاتر نفسها. ومن فئة من الطلبة إلى أخرى، لا يتغيّر إلا البيانات والسؤال. وإذا استُعملت بيانات افتراضية، صُرِّح بذلك في التقرير.</p>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>المواضيع الخمسة مكيَّفة مع الفئات الثلاث (اقتراحات)</caption>
+      <thead><tr><th scope="col">الموضوع</th><th scope="col">ANG · الدراسات الإنجليزية</th><th scope="col">LGC · الأدب المقارن</th><th scope="col">DID · التعليمية</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><a href="index.html#mp-sujet-1">1 · المشاعر</a></th><td>VADER على مراجعات روايات أو منشورات عامة، مقارَنًا بحكم الطالب على 30 مثالًا</td><td>نبرة رواية فصلًا فصلًا؛ نصٌّ مقارَنًا بترجمته الإنجليزية</td><td>تعليقات مجهولة الهوية لمتعلّمين على درس؛ نبرة ملاحظات الأساتذة على أوراق الطلبة</td></tr>
+        <tr><th scope="row"><a href="index.html#mp-sujet-2">2 · العنقدة</a></th><td>استبيان لمتعلّمي الإنجليزية: القراءة، والدافعية، والقلق من التحدّث، واستعمال الذكاء الاصطناعي</td><td>قصائد أو روايات موصوفة ببضع سمات (طول الجمل، ونسبة الحوار)، كما في <a href="#guide-activite-kmoyennes">نشاط البطاقات</a></td><td>ملامح متعلّمين مستخرجة من استبيان أُجري بموافقتهم؛ وبنود مستوحاة من سلالم منشورة، مثل قلق اللغة الأجنبية (Horwitz وHorwitz وCope، 1986)</td></tr>
+        <tr><th scope="row"><a href="index.html#mp-sujet-3">3 · الخطابات</a></th><td>خطابات تنصيب الرؤساء الأمريكيين، و<span lang="en">Gettysburg Address</span>، و<a href="#guide-ressources-donnees">UN General Debate Corpus</a>: الكلمات المفتاحية، والكيانات المسمّاة، والفهارس السياقية</td><td>خطابات كُتّاب من الملك العام: هوغو في الجمعية الوطنية، وجوريس وخطابه «Discours à la jeunesse» (خطاب إلى الشباب، 1903)</td><td>الخطاب المؤسسي وخطاب القسم: تعليمات الكتب المدرسية، والبرامج الرسمية، وتفريغات نصية مُخفاة الهوية</td></tr>
+        <tr><th scope="row"><a href="index.html#mp-sujet-4">4 · التنبّؤ</a></th><td>استهلاك الوسائط بالإنجليزية (المسلسلات، والبودكاست، والقراءة) والنتيجة في اختبار تحديد المستوى، ببيانات افتراضية</td><td>عادات القراءة وشراء الكتب، للتنبّؤ بالنوع الأدبي المفضَّل، ببيانات افتراضية</td><td>استعمال موارد درس (الفيديوهات، والتمارين) والنجاح، ببيانات افتراضية؛ وأخلاقيات التنبّؤ المدرسي</td></tr>
+        <tr><th scope="row"><a href="index.html#mp-sujet-5">5 · الشبكات</a></th><td>شخصيات مسرحية لشكسبير، تُربط فيما بينها حين تتقاسم مشهدًا</td><td>رواية <em>Les Misérables</em> (البؤساء) المرفقة بمكتبة NetworkX، ثم مسرحية لموليير أو لراسين تُستخرج روابطها يدويًّا</td><td>من يردّ على من في منتدى القسم أو في مراجعة بين الأقران، مع ترميز الأسماء</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="grille-cartes">
+      <article class="carte">
+        <h4>ANG · العمل بالإنجليزية</h4>
+        <p>دفاتر و<a href="en/index.html">موقع بالإنجليزية</a>، وVADER، والنموذج الإنجليزي لمكتبة spaCy. وتُكتب الإجابات بالإنجليزية: فيصبح كل دفتر تمرّسًا باللغة وبمفرداتها التقنية.</p>
+        <p>للّسانيين: AntConc ومدوّنات متعلّمين، ويُفضَّل أن تكون من إنتاجات طلبتكم، مُخفاة الهوية وبموافقتهم؛ وقد يتطلّب النفاذ إلى المدوّنات المنشورة رخصة.</p>
+      </article>
+      <article class="carte">
+        <h4>LGC · المدوّنات الأدبية</h4>
+        <p>دفاتر بالفرنسية، ونصوص من الملك العام (<a href="#guide-ressources-donnees">Gallica وWikisource وGutenberg</a>). والزاوية المقارنية تلائم ذلك: التحليل نفسه على نص وترجمته، أو على مؤلفَين، أو على حقبتين.</p>
+        <p>السؤال الذي يُعاد طرحه دون انقطاع: ما الذي يراه الحساب ولا تراه القراءة الفاحصة، والعكس بالعكس؟</p>
+      </article>
+      <article class="carte">
+        <h4>DID · قسم اللغة</h4>
+        <p>دفاتر باللغة التي سيدرّسها الطلبة، الفرنسية أو الإنجليزية. والدفتر 09 موجَّه إليهم: المقروئية، والملمح المعجمي، والنص ذو الفراغات، وإجابة المتعلّم مقارَنةً بالإجابة المنتظرة.</p>
+        <p>موضوع خاص بهم: المعلّمون الخصوصيون القائمون على الذكاء الاصطناعي في قسم اللغة. اجعلوهم يختبرون وكيل محادثة بوصفه مصحِّحًا أو شريكًا في المحادثة، ثم يرصدون نجاحاته، وأخطاءه، والقواعد التي يخترعها، ومصير بيانات المتعلّمين (<a href="#guide-ia-devoirs">أعمال تحافظ على معناها</a>).</p>
+      </article>
+    </div>
+  </article>
+
+  <article class="lecon" id="guide-langues-carnets">
+    <h3>الدفاتر الجاهزة للتنفيذ</h3>
+    <p>عشرة دفاتر Jupyter كاملة، بالفرنسية والإنجليزية: الشيفرة نفسها، والنصوص والبيانات بلغة الدفتر. ويتبع كلٌّ منها مقاربة PRIMM: سؤال توقّع قبل كل خلية، والنتيجة المنتظرة بعدها، وحقول «À MODIFIER» (وفي الدفاتر الإنجليزية «TO CHANGE»)، ثم أقسام «À vous» (دوركم) و«Pour le mini-projet» (للمشروع المصغَّر) و«À rendre» (للتسليم) و«Ce qu'il faut retenir» (ما يجب تذكّره)، ورابط الدرس. والبيانات مرفقة؛ ولا تتطلّب اتصالًا بالإنترنت إلا الخلايا الموسومة «en ligne»، أي خلايا spaCy وTransformers، ولا تتوقّف عليها أي خلية أخرى.</p>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>الدفاتر العشرة وروابطها</caption>
+      <thead><tr><th scope="col">العنوان</th><th scope="col">جزء المقياس</th><th scope="col">ما يفعله الطلبة</th><th scope="col">الفتح أو التنزيل</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">التعرّف على الدفتر: Python دون خوف<br><code>00-prise-en-main</code></th><td><a href="index.html#chapitre-2">الفصل 2</a></td><td>تنفيذ خلية، وتغيير قيمة، والملاحظة؛ أساسيات الفصل 2 على أمثلة من الآداب</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/00-prise-en-main.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/00-prise-en-main.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/00-prise-en-main.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/00-prise-en-main.ipynb" download>تنزيل (EN)</a></td></tr>
+        <tr><th scope="row">تحليل المشاعر<br><code>01-sentiments</code></th><td><a href="index.html#mp-sujet-1">الموضوع 1</a></td><td>منح الجمل درجات: قوائم كلمات شفافة بالفرنسية، وVADER بالإنجليزية؛ وخلية اختيارية عبر الإنترنت بنموذج متعدد اللغات</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/01-sentiments.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/01-sentiments.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/01-sentiments.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/01-sentiments.ipynb" download>تنزيل (EN)</a></td></tr>
+        <tr><th scope="row">عنقدة استبيان للمتعلّمين<br><code>02-questionnaire</code></th><td><a href="index.html#mp-sujet-2">الموضوع 2</a></td><td>تشغيل خوارزمية k-المتوسطات على إجابات (الدافعية، والقراءة، والقلق، واستعمال الذكاء الاصطناعي)، وتغيير k، وتسمية الملامح</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/02-questionnaire.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/02-questionnaire.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/02-questionnaire.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/02-questionnaire.ipynb" download>تنزيل (EN)</a></td></tr>
+        <tr><th scope="row">استخراج المعلومات من الخطابات السياسية<br><code>03-discours</code></th><td><a href="index.html#mp-sujet-3">الموضوع 3</a></td><td>التواترات، والكلمات المفتاحية (TF-IDF)، والفهارس السياقية؛ والكيانات المسمّاة بمكتبة spaCy، عبر الإنترنت</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/03-discours.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/03-discours.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/03-discours.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/03-discours.ipynb" download>تنزيل (EN)</a></td></tr>
+        <tr><th scope="row">النمذجة التنبّئية<br><code>04-prediction</code></th><td><a href="index.html#mp-sujet-4">الموضوع 4</a></td><td>شجرة القرار والانحدار اللوجستي، ومجموعتا التدريب والاختبار، والدقة الإجمالية، ومصفوفة الالتباس، وسؤال أخلاقي</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/04-prediction.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/04-prediction.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/04-prediction.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/04-prediction.ipynb" download>تنزيل (EN)</a></td></tr>
+        <tr><th scope="row">تحليل الشبكات<br><code>05-reseaux</code></th><td><a href="index.html#mp-sujet-5">الموضوع 5</a></td><td>شبكة شخصيات <em>Les Misérables</em> (البؤساء): الدرجة، والوساطة، والرسم، والجماعات</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/05-reseaux.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/05-reseaux.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/05-reseaux.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/05-reseaux.ipynb" download>تنزيل (EN)</a></td></tr>
+        <tr><th scope="row">النظام الخبير والتسلسل الأمامي<br><code>06-systeme-expert</code></th><td><a href="index.html#c3-symbolique">الفصل 3</a></td><td>قواعد الأشكال الشعرية والتمرين 1 من TD 3، يُجريها البرنامج خطوة خطوة</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/06-systeme-expert.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/06-systeme-expert.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/06-systeme-expert.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/06-systeme-expert.ipynb" download>تنزيل (EN)</a></td></tr>
+        <tr><th scope="row">خوارزمية k-المتوسطات، والانحدار، والانحدار التدرّجي<br><code>07-apprentissage</code></th><td><a href="index.html#c3-algorithmes">الفصل 3</a></td><td>إعادة حسابات الأعمال الموجَّهة بواسطة البرنامج، ثم المقارنة مع scikit-learn</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/07-apprentissage.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/07-apprentissage.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/07-apprentissage.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/07-apprentissage.ipynb" download>تنزيل (EN)</a></td></tr>
+        <tr><th scope="row">النماذج اللغوية والذكاء الاصطناعي التوليدي<br><code>08-ia-generative</code></th><td><a href="index.html#c3-deep">الفصل 3</a></td><td>نموذج قائم على ثنائيات الكلمات يُبنى على مدوّنة صغيرة، ثم المحوِّلات (Transformers) عبر الإنترنت (الكلمة المحجوبة، والتوليد)</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/08-ia-generative.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/08-ia-generative.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/08-ia-generative.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/08-ia-generative.ipynb" download>تنزيل (EN)</a></td></tr>
+        <tr><th scope="row">الذكاء الاصطناعي في قسم اللغة<br><code>09-classe-de-langue</code></th><td>DID وANG</td><td>المقروئية (Flesch للإنجليزية، وKandel وMoles للفرنسية)، والملمح المعجمي، والنص ذو الفراغات المولَّد آليًّا، وإجابة المتعلّم مقارَنةً بالإجابة المنتظرة</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/09-classe-de-langue.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/09-classe-de-langue.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="../notebooks/fr/09-classe-de-langue.ipynb" download>تنزيل (FR)</a><br><a href="../notebooks/en/09-classe-de-langue.ipynb" download>تنزيل (EN)</a></td></tr>
+      </tbody>
+    </table></div>
+    <p>النسخة الإنجليزية للتنزيل: الرابط نفسه، مع <code>en</code> بدل <code>fr</code>. والترتيب استرشادي، وفق <a href="#guide-progression">التدرّج</a>: الدفتر 00 في الفصل 2؛ و06 في الأسبوع 4؛ و07 في الأسبوعين 5 و6؛ و08 في الأسبوع 8؛ ومن 01 إلى 05 خلال المشروع المصغَّر؛ و09 بعد 00، لأفواج DID وANG.</p>
+
+    <h4>تنفيذ دفتر في Colab لأول مرة</h4>
+    <ol class="etapes">
+      <li><p class="etape-titre">حساب Google</p><p>يستعمل كل طالب حسابه الخاص. اطلبوا منهم إنشاءه قبل الحصة: ففي القاعة يستغرق ذلك وقتًا، وكثيرًا ما يتطلّب هاتفًا.</p></li>
+      <li><p class="etape-titre">فتح الرابط</p><p>يفتح الرابط «Colab (FR)» أو «Colab (EN)» الدفتر في المتصفح. وعند التنفيذ الأول، ينبّه Colab إلى أن الدفتر ليس من Google: اختاروا «Exécuter quand même» (التشغيل على أي حال).</p></li>
+      <li><p class="etape-titre">التنفيذ</p><p>خلية خلية، بالزر ▶ أو بالمفتاحين <kbd>Shift</kbd> + <kbd>Enter</kbd>، بعد قراءة سؤال التوقّع. ولإعادة تنفيذ كل شيء: «Exécution › Tout exécuter» (التشغيل › تشغيل الكل).</p></li>
+      <li><p class="etape-titre">تعديل حقول «À MODIFIER» وحدها</p><p>خانات أو مؤشرات منزلقة أو قوائم على يمين الخلية. وبعد أي تغيير، أعيدوا تنفيذ هذه الخلية والخلايا التي تليها. أما بقية الشيفرة فلا تُمسّ.</p></li>
+      <li><p class="etape-titre">حفظ نسخة</p><p>من القائمة «Fichier › Enregistrer une copie dans Drive» (ملف › حفظ نسخة في Drive)، وتُحفظ النسخة في مجلد «Colab Notebooks». ومن دونها، يضيع كل شيء عند الإغلاق.</p></li>
+      <li><p class="etape-titre">تسليم العمل</p><p>من القائمة «Fichier › Télécharger › Télécharger le fichier .ipynb» (ملف › تنزيل › تنزيل ملف &#x200E;.ipynb)، أو «Fichier › Imprimer» (ملف › طباعة) ثم «Enregistrer au format PDF» (الحفظ بصيغة PDF). ويحتفظ الملف بالمخرجات وبالإجابات المكتوبة.</p></li>
+    </ol>
+
+    <h4>دون إنترنت: Jupyter على الأجهزة</h4>
+    <p>إذا كان Python مثبَّتًا في المخبر 02، فإن <code>run.bat notebook</code> يثبّت عند الحاجة مكتبات المقياس ويفتح Jupyter في مجلد المشروع (<a href="#guide-demarrer-etapes">الخطوة 2 من خطوات الانطلاق</a>). والدفاتر موجودة في <code>docs › notebooks › fr</code> (أو <code>en</code>). وحقول «À MODIFIER» فيها مجرد أسطر يليها التعليق <code>#@param</code>: لا يُغيَّر فيها إلا القيمة. وتجاوزوا الخلايا الموسومة «en ligne».</p>
+
+    <aside class="encadre encadre--attention"><p class="encadre-titre">إذا كان مستودع GitHub خاصًّا</p><p>تقرأ روابط Colab الدفاتر من GitHub؛ وفي حالة المستودع الخاص، يطلب Colab إذنًا من GitHub لا يملكه الطلبة. فوزّعوا حينئذ الملف المنزَّل (عبر الفضاء الرقمي للمقياس، أو مفتاح USB)، واطلبوا منهم فتحه من القائمة «Fichier › Importer un notebook» (ملف › استيراد دفتر).</p></aside>
+    <aside class="encadre encadre--attention"><p class="encadre-titre">الأجهزة المشتركة</p><p>في المخبر 02، تتعاقب الأفواج دون استراحة. خصّصوا خمس دقائق للحفظ والخروج من حساب Google، وإلا وجد الطالب التالي Drive الطالب السابق مفتوحًا.</p></aside>
+  </article>
+
+  <article class="lecon" id="guide-langues-seance">
+    <h3>حصة نموذجية في قاعة الإعلام الآلي</h3>
+    <p>لكل فوج ساعة و30 دقيقة في الأسبوع بالمخبر 02: تجمع الحصة بين المحاضرة والأعمال الموجَّهة والأعمال التطبيقية. ويُقرأ درس الموقع قبلها، كما ينص على ذلك <a href="index.html#me-semaine">الأسبوع النموذجي</a> للطلبة.</p>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>أسبوعكم في المخبر 02</caption>
+      <thead><tr><th scope="col">اليوم</th><th scope="col">التوقيت</th><th scope="col">الفوج</th><th scope="col">الدفاتر</th></tr></thead>
+      <tbody>
+        <tr><td>الثلاثاء</td><td>&#x2066;09:30–11:00&#x2069;</td><td>IA M02 ANG، الفوج 1</td><td>بالإنجليزية</td></tr>
+        <tr><td>الثلاثاء</td><td>&#x2066;11:00–12:30&#x2069;</td><td>IA M02 ANG، الفوج 2</td><td>بالإنجليزية</td></tr>
+        <tr><td>الثلاثاء</td><td>&#x2066;12:30–14:00&#x2069;</td><td>IA M02 LGC</td><td>بالفرنسية</td></tr>
+        <tr><td>الخميس</td><td>&#x2066;08:00–09:30&#x2069;</td><td>IA M02 DID، الفوج 1</td><td>باللغة المدرَّسة</td></tr>
+        <tr><td>الخميس</td><td>&#x2066;09:30–11:00&#x2069;</td><td>IA M02 DID، الفوج 2</td><td>باللغة المدرَّسة</td></tr>
+        <tr><td>الخميس</td><td>&#x2066;12:30–14:00&#x2069;</td><td>IA M02 DID، الفوج 3</td><td>باللغة المدرَّسة</td></tr>
+      </tbody>
+    </table></div>
+
+    <h4>سير حصة من ساعة و30 دقيقة</h4>
+    <ol class="etapes">
+      <li><p class="etape-titre">سؤال افتتاحي · 5 دقائق</p><p>سؤال من صميم تخصّصهم: «هل تستطيع آلة أن تحكم على مراجعة رواية بأنها إيجابية؟»</p><p><strong>أنتم:</strong> دوّنوا الإجابات على السبورة دون تصحيح؛ وستعودون إليها لاحقًا.</p></li>
+      <li><p class="etape-titre">التوقّع على الورق · 15 دقيقة</p><p>ورقة مطبوعة: الخلية الرئيسية في الدفتر وثلاثة أسئلة (ماذا ستعرض؟ أي كلمة سيكون لها الوزن الأكبر؟ وماذا لو غيّرنا هذا العدد؟). ضمن ثنائيات، كتابيًّا، والشاشات مطفأة.</p><p><strong>أنتم:</strong> اقرؤوا الشيفرة بصوت مرتفع مع بيان ما يفعله كل سطر؛ واجمعوا بعض التوقّعات.</p></li>
+      <li><p class="etape-titre">التنفيذ · 15 دقيقة</p><p>يُنفَّذ الدفتر من أعلاه إلى أسفله؛ وعند كل خلية، يُقارَن المُخرَج بالتوقّع.</p><p><strong>أنتم:</strong> تجوّلوا بين الصفوف دون أن تأخذوا لوحة المفاتيح. وحين تسمعون «لا يعمل»، أجيبوا أولًا: «اقرؤوا السطر الأخير من الرسالة.» واعرضوا دفتركم على الشاشة لمن فقد الخيط.</p></li>
+      <li><p class="etape-titre">تعديل حقل · 20 دقيقة</p><p>قيمة واحدة في كل مرة: الجملة، أو عدد المجموعات، أو النص. توقّع جديد، ثم تنفيذ.</p><p><strong>أنتم:</strong> اشترطوا التوقّع قبل كل محاولة؛ وحدّدوا نتيجتين مفاجئتين تعرضونهما على الجميع.</p></li>
+      <li><p class="etape-titre">التأويل · 15 دقيقة</p><p>ضمن ثنائيات، ثم جماعيًّا: ماذا تعني هذه النتيجة بالنسبة إلى مختص في الإنجليزية، أو إلى مختص في الأدب المقارن، أو إلى أستاذ المستقبل؟ وما الذي لا يراه المنهج؟</p><p><strong>أنتم:</strong> عودوا إلى إجابات البداية، واربطوا بالدرس، واشترطوا مثالًا مأخوذًا من المُخرَج لكل تأكيد.</p></li>
+      <li><p class="etape-titre">الكتابة، والحفظ، وتسجيل الخروج · 20 دقيقة</p><p>في آخر خلية نصية، من 100 إلى 150 كلمة: ما توقّعته، وما حصلت عليه، وما أستنتجه منه لتخصّصي، وحدٌّ واحد. بالإنجليزية لأفواج ANG. ثم نسخة في Drive، والتسليم، وتسجيل الخروج.</p><p><strong>أنتم:</strong> اقرؤوا فقرتين أو ثلاثًا من فوق الكتف؛ ودوّنوا الحصة في «أفواجي».</p></li>
+    </ol>
+
+    <h4>ستة أفواج، وتحضير واحد</h4>
+    <ul>
+      <li><strong>حضّروا مرة واحدة في الأسبوع</strong>: الدفتر نفسه، وورقة التوقّع نفسها، والشيفرة نفسها للأفواج الستة.</li>
+      <li><strong>نوّعوا الأمثلة</strong>: نصف صفحة من القيم لحقول «À MODIFIER»، في ثلاثة أعمدة (ANG وLGC وDID)، مثلًا مراجعة رواية بالإنجليزية، وبيت شعري لبودلير، وتعليمة من كتاب مدرسي.</li>
+      <li><strong>الثلاثاء بمثابة تجربة عامة</strong>: أربع ساعات ونصف متتالية تكشف مواضع التعثّر؛ فاحضروا والأوراق مرتَّبة حسب الفوج. ويوم الخميس، تُخصَّص الفجوة من 11:00 إلى 12:30 لملء دفتر النصوص وتصحيح الورقة قبل الفوج الأخير.</li>
+      <li><strong>توقّعوا عطلًا</strong>: دون شبكة، اعرضوا دفتركم أو لقطات شاشة، واحتفظوا بالتوقّع على الورق (<a href="#guide-demarrer-materiel">حلول دون حاسوب</a>).</li>
+    </ul>
+
+    <h4>متابعة الأفواج الستة بصفحة «أفواجي»</h4>
+    <p>تحفظ صفحة <a href="classe.html">أفواجي</a> كل شيء على حاسوبكم: في ملف إذا فُتحت عبر <code>run.bat</code>، وإلا ففي المتصفح (فنزّلوا حينئذ نسخة من حين لآخر).</p>
+    <ol class="etapes">
+      <li><p class="etape-titre">إنشاء الأفواج الستة</p><p>«إضافة فوج»: الاسم (IA M02 ANG 1، وANG 2، وLGC، وDID من 1 إلى 3)، والتوقيت، والقاعة، وموضوع المشروع المصغَّر، ولون لكل فئة.</p></li>
+      <li><p class="etape-titre">استيراد القوائم</p><p>«لصق قائمة»: الصقوا عمود الأسماء المنسوخ من القائمة الإدارية.</p></li>
+      <li><p class="etape-titre">إنشاء الرزنامات</p><p>«إنشاء الرزنامة» لكل فوج، انطلاقًا من حصته الأولى. ولا يمسّ خميسٌ يصادف عطلة رسمية إلا أفواج DID: فيؤجّل زر «تأجيل» حصصها اللاحقة، وحدها دون غيرها.</p></li>
+      <li><p class="etape-titre">بعد كل حصة</p><p>المناداة («الكل حاضر»، ثم الغائبون والمتأخرون)، و«ما تم إنجازه»، و«العمل الشخصي المطلوب»، وملاحظة عند الحاجة. وفي نهاية السداسي: العلامات، والتصدير بصيغة CSV نحو Excel.</p></li>
+    </ol>
+  </article>
+
+  <article class="lecon" id="guide-langues-evaluation">
+    <h3>التقييم دون مطالبة الطلبة بكتابة شيفرة</h3>
+    <p>تقيّم هذه الشبكة دفترًا مسلَّمًا (فقرة الحصة أو قسم «À rendre»). وزّعوها منذ الدفتر الأول: فيرى الطلبة أن التوقّع الخاطئ المعلَّل تعليلًا جيدًا يمنح نقاطًا. والنقاط استرشادية؛ أما وزن هذه الأعمال في العلامة فتحدّده النصوص السارية المفعول.</p>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>شبكة تقييم دفتر (نقاط استرشادية على 20)</caption>
+      <thead><tr><th scope="col">المعيار</th><th scope="col">ما هو منتظر</th><th scope="col">النقاط</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">التوقّع</th><td>التوقّعات مكتوبة قبل التنفيذ ومعلَّلة؛ والفرق بينها وبين المُخرَج مشروح. والتوقّع الخاطئ المعلَّل تعليلًا جيدًا ينال النقاط.</td><td>4</td></tr>
+        <tr><th scope="row">التنفيذ</th><td>يُنفَّذ الدفتر من أعلاه إلى أسفله؛ والحقول المطلوبة معدَّلة؛ والمخرجات موجودة.</td><td>3</td></tr>
+        <tr><th scope="row">التأويل</th><td>النتيجة مربوطة بسؤال التخصّص (النص، أو المتعلّم، أو القسم)، مع أمثلة مأخوذة من المُخرَج.</td><td>6</td></tr>
+        <tr><th scope="row">المسافة النقدية</th><td>حدٌّ من حدود المنهج أو البيانات (السخرية، أو النفي، أو صغر العيّنة)؛ والأخلاقيات إن طُرحت (الموافقة، وإخفاء الهوية).</td><td>4</td></tr>
+        <tr><th scope="row">التعبير الكتابي</th><td>الوضوح، والمصطلحات الدقيقة من <a href="index.html#glossaire">مسرد المصطلحات</a>؛ وبالنسبة إلى أفواج ANG، تُقيَّم اللغة الإنجليزية هنا، وهنا فقط.</td><td>3</td></tr>
+      </tbody>
+    </table></div>
+
+    <h4>ثلاثة أسئلة امتحان على شيفرة مطبوعة</h4>
+    <p>يقدّم كل سؤال برنامجًا قصيرًا ومُخرَجه الفعلي (Python 3.11، scikit-learn 1.9): القراءة، واستعادة سطر ممحوّ، والشرح، والتأويل، دون كتابة شيفرة. سلّم تنقيط استرشادي: &#x200E;6 + 7 + 7. ولأفواج ANG، ترجموا نصوص الأسئلة والأمثلة، ثم أعيدوا تنفيذ الشيفرة: فالمخرجات تتغيّر بتغيّر النص.</p>
+
+    <div class="exercice" id="guide-langues-q1">
+      <p class="exercice-num">السؤال 1 · عدّ الكلمات (6 نقاط)</p>
+      <div class="exercice-enonce">
+        <figure class="code">
+          <figcaption class="code-legende">compter.py</figcaption>
+          <pre><code class="language-python">from collections import Counter
+
+# Compter les mots d'une phrase
+texte = "The sea is calm, the sky is grey, and the sea is silent."
+mots = texte.lower().replace(",", "").replace(".", "").split()
+print(len(mots))
+print(mots[:4])
+compte = Counter(mots)
+print(len(compte))
+print(compte.most_common(3))</code></pre>
+          <pre class="sortie"><samp>13
+['the', 'sea', 'is', 'calm']
+8
+(dernière ligne effacée)</samp></pre>
+        </figure>
+        <ol>
+          <li>ماذا يفعل السطر الذي يبدأ بـ<code>mots =</code>؟ صِفوا عملياته الثلاث، في جملة واحدة لكل منها. (1,5 نقطة)</li>
+          <li>لماذا يعرض البرنامج 13، ثم 8؟ سمّوا المفهومين. (1,5 نقطة)</li>
+          <li>اكتبوا السطر الأخير الممحوّ. (1,5 نقطة)</li>
+          <li>من دون <code>.lower()</code>، يعرض السطر الثالث 9: لماذا؟ واستنتج طالب أن «the» هي أهم كلمة في النص: بماذا تجيبونه؟ (1,5 نقطة)</li>
+        </ol>
+      </div>
+      <details class="corrige"><summary>عرض الحل وسلّم التنقيط</summary>
+        <div class="corrige-corps">
+          <p><strong>1.</strong> تحوّل <code>lower()</code> الحروف إلى حروف صغيرة؛ ويحذف الاستدعاءان <code>replace</code> الفواصل والنقاط؛ ويقطّع <code>split()</code> النص عند المسافات فينتج قائمة كلمات. 0,5 لكل عملية.</p>
+          <p><strong>2.</strong> 13 ورودًا (بما فيها المكرَّرات)، و8 صيغ متمايزة: <em>the, sea, is, calm, sky, grey, and, silent</em>؛ وهما في لسانيات المدوّنات <span class="terme-en" lang="en">tokens</span> و<span class="terme-en" lang="en">types</span>. ثمّنوا ذكر النسبة &#x200E;8 / 13، أي نحو 0,62، التي يحسبها الدفتر 09.</p>
+          <p><strong>3.</strong> <code>[('the', 3), ('is', 3), ('sea', 2)]</code>. 1 نقطة للكلمات الثلاث وأعدادها، و0,5 للشكل. وعند التساوي، يحتفظ <code>Counter</code> بترتيب الظهور: اقبلوا <code>('is', 3)</code> قبل <code>('the', 3)</code>.</p>
+          <p><strong>4.</strong> دون التحويل إلى حروف صغيرة، تصبح «The» و«the» سلسلتين نصيتين مختلفتين، وبالتالي صيغتين: 9 (0,5)؛ ويصبح السطر الأخير <code>[('is', 3), ('sea', 2), ('the', 2)]</code>. و«The» كلمة نحوية، وهي الأكثر تواترًا في كل نص إنجليزي تقريبًا: فالتواتر ليس أهمية. لذلك نحذف الكلمات الفارغة، ونقارن بمدوّنة مرجعية (TF-IDF)، ونعود إلى النص (1).</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="guide-langues-q2">
+      <p class="exercice-num">السؤال 2 · درجة المشاعر (7 نقاط)</p>
+      <div class="exercice-enonce">
+        <figure class="code">
+          <figcaption class="code-legende">sentiment_listes.py</figcaption>
+          <pre><code class="language-python"># Un score de sentiment par listes de mots
+positifs = ["beau", "magnifique", "émouvant", "réussi"]
+negatifs = ["ennuyeux", "décevant", "raté", "long"]
+
+def score(phrase):
+    mots = phrase.lower().replace(",", " ").replace(".", " ").split()
+    total = 0
+    for mot in mots:
+        if mot in positifs:
+            total = total + 1
+        if mot in negatifs:
+            total = total - 1
+    return total
+
+avis = ["Un roman magnifique et émouvant.",
+        "Ce n'est pas un livre ennuyeux.",
+        "Magnifique, vraiment : trois cents pages pour ne rien dire.",
+        "Le début est long, mais la fin est réussie."]
+for a in avis:
+    print(score(a), a)</code></pre>
+          <pre class="sortie"><samp>2 Un roman magnifique et émouvant.
+-1 Ce n'est pas un livre ennuyeux.
+1 Magnifique, vraiment : trois cents pages pour ne rien dire.
+-1 Le début est long, mais la fin est réussie.</samp></pre>
+        </figure>
+        <ol>
+          <li>اشرحوا في جملتين ما تفعله الدالة <code>score</code>. (1 نقطة)</li>
+          <li>تحصل الجملة الثانية على &#x200E;−1. لماذا؟ وهل هذا رأي القارئ؟ (1,5 نقطة)</li>
+          <li>في الجملة الرابعة، تُحتسب «long» ولا تُحتسب «réussie». لماذا؟ وما الذي ينبغي تغييره، دون كتابة شيفرة؟ (1,5 نقطة)</li>
+          <li>ما المعرفة التي تنقص البرنامج في الجملة الثالثة؟ (1 نقطة)</li>
+          <li>لتحليل 300 رأي لقرّاء أو تعليق لمتعلّمين، هل تستعملون هذا البرنامج؟ وماذا تفعلون قبل الوثوق بالدرجات؟ (2 نقطة)</li>
+        </ol>
+      </div>
+      <details class="corrige"><summary>عرض الحل وسلّم التنقيط</summary>
+        <div class="corrige-corps">
+          <p><strong>1.</strong> تقطّع الجملة إلى كلمات (بحروف صغيرة، ودون علامات ترقيم)، وتضيف 1 عن كل كلمة إيجابية، وتطرح 1 عن كل كلمة سلبية، ثم تُرجع المجموع.</p>
+          <p><strong>2.</strong> لا يُتعرَّف إلا على «ennuyeux»؛ ويُتجاهَل النفي «n'est pas»، لأن كل كلمة يُحكم عليها منفردة (1). والرأي إيجابي في مجمله (0,5). أما قارئ المشاعر في الصفحة الرئيسية للموقع، المستوحى من VADER، فيعالج النفي.</p>
+          <p><strong>3.</strong> يقارن البرنامج سلاسل متطابقة حرفيًّا: «réussie» ليست «réussi»&#x200F; (0,5). وينبغي إضافة الصيغ المصرَّفة، أو ردّ كل كلمة إلى مدخلها المعجمي بمكتبة spaCy (0,5). ثم إن «long» ليست سلبية دائمًا («un long poème»): فالقائمة تتجاهل السياق (0,5).</p>
+          <p><strong>4.</strong> السخرية: «Magnifique, vraiment» يليها لوم. وينبغي إدراك النبرة والقصد؛ أما البرنامج فلا يرى إلا كلمة إيجابية.</p>
+          <p><strong>5.</strong> ليس كما هو. توسيم عيّنة يدويًّا (50 رأيًا مثلًا)، ومقارنتها بالدرجات، وتصنيف الأخطاء (النفي، والسخرية، والتصريف، والكلمات الغائبة)، وإثراء القوائم أو تغيير المنهج، وعرض النتيجة مع هامش الخطأ هذا. وبالنسبة إلى تعليقات المتعلّمين: إخفاء الهوية والموافقة. 1 نقطة للتحقّق على عيّنة، و1 لحدٍّ أو احتياط معلَّل.</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="guide-langues-q3">
+      <p class="exercice-num">السؤال 3 · ملامح المتعلّمين (7 نقاط)</p>
+      <div class="exercice-enonce">
+        <figure class="code">
+          <figcaption class="code-legende">profils.py</figcaption>
+          <pre><code class="language-python">from sklearn.cluster import KMeans
+
+# Questionnaire fictif : huit apprenants d'anglais
+# colonne 1 : heures de lecture en anglais par semaine
+# colonne 2 : anxiété à l'oral, de 1 (faible) à 5 (forte)
+reponses = [[1, 5], [2, 4], [1, 4], [2, 5],
+            [6, 2], [7, 1], [5, 2], [8, 1]]
+
+modele = KMeans(n_clusters=2, n_init=10, random_state=0)
+groupes = modele.fit_predict(reponses)
+print(groupes)
+print(modele.cluster_centers_)</code></pre>
+          <pre class="sortie"><samp>[1 1 1 1 0 0 0 0]
+[[6.5 1.5]
+ [1.5 4.5]]</samp></pre>
+        </figure>
+        <ol>
+          <li>تعلّم خاضع للإشراف أم غير خاضع للإشراف؟ علّلوا انطلاقًا من الشيفرة. (1,5 نقطة)</li>
+          <li>ماذا يعني <code>n_clusters=2</code>؟ ومن اختار هذه القيمة؟ (1 نقطة)</li>
+          <li>صِفوا بالكلمات المجموعتين انطلاقًا من المُخرَج الأخير. وهل للرقمين 0 و1 معنى؟ (2 نقطة)</li>
+          <li>تستنتج زميلة من ذلك أن القراءة بالإنجليزية تخفّض القلق من التحدّث. ما رأيكم؟ (1,5 نقطة)</li>
+          <li>اذكروا احتياطًا أخلاقيًّا واحدًا لاستعمال تصنيف كهذا في قسم حقيقي. (1 نقطة)</li>
+        </ol>
+      </div>
+      <details class="corrige"><summary>عرض الحل وسلّم التنقيط</summary>
+        <div class="corrige-corps">
+          <p><strong>1.</strong> غير خاضع للإشراف (0,5): لا وسم ولا إجابة صحيحة، فالدالة <code>fit_predict</code> لا تتلقّى إلا الإجابات، وتكوّن المجموعات بنفسها بواسطة خوارزمية k-المتوسطات (1).</p>
+          <p><strong>2.</strong> عدد المجموعات المطلوب (0,5). والمحلِّل هو من حدّده، لا الآلة؛ وتساعد طريقة المرفق في <a href="index.html#mp-sujet-2">الموضوع 2</a> على اختياره (0,5).</p>
+          <p><strong>3.</strong> كل سطر من <code>cluster_centers_</code> ملمح متوسط. المجموعة 1، أي الأربعة الأوائل: 1,5 ساعة قراءة في الأسبوع، وقلق بدرجة 4,5، أي «يقرأ قليلًا، وقلق جدًّا عند التحدّث». المجموعة 0، أي الأربعة الأواخر: 6,5 ساعات، وقلق بدرجة 1,5، أي «يقرأ كثيرًا، وقليل القلق» (1,5). والأرقام اعتباطية وقد تنقلب بحسب نسخة scikit-learn؛ وتسمية المجموعات من شأن الباحث (0,5).</p>
+          <p><strong>4.</strong> استنتاج غير مؤسَّس: بيانات افتراضية، وثمانية أشخاص، والعنقدة تصف أوجه التشابه دون أن تُثبت سببًا (0,75). وقد تسير العلاقة في الاتجاه المعاكس (الأقل قلقًا يقرؤون أكثر) أو تنتج عن عامل ثالث، مثل المستوى في الإنجليزية (0,75).</p>
+          <p><strong>5.</strong> يكفي احتياط واحد معلَّل: استبيان مجهول الهوية وبموافقة المعنيين؛ ولا وسم «قلق» في ملف ولا أمام القسم؛ ولا قرار بشأن متعلّم انطلاقًا من متغيّرين؛ وملامح تُقدَّم على أنها فرضيات للنقاش.</p>
+        </div></details>
+    </div>
+
+    <aside class="encadre encadre--retenir"><p class="encadre-titre">ما يجب تذكّره</p>
+      <ul>
+        <li>نقيّم التوقّع المعلَّل، والشرح، والتأويل، لا الصياغة البرمجية أبدًا.</li>
+        <li>يمكن لامتحان أن يعرض شيفرة ومُخرَجها: القراءة، وإكمال سطر ممحوّ، والشرح، والنقد.</li>
+        <li>كل مُخرَج مطبوع في موضوع امتحان يجب أن يكون قد حُصِّل عليه بتنفيذ الشيفرة.</li>
+      </ul>
+    </aside>
+  </article>
+</section>
 
 <section class="chapitre" id="guide-seances" aria-labelledby="guide-seances-titre">
   <header class="chapitre-tete">
