@@ -2,7 +2,7 @@
   <header class="chapitre-tete">
     <p class="surtitre">Chapter 1 · 1 week</p>
     <h2 class="titre-section" id="chapitre-1-titre">Introduction to artificial intelligence</h2>
-    <p class="chapeau">By the end of this chapter, you will be able to define artificial intelligence and place its main stages in time. You will be able to tell narrow AI from general AI, and supervised from unsupervised learning. You will also be able to discuss what AI offers the humanities, and where its limits lie.</p>
+    <p class="chapeau">By the end of this chapter, you will be able to define artificial intelligence and place its main stages in time. You will be able to tell narrow AI from general AI and supervised from unsupervised learning, and to explain in simple terms how an AI processes a text. You will also be able to discuss what AI offers the humanities, and where its limits lie.</p>
     <ul class="puces"><li class="puce">Lecture</li><li class="puce">Tutorial (TD)</li><li class="puce">Independent study</li></ul>
     <p class="chapitre-tete__lecon"><a class="bouton bouton--prisme" href="../chapitr1_first_lesson.html?lang=en">Lesson 1 slideshow: from automaton to agent</a></p>
   </header>
@@ -13,6 +13,7 @@
       <li><a href="#c1-histoire">Historical overview</a></li>
       <li><a href="#c1-faible-forte">Narrow (weak) AI and general (strong) AI</a></li>
       <li><a href="#c1-apprentissage">Supervised and unsupervised learning</a></li>
+      <li><a href="#c1-texte">How an AI "understands" a text</a></li>
       <li><a href="#c1-approches">AI approaches to problem solving</a></li>
       <li><a href="#c1-perspectives">Outlook, limits and ethics</a></li>
     </ol>
@@ -197,6 +198,94 @@
       </ul>
       <p class="quiz-explication" hidden>This is supervised learning: the 500 classified speeches are the labeled data that train the model. It is normal that the new speeches have no label, because that is exactly what the model must predict. We would speak of unsupervised learning if no speech were labeled and we were looking for groups.</p>
     </div>
+  </article>
+
+  <article class="lecon" id="c1-texte">
+    <h3>How an AI "understands" a text</h3>
+    <p>When you type a question to an assistant such as ChatGPT, the machine does not read the way you do. A computer only knows numbers: it must first turn your words into numbers. Here is what happens, in four simple steps.</p>
+
+    <ol class="etapes">
+      <li><p class="etape-titre">Cut the text into pieces</p><p>The sentence is cut into small pieces called <dfn>tokens</dfn> (French: "jetons"): a common word stays whole, a long or rare word is split into several parts.</p></li>
+      <li><p class="etape-titre">Turn each piece into numbers</p><p>Each token receives a long list of numbers, a <dfn>vector</dfn>. This vector works like an address on a large "map of meanings": words with similar meanings have nearby addresses.</p></li>
+      <li><p class="etape-titre">Look at the neighboring words</p><p>The machine links each word to the other words in the sentence; this is <dfn>attention</dfn>. In "the mouse eats the cheese" and "I click with the mouse", the word "mouse" does not have the same meaning: the neighbors "cheese" and "click" help choose the right one.</p></li>
+      <li><p class="etape-titre">Guess what comes next</p><p>The machine calculates which word is most likely to come next, writes it, then starts again, word after word. This is how an answer from ChatGPT is made, one token at a time.</p></li>
+    </ol>
+
+    <h4>A word is known by its neighbors</h4>
+    <p>How does the machine learn the meaning of words? Nobody gives it a dictionary. It reads billions of sentences and plays a guessing game: hide a word, then find it again. Try it: "The ___ drinks milk and sleeps on the sofa." You think of "cat": the neighboring words helped you. The machine does the same thing, on a very large scale. Words that often have the same neighbors, such as "cat" and "dog", receive nearby addresses on the map of meanings. The linguist J. R. Firth said it as early as 1957: "<em lang="en">You shall know a word by the company it keeps</em>".</p>
+    <figure class="schema">
+      <svg viewBox="0 0 640 300" role="img" aria-labelledby="c1-carte-t">
+        <title id="c1-carte-t">Map of meanings: words placed according to their neighbors</title>
+        <defs><marker id="c1-fleche-mots" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="svg-pointe" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+        <rect class="svg-trait" x="16" y="16" width="608" height="268" rx="12"/>
+        <text class="svg-texte-doux" x="40" y="46">Animals</text>
+        <circle class="svg-noeud-accent" cx="70" cy="90" r="7"/><text class="svg-texte" x="84" y="95">cat</text>
+        <circle class="svg-noeud-accent" cx="130" cy="120" r="7"/><text class="svg-texte" x="144" y="125">dog</text>
+        <circle class="svg-noeud-accent" cx="80" cy="150" r="7"/><text class="svg-texte" x="94" y="155">horse</text>
+        <text class="svg-texte-doux" x="40" y="212">Reading</text>
+        <circle class="svg-noeud" cx="70" cy="245" r="7"/><text class="svg-texte" x="84" y="250">book</text>
+        <circle class="svg-noeud" cx="150" cy="232" r="7"/><text class="svg-texte" x="164" y="237">novel</text>
+        <circle class="svg-noeud" cx="200" cy="262" r="7"/><text class="svg-texte" x="214" y="267">reader</text>
+        <line class="svg-trait" x1="340" y1="230" x2="510" y2="230" stroke-dasharray="5 5"/>
+        <line class="svg-trait" x1="400" y1="110" x2="570" y2="110" stroke-dasharray="5 5"/>
+        <line class="svg-trait-accent" x1="340" y1="230" x2="396" y2="116" marker-end="url(#c1-fleche-mots)"/>
+        <line class="svg-trait-accent" x1="510" y1="230" x2="566" y2="116" marker-end="url(#c1-fleche-mots)"/>
+        <circle class="svg-noeud" cx="340" cy="230" r="7"/><text class="svg-texte" x="340" y="258" text-anchor="middle">man</text>
+        <circle class="svg-noeud" cx="400" cy="110" r="7"/><text class="svg-texte" x="400" y="92" text-anchor="middle">woman</text>
+        <circle class="svg-noeud" cx="510" cy="230" r="7"/><text class="svg-texte" x="510" y="258" text-anchor="middle">king</text>
+        <circle class="svg-noeud" cx="570" cy="110" r="7"/><text class="svg-texte" x="570" y="92" text-anchor="middle">queen</text>
+        <text class="svg-texte-doux" x="455" y="46" text-anchor="middle">Same gap, same direction</text>
+      </svg>
+      <figcaption>Words that share the same neighbors group together: animals on one side, reading on the other. The map even keeps relations: you go from "man" to "woman" the same way as from "king" to "queen".</figcaption>
+    </figure>
+
+    <h4>Word order matters</h4>
+    <p>The first programs simply counted the words in a text, like emptying a bag onto a table: this is the <dfn>bag of words</dfn>. For them, "the dog bites the man" and "the man bites the dog" are the same thing, since they contain the same words. Today's models, <dfn>Transformers</dfn> (since 2017), take word order and context into account: this is what makes them so effective.</p>
+
+    <h4>So, does it really understand?</h4>
+    <p>Not the way we do. The machine has learned how words are used together, not what they refer to in the world: it has never drunk milk or stroked a cat. This is why it can write a perfect sentence that is still false, what we call a <a href="#c1-perspectives">hallucination</a>. Researchers still debate the question, as we saw with the <a href="#c1-faible-forte">Chinese room</a>.</p>
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>A human reader</h4>
+        <ul>
+          <li>reads letters and words;</li>
+          <li>links words to their experience of the world;</li>
+          <li>looks for the author's intention;</li>
+          <li>often knows when they do not know.</li>
+        </ul>
+      </div>
+      <div class="comparaison-col">
+        <h4>A language model</h4>
+        <ul>
+          <li>processes numbers;</li>
+          <li>links words to other words;</li>
+          <li>calculates the most likely continuation;</li>
+          <li>can be wrong with great confidence.</li>
+        </ul>
+      </div>
+    </div>
+    <p>To go further, with formulas and Python programs: <a href="#c3-deep">deep learning</a>, in chapter 3.</p>
+
+    <div class="quiz">
+      <p class="quiz-question">How does an AI know that "mouse" refers to an object in "I click with the mouse"?</p>
+      <ul class="quiz-options">
+        <li><button type="button" class="quiz-option">It looks the word up in a dictionary.</button></li>
+        <li><button type="button" class="quiz-option" data-correct>It looks at the neighboring words, such as "click".</button></li>
+        <li><button type="button" class="quiz-option">A programmer wrote a rule for this word.</button></li>
+        <li><button type="button" class="quiz-option">It understands the sentence exactly as a human does.</button></li>
+      </ul>
+      <p class="quiz-explication" hidden>The context decides: thanks to attention, the machine links "mouse" to "click" and chooses the meaning "object". It has no dictionary, nobody wrote a rule for this word, and the way it processes the sentence is still a calculation, very different from the way we read.</p>
+    </div>
+
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">Key points</p>
+      <ul>
+        <li>An AI turns text into numbers: first pieces (tokens), then vectors.</li>
+        <li>It learns the meaning of a word from its neighbors, by guessing hidden words in huge amounts of text.</li>
+        <li>It looks at the context to choose the right meaning, then guesses what comes next, word after word.</li>
+        <li>It does not understand the way we do: always check what it produces.</li>
+      </ul>
+    </aside>
   </article>
 
   <article class="lecon" id="c1-approches">

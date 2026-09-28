@@ -402,7 +402,7 @@
   <header class="chapitre-tete">
     <p class="surtitre">Chapter 1 · 1 week</p>
     <h2 class="titre-section" id="chapitre-1-titre">Introduction to artificial intelligence</h2>
-    <p class="chapeau">By the end of this chapter, you will be able to define artificial intelligence and place its main stages in time. You will be able to tell narrow AI from general AI, and supervised from unsupervised learning. You will also be able to discuss what AI offers the humanities, and where its limits lie.</p>
+    <p class="chapeau">By the end of this chapter, you will be able to define artificial intelligence and place its main stages in time. You will be able to tell narrow AI from general AI and supervised from unsupervised learning, and to explain in simple terms how an AI processes a text. You will also be able to discuss what AI offers the humanities, and where its limits lie.</p>
     <ul class="puces"><li class="puce">Lecture</li><li class="puce">Tutorial (TD)</li><li class="puce">Independent study</li></ul>
     <p class="chapitre-tete__lecon"><a class="bouton bouton--prisme" href="../chapitr1_first_lesson.html?lang=en">Lesson 1 slideshow: from automaton to agent</a></p>
   </header>
@@ -413,6 +413,7 @@
       <li><a href="#c1-histoire">Historical overview</a></li>
       <li><a href="#c1-faible-forte">Narrow (weak) AI and general (strong) AI</a></li>
       <li><a href="#c1-apprentissage">Supervised and unsupervised learning</a></li>
+      <li><a href="#c1-texte">How an AI "understands" a text</a></li>
       <li><a href="#c1-approches">AI approaches to problem solving</a></li>
       <li><a href="#c1-perspectives">Outlook, limits and ethics</a></li>
     </ol>
@@ -599,6 +600,94 @@
     </div>
   </article>
 
+  <article class="lecon" id="c1-texte">
+    <h3>How an AI "understands" a text</h3>
+    <p>When you type a question to an assistant such as ChatGPT, the machine does not read the way you do. A computer only knows numbers: it must first turn your words into numbers. Here is what happens, in four simple steps.</p>
+
+    <ol class="etapes">
+      <li><p class="etape-titre">Cut the text into pieces</p><p>The sentence is cut into small pieces called <dfn>tokens</dfn> (French: "jetons"): a common word stays whole, a long or rare word is split into several parts.</p></li>
+      <li><p class="etape-titre">Turn each piece into numbers</p><p>Each token receives a long list of numbers, a <dfn>vector</dfn>. This vector works like an address on a large "map of meanings": words with similar meanings have nearby addresses.</p></li>
+      <li><p class="etape-titre">Look at the neighboring words</p><p>The machine links each word to the other words in the sentence; this is <dfn>attention</dfn>. In "the mouse eats the cheese" and "I click with the mouse", the word "mouse" does not have the same meaning: the neighbors "cheese" and "click" help choose the right one.</p></li>
+      <li><p class="etape-titre">Guess what comes next</p><p>The machine calculates which word is most likely to come next, writes it, then starts again, word after word. This is how an answer from ChatGPT is made, one token at a time.</p></li>
+    </ol>
+
+    <h4>A word is known by its neighbors</h4>
+    <p>How does the machine learn the meaning of words? Nobody gives it a dictionary. It reads billions of sentences and plays a guessing game: hide a word, then find it again. Try it: "The ___ drinks milk and sleeps on the sofa." You think of "cat": the neighboring words helped you. The machine does the same thing, on a very large scale. Words that often have the same neighbors, such as "cat" and "dog", receive nearby addresses on the map of meanings. The linguist J. R. Firth said it as early as 1957: "<em lang="en">You shall know a word by the company it keeps</em>".</p>
+    <figure class="schema">
+      <svg viewBox="0 0 640 300" role="img" aria-labelledby="c1-carte-t">
+        <title id="c1-carte-t">Map of meanings: words placed according to their neighbors</title>
+        <defs><marker id="c1-fleche-mots" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="svg-pointe" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+        <rect class="svg-trait" x="16" y="16" width="608" height="268" rx="12"/>
+        <text class="svg-texte-doux" x="40" y="46">Animals</text>
+        <circle class="svg-noeud-accent" cx="70" cy="90" r="7"/><text class="svg-texte" x="84" y="95">cat</text>
+        <circle class="svg-noeud-accent" cx="130" cy="120" r="7"/><text class="svg-texte" x="144" y="125">dog</text>
+        <circle class="svg-noeud-accent" cx="80" cy="150" r="7"/><text class="svg-texte" x="94" y="155">horse</text>
+        <text class="svg-texte-doux" x="40" y="212">Reading</text>
+        <circle class="svg-noeud" cx="70" cy="245" r="7"/><text class="svg-texte" x="84" y="250">book</text>
+        <circle class="svg-noeud" cx="150" cy="232" r="7"/><text class="svg-texte" x="164" y="237">novel</text>
+        <circle class="svg-noeud" cx="200" cy="262" r="7"/><text class="svg-texte" x="214" y="267">reader</text>
+        <line class="svg-trait" x1="340" y1="230" x2="510" y2="230" stroke-dasharray="5 5"/>
+        <line class="svg-trait" x1="400" y1="110" x2="570" y2="110" stroke-dasharray="5 5"/>
+        <line class="svg-trait-accent" x1="340" y1="230" x2="396" y2="116" marker-end="url(#c1-fleche-mots)"/>
+        <line class="svg-trait-accent" x1="510" y1="230" x2="566" y2="116" marker-end="url(#c1-fleche-mots)"/>
+        <circle class="svg-noeud" cx="340" cy="230" r="7"/><text class="svg-texte" x="340" y="258" text-anchor="middle">man</text>
+        <circle class="svg-noeud" cx="400" cy="110" r="7"/><text class="svg-texte" x="400" y="92" text-anchor="middle">woman</text>
+        <circle class="svg-noeud" cx="510" cy="230" r="7"/><text class="svg-texte" x="510" y="258" text-anchor="middle">king</text>
+        <circle class="svg-noeud" cx="570" cy="110" r="7"/><text class="svg-texte" x="570" y="92" text-anchor="middle">queen</text>
+        <text class="svg-texte-doux" x="455" y="46" text-anchor="middle">Same gap, same direction</text>
+      </svg>
+      <figcaption>Words that share the same neighbors group together: animals on one side, reading on the other. The map even keeps relations: you go from "man" to "woman" the same way as from "king" to "queen".</figcaption>
+    </figure>
+
+    <h4>Word order matters</h4>
+    <p>The first programs simply counted the words in a text, like emptying a bag onto a table: this is the <dfn>bag of words</dfn>. For them, "the dog bites the man" and "the man bites the dog" are the same thing, since they contain the same words. Today's models, <dfn>Transformers</dfn> (since 2017), take word order and context into account: this is what makes them so effective.</p>
+
+    <h4>So, does it really understand?</h4>
+    <p>Not the way we do. The machine has learned how words are used together, not what they refer to in the world: it has never drunk milk or stroked a cat. This is why it can write a perfect sentence that is still false, what we call a <a href="#c1-perspectives">hallucination</a>. Researchers still debate the question, as we saw with the <a href="#c1-faible-forte">Chinese room</a>.</p>
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>A human reader</h4>
+        <ul>
+          <li>reads letters and words;</li>
+          <li>links words to their experience of the world;</li>
+          <li>looks for the author's intention;</li>
+          <li>often knows when they do not know.</li>
+        </ul>
+      </div>
+      <div class="comparaison-col">
+        <h4>A language model</h4>
+        <ul>
+          <li>processes numbers;</li>
+          <li>links words to other words;</li>
+          <li>calculates the most likely continuation;</li>
+          <li>can be wrong with great confidence.</li>
+        </ul>
+      </div>
+    </div>
+    <p>To go further, with formulas and Python programs: <a href="#c3-deep">deep learning</a>, in chapter 3.</p>
+
+    <div class="quiz">
+      <p class="quiz-question">How does an AI know that "mouse" refers to an object in "I click with the mouse"?</p>
+      <ul class="quiz-options">
+        <li><button type="button" class="quiz-option">It looks the word up in a dictionary.</button></li>
+        <li><button type="button" class="quiz-option" data-correct>It looks at the neighboring words, such as "click".</button></li>
+        <li><button type="button" class="quiz-option">A programmer wrote a rule for this word.</button></li>
+        <li><button type="button" class="quiz-option">It understands the sentence exactly as a human does.</button></li>
+      </ul>
+      <p class="quiz-explication" hidden>The context decides: thanks to attention, the machine links "mouse" to "click" and chooses the meaning "object". It has no dictionary, nobody wrote a rule for this word, and the way it processes the sentence is still a calculation, very different from the way we read.</p>
+    </div>
+
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">Key points</p>
+      <ul>
+        <li>An AI turns text into numbers: first pieces (tokens), then vectors.</li>
+        <li>It learns the meaning of a word from its neighbors, by guessing hidden words in huge amounts of text.</li>
+        <li>It looks at the context to choose the right meaning, then guesses what comes next, word after word.</li>
+        <li>It does not understand the way we do: always check what it produces.</li>
+      </ul>
+    </aside>
+  </article>
+
   <article class="lecon" id="c1-approches">
     <h3>AI approaches to problem solving</h3>
     <p>To solve a problem, AI offers several strategies. They appeared at different moments in its history, and today's systems often combine them. Knowing how to tell them apart will help you choose a tool that suits your research question.</p>
@@ -729,7 +818,7 @@
   <!-- ============================================================ 0 -->
   <article class="lecon" id="c2-prompts">
     <h3>Writing a clear request to an AI assistant</h3>
-    <p>An <dfn>AI assistant</dfn> (ChatGPT, Gemini, Claude, Copilot…) is a large language model that you query in natural language. The text you give it is called a <dfn>prompt</dfn> (<span class="terme-en" lang="fr">consigne</span>), and the art of writing one is called <dfn>prompt engineering</dfn> (<span class="terme-en" lang="fr">ingénierie de prompt</span>). The model produces the most probable continuation of the text it receives (<a href="#c3-deep">chapter 3</a>; see also <a href="#c3-texte">how an AI "understands" a text</a>): the more precise the prompt, the closer this continuation comes to what you expect. In this course, the assistant is used for two things: analyzing texts, and helping you read and write Python code. Never to do your work for you.</p>
+    <p>An <dfn>AI assistant</dfn> (ChatGPT, Gemini, Claude, Copilot…) is a large language model that you query in natural language. The text you give it is called a <dfn>prompt</dfn> (<span class="terme-en" lang="fr">consigne</span>), and the art of writing one is called <dfn>prompt engineering</dfn> (<span class="terme-en" lang="fr">ingénierie de prompt</span>). The model produces the most probable continuation of the text it receives (<a href="#c3-deep">chapter 3</a>; see also <a href="#c1-texte">how an AI "understands" a text</a>): the more precise the prompt, the closer this continuation comes to what you expect. In this course, the assistant is used for two things: analyzing texts, and helping you read and write Python code. Never to do your work for you.</p>
 
     <h4>The six elements of a good prompt</h4>
     <div class="tableau-defilant"><table class="tableau">
@@ -1694,7 +1783,6 @@ print(texte_pdf.splitlines()[:3])</code></pre>
       <li><a href="#c3-ml">Machine learning</a></li>
       <li><a href="#c3-algorithmes">Some ML algorithms</a></li>
       <li><a href="#c3-deep">Deep learning</a></li>
-      <li><a href="#c3-texte">How an AI "understands" a text</a></li>
       <li><a href="#c3-renforcement">Reinforcement learning</a></li>
       <li><a href="#c3-synthese">Summary</a></li>
     </ol>
@@ -2176,185 +2264,6 @@ NEGATIVE | The ending was a real disappointment.</samp></pre>
     <aside class="encadre encadre--attention">
       <p class="encadre-titre">Hallucinations and sources</p>
       <p>A generative model produces the most plausible continuation, not the most truthful one. It can confidently invent a quotation, a date or a complete bibliographic reference that does not exist: this is called a <dfn>hallucination</dfn>. For a thesis, never cite a source that you have not found and read yourself, check every quotation in the original edition, and declare your use of these tools according to your institution's rules.</p>
-    </aside>
-  </article>
-
-  <article class="lecon" id="c3-texte">
-    <h3>How an AI "understands" a text</h3>
-    <p>A computer only handles numbers. For a model to "read" a short story by Maupassant or a political speech, the text must first be turned into numbers, and then the model must learn numbers that reflect how words are used. What we call, in quotation marks, the "understanding" of an AI is the result of this chain. This lesson follows it step by step, with two small programs in plain Python: no library to install.</p>
-
-    <h4>From text to answer: six steps</h4>
-    <ol class="etapes">
-      <li><p class="etape-titre">Split</p><p>The text is cut into <dfn>tokens</dfn>: a common word often stays whole, a rare or long word is cut into pieces (stem, prefix, ending), and punctuation marks form their own tokens.</p></li>
-      <li><p class="etape-titre">Assign numbers</p><p>Each token is replaced by its number in the model's vocabulary (a little over 50,000 entries for GPT-2). The model only receives a list of whole numbers: it never sees the letters.</p></li>
-      <li><p class="etape-titre">Embed</p><p>Each number points to a vector of several hundred numbers, its <dfn>embedding</dfn>, learned during training. A code for the position of the token is added to it; without it, the order of the words would be lost.</p></li>
-      <li><p class="etape-titre">Put in context</p><p>Layer after layer, attention recomputes each vector from those of the other tokens: the vector for "bank" is no longer the same in "the bank approved the loan" and in "we sat on the bank of the river".</p></li>
-      <li><p class="etape-titre">Compute an output</p><p>A decoder (GPT) computes a probability for each token in the vocabulary; an encoder (BERT) gives a label: sentiment, topic, named entity.</p></li>
-      <li><p class="etape-titre">Go back to text</p><p>The chosen token is turned back into characters and added to the text, then the loop starts again: this is the <a href="#c3-deep">text generation</a> described above.</p></li>
-    </ol>
-
-    <h4>First idea: the bag of words</h4>
-    <p>The simplest representation counts the words in each text without taking their order into account: this is the <dfn>bag of words</dfn> (<span class="terme-en" lang="fr">sac de mots</span>). It is enough for many tasks: spam filters, sorting articles by topic, word clouds, stylometry. But it has two blind spots.</p>
-    <figure class="code">
-      <figcaption class="code-legende">bag_of_words.py</figcaption>
-      <pre><code class="language-python">from collections import Counter
-
-phrase_1 = "the dog bites the man"
-phrase_2 = "the man bites the dog"
-
-sac_1 = Counter(phrase_1.split())
-sac_2 = Counter(phrase_2.split())
-print(sac_1)
-print("Same bag of words:", sac_1 == sac_2)</code></pre>
-      <pre class="sortie"><samp>Counter({'the': 2, 'dog': 1, 'bites': 1, 'man': 1})
-Same bag of words: True</samp></pre>
-    </figure>
-    <p><code>Counter</code> counts the items in a list. The two sentences, which have opposite meanings, give exactly the same bag: it has lost who bites whom. And for the bag of words, all words are equally different: "cat" is no closer to "dog" than to "book".</p>
-
-    <h4>Second idea: vectors learned from context</h4>
-    <p>The <dfn>distributional hypothesis</dfn>, formulated by the linguist Zellig Harris in 1954 and summed up by J. R. Firth in 1957 (<a href="#c3-deep">embeddings</a>), states that words used in similar contexts have similar meanings. A word can therefore be described by its neighbors. The following program does this on a corpus of six sentences: the vector of a word counts how many times each other word appears in the same sentences. Two vectors are compared by their <dfn>cosine similarity</dfn>, which is 1 when they point in the same direction and 0 when they have nothing in common.</p>
-    <p class="formule">cos(a, b) = (a · b) / (‖a‖ × ‖b‖)</p>
-    <figure class="code">
-      <figcaption class="code-legende">word_vectors.py</figcaption>
-      <pre><code class="language-python">import math
-
-corpus = [
-    "the cat drinks milk",
-    "the dog drinks water",
-    "the cat sleeps on the sofa",
-    "the dog sleeps in its kennel",
-    "the reader opens the book",
-    "the reader reads the novel",
-]
-vides = {"the", "on", "in", "its"}   # function words, found everywhere
-
-# The vector of a word: how many times each other word appears in the same sentences
-vocabulaire = sorted({m for phrase in corpus for m in phrase.split()} - vides)
-
-def vecteur(mot):
-    v = [0] * len(vocabulaire)
-    for phrase in corpus:
-        mots = [m for m in phrase.split() if m not in vides]
-        if mot in mots:
-            for autre in mots:
-                if autre != mot:
-                    v[vocabulaire.index(autre)] += 1
-    return v
-
-def cosinus(a, b):
-    produit = sum(x * y for x, y in zip(a, b))
-    return produit / (math.sqrt(sum(x * x for x in a)) * math.sqrt(sum(y * y for y in b)))
-
-print(vocabulaire)
-print("cat:", vecteur("cat"))
-for m1, m2 in [("cat", "dog"), ("cat", "book"), ("book", "novel")]:
-    print(f"{m1} / {m2}: {cosinus(vecteur(m1), vecteur(m2)):.2f}")</code></pre>
-      <pre class="sortie"><samp>['book', 'cat', 'dog', 'drinks', 'kennel', 'milk', 'novel', 'opens', 'reader', 'reads', 'sleeps', 'sofa', 'water']
-cat: [0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0]
-cat / dog: 0.50
-cat / book: 0.00
-book / novel: 0.50</samp></pre>
-    </figure>
-    <p>Nobody told the program that the cat and the dog are animals: it infers this from the fact that they share two contexts, "drinks" and "sleeps". In the same way, "book" and "novel" come closer because both appear next to "reader", while "cat" and "book" have no neighbor in common. Function words are left out: since they are found everywhere, they would bring everything closer to everything.</p>
-    <p>In 2013, <dfn>word2vec</dfn> (Tomas Mikolov and his co-authors, Google) applied this idea to billions of words: instead of counting, a small neural network learns vectors of a few hundred dimensions by guessing each word from its neighbors. These vectors encode relations: the calculation vector(king) − vector(man) + vector(woman) lands close to vector(queen). They also encode the stereotypes of the training texts: in 2016, Tolga Bolukbasi and his co-authors showed that to the question "man is to computer programmer as woman is to…", vectors trained on news articles answered "homemaker", hence the title of their paper, "<em>Man is to Computer Programmer as Woman is to Homemaker?</em>".</p>
-    <figure class="schema">
-      <svg viewBox="0 0 640 300" role="img" aria-labelledby="c3-carte-t">
-        <title id="c3-carte-t">Map of word vectors projected onto two dimensions</title>
-        <defs><marker id="c3-fleche-mots" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="svg-pointe" d="M0,0 L10,5 L0,10 z"/></marker></defs>
-        <rect class="svg-trait" x="16" y="16" width="608" height="268" rx="12"/>
-        <text class="svg-texte-doux" x="40" y="46">Animals</text>
-        <circle class="svg-noeud-accent" cx="70" cy="90" r="7"/><text class="svg-texte" x="84" y="95">cat</text>
-        <circle class="svg-noeud-accent" cx="130" cy="120" r="7"/><text class="svg-texte" x="144" y="125">dog</text>
-        <circle class="svg-noeud-accent" cx="80" cy="150" r="7"/><text class="svg-texte" x="94" y="155">horse</text>
-        <text class="svg-texte-doux" x="40" y="212">Reading</text>
-        <circle class="svg-noeud" cx="70" cy="245" r="7"/><text class="svg-texte" x="84" y="250">book</text>
-        <circle class="svg-noeud" cx="150" cy="232" r="7"/><text class="svg-texte" x="164" y="237">novel</text>
-        <circle class="svg-noeud" cx="200" cy="262" r="7"/><text class="svg-texte" x="214" y="267">reader</text>
-        <line class="svg-trait" x1="340" y1="230" x2="510" y2="230" stroke-dasharray="5 5"/>
-        <line class="svg-trait" x1="400" y1="110" x2="570" y2="110" stroke-dasharray="5 5"/>
-        <line class="svg-trait-accent" x1="340" y1="230" x2="396" y2="116" marker-end="url(#c3-fleche-mots)"/>
-        <line class="svg-trait-accent" x1="510" y1="230" x2="566" y2="116" marker-end="url(#c3-fleche-mots)"/>
-        <circle class="svg-noeud" cx="340" cy="230" r="7"/><text class="svg-texte" x="340" y="258" text-anchor="middle">man</text>
-        <circle class="svg-noeud" cx="400" cy="110" r="7"/><text class="svg-texte" x="400" y="92" text-anchor="middle">woman</text>
-        <circle class="svg-noeud" cx="510" cy="230" r="7"/><text class="svg-texte" x="510" y="258" text-anchor="middle">king</text>
-        <circle class="svg-noeud" cx="570" cy="110" r="7"/><text class="svg-texte" x="570" y="92" text-anchor="middle">queen</text>
-        <text class="svg-texte-doux" x="455" y="46" text-anchor="middle">Same gap, same direction</text>
-      </svg>
-      <figcaption>Simplified map: real vectors have hundreds of dimensions, projected here onto two. Words from similar contexts group together, and the gap from man to woman is almost the same as the gap from king to queen.</figcaption>
-    </figure>
-    <p>The limit of these vectors: each word has only one, whatever its meaning in the sentence.</p>
-
-    <h4>Third idea: one vector per word and per context</h4>
-    <p>"Bank" can mean the side of a river or a bank that lends money, "mouse" an animal or a computer device, "bat" an animal or a cricket or baseball bat. In a Transformer, the starting embedding of a word is always the same, but attention recomputes it from its neighbors: after a few layers, "bank" moves closer to "loan" and "money" in "the bank approved the loan", and to "river" in "we sat on the bank of the river". These are called <dfn>contextual embeddings</dfn>: they are what distinguishes the meanings of a word, the roles in the sentence (who bites whom) and what a pronoun refers back to, like "she" in the <a href="#c3-deep">attention example</a>.</p>
-    <div class="tableau-defilant"><table class="tableau">
-      <caption>Three ways of representing a text</caption>
-      <thead><tr><th scope="col">Representation</th><th scope="col">What it keeps</th><th scope="col">What it loses</th><th scope="col">Tools</th></tr></thead>
-      <tbody>
-        <tr><th scope="row">Bag of words</th><td>The words and their frequency</td><td>Word order, closeness of meaning</td><td>Spam filters, TF-IDF, word clouds</td></tr>
-        <tr><th scope="row">Word vectors (2013)</th><td>Closeness of meaning</td><td>The different meanings of the same word</td><td>word2vec, GloVe, fastText</td></tr>
-        <tr><th scope="row">Contextual vectors (since 2018)</th><td>Meaning in context, word order, what pronouns refer to</td><td>The link with the world and with sources</td><td>BERT, CamemBERT, AraBERT, GPT</td></tr>
-      </tbody>
-    </table></div>
-
-    <h4>How does the model learn all this?</h4>
-    <dl class="definitions">
-      <div><dt>Pre-training</dt><dd>On billions of sentences, the model guesses the next token (GPT) or a masked word (BERT: "The [MASK] drinks milk"). No annotation is needed: the text itself provides the right answer, hence the name <dfn>self-supervised</dfn> learning. To guess well, the model has to pick up grammar, frequent associations and styles.</dd></div>
-      <div><dt>Fine-tuning</dt><dd><dfn>Fine-tuning</dfn> (<span class="terme-en" lang="fr">affinage</span>) continues the training on labeled examples: positive or negative film reviews for <code>sentiment_transformers.py</code>, instruction-answer pairs for an assistant.</dd></div>
-      <div><dt>Human feedback</dt><dd>People rank several answers from the model, and the model is adjusted so that it prefers the best-rated ones: this is RLHF (<span class="terme-en" lang="en">reinforcement learning from human feedback</span>), an application of <a href="#c3-renforcement">reinforcement learning</a>. This is what turns a text completer into an assistant that follows a <a href="#c2-prompts">prompt</a>.</dd></div>
-    </dl>
-    <p>To see it at work, the notebook <a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/08-ia-generative.ipynb" target="_blank" rel="noopener">Predicting the next word</a> builds a language model by hand, then has BERT fill in the gap in a gap-fill sentence.</p>
-
-    <h4>But does it really understand?</h4>
-    <p>The question divides researchers; it makes a good topic for a round table.</p>
-    <div class="comparaison">
-      <div class="comparaison-col">
-        <h4>No: it manipulates forms</h4>
-        <p>In 1980, the philosopher John Searle imagined the <dfn>Chinese room</dfn>: a person who does not know Chinese is shut in a room and answers messages written in Chinese by following a rule book. From the outside, the answers are perfect; yet nobody in the room understands Chinese.</p>
-        <ul>
-          <li>In 2021, Emily Bender, Timnit Gebru, Angelina McMillan-Major and Margaret Mitchell described large models as "stochastic parrots": they put linguistic forms together according to probabilities, with no intention to communicate and no link with the world.</li>
-          <li>Clues: errors with negation, calculation or rare facts, and hallucinations.</li>
-        </ul>
-      </div>
-      <div class="comparaison-col">
-        <h4>Partly: meaning is use</h4>
-        <p>For Ludwig Wittgenstein, "the meaning of a word is its use in the language" (<em>Philosophical Investigations</em>, 1953, §43). If meaning lies in use, a model that masters the use of millions of words captures a real part of it.</p>
-        <ul>
-          <li>Models summarize, translate and answer new questions, which takes more than spotting keywords.</li>
-          <li>Yet their "understanding" remains uneven, without any experience of the world, and has to be judged case by case.</li>
-        </ul>
-      </div>
-    </div>
-    <p>Our working position in this course: a language model models the use of words in its data, not the world itself. Speak of "understanding" in quotation marks and judge on the evidence, by testing.</p>
-
-    <aside class="encadre encadre--shs">
-      <p class="encadre-titre">What this changes for your analyses</p>
-      <ul>
-        <li><strong>Not all languages are equal.</strong> Arabic and Darija are far less present than English in the training data, and their words are often cut into more tokens: processing costs more and the model accepts a shorter text (Aleksandar Petrov and his co-authors, 2023). In English, a token is about three quarters of a word.</li>
-        <li><strong>Test the difficult cases.</strong> Negation ("not bad at all"), irony, metaphor, old or dialectal language: a sentiment model fine-tuned on film reviews can get a poem wrong.</li>
-        <li><strong>Distant reading, close reading.</strong> The model helps you go through thousands of texts, what Franco Moretti calls "distant reading"; interpretation remains a matter of close reading: always go back to the text.</li>
-        <li><strong>Vectors, not truths.</strong> Representations reflect the corpora that produced them, with their gaps and their prejudices.</li>
-      </ul>
-    </aside>
-
-    <div class="quiz">
-      <p class="quiz-question">Which representation gives the word "mouse" a different vector in "the cat chases the mouse" and in "I click with the mouse"?</p>
-      <ul class="quiz-options">
-        <li><button type="button" class="quiz-option">The bag of words</button></li>
-        <li><button type="button" class="quiz-option">A word2vec vector</button></li>
-        <li><button type="button" class="quiz-option" data-correct>A contextual embedding computed by attention</button></li>
-        <li><button type="button" class="quiz-option">The token's number in the vocabulary</button></li>
-      </ul>
-      <p class="quiz-explication" hidden>Only the contextual embedding changes with the neighbors: attention links "mouse" to "cat" in the first sentence and to "click" in the second. The bag of words only counts, word2vec gives "mouse" a single vector whatever its meaning, and the token's number is the same in both sentences.</p>
-    </div>
-
-    <aside class="encadre encadre--retenir">
-      <p class="encadre-titre">Key points</p>
-      <ul>
-        <li>An AI does not read letters but numbers: text, tokens, token numbers, vectors, vectors in context, then output.</li>
-        <li>The bag of words counts words but loses their order; word vectors bring together words from similar contexts; contextual embeddings distinguish the meanings of the same word.</li>
-        <li>The model learns by guessing words in huge corpora, then through fine-tuning and human feedback.</li>
-        <li>Its "understanding" is a model of usage: powerful, uneven across languages, and to be checked against the text.</li>
-      </ul>
     </aside>
   </article>
 
