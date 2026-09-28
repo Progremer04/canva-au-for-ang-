@@ -78,13 +78,14 @@ Sur macOS ou Linux : `python3 tools/lancer.py` ouvre le site, `python3 -m pip in
 
 ## Héberger sur Render
 
-Le site est déjà construit dans `docs/` : un service Web de [Render](https://render.com) n'a qu'à le servir.
+Le site est déjà construit dans `docs/` : un service Web de [Render](https://render.com) n'a qu'à le servir. Le service `canva-au-for-ang-` est relié à ce dépôt : chaque envoi sur `main` le redéploie tout seul (*Auto-Deploy : On Commit*).
 
-- **Service existant** (Dashboard > le service > Settings) : *Branch* `main`, *Build Command* `python --version`, *Start Command* `python tools/lancer.py --public`, puis *Manual Deploy > Deploy latest commit*. Chaque envoi sur `main` redéploie ensuite le site.
-- **Nouveau service** : *New > Blueprint*, puis ce dépôt ; `render.yaml` contient ces réglages.
+- Sa commande de démarrage `bash run.bat` fonctionne : sous Linux, la première ligne de `run.bat` lance `python3 tools/lancer.py --public` (Windows ignore cette ligne). `python tools/lancer.py --public` convient aussi.
+- *Build Command* : `python --version` suffit et prend quelques secondes ; `pip install -r requirements.txt` marche aussi, mais installe pour rien les bibliothèques des TP à chaque déploiement.
+- Si les déploiements échouent en une seconde avec « pipeline minutes exhausted », les minutes de construction de l'espace de travail Render sont épuisées : dans *Workspace Settings > Build Pipeline*, choisissez *Starter* (minutes gratuites incluses) ou relevez la limite de dépense du pipeline *Performance*, puis *Manual Deploy > Deploy latest commit*.
+- Nouveau service : *New > Blueprint*, puis ce dépôt ; `render.yaml` contient ces réglages.
 
-Sur Render (variable `RENDER`) ou avec `--public`, `tools/lancer.py` écoute sur `0.0.0.0` au port donné par `PORT`, sans ouvrir de navigateur. L'API de la base « Mes groupes » y est désactivée : sur un site public, chaque visiteur garde ses propres données dans son navigateur, et la base de l'enseignant reste sur son ordinateur (`run.bat`). Inutile d'installer `requirements.txt` sur Render : ces bibliothèques servent aux TP, pas au site.
-
+Sur Render (variable `RENDER`) ou avec `--public`, `tools/lancer.py` écoute sur `0.0.0.0` au port donné par `PORT`, sans ouvrir de navigateur. L'API de la base « Mes groupes » y est désactivée : sur un site public, chaque visiteur garde ses propres données dans son navigateur, et la base de l'enseignant reste sur son ordinateur (`run.bat`).
 ## Construire
 
 ```sh

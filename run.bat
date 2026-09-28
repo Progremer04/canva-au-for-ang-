@@ -1,3 +1,4 @@
+:; exec python3 tools/lancer.py --public # Linux (Render: "bash run.bat") serves the site; Windows skips this line.
 @echo off
 setlocal EnableExtensions DisableDelayedExpansion
 rem ==========================================================================
