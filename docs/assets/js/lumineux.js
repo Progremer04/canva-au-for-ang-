@@ -234,6 +234,41 @@
     });
   }
 
+  /* ---------- Code sur une page arabe : chaque passage arabe est isolé ---------- */
+  /* Un bloc de code se lit de gauche à droite. Sans isolement, l'algorithme bidirectionnel inverse
+     l'ordre des chaînes arabes voisines : ("القط", "الكلب") s'afficherait ("الكلب", "القط"). Isolé,
+     chaque passage garde sa place dans le code et se lit de droite à gauche. Le texte copié ne change pas. */
+  var LETTRES_AR = "\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF";
+  var PASSAGE_AR = new RegExp("[" + LETTRES_AR + "]+(?:[ \u00A0]+[" + LETTRES_AR + "]+)*", "g");
+  function isolerArabe(racine) {
+    if (!AR || !racine) return;
+    var blocs = racine.matches && racine.matches("pre, pre *") ? [racine] : racine.querySelectorAll("pre:not(.consigne)");
+    Array.prototype.forEach.call(blocs, function (bloc) {
+      if (bloc.closest("pre.consigne")) return;
+      var parcours = document.createTreeWalker(bloc, NodeFilter.SHOW_TEXT), noeuds = [], n;
+      while ((n = parcours.nextNode())) {
+        if (!n.parentNode.classList || !n.parentNode.classList.contains("ar-isole")) noeuds.push(n);
+      }
+      noeuds.forEach(function (noeud) {
+        var texte = noeud.nodeValue, m, fin = 0, morceaux = document.createDocumentFragment();
+        PASSAGE_AR.lastIndex = 0;
+        while ((m = PASSAGE_AR.exec(texte))) {
+          if (m.index > fin) morceaux.appendChild(document.createTextNode(texte.slice(fin, m.index)));
+          var s = document.createElement("span");
+          s.className = "ar-isole";
+          s.textContent = m[0];
+          morceaux.appendChild(s);
+          fin = m.index + m[0].length;
+        }
+        if (!fin) return;
+        if (fin < texte.length) morceaux.appendChild(document.createTextNode(texte.slice(fin)));
+        noeud.parentNode.replaceChild(morceaux, noeud);
+      });
+    });
+  }
+  // Prism réécrit le bloc qu'il colore : on isole de nouveau après chaque coloration.
+  if (AR && window.Prism && window.Prism.hooks) window.Prism.hooks.add("complete", function (env) { isolerArabe(env.element); });
+
   /* ---------- Rail : section active + barre de progression ---------- */
   var railPret = false;
   function initRail() {
@@ -348,11 +383,12 @@
     initCarrousels();
     initQuiz();
     initCopie();
+    isolerArabe(document);
     initAncres();
     initRail();
   }
 
-  window.Lumineux = { init: init, initQuiz: initQuiz, initCopie: initCopie };
+  window.Lumineux = { init: init, initQuiz: initQuiz, initCopie: initCopie, isolerArabe: isolerArabe };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
 })();

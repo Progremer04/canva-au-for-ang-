@@ -901,6 +901,8 @@ figure.code, .tableau-defilant, figure.schema { max-inline-size: 100%; }
 /* Sauf une consigne en langue naturelle (prompt) : elle se lit dans le sens de la page. */
 [dir="rtl"] pre.consigne { direction: rtl; text-align: right; font-size: 16px; line-height: 1.7; }
 [dir="rtl"] pre.consigne, [dir="rtl"] pre.consigne code { font-family: var(--font-texte); }
+/* Dans le code, un passage arabe (chaîne, commentaire, sortie) garde sa place et se lit de droite à gauche. */
+.ar-isole { direction: rtl; unicode-bidi: isolate; }
 [dir="rtl"] :not(pre) > code, [dir="rtl"] kbd { direction: ltr; unicode-bidi: isolate; }
 [dir="rtl"] .terme-en, [dir="rtl"] [lang="fr"], [dir="rtl"] [lang="en"] { unicode-bidi: isolate; }
 [dir="rtl"] .tableau thead th, [dir="rtl"] .tableau caption { text-align: start; }

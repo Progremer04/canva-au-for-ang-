@@ -730,7 +730,7 @@
   <!-- ============================================================ 0 -->
   <article class="lecon" id="c2-prompts">
     <h3>صياغة طلب جيد لمساعد الذكاء الاصطناعي</h3>
-    <p><dfn>مساعد الذكاء الاصطناعي</dfn> (ChatGPT، وGemini، وClaude، وCopilot…) نموذج لغوي كبير نخاطبه باللغة الطبيعية. ويُسمّى النص الذي نعطيه إياه <dfn>الأمر</dfn> أو <dfn>الموجِّه</dfn> (<span class="terme-en" lang="en">prompt</span>)، أي «التعليمة»، ويُسمّى فنّ كتابته <dfn>هندسة الأوامر</dfn> (<span class="terme-en" lang="en">prompt engineering</span>). يُنتج النموذج التتمّة الأكثر احتمالًا للنص الذي يتلقّاه (<a href="#c3-deep">الفصل 3</a>): فكلما كانت التعليمة أدقّ، اقتربت هذه التتمّة ممّا تنتظرونه. وفي هذا المقياس، يُستعمل المساعد لغرضين: تحليل النصوص، ومساعدتكم على قراءة شيفرة Python وكتابتها. ولا يُستعمل أبدًا لإنجاز عمل بدلًا منكم.</p>
+    <p><dfn>مساعد الذكاء الاصطناعي</dfn> (ChatGPT، وGemini، وClaude، وCopilot…) نموذج لغوي كبير نخاطبه باللغة الطبيعية. ويُسمّى النص الذي نعطيه إياه <dfn>الأمر</dfn> أو <dfn>الموجِّه</dfn> (<span class="terme-en" lang="en">prompt</span>)، أي «التعليمة»، ويُسمّى فنّ كتابته <dfn>هندسة الأوامر</dfn> (<span class="terme-en" lang="en">prompt engineering</span>). يُنتج النموذج التتمّة الأكثر احتمالًا للنص الذي يتلقّاه (<a href="#c3-deep">الفصل 3</a>؛ وانظر أيضًا <a href="#c3-texte">كيف «يفهم» الذكاء الاصطناعي النص</a>): فكلما كانت التعليمة أدقّ، اقتربت هذه التتمّة ممّا تنتظرونه. وفي هذا المقياس، يُستعمل المساعد لغرضين: تحليل النصوص، ومساعدتكم على قراءة شيفرة Python وكتابتها. ولا يُستعمل أبدًا لإنجاز عمل بدلًا منكم.</p>
 
     <h4>العناصر الستة للتعليمة الجيدة</h4>
     <div class="tableau-defilant"><table class="tableau">
@@ -1695,6 +1695,7 @@ print(texte_pdf.splitlines()[:3])</code></pre>
       <li><a href="#c3-ml">التعلم الآلي</a></li>
       <li><a href="#c3-algorithmes">بعض خوارزميات التعلم الآلي</a></li>
       <li><a href="#c3-deep">التعلم العميق</a></li>
+      <li><a href="#c3-texte">كيف «يفهم» الذكاء الاصطناعي النص</a></li>
       <li><a href="#c3-renforcement">التعلم المعزَّز</a></li>
       <li><a href="#c3-synthese">خلاصة</a></li>
     </ol>
@@ -2176,6 +2177,185 @@ NEGATIVE | The ending was a real disappointment.</samp></pre>
     <aside class="encadre encadre--attention">
       <p class="encadre-titre">الهلوسة والمصادر</p>
       <p>يُنتج النموذج التوليدي التتمّة الأكثر معقولية، لا الأكثر صدقًا. وقد يختلق بثقة تامّة استشهادًا، أو تاريخًا، أو مرجعًا ببليوغرافيًا كاملًا لا وجود له: وهذا ما يُسمّى <dfn>الهلوسة</dfn> (<span class="terme-en" lang="fr">hallucination</span>). وفي المذكّرة، لا تستشهدوا أبدًا بمصدر لم تعثروا عليه وتقرؤوه بأنفسكم، وتحقّقوا من كل استشهاد في الطبعة الأصلية، وصرّحوا باستعمال هذه الأدوات وفق قواعد مؤسّستكم.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="c3-texte">
+    <h3>كيف «يفهم» الذكاء الاصطناعي النص</h3>
+    <p>لا يتعامل الحاسوب إلا مع الأعداد. فلكي «يقرأ» نموذجٌ روايةً لنجيب محفوظ أو خطابًا سياسيًا، ينبغي أولًا تحويل النص إلى أعداد، ثم تعلّم أعداد تعكس استعمال الكلمات. وما نسمّيه، بين علامتَي تنصيص، «فهمَ» الذكاء الاصطناعي هو حصيلة هذه السلسلة. ويتتبّعها هذا الدرس خطوة خطوة، ببرنامجين صغيرين مكتوبين بلغة Python وحدها: لا حاجة إلى تثبيت أي مكتبة.</p>
+
+    <h4>من النص إلى الإجابة: ست خطوات</h4>
+    <ol class="etapes">
+      <li><p class="etape-titre">التقطيع</p><p>يُقطَّع النص إلى <dfn>رموز</dfn> (<span class="terme-en" lang="fr">tokens</span>): فالكلمة الشائعة تبقى في الغالب كاملة، والكلمة النادرة أو الطويلة تُقسَّم إلى أجزاء (جذع، وسابقة، ولاحقة)، وتُشكّل علامات الترقيم رموزًا مستقلة.</p></li>
+      <li><p class="etape-titre">التحويل إلى أرقام</p><p>يُستبدل كل رمز برقمه في معجم النموذج (ما يزيد قليلًا على 50 ألف مدخل في GPT-2). فلا يتلقّى النموذج إلا قائمة من الأعداد الصحيحة: إنه لا يرى الحروف أبدًا.</p></li>
+      <li><p class="etape-titre">التضمين</p><p>يُحيل كل رقم إلى متّجه من عدة مئات من الأعداد، هو <dfn>تضمينه</dfn> (<span class="terme-en" lang="fr">plongement</span>)، الذي يُتعلَّم أثناء التدريب. ويُضاف إليه ترميزٌ لموضع الرمز، لولاه لضاع ترتيب الكلمات.</p></li>
+      <li><p class="etape-titre">الوضع في السياق</p><p>طبقةً بعد طبقة، يعيد الانتباه حساب كل متّجه انطلاقًا من متّجهات الرموز الأخرى: فمتّجه «عين» لا يبقى هو نفسه في «شربنا من عين القرية» وفي «احمرّت عين الطفل».</p></li>
+      <li><p class="etape-titre">حساب المُخرَج</p><p>يحسب فاكّ الترميز (GPT) احتمالًا لكل رمز من المعجم؛ ويعطي المرمِّز (BERT) وسمًا: المشاعر، أو الموضوع، أو الكيان المسمّى.</p></li>
+      <li><p class="etape-titre">العودة إلى النص</p><p>يُعاد الرمز المختار إلى حروف ويُضاف إلى النص، ثم تبدأ الحلقة من جديد: هذا هو <a href="#c3-deep">التوليد</a> الموصوف أعلاه.</p></li>
+    </ol>
+
+    <h4>الفكرة الأولى: كيس الكلمات</h4>
+    <p>أبسط تمثيل يعدّ كلمات كل نص دون مراعاة ترتيبها: إنه <dfn>كيس الكلمات</dfn> (<span class="terme-en" lang="fr">sac de mots</span> أو <span class="terme-en" lang="en">bag of words</span>). وهو يكفي لمهام كثيرة: ترشيح الرسائل المزعجة، وتصنيف المقالات بحسب الموضوع، وسُحُب الكلمات، والقياس الأسلوبي. غير أنه أعمى عن أمرين.</p>
+    <figure class="code">
+      <figcaption class="code-legende">sac_de_mots.py</figcaption>
+      <pre><code class="language-python">from collections import Counter
+
+phrase_1 = "الكلب يعض الرجل"
+phrase_2 = "الرجل يعض الكلب"
+
+sac_1 = Counter(phrase_1.split())
+sac_2 = Counter(phrase_2.split())
+print(sac_1)
+print("كيس الكلمات نفسه:", sac_1 == sac_2)</code></pre>
+      <pre class="sortie"><samp>Counter({'الكلب': 1, 'يعض': 1, 'الرجل': 1})
+كيس الكلمات نفسه: True</samp></pre>
+    </figure>
+    <p>يعدّ <code>Counter</code> عناصر قائمةٍ ما. فالجملتان، على تعارض معنييهما، تعطيان الكيس نفسه تمامًا: لقد ضاع منه مَن يعضّ مَن. والكلمات كلها في نظره مختلفة بالقدر نفسه: فـ«القط» ليس أقرب إلى «الكلب» منه إلى «الكتاب».</p>
+
+    <h4>الفكرة الثانية: متّجهات تُتعلَّم من السياق</h4>
+    <p>تقول <dfn>الفرضية التوزيعية</dfn> (<span class="terme-en" lang="fr">hypothèse distributionnelle</span>)، التي صاغها اللساني Zellig Harris في 1954 ولخّصها J. R. Firth في 1957 (<a href="#c3-deep">التضمينات</a>)، إن الكلمات المستعملة في سياقات متشابهة تكون معانيها متقاربة. ومن ثَمّ يمكن وصف الكلمة بجيرانها. وهذا ما يفعله البرنامج التالي على مدوّنة من ست جمل: فمتّجه الكلمة يعدّ كم مرة تظهر كل كلمة أخرى في الجمل نفسها. ويُقارَن متّجهان بواسطة <dfn>تشابه جيب التمام</dfn> (<span class="terme-en" lang="fr">similarité cosinus</span>)، الذي يساوي 1 حين يشيران إلى الاتجاه نفسه، و0 حين لا يشتركان في شيء.</p>
+    <p class="formule">cos(a, b) = (a · b) / (‖a‖ × ‖b‖)</p>
+    <figure class="code">
+      <figcaption class="code-legende">vecteurs_de_mots.py</figcaption>
+      <pre><code class="language-python">import math
+
+corpus = [
+    "القط يشرب الحليب",
+    "الكلب يشرب الماء",
+    "القط ينام على الأريكة",
+    "الكلب ينام في بيته",
+    "القارئ يفتح الكتاب",
+    "القارئ يقرأ الرواية",
+]
+vides = {"على", "في"}   # mots-outils, présents partout
+
+# Le vecteur d'un mot : combien de fois chaque autre mot apparaît dans les mêmes phrases
+vocabulaire = sorted({m for phrase in corpus for m in phrase.split()} - vides)
+
+def vecteur(mot):
+    v = [0] * len(vocabulaire)
+    for phrase in corpus:
+        mots = [m for m in phrase.split() if m not in vides]
+        if mot in mots:
+            for autre in mots:
+                if autre != mot:
+                    v[vocabulaire.index(autre)] += 1
+    return v
+
+def cosinus(a, b):
+    produit = sum(x * y for x, y in zip(a, b))
+    return produit / (math.sqrt(sum(x * x for x in a)) * math.sqrt(sum(y * y for y in b)))
+
+print(vocabulaire)
+print("القط:", vecteur("القط"))
+for m1, m2 in [("القط", "الكلب"), ("القط", "الكتاب"), ("الكتاب", "الرواية")]:
+    print(f"{m1} / {m2}: {cosinus(vecteur(m1), vecteur(m2)):.2f}")</code></pre>
+      <pre class="sortie"><samp>['الأريكة', 'الحليب', 'الرواية', 'القارئ', 'القط', 'الكتاب', 'الكلب', 'الماء', 'بيته', 'يشرب', 'يفتح', 'يقرأ', 'ينام']
+القط: [1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1]
+القط / الكلب: 0.50
+القط / الكتاب: 0.00
+الكتاب / الرواية: 0.50</samp></pre>
+    </figure>
+    <p>لم يُخبر أحدٌ البرنامجَ بأن القط والكلب حيوانان: بل استنتج ذلك من اشتراكهما في سياقين، «يشرب» و«ينام». وبالمثل، تتقارب الكلمتان «الكتاب» و«الرواية» لأن كلتيهما تجاور «القارئ»، في حين لا يجمع «القط» و«الكتاب» أيُّ جار مشترك. وقد استُبعدت الكلمات الوظيفية: فلأنها حاضرة في كل مكان، كانت ستقرّب كل شيء من كل شيء.</p>
+    <p>في 2013، طبّق <dfn>word2vec</dfn> (Tomas Mikolov وشركاؤه في التأليف، Google) هذه الفكرة على مليارات الكلمات: فبدل العدّ، تتعلّم شبكة عصبية صغيرة متّجهات من بضع مئات من الأبعاد، بتخمين كل كلمة انطلاقًا من جيرانها. وترمّز هذه المتّجهات علاقات: فالعملية متّجه(ملك) − متّجه(رجل) + متّجه(امرأة) تقع قرب متّجه(ملكة). وترمّز أيضًا الصور النمطية الكامنة في نصوص التدريب: ففي 2016، بيّن Tolga Bolukbasi وشركاؤه في التأليف أن متّجهاتٍ مُتعلَّمة من مقالات صحفية كانت تجيب عن السؤال «الرجل بالنسبة إلى المبرمج كالمرأة بالنسبة إلى…» بـ«ربة منزل».</p>
+    <figure class="schema">
+      <svg viewBox="0 0 640 300" role="img" aria-labelledby="c3-carte-t">
+        <title id="c3-carte-t">خريطة لمتّجهات كلمات مُسقَطة على بُعدين</title>
+        <defs><marker id="c3-fleche-mots" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="svg-pointe" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+        <rect class="svg-trait" x="16" y="16" width="608" height="268" rx="12"/>
+        <text class="svg-texte-doux" x="40" y="46">حيوانات</text>
+        <circle class="svg-noeud-accent" cx="70" cy="90" r="7"/><text class="svg-texte" x="84" y="95">قط</text>
+        <circle class="svg-noeud-accent" cx="130" cy="120" r="7"/><text class="svg-texte" x="144" y="125">كلب</text>
+        <circle class="svg-noeud-accent" cx="80" cy="150" r="7"/><text class="svg-texte" x="94" y="155">حصان</text>
+        <text class="svg-texte-doux" x="40" y="212">قراءة</text>
+        <circle class="svg-noeud" cx="70" cy="245" r="7"/><text class="svg-texte" x="84" y="250">كتاب</text>
+        <circle class="svg-noeud" cx="150" cy="232" r="7"/><text class="svg-texte" x="164" y="237">رواية</text>
+        <circle class="svg-noeud" cx="200" cy="262" r="7"/><text class="svg-texte" x="214" y="267">قارئ</text>
+        <line class="svg-trait" x1="340" y1="230" x2="510" y2="230" stroke-dasharray="5 5"/>
+        <line class="svg-trait" x1="400" y1="110" x2="570" y2="110" stroke-dasharray="5 5"/>
+        <line class="svg-trait-accent" x1="340" y1="230" x2="396" y2="116" marker-end="url(#c3-fleche-mots)"/>
+        <line class="svg-trait-accent" x1="510" y1="230" x2="566" y2="116" marker-end="url(#c3-fleche-mots)"/>
+        <circle class="svg-noeud" cx="340" cy="230" r="7"/><text class="svg-texte" x="340" y="258" text-anchor="middle">رجل</text>
+        <circle class="svg-noeud" cx="400" cy="110" r="7"/><text class="svg-texte" x="400" y="92" text-anchor="middle">امرأة</text>
+        <circle class="svg-noeud" cx="510" cy="230" r="7"/><text class="svg-texte" x="510" y="258" text-anchor="middle">ملك</text>
+        <circle class="svg-noeud" cx="570" cy="110" r="7"/><text class="svg-texte" x="570" y="92" text-anchor="middle">ملكة</text>
+        <text class="svg-texte-doux" x="455" y="46" text-anchor="middle">الفرق نفسه، الاتجاه نفسه</text>
+      </svg>
+      <figcaption>خريطة مبسَّطة: للمتّجهات الحقيقية مئات الأبعاد، أُسقطت هنا على بُعدين. فالكلمات ذات السياقات المتشابهة تتجمّع، والفرق بين «رجل» و«امرأة» يكاد يكون هو نفسه الفرق بين «ملك» و«ملكة».</figcaption>
+    </figure>
+    <p>لهذه المتّجهات حدٌّ: فلكل كلمة متّجه واحد فقط، أيًّا كان معناها في الجملة.</p>
+
+    <h4>الفكرة الثالثة: متّجه لكل كلمة في كل سياق</h4>
+    <p>تدلّ «عين» على عضو البصر أو على نبع ماء أو على جاسوس، و«فأرة» على حيوان أو على أداة من أدوات الحاسوب، و«ساعة» على آلة لقياس الوقت أو على ستين دقيقة. وفي المحوِّل، يبقى التضمين الأوّلي للكلمة هو نفسه دائمًا، لكن الانتباه يعيد حسابه انطلاقًا من جيرانها: فبعد بضع طبقات، تقترب «عين» من «ماء» و«نبع» في «شربنا من عين القرية»، ومن «بصر» و«نظر» في «احمرّت عين الطفل». ونتحدّث هنا عن <dfn>التضمينات السياقية</dfn> (<span class="terme-en" lang="fr">plongements contextuels</span>): فهي التي تميّز معاني الكلمة الواحدة، والأدوار في الجملة (مَن يعضّ مَن)، والإحالات، مثل الضمير «ها» في <a href="#c3-deep">مثال الانتباه</a>.</p>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>ثلاث طرائق لتمثيل النص</caption>
+      <thead><tr><th scope="col">التمثيل</th><th scope="col">ما يحتفظ به</th><th scope="col">ما يفقده</th><th scope="col">الأدوات</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">كيس الكلمات</th><td>الكلمات وتواترها</td><td>الترتيب، والتقارب في المعنى</td><td>مرشِّحات الرسائل المزعجة، وTF-IDF، وسُحُب الكلمات</td></tr>
+        <tr><th scope="row">متّجهات الكلمات (2013)</th><td>التقارب في المعنى</td><td>المعاني المتعدّدة للكلمة الواحدة</td><td>word2vec، وGloVe، وfastText</td></tr>
+        <tr><th scope="row">المتّجهات السياقية (منذ 2018)</th><td>المعنى في السياق، والترتيب، والإحالات</td><td>الصلة بالعالم وبالمصادر</td><td>BERT، وCamemBERT، وAraBERT، وGPT</td></tr>
+      </tbody>
+    </table></div>
+
+    <h4>كيف يتعلّم النموذج كل هذا؟</h4>
+    <dl class="definitions">
+      <div><dt>التدريب المسبق</dt><dd>على مليارات الجمل، يخمّن النموذج الرمز التالي (GPT) أو كلمةً محجوبة (BERT: «القط [MASK] الحليب»). ولا حاجة إلى الوسم اليدوي: فالنص نفسه يوفّر الإجابة الصحيحة، ومن هنا جاءت تسمية التعلّم <dfn>الذاتي الإشراف</dfn> (<span class="terme-en" lang="fr">auto-supervisé</span>). ولكي يُحسن التخمين، يجب على النموذج أن يلتقط النحو، والترابطات الشائعة بين الكلمات، والأساليب.</dd></div>
+      <div><dt>الضبط الدقيق</dt><dd>يواصل <dfn>الضبط الدقيق</dfn> (<span class="terme-en" lang="fr">affinage</span> أو <span class="terme-en" lang="en">fine-tuning</span>) التدريبَ على أمثلة موسومة: مراجعات أفلام إيجابية أو سلبية بالنسبة إلى <code>sentiment_transformers.py</code>، وأزواج من التعليمات والإجابات بالنسبة إلى المساعد.</dd></div>
+      <div><dt>التقييم البشري</dt><dd>يرتّب أشخاصٌ عدةَ إجابات للنموذج، ثم يُعدَّل النموذج كي يفضّل الإجابات الأعلى تقييمًا: هذا هو RLHF (<span class="terme-en" lang="en">reinforcement learning from human feedback</span>)، وهو تطبيق <a href="#c3-renforcement">للتعلم المعزَّز</a>. وهذا ما يحوّل أداةً لإكمال النصوص إلى مساعدٍ يتّبع <a href="#c2-prompts">تعليمة</a>.</dd></div>
+    </dl>
+    <p>ولرؤية ذلك عمليًا، يبني دفتر <a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/08-ia-generative.ipynb" target="_blank" rel="noopener" lang="fr">Prédire le mot suivant</a> (بالفرنسية) أو <a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/08-ia-generative.ipynb" target="_blank" rel="noopener" lang="en">Predicting the next word</a> (بالإنجليزية) نموذجًا لغويًا يدويًا، ثم يجعل محوِّلًا حقيقيًا يملأ نصًّا ذا فراغات: CamemBERT في النسخة الفرنسية، وBERT في النسخة الإنجليزية.</p>
+
+    <h4>ولكن، هل يفهم حقًّا؟</h4>
+    <p>ينقسم الباحثون حول هذا السؤال؛ وهو موضوع جيد لمائدة مستديرة.</p>
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>لا: إنه يعالج أشكالًا</h4>
+        <p>في 1980، تخيّل الفيلسوف John Searle <dfn>الغرفة الصينية</dfn> (<span class="terme-en" lang="fr">chambre chinoise</span>): شخصٌ يجهل الصينية، محبوس في غرفة، يجيب عن رسائل مكتوبة بالصينية باتّباع دليل من القواعد. من الخارج، تبدو الإجابات تامّة؛ ومع ذلك، لا أحد في الغرفة يفهم الصينية.</p>
+        <ul>
+          <li>في 2021، وصفت Emily Bender وTimnit Gebru وAngelina McMillan-Major وMargaret Mitchell النماذج الكبيرة بأنها «ببغاوات عشوائية»: فهي تركّب أشكالًا لغوية وفق احتمالات، دون نيّة في التواصل ولا صلة بالعالم.</li>
+          <li>القرائن: الأخطاء في النفي، وفي الحساب، وفي الوقائع النادرة، والهلوسات.</li>
+        </ul>
+      </div>
+      <div class="comparaison-col">
+        <h4>جزئيًا: المعنى هو الاستعمال</h4>
+        <p>يرى Ludwig Wittgenstein أن «معنى الكلمة هو استعمالها في اللغة» (<em>تحقيقات فلسفية</em>، 1953، الفقرة 43). فإذا كان المعنى رهينًا بالاستعمال، فإن نموذجًا يُتقن استعمال ملايين الكلمات يلتقط منه نصيبًا حقيقيًا.</p>
+        <ul>
+          <li>تلخّص النماذج، وتترجم، وتجيب عن أسئلة جديدة، وهذا يتطلّب أكثر من رصد الكلمات المفتاحية.</li>
+          <li>غير أن «فهمها» يبقى متفاوتًا، محرومًا من تجربة العالم، ويُحكم عليه حالةً بحالة.</li>
+        </ul>
+      </div>
+    </div>
+    <p>الموقف الذي نعتمده في هذا المقياس: النموذج اللغوي ينمذج استعمال الكلمات في بياناته، لا العالمَ نفسه. تحدّثوا عن «الفهم» بين علامتَي تنصيص، واحكموا بناءً على الشواهد، بالاختبار.</p>
+
+    <aside class="encadre encadre--shs">
+      <p class="encadre-titre">ما يغيّره هذا في تحليلاتكم</p>
+      <ul>
+        <li><strong>ليست كل اللغات متساوية.</strong> العربية والدارجة أقلّ حضورًا بكثير من الإنجليزية في بيانات التدريب، وكثيرًا ما تُقطَّع كلماتهما إلى عدد أكبر من الرموز: فتصبح المعالجة أعلى كلفة، والنص الذي يمكن إدخاله أقصر (Aleksandar Petrov وشركاؤه في التأليف، 2023). وفي الإنجليزية، يُحسب نحو ثلاثة أرباع كلمة لكل رمز.</li>
+        <li><strong>اختبروا الحالات الصعبة.</strong> النفي («ليس سيئًا على الإطلاق»)، والسخرية، والاستعارة، واللغة القديمة أو اللهجية: فنموذج المشاعر المضبوط على مراجعات الأفلام قد يخطئ في قصيدة.</li>
+        <li><strong>القراءة عن بُعد، والقراءة عن قُرب.</strong> يساعد النموذج على تصفّح آلاف النصوص، وهو ما يسمّيه Franco Moretti «القراءة عن بُعد»؛ أما التأويل فيبقى من شأن القراءة عن قُرب: عودوا دائمًا إلى النص.</li>
+        <li><strong>متّجهات، لا حقائق.</strong> تعكس التمثيلات المدوّنات التي أنتجتها، بما فيها من نواقص وأحكام مسبقة.</li>
+      </ul>
+    </aside>
+
+    <div class="quiz">
+      <p class="quiz-question">أيّ تمثيل يعطي كلمة «الفأرة» متّجهًا مختلفًا في «طارد القط الفأرة» وفي «نقرتُ زرّ الفأرة»؟</p>
+      <ul class="quiz-options">
+        <li><button type="button" class="quiz-option">كيس الكلمات</button></li>
+        <li><button type="button" class="quiz-option">متّجه word2vec</button></li>
+        <li><button type="button" class="quiz-option" data-correct>تضمين سياقي يحسبه الانتباه</button></li>
+        <li><button type="button" class="quiz-option">رقم الرمز في المعجم</button></li>
+      </ul>
+      <p class="quiz-explication" hidden>وحده التضمين السياقي يتغيّر بتغيّر الجيران: فالانتباه يربط «الفأرة» بـ«القط» في الجملة الأولى، وبـ«نقرتُ» في الثانية. أما كيس الكلمات فيكتفي بالعدّ، ويعطي word2vec متّجهًا واحدًا لـ«الفأرة» أيًّا كان معناها، ورقم الرمز هو نفسه في الجملتين.</p>
+    </div>
+
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">ما يجب تذكّره</p>
+      <ul>
+        <li>لا يقرأ الذكاء الاصطناعي حروفًا بل أعدادًا: النص، فالرموز، فالأرقام، فالمتّجهات، فالمتّجهات في سياقها، ثم المُخرَج.</li>
+        <li>يعدّ كيس الكلمات الكلمات لكنه يفقد الترتيب؛ وتقرّب متّجهات الكلمات بين الكلمات ذات السياقات المتشابهة؛ وتميّز التضمينات السياقية بين معاني الكلمة الواحدة.</li>
+        <li>يتعلّم النموذج بتخمين الكلمات في مدوّنات هائلة، ثم بالضبط الدقيق والتقييم البشري.</li>
+        <li>«فهمه» نمذجةٌ للاستعمال: قوية، ومتفاوتة بحسب اللغات، وينبغي التحقّق منها بالعودة إلى النص.</li>
+      </ul>
     </aside>
   </article>
 
