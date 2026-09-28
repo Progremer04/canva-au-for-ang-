@@ -1,9 +1,13 @@
 # Télécharge depuis Wikimedia les photos de la leçon 1 qui n'ont pas encore de copie, et les enregistre dans
 # docs/_sources/lecon1/photos/ : la leçon (docs/chapitr1_first_lesson.html) les intègre à la construction
-# suivante et les affiche même hors ligne. À lancer depuis l'onglet Actions (« Run workflow »).
+# suivante et les affiche même hors ligne. À lancer depuis l'onglet Actions (« Run workflow ») ; il se lance
+# aussi seul quand ce fichier ou tools/lecon1.py change sur une branche de travail.
 name: Photos de la leçon 1
 on:
   workflow_dispatch:
+  push:
+    branches-ignore: [main]
+    paths: [".github/workflows/photos-lecon1.yml", "tools/lecon1.py"]
 permissions:
   contents: write
 jobs:
