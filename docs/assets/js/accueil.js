@@ -58,7 +58,7 @@
   var connexion = navigator.connection || {};
   if (connexion.saveData || /2g/.test(connexion.effectiveType || "")) return;
   var fichiers = [
-    "cours.html", "enseignant.html", "classe.html", "diaporamas.html",
+    "cours.html", "enseignant.html", "classe.html", "diaporamas.html", BASE + "chapitr1_first_lesson.html",
     BASE + "assets/js/cours.js", BASE + "assets/js/classe.js", BASE + "assets/js/diaporama.js",
     BASE + "assets/diapos/diapos-" + LANGUE + ".js", BASE + "assets/css/outils.css",
     BASE + "assets/vendor/sqljs/sql-wasm.js", BASE + "assets/vendor/sqljs/sql-wasm.wasm"

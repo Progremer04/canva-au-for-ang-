@@ -139,6 +139,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 88px; }
 .chapitre + .chapitre { margin-block-start: var(--espace-6); border-block-start: var(--trait-fin) solid var(--ligne); }
 .chapitre-tete { margin-block-end: var(--espace-6); }
 .chapitre-tete .puces { margin-block-start: var(--espace-4); }
+.chapitre-tete__lecon { margin: var(--espace-5) 0 0; }
 .lecon { padding-block-start: var(--espace-7); }
 .lecon:first-of-type { padding-block-start: var(--espace-5); }
 

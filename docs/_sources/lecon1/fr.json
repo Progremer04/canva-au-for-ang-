@@ -1,0 +1,893 @@
+{
+  "langue": "fr",
+  "titre": "De l'automate à l'agent",
+  "sousTitre": "L'histoire complète de l'intelligence artificielle, des premières machines aux agents d'aujourd'hui",
+  "diapos": [
+    {
+      "type": "couverture",
+      "surtitre": "Intelligence artificielle · Chapitre 1 · Première leçon",
+      "titre": "De l'automate à l'agent",
+      "sousTitre": "L'histoire complète de l'intelligence artificielle, des premières machines aux agents d'aujourd'hui",
+      "illus": "agent",
+      "notes": "Accueillez la classe avec une question au tableau : « Une machine peut-elle penser ? » Ne répondez pas : toute la leçon y revient. Annoncez le fil conducteur : le rêve de machines intelligentes est très ancien, mais l'IA comme science a soixante-dix ans, et ses agents quelques années seulement."
+    },
+    {
+      "type": "plan",
+      "titre": "Le voyage de cette leçon",
+      "points": [
+        "Le rêve des machines (de l'Antiquité à 1945)",
+        "La naissance de l'IA (1950–1956)",
+        "L'âge d'or, puis le premier hiver (1956–1980)",
+        "Les systèmes experts (1980–1993)",
+        "Apprendre à partir des données (1990–2016)",
+        "La révolution de l'apprentissage profond (2006–2016)",
+        "Transformers et IA générative (2017–2022)",
+        "L'ère des agents (2023–2026)"
+      ],
+      "notes": "Huit étapes, chacune avec une date clé à retenir. Proposez aux étudiants de noter une date par étape : ils reconstitueront la frise à la fin."
+    },
+    {
+      "type": "texte",
+      "titre": "Et vous, qu'appelez-vous « intelligence » ?",
+      "points": [
+        "Comprendre une phrase, traduire un poème",
+        "Reconnaître un visage parmi mille",
+        "Gagner aux échecs, résoudre un problème",
+        "Apprendre de ses erreurs",
+        "Agir seul pour atteindre un but"
+      ],
+      "illus": "cerveau",
+      "notes": "Deux minutes de vote à main levée : lesquelles de ces capacités une machine a-t-elle déjà ? Réponse de fin de leçon : toutes, à des degrés divers, mais aucune machine ne les réunit comme un humain. La dernière ligne, agir seul pour un but, définit l'agent : c'est la destination de la leçon."
+    },
+    {
+      "type": "section",
+      "numero": "1",
+      "titre": "Le rêve des machines",
+      "periode": "De l'Antiquité à 1945",
+      "texte": "Bien avant les ordinateurs, les humains ont imaginé et construit des machines qui imitent la vie, puis des machines qui calculent.",
+      "illus": "engrenages",
+      "notes": "Première étape : l'IA n'est pas née de rien. Deux lignes se rejoignent ici : les automates, qui imitent le mouvement, et les machines à calculer, qui imitent le raisonnement."
+    },
+    {
+      "type": "texte",
+      "titre": "Des automates dans les mythes et les ateliers",
+      "points": [
+        "Mythe grec : Talos, géant de bronze qui garde la Crète",
+        "Ier siècle : Héron d'Alexandrie décrit des automates de théâtre",
+        "1739 : le canard de Vaucanson bat des ailes et « digère »",
+        "Vers 1770 : l'Écrivain des Jaquet-Droz trace des lettres à la plume"
+      ],
+      "illus": "engrenages",
+      "notes": "Un automate reproduit un mouvement prévu d'avance par ses engrenages ou ses cames. Il ne décide rien : c'est la différence avec une IA. Demandez : l'Écrivain des Jaquet-Droz « écrit »-il vraiment ?"
+    },
+    {
+      "type": "texte",
+      "titre": "Al-Jazari, l'ingénieur des machines ingénieuses",
+      "annee": "1206",
+      "points": [
+        "Ingénieur de la cour artuqide, en Haute-Mésopotamie",
+        "Écrit en 1206 le *Livre de la connaissance des procédés mécaniques ingénieux*",
+        "Décrit une cinquantaine de machines : horloges, pompes, automates",
+        "Son horloge-éléphant marque les heures par des automates"
+      ],
+      "illus": "elephant",
+      "notes": "Al-Jazari montre que la tradition des automates traverse le monde arabe et musulman médiéval. Ses dessins détaillés permettent encore aujourd'hui de reconstruire ses machines. Restez prudent : ce sont des automates programmés d'avance, pas des machines qui apprennent."
+    },
+    {
+      "type": "texte",
+      "titre": "Des machines qui calculent",
+      "points": [
+        "1642 : Blaise Pascal construit la Pascaline, qui additionne",
+        "1673 : Leibniz présente une machine qui multiplie",
+        "1837 : Charles Babbage conçoit la machine analytique, programmable par cartes perforées",
+        "La machine analytique ne sera jamais achevée de son vivant"
+      ],
+      "illus": "calculatrice",
+      "personne": "babbage",
+      "notes": "Passage clé : une machine qui calcule remplace une partie du travail de l'esprit. La machine analytique de Babbage a déjà une mémoire et une unité de calcul, comme nos ordinateurs."
+    },
+    {
+      "type": "portrait",
+      "personne": "lovelace",
+      "nom": "Ada Lovelace",
+      "dates": "1815–1852",
+      "role": "Mathématicienne, première programmeuse",
+      "points": [
+        "1843 : ses notes sur la machine analytique de Babbage",
+        "Elle y écrit un algorithme pour calculer les nombres de Bernoulli",
+        "Elle imagine que la machine pourrait composer de la musique"
+      ],
+      "citation": "La machine analytique n'a aucune prétention à créer quoi que ce soit.",
+      "source": "Ada Lovelace, notes de 1843",
+      "notes": "Sa phrase, l'« objection de Lady Lovelace », sera discutée par Turing un siècle plus tard : une machine ne fait-elle que ce qu'on lui dit ? Question à poser à la classe : un modèle qui écrit un poème crée-t-il quelque chose ?"
+    },
+    {
+      "type": "texte",
+      "titre": "Quand la pensée devient calcul",
+      "points": [
+        "1854 : George Boole réduit le raisonnement à des calculs sur vrai et faux",
+        "1936 : Alan Turing décrit une machine abstraite capable de tout calcul",
+        "Un ruban, une tête de lecture, une table de règles : c'est la « machine de Turing »",
+        "Tout ordinateur actuel est, en principe, une machine de Turing"
+      ],
+      "illus": "turing",
+      "notes": "Boole fournit l'alphabet (vrai, faux, et, ou, non) ; Turing fournit la machine universelle. Montrez l'animation : la tête lit une case, écrit, se déplace, change d'état. Avec des règles aussi simples, on peut tout calculer."
+    },
+    {
+      "type": "portrait",
+      "personne": "turing",
+      "nom": "Alan Turing",
+      "dates": "1912–1954",
+      "role": "Mathématicien, père de l'informatique théorique",
+      "points": [
+        "1936 : la machine universelle",
+        "1939–1945 : contribue à casser le code Enigma à Bletchley Park",
+        "1950 : « Computing Machinery and Intelligence », l'article fondateur"
+      ],
+      "citation": "Je propose d'examiner la question suivante : les machines peuvent-elles penser ?",
+      "source": "Alan Turing, Mind, 1950",
+      "notes": "Turing remplace une question impossible (« penser ») par un test observable, le jeu de l'imitation. C'est le geste fondateur de l'IA. La phrase citée ouvre son article de 1950."
+    },
+    {
+      "type": "schema",
+      "titre": "Le neurone formel",
+      "annee": "1943",
+      "illus": "neurone",
+      "points": [
+        "Warren McCulloch et Walter Pitts modélisent un neurone par un calcul",
+        "Il additionne des signaux d'entrée et « s'active » au-delà d'un seuil",
+        "C'est l'ancêtre de tous les réseaux de neurones actuels"
+      ],
+      "notes": "Premier pont entre biologie et calcul. Dessinez au tableau : trois entrées, des poids, une somme, un seuil. On retrouvera exactement ce schéma avec le perceptron en 1958, puis dans l'apprentissage profond."
+    },
+    {
+      "type": "texte",
+      "titre": "Les premiers ordinateurs",
+      "points": [
+        "1945 : l'ENIAC, 30 tonnes, calcule des trajectoires balistiques",
+        "1948 : Claude Shannon fonde la théorie de l'information",
+        "Le bit devient l'unité de toute information : texte, image, son",
+        "Les machines existent enfin ; reste à les rendre « intelligentes »"
+      ],
+      "personne": "eniac",
+      "notes": "L'ENIAC occupe une salle entière et se programme en branchant des câbles. Shannon, lui, sera l'un des quatre signataires du projet de Dartmouth. Fin de la première étape : tout est prêt pour la naissance de l'IA."
+    },
+    {
+      "type": "section",
+      "numero": "2",
+      "titre": "La naissance de l'IA",
+      "periode": "1950–1956",
+      "texte": "En six ans, une question devient un programme de recherche, puis une discipline avec un nom.",
+      "illus": "ampoule",
+      "notes": "Deuxième étape : trois moments à retenir, 1950 (Turing), 1956 (Dartmouth) et le premier programme « intelligent »."
+    },
+    {
+      "type": "schema",
+      "titre": "Le jeu de l'imitation",
+      "annee": "1950",
+      "illus": "imitation",
+      "points": [
+        "Un juge dialogue par écrit avec deux interlocuteurs cachés",
+        "L'un est un humain, l'autre une machine",
+        "Si le juge ne sait pas les distinguer, la machine « réussit »"
+      ],
+      "notes": "Faites jouer la scène : deux volontaires cachés, un juge, cinq minutes de questions écrites. Discussion : le test mesure-t-il l'intelligence, ou l'art de faire illusion ? Les agents conversationnels actuels ont relancé ce débat."
+    },
+    {
+      "type": "citation",
+      "texte": "Chaque aspect de l'apprentissage ou de toute autre caractéristique de l'intelligence peut en principe être décrit si précisément qu'une machine peut être construite pour le simuler.",
+      "auteur": "J. McCarthy, M. Minsky, N. Rochester, C. Shannon",
+      "source": "Proposition pour l'atelier de Dartmouth, 31 août 1955",
+      "notes": "C'est dans ce texte qu'apparaît l'expression « intelligence artificielle ». L'hypothèse est très ambitieuse : tout ce que fait l'intelligence pourrait être décrit précisément. Demandez : est-ce vrai pour l'humour ? pour l'intuition poétique ?"
+    },
+    {
+      "type": "portrait",
+      "personne": "mccarthy",
+      "nom": "John McCarthy",
+      "dates": "1927–2011",
+      "role": "Informaticien, a donné son nom à l'IA",
+      "points": [
+        "Été 1956 : organise l'atelier de Dartmouth, acte de naissance de l'IA",
+        "1958 : crée le langage Lisp, longtemps langage de l'IA",
+        "Avec lui : Marvin Minsky, Claude Shannon, Nathaniel Rochester"
+      ],
+      "notes": "L'atelier de Dartmouth réunit une dizaine de chercheurs pendant l'été 1956. Il ne produit pas de grande découverte, mais il donne un nom, une communauté et un programme à la discipline."
+    },
+    {
+      "type": "texte",
+      "titre": "Le premier programme « intelligent »",
+      "annee": "1956",
+      "points": [
+        "Le Logic Theorist d'Allen Newell, Herbert Simon et Cliff Shaw",
+        "Il démontre 38 des 52 premiers théorèmes des *Principia Mathematica*",
+        "Pour l'un d'eux, une preuve plus élégante que celle des auteurs",
+        "Une idée clé : chercher parmi des possibilités avec des règles"
+      ],
+      "illus": "arbre",
+      "notes": "Le Logic Theorist incarne l'IA symbolique : des symboles, des règles, une recherche dans un arbre de possibilités. C'est la même logique que le chaînage avant du TD du chapitre 3."
+    },
+    {
+      "type": "section",
+      "numero": "3",
+      "titre": "L'âge d'or, puis le premier hiver",
+      "periode": "1956–1980",
+      "texte": "Des succès spectaculaires, des promesses démesurées, puis la déception et la fin des crédits.",
+      "illus": "courbe",
+      "notes": "Troisième étape : c'est le premier cycle d'enthousiasme et de désillusion. Il se répétera, ce qui aide à juger les promesses d'aujourd'hui."
+    },
+    {
+      "type": "schema",
+      "titre": "Le perceptron de Rosenblatt",
+      "annee": "1958",
+      "illus": "perceptron",
+      "points": [
+        "Frank Rosenblatt construit une machine qui apprend à reconnaître des formes",
+        "Elle ajuste elle-même ses poids après chaque erreur",
+        "La presse annonce des machines qui « pensent » : l'enthousiasme s'emballe"
+      ],
+      "personne": "perceptron",
+      "notes": "Le perceptron est le premier réseau de neurones qui apprend. Faites le lien avec l'activité « le neurone humain » du guide : des poids, un seuil, une correction après chaque erreur."
+    },
+    {
+      "type": "texte",
+      "titre": "Apprendre sans être programmé",
+      "annee": "1959",
+      "points": [
+        "Arthur Samuel écrit un programme de jeu de dames qui s'améliore en jouant",
+        "Il invente l'expression « machine learning », apprentissage automatique",
+        "Le programme finit par battre son propre créateur",
+        "Deux voies se dessinent : écrire les règles, ou les faire apprendre"
+      ],
+      "illus": "dames",
+      "notes": "Voilà l'opposition qui structure toute l'histoire : l'IA symbolique (on écrit les règles) contre l'IA connexionniste ou statistique (la machine les apprend à partir d'exemples)."
+    },
+    {
+      "type": "chat",
+      "titre": "ELIZA, la première psychothérapeute artificielle",
+      "annee": "1966",
+      "legende": "Extrait de l'article de Joseph Weizenbaum (1966), traduit",
+      "echanges": [
+        {
+          "qui": "h",
+          "texte": "Les hommes sont tous pareils."
+        },
+        {
+          "qui": "m",
+          "texte": "EN QUEL SENS ?"
+        },
+        {
+          "qui": "h",
+          "texte": "Ils nous embêtent toujours avec une chose ou une autre."
+        },
+        {
+          "qui": "m",
+          "texte": "POUVEZ-VOUS DONNER UN EXEMPLE PRÉCIS ?"
+        },
+        {
+          "qui": "h",
+          "texte": "Eh bien, c'est mon ami qui m'a fait venir ici."
+        },
+        {
+          "qui": "m",
+          "texte": "VOTRE AMI VOUS A FAIT VENIR ICI."
+        }
+      ],
+      "notes": "ELIZA ne comprend rien : elle repère des mots-clés et renvoie la phrase avec des règles de transformation. Pourtant, des utilisateurs lui confiaient leurs secrets. Weizenbaum en fut inquiet toute sa vie. C'est l'« effet ELIZA » : prêter une compréhension à une machine qui répond bien."
+    },
+    {
+      "type": "texte",
+      "titre": "Shakey, le premier robot qui raisonne",
+      "annee": "1966–1972",
+      "points": [
+        "Construit au Stanford Research Institute (SRI)",
+        "Il perçoit son environnement avec une caméra",
+        "Il planifie une suite d'actions pour atteindre un but",
+        "Pour lui naît l'algorithme A*, encore utilisé pour calculer des itinéraires"
+      ],
+      "personne": "shakey",
+      "illus": "robot",
+      "notes": "Shakey est un ancêtre direct des agents : il perçoit, planifie, agit. Mais il met des minutes à décider de pousser une boîte. Retenez le schéma percevoir, planifier, agir : il revient à la fin de la leçon."
+    },
+    {
+      "type": "citation",
+      "texte": "Les machines seront capables, d'ici vingt ans, de faire tout travail qu'un homme peut faire.",
+      "auteur": "Herbert Simon",
+      "source": "1965",
+      "notes": "Les promesses de l'époque étaient démesurées. Vingt ans plus tard, en 1985, on en était très loin. Demandez aux étudiants de trouver une promesse actuelle sur l'IA et de se demander comment on la jugera dans vingt ans."
+    },
+    {
+      "type": "schema",
+      "titre": "Le premier hiver de l'IA",
+      "annee": "1974–1980",
+      "illus": "courbe",
+      "points": [
+        "1969 : Minsky et Papert montrent les limites du perceptron simple",
+        "1973 : le rapport Lighthill, au Royaume-Uni, juge les résultats décevants",
+        "Les calculs explosent dès que les problèmes grandissent",
+        "Les financements publics sont coupés : c'est l'« hiver »"
+      ],
+      "notes": "Un hiver de l'IA, c'est une période où la déception fait fuir les crédits et les chercheurs. La courbe montre les deux hivers : 1974–1980 et 1987–1993. Point de méthode : juger une technique sur ses résultats, pas sur ses promesses."
+    },
+    {
+      "type": "section",
+      "numero": "4",
+      "titre": "Les systèmes experts",
+      "periode": "1980–1993",
+      "texte": "L'IA revient en mettant le savoir des experts en règles. Elle entre dans les entreprises, puis retombe.",
+      "illus": "regles",
+      "notes": "Quatrième étape : le triomphe de l'IA symbolique, celle du chapitre 3 et de son TD sur le chaînage avant."
+    },
+    {
+      "type": "schema",
+      "titre": "Mettre le savoir en règles",
+      "illus": "regles",
+      "points": [
+        "Une base de faits, une base de règles SI … ALORS …, un moteur d'inférence",
+        "Années 1970 : MYCIN, à Stanford, diagnostique des infections du sang",
+        "1980 : XCON configure les ordinateurs de l'entreprise DEC",
+        "Les entreprises investissent : l'IA devient une industrie"
+      ],
+      "notes": "Reliez à la séance 6 : le jeu de rôle des formes poétiques est un petit système expert. MYCIN comptait environ 600 règles écrites avec des médecins."
+    },
+    {
+      "type": "texte",
+      "titre": "Le retour des neurones",
+      "annee": "1986",
+      "points": [
+        "1982 : le Japon lance le projet des ordinateurs de cinquième génération",
+        "1986 : Rumelhart, Hinton et Williams popularisent la rétropropagation",
+        "On sait enfin entraîner des réseaux à plusieurs couches",
+        "Mais les ordinateurs et les données manquent encore"
+      ],
+      "illus": "reseau",
+      "notes": "La rétropropagation calcule comment corriger chaque poids d'un réseau à partir de l'erreur finale. C'est la descente de gradient du chapitre 3, appliquée à des millions de poids. L'idée est prête vingt-cinq ans avant son triomphe."
+    },
+    {
+      "type": "texte",
+      "titre": "Le second hiver",
+      "annee": "1987–1993",
+      "points": [
+        "1987 : le marché des machines spécialisées Lisp s'effondre",
+        "Les systèmes experts coûtent cher et se trompent hors de leur domaine",
+        "Chaque nouvelle règle en contredit d'autres : ils deviennent ingérables",
+        "Le mot « IA » devient mal vu : on parle plutôt d'« informatique avancée »"
+      ],
+      "illus": "flocon",
+      "notes": "Les systèmes experts sont fragiles : ils ne savent que ce qu'on leur a écrit, et ne savent pas qu'ils ne savent pas. Cette faiblesse explique le virage suivant : apprendre à partir de données."
+    },
+    {
+      "type": "section",
+      "numero": "5",
+      "titre": "Apprendre à partir des données",
+      "periode": "1990–2016",
+      "texte": "Au lieu d'écrire les règles, on donne des exemples. Avec Internet, les exemples deviennent des milliards.",
+      "illus": "donnees",
+      "notes": "Cinquième étape : c'est le grand retournement. Il s'appuie sur trois ingrédients : des algorithmes, des données et de la puissance de calcul."
+    },
+    {
+      "type": "deux",
+      "titre": "Deux façons de faire une IA",
+      "gauche": {
+        "titre": "IA symbolique",
+        "points": [
+          "Un expert écrit les règles",
+          "Explicable : on suit le raisonnement",
+          "Fragile hors de son domaine",
+          "Exemple : un système expert"
+        ]
+      },
+      "droite": {
+        "titre": "Apprentissage automatique",
+        "points": [
+          "La machine tire des régularités des exemples",
+          "Souvent difficile à expliquer",
+          "Robuste, s'il y a beaucoup de données",
+          "Exemple : un filtre anti-spam"
+        ]
+      },
+      "notes": "Faites classer trois objets par les étudiants : un correcteur orthographique, un traducteur automatique, un GPS. Aujourd'hui, les meilleurs systèmes combinent souvent les deux approches."
+    },
+    {
+      "type": "portrait",
+      "personne": "deepblue",
+      "nom": "Deep Blue contre Kasparov",
+      "dates": "Mai 1997",
+      "role": "L'ordinateur d'IBM bat le champion du monde d'échecs",
+      "points": [
+        "Victoire 3½ à 2½ en six parties, à New York",
+        "Environ 200 millions de positions évaluées par seconde",
+        "Une force de calcul, pas d'apprentissage : c'est encore une IA de recherche"
+      ],
+      "illus": "echecs",
+      "notes": "L'événement fait le tour du monde. Mais Deep Blue ne comprend pas les échecs : il calcule des coups et les évalue avec des règles écrites par des experts. Comparez avec AlphaGo, qui apprendra en jouant, vingt ans plus tard."
+    },
+    {
+      "type": "frise",
+      "titre": "L'apprentissage s'installe partout",
+      "evenements": [
+        {
+          "annee": "1989",
+          "titre": "Lire les chiffres",
+          "texte": "Yann LeCun entraîne un réseau convolutif à lire les codes postaux"
+        },
+        {
+          "annee": "1992",
+          "titre": "TD-Gammon",
+          "texte": "Un programme apprend le jacquet en jouant contre lui-même"
+        },
+        {
+          "annee": "1998",
+          "titre": "Chèques",
+          "texte": "Les réseaux de LeCun lisent des chèques bancaires aux États-Unis"
+        },
+        {
+          "annee": "2002",
+          "titre": "Roomba",
+          "texte": "Un robot aspirateur entre dans les maisons"
+        },
+        {
+          "annee": "2005",
+          "titre": "Stanley",
+          "texte": "Une voiture sans conducteur gagne la course du désert de la DARPA"
+        },
+        {
+          "annee": "2011",
+          "titre": "Watson, Siri",
+          "texte": "Watson gagne au jeu télévisé Jeopardy! ; Siri arrive dans les téléphones"
+        }
+      ],
+      "notes": "Remarquez que l'IA devient invisible : elle trie le courrier, lit les chèques, filtre le spam, sans qu'on l'appelle IA. C'est ce qu'on appelle parfois l'« effet IA » : dès qu'une technique marche, on cesse de la considérer comme de l'intelligence."
+    },
+    {
+      "type": "section",
+      "numero": "6",
+      "titre": "La révolution de l'apprentissage profond",
+      "periode": "2006–2016",
+      "texte": "Des réseaux de neurones à très nombreuses couches, entraînés sur d'énormes données avec des processeurs graphiques.",
+      "illus": "reseau",
+      "notes": "Sixième étape. Le mot « profond » désigne le nombre de couches du réseau, pas la profondeur de la pensée."
+    },
+    {
+      "type": "schema",
+      "titre": "Un réseau profond, couche après couche",
+      "illus": "reseau",
+      "points": [
+        "Les premières couches repèrent des traits simples : bords, taches",
+        "Les couches suivantes combinent : formes, textures, parties",
+        "Les dernières reconnaissent des objets entiers : « chat », « voiture »",
+        "Chaque couche apprend seule ce qu'elle doit repérer"
+      ],
+      "notes": "Montrez l'animation : le signal traverse les couches de gauche à droite. Dans un texte, c'est pareil : lettres, mots, expressions, sens. Personne n'écrit ce que chaque neurone doit repérer : il l'apprend."
+    },
+    {
+      "type": "portrait",
+      "personne": "feifei",
+      "nom": "Fei-Fei Li et ImageNet",
+      "dates": "2009–2012",
+      "role": "Une base d'images qui change tout",
+      "points": [
+        "2009 : ImageNet, plus de 14 millions d'images annotées à la main",
+        "2012 : le réseau AlexNet écrase la compétition de reconnaissance d'images",
+        "Son taux d'erreur tombe à 15 %, contre 26 % pour le deuxième"
+      ],
+      "illus": "imagenet",
+      "notes": "Trois ingrédients se rencontrent en 2012 : des données (ImageNet), des cartes graphiques pour calculer vite, et des réseaux profonds. C'est le début de la vague actuelle. L'annotation des images a été faite par des milliers de travailleurs payés à la tâche : un point éthique à discuter."
+    },
+    {
+      "type": "portrait",
+      "personne": "hinton",
+      "nom": "Geoffrey Hinton",
+      "dates": "Né en 1947",
+      "role": "Pionnier des réseaux de neurones",
+      "points": [
+        "Défend les réseaux de neurones pendant les deux hivers",
+        "2018 : prix Turing avec Yoshua Bengio et Yann LeCun",
+        "2024 : prix Nobel de physique avec John Hopfield"
+      ],
+      "notes": "Hinton est l'exemple d'un chercheur qui a eu raison trop tôt : ses idées des années 1980 ne marchent vraiment qu'en 2012. En 2023, il quitte Google pour alerter sur les risques de l'IA."
+    },
+    {
+      "type": "frise",
+      "titre": "Les machines apprennent aussi le langage et le jeu",
+      "evenements": [
+        {
+          "annee": "2013",
+          "titre": "Word2vec",
+          "texte": "Les mots deviennent des vecteurs : « roi » − « homme » + « femme » ≈ « reine »"
+        },
+        {
+          "annee": "2014",
+          "titre": "GAN",
+          "texte": "Deux réseaux s'affrontent pour produire des images réalistes"
+        },
+        {
+          "annee": "2015",
+          "titre": "Jeux Atari",
+          "texte": "Un agent de DeepMind apprend 49 jeux vidéo à partir des pixels et du score"
+        },
+        {
+          "annee": "2016",
+          "titre": "AlphaGo",
+          "texte": "Le programme de DeepMind bat Lee Sedol au go, 4 parties à 1"
+        }
+      ],
+      "notes": "Le go était réputé trop complexe pour l'ordinateur : plus de positions possibles que d'atomes dans l'univers. AlphaGo combine apprentissage profond et apprentissage par renforcement, le troisième type d'apprentissage du chapitre 1."
+    },
+    {
+      "type": "portrait",
+      "personne": "hassabis",
+      "nom": "AlphaGo et le coup 37",
+      "dates": "Mars 2016, Séoul",
+      "role": "DeepMind, cofondé par Demis Hassabis",
+      "points": [
+        "Deuxième partie : AlphaGo joue un coup qu'aucun humain n'aurait joué",
+        "Les commentateurs croient à une erreur ; c'est un coup gagnant",
+        "La machine n'imite plus les humains : elle trouve ses propres stratégies"
+      ],
+      "illus": "go",
+      "notes": "Le « coup 37 » est devenu le symbole d'une créativité machinique. Revenez à l'objection de Lovelace : AlphaGo a-t-il « créé » quelque chose ? En 2024, Demis Hassabis et John Jumper reçoivent le prix Nobel de chimie pour AlphaFold, qui prédit la forme des protéines."
+    },
+    {
+      "type": "section",
+      "numero": "7",
+      "titre": "Transformers et IA générative",
+      "periode": "2017–2022",
+      "texte": "Une nouvelle architecture apprend à lire des textes entiers. Les machines se mettent à écrire, dessiner, traduire.",
+      "illus": "attention",
+      "notes": "Septième étape : celle qui mène aux agents conversationnels que vos étudiants utilisent déjà."
+    },
+    {
+      "type": "schema",
+      "titre": "« Attention Is All You Need »",
+      "annee": "2017",
+      "illus": "attention",
+      "points": [
+        "Huit chercheurs de Google proposent le Transformer",
+        "Le mécanisme d'attention relie chaque mot à tous les autres",
+        "Dans « L'étudiante ouvrit le livre car elle… », « elle » regarde « étudiante »",
+        "Tous les grands modèles de langue actuels en descendent"
+      ],
+      "notes": "Le titre de l'article est devenu célèbre. L'animation montre les liens d'attention : l'épaisseur indique l'importance. Le Transformer lit tous les mots en même temps, ce qui permet d'entraîner des modèles immenses."
+    },
+    {
+      "type": "frise",
+      "titre": "De BERT à ChatGPT",
+      "evenements": [
+        {
+          "annee": "2018",
+          "titre": "BERT",
+          "texte": "Google : un modèle qui comprend le contexte d'un mot"
+        },
+        {
+          "annee": "2019",
+          "titre": "GPT-2",
+          "texte": "OpenAI : des textes si fluides qu'on hésite à le publier"
+        },
+        {
+          "annee": "2020",
+          "titre": "GPT-3",
+          "texte": "175 milliards de paramètres ; AlphaFold 2 résout la forme des protéines"
+        },
+        {
+          "annee": "2021",
+          "titre": "DALL·E",
+          "texte": "Une image dessinée à partir d'une phrase"
+        },
+        {
+          "annee": "2022",
+          "titre": "ChatGPT",
+          "texte": "30 novembre : l'IA générative arrive dans le grand public"
+        }
+      ],
+      "notes": "En cinq ans, on passe d'un outil de laboratoire à un service utilisé par des centaines de millions de personnes. Demandez qui, dans la classe, a déjà utilisé un agent conversationnel, et pour quoi faire."
+    },
+    {
+      "type": "schema",
+      "titre": "Comment « écrit » un modèle de langue",
+      "illus": "motsuivant",
+      "points": [
+        "Il découpe le texte en morceaux, les tokens",
+        "Il calcule la probabilité de chaque token suivant",
+        "Il en choisit un, l'ajoute au texte, et recommence",
+        "Des humains notent ensuite ses réponses pour l'affiner"
+      ],
+      "notes": "C'est le modèle de bigrammes du carnet 08, en immensément plus grand. Le réglage par des humains s'appelle en anglais RLHF : apprentissage par renforcement à partir de retours humains. Insistez : le modèle prédit du texte plausible, pas du texte vrai."
+    },
+    {
+      "type": "chat",
+      "titre": "Un dialogue avec un modèle de langue",
+      "annee": "2022",
+      "legende": "Exemple fictif, écrit pour la classe",
+      "echanges": [
+        {
+          "qui": "h",
+          "texte": "Explique le chaînage avant à un étudiant de littérature."
+        },
+        {
+          "qui": "m",
+          "texte": "Imaginez un détective : il part des indices qu'il connaît et applique ses règles une à une, jusqu'à trouver le coupable."
+        },
+        {
+          "qui": "h",
+          "texte": "Donne-moi une référence pour citer ça dans mon mémoire."
+        },
+        {
+          "qui": "m",
+          "texte": "Attention : vérifiez toujours une référence dans une bibliothèque. Je peux me tromper ou en inventer."
+        }
+      ],
+      "notes": "Comparez avec ELIZA : cette fois, la réponse est pertinente, reformulée, adaptée au public. Mais le risque demeure : un modèle peut inventer une référence, une citation, une date. C'est l'objet de l'activité « l'épreuve des références » du guide."
+    },
+    {
+      "type": "section",
+      "numero": "8",
+      "titre": "L'ère des agents",
+      "periode": "2023–2026",
+      "texte": "Le modèle de langue ne se contente plus de répondre : il planifie, utilise des outils et agit.",
+      "illus": "agent",
+      "notes": "Dernière étape : c'est le sujet de l'actualité. Rappelez Shakey (1966) : percevoir, planifier, agir. L'idée d'agent est ancienne ; ce qui change, c'est qu'un modèle de langue sert maintenant de « cerveau »."
+    },
+    {
+      "type": "texte",
+      "titre": "Qu'est-ce qu'un agent ?",
+      "points": [
+        "Un agent perçoit son environnement et agit sur lui pour atteindre un but",
+        "Un thermostat est un agent très simple : il mesure, puis chauffe ou non",
+        "Russell et Norvig (1995) définissent toute l'IA comme l'étude des agents",
+        "Un agent d'IA moderne reçoit un objectif, pas seulement une question"
+      ],
+      "illus": "thermostat",
+      "notes": "Définition à faire noter. La différence avec un agent conversationnel classique : on ne demande plus « réponds », on demande « fais ». Exemple : « Trouve trois articles sur Kateb Yacine, lis-les et fais-moi une fiche. »"
+    },
+    {
+      "type": "schema",
+      "titre": "La boucle d'un agent",
+      "illus": "boucle",
+      "points": [
+        "Objectif : ce que l'utilisateur demande",
+        "Réfléchir : le modèle planifie l'étape suivante",
+        "Agir : il utilise un outil (recherche, calcul, fichier, navigateur)",
+        "Observer : il lit le résultat, puis recommence jusqu'au but"
+      ],
+      "notes": "Faites suivre la boucle animée. Chaque tour peut réussir ou échouer ; l'agent corrige son plan. C'est pourquoi il faut limiter les outils auxquels il a accès et vérifier ses actions importantes."
+    },
+    {
+      "type": "frise",
+      "titre": "Des agents conversationnels aux agents",
+      "evenements": [
+        {
+          "annee": "2022",
+          "titre": "ReAct",
+          "texte": "Des chercheurs font alterner raisonnement et actions dans un même modèle"
+        },
+        {
+          "annee": "2023",
+          "titre": "Outils",
+          "texte": "GPT-4 ; les modèles apprennent à appeler des outils et des programmes"
+        },
+        {
+          "annee": "2024",
+          "titre": "Raisonner, agir",
+          "texte": "Modèles qui réfléchissent avant de répondre ; un modèle pilote un ordinateur ; protocole MCP pour brancher des outils"
+        },
+        {
+          "annee": "2025",
+          "titre": "Agents au travail",
+          "texte": "Agents qui naviguent sur le Web, écrivent et corrigent des programmes"
+        },
+        {
+          "annee": "2026",
+          "titre": "Au quotidien",
+          "texte": "Les agents s'installent dans les logiciels de bureau, de recherche et d'enseignement"
+        }
+      ],
+      "notes": "Les dates de 2025 et 2026 décrivent des tendances générales plutôt que des produits précis, qui changent vite. Invitez les étudiants à chercher un exemple récent et à le présenter en deux minutes."
+    },
+    {
+      "type": "deux",
+      "titre": "Agent conversationnel ou agent ?",
+      "gauche": {
+        "titre": "Agent conversationnel",
+        "points": [
+          "Répond à une question",
+          "Produit du texte",
+          "Un seul tour",
+          "L'humain fait le reste"
+        ]
+      },
+      "droite": {
+        "titre": "Agent",
+        "points": [
+          "Poursuit un objectif",
+          "Utilise des outils et agit",
+          "Plusieurs étapes, il corrige son plan",
+          "L'humain supervise et valide"
+        ]
+      },
+      "notes": "La frontière est mouvante : beaucoup d'agents conversationnels savent déjà chercher sur le Web. Retenez le critère : un agent enchaîne des actions sur le monde pour atteindre un but."
+    },
+    {
+      "type": "texte",
+      "titre": "Les risques, et les bonnes pratiques",
+      "points": [
+        "Hallucinations : un agent peut agir sur une information fausse",
+        "Actions irréversibles : effacer, envoyer, payer ; il faut valider",
+        "Consignes cachées dans une page Web peuvent détourner un agent",
+        "Données personnelles : la loi algérienne 18-07 s'applique",
+        "2024 : l'Union européenne adopte le règlement sur l'IA (AI Act)"
+      ],
+      "illus": "bouclier",
+      "notes": "Règle simple pour les étudiants : on garde la main sur toute action importante, on vérifie les sources, et on déclare l'usage de l'IA dans ses travaux. Renvoyez à la charte d'usage de l'IA du guide."
+    },
+    {
+      "type": "texte",
+      "titre": "Et en Algérie ?",
+      "points": [
+        "2021 : ouverture de l'École nationale supérieure d'intelligence artificielle (ENSIA)",
+        "L'arabe, la darja et le tamazight restent moins bien servis par les modèles",
+        "Des corpus locaux, construits en SHS, sont une vraie contribution",
+        "Vos mémoires peuvent y participer : textes, enquêtes, entretiens"
+      ],
+      "illus": "carte",
+      "notes": "Point d'ancrage local. Les langues moins présentes sur le Web sont moins bien traitées par les modèles : c'est une question de données, donc aussi de sciences humaines. Encouragez les étudiants à imaginer un corpus qu'ils pourraient constituer."
+    },
+    {
+      "type": "section",
+      "numero": "9",
+      "titre": "Synthèse",
+      "periode": "De 1206 à 2026",
+      "texte": "Huit siècles de rêves, soixante-dix ans de science, quelques années d'agents.",
+      "illus": "frise",
+      "notes": "Dernière partie : récapituler, voir les vidéos, vérifier ce qui a été compris."
+    },
+    {
+      "type": "frise",
+      "titre": "Les huit dates à retenir",
+      "evenements": [
+        {
+          "annee": "1843",
+          "titre": "Lovelace",
+          "texte": "Premier programme, pour une machine jamais achevée"
+        },
+        {
+          "annee": "1950",
+          "titre": "Turing",
+          "texte": "Les machines peuvent-elles penser ?"
+        },
+        {
+          "annee": "1956",
+          "titre": "Dartmouth",
+          "texte": "L'IA reçoit son nom"
+        },
+        {
+          "annee": "1974",
+          "titre": "Hiver",
+          "texte": "Premier hiver de l'IA"
+        },
+        {
+          "annee": "1997",
+          "titre": "Deep Blue",
+          "texte": "L'ordinateur bat le champion d'échecs"
+        },
+        {
+          "annee": "2012",
+          "titre": "AlexNet",
+          "texte": "L'apprentissage profond l'emporte"
+        },
+        {
+          "annee": "2017",
+          "titre": "Transformer",
+          "texte": "L'attention au cœur des modèles de langue"
+        },
+        {
+          "annee": "2022",
+          "titre": "ChatGPT",
+          "texte": "L'IA générative pour tous ; puis viennent les agents"
+        }
+      ],
+      "notes": "Faites réciter la frise à l'envers, de 2022 à 1843. Ces huit dates suffisent pour raconter toute l'histoire à l'examen."
+    },
+    {
+      "type": "deux",
+      "titre": "Les familles d'IA, sur une seule diapositive",
+      "gauche": {
+        "titre": "Selon la méthode",
+        "points": [
+          "Symbolique : des règles écrites",
+          "Apprentissage automatique : des exemples",
+          "Apprentissage profond : des réseaux à nombreuses couches",
+          "Renforcement : des essais et des récompenses"
+        ]
+      },
+      "droite": {
+        "titre": "Selon l'ambition",
+        "points": [
+          "IA faible (étroite) : une tâche précise",
+          "IA forte (générale) : toutes les tâches, hypothétique",
+          "Les agents actuels restent des IA faibles",
+          "… mais de plus en plus polyvalentes"
+        ]
+      },
+      "notes": "Ce tableau relie la leçon au chapitre 1 du cours (IA faible et forte, types d'apprentissage) et au chapitre 3 (types d'IA). Un agent moderne combine plusieurs familles : un modèle profond, des règles de sécurité, parfois du renforcement."
+    },
+    {
+      "type": "video",
+      "titre": "Vidéo : l'histoire complète de l'IA (1950–2026)",
+      "youtube": "Xl-G6Mv-N0A",
+      "legende": "« The Complete History of AI (1950–2026) - The Rise of Artificial Intelligence », documentaire en anglais, sur YouTube",
+      "notes": "Montrez un passage choisi à l'avance plutôt que la vidéo entière. Demandez aux étudiants de repérer trois dates de la frise dans la vidéo. La vidéo demande une connexion Internet."
+    },
+    {
+      "type": "video",
+      "titre": "Vidéo : cent ans d'intelligence artificielle",
+      "youtube": "mSd9nmPM7Vg",
+      "legende": "« The Entire History of Artificial Intelligence (Last 100 Years) », documentaire en anglais, sur YouTube",
+      "notes": "Pour les groupes d'anglais, faites résumer oralement la vidéo en anglais : c'est aussi un exercice de langue. Pour les autres, sous-titres automatiques dans la langue choisie."
+    },
+    {
+      "type": "quiz",
+      "question": "En quelle année l'expression « intelligence artificielle » s'impose-t-elle, avec l'atelier de Dartmouth ?",
+      "choix": [
+        "1943",
+        "1956",
+        "1997",
+        "2012"
+      ],
+      "reponse": 1,
+      "explication": "L'expression apparaît dans la proposition de 1955 et s'impose avec l'atelier de l'été 1956.",
+      "notes": "Faites voter avant de dévoiler la réponse (touche R ou bouton)."
+    },
+    {
+      "type": "quiz",
+      "question": "Pourquoi parle-t-on d'« hivers » de l'IA ?",
+      "choix": [
+        "Les ordinateurs chauffaient trop",
+        "La déception a fait chuter les crédits et l'intérêt",
+        "Les recherches se faisaient l'hiver",
+        "Les machines ont été interdites"
+      ],
+      "reponse": 1,
+      "explication": "Après des promesses démesurées, les résultats ont déçu : les financements ont été coupés (1974–1980, puis 1987–1993).",
+      "notes": "Demandez un exemple de promesse démesurée vu dans la leçon : la citation de Herbert Simon (1965)."
+    },
+    {
+      "type": "quiz",
+      "question": "Qu'est-ce qui distingue un agent d'un simple agent conversationnel ?",
+      "choix": [
+        "Il écrit plus vite",
+        "Il poursuit un objectif en agissant avec des outils",
+        "Il ne fait jamais d'erreur",
+        "Il fonctionne sans électricité"
+      ],
+      "reponse": 1,
+      "explication": "Un agent enchaîne des actions (chercher, calculer, écrire un fichier…) et observe les résultats pour atteindre un but.",
+      "notes": "Revenez à la boucle : objectif, réfléchir, agir, observer."
+    },
+    {
+      "type": "quiz",
+      "question": "ELIZA (1966) comprenait-elle ce qu'on lui disait ?",
+      "choix": [
+        "Oui, comme un psychologue",
+        "Non : elle transformait les phrases avec des règles",
+        "Oui, grâce à l'apprentissage profond",
+        "On ne le sait pas"
+      ],
+      "reponse": 1,
+      "explication": "ELIZA repérait des mots-clés et renvoyait des phrases types. Croire qu'elle comprenait, c'est l'« effet ELIZA ».",
+      "notes": "Question de transition vers le débat : et les modèles d'aujourd'hui comprennent-ils ?"
+    },
+    {
+      "type": "fin",
+      "titre": "À retenir",
+      "points": [
+        "Le rêve est ancien ; l'IA comme science naît entre 1950 et 1956",
+        "Deux voies alternent : écrire les règles ou apprendre des données",
+        "Les hivers rappellent de juger sur les résultats, pas sur les promesses",
+        "Un agent perçoit, planifie et agit : de Shakey (1966) aux agents de 2025",
+        "Vérifier, garder la main, déclarer son usage : les trois règles d'or"
+      ],
+      "texte": "Travail personnel : choisissez une date de la frise et écrivez dix lignes sur ce qu'elle a changé, en citant une source vérifiée.",
+      "notes": "Terminez par la question du début : une machine peut-elle penser ? Recueillez trois réponses argumentées. Le travail personnel prépare la table ronde sur la genèse de l'IA."
+    }
+  ]
+}

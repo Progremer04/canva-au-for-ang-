@@ -20,6 +20,7 @@ import re
 from pathlib import Path
 
 import diapos
+import lecon1
 
 RACINE = Path(__file__).resolve().parent.parent
 DOCS = RACINE / "docs"
@@ -265,6 +266,9 @@ TUILES_ETUDIANTS = [
     ("cours.html", "i-livre", "ciel", {"fr": ("Le cours", "Les trois chapitres expliqués pas à pas, avec des démonstrations à essayer."),
                                       "en": ("The course", "The three chapters explained step by step, with demos to try."),
                                       "ar": ("المقياس", "الفصول الثلاثة مشروحة خطوة بخطوة، مع عروض تفاعلية للتجريب.")}),
+    ("{{LECON1}}", "i-ecran", "cobalt", {"fr": ("Leçon 1 : de l'automate à l'agent", "L'histoire de l'IA en 60 diapositives animées, avec photos, vidéos et quiz."),
+                                       "en": ("Lesson 1: from automaton to agent", "The history of AI in 60 animated slides, with photos, videos and quizzes."),
+                                       "ar": ("الدرس 1: من الآلة ذاتية الحركة إلى الوكيل", "تاريخ الذكاء الاصطناعي في 60 شريحة متحركة، مع صور وفيديوهات واختبارات.")}),
     ("cours.html#methode", "i-boussole", "soleil", {"fr": ("Comment apprendre", "Une semaine type, une méthode par chapitre, le vocabulaire utile."),
                                                    "en": ("How to learn", "A typical week, a method for each chapter, the useful vocabulary."),
                                                    "ar": ("كيف تتعلّم", "أسبوع نموذجي، وطريقة لكل فصل، والمفردات المفيدة.")}),
@@ -328,12 +332,18 @@ REDIRECTION = ('<script>(function () { var h = location.hash; '
                'if (h.length > 1 && !/^#(contenu|portail-[\\w-]+)$/.test(h)) location.replace("cours.html" + h); })();</script>\n')
 
 
+def lien_lecon1(langue):
+    """La leçon 1 (tools/lecon1.py) est un seul fichier trilingue, à la racine de docs/."""
+    return "chapitr1_first_lesson.html" if langue == "fr" else f"../chapitr1_first_lesson.html?lang={langue}"
+
+
 def tuiles(entrees, langue):
     items = []
     for e in entrees:
         cible, icone, teinte, textes = e[:4]
         info = e[4] if len(e) > 4 else None
         titre, texte = textes[langue]
+        cible = cible.replace("{{LECON1}}", lien_lecon1(langue))
         attr_info = f' data-info="{info}"' if info else ""
         items.append(f'      <li><a class="tuile teinte-{teinte}" href="{cible}"{attr_info}>'
                      f'<span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#{icone}"/></svg></span>'
@@ -423,6 +433,7 @@ def main():
         return
     if diapos.construire(silencieux=True):
         print("[x] des diaporamas ont des erreurs : ils sont absents du site (détail : python3 tools/diapos.py)")
+    lecon1.construire()
     for langue, conf in LANGUES.items():
         lien = a.lien_systeme or f"{conf['base']}systeme-de-design.html"
         conf["sortie"].parent.mkdir(parents=True, exist_ok=True)

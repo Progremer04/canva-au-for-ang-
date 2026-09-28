@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>De l'automate à l'agent · Chapitre 1, première leçon</title>
+<meta name="description" content="Présentation animée en trois langues : l'histoire complète de l'intelligence artificielle, des automates aux agents (Chapitre 1, première leçon).">
+<meta name="theme-color" content="#07070a">
+<link rel="preload" href="assets/fonts/im-fell-dw-pica-sc-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/polices.css">
+<style>
+/* ==========================================================================
+   « De l'automate à l'agent » : une présentation autonome (un seul fichier).
+   Chaque diapositive est dessinée à 1280 × 720 puis mise à l'échelle de l'écran.
+   ========================================================================== */
+:root {
+  --fond: #07070a; --surface: #151515; --surface-2: #1f1f25; --ligne: #2e2e35; --texte: #f5f5f5; --doux: #a9a9b6;
+  --c1: #ffff00; --c2: #87ceeb; --c3: #ff512f; --c4: #dd2476; --c5: #1c64ff; --juste: #6fdcaa;
+  --t1: #ffe94d; --t2: #87ceeb; --t3: #ff8466; --t4: #f472a8; --t5: #86a8ff;
+  --prisme: linear-gradient(90deg, var(--c1), var(--c2), var(--c3), var(--c4), var(--c5));
+  --prisme-conique: conic-gradient(var(--c1), var(--c2), var(--c3), var(--c4), var(--c5), var(--c1));
+  --f-titre: "IM Fell DW Pica SC", Georgia, "Times New Roman", serif;
+  --f-texte: Literata, Georgia, "Times New Roman", serif;
+  --f-ui: Rajdhani, "Segoe UI", system-ui, sans-serif;
+  --f-code: "JetBrains Mono", Consolas, monospace;
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  --fond: #f4f4f6; --surface: #ffffff; --surface-2: #ececf1; --ligne: #d6d6de; --texte: #121216; --doux: #55555f;
+  --t1: #8a7400; --t2: #1f6f96; --t3: #c2371b; --t4: #b0195b; --t5: #1c4fd1;
+  color-scheme: light;
+}
+:root[lang="ar"] {
+  --f-titre: "El Messiri", "Noto Naskh Arabic", Tahoma, serif;
+  --f-texte: "Noto Naskh Arabic", "El Messiri", Tahoma, serif;
+  --f-ui: "El Messiri", Tahoma, system-ui, sans-serif;
+  --f-code: "JetBrains Mono", "Noto Naskh Arabic", monospace;
+}
+:root[lang="ar"] .bulle--m { font-family: var(--f-texte); font-size: 23px; }
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--fond); color: var(--texte); font-family: var(--f-texte); overflow: hidden; }
+:root[lang="ar"] body * { letter-spacing: 0 !important; }
+button { font: inherit; color: inherit; }
+a { color: var(--t2); }
+.visuellement-cache { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- Barre du haut ---------- */
+.barre {
+  position: fixed; inset: 0 0 auto; z-index: 20; height: 56px; display: flex; align-items: center; gap: 12px;
+  padding: 0 16px; border-bottom: 1px solid var(--ligne); background: color-mix(in srgb, var(--fond) 88%, transparent);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); font-family: var(--f-ui);
+}
+.barre::after { content: ""; position: absolute; inset: auto 0 -1px 0; height: 3px; background: var(--prisme); transform-origin: left; transform: scaleX(var(--avance, 0)); transition: transform .4s; }
+[dir="rtl"] .barre::after { transform-origin: right; }
+.marque { display: flex; align-items: center; gap: 10px; color: var(--texte); text-decoration: none; font-weight: 700; white-space: nowrap; }
+.marque__anneau { width: 18px; height: 18px; border-radius: 50%; background: var(--prisme-conique); -webkit-mask: radial-gradient(closest-side, transparent 55%, #000 58%); mask: radial-gradient(closest-side, transparent 55%, #000 58%); }
+.barre__titre { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: var(--doux); font-size: 15px; font-weight: 600; }
+.langues { display: flex; padding: 3px; border: 1px solid var(--ligne); border-radius: 30px; }
+.langues button { min-width: 44px; height: 32px; padding: 0 10px; border: 0; border-radius: 30px; background: none; color: var(--doux); font-weight: 700; cursor: pointer; }
+.langues button[aria-pressed="true"] { background: var(--texte); color: var(--fond); }
+.outils { display: flex; gap: 4px; }
+.outil {
+  display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid var(--ligne); border-radius: 50%;
+  background: var(--surface); cursor: pointer; transition: border-color .2s, transform .2s;
+}
+.outil:hover { border-color: var(--texte); transform: scale(1.06); }
+.outil[aria-pressed="true"] { border-color: var(--t2); color: var(--t2); }
+.outil svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+:focus-visible { outline: 2px solid var(--c1); outline-offset: 2px; }
+
+/* ---------- Scène et diapositives ---------- */
+.scene { position: fixed; inset: 56px 0 52px 0; overflow: hidden; }
+.avec-notes .scene { bottom: 200px; }
+.scene__cadre { position: absolute; left: 50%; top: 50%; width: 1280px; height: 720px; transform: translate(-50%, -50%) scale(var(--k, 1)); }
+.diapo {
+  position: absolute; inset: 0; overflow: hidden; border-radius: 22px; padding: 64px 80px 56px;
+  background:
+    radial-gradient(110% 90% at 100% 0%, color-mix(in srgb, var(--c5) 14%, transparent), transparent 55%),
+    radial-gradient(90% 80% at 0% 100%, color-mix(in srgb, var(--c4) 12%, transparent), transparent 60%),
+    var(--surface);
+  box-shadow: 0 30px 80px -30px #000, inset 0 0 0 1px var(--ligne);
+  opacity: 0; visibility: hidden; transform: translateX(6%) scale(.98);
+  transition: opacity .55s cubic-bezier(.2,.7,.2,1), transform .55s cubic-bezier(.2,.7,.2,1), visibility .55s;
+  font-size: 28px; line-height: 1.42;
+}
+.diapo::before { content: ""; position: absolute; inset: 0 0 auto; height: 8px; background: var(--prisme); }
+.diapo.passee { transform: translateX(-6%) scale(.98); }
+[dir="rtl"] .diapo { transform: translateX(-6%) scale(.98); }
+[dir="rtl"] .diapo.passee { transform: translateX(6%) scale(.98); }
+.diapo.active { opacity: 1; visibility: visible; transform: none; }
+.diapo--section.active .grand-numero { animation: zoom 1s cubic-bezier(.2,.7,.2,1) both; }
+.diapo__num { position: absolute; bottom: 20px; inset-inline-end: 34px; color: var(--doux); font: 700 16px var(--f-ui); }
+.diapo__marque { position: absolute; bottom: 20px; inset-inline-start: 34px; color: var(--doux); font: 600 16px var(--f-ui); letter-spacing: .04em; }
+
+/* Ajustement : une diapositive trop chargée est réduite (zoom) pour tenir dans le cadre */
+.diapo > :not(.diapo__marque):not(.diapo__num):not(.anneau-decor):not(.guillemet):not(.grand-numero) { zoom: var(--z, 1); }
+.mesure .diapo, .mesure .a, .mesure .bulle { transform: none !important; }
+
+/* Apparition progressive des éléments d'une diapositive active */
+.a { opacity: 0; transform: translateY(18px); }
+.active .a { animation: monte .7s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--i, 0) * 110ms + 150ms); }
+.active .a--gauche { animation-name: glisse; }
+@keyframes monte { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes glisse { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: none; } }
+[dir="rtl"] .active .a--gauche { animation-name: glisse-rtl; }
+@keyframes glisse-rtl { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: none; } }
+@keyframes zoom { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
+
+/* Typographie commune */
+.surtitre { color: var(--t2); font: 700 22px var(--f-ui); letter-spacing: .12em; text-transform: uppercase; margin: 0 0 12px; }
+.titre { margin: 0 0 26px; font-family: var(--f-titre); font-size: 52px; font-weight: 400; line-height: 1.1; text-wrap: balance; }
+.titre::after { content: ""; display: block; width: 130px; height: 6px; margin-top: 16px; border-radius: 6px; background: var(--prisme); }
+.annee { display: inline-block; margin-bottom: 14px; padding: 4px 16px; border-radius: 30px; background: color-mix(in srgb, var(--c1) 16%, transparent); color: var(--t1); font: 700 22px var(--f-ui); letter-spacing: .06em; }
+.points { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.points li { position: relative; padding-inline-start: 40px; }
+.points li::before { content: ""; position: absolute; inset-inline-start: 4px; top: .52em; width: 16px; height: 16px; border-radius: 50%; background: var(--prisme-conique); }
+em { font-style: italic; } strong { font-weight: 700; } .insecable { white-space: nowrap; }
+.colonnes { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 50px; align-items: center; height: calc(100% - 20px); }
+.colonnes--schema { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.illus { width: 100%; max-height: 440px; }
+.illus svg { width: 100%; height: auto; max-height: 440px; display: block; overflow: visible; }
+
+/* Couverture */
+.diapo--couverture { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 40px; align-items: center; padding: 80px 90px; }
+.diapo--couverture .titre { font-size: 84px; }
+.diapo--couverture .titre::after { width: 220px; }
+.sous-titre { margin: 0; color: var(--doux); font-size: 30px; line-height: 1.4; }
+.anneau-decor { position: absolute; width: 420px; height: 420px; inset-inline-end: -170px; bottom: -250px; border-radius: 50%; background: var(--prisme-conique); -webkit-mask: radial-gradient(closest-side, transparent 74%, #000 75%); mask: radial-gradient(closest-side, transparent 74%, #000 75%); opacity: .8; }
+.active .anneau-decor { animation: tourne 22s linear infinite; }
+@keyframes tourne { to { transform: rotate(1turn); } }
+
+/* Plan */
+.plan { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 20px 40px; counter-reset: etape; }
+.plan li { display: flex; gap: 18px; align-items: center; padding: 18px 22px; border: 1px solid var(--ligne); border-radius: 18px; background: var(--surface-2); counter-increment: etape; font-size: 25px; line-height: 1.3; }
+.plan li::before { content: counter(etape); flex: none; display: grid; place-items: center; width: 50px; height: 50px; border-radius: 50%; background: var(--prisme-conique); color: #111; font: 700 24px var(--f-ui); }
+
+/* Section */
+.diapo--section { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 40px; align-items: center; }
+.grand-numero { font-family: var(--f-titre); font-size: 200px; line-height: .9; background: var(--prisme); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.periode { display: inline-block; margin: 10px 0 18px; padding: 6px 18px; border: 2px solid var(--t2); border-radius: 30px; color: var(--t2); font: 700 24px var(--f-ui); }
+.diapo--section .titre { font-size: 64px; }
+.diapo--section .texte { color: var(--doux); font-size: 28px; margin: 0; }
+
+/* Portrait */
+.portrait { display: grid; grid-template-columns: 360px minmax(0, 1fr); gap: 56px; align-items: center; height: 100%; }
+.photo { position: relative; width: 340px; height: 420px; border-radius: 28px; padding: 6px; background: var(--prisme-conique); }
+.photo__cadre { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 23px; background: var(--surface-2); }
+.photo img[hidden] { display: none; }
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(.15) contrast(1.05); }
+.photo__repli { position: absolute; inset: 0; display: grid; place-items: center; }
+.photo__repli svg { width: 88%; height: auto; }
+.photo__initiales { position: absolute; inset: auto 0 18px; text-align: center; font: 700 44px var(--f-titre); color: var(--texte); }
+.photo__credit { position: absolute; inset: auto 12px 10px auto; padding: 2px 8px; border-radius: 8px; background: #000a; color: #fff; font: 600 12px var(--f-ui); text-decoration: none; }
+.nom { margin: 0; font-family: var(--f-titre); font-size: 56px; line-height: 1.05; }
+.dates { margin: 6px 0 4px; color: var(--t1); font: 700 24px var(--f-ui); letter-spacing: .05em; }
+.role { margin: 0 0 22px; color: var(--doux); font-size: 26px; font-style: italic; }
+.citation-courte { margin: 22px 0 0; padding: 16px 22px; border-inline-start: 6px solid var(--c4); border-radius: 12px; background: color-mix(in srgb, var(--c4) 10%, transparent); font-family: var(--f-titre); font-size: 26px; }
+.citation-courte small { display: block; margin-top: 6px; color: var(--doux); font: italic 18px var(--f-texte); }
+
+/* Citation */
+.diapo--citation { display: grid; align-content: center; padding: 80px 120px; }
+.guillemet { position: absolute; top: 40px; inset-inline-start: 60px; font-family: var(--f-titre); font-size: 260px; line-height: 1; color: var(--c4); opacity: .5; }
+.citation__texte { margin: 0; font-family: var(--f-titre); font-size: 46px; line-height: 1.3; text-wrap: balance; }
+.citation__auteur { margin: 30px 0 0; color: var(--t2); font: 700 26px var(--f-ui); }
+.citation__source { margin: 4px 0 0; color: var(--doux); font-size: 22px; font-style: italic; }
+
+/* Deux colonnes */
+.deux { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+.carte { padding: 28px 32px; border: 1px solid var(--ligne); border-radius: 22px; background: color-mix(in srgb, var(--surface-2) 85%, transparent); }
+.carte:first-child { border-top: 6px solid var(--c2); }
+.carte:last-child { border-top: 6px solid var(--c4); }
+.carte h3 { margin: 0 0 18px; font-size: 32px; }
+.carte .points { gap: 12px; font-size: 25px; }
+
+/* Frise */
+.frise { position: relative; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 14px; margin-top: 30px; padding-top: 150px; }
+.frise__ligne { position: absolute; left: 0; right: 0; top: 118px; height: 6px; border-radius: 6px; background: var(--prisme); transform-origin: left; transform: scaleX(0); }
+[dir="rtl"] .frise__ligne { transform-origin: right; }
+.active .frise__ligne { animation: trace-ligne 1.2s .2s cubic-bezier(.2,.7,.2,1) forwards; }
+@keyframes trace-ligne { to { transform: scaleX(1); } }
+.evenement { position: relative; text-align: center; }
+.evenement::before { content: ""; position: absolute; top: -41px; left: calc(50% - 12px); width: 24px; height: 24px; border: 5px solid var(--surface); border-radius: 50%; background: var(--texte); }
+.evenement__annee { position: absolute; top: -118px; left: 0; right: 0; font-family: var(--f-titre); font-size: 40px; color: var(--t1); }
+.evenement__titre { margin: 0 0 6px; font: 700 23px var(--f-ui); }
+.evenement__texte { margin: 0; color: var(--doux); font-size: 19px; line-height: 1.35; }
+.frise--dense .evenement__texte { font-size: 17px; }
+.frise--dense .evenement__annee { font-size: 32px; }
+
+/* Dialogue */
+.chat { position: relative; display: grid; gap: 14px; max-width: 900px; margin: 0 auto; padding: 24px; border: 1px solid var(--ligne); border-radius: 22px; background: var(--fond); }
+.bulle { max-width: 80%; margin: 0; padding: 14px 20px; border-radius: 20px; font-size: 24px; line-height: 1.35; opacity: 0; transform: translateY(10px); }
+.bulle--h { justify-self: start; border-end-start-radius: 4px; background: var(--surface-2); }
+.bulle--m { justify-self: end; border-end-end-radius: 4px; background: color-mix(in srgb, var(--c5) 22%, var(--surface)); font-family: var(--f-code); font-size: 21px; }
+.bulle.vue { animation: monte .5s both; }
+.frappe { position: absolute; inset-inline-end: 24px; display: none; gap: 6px; padding: 14px 18px; border-radius: 20px; background: color-mix(in srgb, var(--c5) 22%, var(--surface)); }
+.frappe.vue { display: flex; }
+.frappe i { width: 10px; height: 10px; border-radius: 50%; background: var(--texte); animation: point 1s infinite; }
+.frappe i:nth-child(2) { animation-delay: .15s; } .frappe i:nth-child(3) { animation-delay: .3s; }
+@keyframes point { 0%, 60%, 100% { opacity: .25; } 30% { opacity: 1; } }
+.legende { margin: 14px 0 0; color: var(--doux); font-size: 19px; font-style: italic; text-align: center; }
+
+/* Vidéo */
+.video { position: relative; width: 100%; aspect-ratio: 16 / 9; max-height: 470px; margin: 0 auto; border-radius: 18px; overflow: hidden; background: #000; }
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video__vignette { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .5; }
+.video__repli { position: absolute; inset: 0; z-index: 1; text-shadow: 0 2px 8px #000; display: grid; place-content: center; gap: 16px; padding: 30px; color: #fff; text-align: center; font-size: 24px; }
+.video__repli a { color: #9fd3ff; font-weight: 700; }
+.video__jouer { width: 110px; height: 110px; margin: 0 auto; border-radius: 50%; background: var(--prisme-conique); display: grid; place-items: center; }
+.video__jouer::after { content: ""; border-left: 34px solid #111; border-top: 22px solid transparent; border-bottom: 22px solid transparent; margin-left: 8px; }
+
+/* Quiz */
+.question { margin: 0 0 26px; font-size: 36px; font-weight: 700; line-height: 1.3; }
+.choix { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.choix button { display: flex; align-items: center; gap: 16px; width: 100%; padding: 18px 20px; border: 2px solid var(--ligne); border-radius: 18px; background: var(--surface-2); text-align: start; font-size: 25px; line-height: 1.3; cursor: pointer; transition: border-color .2s, background .2s, transform .2s; }
+.choix button:hover { border-color: var(--t2); transform: translateY(-2px); }
+.lettre { flex: none; display: grid; place-items: center; width: 44px; height: 44px; border: 2px solid var(--t2); border-radius: 50%; color: var(--t2); font: 700 22px var(--f-ui); }
+.choix button[aria-pressed="true"] { border-color: var(--t2); }
+.quiz--revele .choix button.juste { border-color: var(--juste); background: color-mix(in srgb, var(--juste) 16%, var(--surface-2)); }
+.quiz--revele .choix button.faux[aria-pressed="true"] { border-color: var(--c3); background: color-mix(in srgb, var(--c3) 14%, var(--surface-2)); }
+.explication { margin: 22px 0 0; padding: 16px 22px; border-radius: 16px; background: color-mix(in srgb, var(--juste) 14%, transparent); font-size: 24px; visibility: hidden; opacity: 0; transition: opacity .4s; }
+.quiz--revele .explication { visibility: visible; opacity: 1; }
+.reveler { margin-top: 18px; padding: 10px 22px; border: 2px solid var(--texte); border-radius: 30px; background: none; font: 700 20px var(--f-ui); cursor: pointer; }
+
+/* Fin */
+.fin .points li::before { content: "✓"; display: grid; place-items: center; width: 26px; height: 26px; top: .25em; background: var(--juste); color: #111; font: 700 16px var(--f-ui); }
+.devoir { margin-top: 26px; padding: 18px 24px; border: 2px dashed var(--t1); border-radius: 18px; font-size: 24px; }
+
+/* ---------- Illustrations : couleurs et animations ---------- */
+.i-t { stroke: var(--texte); } .i-d { stroke: var(--doux); } .i-l { stroke: var(--ligne); }
+.i-c1 { stroke: var(--c1); } .i-c2 { stroke: var(--c2); } .i-c3 { stroke: var(--c3); } .i-c4 { stroke: var(--c4); } .i-c5 { stroke: var(--c5); } .i-j { stroke: var(--juste); }
+.f-t { fill: var(--texte); } .f-d { fill: var(--doux); } .f-s { fill: var(--surface-2); } .f-f { fill: var(--fond); }
+.f-c1 { fill: var(--c1); } .f-c2 { fill: var(--c2); } .f-c3 { fill: var(--c3); } .f-c4 { fill: var(--c4); } .f-c5 { fill: var(--c5); } .f-j { fill: var(--juste); }
+svg .trait { fill: none; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+svg .fin { stroke-width: 2.5; }
+svg text { font-family: var(--f-ui); font-weight: 700; }
+.active .anim-tourne { animation: tourne 8s linear infinite; transform-box: fill-box; transform-origin: center; }
+.active .anim-tourne-inverse { animation: tourne 8s linear infinite reverse; transform-box: fill-box; transform-origin: center; }
+.active .anim-tourne-lent { animation: tourne 30s linear infinite; transform-box: fill-box; transform-origin: center; }
+.active .anim-pulse { animation: pulse 1.8s ease-in-out infinite; animation-delay: calc(var(--d, 0) * 1s); }
+.active .anim-flotte { animation: flotte 3s ease-in-out infinite; }
+.active .anim-trace { stroke-dasharray: var(--l, 800); stroke-dashoffset: var(--l, 800); animation: trace 1.8s .3s ease-out forwards; }
+.active .anim-apparait { opacity: 0; animation: apparait .6s both; animation-delay: calc(var(--d, 0) * 1s + .3s); }
+.active .anim-signal { animation: signal 2.4s linear infinite; animation-delay: calc(var(--d, 0) * 1s); }
+.active .anim-tete { animation: tete 6s steps(1) infinite; }
+.active .anim-clignote { animation: clignote 1.2s steps(2) infinite; }
+@keyframes pulse { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+@keyframes flotte { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes trace { to { stroke-dashoffset: 0; } }
+@keyframes apparait { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
+@keyframes signal { from { offset-distance: 0%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } to { offset-distance: 100%; opacity: 0; } }
+@keyframes tete { 0% { transform: translateX(0); } 16% { transform: translateX(48px); } 33% { transform: translateX(96px); } 50% { transform: translateX(144px); } 66% { transform: translateX(96px); } 83% { transform: translateX(48px); } }
+@keyframes clignote { 50% { opacity: 0; } }
+svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center; }
+
+/* ---------- Pied : navigation ---------- */
+.pied { position: fixed; inset: auto 0 0 0; z-index: 20; height: 52px; display: flex; align-items: center; justify-content: center; gap: 14px; font-family: var(--f-ui); }
+.pied__compteur { min-width: 90px; text-align: center; color: var(--doux); font-weight: 700; font-variant-numeric: tabular-nums; }
+.avec-notes .pied { bottom: 148px; }
+.notes { position: fixed; inset: auto 0 0 0; z-index: 19; height: 148px; overflow-y: auto; padding: 14px 24px; border-top: 1px solid var(--ligne); background: var(--surface); font-size: 18px; line-height: 1.6; }
+.notes h2 { margin: 0 0 4px; color: var(--doux); font: 700 13px var(--f-ui); letter-spacing: .1em; text-transform: uppercase; }
+.notes p { margin: 0; max-width: 1100px; }
+
+/* Vue d'ensemble */
+.apercu { position: fixed; inset: 56px 0 0 0; z-index: 30; overflow-y: auto; padding: 24px; background: var(--fond); }
+.apercu[hidden] { display: none; }
+.apercu__grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; }
+.miniature { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border: 2px solid var(--ligne); border-radius: 12px; background: var(--surface); cursor: pointer; padding: 0; }
+.miniature[aria-current="true"] { border-color: var(--c1); }
+.miniature .diapo { opacity: 1; visibility: visible; transform: scale(var(--km, .18)); transform-origin: 0 0; width: 1280px; height: 720px; transition: none; border-radius: 0; }
+[dir="rtl"] .miniature .diapo { transform-origin: 100% 0; right: 0; left: auto; }
+.miniature .a { opacity: 1; transform: none; }
+.miniature__num { position: absolute; top: 6px; inset-inline-start: 6px; z-index: 2; padding: 0 7px; border-radius: 6px; background: #000b; color: #fff; font: 700 13px/20px var(--f-ui); }
+
+/* Mouvement réduit */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; }
+}
+
+/* Petits écrans : la barre se simplifie */
+@media (max-width: 720px) {
+  .barre__titre, .outil--secondaire { display: none; }
+  .barre { gap: 6px; padding: 0 8px; }
+  .langues button { min-width: 36px; padding: 0 6px; }
+}
+
+/* Impression : une diapositive par page 16:9 */
+@page { size: 1280px 720px; margin: 0; }
+@media print {
+  html, body { height: auto; overflow: visible; background: #fff; }
+  .barre, .pied, .notes, .apercu, .scene { display: none !important; }
+  .impression { display: block !important; }
+  .impression .diapo { position: relative; opacity: 1; visibility: visible; transform: none; width: 1280px; height: 720px; border-radius: 0; box-shadow: none; break-after: page; page-break-after: always; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .impression .a, .impression .bulle { opacity: 1 !important; transform: none !important; animation: none !important; }
+  .impression .frise__ligne { transform: none !important; }
+  .impression .explication { visibility: visible; opacity: 1; }
+}
+.impression { display: none; }
+</style>
+</head>
+<body>
+<header class="barre">
+  <a class="marque" href="index.html"><span class="marque__anneau" aria-hidden="true"></span><span data-t="marque">IA · Chapitre 1</span></a>
+  <p class="barre__titre" id="titre-courant"></p>
+  <div class="langues" role="group" aria-label="Langue / Language / اللغة">
+    <button type="button" data-langue="fr" lang="fr">FR</button><button type="button" data-langue="en" lang="en">EN</button><button type="button" data-langue="ar" lang="ar">عربي</button>
+  </div>
+  <div class="outils">
+    <button type="button" class="outil outil--secondaire" data-action="apercu" data-titre="apercu"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></svg></button>
+    <button type="button" class="outil outil--secondaire" data-action="notes" data-titre="notes" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></button>
+    <button type="button" class="outil outil--secondaire" data-action="imprimer" data-titre="imprimer"><svg viewBox="0 0 24 24"><path d="M7 9V3.5h10V9"/><rect x="3.5" y="9" width="17" height="8" rx="1.5"/><path d="M7 14h10v6.5H7z"/></svg></button>
+    <button type="button" class="outil" data-action="theme" data-titre="theme"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></svg></button>
+    <button type="button" class="outil" data-action="plein" data-titre="plein"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg></button>
+  </div>
+</header>
+<main class="scene" id="scene" aria-live="polite"><div class="scene__cadre" id="cadre"></div></main>
+<aside class="notes" id="notes" hidden><h2 data-t="notes"></h2><p id="notes-texte"></p></aside>
+<nav class="pied" aria-label="Navigation">
+  <button type="button" class="outil" data-action="precedent" data-titre="precedent"><svg viewBox="0 0 24 24"><path class="fleche" d="M15 5l-7 7 7 7"/></svg></button>
+  <span class="pied__compteur" id="compteur"></span>
+  <button type="button" class="outil" data-action="suivant" data-titre="suivant"><svg viewBox="0 0 24 24"><path class="fleche" d="M9 5l7 7-7 7"/></svg></button>
+</nav>
+<div class="apercu" id="apercu" hidden><div class="apercu__grille" id="apercu-grille"></div></div>
+<div class="impression" id="impression"></div>
+
+<script>
+window.LECON = {"fr":{"langue":"fr","titre":"De l'automate à l'agent","sousTitre":"L'histoire complète de l'intelligence artificielle, des premières machines aux agents d'aujourd'hui","diapos":[{"type":"couverture","surtitre":"Intelligence artificielle · Chapitre 1 · Première leçon","titre":"De l'automate à l'agent","sousTitre":"L'histoire complète de l'intelligence artificielle, des premières machines aux agents d'aujourd'hui","illus":"agent","notes":"Accueillez la classe avec une question au tableau : « Une machine peut-elle penser ? » Ne répondez pas : toute la leçon y revient. Annoncez le fil conducteur : le rêve de machines intelligentes est très ancien, mais l'IA comme science a soixante-dix ans, et ses agents quelques années seulement."},{"type":"plan","titre":"Le voyage de cette leçon","points":["Le rêve des machines (de l'Antiquité à 1945)","La naissance de l'IA (1950–1956)","L'âge d'or, puis le premier hiver (1956–1980)","Les systèmes experts (1980–1993)","Apprendre à partir des données (1990–2016)","La révolution de l'apprentissage profond (2006–2016)","Transformers et IA générative (2017–2022)","L'ère des agents (2023–2026)"],"notes":"Huit étapes, chacune avec une date clé à retenir. Proposez aux étudiants de noter une date par étape : ils reconstitueront la frise à la fin."},{"type":"texte","titre":"Et vous, qu'appelez-vous « intelligence » ?","points":["Comprendre une phrase, traduire un poème","Reconnaître un visage parmi mille","Gagner aux échecs, résoudre un problème","Apprendre de ses erreurs","Agir seul pour atteindre un but"],"illus":"cerveau","notes":"Deux minutes de vote à main levée : lesquelles de ces capacités une machine a-t-elle déjà ? Réponse de fin de leçon : toutes, à des degrés divers, mais aucune machine ne les réunit comme un humain. La dernière ligne, agir seul pour un but, définit l'agent : c'est la destination de la leçon."},{"type":"section","numero":"1","titre":"Le rêve des machines","periode":"De l'Antiquité à 1945","texte":"Bien avant les ordinateurs, les humains ont imaginé et construit des machines qui imitent la vie, puis des machines qui calculent.","illus":"engrenages","notes":"Première étape : l'IA n'est pas née de rien. Deux lignes se rejoignent ici : les automates, qui imitent le mouvement, et les machines à calculer, qui imitent le raisonnement."},{"type":"texte","titre":"Des automates dans les mythes et les ateliers","points":["Mythe grec : Talos, géant de bronze qui garde la Crète","Ier siècle : Héron d'Alexandrie décrit des automates de théâtre","1739 : le canard de Vaucanson bat des ailes et « digère »","Vers 1770 : l'Écrivain des Jaquet-Droz trace des lettres à la plume"],"illus":"engrenages","notes":"Un automate reproduit un mouvement prévu d'avance par ses engrenages ou ses cames. Il ne décide rien : c'est la différence avec une IA. Demandez : l'Écrivain des Jaquet-Droz « écrit »-il vraiment ?"},{"type":"texte","titre":"Al-Jazari, l'ingénieur des machines ingénieuses","annee":"1206","points":["Ingénieur de la cour artuqide, en Haute-Mésopotamie","Écrit en 1206 le *Livre de la connaissance des procédés mécaniques ingénieux*","Décrit une cinquantaine de machines : horloges, pompes, automates","Son horloge-éléphant marque les heures par des automates"],"illus":"elephant","notes":"Al-Jazari montre que la tradition des automates traverse le monde arabe et musulman médiéval. Ses dessins détaillés permettent encore aujourd'hui de reconstruire ses machines. Restez prudent : ce sont des automates programmés d'avance, pas des machines qui apprennent."},{"type":"texte","titre":"Des machines qui calculent","points":["1642 : Blaise Pascal construit la Pascaline, qui additionne","1673 : Leibniz présente une machine qui multiplie","1837 : Charles Babbage conçoit la machine analytique, programmable par cartes perforées","La machine analytique ne sera jamais achevée de son vivant"],"illus":"calculatrice","personne":"babbage","notes":"Passage clé : une machine qui calcule remplace une partie du travail de l'esprit. La machine analytique de Babbage a déjà une mémoire et une unité de calcul, comme nos ordinateurs."},{"type":"portrait","personne":"lovelace","nom":"Ada Lovelace","dates":"1815–1852","role":"Mathématicienne, première programmeuse","points":["1843 : ses notes sur la machine analytique de Babbage","Elle y écrit un algorithme pour calculer les nombres de Bernoulli","Elle imagine que la machine pourrait composer de la musique"],"citation":"La machine analytique n'a aucune prétention à créer quoi que ce soit.","source":"Ada Lovelace, notes de 1843","notes":"Sa phrase, l'« objection de Lady Lovelace », sera discutée par Turing un siècle plus tard : une machine ne fait-elle que ce qu'on lui dit ? Question à poser à la classe : un modèle qui écrit un poème crée-t-il quelque chose ?"},{"type":"texte","titre":"Quand la pensée devient calcul","points":["1854 : George Boole réduit le raisonnement à des calculs sur vrai et faux","1936 : Alan Turing décrit une machine abstraite capable de tout calcul","Un ruban, une tête de lecture, une table de règles : c'est la « machine de Turing »","Tout ordinateur actuel est, en principe, une machine de Turing"],"illus":"turing","notes":"Boole fournit l'alphabet (vrai, faux, et, ou, non) ; Turing fournit la machine universelle. Montrez l'animation : la tête lit une case, écrit, se déplace, change d'état. Avec des règles aussi simples, on peut tout calculer."},{"type":"portrait","personne":"turing","nom":"Alan Turing","dates":"1912–1954","role":"Mathématicien, père de l'informatique théorique","points":["1936 : la machine universelle","1939–1945 : contribue à casser le code Enigma à Bletchley Park","1950 : « Computing Machinery and Intelligence », l'article fondateur"],"citation":"Je propose d'examiner la question suivante : les machines peuvent-elles penser ?","source":"Alan Turing, Mind, 1950","notes":"Turing remplace une question impossible (« penser ») par un test observable, le jeu de l'imitation. C'est le geste fondateur de l'IA. La phrase citée ouvre son article de 1950."},{"type":"schema","titre":"Le neurone formel","annee":"1943","illus":"neurone","points":["Warren McCulloch et Walter Pitts modélisent un neurone par un calcul","Il additionne des signaux d'entrée et « s'active » au-delà d'un seuil","C'est l'ancêtre de tous les réseaux de neurones actuels"],"notes":"Premier pont entre biologie et calcul. Dessinez au tableau : trois entrées, des poids, une somme, un seuil. On retrouvera exactement ce schéma avec le perceptron en 1958, puis dans l'apprentissage profond."},{"type":"texte","titre":"Les premiers ordinateurs","points":["1945 : l'ENIAC, 30 tonnes, calcule des trajectoires balistiques","1948 : Claude Shannon fonde la théorie de l'information","Le bit devient l'unité de toute information : texte, image, son","Les machines existent enfin ; reste à les rendre « intelligentes »"],"personne":"eniac","notes":"L'ENIAC occupe une salle entière et se programme en branchant des câbles. Shannon, lui, sera l'un des quatre signataires du projet de Dartmouth. Fin de la première étape : tout est prêt pour la naissance de l'IA."},{"type":"section","numero":"2","titre":"La naissance de l'IA","periode":"1950–1956","texte":"En six ans, une question devient un programme de recherche, puis une discipline avec un nom.","illus":"ampoule","notes":"Deuxième étape : trois moments à retenir, 1950 (Turing), 1956 (Dartmouth) et le premier programme « intelligent »."},{"type":"schema","titre":"Le jeu de l'imitation","annee":"1950","illus":"imitation","points":["Un juge dialogue par écrit avec deux interlocuteurs cachés","L'un est un humain, l'autre une machine","Si le juge ne sait pas les distinguer, la machine « réussit »"],"notes":"Faites jouer la scène : deux volontaires cachés, un juge, cinq minutes de questions écrites. Discussion : le test mesure-t-il l'intelligence, ou l'art de faire illusion ? Les agents conversationnels actuels ont relancé ce débat."},{"type":"citation","texte":"Chaque aspect de l'apprentissage ou de toute autre caractéristique de l'intelligence peut en principe être décrit si précisément qu'une machine peut être construite pour le simuler.","auteur":"J. McCarthy, M. Minsky, N. Rochester, C. Shannon","source":"Proposition pour l'atelier de Dartmouth, 31 août 1955","notes":"C'est dans ce texte qu'apparaît l'expression « intelligence artificielle ». L'hypothèse est très ambitieuse : tout ce que fait l'intelligence pourrait être décrit précisément. Demandez : est-ce vrai pour l'humour ? pour l'intuition poétique ?"},{"type":"portrait","personne":"mccarthy","nom":"John McCarthy","dates":"1927–2011","role":"Informaticien, a donné son nom à l'IA","points":["Été 1956 : organise l'atelier de Dartmouth, acte de naissance de l'IA","1958 : crée le langage Lisp, longtemps langage de l'IA","Avec lui : Marvin Minsky, Claude Shannon, Nathaniel Rochester"],"notes":"L'atelier de Dartmouth réunit une dizaine de chercheurs pendant l'été 1956. Il ne produit pas de grande découverte, mais il donne un nom, une communauté et un programme à la discipline."},{"type":"texte","titre":"Le premier programme « intelligent »","annee":"1956","points":["Le Logic Theorist d'Allen Newell, Herbert Simon et Cliff Shaw","Il démontre 38 des 52 premiers théorèmes des *Principia Mathematica*","Pour l'un d'eux, une preuve plus élégante que celle des auteurs","Une idée clé : chercher parmi des possibilités avec des règles"],"illus":"arbre","notes":"Le Logic Theorist incarne l'IA symbolique : des symboles, des règles, une recherche dans un arbre de possibilités. C'est la même logique que le chaînage avant du TD du chapitre 3."},{"type":"section","numero":"3","titre":"L'âge d'or, puis le premier hiver","periode":"1956–1980","texte":"Des succès spectaculaires, des promesses démesurées, puis la déception et la fin des crédits.","illus":"courbe","notes":"Troisième étape : c'est le premier cycle d'enthousiasme et de désillusion. Il se répétera, ce qui aide à juger les promesses d'aujourd'hui."},{"type":"schema","titre":"Le perceptron de Rosenblatt","annee":"1958","illus":"perceptron","points":["Frank Rosenblatt construit une machine qui apprend à reconnaître des formes","Elle ajuste elle-même ses poids après chaque erreur","La presse annonce des machines qui « pensent » : l'enthousiasme s'emballe"],"personne":"perceptron","notes":"Le perceptron est le premier réseau de neurones qui apprend. Faites le lien avec l'activité « le neurone humain » du guide : des poids, un seuil, une correction après chaque erreur."},{"type":"texte","titre":"Apprendre sans être programmé","annee":"1959","points":["Arthur Samuel écrit un programme de jeu de dames qui s'améliore en jouant","Il invente l'expression « machine learning », apprentissage automatique","Le programme finit par battre son propre créateur","Deux voies se dessinent : écrire les règles, ou les faire apprendre"],"illus":"dames","notes":"Voilà l'opposition qui structure toute l'histoire : l'IA symbolique (on écrit les règles) contre l'IA connexionniste ou statistique (la machine les apprend à partir d'exemples)."},{"type":"chat","titre":"ELIZA, la première psychothérapeute artificielle","annee":"1966","legende":"Extrait de l'article de Joseph Weizenbaum (1966), traduit","echanges":[{"qui":"h","texte":"Les hommes sont tous pareils."},{"qui":"m","texte":"EN QUEL SENS ?"},{"qui":"h","texte":"Ils nous embêtent toujours avec une chose ou une autre."},{"qui":"m","texte":"POUVEZ-VOUS DONNER UN EXEMPLE PRÉCIS ?"},{"qui":"h","texte":"Eh bien, c'est mon ami qui m'a fait venir ici."},{"qui":"m","texte":"VOTRE AMI VOUS A FAIT VENIR ICI."}],"notes":"ELIZA ne comprend rien : elle repère des mots-clés et renvoie la phrase avec des règles de transformation. Pourtant, des utilisateurs lui confiaient leurs secrets. Weizenbaum en fut inquiet toute sa vie. C'est l'« effet ELIZA » : prêter une compréhension à une machine qui répond bien."},{"type":"texte","titre":"Shakey, le premier robot qui raisonne","annee":"1966–1972","points":["Construit au Stanford Research Institute (SRI)","Il perçoit son environnement avec une caméra","Il planifie une suite d'actions pour atteindre un but","Pour lui naît l'algorithme A*, encore utilisé pour calculer des itinéraires"],"personne":"shakey","illus":"robot","notes":"Shakey est un ancêtre direct des agents : il perçoit, planifie, agit. Mais il met des minutes à décider de pousser une boîte. Retenez le schéma percevoir, planifier, agir : il revient à la fin de la leçon."},{"type":"citation","texte":"Les machines seront capables, d'ici vingt ans, de faire tout travail qu'un homme peut faire.","auteur":"Herbert Simon","source":"1965","notes":"Les promesses de l'époque étaient démesurées. Vingt ans plus tard, en 1985, on en était très loin. Demandez aux étudiants de trouver une promesse actuelle sur l'IA et de se demander comment on la jugera dans vingt ans."},{"type":"schema","titre":"Le premier hiver de l'IA","annee":"1974–1980","illus":"courbe","points":["1969 : Minsky et Papert montrent les limites du perceptron simple","1973 : le rapport Lighthill, au Royaume-Uni, juge les résultats décevants","Les calculs explosent dès que les problèmes grandissent","Les financements publics sont coupés : c'est l'« hiver »"],"notes":"Un hiver de l'IA, c'est une période où la déception fait fuir les crédits et les chercheurs. La courbe montre les deux hivers : 1974–1980 et 1987–1993. Point de méthode : juger une technique sur ses résultats, pas sur ses promesses."},{"type":"section","numero":"4","titre":"Les systèmes experts","periode":"1980–1993","texte":"L'IA revient en mettant le savoir des experts en règles. Elle entre dans les entreprises, puis retombe.","illus":"regles","notes":"Quatrième étape : le triomphe de l'IA symbolique, celle du chapitre 3 et de son TD sur le chaînage avant."},{"type":"schema","titre":"Mettre le savoir en règles","illus":"regles","points":["Une base de faits, une base de règles SI … ALORS …, un moteur d'inférence","Années 1970 : MYCIN, à Stanford, diagnostique des infections du sang","1980 : XCON configure les ordinateurs de l'entreprise DEC","Les entreprises investissent : l'IA devient une industrie"],"notes":"Reliez à la séance 6 : le jeu de rôle des formes poétiques est un petit système expert. MYCIN comptait environ 600 règles écrites avec des médecins."},{"type":"texte","titre":"Le retour des neurones","annee":"1986","points":["1982 : le Japon lance le projet des ordinateurs de cinquième génération","1986 : Rumelhart, Hinton et Williams popularisent la rétropropagation","On sait enfin entraîner des réseaux à plusieurs couches","Mais les ordinateurs et les données manquent encore"],"illus":"reseau","notes":"La rétropropagation calcule comment corriger chaque poids d'un réseau à partir de l'erreur finale. C'est la descente de gradient du chapitre 3, appliquée à des millions de poids. L'idée est prête vingt-cinq ans avant son triomphe."},{"type":"texte","titre":"Le second hiver","annee":"1987–1993","points":["1987 : le marché des machines spécialisées Lisp s'effondre","Les systèmes experts coûtent cher et se trompent hors de leur domaine","Chaque nouvelle règle en contredit d'autres : ils deviennent ingérables","Le mot « IA » devient mal vu : on parle plutôt d'« informatique avancée »"],"illus":"flocon","notes":"Les systèmes experts sont fragiles : ils ne savent que ce qu'on leur a écrit, et ne savent pas qu'ils ne savent pas. Cette faiblesse explique le virage suivant : apprendre à partir de données."},{"type":"section","numero":"5","titre":"Apprendre à partir des données","periode":"1990–2016","texte":"Au lieu d'écrire les règles, on donne des exemples. Avec Internet, les exemples deviennent des milliards.","illus":"donnees","notes":"Cinquième étape : c'est le grand retournement. Il s'appuie sur trois ingrédients : des algorithmes, des données et de la puissance de calcul."},{"type":"deux","titre":"Deux façons de faire une IA","gauche":{"titre":"IA symbolique","points":["Un expert écrit les règles","Explicable : on suit le raisonnement","Fragile hors de son domaine","Exemple : un système expert"]},"droite":{"titre":"Apprentissage automatique","points":["La machine tire des régularités des exemples","Souvent difficile à expliquer","Robuste, s'il y a beaucoup de données","Exemple : un filtre anti-spam"]},"notes":"Faites classer trois objets par les étudiants : un correcteur orthographique, un traducteur automatique, un GPS. Aujourd'hui, les meilleurs systèmes combinent souvent les deux approches."},{"type":"portrait","personne":"deepblue","nom":"Deep Blue contre Kasparov","dates":"Mai 1997","role":"L'ordinateur d'IBM bat le champion du monde d'échecs","points":["Victoire 3½ à 2½ en six parties, à New York","Environ 200 millions de positions évaluées par seconde","Une force de calcul, pas d'apprentissage : c'est encore une IA de recherche"],"illus":"echecs","notes":"L'événement fait le tour du monde. Mais Deep Blue ne comprend pas les échecs : il calcule des coups et les évalue avec des règles écrites par des experts. Comparez avec AlphaGo, qui apprendra en jouant, vingt ans plus tard."},{"type":"frise","titre":"L'apprentissage s'installe partout","evenements":[{"annee":"1989","titre":"Lire les chiffres","texte":"Yann LeCun entraîne un réseau convolutif à lire les codes postaux"},{"annee":"1992","titre":"TD-Gammon","texte":"Un programme apprend le jacquet en jouant contre lui-même"},{"annee":"1998","titre":"Chèques","texte":"Les réseaux de LeCun lisent des chèques bancaires aux États-Unis"},{"annee":"2002","titre":"Roomba","texte":"Un robot aspirateur entre dans les maisons"},{"annee":"2005","titre":"Stanley","texte":"Une voiture sans conducteur gagne la course du désert de la DARPA"},{"annee":"2011","titre":"Watson, Siri","texte":"Watson gagne au jeu télévisé Jeopardy! ; Siri arrive dans les téléphones"}],"notes":"Remarquez que l'IA devient invisible : elle trie le courrier, lit les chèques, filtre le spam, sans qu'on l'appelle IA. C'est ce qu'on appelle parfois l'« effet IA » : dès qu'une technique marche, on cesse de la considérer comme de l'intelligence."},{"type":"section","numero":"6","titre":"La révolution de l'apprentissage profond","periode":"2006–2016","texte":"Des réseaux de neurones à très nombreuses couches, entraînés sur d'énormes données avec des processeurs graphiques.","illus":"reseau","notes":"Sixième étape. Le mot « profond » désigne le nombre de couches du réseau, pas la profondeur de la pensée."},{"type":"schema","titre":"Un réseau profond, couche après couche","illus":"reseau","points":["Les premières couches repèrent des traits simples : bords, taches","Les couches suivantes combinent : formes, textures, parties","Les dernières reconnaissent des objets entiers : « chat », « voiture »","Chaque couche apprend seule ce qu'elle doit repérer"],"notes":"Montrez l'animation : le signal traverse les couches de gauche à droite. Dans un texte, c'est pareil : lettres, mots, expressions, sens. Personne n'écrit ce que chaque neurone doit repérer : il l'apprend."},{"type":"portrait","personne":"feifei","nom":"Fei-Fei Li et ImageNet","dates":"2009–2012","role":"Une base d'images qui change tout","points":["2009 : ImageNet, plus de 14 millions d'images annotées à la main","2012 : le réseau AlexNet écrase la compétition de reconnaissance d'images","Son taux d'erreur tombe à 15 %, contre 26 % pour le deuxième"],"illus":"imagenet","notes":"Trois ingrédients se rencontrent en 2012 : des données (ImageNet), des cartes graphiques pour calculer vite, et des réseaux profonds. C'est le début de la vague actuelle. L'annotation des images a été faite par des milliers de travailleurs payés à la tâche : un point éthique à discuter."},{"type":"portrait","personne":"hinton","nom":"Geoffrey Hinton","dates":"Né en 1947","role":"Pionnier des réseaux de neurones","points":["Défend les réseaux de neurones pendant les deux hivers","2018 : prix Turing avec Yoshua Bengio et Yann LeCun","2024 : prix Nobel de physique avec John Hopfield"],"notes":"Hinton est l'exemple d'un chercheur qui a eu raison trop tôt : ses idées des années 1980 ne marchent vraiment qu'en 2012. En 2023, il quitte Google pour alerter sur les risques de l'IA."},{"type":"frise","titre":"Les machines apprennent aussi le langage et le jeu","evenements":[{"annee":"2013","titre":"Word2vec","texte":"Les mots deviennent des vecteurs : « roi » − « homme » + « femme » ≈ « reine »"},{"annee":"2014","titre":"GAN","texte":"Deux réseaux s'affrontent pour produire des images réalistes"},{"annee":"2015","titre":"Jeux Atari","texte":"Un agent de DeepMind apprend 49 jeux vidéo à partir des pixels et du score"},{"annee":"2016","titre":"AlphaGo","texte":"Le programme de DeepMind bat Lee Sedol au go, 4 parties à 1"}],"notes":"Le go était réputé trop complexe pour l'ordinateur : plus de positions possibles que d'atomes dans l'univers. AlphaGo combine apprentissage profond et apprentissage par renforcement, le troisième type d'apprentissage du chapitre 1."},{"type":"portrait","personne":"hassabis","nom":"AlphaGo et le coup 37","dates":"Mars 2016, Séoul","role":"DeepMind, cofondé par Demis Hassabis","points":["Deuxième partie : AlphaGo joue un coup qu'aucun humain n'aurait joué","Les commentateurs croient à une erreur ; c'est un coup gagnant","La machine n'imite plus les humains : elle trouve ses propres stratégies"],"illus":"go","notes":"Le « coup 37 » est devenu le symbole d'une créativité machinique. Revenez à l'objection de Lovelace : AlphaGo a-t-il « créé » quelque chose ? En 2024, Demis Hassabis et John Jumper reçoivent le prix Nobel de chimie pour AlphaFold, qui prédit la forme des protéines."},{"type":"section","numero":"7","titre":"Transformers et IA générative","periode":"2017–2022","texte":"Une nouvelle architecture apprend à lire des textes entiers. Les machines se mettent à écrire, dessiner, traduire.","illus":"attention","notes":"Septième étape : celle qui mène aux agents conversationnels que vos étudiants utilisent déjà."},{"type":"schema","titre":"« Attention Is All You Need »","annee":"2017","illus":"attention","points":["Huit chercheurs de Google proposent le Transformer","Le mécanisme d'attention relie chaque mot à tous les autres","Dans « L'étudiante ouvrit le livre car elle… », « elle » regarde « étudiante »","Tous les grands modèles de langue actuels en descendent"],"notes":"Le titre de l'article est devenu célèbre. L'animation montre les liens d'attention : l'épaisseur indique l'importance. Le Transformer lit tous les mots en même temps, ce qui permet d'entraîner des modèles immenses."},{"type":"frise","titre":"De BERT à ChatGPT","evenements":[{"annee":"2018","titre":"BERT","texte":"Google : un modèle qui comprend le contexte d'un mot"},{"annee":"2019","titre":"GPT-2","texte":"OpenAI : des textes si fluides qu'on hésite à le publier"},{"annee":"2020","titre":"GPT-3","texte":"175 milliards de paramètres ; AlphaFold 2 résout la forme des protéines"},{"annee":"2021","titre":"DALL·E","texte":"Une image dessinée à partir d'une phrase"},{"annee":"2022","titre":"ChatGPT","texte":"30 novembre : l'IA générative arrive dans le grand public"}],"notes":"En cinq ans, on passe d'un outil de laboratoire à un service utilisé par des centaines de millions de personnes. Demandez qui, dans la classe, a déjà utilisé un agent conversationnel, et pour quoi faire."},{"type":"schema","titre":"Comment « écrit » un modèle de langue","illus":"motsuivant","points":["Il découpe le texte en morceaux, les tokens","Il calcule la probabilité de chaque token suivant","Il en choisit un, l'ajoute au texte, et recommence","Des humains notent ensuite ses réponses pour l'affiner"],"notes":"C'est le modèle de bigrammes du carnet 08, en immensément plus grand. Le réglage par des humains s'appelle en anglais RLHF : apprentissage par renforcement à partir de retours humains. Insistez : le modèle prédit du texte plausible, pas du texte vrai."},{"type":"chat","titre":"Un dialogue avec un modèle de langue","annee":"2022","legende":"Exemple fictif, écrit pour la classe","echanges":[{"qui":"h","texte":"Explique le chaînage avant à un étudiant de littérature."},{"qui":"m","texte":"Imaginez un détective : il part des indices qu'il connaît et applique ses règles une à une, jusqu'à trouver le coupable."},{"qui":"h","texte":"Donne-moi une référence pour citer ça dans mon mémoire."},{"qui":"m","texte":"Attention : vérifiez toujours une référence dans une bibliothèque. Je peux me tromper ou en inventer."}],"notes":"Comparez avec ELIZA : cette fois, la réponse est pertinente, reformulée, adaptée au public. Mais le risque demeure : un modèle peut inventer une référence, une citation, une date. C'est l'objet de l'activité « l'épreuve des références » du guide."},{"type":"section","numero":"8","titre":"L'ère des agents","periode":"2023–2026","texte":"Le modèle de langue ne se contente plus de répondre : il planifie, utilise des outils et agit.","illus":"agent","notes":"Dernière étape : c'est le sujet de l'actualité. Rappelez Shakey (1966) : percevoir, planifier, agir. L'idée d'agent est ancienne ; ce qui change, c'est qu'un modèle de langue sert maintenant de « cerveau »."},{"type":"texte","titre":"Qu'est-ce qu'un agent ?","points":["Un agent perçoit son environnement et agit sur lui pour atteindre un but","Un thermostat est un agent très simple : il mesure, puis chauffe ou non","Russell et Norvig (1995) définissent toute l'IA comme l'étude des agents","Un agent d'IA moderne reçoit un objectif, pas seulement une question"],"illus":"thermostat","notes":"Définition à faire noter. La différence avec un agent conversationnel classique : on ne demande plus « réponds », on demande « fais ». Exemple : « Trouve trois articles sur Kateb Yacine, lis-les et fais-moi une fiche. »"},{"type":"schema","titre":"La boucle d'un agent","illus":"boucle","points":["Objectif : ce que l'utilisateur demande","Réfléchir : le modèle planifie l'étape suivante","Agir : il utilise un outil (recherche, calcul, fichier, navigateur)","Observer : il lit le résultat, puis recommence jusqu'au but"],"notes":"Faites suivre la boucle animée. Chaque tour peut réussir ou échouer ; l'agent corrige son plan. C'est pourquoi il faut limiter les outils auxquels il a accès et vérifier ses actions importantes."},{"type":"frise","titre":"Des agents conversationnels aux agents","evenements":[{"annee":"2022","titre":"ReAct","texte":"Des chercheurs font alterner raisonnement et actions dans un même modèle"},{"annee":"2023","titre":"Outils","texte":"GPT-4 ; les modèles apprennent à appeler des outils et des programmes"},{"annee":"2024","titre":"Raisonner, agir","texte":"Modèles qui réfléchissent avant de répondre ; un modèle pilote un ordinateur ; protocole MCP pour brancher des outils"},{"annee":"2025","titre":"Agents au travail","texte":"Agents qui naviguent sur le Web, écrivent et corrigent des programmes"},{"annee":"2026","titre":"Au quotidien","texte":"Les agents s'installent dans les logiciels de bureau, de recherche et d'enseignement"}],"notes":"Les dates de 2025 et 2026 décrivent des tendances générales plutôt que des produits précis, qui changent vite. Invitez les étudiants à chercher un exemple récent et à le présenter en deux minutes."},{"type":"deux","titre":"Agent conversationnel ou agent ?","gauche":{"titre":"Agent conversationnel","points":["Répond à une question","Produit du texte","Un seul tour","L'humain fait le reste"]},"droite":{"titre":"Agent","points":["Poursuit un objectif","Utilise des outils et agit","Plusieurs étapes, il corrige son plan","L'humain supervise et valide"]},"notes":"La frontière est mouvante : beaucoup d'agents conversationnels savent déjà chercher sur le Web. Retenez le critère : un agent enchaîne des actions sur le monde pour atteindre un but."},{"type":"texte","titre":"Les risques, et les bonnes pratiques","points":["Hallucinations : un agent peut agir sur une information fausse","Actions irréversibles : effacer, envoyer, payer ; il faut valider","Consignes cachées dans une page Web peuvent détourner un agent","Données personnelles : la loi algérienne 18-07 s'applique","2024 : l'Union européenne adopte le règlement sur l'IA (AI Act)"],"illus":"bouclier","notes":"Règle simple pour les étudiants : on garde la main sur toute action importante, on vérifie les sources, et on déclare l'usage de l'IA dans ses travaux. Renvoyez à la charte d'usage de l'IA du guide."},{"type":"texte","titre":"Et en Algérie ?","points":["2021 : ouverture de l'École nationale supérieure d'intelligence artificielle (ENSIA)","L'arabe, la darja et le tamazight restent moins bien servis par les modèles","Des corpus locaux, construits en SHS, sont une vraie contribution","Vos mémoires peuvent y participer : textes, enquêtes, entretiens"],"illus":"carte","notes":"Point d'ancrage local. Les langues moins présentes sur le Web sont moins bien traitées par les modèles : c'est une question de données, donc aussi de sciences humaines. Encouragez les étudiants à imaginer un corpus qu'ils pourraient constituer."},{"type":"section","numero":"9","titre":"Synthèse","periode":"De 1206 à 2026","texte":"Huit siècles de rêves, soixante-dix ans de science, quelques années d'agents.","illus":"frise","notes":"Dernière partie : récapituler, voir les vidéos, vérifier ce qui a été compris."},{"type":"frise","titre":"Les huit dates à retenir","evenements":[{"annee":"1843","titre":"Lovelace","texte":"Premier programme, pour une machine jamais achevée"},{"annee":"1950","titre":"Turing","texte":"Les machines peuvent-elles penser ?"},{"annee":"1956","titre":"Dartmouth","texte":"L'IA reçoit son nom"},{"annee":"1974","titre":"Hiver","texte":"Premier hiver de l'IA"},{"annee":"1997","titre":"Deep Blue","texte":"L'ordinateur bat le champion d'échecs"},{"annee":"2012","titre":"AlexNet","texte":"L'apprentissage profond l'emporte"},{"annee":"2017","titre":"Transformer","texte":"L'attention au cœur des modèles de langue"},{"annee":"2022","titre":"ChatGPT","texte":"L'IA générative pour tous ; puis viennent les agents"}],"notes":"Faites réciter la frise à l'envers, de 2022 à 1843. Ces huit dates suffisent pour raconter toute l'histoire à l'examen."},{"type":"deux","titre":"Les familles d'IA, sur une seule diapositive","gauche":{"titre":"Selon la méthode","points":["Symbolique : des règles écrites","Apprentissage automatique : des exemples","Apprentissage profond : des réseaux à nombreuses couches","Renforcement : des essais et des récompenses"]},"droite":{"titre":"Selon l'ambition","points":["IA faible (étroite) : une tâche précise","IA forte (générale) : toutes les tâches, hypothétique","Les agents actuels restent des IA faibles","… mais de plus en plus polyvalentes"]},"notes":"Ce tableau relie la leçon au chapitre 1 du cours (IA faible et forte, types d'apprentissage) et au chapitre 3 (types d'IA). Un agent moderne combine plusieurs familles : un modèle profond, des règles de sécurité, parfois du renforcement."},{"type":"video","titre":"Vidéo : l'histoire complète de l'IA (1950–2026)","youtube":"Xl-G6Mv-N0A","legende":"« The Complete History of AI (1950–2026) - The Rise of Artificial Intelligence », documentaire en anglais, sur YouTube","notes":"Montrez un passage choisi à l'avance plutôt que la vidéo entière. Demandez aux étudiants de repérer trois dates de la frise dans la vidéo. La vidéo demande une connexion Internet."},{"type":"video","titre":"Vidéo : cent ans d'intelligence artificielle","youtube":"mSd9nmPM7Vg","legende":"« The Entire History of Artificial Intelligence (Last 100 Years) », documentaire en anglais, sur YouTube","notes":"Pour les groupes d'anglais, faites résumer oralement la vidéo en anglais : c'est aussi un exercice de langue. Pour les autres, sous-titres automatiques dans la langue choisie."},{"type":"quiz","question":"En quelle année l'expression « intelligence artificielle » s'impose-t-elle, avec l'atelier de Dartmouth ?","choix":["1943","1956","1997","2012"],"reponse":1,"explication":"L'expression apparaît dans la proposition de 1955 et s'impose avec l'atelier de l'été 1956.","notes":"Faites voter avant de dévoiler la réponse (touche R ou bouton)."},{"type":"quiz","question":"Pourquoi parle-t-on d'« hivers » de l'IA ?","choix":["Les ordinateurs chauffaient trop","La déception a fait chuter les crédits et l'intérêt","Les recherches se faisaient l'hiver","Les machines ont été interdites"],"reponse":1,"explication":"Après des promesses démesurées, les résultats ont déçu : les financements ont été coupés (1974–1980, puis 1987–1993).","notes":"Demandez un exemple de promesse démesurée vu dans la leçon : la citation de Herbert Simon (1965)."},{"type":"quiz","question":"Qu'est-ce qui distingue un agent d'un simple agent conversationnel ?","choix":["Il écrit plus vite","Il poursuit un objectif en agissant avec des outils","Il ne fait jamais d'erreur","Il fonctionne sans électricité"],"reponse":1,"explication":"Un agent enchaîne des actions (chercher, calculer, écrire un fichier…) et observe les résultats pour atteindre un but.","notes":"Revenez à la boucle : objectif, réfléchir, agir, observer."},{"type":"quiz","question":"ELIZA (1966) comprenait-elle ce qu'on lui disait ?","choix":["Oui, comme un psychologue","Non : elle transformait les phrases avec des règles","Oui, grâce à l'apprentissage profond","On ne le sait pas"],"reponse":1,"explication":"ELIZA repérait des mots-clés et renvoyait des phrases types. Croire qu'elle comprenait, c'est l'« effet ELIZA ».","notes":"Question de transition vers le débat : et les modèles d'aujourd'hui comprennent-ils ?"},{"type":"fin","titre":"À retenir","points":["Le rêve est ancien ; l'IA comme science naît entre 1950 et 1956","Deux voies alternent : écrire les règles ou apprendre des données","Les hivers rappellent de juger sur les résultats, pas sur les promesses","Un agent perçoit, planifie et agit : de Shakey (1966) aux agents de 2025","Vérifier, garder la main, déclarer son usage : les trois règles d'or"],"texte":"Travail personnel : choisissez une date de la frise et écrivez dix lignes sur ce qu'elle a changé, en citant une source vérifiée.","notes":"Terminez par la question du début : une machine peut-elle penser ? Recueillez trois réponses argumentées. Le travail personnel prépare la table ronde sur la genèse de l'IA."}]},"en":{"langue":"en","titre":"From Automaton to Agent","sousTitre":"The complete history of artificial intelligence, from the first machines to today's agents","diapos":[{"type":"couverture","surtitre":"Artificial intelligence · Chapter 1 · First lesson","titre":"From Automaton to Agent","sousTitre":"The complete history of artificial intelligence, from the first machines to today's agents","illus":"agent","notes":"Welcome the class with a question on the board: “Can a machine think?” Do not answer it: the whole lesson keeps coming back to it. Announce the common thread: the dream of intelligent machines is very old, but AI as a science is seventy years old, and its agents only a few years."},{"type":"plan","titre":"This lesson's journey","points":["The dream of machines (from Antiquity to 1945)","The birth of AI (1950–1956)","The golden age, then the first winter (1956–1980)","Expert systems (1980–1993)","Learning from data (1990–2016)","The deep learning revolution (2006–2016)","Transformers and generative AI (2017–2022)","The age of agents (2023–2026)"],"notes":"Eight stages, each with a key date to remember. Suggest that students write down one date per stage: they will rebuild the timeline at the end."},{"type":"texte","titre":"And you, what do you call “intelligence”?","points":["Understanding a sentence, translating a poem","Recognizing one face among a thousand","Winning at chess, solving a problem","Learning from one's mistakes","Acting alone to reach a goal"],"illus":"cerveau","notes":"Two minutes of voting by show of hands: which of these abilities does a machine already have? The answer at the end of the lesson: all of them, to varying degrees, but no machine combines them as a human does. The last line, acting alone to reach a goal, defines the agent: it is where the lesson is heading."},{"type":"section","numero":"1","titre":"The dream of machines","periode":"From Antiquity to 1945","texte":"Long before computers, humans imagined and built machines that imitate life, then machines that calculate.","illus":"engrenages","notes":"First stage: AI did not come from nowhere. Two lines meet here: automata, which imitate movement, and calculating machines, which imitate reasoning."},{"type":"texte","titre":"Automata in myths and workshops","points":["Greek myth: Talos, a bronze giant who guards Crete","1st century: Hero of Alexandria describes theater automata","1739: Vaucanson's duck flaps its wings and “digests”","Around 1770: the Jaquet-Droz Writer traces letters with a quill"],"illus":"engrenages","notes":"An automaton reproduces a movement set in advance by its gears or cams. It decides nothing: that is the difference from an AI. Ask: does the Jaquet-Droz Writer really “write”?"},{"type":"texte","titre":"Al-Jazari, the engineer of ingenious machines","annee":"1206","points":["Engineer at the Artuqid court, in Upper Mesopotamia","In 1206, writes *The Book of Knowledge of Ingenious Mechanical Devices*","Describes some fifty machines: clocks, pumps, automata","His elephant clock marks the hours with automata"],"illus":"elephant","notes":"Al-Jazari shows that the tradition of automata runs through the medieval Arab and Muslim world. His detailed drawings still make it possible to rebuild his machines today. Be careful: these are automata programmed in advance, not machines that learn."},{"type":"texte","titre":"Machines that calculate","points":["1642: Blaise Pascal builds the Pascaline, which adds","1673: Leibniz presents a machine that multiplies","1837: Charles Babbage designs the Analytical Engine, programmable with punched cards","The Analytical Engine would never be completed in his lifetime"],"illus":"calculatrice","personne":"babbage","notes":"A key transition: a machine that calculates takes over part of the work of the mind. Babbage's Analytical Engine already has a memory and a calculating unit, like our computers."},{"type":"portrait","personne":"lovelace","nom":"Ada Lovelace","dates":"1815–1852","role":"Mathematician, the first programmer","points":["1843: her notes on Babbage's Analytical Engine","In them, she writes an algorithm to compute Bernoulli numbers","She imagines that the machine could compose music"],"citation":"The Analytical Engine has no pretensions whatever to originate anything.","source":"Ada Lovelace, notes of 1843","notes":"Her sentence, “Lady Lovelace's objection”, would be discussed by Turing a century later: does a machine only do what it is told? A question for the class: does a model that writes a poem create something?"},{"type":"texte","titre":"When thought becomes calculation","points":["1854: George Boole reduces reasoning to calculations on true and false","1936: Alan Turing describes an abstract machine capable of any calculation","A tape, a read head, a table of rules: the “Turing machine”","Every computer today is, in principle, a Turing machine"],"illus":"turing","notes":"Boole provides the alphabet (true, false, and, or, not); Turing provides the universal machine. Show the animation: the head reads a cell, writes, moves, changes state. With rules this simple, anything can be calculated."},{"type":"portrait","personne":"turing","nom":"Alan Turing","dates":"1912–1954","role":"Mathematician, father of theoretical computer science","points":["1936: the universal machine","1939–1945: helps break the Enigma code at Bletchley Park","1950: “Computing Machinery and Intelligence”, the founding paper"],"citation":"I propose to consider the question, ‘Can machines think?’","source":"Alan Turing, Mind, 1950","notes":"Turing replaces an impossible question (“think”) with an observable test, the imitation game. This is the founding move of AI. The quoted sentence opens his 1950 paper."},{"type":"schema","titre":"The formal neuron","annee":"1943","illus":"neurone","points":["Warren McCulloch and Walter Pitts model a neuron as a calculation","It adds up input signals and “fires” above a threshold","It is the ancestor of all today's neural networks"],"notes":"The first bridge between biology and calculation. Draw on the board: three inputs, weights, a sum, a threshold. We will find exactly this diagram again with the perceptron in 1958, then in deep learning."},{"type":"texte","titre":"The first computers","points":["1945: ENIAC, 30 tonnes, calculates ballistic trajectories","1948: Claude Shannon founds information theory","The bit becomes the unit of all information: text, image, sound","The machines finally exist; now they must be made “intelligent”"],"personne":"eniac","notes":"ENIAC fills an entire room and is programmed by plugging in cables. Shannon, for his part, would be one of the four signatories of the Dartmouth proposal. End of the first stage: everything is ready for the birth of AI."},{"type":"section","numero":"2","titre":"The birth of AI","periode":"1950–1956","texte":"In six years, a question becomes a research program, then a discipline with a name.","illus":"ampoule","notes":"Second stage: three moments to remember: 1950 (Turing), 1956 (Dartmouth) and the first “intelligent” program."},{"type":"schema","titre":"The imitation game","annee":"1950","illus":"imitation","points":["A judge converses in writing with two hidden interlocutors","One is a human, the other a machine","If the judge cannot tell them apart, the machine “passes”"],"notes":"Act out the scene: two hidden volunteers, a judge, five minutes of written questions. Discussion: does the test measure intelligence, or the art of creating an illusion? Today's chatbots have revived this debate."},{"type":"citation","texte":"Every aspect of learning or any other feature of intelligence can in principle be so precisely described that a machine can be made to simulate it.","auteur":"J. McCarthy, M. Minsky, N. Rochester, C. Shannon","source":"Proposal for the Dartmouth workshop, August 31, 1955","notes":"This is the text in which the expression “artificial intelligence” appears. The hypothesis is very ambitious: everything intelligence does could be described precisely. Ask: is that true of humor? Of poetic intuition?"},{"type":"portrait","personne":"mccarthy","nom":"John McCarthy","dates":"1927–2011","role":"Computer scientist who gave AI its name","points":["Summer 1956: organizes the Dartmouth workshop, the birth certificate of AI","1958: creates the Lisp language, long the language of AI","With him: Marvin Minsky, Claude Shannon, Nathaniel Rochester"],"notes":"The Dartmouth workshop brought together about ten researchers during the summer of 1956. It produced no major discovery, but it gave the discipline a name, a community and a program."},{"type":"texte","titre":"The first “intelligent” program","annee":"1956","points":["The Logic Theorist by Allen Newell, Herbert Simon and Cliff Shaw","It proves 38 of the first 52 theorems of *Principia Mathematica*","For one of them, a more elegant proof than the authors' own","A key idea: searching among possibilities with rules"],"illus":"arbre","notes":"The Logic Theorist embodies symbolic AI: symbols, rules, a search through a tree of possibilities. It is the same logic as forward chaining in the chapter 3 tutorial (TD)."},{"type":"section","numero":"3","titre":"The golden age, then the first winter","periode":"1956–1980","texte":"Spectacular successes, excessive promises, then disappointment and the end of funding.","illus":"courbe","notes":"Third stage: this is the first cycle of enthusiasm and disillusion. It will repeat itself, which helps us judge today's promises."},{"type":"schema","titre":"Rosenblatt's perceptron","annee":"1958","illus":"perceptron","points":["Frank Rosenblatt builds a machine that learns to recognize shapes","It adjusts its own weights after each error","The press announces machines that “think”: enthusiasm runs wild"],"personne":"perceptron","notes":"The perceptron is the first neural network that learns. Link it to the “human neuron” activity in the guide: weights, a threshold, a correction after each error."},{"type":"texte","titre":"Learning without being programmed","annee":"1959","points":["Arthur Samuel writes a checkers program that improves by playing","He coins the term “machine learning”","The program ends up beating its own creator","Two paths emerge: writing the rules, or having them learned"],"illus":"dames","notes":"Here is the opposition that structures the whole history: symbolic AI (we write the rules) versus connectionist or statistical AI (the machine learns them from examples)."},{"type":"chat","titre":"ELIZA, the first artificial psychotherapist","annee":"1966","legende":"From Joseph Weizenbaum's 1966 paper","echanges":[{"qui":"h","texte":"Men are all alike."},{"qui":"m","texte":"IN WHAT WAY"},{"qui":"h","texte":"They're always bugging us about something or other."},{"qui":"m","texte":"CAN YOU THINK OF A SPECIFIC EXAMPLE"},{"qui":"h","texte":"Well, my boyfriend made me come here."},{"qui":"m","texte":"YOUR BOYFRIEND MADE YOU COME HERE"}],"notes":"ELIZA understands nothing: it spots keywords and sends the sentence back using transformation rules. Yet users confided their secrets to it. Weizenbaum was troubled by this all his life. This is the “ELIZA effect”: attributing understanding to a machine that answers well."},{"type":"texte","titre":"Shakey, the first robot that reasons","annee":"1966–1972","points":["Built at the Stanford Research Institute (SRI)","It perceives its environment with a camera","It plans a sequence of actions to reach a goal","The A* algorithm, still used to compute routes, was created for it"],"personne":"shakey","illus":"robot","notes":"Shakey is a direct ancestor of agents: it perceives, plans, acts. But it takes minutes to decide to push a box. Remember the pattern perceive, plan, act: it comes back at the end of the lesson."},{"type":"citation","texte":"Machines will be capable, within twenty years, of doing any work a man can do.","auteur":"Herbert Simon","source":"1965","notes":"The promises of the time were excessive. Twenty years later, in 1985, the field was very far from them. Ask students to find a current promise about AI and to consider how it will be judged in twenty years."},{"type":"schema","titre":"The first AI winter","annee":"1974–1980","illus":"courbe","points":["1969: Minsky and Papert show the limits of the single-layer perceptron","1973: the Lighthill report, in the United Kingdom, finds the results disappointing","Computations explode as soon as problems grow","Public funding is cut: this is the “winter”"],"notes":"An AI winter is a period when disappointment drives away funding and researchers. The curve shows both winters: 1974–1980 and 1987–1993. A point of method: judge a technique on its results, not on its promises."},{"type":"section","numero":"4","titre":"Expert systems","periode":"1980–1993","texte":"AI comes back by turning experts' knowledge into rules. It enters companies, then falls back.","illus":"regles","notes":"Fourth stage: the triumph of symbolic AI, the AI of chapter 3 and its tutorial (TD) on forward chaining."},{"type":"schema","titre":"Turning knowledge into rules","illus":"regles","points":["A fact base, a base of IF … THEN … rules, an inference engine","1970s: MYCIN, at Stanford, diagnoses blood infections","1980: XCON configures computers for the company DEC","Companies invest: AI becomes an industry"],"notes":"Link this to session 6: the role play on poetic forms is a small expert system. MYCIN had about 600 rules written with doctors."},{"type":"texte","titre":"The return of neural networks","annee":"1986","points":["1982: Japan launches the Fifth Generation Computer project","1986: Rumelhart, Hinton and Williams popularize backpropagation","Networks with several layers can finally be trained","But computers and data are still lacking"],"illus":"reseau","notes":"Backpropagation calculates how to correct each weight of a network from the final error. It is the gradient descent of chapter 3, applied to millions of weights. The idea was ready twenty-five years before its triumph."},{"type":"texte","titre":"The second winter","annee":"1987–1993","points":["1987: the market for specialized Lisp machines collapses","Expert systems are expensive and fail outside their domain","Each new rule contradicts others: they become unmanageable","The word “AI” falls out of favor: people say “advanced computing” instead"],"illus":"flocon","notes":"Expert systems are brittle: they know only what has been written into them, and do not know what they do not know. This weakness explains the next turn: learning from data."},{"type":"section","numero":"5","titre":"Learning from data","periode":"1990–2016","texte":"Instead of writing the rules, we give examples. With the Internet, the examples run into the billions.","illus":"donnees","notes":"Fifth stage: this is the great reversal. It rests on three ingredients: algorithms, data and computing power."},{"type":"deux","titre":"Two ways to build an AI","gauche":{"titre":"Symbolic AI","points":["An expert writes the rules","Explainable: the reasoning can be followed","Brittle outside its domain","Example: an expert system"]},"droite":{"titre":"Machine learning","points":["The machine draws patterns from examples","Often hard to explain","Robust, if there is plenty of data","Example: a spam filter"]},"notes":"Have students classify three objects: a spellchecker, a machine translator, a GPS. Today, the best systems often combine both approaches."},{"type":"portrait","personne":"deepblue","nom":"Deep Blue versus Kasparov","dates":"May 1997","role":"IBM's computer beats the world chess champion","points":["Wins 3½ to 2½ over six games, in New York","About 200 million positions evaluated per second","Computing power, not learning: this is still search-based AI"],"illus":"echecs","notes":"The event made headlines around the world. But Deep Blue does not understand chess: it calculates moves and evaluates them with rules written by experts. Compare with AlphaGo, which would learn by playing, twenty years later."},{"type":"frise","titre":"Learning spreads everywhere","evenements":[{"annee":"1989","titre":"Reading digits","texte":"Yann LeCun trains a convolutional network to read postal codes"},{"annee":"1992","titre":"TD-Gammon","texte":"A program learns backgammon by playing against itself"},{"annee":"1998","titre":"Checks","texte":"LeCun's networks read bank checks in the United States"},{"annee":"2002","titre":"Roomba","texte":"A robot vacuum cleaner enters people's homes"},{"annee":"2005","titre":"Stanley","texte":"A driverless car wins the DARPA desert race"},{"annee":"2011","titre":"Watson, Siri","texte":"Watson wins the TV quiz show Jeopardy!; Siri arrives on phones"}],"notes":"Notice that AI becomes invisible: it sorts mail, reads checks, filters spam, without being called AI. This is sometimes called the “AI effect”: as soon as a technique works, people stop considering it intelligence."},{"type":"section","numero":"6","titre":"The deep learning revolution","periode":"2006–2016","texte":"Neural networks with very many layers, trained on huge amounts of data with graphics processors.","illus":"reseau","notes":"Sixth stage. The word “deep” refers to the number of layers in the network, not to depth of thought."},{"type":"schema","titre":"A deep network, layer by layer","illus":"reseau","points":["The first layers detect simple features: edges, blobs","The next layers combine them: shapes, textures, parts","The last ones recognize whole objects: “cat”, “car”","Each layer learns by itself what to detect"],"notes":"Show the animation: the signal crosses the layers from left to right. It is the same with a text: letters, words, phrases, meaning. Nobody writes down what each neuron should detect: it learns it."},{"type":"portrait","personne":"feifei","nom":"Fei-Fei Li and ImageNet","dates":"2009–2012","role":"An image database that changes everything","points":["2009: ImageNet, over 14 million images labeled by hand","2012: the AlexNet network crushes the image recognition competition","Its error rate falls to 15%, against 26% for the runner-up"],"illus":"imagenet","notes":"Three ingredients came together in 2012: data (ImageNet), graphics cards to compute fast, and deep networks. It is the start of the current wave. The images were labeled by thousands of workers paid per task: an ethical point to discuss."},{"type":"portrait","personne":"hinton","nom":"Geoffrey Hinton","dates":"Born in 1947","role":"Pioneer of neural networks","points":["Defends neural networks through both winters","2018: Turing Award with Yoshua Bengio and Yann LeCun","2024: Nobel Prize in Physics with John Hopfield"],"notes":"Hinton is an example of a researcher who was right too early: his ideas from the 1980s only really worked in 2012. In 2023, he left Google to warn about the risks of AI."},{"type":"frise","titre":"Machines also learn language and games","evenements":[{"annee":"2013","titre":"Word2vec","texte":"Words become vectors: “king” − “man” + “woman” ≈ “queen”"},{"annee":"2014","titre":"GAN","texte":"Two networks compete to produce realistic images"},{"annee":"2015","titre":"Atari games","texte":"A DeepMind agent learns 49 video games from the pixels and the score"},{"annee":"2016","titre":"AlphaGo","texte":"DeepMind's program beats Lee Sedol at Go, 4 games to 1"}],"notes":"Go was thought to be too complex for computers: it has more possible positions than there are atoms in the universe. AlphaGo combines deep learning and reinforcement learning, the third type of learning in chapter 1."},{"type":"portrait","personne":"hassabis","nom":"AlphaGo and Move 37","dates":"March 2016, Seoul","role":"DeepMind, co-founded by Demis Hassabis","points":["Game two: AlphaGo plays a move no human would have played","Commentators think it is a mistake; it is a winning move","The machine no longer imitates humans: it finds its own strategies"],"illus":"go","notes":"“Move 37” has become the symbol of machine creativity. Go back to Lovelace's objection: did AlphaGo “create” something? In 2024, Demis Hassabis and John Jumper received the Nobel Prize in Chemistry for AlphaFold, which predicts the shape of proteins."},{"type":"section","numero":"7","titre":"Transformers and generative AI","periode":"2017–2022","texte":"A new architecture learns to read whole texts. Machines start to write, draw and translate.","illus":"attention","notes":"Seventh stage: the one that leads to the chatbots your students already use."},{"type":"schema","titre":"“Attention Is All You Need”","annee":"2017","illus":"attention","points":["Eight Google researchers propose the Transformer","The attention mechanism links each word to all the others","In “The student opened the book because she…”, “she” looks at “student”","All of today's large language models descend from it"],"notes":"The paper's title has become famous. The animation shows the attention links: thickness indicates importance. The Transformer reads all the words at once, which makes it possible to train huge models."},{"type":"frise","titre":"From BERT to ChatGPT","evenements":[{"annee":"2018","titre":"BERT","texte":"Google: a model that understands a word's context"},{"annee":"2019","titre":"GPT-2","texte":"OpenAI: text so fluent that the company hesitates to release it"},{"annee":"2020","titre":"GPT-3","texte":"175 billion parameters; AlphaFold 2 solves the shape of proteins"},{"annee":"2021","titre":"DALL·E","texte":"An image drawn from a sentence"},{"annee":"2022","titre":"ChatGPT","texte":"November 30: generative AI reaches the general public"}],"notes":"In five years, we go from a laboratory tool to a service used by hundreds of millions of people. Ask who in the class has already used a chatbot, and for what."},{"type":"schema","titre":"How a language model “writes”","illus":"motsuivant","points":["It splits the text into pieces, the tokens","It calculates the probability of each possible next token","It picks one, adds it to the text, and starts again","Humans then rate its answers to refine it"],"notes":"It is the bigram model of notebook 08, on an immensely larger scale. Tuning by humans is called RLHF: reinforcement learning from human feedback. Stress this: the model predicts plausible text, not true text."},{"type":"chat","titre":"A dialogue with a language model","annee":"2022","legende":"Fictional example, written for the class","echanges":[{"qui":"h","texte":"Explain forward chaining to a literature student."},{"qui":"m","texte":"Imagine a detective: he starts from the clues he knows and applies his rules one by one, until he finds the culprit."},{"qui":"h","texte":"Give me a reference so I can cite this in my thesis."},{"qui":"m","texte":"Careful: always check a reference in a library. I can make mistakes or invent references."}],"notes":"Compare with ELIZA: this time, the answer is relevant, rephrased and adapted to its audience. But the risk remains: a model can invent a reference, a quotation, a date. This is the subject of the “reference test” activity in the guide."},{"type":"section","numero":"8","titre":"The age of agents","periode":"2023–2026","texte":"The language model no longer just answers: it plans, uses tools and acts.","illus":"agent","notes":"Final stage: this is what is in the news. Recall Shakey (1966): perceive, plan, act. The idea of an agent is old; what has changed is that a language model now serves as its “brain”."},{"type":"texte","titre":"What is an agent?","points":["An agent perceives its environment and acts on it to reach a goal","A thermostat is a very simple agent: it measures, then heats or not","Russell and Norvig (1995) define all of AI as the study of agents","A modern AI agent receives a goal, not just a question"],"illus":"thermostat","notes":"A definition for students to write down. The difference from a classic chatbot: we no longer ask it to “answer”, we ask it to “do”. Example: “Find three articles on Kateb Yacine, read them and write me a summary sheet.”"},{"type":"schema","titre":"The agent loop","illus":"boucle","points":["Goal: what the user asks for","Think: the model plans the next step","Act: it uses a tool (search, calculation, file, browser)","Observe: it reads the result, then starts again until the goal is reached"],"notes":"Have students follow the animated loop. Each round can succeed or fail; the agent corrects its plan. That is why the tools it can access must be limited and its important actions checked."},{"type":"frise","titre":"From chatbots to agents","evenements":[{"annee":"2022","titre":"ReAct","texte":"Researchers make a single model alternate between reasoning and actions"},{"annee":"2023","titre":"Tools","texte":"GPT-4; models learn to call tools and programs"},{"annee":"2024","titre":"Reason, act","texte":"Models that think before answering; a model operates a computer; the MCP protocol for connecting tools"},{"annee":"2025","titre":"Agents at work","texte":"Agents that browse the Web, write and fix programs"},{"annee":"2026","titre":"Everyday use","texte":"Agents settle into office, research and teaching software"}],"notes":"The 2025 and 2026 entries describe general trends rather than specific products, which change quickly. Invite students to find a recent example and present it in two minutes."},{"type":"deux","titre":"Chatbot or agent?","gauche":{"titre":"Chatbot","points":["Answers a question","Produces text","A single turn","The human does the rest"]},"droite":{"titre":"Agent","points":["Pursues a goal","Uses tools and acts","Several steps; it corrects its plan","The human supervises and approves"]},"notes":"The boundary keeps shifting: many chatbots can already search the Web. Remember the criterion: an agent chains actions in the world to reach a goal."},{"type":"texte","titre":"The risks, and good practice","points":["Hallucinations: an agent may act on false information","Irreversible actions: deleting, sending, paying; they must be approved","Instructions hidden in a Web page can hijack an agent","Personal data: Algerian Law 18-07 applies","2024: the European Union adopts the AI Act"],"illus":"bouclier","notes":"A simple rule for students: stay in control of every important action, check sources, and declare AI use in your work. Refer them to the AI use charter in the guide."},{"type":"texte","titre":"And in Algeria?","points":["2021: the National Higher School of Artificial Intelligence (ENSIA) opens","Arabic, Darja and Tamazight remain less well served by models","Local corpora, built in the humanities and social sciences, are a real contribution","Your theses can contribute: texts, surveys, interviews"],"illus":"carte","notes":"A local anchor point. Languages that are less present on the Web are handled less well by models: it is a question of data, and therefore also of the humanities. Encourage students to imagine a corpus they could build."},{"type":"section","numero":"9","titre":"Summary","periode":"From 1206 to 2026","texte":"Eight centuries of dreams, seventy years of science, a few years of agents.","illus":"frise","notes":"Final part: recap, watch the videos, check what has been understood."},{"type":"frise","titre":"The eight dates to remember","evenements":[{"annee":"1843","titre":"Lovelace","texte":"The first program, for a machine never completed"},{"annee":"1950","titre":"Turing","texte":"Can machines think?"},{"annee":"1956","titre":"Dartmouth","texte":"AI gets its name"},{"annee":"1974","titre":"Winter","texte":"The first AI winter"},{"annee":"1997","titre":"Deep Blue","texte":"A computer beats the chess champion"},{"annee":"2012","titre":"AlexNet","texte":"Deep learning wins out"},{"annee":"2017","titre":"Transformer","texte":"Attention at the heart of language models"},{"annee":"2022","titre":"ChatGPT","texte":"Generative AI for everyone; then come the agents"}],"notes":"Have students recite the timeline backwards, from 2022 to 1843. These eight dates are enough to tell the whole story in the exam."},{"type":"deux","titre":"The families of AI, on a single slide","gauche":{"titre":"By method","points":["Symbolic: written rules","Machine learning: examples","Deep learning: networks with many layers","Reinforcement: trials and rewards"]},"droite":{"titre":"By ambition","points":["Weak (narrow) AI: one specific task","Strong (general) AI: every task, hypothetical","Today's agents are still weak AI","… but increasingly versatile"]},"notes":"This table links the lesson to chapter 1 of the course (weak and strong AI, types of learning) and to chapter 3 (types of AI). A modern agent combines several families: a deep model, safety rules, sometimes reinforcement."},{"type":"video","titre":"Video: the complete history of AI (1950–2026)","youtube":"Xl-G6Mv-N0A","legende":"“The Complete History of AI (1950–2026) - The Rise of Artificial Intelligence”, a documentary in English, on YouTube","notes":"Show a passage chosen in advance rather than the whole video. Ask students to spot three dates from the timeline in the video. The video requires an Internet connection."},{"type":"video","titre":"Video: a hundred years of artificial intelligence","youtube":"mSd9nmPM7Vg","legende":"“The Entire History of Artificial Intelligence (Last 100 Years)”, a documentary in English, on YouTube","notes":"For English groups, have students summarize the video orally in English: it is also a language exercise. For the others, use automatic subtitles in the chosen language."},{"type":"quiz","question":"In what year did the term “artificial intelligence” take hold, with the Dartmouth workshop?","choix":["1943","1956","1997","2012"],"reponse":1,"explication":"The term appears in the 1955 proposal and took hold with the workshop in the summer of 1956.","notes":"Have the class vote before revealing the answer (R key or button)."},{"type":"quiz","question":"Why do we speak of AI “winters”?","choix":["Computers overheated","Disappointment made funding and interest fall","Research was done in winter","Machines were banned"],"reponse":1,"explication":"After excessive promises, the results were disappointing: funding was cut (1974–1980, then 1987–1993).","notes":"Ask for an example of an excessive promise seen in the lesson: Herbert Simon's quotation (1965)."},{"type":"quiz","question":"What distinguishes an agent from a simple chatbot?","choix":["It writes faster","It pursues a goal by acting with tools","It never makes mistakes","It works without electricity"],"reponse":1,"explication":"An agent chains actions (searching, calculating, writing a file…) and observes the results to reach a goal.","notes":"Go back to the loop: goal, think, act, observe."},{"type":"quiz","question":"Did ELIZA (1966) understand what was said to it?","choix":["Yes, like a psychologist","No: it transformed sentences with rules","Yes, thanks to deep learning","We do not know"],"reponse":1,"explication":"ELIZA spotted keywords and sent back stock sentences. Believing that it understood is the “ELIZA effect”.","notes":"A transition question to the debate: and do today's models understand?"},{"type":"fin","titre":"Key takeaways","points":["The dream is old; AI as a science was born between 1950 and 1956","Two paths alternate: writing the rules or learning from data","The winters remind us to judge by results, not by promises","An agent perceives, plans and acts: from Shakey (1966) to the agents of 2025","Check, stay in control, declare your use: the three golden rules"],"texte":"Homework: choose a date from the timeline and write ten lines on what it changed, citing a verified source.","notes":"End with the opening question: can a machine think? Collect three reasoned answers. The homework prepares the round table on the origins of AI."}]},"ar":{"langue":"ar","titre":"من الآلة ذاتية الحركة إلى الوكيل","sousTitre":"التاريخ الكامل للذكاء الاصطناعي، من الآلات الأولى إلى وكلاء اليوم","diapos":[{"type":"couverture","surtitre":"الذكاء الاصطناعي · الفصل 1 · الدرس الأول","titre":"من الآلة ذاتية الحركة إلى الوكيل","sousTitre":"التاريخ الكامل للذكاء الاصطناعي، من الآلات الأولى إلى وكلاء اليوم","illus":"agent","notes":"استقبلوا الطلبة بسؤال مكتوب على السبورة: «هل تستطيع الآلة أن تفكّر؟» لا تجيبوا عنه: فالدرس كله يعود إليه. أعلنوا الخيط الناظم: إن حلم الآلات الذكية قديم جدًا، لكن عمر الذكاء الاصطناعي بوصفه علمًا سبعون سنة، وعمر وكلائه بضع سنوات فقط."},{"type":"plan","titre":"رحلة هذا الدرس","points":["حلم الآلات (من العصور القديمة إلى 1945)","ميلاد الذكاء الاصطناعي (1950–1956)","العصر الذهبي، ثم الشتاء الأول (1956–1980)","الأنظمة الخبيرة (1980–1993)","التعلّم من البيانات (1990–2016)","ثورة التعلم العميق (2006–2016)","المحوِّلات والذكاء الاصطناعي التوليدي (2017–2022)","عصر الوكلاء (2023–2026)"],"notes":"ثماني مراحل، لكل منها تاريخ أساسي ينبغي حفظه. اقترحوا على الطلبة أن يدوّنوا تاريخًا واحدًا لكل مرحلة: وسيعيدون بناء الخط الزمني في النهاية."},{"type":"texte","titre":"وأنتم، ماذا تسمّون «ذكاءً»؟","points":["فهم جملة، وترجمة قصيدة","التعرّف على وجه من بين ألف وجه","الفوز في الشطرنج، وحلّ مشكلة","التعلّم من الأخطاء","التصرّف باستقلال لبلوغ هدف"],"illus":"cerveau","notes":"دقيقتان من التصويت برفع الأيدي: أيّ هذه القدرات تمتلكها الآلة بالفعل؟ جواب نهاية الدرس: كلها، بدرجات متفاوتة، لكن لا آلة تجمعها كما يجمعها الإنسان. أما السطر الأخير، التصرّف باستقلال لبلوغ هدف، فيعرّف الوكيل: إنه وجهة هذا الدرس."},{"type":"section","numero":"1","titre":"حلم الآلات","periode":"من العصور القديمة إلى 1945","texte":"قبل الحواسيب بزمن طويل، تخيّل البشر آلاتٍ تحاكي الحياة وصنعوها، ثم آلاتٍ تحسب.","illus":"engrenages","notes":"المرحلة الأولى: الذكاء الاصطناعي لم يولد من العدم. يلتقي هنا خطّان: الآلات ذاتية الحركة، التي تحاكي الحركة، والآلات الحاسبة، التي تحاكي الاستدلال."},{"type":"texte","titre":"آلات ذاتية الحركة في الأساطير والورشات","points":["أسطورة إغريقية: تالوس، عملاق من البرونز يحرس جزيرة كريت","القرن الأول الميلادي: هيرون السكندري يصف آلات ذاتية الحركة للمسرح","سنة 1739: بطّة فوكانسون تخفق بجناحيها و«تهضم»","نحو سنة 1770: «الكاتب» الذي صنعه آل جاكيه-دروز يخطّ الحروف بالريشة"],"illus":"engrenages","notes":"تعيد الآلة ذاتية الحركة إنتاج حركة محدَّدة مسبقًا بواسطة تروسها أو حدباتها. إنها لا تقرّر شيئًا: وهذا هو الفرق بينها وبين الذكاء الاصطناعي. اسألوا: هل «يكتب» «كاتب» آل جاكيه-دروز حقًّا؟"},{"type":"texte","titre":"الجزري، مهندس الآلات البارعة","annee":"1206","points":["مهندس في بلاط بني أرتق، في أعالي بلاد الرافدين","ألّف سنة 1206 كتاب *الجامع بين العلم والعمل النافع في صناعة الحيل*","يصف نحو خمسين آلة: ساعات، ومضخات، وآلات ذاتية الحركة","ساعة الفيل التي صنعها تعلن الساعات بواسطة آلات ذاتية الحركة"],"illus":"elephant","notes":"يبيّن الجزري أن تقليد الآلات ذاتية الحركة يمتدّ عبر العالم العربي والإسلامي في العصر الوسيط. وما تزال رسومه المفصَّلة تسمح اليوم بإعادة بناء آلاته. التزموا الحذر: إنها آلات ذاتية الحركة مبرمجة مسبقًا، لا آلات تتعلّم."},{"type":"texte","titre":"آلات تحسب","points":["سنة 1642: يصنع بليز باسكال آلة «الباسكالين» التي تُجري الجمع","سنة 1673: يقدّم لايبنتز آلة تُجري الضرب","سنة 1837: يصمّم تشارلز باباج الآلة التحليلية، القابلة للبرمجة بالبطاقات المثقّبة","لن تكتمل الآلة التحليلية أبدًا في حياته"],"illus":"calculatrice","personne":"babbage","notes":"مرحلة مفصلية: الآلة التي تحسب تحلّ محلّ جزء من عمل العقل. فالآلة التحليلية لباباج تمتلك أصلًا ذاكرة ووحدة حساب، مثل حواسيبنا."},{"type":"portrait","personne":"lovelace","nom":"آدا لوفلايس","dates":"1815–1852","role":"عالمة رياضيات، أول مبرمجة","points":["سنة 1843: ملاحظاتها على الآلة التحليلية لباباج","تكتب فيها خوارزمية لحساب أعداد برنولي","تتخيّل أن الآلة قد تؤلّف الموسيقى"],"citation":"لا تدّعي الآلة التحليلية إطلاقًا أنها تُبدع أيّ شيء.","source":"آدا لوفلايس، ملاحظات سنة 1843","notes":"سيناقش تورينغ عبارتها هذه، «اعتراض الليدي لوفلايس»، بعد قرن من الزمن: هل لا تفعل الآلة إلا ما يُطلب منها؟ سؤال يُطرح على الطلبة: هل يُبدع نموذجٌ يكتب قصيدةً شيئًا ما؟"},{"type":"texte","titre":"حين يصير التفكير حسابًا","points":["سنة 1854: يختزل جورج بول الاستدلال في حسابات على الصواب والخطأ","سنة 1936: يصف آلان تورينغ آلة مجرّدة قادرة على إجراء أيّ حساب","شريط، ورأس قراءة، وجدول قواعد: إنها «آلة تورينغ»","كل حاسوب حالي هو، من حيث المبدأ، آلة تورينغ"],"illus":"turing","notes":"يقدّم بول الأبجدية (صحيح، خطأ، و، أو، لا)؛ ويقدّم تورينغ الآلة الشاملة. اعرضوا الرسم المتحرّك: يقرأ الرأس خانة، ثم يكتب، ثم يتحرّك، ثم يغيّر حالته. وبقواعد بهذه البساطة، يمكن حساب كل شيء."},{"type":"portrait","personne":"turing","nom":"آلان تورينغ","dates":"1912–1954","role":"عالم رياضيات، أبو المعلوماتية النظرية","points":["سنة 1936: الآلة الشاملة","بين 1939 و1945: يُسهم في كسر شيفرة Enigma في بليتشلي بارك","سنة 1950: «Computing Machinery and Intelligence»، المقال المؤسِّس"],"citation":"أقترح أن ننظر في السؤال الآتي: هل تستطيع الآلات أن تفكّر؟","source":"آلان تورينغ، مجلة Mind، سنة 1950","notes":"يُحِلّ تورينغ اختبارًا قابلًا للملاحظة، هو لعبة المحاكاة، محلَّ سؤالٍ مستحيل («التفكير»). تلك هي الخطوة المؤسِّسة للذكاء الاصطناعي. والجملة المقتبسة هي التي يُفتتح بها مقاله الصادر سنة 1950."},{"type":"schema","titre":"العصبون الاصطناعي","annee":"1943","illus":"neurone","points":["ينمذج وارن ماكولوك ووالتر بيتس العصبون بعملية حسابية","يجمع إشارات الدخل و«ينشط» عند تجاوز عتبة معيّنة","إنه سلف كل الشبكات العصبية الحالية"],"notes":"أول جسر بين البيولوجيا والحساب. ارسموا على السبورة: ثلاثة مداخل، وأوزانًا، ومجموعًا، وعتبة. وسنجد هذا المخطّط نفسه تمامًا في البيرسبترون سنة 1958، ثم في التعلم العميق."},{"type":"texte","titre":"الحواسيب الأولى","points":["سنة 1945: حاسوب ENIAC، بوزن 30 طنًا، يحسب المسارات الباليستية","سنة 1948: يؤسّس كلود شانون نظرية المعلومات","يصبح البت وحدة كل معلومة: النص والصورة والصوت","صارت الآلات موجودة أخيرًا؛ وبقي أن نجعلها «ذكية»"],"personne":"eniac","notes":"يشغل حاسوب ENIAC قاعة كاملة، ويُبرمَج بوصل الكابلات. أما شانون، فسيكون أحد الموقّعين الأربعة على مشروع دارتموث. نهاية المرحلة الأولى: كل شيء جاهز لميلاد الذكاء الاصطناعي."},{"type":"section","numero":"2","titre":"ميلاد الذكاء الاصطناعي","periode":"1950–1956","texte":"في ست سنوات، يتحوّل سؤالٌ إلى برنامج بحث، ثم إلى تخصص له اسم.","illus":"ampoule","notes":"المرحلة الثانية: ثلاث لحظات ينبغي حفظها، 1950 (تورينغ)، و1956 (دارتموث)، وأول برنامج «ذكي»."},{"type":"schema","titre":"لعبة المحاكاة","annee":"1950","illus":"imitation","points":["يتحاور حَكَمٌ كتابيًا مع محاوِرَين مخفيَّين","أحدهما إنسان، والآخر آلة","إذا عجز الحَكَم عن التمييز بينهما، «تنجح» الآلة"],"notes":"مثّلوا المشهد: متطوعان مخفيّان، وحَكَم، وخمس دقائق من الأسئلة المكتوبة. نقاش: هل يقيس الاختبار الذكاء، أم فنّ الإيهام؟ وقد أعاد وكلاء المحادثة الحاليون إحياء هذا النقاش."},{"type":"citation","texte":"كل جانب من جوانب التعلم، أو أيّ سمة أخرى من سمات الذكاء، يمكن من حيث المبدأ وصفه بدقة بالغة إلى حدّ يمكن معه صنع آلة تحاكيه.","auteur":"ج. مكارثي، م. مينسكي، ن. روتشستر، ك. شانون","source":"مقترح ورشة دارتموث، 31 أغسطس 1955","notes":"في هذا النص تظهر عبارة «الذكاء الاصطناعي». والفرضية طموحة جدًا: فكل ما يقوم به الذكاء يمكن أن يوصف بدقة. اسألوا: هل يصحّ ذلك على الفكاهة؟ وعلى الحدس الشعري؟"},{"type":"portrait","personne":"mccarthy","nom":"جون مكارثي","dates":"1927–2011","role":"عالم حاسوب، منح الذكاء الاصطناعي اسمه","points":["صيف 1956: ينظّم ورشة دارتموث، شهادة ميلاد الذكاء الاصطناعي","سنة 1958: يبتكر لغة Lisp، التي ظلّت طويلًا لغة الذكاء الاصطناعي","معه: مارفن مينسكي، وكلود شانون، وناثانيال روتشستر"],"notes":"جمعت ورشة دارتموث نحو عشرة باحثين خلال صيف 1956. لم تُسفر عن اكتشاف كبير، لكنها منحت هذا التخصص اسمًا وجماعةً علمية وبرنامجًا."},{"type":"texte","titre":"أول برنامج «ذكي»","annee":"1956","points":["برنامج Logic Theorist لألن نيويل وهربرت سايمون وكليف شو","يبرهن 38 من المبرهنات الـ52 الأولى في *Principia Mathematica*","ولإحداها، برهانٌ أكثر أناقة من برهان المؤلفين","فكرة أساسية: البحث بين الإمكانات بواسطة قواعد"],"illus":"arbre","notes":"يجسّد برنامج Logic Theorist الذكاءَ الاصطناعي الرمزي: رموز، وقواعد، وبحث في شجرة من الإمكانات. إنه المنطق نفسه الذي يقوم عليه التسلسل الأمامي في الأعمال الموجَّهة (TD) للفصل 3."},{"type":"section","numero":"3","titre":"العصر الذهبي، ثم الشتاء الأول","periode":"1956–1980","texte":"نجاحات مذهلة، ووعود مفرطة، ثم خيبة الأمل وتوقّف التمويل.","illus":"courbe","notes":"المرحلة الثالثة: إنها الدورة الأولى من الحماس وخيبة الأمل. وستتكرّر، وهذا ما يساعد على الحكم على وعود اليوم."},{"type":"schema","titre":"بيرسبترون روزنبلات","annee":"1958","illus":"perceptron","points":["يبني فرانك روزنبلات آلة تتعلّم التعرّف على الأشكال","تضبط أوزانها بنفسها بعد كل خطأ","تعلن الصحافة عن آلات «تفكّر»: فيجمح الحماس"],"personne":"perceptron","notes":"البيرسبترون هو أول شبكة عصبية تتعلّم. اربطوا ذلك بنشاط «العصبون البشري» في الدليل: أوزان، وعتبة، وتصحيح بعد كل خطأ."},{"type":"texte","titre":"التعلّم من دون برمجة","annee":"1959","points":["يكتب آرثر صامويل برنامجًا للعب الداما يتحسّن باللعب","يبتكر عبارة «machine learning»، أي التعلم الآلي","وينتهي البرنامج إلى هزيمة مبتكره نفسه","يرتسم مساران: كتابة القواعد، أو جعل الآلة تتعلّمها"],"illus":"dames","notes":"هذا هو التقابل الذي يُهيكل التاريخ كله: الذكاء الاصطناعي الرمزي (نكتب القواعد) في مقابل الذكاء الاصطناعي الاتصالي أو الإحصائي (تتعلّمها الآلة من الأمثلة)."},{"type":"chat","titre":"إليزا (ELIZA)، أول معالِجة نفسية اصطناعية","annee":"1966","legende":"مقتطف من مقال جوزيف فايزنباوم (1966)، مترجَم","echanges":[{"qui":"h","texte":"الرجال كلهم متشابهون."},{"qui":"m","texte":"بأيّ معنى؟"},{"qui":"h","texte":"إنهم يزعجوننا دائمًا بشيء أو بآخر."},{"qui":"m","texte":"هل يمكنكِ أن تذكري مثالًا محدَّدًا؟"},{"qui":"h","texte":"حسنًا، صديقي هو الذي جعلني آتي إلى هنا."},{"qui":"m","texte":"صديقكِ جعلكِ تأتين إلى هنا."}],"notes":"لا تفهم ELIZA شيئًا: فهي ترصد كلمات مفتاحية وتعيد الجملة بواسطة قواعد تحويل. ومع ذلك، كان مستخدمون يبوحون لها بأسرارهم. وقد ظلّ فايزنباوم قلقًا من ذلك طوال حياته. إنه «أثر ELIZA»: أن ننسب فهمًا إلى آلة تُحسن الإجابة."},{"type":"texte","titre":"شيكي (Shakey)، أول روبوت يستدلّ","annee":"1966–1972","points":["صُنع في معهد ستانفورد للأبحاث (SRI)","يدرك بيئته بواسطة كاميرا","يخطّط لسلسلة من الأفعال لبلوغ هدف","من أجله وُلدت خوارزمية A*‎، التي ما تزال تُستعمل لحساب المسارات"],"personne":"shakey","illus":"robot","notes":"شيكي سلف مباشر للوكلاء: فهو يدرك، ويخطّط، ويتصرّف. لكنه يستغرق دقائق ليقرّر دفع صندوق. احفظوا مخطّط الإدراك والتخطيط والتصرّف: سيعود في نهاية الدرس."},{"type":"citation","texte":"ستكون الآلات قادرة، في غضون عشرين سنة، على القيام بأيّ عمل يستطيع الإنسان القيام به.","auteur":"هربرت سايمون","source":"1965","notes":"كانت وعود تلك الحقبة مفرطة. وبعد عشرين سنة، أي في 1985، كنّا بعيدين جدًا عنها. اطلبوا من الطلبة أن يجدوا وعدًا حاليًا بشأن الذكاء الاصطناعي، وأن يتساءلوا كيف سيُحكم عليه بعد عشرين سنة."},{"type":"schema","titre":"الشتاء الأول للذكاء الاصطناعي","annee":"1974–1980","illus":"courbe","points":["سنة 1969: يبيّن مينسكي وبابيرت حدود البيرسبترون البسيط","سنة 1973: في المملكة المتحدة، يرى تقرير لايتهيل أن النتائج مخيّبة للآمال","تنفجر الحسابات بمجرّد أن تكبر المشكلات","يُقطع التمويل العمومي: إنه «الشتاء»"],"notes":"شتاء الذكاء الاصطناعي فترةٌ تدفع فيها خيبة الأمل التمويلَ والباحثين إلى الابتعاد. ويبيّن المنحنى الشتاءين: 1974–1980 و1987–1993. ملاحظة منهجية: الحكم على تقنية ما بنتائجها، لا بوعودها."},{"type":"section","numero":"4","titre":"الأنظمة الخبيرة","periode":"1980–1993","texte":"يعود الذكاء الاصطناعي بتحويل معرفة الخبراء إلى قواعد. فيدخل الشركات، ثم يتراجع.","illus":"regles","notes":"المرحلة الرابعة: انتصار الذكاء الاصطناعي الرمزي، أي ذكاء الفصل 3 وأعماله الموجَّهة حول التسلسل الأمامي."},{"type":"schema","titre":"تحويل المعرفة إلى قواعد","illus":"regles","points":["قاعدة وقائع، وقاعدة قواعد من نوع «إذا … فإن …»، ومحرّك استدلال","سبعينيات القرن العشرين: نظام MYCIN، في ستانفورد، يشخّص التهابات الدم","سنة 1980: يضبط نظام XCON تهيئة حواسيب شركة DEC","تستثمر الشركات: فيصبح الذكاء الاصطناعي صناعة"],"notes":"اربطوا ذلك بالحصة 6: لعب الأدوار حول الأشكال الشعرية نظام خبير صغير. وكان MYCIN يضمّ نحو 600 قاعدة كُتبت بالتعاون مع أطباء."},{"type":"texte","titre":"عودة العصبونات","annee":"1986","points":["سنة 1982: تطلق اليابان مشروع حواسيب الجيل الخامس","سنة 1986: يُشيع روملهارت وهينتون وويليامز خوارزمية الانتشار العكسي","صرنا أخيرًا نعرف كيف ندرّب شبكات متعددة الطبقات","لكن الحواسيب والبيانات ما تزال غير كافية"],"illus":"reseau","notes":"يحسب الانتشار العكسي كيف يُصحَّح كل وزن في الشبكة انطلاقًا من الخطأ النهائي. إنه الانحدار التدرّجي الذي رأيناه في الفصل 3، مطبَّقًا على ملايين الأوزان. كانت الفكرة جاهزة قبل انتصارها بخمس وعشرين سنة."},{"type":"texte","titre":"الشتاء الثاني","annee":"1987–1993","points":["سنة 1987: تنهار سوق آلات Lisp المتخصصة","الأنظمة الخبيرة مكلفة، وتخطئ خارج مجالها","كل قاعدة جديدة تناقض قواعد أخرى: فتصبح عصيّة على الإدارة","تصبح عبارة «الذكاء الاصطناعي» سيئة السمعة: فيُفضَّل الحديث عن «المعلوماتية المتقدمة»"],"illus":"flocon","notes":"الأنظمة الخبيرة هشّة: فهي لا تعرف إلا ما كُتب لها، ولا تعرف أنها لا تعرف. ويفسّر هذا الضعفُ المنعطفَ التالي: التعلّم من البيانات."},{"type":"section","numero":"5","titre":"التعلّم من البيانات","periode":"1990–2016","texte":"بدلًا من كتابة القواعد، نقدّم أمثلة. ومع الإنترنت، يصبح عدد الأمثلة بالمليارات.","illus":"donnees","notes":"المرحلة الخامسة: إنه الانقلاب الكبير. ويقوم على ثلاثة مكوّنات: الخوارزميات، والبيانات، والقدرة الحسابية."},{"type":"deux","titre":"طريقتان لصنع ذكاء اصطناعي","gauche":{"titre":"الذكاء الاصطناعي الرمزي","points":["يكتب خبيرٌ القواعد","قابل للتفسير: نتتبّع الاستدلال","هشّ خارج مجاله","مثال: نظام خبير"]},"droite":{"titre":"التعلم الآلي","points":["تستخرج الآلة الانتظامات من الأمثلة","يصعب تفسيره في الغالب","متين، إذا توفّرت بيانات كثيرة","مثال: مرشِّح الرسائل المزعجة"]},"notes":"اطلبوا من الطلبة تصنيف ثلاثة أشياء: مدقّق إملائي، ومترجم آلي، وجهاز GPS. واليوم، كثيرًا ما تجمع أفضل الأنظمة بين المقاربتين."},{"type":"portrait","personne":"deepblue","nom":"حاسوب Deep Blue في مواجهة كاسباروف","dates":"مايو 1997","role":"حاسوب شركة IBM يهزم بطل العالم في الشطرنج","points":["فوز بنتيجة 3,5 مقابل 2,5 في ست مباريات، في نيويورك","تقييم نحو 200 مليون وضعية في الثانية","قوة حساب، لا تعلّم: ما يزال ذكاءً اصطناعيًا قائمًا على البحث"],"illus":"echecs","notes":"طاف الحدث العالم. لكن Deep Blue لا يفهم الشطرنج: إنه يحسب النقلات ويقيّمها بقواعد كتبها خبراء. قارنوه ببرنامج AlphaGo، الذي سيتعلّم باللعب، بعد عشرين سنة."},{"type":"frise","titre":"التعلّم يترسّخ في كل مكان","evenements":[{"annee":"1989","titre":"قراءة الأرقام","texte":"يدرّب يان لوكان شبكة التفافية على قراءة الرموز البريدية"},{"annee":"1992","titre":"TD-Gammon","texte":"برنامج يتعلّم لعبة الطاولة باللعب ضد نفسه"},{"annee":"1998","titre":"الصكوك","texte":"تقرأ شبكات لوكان الصكوك البنكية في الولايات المتحدة"},{"annee":"2002","titre":"Roomba","texte":"مكنسة روبوتية تدخل المنازل"},{"annee":"2005","titre":"Stanley","texte":"سيارة بلا سائق تفوز بسباق الصحراء الذي تنظّمه DARPA"},{"annee":"2011","titre":"Watson و Siri","texte":"يفوز Watson في برنامج المسابقات التلفزيوني Jeopardy!‎؛ ويصل Siri إلى الهواتف"}],"notes":"لاحظوا أن الذكاء الاصطناعي يصبح غير مرئي: فهو يفرز البريد، ويقرأ الصكوك، ويرشّح الرسائل المزعجة، دون أن يُسمّى ذكاءً اصطناعيًا. وهذا ما يُسمّى أحيانًا «أثر الذكاء الاصطناعي»: ما إن تنجح تقنية ما حتى نكفّ عن اعتبارها ذكاءً."},{"type":"section","numero":"6","titre":"ثورة التعلم العميق","periode":"2006–2016","texte":"شبكات عصبية ذات طبقات كثيرة جدًا، تُدرَّب على بيانات ضخمة بواسطة معالجات الرسوميات.","illus":"reseau","notes":"المرحلة السادسة. تدلّ كلمة «العميق» على عدد طبقات الشبكة، لا على عمق التفكير."},{"type":"schema","titre":"شبكة عميقة، طبقةً بعد طبقة","illus":"reseau","points":["ترصد الطبقات الأولى سمات بسيطة: حوافّ وبقع","وتركّب الطبقات التالية: الأشكال، والقوامات، والأجزاء","وتتعرّف الطبقات الأخيرة على أشياء كاملة: «قطّ»، «سيارة»","تتعلّم كل طبقة بنفسها ما ينبغي أن ترصده"],"notes":"اعرضوا الرسم المتحرّك: تعبر الإشارة الطبقات من اليسار إلى اليمين. والأمر نفسه في النص: حروف، فكلمات، فعبارات، فمعنى. لا أحد يكتب ما ينبغي أن يرصده كل عصبون: بل يتعلّمه بنفسه."},{"type":"portrait","personne":"feifei","nom":"في في لي وقاعدة ImageNet","dates":"2009–2012","role":"قاعدة صور تغيّر كل شيء","points":["سنة 2009: ImageNet، أكثر من 14 مليون صورة موسومة يدويًا","سنة 2012: تكتسح شبكة AlexNet مسابقة التعرّف على الصور","ينخفض معدل خطئها إلى 15%، مقابل 26% للمرتبة الثانية"],"illus":"imagenet","notes":"تلتقي ثلاثة مكوّنات سنة 2012: البيانات (ImageNet)، وبطاقات الرسوميات للحساب السريع، والشبكات العميقة. إنها بداية الموجة الحالية. وقد أنجز وسمَ الصور آلافُ العمّال المأجورين بالقطعة: وهذه مسألة أخلاقية تستحق النقاش."},{"type":"portrait","personne":"hinton","nom":"جيفري هينتون","dates":"وُلد سنة 1947","role":"رائد الشبكات العصبية","points":["دافع عن الشبكات العصبية خلال الشتاءين","سنة 2018: جائزة تورينغ مع يوشوا بنجيو ويان لوكان","سنة 2024: جائزة نوبل في الفيزياء مع جون هوبفيلد"],"notes":"هينتون مثال على باحث كان محقًّا قبل الأوان: فأفكاره التي تعود إلى ثمانينيات القرن العشرين لم تنجح فعلًا إلا سنة 2012. وفي 2023، غادر Google لينبّه إلى مخاطر الذكاء الاصطناعي."},{"type":"frise","titre":"الآلات تتعلّم اللغة واللعب أيضًا","evenements":[{"annee":"2013","titre":"Word2vec","texte":"تصبح الكلمات متّجهات: «ملك» − «رجل» + «امرأة» ≈ «ملكة»"},{"annee":"2014","titre":"GAN","texte":"شبكتان تتواجهان لإنتاج صور واقعية"},{"annee":"2015","titre":"ألعاب Atari","texte":"وكيل من DeepMind يتعلّم 49 لعبة فيديو انطلاقًا من البكسلات والنقاط"},{"annee":"2016","titre":"AlphaGo","texte":"يهزم برنامج DeepMind لي سيدول في لعبة الغو، 4 مباريات مقابل 1"}],"notes":"كانت لعبة الغو تُعدّ أعقد من أن يتقنها الحاسوب: فعدد وضعياتها الممكنة يفوق عدد الذرّات في الكون. ويجمع AlphaGo بين التعلم العميق والتعلم المعزَّز، النوع الثالث من أنواع التعلم في الفصل 1."},{"type":"portrait","personne":"hassabis","nom":"برنامج AlphaGo والنقلة 37","dates":"مارس 2016، سيول","role":"شركة DeepMind، التي شارك في تأسيسها ديميس هاسابيس","points":["المباراة الثانية: يلعب AlphaGo نقلة ما كان أيّ إنسان ليلعبها","يظنّها المعلّقون خطأً؛ لكنها نقلة رابحة","لم تعد الآلة تقلّد البشر: إنها تجد استراتيجياتها الخاصة"],"illus":"go","notes":"أصبحت «النقلة 37» رمزًا لإبداع آلي. عودوا إلى اعتراض لوفلايس: هل «أبدع» AlphaGo شيئًا؟ وفي 2024، نال ديميس هاسابيس وجون جمبر جائزة نوبل في الكيمياء عن AlphaFold، الذي يتنبّأ بشكل البروتينات."},{"type":"section","numero":"7","titre":"المحوِّلات والذكاء الاصطناعي التوليدي","periode":"2017–2022","texte":"بنية جديدة تتعلّم قراءة نصوص كاملة. فتشرع الآلات في الكتابة والرسم والترجمة.","illus":"attention","notes":"المرحلة السابعة: هي التي تقود إلى وكلاء المحادثة التي يستعملها طلبتكم أصلًا."},{"type":"schema","titre":"مقال «Attention Is All You Need»","annee":"2017","illus":"attention","points":["يقترح ثمانية باحثين من Google بنية المحوِّل (Transformer)","تربط آلية الانتباه كل كلمة بكل الكلمات الأخرى","في «فتحت الطالبة الكتاب لأنها…»، يلتفت الضمير «ها» إلى «الطالبة»","تنحدر منه كل النماذج اللغوية الكبيرة الحالية"],"notes":"أصبح عنوان المقال شهيرًا. ويُظهر الرسم المتحرّك روابط الانتباه: يدلّ سُمكها على الأهمية. ويقرأ المحوِّل كل الكلمات في الوقت نفسه، مما يسمح بتدريب نماذج ضخمة."},{"type":"frise","titre":"من BERT إلى ChatGPT","evenements":[{"annee":"2018","titre":"BERT","texte":"شركة Google: نموذج يفهم سياق الكلمة"},{"annee":"2019","titre":"GPT-2","texte":"شركة OpenAI: نصوص سلسة إلى حدّ التردّد في نشره"},{"annee":"2020","titre":"GPT-3","texte":"نموذج بـ175 مليار معامل؛ وAlphaFold 2 يحلّ مسألة شكل البروتينات"},{"annee":"2021","titre":"DALL·E","texte":"صورة تُرسم انطلاقًا من جملة"},{"annee":"2022","titre":"ChatGPT","texte":"في 30 نوفمبر: يصل الذكاء الاصطناعي التوليدي إلى عامة الناس"}],"notes":"في خمس سنوات، ننتقل من أداة مخبرية إلى خدمة يستعملها مئات الملايين من الناس. اسألوا مَن مِن الطلبة سبق أن استعمل وكيل محادثة، ولأيّ غرض."},{"type":"schema","titre":"كيف «يكتب» نموذج لغوي","illus":"motsuivant","points":["يقطّع النص إلى أجزاء، هي الرموز (tokens)","يحسب احتمال كل رمز تالٍ","يختار واحدًا منها، ويضيفه إلى النص، ثم يعيد الكرّة","ثم يقيّم بشرٌ إجاباته لصقله"],"notes":"إنه نموذج الثنائيات (bigrammes) في الدفتر 08، لكن بحجم أكبر بما لا يُقاس. ويُسمّى الضبط بواسطة البشر بالإنجليزية RLHF: التعلم المعزَّز انطلاقًا من التغذية الراجعة البشرية. شدّدوا على أن النموذج يتنبّأ بنص معقول، لا بنص صحيح."},{"type":"chat","titre":"حوار مع نموذج لغوي","annee":"2022","legende":"مثال متخيَّل، كُتب للطلبة","echanges":[{"qui":"h","texte":"اشرح التسلسل الأمامي لطالب في الأدب."},{"qui":"m","texte":"تخيّل محقّقًا: ينطلق من القرائن التي يعرفها ويطبّق قواعده واحدةً تلو الأخرى، حتى يجد الجاني."},{"qui":"h","texte":"أعطني مرجعًا لأستشهد به في مذكّرتي."},{"qui":"m","texte":"انتبه: تحقّق دائمًا من المرجع في مكتبة. فقد أخطئ، وقد أختلق مراجع."}],"notes":"قارنوا بـELIZA: هذه المرة، الإجابة وجيهة، ومُعاد صياغتها، ومكيَّفة مع الجمهور. لكن الخطر قائم: فقد يختلق النموذج مرجعًا، أو اقتباسًا، أو تاريخًا. وهذا موضوع نشاط «اختبار المراجع» في الدليل."},{"type":"section","numero":"8","titre":"عصر الوكلاء","periode":"2023–2026","texte":"لم يعد النموذج اللغوي يكتفي بالإجابة: إنه يخطّط، ويستعمل الأدوات، ويتصرّف.","illus":"agent","notes":"المرحلة الأخيرة: إنها موضوع الساعة. ذكّروا بشيكي (1966): الإدراك، والتخطيط، والتصرّف. ففكرة الوكيل قديمة؛ أما الجديد فهو أن نموذجًا لغويًا صار يؤدّي دور «الدماغ»."},{"type":"texte","titre":"ما الوكيل؟","points":["يدرك الوكيل بيئته ويؤثّر فيها لبلوغ هدف","منظّم الحرارة وكيل بسيط جدًا: يقيس، ثم يشغّل التدفئة أو لا","يعرّف راسل ونورفيغ (1995) الذكاء الاصطناعي كله بأنه دراسة الوكلاء","يتلقّى وكيل الذكاء الاصطناعي الحديث هدفًا، لا مجرّد سؤال"],"illus":"thermostat","notes":"تعريف ينبغي أن يدوّنه الطلبة. الفرق عن وكيل المحادثة التقليدي: لم نعد نطلب «أجب»، بل نطلب «افعل». مثال: «ابحث عن ثلاثة مقالات حول كاتب ياسين، واقرأها، وأعدّ لي بطاقة عنها»."},{"type":"schema","titre":"حلقة الوكيل","illus":"boucle","points":["الهدف: ما يطلبه المستخدم","التفكير: يخطّط النموذج للخطوة التالية","التصرّف: يستعمل أداة (بحث، حساب، ملف، متصفّح)","الملاحظة: يقرأ النتيجة، ثم يعيد الكرّة حتى بلوغ الهدف"],"notes":"اجعلوا الطلبة يتتبّعون الحلقة المتحرّكة. قد تنجح كل دورة أو تفشل؛ فيصحّح الوكيل خطّته. لهذا ينبغي تقييد الأدوات المتاحة له والتحقّق من أفعاله المهمّة."},{"type":"frise","titre":"من وكلاء المحادثة إلى الوكلاء","evenements":[{"annee":"2022","titre":"ReAct","texte":"يجعل باحثون الاستدلال والأفعال تتناوب داخل نموذج واحد"},{"annee":"2023","titre":"الأدوات","texte":"نموذج GPT-4؛ وتتعلّم النماذج استدعاء الأدوات والبرامج"},{"annee":"2024","titre":"الاستدلال والتصرّف","texte":"نماذج تفكّر قبل أن تجيب؛ ونموذج يقود حاسوبًا؛ وبروتوكول MCP لربط الأدوات"},{"annee":"2025","titre":"وكلاء في العمل","texte":"وكلاء يتصفّحون الويب، ويكتبون البرامج ويصحّحونها"},{"annee":"2026","titre":"في الحياة اليومية","texte":"يستقرّ الوكلاء في البرمجيات المكتبية وبرمجيات البحث والتعليم"}],"notes":"تصف تواريخ 2025 و2026 توجّهات عامة لا منتجات محدّدة، إذ تتغيّر هذه بسرعة. ادعوا الطلبة إلى البحث عن مثال حديث وتقديمه في دقيقتين."},{"type":"deux","titre":"وكيل محادثة أم وكيل؟","gauche":{"titre":"وكيل المحادثة","points":["يجيب عن سؤال","ينتج نصًّا","جولة واحدة","يتولّى الإنسان الباقي"]},"droite":{"titre":"الوكيل","points":["يسعى إلى هدف","يستعمل الأدوات ويتصرّف","عدة خطوات، ويصحّح خطّته","يُشرف الإنسان ويصادق"]},"notes":"الحدّ بينهما متحرّك: فكثير من وكلاء المحادثة يعرفون أصلًا كيف يبحثون في الويب. المعيار الذي ينبغي حفظه: الوكيل ينجز سلسلة من الأفعال في العالم لبلوغ هدف."},{"type":"texte","titre":"المخاطر، والممارسات الجيدة","points":["الهلوسات: قد يتصرّف الوكيل بناءً على معلومة خاطئة","أفعال لا رجعة فيها: الحذف، والإرسال، والدفع؛ فلا بدّ من المصادقة","قد تحرف تعليماتٌ مخفيّة في صفحة ويب الوكيلَ عن مساره","البيانات الشخصية: يُطبَّق القانون الجزائري 18-07","سنة 2024: يعتمد الاتحاد الأوروبي اللائحة الخاصة بالذكاء الاصطناعي (AI Act)"],"illus":"bouclier","notes":"قاعدة بسيطة للطلبة: نحتفظ بزمام أيّ فعل مهمّ، ونتحقّق من المصادر، ونُفصح عن استعمال الذكاء الاصطناعي في أعمالنا. أحيلوا إلى ميثاق استعمال الذكاء الاصطناعي في الدليل."},{"type":"texte","titre":"وماذا عن الجزائر؟","points":["سنة 2021: افتتاح المدرسة الوطنية العليا للذكاء الاصطناعي (ENSIA)","ما تزال النماذج تخدم العربية والدارجة والأمازيغية خدمة أقلّ جودة","المدوّنات المحلية، المبنيّة في العلوم الإنسانية والاجتماعية، إسهام حقيقي","يمكن لمذكّراتكم أن تسهم في ذلك: نصوص، واستبيانات، ومقابلات"],"illus":"carte","notes":"نقطة ارتكاز محلية. اللغات الأقلّ حضورًا على الويب تعالجها النماذج على نحو أسوأ: إنها مسألة بيانات، ومن ثمّ مسألة علوم إنسانية أيضًا. شجّعوا الطلبة على تخيّل مدوّنة يمكنهم تكوينها."},{"type":"section","numero":"9","titre":"خلاصة","periode":"من 1206 إلى 2026","texte":"ثمانية قرون من الأحلام، وسبعون سنة من العلم، وبضع سنوات من الوكلاء.","illus":"frise","notes":"الجزء الأخير: التلخيص، ومشاهدة مقاطع الفيديو، والتحقّق ممّا فُهم."},{"type":"frise","titre":"التواريخ الثمانية التي ينبغي حفظها","evenements":[{"annee":"1843","titre":"لوفلايس","texte":"أول برنامج، لآلة لم تكتمل أبدًا"},{"annee":"1950","titre":"تورينغ","texte":"هل تستطيع الآلات أن تفكّر؟"},{"annee":"1956","titre":"دارتموث","texte":"يحصل الذكاء الاصطناعي على اسمه"},{"annee":"1974","titre":"الشتاء","texte":"الشتاء الأول للذكاء الاصطناعي"},{"annee":"1997","titre":"Deep Blue","texte":"يهزم الحاسوب بطل الشطرنج"},{"annee":"2012","titre":"AlexNet","texte":"ينتصر التعلم العميق"},{"annee":"2017","titre":"المحوِّل","texte":"آلية الانتباه في صميم النماذج اللغوية"},{"annee":"2022","titre":"ChatGPT","texte":"ذكاء اصطناعي توليدي للجميع؛ ثم يأتي الوكلاء"}],"notes":"اجعلوا الطلبة يسردون الخط الزمني معكوسًا، من 2022 إلى 1843. تكفي هذه التواريخ الثمانية لرواية التاريخ كله في الامتحان."},{"type":"deux","titre":"عائلات الذكاء الاصطناعي، في شريحة واحدة","gauche":{"titre":"بحسب الطريقة","points":["الرمزي: قواعد مكتوبة","التعلم الآلي: أمثلة","التعلم العميق: شبكات ذات طبقات عديدة","التعلم المعزَّز: محاولات ومكافآت"]},"droite":{"titre":"بحسب الطموح","points":["الذكاء الاصطناعي الضعيف (الضيّق): مهمة محدّدة","الذكاء الاصطناعي القوي (العام): كل المهام، وهو افتراضي","الوكلاء الحاليون ما زالوا ذكاءً اصطناعيًا ضعيفًا","… لكنهم يزدادون تعدّدًا في القدرات"]},"notes":"يربط هذا الجدول الدرسَ بالفصل 1 من المقرر (الذكاء الاصطناعي الضعيف والقوي، وأنواع التعلم) وبالفصل 3 (أنواع الذكاء الاصطناعي). ويجمع الوكيل الحديث بين عدة عائلات: نموذج عميق، وقواعد أمان، وأحيانًا تعلّم معزَّز."},{"type":"video","titre":"فيديو: التاريخ الكامل للذكاء الاصطناعي (1950–2026)","youtube":"Xl-G6Mv-N0A","legende":"فيلم وثائقي بالإنجليزية بعنوان «The Complete History of AI (1950–2026) - The Rise of Artificial Intelligence»، على YouTube","notes":"اعرضوا مقطعًا تختارونه مسبقًا بدلًا من الفيديو كاملًا. اطلبوا من الطلبة أن يرصدوا في الفيديو ثلاثة تواريخ من الخط الزمني. ويتطلّب الفيديو اتصالًا بالإنترنت."},{"type":"video","titre":"فيديو: مئة سنة من الذكاء الاصطناعي","youtube":"mSd9nmPM7Vg","legende":"فيلم وثائقي بالإنجليزية بعنوان «The Entire History of Artificial Intelligence (Last 100 Years)»، على YouTube","notes":"لأفواج اللغة الإنجليزية، اطلبوا تلخيص الفيديو شفهيًا بالإنجليزية: فهو أيضًا تمرين لغوي. وللأفواج الأخرى، تتوفّر ترجمة نصية آلية باللغة المختارة."},{"type":"quiz","question":"في أيّ سنة فرضت عبارة «الذكاء الاصطناعي» نفسها، مع ورشة دارتموث؟","choix":["1943","1956","1997","2012"],"reponse":1,"explication":"ظهرت العبارة في مقترح سنة 1955، وفرضت نفسها مع ورشة صيف 1956.","notes":"اطلبوا التصويت قبل كشف الإجابة (المفتاح R أو الزر)."},{"type":"quiz","question":"لماذا نتحدّث عن «شتاءات» الذكاء الاصطناعي؟","choix":["كانت الحواسيب تسخن كثيرًا","أدّت خيبة الأمل إلى تراجع التمويل والاهتمام","كانت الأبحاث تُجرى في فصل الشتاء","حُظرت الآلات"],"reponse":1,"explication":"بعد وعود مفرطة، خيّبت النتائج الآمال: فقُطع التمويل (1974–1980، ثم 1987–1993).","notes":"اطلبوا مثالًا عن وعد مفرط ورد في الدرس: اقتباس هربرت سايمون (1965)."},{"type":"quiz","question":"ما الذي يميّز الوكيل عن مجرّد وكيل محادثة؟","choix":["يكتب بسرعة أكبر","يسعى إلى هدف بالتصرّف بواسطة الأدوات","لا يخطئ أبدًا","يعمل من دون كهرباء"],"reponse":1,"explication":"ينجز الوكيل سلسلة من الأفعال (البحث، والحساب، وكتابة ملف…) ويلاحظ النتائج لبلوغ هدف.","notes":"عودوا إلى الحلقة: الهدف، والتفكير، والتصرّف، والملاحظة."},{"type":"quiz","question":"هل كانت ELIZA (1966) تفهم ما يُقال لها؟","choix":["نعم، مثل عالم نفس","لا: كانت تحوّل الجمل بواسطة قواعد","نعم، بفضل التعلم العميق","لا نعرف ذلك"],"reponse":1,"explication":"كانت ELIZA ترصد كلمات مفتاحية وتعيد جملًا جاهزة. والاعتقاد بأنها تفهم هو «أثر ELIZA».","notes":"سؤال انتقالي نحو النقاش: وهل تفهم نماذج اليوم؟"},{"type":"fin","titre":"ما ينبغي تذكّره","points":["الحلم قديم؛ والذكاء الاصطناعي بوصفه علمًا وُلد بين 1950 و1956","يتناوب مساران: كتابة القواعد أو التعلّم من البيانات","تذكّرنا الشتاءات بأن نحكم بالنتائج، لا بالوعود","يدرك الوكيل ويخطّط ويتصرّف: من شيكي (1966) إلى وكلاء 2025","التحقّق، والاحتفاظ بزمام الأمور، والإفصاح عن الاستعمال: القواعد الذهبية الثلاث"],"texte":"عمل شخصي: اختاروا تاريخًا من الخط الزمني، واكتبوا عشرة أسطر عمّا غيّره، مع الاستشهاد بمصدر تحقّقتم منه.","notes":"اختتموا بسؤال البداية: هل تستطيع الآلة أن تفكّر؟ اجمعوا ثلاث إجابات معلَّلة. ويُعدّ العمل الشخصي للمائدة المستديرة حول نشأة الذكاء الاصطناعي."}]}};
+window.PHOTOS = {"babbage":{"local":"assets/img/lecon1/babbage.jpg","miniature":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Charles_Babbage_-_1860.jpg/360px-Charles_Babbage_-_1860.jpg","original":"https://upload.wikimedia.org/wikipedia/commons/6/6b/Charles_Babbage_-_1860.jpg","page":"https://commons.wikimedia.org/wiki/File:Charles_Babbage_-_1860.jpg","illus":"profil"},"lovelace":{"local":"assets/img/lecon1/lovelace.jpg","miniature":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Ada_Lovelace_portrait.jpg/360px-Ada_Lovelace_portrait.jpg","original":"https://upload.wikimedia.org/wikipedia/commons/a/a4/Ada_Lovelace_portrait.jpg","page":"https://commons.wikimedia.org/wiki/File:Ada_Lovelace_portrait.jpg","illus":"profil"},"turing":{"local":"assets/img/lecon1/turing.jpg","miniature":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Alan_Turing_Aged_16.jpg/360px-Alan_Turing_Aged_16.jpg","original":"https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg","page":"https://commons.wikimedia.org/wiki/File:Alan_Turing_Aged_16.jpg","illus":"profil"},"eniac":{"local":"assets/img/lecon1/eniac.jpg","miniature":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Eniac.jpg/360px-Eniac.jpg","original":"https://upload.wikimedia.org/wikipedia/commons/4/4e/Eniac.jpg","page":"https://commons.wikimedia.org/wiki/File:Eniac.jpg","illus":"ordinateur"},"mccarthy":{"local":"assets/img/lecon1/mccarthy.jpg","miniature":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/John_McCarthy_Stanford.jpg/360px-John_McCarthy_Stanford.jpg","original":"https://upload.wikimedia.org/wikipedia/commons/4/49/John_McCarthy_Stanford.jpg","page":"https://commons.wikimedia.org/wiki/File:John_McCarthy_Stanford.jpg","illus":"profil"},"perceptron":{"local":"assets/img/lecon1/perceptron.jpg","miniature":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Mark_I_perceptron.jpeg/360px-Mark_I_perceptron.jpeg","original":"https://upload.wikimedia.org/wikipedia/commons/5/52/Mark_I_perceptron.jpeg","page":"https://commons.wikimedia.org/wiki/File:Mark_I_perceptron.jpeg","illus":"perceptron"},"shakey":{"local":"assets/img/lecon1/shakey.jpg","miniature":"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/SRI_Shakey_with_callouts.jpg/360px-SRI_Shakey_with_callouts.jpg","original":"https://upload.wikimedia.org/wikipedia/commons/0/0c/SRI_Shakey_with_callouts.jpg","page":"https://commons.wikimedia.org/wiki/File:SRI_Shakey_with_callouts.jpg","illus":"robot"},"deepblue":{"local":"assets/img/lecon1/deepblue.jpg","miniature":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Deep_Blue.jpg/360px-Deep_Blue.jpg","original":"https://upload.wikimedia.org/wikipedia/commons/b/be/Deep_Blue.jpg","page":"https://commons.wikimedia.org/wiki/File:Deep_Blue.jpg","illus":"echecs"},"feifei":{"local":"assets/img/lecon1/feifei.jpg","miniature":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Fei-Fei_Li_at_AI_for_Good_2017.jpg/360px-Fei-Fei_Li_at_AI_for_Good_2017.jpg","original":"https://upload.wikimedia.org/wikipedia/commons/c/c7/Fei-Fei_Li_at_AI_for_Good_2017.jpg","page":"https://commons.wikimedia.org/wiki/File:Fei-Fei_Li_at_AI_for_Good_2017.jpg","illus":"profil"},"hinton":{"local":"assets/img/lecon1/hinton.jpg","miniature":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Geoffrey_Hinton_at_UBC.jpg/360px-Geoffrey_Hinton_at_UBC.jpg","original":"https://upload.wikimedia.org/wikipedia/commons/3/34/Geoffrey_Hinton_at_UBC.jpg","page":"https://commons.wikimedia.org/wiki/File:Geoffrey_Hinton_at_UBC.jpg","illus":"profil"},"hassabis":{"local":"assets/img/lecon1/hassabis.jpg","miniature":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Demis_Hassabis_Royal_Society.jpg/360px-Demis_Hassabis_Royal_Society.jpg","original":"https://upload.wikimedia.org/wikipedia/commons/b/bd/Demis_Hassabis_Royal_Society.jpg","page":"https://commons.wikimedia.org/wiki/File:Demis_Hassabis_Royal_Society.jpg","illus":"go"}};
+</script>
+<script>
+(function () {
+  "use strict";
+
+  var L = window.LECON, PHOTOS = window.PHOTOS || {};
+  var UI = {
+    fr: { marque: "IA · Chapitre 1", notes: "Notes de l'enseignant", apercu: "Vue d'ensemble (O)", imprimer: "Imprimer / PDF (P)", theme: "Thème Nuit ou Jour (T)",
+          plein: "Plein écran (F)", precedent: "Précédente (←)", suivant: "Suivante (→)", reveler: "Afficher la réponse", video_hors: "La vidéo demande une connexion Internet.",
+          video_ouvrir: "Ouvrir sur YouTube", video_lancer: "Lancer la vidéo", photo: "Photo : Wikimedia Commons", diapo: "Diapositive {n} sur {t}" },
+    en: { marque: "AI · Chapter 1", notes: "Teacher's notes", apercu: "Overview (O)", imprimer: "Print / PDF (P)", theme: "Night or Day theme (T)",
+          plein: "Full screen (F)", precedent: "Previous (←)", suivant: "Next (→)", reveler: "Show the answer", video_hors: "The video needs an Internet connection.",
+          video_ouvrir: "Open on YouTube", video_lancer: "Play the video", photo: "Photo: Wikimedia Commons", diapo: "Slide {n} of {t}" },
+    ar: { marque: "الذكاء الاصطناعي · الفصل 1", notes: "ملاحظات الأستاذ", apercu: "نظرة شاملة (O)", imprimer: "طباعة / PDF ‏(P)", theme: "المظهر الليلي أو النهاري (T)",
+          plein: "ملء الشاشة (F)", precedent: "السابقة", suivant: "التالية", reveler: "إظهار الجواب", video_hors: "يحتاج الفيديو إلى اتصال بالإنترنت.",
+          video_ouvrir: "فتح على YouTube", video_lancer: "تشغيل الفيديو", photo: "الصورة: ويكيميديا كومنز", diapo: "الشريحة {n} من {t}" }
+  };
+  var LETTRES = { fr: ["A", "B", "C", "D"], en: ["A", "B", "C", "D"], ar: ["أ", "ب", "ج", "د"] };
+
+  /* ---------- Petits outils ---------- */
+  function esc(t) { return String(t == null ? "" : t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+  // *italique* et **gras**, après échappement
+  // **gras**, *italique* ; une période « 1956–1980 » ne se coupe jamais en fin de ligne.
+  function riche(t) { return esc(t).replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>").replace(/\*([^*\s][^*]*)\*/g, "<em>$1</em>").replace(/\(?\d{3,4}\s?[–-]\s?\d{2,4}\)?/g, '<span class="insecable">$&</span>'); }
+  function lire(cle) { try { return localStorage.getItem(cle); } catch (e) { return null; } }
+  function ecrire(cle, v) { try { localStorage.setItem(cle, v); } catch (e) { /* stockage indisponible */ } }
+  function tpl(t, v) { return t.replace(/\{(\w+)\}/g, function (m, k) { return v[k] != null ? v[k] : m; }); }
+
+  /* ---------- Illustrations (SVG dessinés ici : aucun fichier externe) ---------- */
+  function engrenage(cx, cy, r, dents, classe) {
+    var d = "", n = dents * 2;
+    for (var i = 0; i < n; i++) {
+      var a0 = (i / n) * 2 * Math.PI, a1 = ((i + 1) / n) * 2 * Math.PI, rr = i % 2 ? r * .82 : r;
+      d += (i ? "L" : "M") + (cx + rr * Math.cos(a0)).toFixed(1) + "," + (cy + rr * Math.sin(a0)).toFixed(1) + "A" + rr + "," + rr + " 0 0 1 " + (cx + rr * Math.cos(a1)).toFixed(1) + "," + (cy + rr * Math.sin(a1)).toFixed(1);
+    }
+    return '<g class="' + classe + '"><path class="trait f-s i-t" d="' + d + 'Z"/><circle class="trait f-f i-t" cx="' + cx + '" cy="' + cy + '" r="' + (r * .3) + '"/></g>';
+  }
+  function svg(contenu, vb) { return '<svg viewBox="' + (vb || "0 0 400 300") + '" role="img" aria-hidden="true">' + contenu + '</svg>'; }
+  function noeuds(xs, ys, r, classe) { var s = ""; xs.forEach(function (x, i) { s += '<circle class="trait ' + (classe || "f-s i-t") + '" cx="' + x + '" cy="' + ys[i] + '" r="' + r + '"/>'; }); return s; }
+
+  var ILLUS = {
+    engrenages: function () { return svg(engrenage(140, 150, 80, 12, "anim-tourne") + engrenage(262, 104, 52, 8, "anim-tourne-inverse") + engrenage(270, 222, 40, 6, "anim-tourne-inverse")); },
+    elephant: function () {
+      return svg('<g class="anim-flotte"><ellipse class="trait f-s i-t" cx="180" cy="210" rx="110" ry="55"/><circle class="trait f-s i-t" cx="300" cy="180" r="42"/>' +
+        '<path class="trait i-t" d="M330 200 Q360 250 330 280"/><path class="trait f-s i-t" d="M285 150 q-40 10 -30 50 q20 10 35 -10"/>' +
+        '<rect class="trait f-s i-t" x="100" y="250" width="24" height="40" rx="6"/><rect class="trait f-s i-t" x="230" y="250" width="24" height="40" rx="6"/>' +
+        '<rect class="trait f-s i-c1" x="120" y="70" width="110" height="90" rx="8"/><path class="trait f-s i-c1" d="M110 70 Q175 10 240 70 Z"/>' +
+        '<circle class="trait f-f i-c2" cx="175" cy="115" r="30"/><line class="trait i-c3 anim-tourne" x1="175" y1="115" x2="175" y2="92" style="transform-origin:175px 115px;transform-box:view-box"/>' +
+        '<circle class="f-c4 anim-pulse" cx="175" cy="115" r="5"/></g>');
+    },
+    ordinateur: function () {
+      var s = "";
+      for (var c = 0; c < 4; c++) {
+        s += '<rect class="trait f-s i-t" x="' + (40 + c * 84) + '" y="50" width="70" height="200" rx="8"/>';
+        for (var r = 0; r < 8; r++) s += '<circle class="f-c' + ((c + r) % 5 + 1) + ' anim-pulse" style="--d:' + ((c * 8 + r) % 7 / 7).toFixed(2) + '" cx="' + (60 + c * 84 + (r % 2) * 30) + '" cy="' + (80 + Math.floor(r / 2) * 50) + '" r="8"/>';
+      }
+      return svg(s + '<line class="trait i-d fin" x1="30" y1="270" x2="370" y2="270"/>');
+    },
+    profil: function () {
+      var s = '<circle class="trait i-l" cx="200" cy="120" r="92"/><g class="anim-tourne-lent" style="transform-origin:200px 120px;transform-box:view-box">' +
+        '<circle class="f-c1" cx="200" cy="28" r="7"/><circle class="f-c3" cx="292" cy="120" r="7"/><circle class="f-c5" cx="108" cy="120" r="7"/></g>';
+      s += '<circle class="trait f-s i-t" cx="200" cy="112" r="50"/><path class="trait f-s i-t" d="M96 292 q0 -104 104 -104 q104 0 104 104"/>';
+      return svg(s);
+    },
+    calculatrice: function () {
+      var s = '<rect class="trait f-s i-t" x="40" y="80" width="320" height="150" rx="18"/>';
+      for (var i = 0; i < 5; i++) s += '<g class="' + (i % 2 ? "anim-tourne" : "anim-tourne-inverse") + '"><circle class="trait f-f i-c' + (i + 1) + '" cx="' + (80 + i * 60) + '" cy="155" r="24"/><line class="trait i-t fin" x1="' + (80 + i * 60) + '" y1="155" x2="' + (80 + i * 60) + '" y2="135"/></g>';
+      s += '<rect class="trait f-f i-t" x="120" y="40" width="160" height="34" rx="8"/><text class="f-c1" x="200" y="64" text-anchor="middle" font-size="22">1 6 4 2</text>';
+      return svg(s);
+    },
+    turing: function () {
+      var s = "", syms = ["1", "0", "1", "1", "0", "1", "0"];
+      for (var i = 0; i < 7; i++) s += '<rect class="trait f-s i-t" x="' + (32 + i * 48) + '" y="150" width="48" height="56"/><text class="f-t" x="' + (56 + i * 48) + '" y="188" text-anchor="middle" font-size="28">' + syms[i] + '</text>';
+      s += '<g class="anim-tete"><path class="trait f-c1 i-c1" d="M104 110 l24 30 l24 -30 z"/><rect class="trait f-s i-c1" x="92" y="60" width="72" height="44" rx="10"/><text class="f-c1" x="128" y="90" text-anchor="middle" font-size="22">q1</text></g>';
+      s += '<path class="trait i-d fin" d="M20 178 H32 M368 178 H380" stroke-dasharray="6 6"/>';
+      return svg(s);
+    },
+    neurone: function () {
+      var s = "", ys = [70, 150, 230];
+      ys.forEach(function (y, i) {
+        s += '<path id="n-' + i + '" class="trait i-c' + (i + 2) + '" d="M60 ' + y + ' L200 150"/><circle class="trait f-s i-c' + (i + 2) + '" cx="50" cy="' + y + '" r="18"/>';
+        s += '<circle class="f-c1 anim-signal" r="7" style="offset-path:path(\'M60 ' + y + ' L200 150\');--d:' + (i * .5) + '"/>';
+      });
+      s += '<circle class="trait f-s i-t" cx="220" cy="150" r="42"/><text class="f-t" x="220" y="162" text-anchor="middle" font-size="36">Σ</text>';
+      s += '<path class="trait i-t" d="M262 150 H300"/><path class="trait i-c1" d="M300 180 H325 V120 H350"/><path class="trait i-t" d="M350 150 H390"/>';
+      return svg(s);
+    },
+    ampoule: function () {
+      var s = '<path class="trait f-s i-c1" d="M200 60 a70 70 0 0 0 -42 126 c10 10 12 20 12 34 h60 c0 -14 2 -24 12 -34 A70 70 0 0 0 200 60z"/><path class="trait i-t" d="M175 240 h50 M180 262 h40"/>';
+      for (var i = 0; i < 8; i++) { var a = i * Math.PI / 4; s += '<line class="trait i-c1 anim-pulse" style="--d:' + (i * .15) + '" x1="' + (200 + 95 * Math.cos(a)) + '" y1="' + (130 + 95 * Math.sin(a)) + '" x2="' + (200 + 120 * Math.cos(a)) + '" y2="' + (130 + 120 * Math.sin(a)) + '"/>'; }
+      return svg(s + '<path class="trait i-c3" d="M185 150 l10 -20 l10 20 l10 -20"/>');
+    },
+    imitation: function () {
+      function personne(x, cl) { return '<circle class="trait f-s ' + cl + '" cx="' + x + '" cy="118" r="22"/><path class="trait f-s ' + cl + '" d="M' + (x - 34) + ' 190 q34 -50 68 0 z"/>'; }
+      var s = '<rect class="trait i-d fin" x="10" y="60" width="120" height="160" rx="12"/><rect class="trait i-d fin" x="270" y="20" width="120" height="120" rx="12"/><rect class="trait i-d fin" x="270" y="160" width="120" height="120" rx="12"/>';
+      s += personne(70, "i-c1") + '<text class="f-c1" x="70" y="250" text-anchor="middle" font-size="34">?</text>';
+      s += '<circle class="trait f-s i-c2" cx="330" cy="70" r="20"/><path class="trait f-s i-c2" d="M300 128 q30 -44 60 0 z"/>';
+      s += '<rect class="trait f-s i-c4" x="300" y="190" width="60" height="44" rx="6"/><path class="trait i-c4" d="M318 250 h24 M330 234 v16"/>';
+      s += '<path class="trait i-t fin anim-pulse" d="M135 120 C200 120 210 80 265 80" stroke-dasharray="8 8"/><path class="trait i-t fin anim-pulse" style="--d:.9" d="M135 160 C200 160 210 220 265 220" stroke-dasharray="8 8"/>';
+      return svg(s);
+    },
+    arbre: function () {
+      var s = "", p = [[200, 40], [110, 120], [290, 120], [60, 200], [160, 200], [240, 200], [340, 200], [130, 275], [190, 275]];
+      var a = [[0, 1], [0, 2], [1, 3], [1, 4], [2, 5], [2, 6], [4, 7], [4, 8]], chemin = [0, 1, 4, 8];
+      a.forEach(function (e) { s += '<line class="trait i-l" x1="' + p[e[0]][0] + '" y1="' + p[e[0]][1] + '" x2="' + p[e[1]][0] + '" y2="' + p[e[1]][1] + '"/>'; });
+      for (var i = 0; i < chemin.length - 1; i++) s += '<line class="trait i-c1 anim-apparait" style="--d:' + (i * .5) + '" x1="' + p[chemin[i]][0] + '" y1="' + p[chemin[i]][1] + '" x2="' + p[chemin[i + 1]][0] + '" y2="' + p[chemin[i + 1]][1] + '"/>';
+      p.forEach(function (q, i) { s += '<circle class="trait ' + (chemin.indexOf(i) >= 0 ? "f-c1 i-c1" : "f-s i-t") + '" cx="' + q[0] + '" cy="' + q[1] + '" r="15"/>'; });
+      return svg(s);
+    },
+    courbe: function () {
+      var s = '<path class="trait i-d fin" d="M30 260 H385 M30 260 V20"/>';
+      s += '<path class="trait i-c1 anim-trace" style="--l:900" d="M30 240 C70 230 80 70 110 70 C140 70 150 220 175 225 C200 228 205 110 230 110 C255 110 262 210 285 215 C320 222 330 60 385 25"/>';
+      s += '<rect class="f-c2" x="140" y="232" width="50" height="10" rx="5" opacity=".7"/><rect class="f-c2" x="250" y="232" width="45" height="10" rx="5" opacity=".7"/>';
+      s += '<text class="f-d" x="30" y="285" font-size="16">1956</text><text class="f-d" x="150" y="285" font-size="16">1974</text><text class="f-d" x="252" y="285" font-size="16">1987</text><text class="f-d" x="350" y="285" font-size="16">2020</text>';
+      s += '<text class="f-c2 anim-pulse" x="165" y="215" text-anchor="middle" font-size="30">❄</text><text class="f-c2 anim-pulse" style="--d:.6" x="272" y="200" text-anchor="middle" font-size="30">❄</text>';
+      return svg(s);
+    },
+    perceptron: function () {
+      var s = "";
+      for (var r = 0; r < 4; r++) for (var c = 0; c < 4; c++) s += '<rect class="' + ((r + c) % 3 ? "f-s" : "f-c2") + '" x="' + (30 + c * 26) + '" y="' + (90 + r * 26) + '" width="22" height="22" rx="3"/>';
+      [110, 150, 190].forEach(function (y, i) { s += '<path class="trait i-c' + (i + 3) + ' anim-pulse" style="--d:' + (i * .3) + '" d="M140 ' + y + ' C190 ' + y + ' 200 150 240 150" stroke-width="' + (3 + i * 2) + '"/>'; });
+      s += '<circle class="trait f-s i-t" cx="270" cy="150" r="32"/><text class="f-t" x="270" y="161" text-anchor="middle" font-size="30">Σ</text><path class="trait i-t" d="M302 150 H340"/>';
+      s += '<circle class="trait f-j i-j anim-pulse" cx="362" cy="150" r="18"/>';
+      return svg(s);
+    },
+    dames: function () {
+      var s = "";
+      for (var r = 0; r < 6; r++) for (var c = 0; c < 6; c++) s += '<rect class="' + ((r + c) % 2 ? "f-t" : "f-s") + '" x="' + (80 + c * 40) + '" y="' + (30 + r * 40) + '" width="40" height="40" opacity="' + ((r + c) % 2 ? .25 : 1) + '"/>';
+      s += '<circle class="trait f-c3 i-t" cx="140" cy="210" r="15"/><circle class="trait f-c3 i-t" cx="220" cy="210" r="15"/><circle class="trait f-c5 i-t" cx="180" cy="90" r="15"/>';
+      s += '<g class="anim-flotte"><circle class="trait f-c5 i-c1" cx="260" cy="130" r="15"/></g>';
+      return svg(s);
+    },
+    robot: function () {
+      return svg('<g class="anim-flotte"><rect class="trait f-s i-t" x="150" y="150" width="100" height="90" rx="10"/><rect class="trait i-t" x="195" y="80" width="10" height="70"/>' +
+        '<rect class="trait f-s i-c2" x="170" y="50" width="60" height="38" rx="8"/><circle class="trait f-f i-c1" cx="200" cy="69" r="11"/><circle class="f-c1 anim-clignote" cx="200" cy="69" r="4"/>' +
+        '<line class="trait i-t" x1="230" y1="55" x2="262" y2="20"/><circle class="f-c4 anim-pulse" cx="262" cy="20" r="6"/></g>' +
+        '<circle class="trait f-f i-t" cx="170" cy="252" r="16"/><circle class="trait f-f i-t" cx="230" cy="252" r="16"/>' +
+        '<rect class="trait f-s i-c3" x="300" y="200" width="60" height="60" rx="4"/><path class="trait i-d fin anim-pulse" d="M252 195 L300 210" stroke-dasharray="6 6"/>');
+    },
+    regles: function () {
+      var s = "";
+      for (var i = 0; i < 3; i++) s += '<g class="anim-apparait" style="--d:' + (i * .3) + '"><rect class="trait f-s i-c' + (i + 2) + '" x="20" y="' + (40 + i * 75) + '" width="130" height="55" rx="10"/><path class="trait i-t fin" d="M38 ' + (60 + i * 75) + ' h60 M38 ' + (78 + i * 75) + ' h90"/></g>';
+      s += '<path class="trait i-d" d="M155 110 L200 140 M155 150 H200 M155 190 L200 160"/>' + engrenage(250, 150, 50, 9, "anim-tourne");
+      s += '<path class="trait i-t" d="M300 150 H325"/><rect class="trait f-s i-j anim-pulse" x="325" y="120" width="60" height="60" rx="10"/><path class="trait i-j" d="M340 150 l10 12 l22 -24"/>';
+      return svg(s);
+    },
+    reseau: function () {
+      var couches = [[4, 60], [6, 160], [6, 250], [3, 345]], s = "", pos = [];
+      couches.forEach(function (c) { var l = []; for (var i = 0; i < c[0]; i++) l.push([c[1], 150 + (i - (c[0] - 1) / 2) * 42]); pos.push(l); });
+      for (var k = 0; k < pos.length - 1; k++) pos[k].forEach(function (a) { pos[k + 1].forEach(function (b) { s += '<line class="i-l" stroke-width="1.5" x1="' + a[0] + '" y1="' + a[1] + '" x2="' + b[0] + '" y2="' + b[1] + '"/>'; }); });
+      for (var m = 0; m < 6; m++) { var a = pos[0][m % 4], b = pos[1][(m * 2) % 6], c = pos[2][(m * 3 + 1) % 6], d = pos[3][m % 3];
+        s += '<circle class="f-c1 anim-signal" r="6" style="offset-path:path(\'M' + a[0] + ' ' + a[1] + ' L' + b[0] + ' ' + b[1] + ' L' + c[0] + ' ' + c[1] + ' L' + d[0] + ' ' + d[1] + '\');--d:' + (m * .4) + '"/>'; }
+      pos.forEach(function (l, k) { l.forEach(function (p) { s += '<circle class="trait f-s i-c' + (k + 2) + '" cx="' + p[0] + '" cy="' + p[1] + '" r="13"/>'; }); });
+      return svg(s);
+    },
+    flocon: function () {
+      var s = '<g class="anim-tourne-lent" style="transform-origin:170px 150px;transform-box:view-box">';
+      for (var i = 0; i < 6; i++) { var a = i * Math.PI / 3, x = 170 + 100 * Math.cos(a), y = 150 + 100 * Math.sin(a);
+        s += '<line class="trait i-c2" x1="170" y1="150" x2="' + x.toFixed(1) + '" y2="' + y.toFixed(1) + '"/>';
+        var mx = 170 + 60 * Math.cos(a), my = 150 + 60 * Math.sin(a);
+        s += '<path class="trait i-c2 fin" d="M' + (mx + 22 * Math.cos(a + .8)).toFixed(1) + ' ' + (my + 22 * Math.sin(a + .8)).toFixed(1) + ' L' + mx.toFixed(1) + ' ' + my.toFixed(1) + ' L' + (mx + 22 * Math.cos(a - .8)).toFixed(1) + ' ' + (my + 22 * Math.sin(a - .8)).toFixed(1) + '"/>'; }
+      s += '</g><rect class="trait f-s i-t" x="320" y="40" width="30" height="190" rx="15"/><circle class="trait f-c2 i-t" cx="335" cy="250" r="26"/><rect class="f-c2" x="328" y="170" width="14" height="70" rx="7"/>';
+      return svg(s);
+    },
+    donnees: function () {
+      function cyl(x, y, cl) { return '<path class="trait f-s ' + cl + '" d="M' + x + ' ' + y + ' v60 a45 14 0 0 0 90 0 v-60"/><ellipse class="trait f-s ' + cl + '" cx="' + (x + 45) + '" cy="' + y + '" rx="45" ry="14"/><path class="trait fin ' + cl + '" d="M' + x + ' ' + (y + 30) + ' a45 14 0 0 0 90 0"/>'; }
+      var s = cyl(30, 90, "i-c2") + cyl(30, 180, "i-c5");
+      for (var i = 0; i < 8; i++) s += '<rect class="f-c' + (i % 5 + 1) + ' anim-signal" width="16" height="20" rx="3" style="offset-path:path(\'M130 ' + (110 + (i % 3) * 50) + ' C220 ' + (60 + i * 25) + ' 260 150 360 150\');--d:' + (i * .3) + '"/>';
+      s += '<circle class="trait f-s i-c1" cx="340" cy="150" r="40"/><path class="trait i-c1" d="M322 150 l12 14 l24 -28"/>';
+      return svg(s);
+    },
+    echecs: function () {
+      var s = "";
+      for (var r = 0; r < 6; r++) for (var c = 0; c < 6; c++) s += '<rect class="' + ((r + c) % 2 ? "f-c5" : "f-s") + '" x="' + (80 + c * 40) + '" y="' + (30 + r * 40) + '" width="40" height="40" opacity="' + ((r + c) % 2 ? .45 : 1) + '"/>';
+      s += '<text class="f-t" x="140" y="175" text-anchor="middle" font-size="36">♚</text><text class="f-c1 anim-flotte" x="260" y="95" text-anchor="middle" font-size="36">♛</text><text class="f-t" x="180" y="255" text-anchor="middle" font-size="36">♜</text>';
+      s += '<path class="trait i-c1 fin anim-pulse" d="M260 105 L150 160" stroke-dasharray="6 8"/>';
+      return svg(s);
+    },
+    imagenet: function () {
+      var s = "", cl = ["f-c1", "f-c2", "f-c3", "f-c4", "f-c5", "f-j", "f-c2", "f-c4", "f-c1"];
+      for (var i = 0; i < 9; i++) s += '<rect class="' + cl[i] + ' anim-apparait" style="--d:' + (i * .1) + '" x="' + (20 + (i % 3) * 62) + '" y="' + (50 + Math.floor(i / 3) * 62) + '" width="56" height="56" rx="8" opacity=".85"/>';
+      s += '<path class="trait i-t" d="M215 150 H255 M245 140 l10 10 l-10 10"/>';
+      [["92%", 90, "f-j"], ["5%", 150, "f-d"], ["3%", 210, "f-d"]].forEach(function (b, i) { s += '<rect class="' + b[2] + ' anim-apparait" style="--d:' + (1 + i * .2) + '" x="270" y="' + (b[1] - 18) + '" width="' + (i ? 20 + i * 6 : 110) + '" height="34" rx="6"/><text class="f-t" x="' + (i ? 310 + i * 6 : 390) + '" y="' + (b[1] + 8) + '" text-anchor="end" font-size="18">' + b[0] + '</text>'; });
+      return svg(s);
+    },
+    go: function () {
+      var s = '<rect class="f-c1" x="60" y="20" width="280" height="260" rx="10" opacity=".25"/>';
+      for (var i = 0; i < 9; i++) s += '<line class="i-t" stroke-width="1.5" x1="' + (80 + i * 30) + '" y1="40" x2="' + (80 + i * 30) + '" y2="260"/><line class="i-t" stroke-width="1.5" x1="80" y1="' + (40 + i * 27.5) + '" x2="320" y2="' + (40 + i * 27.5) + '"/>';
+      var pierres = [[2, 2, 1], [3, 3, 0], [5, 2, 1], [6, 6, 0], [2, 6, 1], [4, 4, 0], [5, 5, 1], [3, 6, 0]];
+      pierres.forEach(function (p) { s += '<circle class="trait ' + (p[2] ? "f-t i-t" : "f-f i-t") + '" cx="' + (80 + p[0] * 30) + '" cy="' + (40 + p[1] * 27.5) + '" r="12"/>'; });
+      s += '<circle class="trait f-t i-c1 anim-apparait" style="--d:.8" cx="' + (80 + 6 * 30) + '" cy="' + (40 + 3 * 27.5) + '" r="12"/><circle class="trait i-c1 anim-pulse" cx="' + (80 + 6 * 30) + '" cy="' + (40 + 3 * 27.5) + '" r="22"/>';
+      return svg(s);
+    },
+    attention: function () {
+      var s = "", x = [40, 95, 150, 205, 260, 315, 365];
+      x.forEach(function (v, i) { s += '<rect class="trait ' + (i === 5 ? "f-s i-c1" : i === 1 ? "f-s i-c2" : "f-s i-t") + '" x="' + (v - 24) + '" y="200" width="48" height="36" rx="8"/>'; });
+      [[5, 1, 9], [5, 3, 3], [5, 4, 2], [5, 0, 1.5], [5, 2, 1.5]].forEach(function (a, i) {
+        var x1 = x[a[0]], x2 = x[a[1]], h = 40 + Math.abs(x1 - x2) * .45;
+        s += '<path class="trait i-c' + (i ? 5 : 1) + ' anim-apparait" style="--d:' + (i * .25) + '" stroke-width="' + a[2] + '" d="M' + x1 + ' 196 C' + x1 + ' ' + (196 - h) + ' ' + x2 + ' ' + (196 - h) + ' ' + x2 + ' 196"/>';
+      });
+      return svg(s);
+    },
+    motsuivant: function () {
+      var s = "";
+      for (var i = 0; i < 4; i++) s += '<rect class="trait f-s i-t" x="' + (20 + i * 62) + '" y="40" width="54" height="40" rx="8"/>';
+      s += '<rect class="trait f-f i-c1 anim-clignote" x="268" y="40" width="54" height="40" rx="8"/><text class="f-c1" x="295" y="68" text-anchor="middle" font-size="24">?</text>';
+      [[0.82, "f-c1"], [0.08, "f-c2"], [0.05, "f-c4"], [0.03, "f-c5"]].forEach(function (b, i) {
+        s += '<rect class="' + b[1] + ' anim-apparait" style="--d:' + (.4 + i * .2) + '" x="60" y="' + (120 + i * 40) + '" width="' + (b[0] * 300 + 6) + '" height="28" rx="6"/><text class="f-t" x="50" y="' + (140 + i * 40) + '" text-anchor="end" font-size="16">' + Math.round(b[0] * 100) + '%</text>';
+      });
+      return svg(s);
+    },
+    boucle: function () {
+      var c = [[200, 55], [330, 150], [200, 245], [70, 150]], cl = ["i-c1", "i-c2", "i-c4", "i-c5"], s = "";
+      s += '<circle class="trait i-l" cx="200" cy="150" r="95"/><path class="trait i-c1 anim-tourne" style="transform-origin:200px 150px;transform-box:view-box" d="M200 55 A95 95 0 0 1 295 150"/>';
+      c.forEach(function (p, i) { s += '<circle class="trait f-s ' + cl[i] + '" cx="' + p[0] + '" cy="' + p[1] + '" r="38"/>'; });
+      s += '<circle class="trait i-c1" cx="200" cy="55" r="18"/><circle class="f-c1" cx="200" cy="55" r="6"/>';
+      s += '<path class="trait i-c2" d="M315 138 q15 -18 30 0 q-6 20 -22 22 l-8 10 z"/>';
+      s += '<path class="trait i-c4" d="M188 258 l26 -26 m-6 -6 a12 12 0 1 0 14 14"/>';
+      s += '<path class="trait i-c5" d="M50 150 q20 -22 40 0 q-20 22 -40 0 z"/><circle class="f-c5" cx="70" cy="150" r="6"/>';
+      s += '<circle class="trait f-s i-t anim-pulse" cx="200" cy="150" r="30"/><circle class="f-t" cx="200" cy="150" r="8"/>';
+      return svg(s);
+    },
+    thermostat: function () {
+      return svg('<rect class="trait f-s i-t" x="60" y="40" width="40" height="190" rx="20"/><circle class="trait f-c3 i-t" cx="80" cy="245" r="32"/><rect class="f-c3" x="72" y="120" width="16" height="120" rx="8"/>' +
+        '<path class="trait i-c2 anim-pulse" d="M120 120 q20 -20 0 -40 M140 130 q30 -30 0 -60"/><rect class="trait f-s i-t" x="200" y="90" width="150" height="110" rx="14"/>' +
+        '<path class="trait f-c1 i-c1 anim-flotte" d="M275 180 c-30 -10 -25 -45 0 -70 c0 25 25 30 20 50 c-3 12 -10 18 -20 20z"/>');
+    },
+    bouclier: function () {
+      return svg('<path class="trait f-s i-c2" d="M200 30 L310 70 V150 C310 215 260 255 200 275 C140 255 90 215 90 150 V70 Z"/>' +
+        '<path class="trait i-j anim-trace" style="--l:200" d="M150 150 l35 38 l70 -80" stroke-width="10"/>');
+    },
+    carte: function () {
+      return svg('<path class="trait f-s i-c4 anim-flotte" d="M200 30 a60 60 0 0 1 60 60 c0 45 -60 110 -60 110 s-60 -65 -60 -110 a60 60 0 0 1 60 -60z"/><circle class="trait f-f i-c4" cx="200" cy="90" r="22"/>' +
+        '<path class="trait f-s i-t" d="M110 250 h180 v-40 l-90 -30 l-90 30z"/><path class="trait i-t fin" d="M130 250 v-30 M170 250 v-30 M230 250 v-30 M270 250 v-30"/>' +
+        '<rect class="trait f-s i-c2 anim-apparait" x="290" y="120" width="80" height="50" rx="14"/><rect class="trait f-s i-c1 anim-apparait" style="--d:.4" x="30" y="130" width="80" height="50" rx="14"/>');
+    },
+    frise: function () {
+      var s = '<path class="trait i-c1 anim-trace" style="--l:360" d="M20 150 H380"/>';
+      for (var i = 0; i < 6; i++) s += '<circle class="trait f-s i-c' + (i % 5 + 1) + ' anim-apparait" style="--d:' + (i * .2) + '" cx="' + (40 + i * 64) + '" cy="150" r="16"/>';
+      return svg(s);
+    },
+    cerveau: function () {
+      var s = '<path class="trait f-s i-c4" d="M200 60 C150 30 80 60 90 120 C50 140 60 210 120 220 C140 260 190 255 200 230 C210 255 260 260 280 220 C340 210 350 140 310 120 C320 60 250 30 200 60Z"/><path class="trait i-c4 fin" d="M200 60 V230"/>';
+      [[140, 110], [170, 170], [120, 180], [250, 100], [280, 160], [230, 190]].forEach(function (p, i) { s += '<circle class="f-c1 anim-pulse" style="--d:' + (i * .25) + '" cx="' + p[0] + '" cy="' + p[1] + '" r="7"/>'; });
+      return svg(s + '<path class="trait i-c1 fin" d="M140 110 L170 170 L120 180 M250 100 L280 160 L230 190"/>');
+    },
+    agent: function () {
+      var s = '<circle class="trait i-l" cx="200" cy="150" r="105"/><g class="anim-tourne-lent" style="transform-origin:200px 150px;transform-box:view-box">';
+      [[200, 45, "i-c1"], [305, 150, "i-c2"], [200, 255, "i-c4"], [95, 150, "i-c5"]].forEach(function (p) { s += '<circle class="trait f-s ' + p[2] + '" cx="' + p[0] + '" cy="' + p[1] + '" r="26"/>'; });
+      s += '</g><circle class="trait f-s i-t" cx="200" cy="150" r="54"/><circle class="f-c1 anim-pulse" cx="200" cy="150" r="14"/>';
+      return svg(s + '<path class="trait i-t fin" d="M170 132 q30 -30 60 0 M170 168 q30 30 60 0"/>');
+    }
+  };
+  ILLUS.frise = ILLUS.frise;
+
+  // Initiales affichées sur la carte de repli : celles du nom en caractères latins, pour les seuls portraits.
+  var INITIALES = {};
+  L.fr.diapos.forEach(function (d) {
+    if (d.type === "portrait" && d.personne && (PHOTOS[d.personne] || {}).illus === "profil") INITIALES[d.personne] = d.nom.split(/\s+/).filter(function (m) { return /^[A-Z]/.test(m); }).slice(0, 2).map(function (m) { return m[0]; }).join("");
+  });
+
+  /* ---------- Photos : dossier local, puis Wikimedia Commons, sinon une carte dessinée ---------- */
+  function photo(cle, nom) {
+    var p = PHOTOS[cle] || {};
+    var initiales = INITIALES[cle] || "";
+    var sources = [p.local, p.miniature, p.original].filter(Boolean);
+    return '<div class="photo a" style="--i:0"><div class="photo__cadre">' +
+      '<div class="photo__repli">' + (ILLUS[p.illus || "cerveau"] || ILLUS.cerveau)() + '<span class="photo__initiales">' + esc(initiales) + '</span></div>' +
+      (sources.length ? '<img alt="' + esc(nom) + '" data-sources="' + esc(sources.join("|")) + '" data-page="' + esc(p.page || "") + '" hidden>' : "") +
+      '</div></div>';
+  }
+  function chargerPhotos(racine) {
+    Array.prototype.forEach.call(racine.querySelectorAll("img[data-sources]"), function (img) {
+      if (img.dataset.pret) return;
+      img.dataset.pret = "1";
+      var sources = img.dataset.sources.split("|"), n = 0;
+      function essayer() {
+        if (n >= sources.length) return;
+        img.src = sources[n++];
+      }
+      img.onload = function () {
+        img.hidden = false;
+        var repli = img.parentNode.querySelector(".photo__repli");
+        if (repli) repli.style.display = "none";
+        if (/^https?:/.test(img.src) && img.dataset.page) {
+          var a = document.createElement("a");
+          a.className = "photo__credit"; a.href = img.dataset.page; a.target = "_blank"; a.rel = "noopener"; a.textContent = UI[langue].photo;
+          img.parentNode.appendChild(a);
+        }
+      };
+      img.onerror = essayer;
+      essayer();
+    });
+  }
+
+  /* ---------- Rendu d'une diapositive ---------- */
+  var langue = "fr", index = 0, diapos = [], cadre = document.getElementById("cadre");
+
+  function points(liste, debut) {
+    return '<ul class="points">' + (liste || []).map(function (p, i) { return '<li class="a" style="--i:' + (debut + i) + '">' + riche(p) + '</li>'; }).join("") + '</ul>';
+  }
+  function illustration(d, i) {
+    if (d.personne && PHOTOS[d.personne] && d.type !== "schema") return photo(d.personne, d.nom || d.titre);
+    if (d.illus && ILLUS[d.illus]) return '<div class="illus a" style="--i:' + (i || 1) + '">' + ILLUS[d.illus]() + '</div>';
+    return "";
+  }
+  function rendre(d, n, total) {
+    var h = "", t = d.type;
+    if (t === "couverture") {
+      h = '<div><p class="surtitre a" style="--i:0">' + riche(d.surtitre) + '</p><h1 class="titre a" style="--i:1">' + riche(d.titre) + '</h1><p class="sous-titre a" style="--i:2">' + riche(d.sousTitre) + '</p></div>' +
+        '<div class="illus a" style="--i:3">' + ILLUS[d.illus || "agent"]() + '</div><span class="anneau-decor" aria-hidden="true"></span>';
+    } else if (t === "plan") {
+      h = '<h2 class="titre a" style="--i:0">' + riche(d.titre) + '</h2><ol class="plan">' + d.points.map(function (p, i) { return '<li class="a" style="--i:' + (i + 1) + '"><span>' + riche(p) + '</span></li>'; }).join("") + '</ol>';
+    } else if (t === "section") {
+      h = '<div><div class="grand-numero">' + esc(d.numero) + '</div><h2 class="titre a" style="--i:1">' + riche(d.titre) + '</h2><p class="periode a" style="--i:2">' + riche(d.periode) + '</p><p class="texte a" style="--i:3">' + riche(d.texte) + '</p></div>' + illustration(d, 3);
+    } else if (t === "texte") {
+      var cote = illustration(d, 1);
+      h = '<div class="' + (cote ? "colonnes" : "") + '"><div>' + (d.annee ? '<span class="annee a" style="--i:0">' + esc(d.annee) + '</span>' : "") +
+        '<h2 class="titre a" style="--i:0">' + riche(d.titre) + '</h2>' + points(d.points, 1) + '</div>' + cote + '</div>';
+    } else if (t === "schema") {
+      h = '<div class="colonnes colonnes--schema"><div class="illus a a--gauche" style="--i:0">' + (ILLUS[d.illus] ? ILLUS[d.illus]() : "") + '</div><div>' +
+        (d.annee ? '<span class="annee a" style="--i:0">' + esc(d.annee) + '</span>' : "") + '<h2 class="titre a" style="--i:1">' + riche(d.titre) + '</h2>' + points(d.points, 2) + '</div></div>';
+    } else if (t === "portrait") {
+      h = '<div class="portrait">' + photo(d.personne, d.nom) + '<div><h2 class="nom a" style="--i:1">' + riche(d.nom) + '</h2><p class="dates a" style="--i:2">' + riche(d.dates) + '</p><p class="role a" style="--i:3">' + riche(d.role) + '</p>' +
+        points(d.points, 4) + (d.citation ? '<p class="citation-courte a" style="--i:8">« ' + riche(d.citation) + ' »<small>' + riche(d.source || "") + '</small></p>' : "") + '</div></div>';
+    } else if (t === "citation") {
+      h = '<span class="guillemet" aria-hidden="true">“</span><blockquote class="citation__texte a" style="--i:0">' + riche(d.texte) + '</blockquote><p class="citation__auteur a" style="--i:1">' + riche(d.auteur) + '</p><p class="citation__source a" style="--i:2">' + riche(d.source) + '</p>';
+    } else if (t === "deux") {
+      h = '<h2 class="titre a" style="--i:0">' + riche(d.titre) + '</h2><div class="deux">' + [d.gauche, d.droite].map(function (c, k) {
+        return '<div class="carte a" style="--i:' + (1 + k * 2) + '"><h3>' + riche(c.titre) + '</h3>' + points(c.points, 2 + k * 2) + '</div>'; }).join("") + '</div>';
+    } else if (t === "frise") {
+      h = '<h2 class="titre a" style="--i:0">' + riche(d.titre) + '</h2><div class="frise' + (d.evenements.length > 6 ? " frise--dense" : "") + '"><span class="frise__ligne"></span>' +
+        d.evenements.map(function (e, k) { return '<div class="evenement a" style="--i:' + (k + 3) + '"><span class="evenement__annee">' + esc(e.annee) + '</span><p class="evenement__titre">' + riche(e.titre) + '</p><p class="evenement__texte">' + riche(e.texte) + '</p></div>'; }).join("") + '</div>';
+    } else if (t === "chat") {
+      h = (d.annee ? '<span class="annee a" style="--i:0">' + esc(d.annee) + '</span>' : "") + '<h2 class="titre a" style="--i:0">' + riche(d.titre) + '</h2><div class="chat">' +
+        d.echanges.map(function (e) { return '<p class="bulle bulle--' + e.qui + '">' + riche(e.texte) + '</p>'; }).join("") + '<span class="frappe" aria-hidden="true"><i></i><i></i><i></i></span></div><p class="legende">' + riche(d.legende) + '</p>';
+    } else if (t === "video") {
+      h = '<h2 class="titre a" style="--i:0">' + riche(d.titre) + '</h2><div class="video a" style="--i:1" data-youtube="' + esc(d.youtube) + '"><div class="video__repli"><span class="video__jouer"></span><span>' + esc(UI[langue].video_lancer) + '</span>' +
+        '<a href="https://www.youtube.com/watch?v=' + esc(d.youtube) + '" target="_blank" rel="noopener">' + esc(UI[langue].video_ouvrir) + '</a></div></div><p class="legende a" style="--i:2">' + riche(d.legende) + '</p>';
+    } else if (t === "quiz") {
+      h = '<div class="quiz" data-reponse="' + d.reponse + '"><h2 class="question a" style="--i:0">' + riche(d.question) + '</h2><ol class="choix">' +
+        d.choix.map(function (c, k) { return '<li class="a" style="--i:' + (k + 1) + '"><button type="button" class="' + (k === d.reponse ? "juste" : "faux") + '" aria-pressed="false"><span class="lettre">' + LETTRES[langue][k] + '</span><span>' + riche(c) + '</span></button></li>'; }).join("") +
+        '</ol><button type="button" class="reveler a" style="--i:6">' + esc(UI[langue].reveler) + '</button><p class="explication">' + riche(d.explication) + '</p></div>';
+    } else if (t === "fin") {
+      h = '<div class="fin"><h2 class="titre a" style="--i:0">' + riche(d.titre) + '</h2>' + points(d.points, 1) + (d.texte ? '<p class="devoir a" style="--i:7">' + riche(d.texte) + '</p>' : "") + '</div>';
+    }
+    return '<section class="diapo diapo--' + t + '" data-n="' + n + '" aria-roledescription="slide" aria-label="' + esc(tpl(UI[langue].diapo, { n: n + 1, t: total })) + '">' + h +
+      '<span class="diapo__marque">' + esc(L[langue].titre) + '</span><span class="diapo__num">' + (n + 1) + ' / ' + total + '</span></section>';
+  }
+
+  /* ---------- Construction, navigation ---------- */
+  function construire() {
+    var deck = L[langue];
+    document.documentElement.lang = langue;
+    document.documentElement.dir = langue === "ar" ? "rtl" : "ltr";
+    document.title = deck.titre + " · " + UI[langue].marque;
+    document.querySelector(".marque").setAttribute("href", langue === "fr" ? "index.html" : langue + "/index.html");
+    cadre.innerHTML = deck.diapos.map(function (d, n) { return rendre(d, n, deck.diapos.length); }).join("");
+    diapos = Array.prototype.slice.call(cadre.children);
+    Array.prototype.forEach.call(document.querySelectorAll("[data-t]"), function (el) { el.textContent = UI[langue][el.dataset.t]; });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-titre]"), function (el) { el.title = UI[langue][el.dataset.titre]; el.setAttribute("aria-label", UI[langue][el.dataset.titre]); });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-langue]"), function (b) { b.setAttribute("aria-pressed", b.dataset.langue === langue ? "true" : "false"); });
+    Array.prototype.forEach.call(document.querySelectorAll(".fleche"), function (p) { p.style.transform = langue === "ar" ? "scaleX(-1)" : ""; p.style.transformOrigin = "12px 12px"; });
+    cadre.querySelectorAll(".quiz").forEach(initQuiz);
+    aller(Math.min(index, diapos.length - 1), true);
+    echelle();
+    ajusterTout();
+  }
+  // Réduit pas à pas les diapositives dont le contenu déborde sur le pied (textes plus longs selon la langue).
+  var ZOOMS = [1, .94, .88, .82, .76, .7];
+  function deborde(d) {
+    var R = d.getBoundingClientRect(), r = R.height / 720 || 1, trop = false;
+    Array.prototype.forEach.call(d.querySelectorAll("*"), function (el) {
+      if (trop || (el instanceof SVGElement && !(el instanceof SVGSVGElement))) return;
+      if (el.closest(".diapo__marque, .diapo__num, .anneau-decor, .guillemet, .photo__repli, .frappe")) return;
+      var e = el.getBoundingClientRect();
+      if (!e.width || !e.height) return;
+      trop = e.bottom > R.bottom - 46 * r || e.right > R.right - 24 * r || e.left < R.left + 24 * r || e.top < R.top + 12 * r;
+    });
+    return trop;
+  }
+  function ajuster(d) {
+    var k = 0;
+    d.style.removeProperty("--z");
+    while (deborde(d) && ++k < ZOOMS.length) d.style.setProperty("--z", ZOOMS[k]);
+    if (k >= ZOOMS.length) console.warn("Diapositive trop chargée : " + (+d.dataset.n + 1));
+  }
+  function ajusterTout() {
+    var racine = document.documentElement;
+    racine.classList.add("mesure");
+    diapos.forEach(ajuster);
+    racine.classList.remove("mesure");
+  }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (diapos.length) ajusterTout(); });
+  var minuteursChat = [];
+  function aller(n, force) {
+    if (!diapos.length) return;
+    n = Math.max(0, Math.min(diapos.length - 1, n));
+    if (n === index && !force) return;
+    index = n;
+    diapos.forEach(function (d, k) {
+      var etait = d.classList.contains("active");
+      d.classList.toggle("active", k === n);
+      d.classList.toggle("passee", k < n);
+      if (k === n && (!etait || force)) { void d.offsetWidth; }
+    });
+    var d = diapos[n], donnees = L[langue].diapos[n];
+    chargerPhotos(d);
+    animerChat(d);
+    preparerVideo(d);
+    document.getElementById("compteur").textContent = (n + 1) + " / " + diapos.length;
+    document.getElementById("titre-courant").textContent = (donnees.titre || donnees.nom || donnees.question || L[langue].titre).replace(/\*/g, "");
+    document.getElementById("notes-texte").innerHTML = riche(donnees.notes || "");
+    document.documentElement.style.setProperty("--avance", ((n + 1) / diapos.length).toFixed(4));
+    document.querySelector(".barre").style.setProperty("--avance", ((n + 1) / diapos.length).toFixed(4));
+    if (location.hash !== "#" + (n + 1)) history.replaceState(null, "", "#" + (n + 1));
+    ecrire("lx-lecon1", JSON.stringify({ langue: langue, index: n }));
+    // Précharge les photos de la diapositive suivante.
+    if (diapos[n + 1]) chargerPhotos(diapos[n + 1]);
+  }
+  function animerChat(d) {
+    minuteursChat.forEach(clearTimeout); minuteursChat = [];
+    var bulles = d.querySelectorAll(".bulle"), frappe = d.querySelector(".frappe");
+    if (!bulles.length) return;
+    Array.prototype.forEach.call(bulles, function (b) { b.classList.remove("vue"); });
+    var t = 500;
+    Array.prototype.forEach.call(bulles, function (b) {
+      var machine = b.classList.contains("bulle--m");
+      if (machine && frappe) {
+        minuteursChat.push(setTimeout(function () { frappe.style.top = b.offsetTop + "px"; frappe.classList.add("vue"); }, t));
+        t += 1100;
+      }
+      minuteursChat.push(setTimeout(function () { if (frappe) frappe.classList.remove("vue"); b.classList.add("vue"); }, t));
+      t += machine ? 900 : 1300;
+    });
+  }
+  function preparerVideo(d) {
+    var v = d.querySelector(".video[data-youtube]");
+    if (!v || v.dataset.pret) return;
+    v.dataset.pret = "1";
+    var repli = v.querySelector(".video__repli");
+    if (!navigator.onLine) { repli.insertAdjacentHTML("afterbegin", "<p>" + esc(UI[langue].video_hors) + "</p>"); return; }
+    // Image de la vidéo en fond, si YouTube répond.
+    var vignette = new Image();
+    vignette.className = "video__vignette"; vignette.alt = "";
+    vignette.onerror = function () { vignette.remove(); };
+    vignette.src = "https://i.ytimg.com/vi/" + encodeURIComponent(v.dataset.youtube) + "/hqdefault.jpg";
+    v.insertBefore(vignette, repli);
+    // Le lecteur n'est chargé qu'au clic : la présentation reste légère et rien ne part sans le vouloir.
+    v.querySelector(".video__jouer").parentNode.addEventListener("click", function (e) {
+      if (e.target.closest("a")) return;
+      v.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(v.dataset.youtube) + '?autoplay=1&rel=0" title="YouTube" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+    });
+    repli.style.cursor = "pointer";
+  }
+  function initQuiz(q) {
+    q.querySelectorAll(".choix button").forEach(function (b) {
+      b.addEventListener("click", function (e) {
+        e.stopPropagation();
+        q.querySelectorAll(".choix button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      });
+    });
+    q.querySelector(".reveler").addEventListener("click", function (e) { e.stopPropagation(); q.classList.toggle("quiz--revele"); });
+  }
+  function suivant() { aller(index + 1); }
+  function precedent() { aller(index - 1); }
+
+  // Mise à l'échelle 16:9
+  function echelle() {
+    var s = document.getElementById("scene"), w = s.clientWidth - 24, h = s.clientHeight - 24;
+    document.getElementById("cadre").style.setProperty("--k", Math.max(.1, Math.min(w / 1280, h / 720)).toFixed(4));
+  }
+  window.addEventListener("resize", echelle);
+
+  /* ---------- Vue d'ensemble, notes, thème, plein écran, impression ---------- */
+  function apercu(ouvrir) {
+    var a = document.getElementById("apercu"), g = document.getElementById("apercu-grille");
+    if (ouvrir === undefined) ouvrir = a.hidden;
+    a.hidden = !ouvrir;
+    if (!ouvrir) return;
+    g.innerHTML = "";
+    diapos.forEach(function (d, k) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "miniature"; b.setAttribute("aria-label", tpl(UI[langue].diapo, { n: k + 1, t: diapos.length }));
+      if (k === index) b.setAttribute("aria-current", "true");
+      var c = d.cloneNode(true); c.classList.add("active"); c.classList.remove("passee");
+      c.querySelectorAll("iframe").forEach(function (f) { f.remove(); });
+      b.innerHTML = '<span class="miniature__num">' + (k + 1) + '</span>';
+      b.appendChild(c);
+      b.addEventListener("click", function () { apercu(false); aller(k); });
+      g.appendChild(b);
+      requestAnimationFrame(function () { b.style.setProperty("--km", (b.clientWidth / 1280).toFixed(4)); c.style.setProperty("--km", (b.clientWidth / 1280).toFixed(4)); });
+    });
+    var courant = g.children[index]; if (courant) courant.scrollIntoView({ block: "center" });
+  }
+  function notes() {
+    var n = document.getElementById("notes"), b = document.querySelector('[data-action="notes"]');
+    n.hidden = !n.hidden;
+    document.body.classList.toggle("avec-notes", !n.hidden);
+    b.setAttribute("aria-pressed", n.hidden ? "false" : "true");
+    echelle();
+  }
+  function theme() {
+    var r = document.documentElement, t = r.dataset.theme === "light" ? "dark" : "light";
+    r.dataset.theme = t; ecrire("lx-theme", t);
+  }
+  function plein() {
+    if (document.fullscreenElement) document.exitFullscreen();
+    else if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(function () {});
+  }
+  function imprimer() {
+    var zone = document.getElementById("impression");
+    zone.innerHTML = cadre.innerHTML;
+    zone.querySelectorAll(".diapo").forEach(function (d) { d.classList.add("active"); d.classList.remove("passee"); d.querySelectorAll(".bulle").forEach(function (b) { b.classList.add("vue"); }); });
+    zone.querySelectorAll(".quiz").forEach(function (q) { q.classList.add("quiz--revele"); });
+    zone.querySelectorAll("img[data-sources]").forEach(function (i) { i.removeAttribute("data-pret"); });
+    chargerPhotos(zone);
+    setTimeout(function () { window.print(); }, 300);
+  }
+
+  /* ---------- Commandes ---------- */
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-action]");
+    if (b) {
+      var a = b.dataset.action;
+      if (a === "suivant") suivant(); else if (a === "precedent") precedent(); else if (a === "apercu") apercu();
+      else if (a === "notes") notes(); else if (a === "theme") theme(); else if (a === "plein") plein(); else if (a === "imprimer") imprimer();
+      return;
+    }
+    var l = e.target.closest("[data-langue]");
+    if (l) { langue = l.dataset.langue; construire(); return; }
+    // Un clic dans la scène fait avancer (ou reculer, sur le premier quart).
+    if (e.target.closest(".scene") && !e.target.closest("a, button, iframe, .video")) {
+      var x = e.clientX / window.innerWidth, rtl = langue === "ar";
+      if (rtl ? x > .75 : x < .25) precedent(); else suivant();
+    }
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    var rtl = langue === "ar", k = e.key;
+    if ((k === " " || k === "Enter") && e.target.closest && e.target.closest("button, a")) return; // le bouton reçoit sa propre action
+    if (!document.getElementById("apercu").hidden && k === "Escape") { apercu(false); return; }
+    if (k === (rtl ? "ArrowLeft" : "ArrowRight") || k === "ArrowDown" || k === "PageDown" || k === " " || k === "Enter") { e.preventDefault(); suivant(); }
+    else if (k === (rtl ? "ArrowRight" : "ArrowLeft") || k === "ArrowUp" || k === "PageUp" || k === "Backspace") { e.preventDefault(); precedent(); }
+    else if (k === "Home") aller(0); else if (k === "End") aller(diapos.length - 1);
+    else if (k === "o" || k === "O") apercu(); else if (k === "n" || k === "N") notes();
+    else if (k === "t" || k === "T") theme(); else if (k === "f" || k === "F") plein(); else if (k === "p" || k === "P") imprimer();
+    else if (k === "r" || k === "R") { var q = diapos[index].querySelector(".quiz"); if (q) q.classList.toggle("quiz--revele"); }
+    else if (k === "l" || k === "L") { langue = { fr: "en", en: "ar", ar: "fr" }[langue]; construire(); }
+  });
+  var depart = null;
+  document.getElementById("scene").addEventListener("touchstart", function (e) { depart = e.touches[0].clientX; }, { passive: true });
+  document.getElementById("scene").addEventListener("touchend", function (e) {
+    if (depart == null) return;
+    var dx = e.changedTouches[0].clientX - depart; depart = null;
+    if (Math.abs(dx) < 50) return;
+    if ((dx < 0) !== (langue === "ar")) suivant(); else precedent();
+  });
+  window.addEventListener("hashchange", function () { var n = parseInt(location.hash.slice(1), 10); if (n) aller(n - 1); });
+
+  /* ---------- Démarrage : langue de l'adresse, sinon la dernière utilisée ---------- */
+  var memo = null; try { memo = JSON.parse(lire("lx-lecon1") || "null"); } catch (e) { memo = null; }
+  var parametre = (location.search.match(/[?&]lang=(fr|en|ar)\b/) || [])[1];
+  langue = parametre || (memo && memo.langue) || (/^ar/.test(navigator.language) ? "ar" : /^en/.test(navigator.language) ? "en" : "fr");
+  if (!L[langue]) langue = "fr";
+  var h = parseInt(location.hash.slice(1), 10);
+  index = h ? h - 1 : (memo && memo.langue === langue ? memo.index || 0 : 0);
+  var th = lire("lx-theme"); if (th === "light" || th === "dark") document.documentElement.dataset.theme = th;
+  construire();
+})();
+</script>
+</body>
+</html>
