@@ -70,7 +70,6 @@ a { color: var(--t2); }
 
 /* ---------- Scène et diapositives ---------- */
 .scene { position: fixed; inset: 56px 0 52px 0; overflow: hidden; }
-.avec-notes .scene { bottom: 200px; }
 .scene__cadre { position: absolute; left: 50%; top: 50%; width: 1280px; height: 720px; transform: translate(-50%, -50%) scale(var(--k, 1)); }
 .diapo {
   position: absolute; inset: 0; overflow: hidden; border-radius: 22px; padding: 64px 80px 56px;
@@ -273,10 +272,35 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
 /* ---------- Pied : navigation ---------- */
 .pied { position: fixed; inset: auto 0 0 0; z-index: 20; height: 52px; display: flex; align-items: center; justify-content: center; gap: 14px; font-family: var(--f-ui); }
 .pied__compteur { min-width: 90px; text-align: center; color: var(--doux); font-weight: 700; font-variant-numeric: tabular-nums; }
-.avec-notes .pied { bottom: 148px; }
-.notes { position: fixed; inset: auto 0 0 0; z-index: 19; height: 148px; overflow-y: auto; padding: 14px 24px; border-top: 1px solid var(--ligne); background: var(--surface); font-size: 18px; line-height: 1.6; }
-.notes h2 { margin: 0 0 4px; color: var(--doux); font: 700 13px var(--f-ui); letter-spacing: .1em; text-transform: uppercase; }
-.notes p { margin: 0; max-width: 1100px; }
+/* ---------- Mode présentateur : une seconde fenêtre, vue du seul enseignant ----------
+   La fenêtre projetée n'affiche jamais les notes. Celle-ci montre la diapositive en cours,
+   la suivante, les notes, le chronomètre et l'heure ; les deux fenêtres avancent ensemble. */
+.console { display: none; }
+.mode-presentateur .scene { inset-block: 56px 52px; inset-inline: 0 40%; }
+.mode-presentateur .pied { inset-inline: 0 40%; }
+.mode-presentateur .console {
+  position: fixed; inset-block: 56px 0; inset-inline-end: 0; z-index: 19; width: 40%; display: flex; flex-direction: column; gap: 14px;
+  padding: 14px 18px; border-inline-start: 1px solid var(--ligne); background: var(--surface); font-family: var(--f-ui);
+}
+.console h2 { margin: 0; color: var(--doux); font: 700 12px var(--f-ui); letter-spacing: .1em; text-transform: uppercase; }
+.console__horloges { display: flex; gap: 12px; align-items: center; }
+.console__horloge { display: flex; flex-direction: column; margin: 0; padding: 8px 14px; border: 1px solid var(--ligne); border-radius: 14px; background: var(--fond); }
+.console__horloge span { color: var(--doux); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.console__horloge strong { font: 700 30px/1.1 var(--f-code); font-variant-numeric: tabular-nums; }
+.console__horloges .outil { margin-inline-start: auto; }
+.console__suivante .miniature { display: block; width: min(100%, 360px); margin-top: 6px; cursor: default; }
+.console__suivante .miniature * { animation: none !important; transition: none !important; }
+.console__suivante .miniature .a, .console__suivante .miniature .bulle { opacity: 1; transform: none; }
+.console__fin { margin: 6px 0 0; color: var(--doux); font-weight: 700; }
+.notes { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; }
+.notes__tete { display: flex; align-items: center; justify-content: space-between; }
+.notes__tete .outil { width: 32px; height: 32px; font: 700 13px var(--f-ui); }
+.notes__tete span { display: flex; gap: 6px; }
+.mode-presentateur [data-action="presentateur"] { display: none; }
+.notes__texte { flex: 1; overflow-y: auto; padding: 14px 16px; border: 1px solid var(--ligne); border-radius: 14px; background: var(--fond); font-family: var(--f-texte); font-size: var(--taille-notes, 22px); line-height: 1.55; }
+.notes__texte p { margin: 0 0 .6em; }
+.notes__reponse { padding: 8px 12px; border-radius: 10px; background: color-mix(in srgb, var(--juste) 18%, transparent); font-weight: 700; }
+.console__aide { margin: 0; color: var(--doux); font-size: 13px; line-height: 1.45; }
 
 /* Vue d'ensemble */
 .apercu { position: fixed; inset: 56px 0 0 0; z-index: 30; overflow-y: auto; padding: 24px; background: var(--fond); }
@@ -305,7 +329,7 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
 @page { size: 1280px 720px; margin: 0; }
 @media print {
   html, body { height: auto; overflow: visible; background: #fff; }
-  .barre, .pied, .notes, .apercu, .scene { display: none !important; }
+  .barre, .pied, .console, .apercu, .scene { display: none !important; }
   .impression { display: block !important; }
   .impression .diapo { position: relative; opacity: 1; visibility: visible; transform: none; width: 1280px; height: 720px; border-radius: 0; box-shadow: none; break-after: page; page-break-after: always; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .impression .a, .impression .bulle { opacity: 1 !important; transform: none !important; animation: none !important; }
@@ -324,14 +348,27 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
   </div>
   <div class="outils">
     <button type="button" class="outil outil--secondaire" data-action="apercu" data-titre="apercu"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></svg></button>
-    <button type="button" class="outil outil--secondaire" data-action="notes" data-titre="notes" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></button>
+    <button type="button" class="outil outil--secondaire" data-action="presentateur" data-titre="presentateur"><svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="11" height="8" rx="1.2"/><rect x="10.5" y="11" width="11" height="8" rx="1.2"/><path d="M5 15.5h3M5 18.5h3"/></svg></button>
     <button type="button" class="outil outil--secondaire" data-action="imprimer" data-titre="imprimer"><svg viewBox="0 0 24 24"><path d="M7 9V3.5h10V9"/><rect x="3.5" y="9" width="17" height="8" rx="1.5"/><path d="M7 14h10v6.5H7z"/></svg></button>
     <button type="button" class="outil" data-action="theme" data-titre="theme"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></svg></button>
     <button type="button" class="outil" data-action="plein" data-titre="plein"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg></button>
   </div>
 </header>
 <main class="scene" id="scene" aria-live="polite"><div class="scene__cadre" id="cadre"></div></main>
-<aside class="notes" id="notes" hidden><h2 data-t="notes"></h2><p id="notes-texte"></p></aside>
+<aside class="console" id="console" aria-label="Console">
+  <div class="console__horloges">
+    <p class="console__horloge"><span data-t="chrono"></span><strong id="chrono" dir="ltr">00:00</strong></p>
+    <p class="console__horloge"><span data-t="heure"></span><strong id="heure" dir="ltr">--:--</strong></p>
+    <button type="button" class="outil" data-action="zero" data-titre="zero"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4h4"/></svg></button>
+  </div>
+  <div class="console__suivante"><h2 data-t="suivante"></h2><div id="suivante"></div></div>
+  <section class="notes" aria-labelledby="notes-titre">
+    <div class="notes__tete"><h2 id="notes-titre" data-t="notes"></h2>
+      <span><button type="button" class="outil" data-action="moins" data-titre="moins">A−</button> <button type="button" class="outil" data-action="plus" data-titre="plus">A+</button></span></div>
+    <div class="notes__texte" id="notes-texte"></div>
+  </section>
+  <p class="console__aide" data-t="aide"></p>
+</aside>
 <nav class="pied" aria-label="Navigation">
   <button type="button" class="outil" data-action="precedent" data-titre="precedent"><svg viewBox="0 0 24 24"><path class="fleche" d="M15 5l-7 7 7 7"/></svg></button>
   <span class="pied__compteur" id="compteur"></span>
@@ -349,13 +386,25 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
 
   var L = window.LECON, PHOTOS = window.PHOTOS || {};
   var UI = {
-    fr: { marque: "IA · Chapitre 1", notes: "Notes de l'enseignant", apercu: "Vue d'ensemble (O)", imprimer: "Imprimer / PDF (P)", theme: "Thème Nuit ou Jour (T)",
+    fr: { presentateur: "Mode présentateur : vos notes dans une seconde fenêtre, vue de vous seul (S)", chrono: "Chronomètre", heure: "Heure", zero: "Remettre le chronomètre à zéro",
+          suivante: "Diapositive suivante", fin: "Fin de la présentation", reponse: "Réponse :", plus: "Agrandir les notes", moins: "Réduire les notes", ecran: "Présentateur",
+          aide: "Cette fenêtre n'est vue que par vous. Placez l'autre fenêtre sur le vidéoprojecteur (écran étendu : touches Windows + P, puis « Étendre ») et appuyez sur F pour le plein écran. Les deux fenêtres avancent ensemble.",
+          popup: "Le navigateur a bloqué la fenêtre du présentateur : autorisez les fenêtres surgissantes (pop-ups) pour cette page.",
+          marque: "IA · Chapitre 1", notes: "Notes de l'enseignant", apercu: "Vue d'ensemble (O)", imprimer: "Imprimer / PDF (P)", theme: "Thème Nuit ou Jour (T)",
           plein: "Plein écran (F)", precedent: "Précédente (←)", suivant: "Suivante (→)", reveler: "Afficher la réponse", video_hors: "La vidéo demande une connexion Internet.",
           video_ouvrir: "Ouvrir sur YouTube", video_lancer: "Lancer la vidéo", domaine: "domaine public", diapo: "Diapositive {n} sur {t}" },
-    en: { marque: "AI · Chapter 1", notes: "Teacher's notes", apercu: "Overview (O)", imprimer: "Print / PDF (P)", theme: "Night or Day theme (T)",
+    en: { presentateur: "Presenter view: your notes in a second window that only you see (S)", chrono: "Timer", heure: "Time", zero: "Reset the timer",
+          suivante: "Next slide", fin: "End of the presentation", reponse: "Answer:", plus: "Larger notes", moins: "Smaller notes", ecran: "Presenter",
+          aide: "Only you see this window. Put the other window on the projector (extended display: Windows + P, then “Extend”) and press F for full screen. Both windows move together.",
+          popup: "The browser blocked the presenter window: allow pop-ups for this page.",
+          marque: "AI · Chapter 1", notes: "Teacher's notes", apercu: "Overview (O)", imprimer: "Print / PDF (P)", theme: "Night or Day theme (T)",
           plein: "Full screen (F)", precedent: "Previous (←)", suivant: "Next (→)", reveler: "Show the answer", video_hors: "The video needs an Internet connection.",
           video_ouvrir: "Open on YouTube", video_lancer: "Play the video", domaine: "public domain", diapo: "Slide {n} of {t}" },
-    ar: { marque: "الذكاء الاصطناعي · الفصل 1", notes: "ملاحظات الأستاذ", apercu: "نظرة شاملة (O)", imprimer: "طباعة / PDF ‏(P)", theme: "المظهر الليلي أو النهاري (T)",
+    ar: { presentateur: "وضع المقدِّم: ملاحظاتكم في نافذة ثانية لا يراها غيركم (S)", chrono: "الميقاتية", heure: "الساعة", zero: "إعادة ضبط الميقاتية",
+          suivante: "الشريحة التالية", fin: "نهاية العرض", reponse: "الجواب:", plus: "تكبير خط الملاحظات", moins: "تصغير خط الملاحظات", ecran: "المقدِّم",
+          aide: "لا يرى هذه النافذة أحدٌ غيركم. ضعوا النافذة الأخرى على جهاز العرض (الشاشة الممتدّة: مفتاحا Windows + P، ثم «توسيع») واضغطوا F لملء الشاشة. تتقدّم النافذتان معًا.",
+          popup: "منع المتصفّح نافذة المقدِّم: اسمحوا بالنوافذ المنبثقة لهذه الصفحة.",
+          marque: "الذكاء الاصطناعي · الفصل 1", notes: "ملاحظات الأستاذ", apercu: "نظرة شاملة (O)", imprimer: "طباعة / PDF ‏(P)", theme: "المظهر الليلي أو النهاري (T)",
           plein: "ملء الشاشة (F)", precedent: "السابقة", suivant: "التالية", reveler: "إظهار الجواب", video_hors: "يحتاج الفيديو إلى اتصال بالإنترنت.",
           video_ouvrir: "فتح على YouTube", video_lancer: "تشغيل الفيديو", domaine: "ملكية عامة", diapo: "الشريحة {n} من {t}" }
   };
@@ -705,8 +754,10 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     var deck = L[langue];
     document.documentElement.lang = langue;
     document.documentElement.dir = langue === "ar" ? "rtl" : "ltr";
-    document.title = deck.titre + " · " + UI[langue].marque;
+    document.title = (PRESENTATEUR ? UI[langue].ecran + " · " : "") + deck.titre + " · " + UI[langue].marque;
     document.querySelector(".marque").setAttribute("href", langue === "fr" ? "index.html" : langue + "/index.html");
+    // La langue choisie remplace celle de l'adresse : un rechargement la garde.
+    if (/[?&]lang=/.test(location.search)) history.replaceState(null, "", location.search.replace(/([?&])lang=[^&#]*/, "$1lang=" + langue) + location.hash);
     cadre.innerHTML = deck.diapos.map(function (d, n) { return rendre(d, n, deck.diapos.length); }).join("");
     diapos = Array.prototype.slice.call(cadre.children);
     Array.prototype.forEach.call(document.querySelectorAll("[data-t]"), function (el) { el.textContent = UI[langue][el.dataset.t]; });
@@ -759,16 +810,86 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     var d = diapos[n], donnees = L[langue].diapos[n];
     chargerPhotos(d);
     animerChat(d);
-    preparerVideo(d);
+    if (!PRESENTATEUR) preparerVideo(d);
     document.getElementById("compteur").textContent = (n + 1) + " / " + diapos.length;
     document.getElementById("titre-courant").textContent = (donnees.titre || donnees.nom || donnees.question || L[langue].titre).replace(/\*/g, "");
-    document.getElementById("notes-texte").innerHTML = riche(donnees.notes || "");
+    if (PRESENTATEUR) majConsole(n, donnees);
     document.documentElement.style.setProperty("--avance", ((n + 1) / diapos.length).toFixed(4));
     document.querySelector(".barre").style.setProperty("--avance", ((n + 1) / diapos.length).toFixed(4));
     if (location.hash !== "#" + (n + 1)) history.replaceState(null, "", "#" + (n + 1));
-    ecrire("lx-lecon1", JSON.stringify({ langue: langue, index: n }));
+    if (!PRESENTATEUR) ecrire("lx-lecon1", JSON.stringify({ langue: langue, index: n }));
     // Précharge les photos de la diapositive suivante.
     if (diapos[n + 1]) chargerPhotos(diapos[n + 1]);
+    envoyer({ type: "etat", n: n, langue: langue });
+  }
+
+  /* ---------- Mode présentateur ---------- */
+  var PRESENTATEUR = /[?&]presentateur\b/.test(location.search);
+  var moi = Math.random().toString(36).slice(2), role = PRESENTATEUR ? "presentateur" : "projection", distant = false, fenetre = null, canal = null;
+  try { canal = new BroadcastChannel("lx-lecon1"); } catch (e) { canal = null; }
+  // Les messages passent par la fenêtre ouvreuse (fonctionne aussi en file://) et par un canal (si l'une des fenêtres est rechargée).
+  function envoyer(m) {
+    if (distant) return;
+    m.lecon1 = 1; m.de = moi; m.role = role;
+    var cible = PRESENTATEUR ? window.opener : fenetre;
+    try { if (cible && !cible.closed) cible.postMessage(m, "*"); } catch (e) { /* fenêtre fermée */ }
+    if (canal) try { canal.postMessage(m); } catch (e) { /* canal fermé */ }
+  }
+  function recevoir(m, source) {
+    if (!m || m.lecon1 !== 1 || m.de === moi || m.role === role) return;
+    if (!PRESENTATEUR && source) fenetre = source;
+    if (m.type === "bonjour") { envoyer({ type: "etat", n: index, langue: langue }); return; }
+    distant = true;
+    try {
+      if (m.type === "etat" && L[m.langue]) {
+        if (m.langue !== langue) { langue = m.langue; index = m.n; construire(); } else aller(m.n);
+      } else if (m.type === "quiz") {
+        var q = diapos[m.n] && diapos[m.n].querySelector(".quiz");
+        if (q) q.classList.toggle("quiz--revele", !!m.revele);
+      }
+    } finally { distant = false; }
+  }
+  window.addEventListener("message", function (e) { if (e.data && e.data.lecon1 === 1 && e.data.type !== "presence") recevoir(e.data, e.source); else if (e.data && e.data.type === "presence" && !PRESENTATEUR) fenetre = e.source; });
+  if (canal) canal.onmessage = function (e) { recevoir(e.data, null); };
+  function ouvrirPresentateur() {
+    if (PRESENTATEUR) return;
+    var adresse = location.href.split(/[?#]/)[0] + "?presentateur&lang=" + langue + "#" + (index + 1);
+    fenetre = window.open(adresse, "lx-lecon1-presentateur", "width=1200,height=760");
+    if (!fenetre) window.alert(UI[langue].popup);
+  }
+  function majConsole(n, donnees) {
+    var h = "";
+    if (donnees.type === "quiz") h += '<p class="notes__reponse">' + esc(UI[langue].reponse) + " " + LETTRES[langue][donnees.reponse] + " · " + riche(donnees.choix[donnees.reponse]) + '</p>';
+    h += (donnees.notes ? '<p>' + riche(donnees.notes) + '</p>' : "");
+    if (donnees.explication) h += '<p><em>' + riche(donnees.explication) + '</em></p>';
+    document.getElementById("notes-texte").innerHTML = h;
+    document.getElementById("notes-texte").scrollTop = 0;
+    var boite = document.getElementById("suivante");
+    boite.innerHTML = "";
+    if (diapos[n + 1]) {
+      var m = document.createElement("div"), c = diapos[n + 1].cloneNode(true);
+      m.className = "miniature";
+      c.classList.add("active"); c.classList.remove("passee");
+      c.querySelectorAll(".bulle").forEach(function (b) { b.classList.add("vue"); });
+      m.appendChild(c); boite.appendChild(m);
+      c.style.setProperty("--km", (m.clientWidth / 1280).toFixed(4));
+      rechargerCopies(m);
+    } else boite.innerHTML = '<p class="console__fin">' + esc(UI[langue].fin) + '</p>';
+  }
+  var debut = Date.now();
+  function horloges() {
+    var s = Math.floor((Date.now() - debut) / 1000), d = new Date();
+    document.getElementById("chrono").textContent = (s >= 3600 ? Math.floor(s / 3600) + ":" : "") + ("0" + Math.floor(s / 60) % 60).slice(-2) + ":" + ("0" + s % 60).slice(-2);
+    document.getElementById("heure").textContent = ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
+  }
+  function tailleNotes(pas) {
+    var t = Math.max(14, Math.min(40, (parseInt(lire("lx-lecon1-notes"), 10) || 22) + pas));
+    ecrire("lx-lecon1-notes", String(t));
+    document.documentElement.style.setProperty("--taille-notes", t + "px");
+  }
+  function basculerQuiz(q) {
+    q.classList.toggle("quiz--revele");
+    envoyer({ type: "quiz", n: index, revele: q.classList.contains("quiz--revele") });
   }
   function animerChat(d) {
     minuteursChat.forEach(clearTimeout); minuteursChat = [];
@@ -812,7 +933,7 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
         q.querySelectorAll(".choix button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
       });
     });
-    q.querySelector(".reveler").addEventListener("click", function (e) { e.stopPropagation(); q.classList.toggle("quiz--revele"); });
+    q.querySelector(".reveler").addEventListener("click", function (e) { e.stopPropagation(); basculerQuiz(q); });
   }
   function suivant() { aller(index + 1); }
   function precedent() { aller(index - 1); }
@@ -821,6 +942,8 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
   function echelle() {
     var s = document.getElementById("scene"), w = s.clientWidth - 24, h = s.clientHeight - 24;
     document.getElementById("cadre").style.setProperty("--k", Math.max(.1, Math.min(w / 1280, h / 720)).toFixed(4));
+    var m = document.querySelector("#suivante .miniature");
+    if (m) m.firstChild.style.setProperty("--km", (m.clientWidth / 1280).toFixed(4));
   }
   window.addEventListener("resize", echelle);
 
@@ -846,13 +969,6 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     rechargerCopies(g);
     var courant = g.children[index]; if (courant) courant.scrollIntoView({ block: "center" });
   }
-  function notes() {
-    var n = document.getElementById("notes"), b = document.querySelector('[data-action="notes"]');
-    n.hidden = !n.hidden;
-    document.body.classList.toggle("avec-notes", !n.hidden);
-    b.setAttribute("aria-pressed", n.hidden ? "false" : "true");
-    echelle();
-  }
   function theme() {
     var r = document.documentElement, t = r.dataset.theme === "light" ? "dark" : "light";
     r.dataset.theme = t; ecrire("lx-theme", t);
@@ -876,7 +992,8 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     if (b) {
       var a = b.dataset.action;
       if (a === "suivant") suivant(); else if (a === "precedent") precedent(); else if (a === "apercu") apercu();
-      else if (a === "notes") notes(); else if (a === "theme") theme(); else if (a === "plein") plein(); else if (a === "imprimer") imprimer();
+      else if (a === "presentateur") ouvrirPresentateur(); else if (a === "theme") theme(); else if (a === "plein") plein(); else if (a === "imprimer") imprimer();
+      else if (a === "zero") { debut = Date.now(); horloges(); } else if (a === "plus") tailleNotes(2); else if (a === "moins") tailleNotes(-2);
       return;
     }
     var l = e.target.closest("[data-langue]");
@@ -895,9 +1012,9 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     if (k === (rtl ? "ArrowLeft" : "ArrowRight") || k === "ArrowDown" || k === "PageDown" || k === " " || k === "Enter") { e.preventDefault(); suivant(); }
     else if (k === (rtl ? "ArrowRight" : "ArrowLeft") || k === "ArrowUp" || k === "PageUp" || k === "Backspace") { e.preventDefault(); precedent(); }
     else if (k === "Home") aller(0); else if (k === "End") aller(diapos.length - 1);
-    else if (k === "o" || k === "O") apercu(); else if (k === "n" || k === "N") notes();
+    else if (k === "o" || k === "O") apercu(); else if (k === "s" || k === "S" || k === "n" || k === "N") ouvrirPresentateur();
     else if (k === "t" || k === "T") theme(); else if (k === "f" || k === "F") plein(); else if (k === "p" || k === "P") imprimer();
-    else if (k === "r" || k === "R") { var q = diapos[index].querySelector(".quiz"); if (q) q.classList.toggle("quiz--revele"); }
+    else if (k === "r" || k === "R") { var q = diapos[index].querySelector(".quiz"); if (q) basculerQuiz(q); }
     else if (k === "l" || k === "L") { langue = { fr: "en", en: "ar", ar: "fr" }[langue]; construire(); }
   });
   var depart = null;
@@ -918,7 +1035,14 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
   var h = parseInt(location.hash.slice(1), 10);
   index = h ? h - 1 : (memo && memo.langue === langue ? memo.index || 0 : 0);
   var th = lire("lx-theme"); if (th === "light" || th === "dark") document.documentElement.dataset.theme = th;
+  if (PRESENTATEUR) {
+    document.documentElement.classList.add("mode-presentateur");
+    tailleNotes(0); horloges(); setInterval(horloges, 1000);
+    // Signale sa présence à la fenêtre projetée, même si celle-ci a été rechargée.
+    setInterval(function () { try { if (window.opener && !window.opener.closed) window.opener.postMessage({ type: "presence" }, "*"); } catch (e) { /* fermée */ } }, 3000);
+  }
   construire();
+  if (PRESENTATEUR) envoyer({ type: "bonjour" });
 })();
 </script>
 </body>
