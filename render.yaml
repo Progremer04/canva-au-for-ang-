@@ -1,6 +1,6 @@
-# Hébergement sur Render (https://render.com) : le site est déjà construit dans docs/, il suffit de le servir.
-# Service Web existant : dans Settings, mettez les mêmes Build Command et Start Command qu'ici.
-# Nouveau service : New > Blueprint, puis choisissez ce dépôt.
+# Hosting on Render (https://render.com): the site is already built in docs/, it only has to be served.
+# Existing web service: in Settings, use the same Build Command and Start Command as here.
+# New service: New > Blueprint, then pick this repository.
 services:
   - type: web
     name: cours-ia-master-lgc

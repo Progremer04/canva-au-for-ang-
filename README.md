@@ -1,109 +1,127 @@
-# Cours d'IA du Master LGC
+# AI Course of the Master LGC
 
-Site du cours **Intelligence artificielle** du Master Littérature Générale et Comparée (semestre 3, Unité d'Enseignement Transversale, Université Yahia Farès, Médéa, 2025–2026), et **Lumineux**, le système de design qui le met en forme.
+Website of the **Artificial Intelligence** course of the Master in General and Comparative Literature (semester 3, cross-disciplinary teaching unit, Université Yahia Farès, Médéa, 2025–2026), and **Lumineux**, the design system that styles it.
 
-Le programme officiel de la matière tient en trois pages : des intitulés de chapitres, cinq sujets de mini-projet, une liste d'exercices. Le site le développe en entier : chaque notion est expliquée, les exercices du TD sont corrigés, les sujets de mini-projet sont découpés en étapes avec un code de départ, et quatre démonstrations interactives permettent d'essayer les algorithmes.
+The official syllabus of the course fits on three pages: chapter titles, five mini-project topics, a list of exercises. The site develops all of it: every notion is explained, the tutorial (TD) exercises come with worked solutions, the mini-project topics are broken down into steps with starter code, and four interactive demos let students try the algorithms.
 
-## Contenu
+## Contents
 
-| Dossier | Rôle |
+| Folder | Role |
 | --- | --- |
-| `docs/` | Le site statique, prêt pour GitHub Pages : `index.html` (accueil), `cours.html` (le cours), `enseignant.html`, `diaporamas.html`, `classe.html`, `programme.html`, `systeme-de-design.html`, `assets/` ; les mêmes pages dans `en/` et `ar/`. |
-| `docs/_sources/` | Les sources des pages : gabarit et un fragment HTML par partie du cours ; `docs/_sources/en/` pour l'anglais, `docs/_sources/ar/` pour l'arabe. |
-| `docs/_sources/diapos/` | Les diaporamas, un fichier JSON par séance (`en/` et `ar/` pour les traductions). |
-| `docs/notebooks/` | Dix carnets Jupyter complets, prêts à exécuter dans Google Colab ou avec `run.bat notebook`, en français (`fr/`) et en anglais (`en/`). |
-| `docs/assets/vendor/` | sql.js (SQLite dans le navigateur) et PptxGenJS (export PowerPoint), copiés pour marcher hors ligne. |
-| `donnees/` | Créé au premier usage de « Mes groupes » : la base `classe.sqlite` et ses sauvegardes. Jamais dans git. |
-| `design-system/` | Lumineux : jetons (`tokens.json`), guide d'usage (`README.md`), audit du code d'origine (`extraction.md`), composants (`composants/<Nom>/README.md` et `apercu.html`). |
-| `tools/` | Scripts Python sans dépendance : construction du site, lancement local (`lancer.py`), vérification des bibliothèques (`verifier_bibliotheques.py`). |
-| `run.bat` | Tout-en-un pour Windows : téléchargement, installation, lancement. |
-| `requirements.txt`, `requirements-deep.txt` | Bibliothèques Python du cours. |
-| `ليان ليان/` | Les démos d'origine (« Cadre Lumineux », menu capsule, slider) dont Lumineux est tiré. Conservées telles quelles. |
+| `docs/` | The static site, ready for GitHub Pages: `index.html` (home), `cours.html` (the course), `enseignant.html`, `diaporamas.html`, `classe.html`, `programme.html`, `systeme-de-design.html`, `assets/`; the same pages in `en/` and `ar/`. |
+| `docs/_sources/` | Page sources: a template and one HTML fragment per part of the course; `docs/_sources/en/` for English, `docs/_sources/ar/` for Arabic. |
+| `docs/_sources/diapos/` | The slide decks, one JSON file per session (`en/` and `ar/` for the translations). |
+| `docs/notebooks/` | Ten complete Jupyter notebooks, ready to run in Google Colab or with `run.bat notebook`, in French (`fr/`) and English (`en/`). |
+| `docs/assets/vendor/` | sql.js (SQLite in the browser) and PptxGenJS (PowerPoint export), copied so that they work offline. |
+| `donnees/` | Created the first time “My groups” is used: the `classe.sqlite` database and its backups. Never in git. |
+| `design-system/` | Lumineux: tokens (`tokens.json`), usage guide (`README.md`), audit of the original code (`extraction.md`), components (`composants/<Name>/README.md` and `apercu.html`). |
+| `tools/` | Dependency-free Python scripts: site build, local launcher (`lancer.py`), library check (`verifier_bibliotheques.py`). |
+| `run.bat` | All-in-one for Windows: download, install, launch. Also starts the site on Linux (`bash run.bat`, used by Render). |
+| `render.yaml` | Render settings (see [Hosting](#hosting)). |
+| `requirements.txt`, `requirements-deep.txt` | Python libraries of the course. |
+| `ليان ليان/` | The original demos (“Cadre Lumineux”, capsule menu, slider) that Lumineux is drawn from. Kept as they are. |
 
-## Le site
+## The site
 
-- **Accueil** (`index.html`) : une page légère qui mène à tout, en deux blocs de tuiles, « Pour les étudiants » (cours, méthode, TD/TP, mini-projet, carnets, glossaire) et « Pour l'enseignant » (Mes groupes, diaporamas, guide, étudiants de langues, programme officiel, fiches de séance). Elle affiche aussitôt la prochaine séance et le dernier diaporama ouvert, et précharge le reste pendant que la page est au repos. Les anciens liens (`index.html#chapitre-3`) sont renvoyés vers le cours.
-- **En français, en anglais et en arabe** : le cours est dans `docs/cours.html` (FR), `docs/en/cours.html` (EN) et `docs/ar/cours.html` (AR, de droite à gauche), avec un sélecteur FR / EN / عربي qui garde la leçon en cours.
-- **Programme officiel** (`programme.html`, pour l'enseignant, non indexé) : le texte intégral de la matière (offre de formation, pages 84 à 86), reproduit sans modification, avec ses traductions fidèles en anglais et en arabe.
-- **Guide de l'enseignant** (`docs/enseignant.html`, et `en/`, `ar/`) : par où commencer (même sans avoir jamais programmé), carte du cours, progression semaine par semaine, fiches de séance prêtes à l'emploi, activités pour la classe, sujet d'examen corrigé et grilles d'évaluation, charte d'usage de l'IA, bibliothèque de ressources classées.
-- **Diaporamas** (`docs/diaporamas.html`) : un « PowerPoint » dans le site, une présentation par fiche de séance (8) et une pour lancer le mini-projet, en trois langues, 181 diapositives chacune. Vue normale avec vignettes et notes de l'enseignant ; projection plein écran (flèches, clic, points qui apparaissent un à un, réponses à dévoiler, minuteur pour les activités, écran noir) ; mode présentateur dans une seconde fenêtre (notes, diapositive suivante, chronomètre) ; téléchargement en PowerPoint (`.pptx`, modifiable) ou en PDF.
-- **Leçon 1 : de l'automate à l'agent** (`docs/chapitr1_first_lesson.html`) : l'histoire de l'IA, des automates antiques aux agents d'aujourd'hui, en 63 diapositives animées réunies dans un seul fichier, en français, en anglais et en arabe (boutons FR / EN / عربي, ou `?lang=en`, `?lang=ar`). Portraits (Babbage, Lovelace, Turing, McCarthy, Hinton…), frises, schémas animés, trois diapositives illustrées qui montrent comment un Transformer change le texte en nombres (tokens et vecteurs, carte des sens, contexte et attention), le dialogue d'ELIZA, quiz à dévoiler, et les deux documentaires de YouTube dont elle s'inspire ([*The Complete History of AI*](https://www.youtube.com/watch?v=Xl-G6Mv-N0A), [*The Entire History of Artificial Intelligence*](https://www.youtube.com/watch?v=mSd9nmPM7Vg)), lancés d'un clic. Bouton « Diaporama » ou `F5` (depuis le début), `Maj+F5` ou `F` (depuis la diapositive affichée) : diaporama en plein écran comme PowerPoint, sans barre ni bouton ; clic, flèches, molette, `N`/`P` pour avancer ou reculer, numéro puis `Entrée` pour aller à une diapositive, `B` écran noir, `W` écran blanc, `G` toutes les diapositives, écran de fin après la dernière, `Échap` pour quitter ; de petites commandes n'apparaissent en bas qu'au mouvement de la souris. `S` (ou `Alt+F5`) ouvre le mode présentateur : une seconde fenêtre pour vous seul (notes, réponse des quiz, diapositive suivante, chronomètre, heure, écran noir), qui avance avec la projection ; mettez l'écran en mode « Étendre » (Windows + P). Les notes de l'enseignant ne s'affichent jamais sur l'écran projeté, et elles sont chiffrées dans le fichier : la fenêtre du présentateur demande le mot de passe (changer le mot de passe : `python3 tools/lecon1.py --mot-de-passe NOUVEAU`). `O` vue d'ensemble, `P` PDF, `T` thème, `L` langue. Les photos réelles (18 : Babbage, Lovelace, Turing, l'ENIAC, McCarthy, Shakey, Deep Blue, Hinton, al-Jazari, la Pascaline…) viennent de Wikimedia Commons, avec leur auteur et leur licence sur chaque photo. Si un fichier de Commons a été renommé ou supprimé, la page demande à l'API de Wikimedia l'image principale de l'article de Wikipédia correspondant. Les copies de `docs/_sources/lecon1/photos/` sont intégrées au fichier et s'affichent hors ligne : `python3 tools/lecon1.py --photos` les télécharge toutes (il faut une connexion), et le flux de travail GitHub « Photos de la leçon 1 » (`.github/workflows/photos-lecon1.yml`, onglet Actions, « Run workflow ») fait de même sur les serveurs de GitHub. Sans connexion ni copie, une illustration dessinée remplace la photo.
-- **Étudiants de langues** (guide de l'enseignant, `#guide-langues`) : enseigner l'IA et le code à des étudiants d'anglais, de LGC et de didactique. ANG et LGC suivent le même programme, code compris : chaque exemple est lu, prédit, exécuté, modifié, puis réécrit, et ils tapent le code des TD et des TP ; DID suit la même progression et peut s'en tenir à la lecture et à l'exécution des carnets (démarche PRIMM). Outils sans code par chapitre, données par spécialité, séance type, évaluation du code et de l'interprétation.
-- **Carnets prêts à exécuter** (`docs/notebooks/`) : prise en main de Python, les cinq sujets du mini-projet (sentiments, questionnaire, discours, prédiction, réseaux), système expert, apprentissage automatique, IA générative, et une boîte à outils pour la classe de langue (lisibilité, textes à trous, profil de vocabulaire). Données intégrées, aucun fichier à télécharger.
-- **Mes groupes** (`docs/classe.html`) : la classe de l'enseignant. Six groupes au départ, ceux de l'emploi du temps 2025–2026 (M02 ANG ×2 le mardi, M02 LGC le mardi, M02 DID ×3 le jeudi, Labo 02), avec spécialité, jour, horaire, salle, sujet du mini-projet et couleur, et une vue « Emploi du temps » de la semaine ; les étudiants, saisis un par un ou collés depuis Excel, déplacés d'un groupe à l'autre par glisser-déposer ; une fiche par étudiant avec des observations datées, ses présences et ses notes ; pour chaque groupe, le planning des séances (généré d'après la progression du guide, pour un groupe ou pour tous à la fois, chacun à son jour, puis modifiable : dates, horaires, sujets, « Décaler » pour repousser toutes les séances suivantes) et le cahier de textes (ce qui a été fait, travail donné, appel) ; les évaluations et les moyennes ; une feuille d'émargement imprimable ; exports CSV pour Excel. Onglet **Présences** : l'appel du jour en un geste (tout le monde présent par défaut, on touche les absents, un étudiant s'ajoute sur-le-champ, la séance passe « faite »), un bandeau qui rappelle la séance en cours, les appels oubliés, le registre de l'année (par semestre ou par mois : présences, absences, absences justifiées, retards, taux de présence), des alertes automatiques aux seuils réglables (par défaut : alerte à 2 absences non justifiées, exclusion à 3, ou à 5 absences au total, calculées sur le semestre) et la synthèse de tous les groupes. « Préparer l'année » crée d'un coup les séances des dix mois, chaque groupe à son jour et à son horaire, sans les vacances ni les jours fériés (liste modifiable) ; « Changer l'horaire » déplace les séances prévues à partir d'une date (changer le jour ou l'heure d'un groupe le propose aussi).
-- **Accueil** : un lecteur de sentiments à lexique, à essayer sur une phrase (méthode du sujet 1).
-- **Comment apprendre ce cours** : habitudes de travail qui marchent, semaine type, méthode par chapitre, vocabulaire français–anglais, bon usage d'un assistant d'IA, préparation de l'examen.
-- **Fiche de la matière** et **calendrier** du semestre, avec renvois vers les parties du site.
-- **Chapitre 1** : définitions, histoire de l'IA, IA faible et forte, apprentissage supervisé et non supervisé, comment une IA « comprend » un texte (expliqué simplement, sans code), approches, éthique.
-- **Chapitre 2** : bien formuler une demande à un assistant d'IA (ingénierie de prompt, atelier au TD), puis Python pour les textes (types, listes, dictionnaires, NumPy, pandas, objets, fichiers, rapports Excel et PDF).
-- **Chapitre 3** : systèmes experts, apprentissage automatique, algorithmes (régression, descente de gradient, classification, k-moyennes), apprentissage profond et Transformers, apprentissage par renforcement. Démonstrations du chaînage avant, de la descente de gradient et des k-moyennes.
-- **Mini-projet** : les cinq sujets, avec démarche, données, code de départ et livrables.
-- **TD / TP corrigés**, **tables rondes**, **références** et **glossaire** (français–anglais ; arabe–français–anglais dans la version arabe).
+- **Home** (`index.html`): a light page that leads to everything, in two blocks of tiles, “For students” (course, study method, TD/TP, mini-project, notebooks, glossary) and “For the teacher” (My groups, slides, guide, language students, official syllabus, session plans). It shows the next session and the last slide deck opened right away, and preloads the rest while the page is idle. Old links (`index.html#chapitre-3`) are redirected to the course.
+- **In French, English and Arabic**: the course is in `docs/cours.html` (FR), `docs/en/cours.html` (EN) and `docs/ar/cours.html` (AR, right to left), with an FR / EN / عربي switch that keeps the current lesson.
+- **Official syllabus** (`programme.html`, for the teacher, not indexed): the full text of the course description (training offer, pages 84 to 86), reproduced unchanged, with faithful translations into English and Arabic.
+- **Teacher's guide** (`docs/enseignant.html`, and `en/`, `ar/`): where to start (even without any programming experience), course map, week-by-week progression, ready-to-use session plans, classroom activities, exam paper with answers and grading rubrics, AI use policy, library of sorted resources.
+- **Slides** (`docs/diaporamas.html`): a “PowerPoint” inside the site, one deck per session plan (8) and one to launch the mini-project, in three languages, 181 slides each. Normal view with thumbnails and teacher's notes; full-screen projection (arrow keys, click, bullet points that appear one by one, answers to reveal, timer for activities, black screen); presenter view in a second window (notes, next slide, stopwatch); download as PowerPoint (`.pptx`, editable) or PDF.
+- **Lesson 1: from automaton to agent** (`docs/chapitr1_first_lesson.html`): the history of AI, from ancient automata to today's agents, in 63 animated slides in a single file, in French, English and Arabic (FR / EN / عربي buttons, or `?lang=en`, `?lang=ar`). Portraits (Babbage, Lovelace, Turing, McCarthy, Hinton…), timelines, animated diagrams, three illustrated slides that show how a Transformer turns text into numbers (tokens and vectors, the map of meanings, context and attention), the ELIZA dialogue, quizzes to reveal, and the two YouTube documentaries it draws on ([*The Complete History of AI*](https://www.youtube.com/watch?v=Xl-G6Mv-N0A), [*The Entire History of Artificial Intelligence*](https://www.youtube.com/watch?v=mSd9nmPM7Vg)), started with one click.
+  - **Slide show:** the “Slide show” button or `F5` (from the start), `Shift+F5` or `F` (from the current slide) gives a full-screen slide show like PowerPoint, with no bar or button. Click, arrow keys, mouse wheel, `N`/`P` to move forward or back, a number then `Enter` to jump to a slide, `B` black screen, `W` white screen, `G` all slides, an end screen after the last slide, `Esc` to quit; small controls appear at the bottom only when the mouse moves.
+  - **Presenter view:** `S` (or `Alt+F5`) opens a second window for you alone (notes, quiz answers, next slide, stopwatch, clock, black screen) that moves with the projection; set the display to “Extend” (Windows + P). The teacher's notes never appear on the projected screen, and they are encrypted in the file: the presenter window asks for the password (to change it: `python3 tools/lecon1.py --mot-de-passe NEW_PASSWORD`). `O` overview, `P` PDF, `T` theme, `L` language.
+  - **Photos:** the 18 real photos (Babbage, Lovelace, Turing, the ENIAC, McCarthy, Shakey, Deep Blue, Hinton, al-Jazari, the Pascaline…) come from Wikimedia Commons, with their author and licence on each photo. If a Commons file has been renamed or deleted, the page asks the Wikimedia API for the main image of the matching Wikipedia article. The copies in `docs/_sources/lecon1/photos/` are embedded in the file and show offline: `python3 tools/lecon1.py --photos` downloads them all (an Internet connection is needed), and the GitHub workflow “Photos de la leçon 1” (`.github/workflows/photos-lecon1.yml`, Actions tab, “Run workflow”) does the same on GitHub's servers. With no connection and no copy, a drawn illustration replaces the photo.
+- **Language students** (teacher's guide, `#guide-langues`): teaching AI and code to students of English, General and Comparative Literature (LGC) and didactics. ANG and LGC follow the same program, code included: every example is read, predicted, run, modified, then rewritten, and they type the code of the TD and TP; DID follows the same progression and may stick to reading and running the notebooks (PRIMM approach). No-code tools for each chapter, data for each specialty, a model session, assessment of code and of interpretation.
+- **Ready-to-run notebooks** (`docs/notebooks/`): getting started with Python, the five mini-project topics (sentiment, questionnaire, speeches, prediction, networks), expert system, machine learning, generative AI, and a toolbox for the language classroom (readability, cloze texts, vocabulary profile). Data included, nothing to download.
+- **My groups** (`docs/classe.html`): the teacher's class.
+  - **Groups:** six groups to start with, those of the 2025–2026 timetable (M02 ANG ×2 on Tuesday, M02 LGC on Tuesday, M02 DID ×3 on Thursday, Labo 02), with specialty, day, time, room, mini-project topic and colour, and a weekly “Timetable” view.
+  - **Students:** entered one by one or pasted from Excel, moved from one group to another by drag and drop; one record per student with dated observations, attendance and grades.
+  - **Sessions:** for each group, the session schedule (generated from the guide's progression, for one group or all at once, each on its own day, then editable: dates, times, topics, “Shift” to push back all later sessions) and the class log (what was done, homework, roll call); assessments and averages; a printable sign-in sheet; CSV exports for Excel.
+  - **Attendance tab:** today's roll call in one gesture (everyone present by default, tap the absent students, add a student on the spot, the session is marked “done”), a banner that recalls the current session, forgotten roll calls, the register for the year (by semester or by month: presences, absences, excused absences, late arrivals, attendance rate), automatic alerts with adjustable thresholds (by default: warning at 2 unexcused absences, exclusion at 3, or at 5 absences in total, counted over the semester) and a summary of all groups.
+  - **The year:** “Prepare the year” creates the sessions of the ten months at once, each group on its own day and time, skipping holidays and public holidays (editable list); “Change the schedule” moves the planned sessions from a given date (changing a group's day or time also offers it).
+- **Home page demo**: a lexicon-based sentiment reader to try on a sentence (the method of topic 1).
+- **How to learn this course**: study habits that work, a model week, a method for each chapter, French–English vocabulary, good use of an AI assistant, exam preparation.
+- **Course sheet** and semester **calendar**, with links to the parts of the site.
+- **Chapter 1**: definitions, history of AI, weak and strong AI, supervised and unsupervised learning, how an AI “understands” a text (explained simply, without code), approaches, ethics.
+- **Chapter 2**: how to phrase a request to an AI assistant (prompt engineering, workshop in the TD), then Python for texts (types, lists, dictionaries, NumPy, pandas, objects, files, Excel and PDF reports).
+- **Chapter 3**: expert systems, machine learning, algorithms (regression, gradient descent, classification, k-means), deep learning and Transformers, reinforcement learning. Demos of forward chaining, gradient descent and k-means.
+- **Mini-project**: the five topics, with method, data, starter code and deliverables.
+- **TD / TP with solutions**, **round tables**, **references** and **glossary** (French–English; Arabic–French–English in the Arabic version).
 
-Thème Nuit (par défaut) ou Jour, lisible sur téléphone, navigable au clavier, animations coupées si le système le demande.
+Night theme (default) or Day theme, readable on a phone, keyboard-navigable, animations turned off when the system asks for it.
 
-**Rapide, même hors ligne.** Polices, coloration du code, SQLite et PowerPoint sont servis par le site lui-même (`docs/assets/fonts`, `docs/assets/vendor`) : aucune requête vers un autre serveur (seules les photos et les vidéos de la leçon 1 viennent d'Internet, et la leçon s'en passe hors ligne). Les longues pages ne dessinent que les sections visibles (`content-visibility`) : le cours s'affiche environ trois fois plus vite sur un poste lent, et les liens vers une section arrivent au bon endroit. Les vignettes des diaporamas ne sont dessinées qu'à l'écran. Le serveur de `run.bat` laisse le navigateur garder les fichiers et ne renvoie que ce qui a changé.
+**Fast, even offline.** Fonts, code highlighting, SQLite and PowerPoint are served by the site itself (`docs/assets/fonts`, `docs/assets/vendor`): no request to any other server (only the photos and videos of lesson 1 come from the Internet, and the lesson works without them offline). Long pages only draw the visible sections (`content-visibility`): the course displays about three times faster on a slow computer, and links to a section land in the right place. Slide thumbnails are only drawn when on screen. The `run.bat` server lets the browser keep files and only sends what has changed.
 
-## Lumineux, le système de design
+## Lumineux, the design system
 
-Tiré des démos du dossier `ليان ليان/` : le dégradé à cinq couleurs (`#FFFF00`, `#87CEEB`, `#ff512f`, `#dd2476`, `#1c64ff`), le fond `#151515`, les rayons 20, 27 et 70 px, les lueurs blanches, la police IM Fell DW Pica SC. `design-system/extraction.md` détaille chaque valeur relevée et les défauts corrigés (hauteurs fixes, contraste du titre, déclarations CSS invalides, clignotement, accessibilité).
+Drawn from the demos in the `ليان ليان/` folder: the five-colour gradient (`#FFFF00`, `#87CEEB`, `#ff512f`, `#dd2476`, `#1c64ff`), the `#151515` background, the 20, 27 and 70 px radii, the white glows, the IM Fell DW Pica SC typeface. `design-system/extraction.md` details every value found and the defects fixed (fixed heights, title contrast, invalid CSS declarations, flickering, accessibility).
 
-Quinze composants : sept repris des démos (`CadreLumineux`, `PastilleTitre`, `BoutonVerre`, `RailCapsule`, `Tiroir`, `Carrousel`, `AnneauPortrait`) et huit ajoutés pour un site de cours (`Bouton`, `Encadre`, `Puce`, `BlocCode`, `Exercice`, `Quiz`, `Chronologie`, `Tableau`). Tous sont visibles en direct dans `docs/systeme-de-design.html`.
+Fifteen components: seven taken from the demos (`CadreLumineux`, `PastilleTitre`, `BoutonVerre`, `RailCapsule`, `Tiroir`, `Carrousel`, `AnneauPortrait`) and eight added for a course website (`Bouton`, `Encadre`, `Puce`, `BlocCode`, `Exercice`, `Quiz`, `Chronologie`, `Tableau`). All of them can be seen live in `docs/systeme-de-design.html`.
 
-## Lancer le projet sous Windows : `run.bat`
+## Running the project on Windows: `run.bat`
 
-Double-cliquez sur `run.bat`. Il fait tout, dans l'ordre :
+Double-click `run.bat`. It does everything, in order:
 
-1. **Télécharge le projet** s'il est seul dans son dossier (avec `git`, sinon l'archive ZIP de GitHub), ou le **met à jour** (`git pull`).
-2. **Trouve Python 3** (3.12 de préférence) ; s'il manque, l'installe avec `winget`.
-3. **Installe les bibliothèques du cours** dans un environnement privé `.venv` (première fois seulement, plusieurs centaines de Mo) : NumPy, pandas, matplotlib, seaborn, scikit-learn, spaCy et son modèle français, gensim, NetworkX, TextBlob, VADER, WordCloud, Tweepy, GeoPandas, Jupyter, puis Transformers et PyTorch.
-4. **Ouvre le site** dans le navigateur (`http://127.0.0.1:8000`). Fermez la fenêtre pour l'arrêter.
+1. **Downloads the project** if it is alone in its folder (with `git`, otherwise GitHub's ZIP archive), or **updates** it (`git pull`).
+2. **Finds Python 3** (3.12 preferred); if it is missing, installs it with `winget`.
+3. **Installs the course libraries** in a private `.venv` environment (first time only, several hundred MB): NumPy, pandas, matplotlib, seaborn, scikit-learn, spaCy and its French model, gensim, NetworkX, TextBlob, VADER, WordCloud, Tweepy, GeoPandas, Jupyter, then Transformers and PyTorch.
+4. **Opens the site** in the browser (`http://127.0.0.1:8000`). Close the window to stop it.
 
-`run.bat` suffit à lui seul : copiez-le dans un dossier vide et double-cliquez, il télécharge le projet à côté de lui (dossier `canva-au-for-ang-`).
+`run.bat` is enough on its own: copy it into an empty folder and double-click it, and it downloads the project next to itself (folder `canva-au-for-ang-`).
 
-**Où sont les données de « Mes groupes » ?** Lancé par `run.bat`, le site les enregistre dans une base SQLite ordinaire, `donnees\classe.sqlite`, dans le dossier du projet, avec une copie de sauvegarde par jour dans `donnees\sauvegardes\` (les 60 dernières). Le serveur n'écoute que sur cet ordinateur (127.0.0.1) et vérifie l'origine des requêtes ; `git pull` ne touche jamais ce dossier. Si le site est ouvert autrement (fichier ouvert directement, GitHub Pages), la base reste dans le navigateur : la page le signale, et l'onglet « Données » permet de télécharger la base ou d'en importer une. La base se lit aussi avec Python : `pandas.read_sql("SELECT * FROM etudiant", sqlite3.connect("donnees/classe.sqlite"))`.
+**Where is the “My groups” data?** When started by `run.bat`, the site saves it in an ordinary SQLite database, `donnees\classe.sqlite`, in the project folder, with one backup copy per day in `donnees\sauvegardes\` (the last 60). The server only listens on this computer (127.0.0.1) and checks where requests come from; `git pull` never touches this folder. If the site is opened another way (file opened directly, GitHub Pages, Render), the database stays in the browser: the page says so, and the “Data” tab lets you download the database or import one. The database can also be read with Python: `pandas.read_sql("SELECT * FROM etudiant", sqlite3.connect("donnees/classe.sqlite"))`.
 
-| Commande | Effet |
+| Command | Effect |
 | --- | --- |
-| `run.bat` | tout : téléchargement ou mise à jour, installation (une fois), site |
-| `run.bat site` | ouvre seulement le site |
-| `run.bat install` | (ré)installe les bibliothèques Python du cours |
-| `run.bat notebook` | ouvre Jupyter Notebook dans le dossier du projet |
-| `run.bat check` | liste les bibliothèques installées |
-| `run.bat build` | reconstruit le site depuis `docs/_sources`, puis l'ouvre |
+| `run.bat` | everything: download or update, install (once), site |
+| `run.bat site` | only opens the site |
+| `run.bat install` | (re)installs the course's Python libraries |
+| `run.bat notebook` | opens Jupyter Notebook in the project folder |
+| `run.bat check` | lists the installed libraries |
+| `run.bat build` | rebuilds the site from `docs/_sources`, then opens it |
 
-Sans Python, `run.bat` ouvre quand même le site directement depuis `docs/index.html`. Au premier lancement d'un fichier téléchargé, Windows peut afficher « Windows a protégé votre ordinateur » : *Informations complémentaires → Exécuter quand même*.
+Without Python, `run.bat` still opens the site directly from `docs/index.html`. The first time a downloaded file is run, Windows may show “Windows protected your PC”: *More info → Run anyway*.
 
-Sur macOS ou Linux : `python3 tools/lancer.py` ouvre le site, `python3 -m pip install -r requirements.txt -r requirements-deep.txt` installe les bibliothèques.
+On macOS or Linux: `python3 tools/lancer.py` opens the site, and `python3 -m pip install -r requirements.txt -r requirements-deep.txt` installs the libraries.
 
-## Héberger sur Render
+## Hosting
 
-Le site est déjà construit dans `docs/` : un service Web de [Render](https://render.com) n'a qu'à le servir. Le service `canva-au-for-ang-` est relié à ce dépôt : chaque envoi sur `main` le redéploie tout seul (*Auto-Deploy : On Commit*).
+The site is already built in `docs/`: a host only has to serve that folder. Every push to `main` updates it.
 
-- Sa commande de démarrage `bash run.bat` fonctionne : sous Linux, la première ligne de `run.bat` lance `python3 tools/lancer.py --public` (Windows ignore cette ligne). `python tools/lancer.py --public` convient aussi.
-- *Build Command* : `python --version` suffit et prend quelques secondes ; `pip install -r requirements.txt` marche aussi, mais installe pour rien les bibliothèques des TP à chaque déploiement.
-- Si les déploiements échouent en une seconde avec « pipeline minutes exhausted », les minutes de construction de l'espace de travail Render sont épuisées : dans *Workspace Settings > Build Pipeline*, choisissez *Starter* (minutes gratuites incluses) ou relevez la limite de dépense du pipeline *Performance*, puis *Manual Deploy > Deploy latest commit*.
-- Nouveau service : *New > Blueprint*, puis ce dépôt ; `render.yaml` contient ces réglages.
+### GitHub Pages (free, recommended)
 
-Sur Render (variable `RENDER`) ou avec `--public`, `tools/lancer.py` écoute sur `0.0.0.0` au port donné par `PORT`, sans ouvrir de navigateur. L'API de la base « Mes groupes » y est désactivée : sur un site public, chaque visiteur garde ses propres données dans son navigateur, et la base de l'enseignant reste sur son ordinateur (`run.bat`).
-## Construire
+*Settings → Pages → Build and deployment → Source: Deploy from a branch*, branch `main`, folder `/docs`, then *Save*. After a minute or two the site is at `https://progremer04.github.io/canva-au-for-ang-/`, and each push to `main` republishes it. `docs/.nojekyll` makes Pages serve the files exactly as they are.
+
+GitHub Pages builds, like the photo workflow, run on GitHub Actions. If a run fails at once with *“The job was not started because your account is locked due to a billing issue”*, fix the billing problem in GitHub (*Settings → Billing and plans*) first: until then, no workflow and no Pages build can run.
+
+### Render
+
+The Render web service `canva-au-for-ang-` is connected to this repository and redeploys on every push to `main` (*Auto-Deploy: On Commit*).
+
+- **Start Command:** `bash run.bat` works: on Linux, the first line of `run.bat` starts `python3 tools/lancer.py --public` (Windows ignores that line). `python tools/lancer.py --public` works too.
+- **Build Command:** `python --version` is enough and takes a few seconds; `pip install -r requirements.txt` also works, but installs the TP libraries for nothing on every deploy.
+- **Deploys that fail within a second** with *“Your workspace has run out of pipeline minutes”*: the build minutes of the Render workspace are used up. In *Workspace Settings → Build Pipeline*, choose *Starter* (free minutes included) or raise the spending limit of the *Performance* pipeline, then *Manual Deploy → Deploy latest commit*.
+- **New service:** *New → Blueprint*, then this repository; `render.yaml` holds these settings.
+
+On Render (variable `RENDER`) or with `--public`, `tools/lancer.py` listens on `0.0.0.0` on the port given by `PORT`, without opening a browser. The “My groups” database API is turned off there: on a public site, each visitor keeps their own data in their browser, and the teacher's database stays on their computer (`run.bat`).
+
+## Building
 
 ```sh
 python3 tools/build_tokens.py          # design-system/tokens.json → docs/assets/css/lumineux-tokens.css
 python3 tools/construire_systeme.py    # design-system/ → docs/systeme-de-design.html
-python3 tools/assembler.py             # docs/_sources/ → docs/index.html, docs/en/ et docs/ar/ (diaporamas compris)
-python3 tools/diapos.py --verifier docs/_sources/diapos/seance-1.json   # vérifie un diaporama
-python3 tools/lecon1.py                # docs/_sources/lecon1/ → docs/chapitr1_first_lesson.html (aussi fait par assembler.py)
+python3 tools/assembler.py             # docs/_sources/ → docs/index.html, docs/en/ and docs/ar/ (slide decks included)
+python3 tools/diapos.py --verifier docs/_sources/diapos/seance-1.json   # checks a slide deck
+python3 tools/lecon1.py                # docs/_sources/lecon1/ → docs/chapitr1_first_lesson.html (also done by assembler.py)
 ```
 
-Un diaporama est un fichier JSON : un titre, puis une liste de diapositives typées (`titre`, `points`, `deux`, `definition`, `citation`, `code`, `tableau`, `etapes`, `question`, `activite`, `chiffre`, `chronologie`, `fin`), chacune avec ses `notes` pour l'enseignant. Le détail des champs est en tête de `tools/diapos.py`.
+A slide deck is a JSON file: a title, then a list of typed slides (`titre`, `points`, `deux`, `definition`, `citation`, `code`, `tableau`, `etapes`, `question`, `activite`, `chiffre`, `chronologie`, `fin`), each with its `notes` for the teacher. The fields are described at the top of `tools/diapos.py`.
 
-Pour voir le site en local : `python3 tools/lancer.py` (ou `python3 -m http.server --directory docs`, puis `http://localhost:8000`).
+To view the site locally: `python3 tools/lancer.py` (or `python3 -m http.server --directory docs`, then `http://localhost:8000`).
 
-Pour le publier avec GitHub Pages : *Settings → Pages → Deploy from a branch*, branche `main`, dossier `/docs`. Le site sera alors à l'adresse `https://progremer04.github.io/canva-au-for-ang-/`.
-
-Dépôt : [github.com/Progremer04/canva-au-for-ang-](https://github.com/Progremer04/canva-au-for-ang-).
+Repository: [github.com/Progremer04/canva-au-for-ang-](https://github.com/Progremer04/canva-au-for-ang-).
 
 ## Source
 
-Programme officiel de la matière « Intelligence artificielle », Master Littérature Générale et Comparée, Université Yahia Farès, Médéa, année universitaire 2025–2026 (pages 84 à 86 de l'offre de formation). Les explications, exemples et corrigés du site accompagnent le cours de l'enseignant et ne le remplacent pas.
+Official syllabus of the course “Artificial Intelligence”, Master in General and Comparative Literature, Université Yahia Farès, Médéa, academic year 2025–2026 (pages 84 to 86 of the training offer). The explanations, examples and solutions on the site accompany the teacher's course and do not replace it.
