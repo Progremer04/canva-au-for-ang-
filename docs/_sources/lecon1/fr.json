@@ -590,6 +590,68 @@
     },
     {
       "type": "schema",
+      "titre": "Du texte aux nombres",
+      "illus": "tokens",
+      "phrase": "Le chat boit du lait",
+      "ids": "412 8093 5871 88 2310",
+      "points": [
+        "Un ordinateur ne connaît que des nombres",
+        "Le texte est découpé en morceaux : les **tokens**",
+        "Chaque token reçoit un numéro, puis une longue liste de nombres : un **vecteur**",
+        "Le modèle ne voit jamais les lettres, seulement ces nombres"
+      ],
+      "notes": "Les numéros de l'image sont inventés pour l'exemple. Un vrai vocabulaire compte des dizaines de milliers de tokens (un peu plus de 50 000 pour GPT-2) ; un mot courant reste entier, un mot rare ou long est coupé en plusieurs morceaux. Les colonnes colorées représentent les vecteurs : des centaines de nombres par token, appris pendant l'entraînement. Renvoyez à la leçon « Comment une IA comprend un texte » du chapitre 1."
+    },
+    {
+      "type": "schema",
+      "titre": "La carte des sens",
+      "illus": "sens",
+      "mots": [
+        "chat",
+        "chien",
+        "cheval",
+        "livre",
+        "roman",
+        "lecteur",
+        "homme",
+        "femme",
+        "roi",
+        "reine"
+      ],
+      "points": [
+        "Chaque vecteur est une adresse sur une immense carte des sens",
+        "Les mots qui ont les mêmes voisins se rapprochent : « chat », « chien »",
+        "Le modèle l'apprend seul, en devinant des mots cachés dans des milliards de phrases",
+        "La carte garde des relations : de « homme » à « femme » comme de « roi » à « reine »"
+      ],
+      "notes": "Jeu à faire avec la classe : « Le ___ boit du lait et dort sur le canapé. » Tout le monde devine « chat » grâce aux voisins : c'est ce que fait le modèle, à très grande échelle. Le linguiste J. R. Firth le disait en 1957 : « You shall know a word by the company it keeps ». Les vraies cartes ont des centaines de dimensions ; on les projette ici sur deux. Ces cartes reproduisent aussi les stéréotypes des textes d'entraînement."
+    },
+    {
+      "type": "schema",
+      "titre": "Le contexte donne le sens",
+      "illus": "contexte",
+      "phrase1": "la souris mange le fromage",
+      "phrase2": "je clique avec la souris",
+      "liens": [
+        [
+          1,
+          4
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "points": [
+        "Un même mot peut avoir plusieurs sens : « souris »",
+        "L'**attention** relie chaque mot à ses voisins",
+        "Avec « fromage », la souris est l'animal ; avec « clique », c'est l'objet",
+        "Le vecteur du mot est recalculé selon son contexte"
+      ],
+      "notes": "C'est ce qui distingue les Transformers (2017) des méthodes plus anciennes, qui donnaient un seul vecteur à chaque mot, quel que soit son sens. Autres exemples : « avocat » (le métier, le fruit), « glace » (l'eau gelée, le miroir). Demandez aux étudiants un exemple dans une autre langue : en arabe, « عين » (l'œil, la source)."
+    },
+    {
+      "type": "schema",
       "titre": "Comment « écrit » un modèle de langue",
       "illus": "motsuivant",
       "points": [
@@ -598,7 +660,14 @@
         "Il en choisit un, l'ajoute au texte, et recommence",
         "Des humains notent ensuite ses réponses pour l'affiner"
       ],
-      "notes": "C'est le modèle de bigrammes du carnet 08, en immensément plus grand. Le réglage par des humains s'appelle en anglais RLHF : apprentissage par renforcement à partir de retours humains. Insistez : le modèle prédit du texte plausible, pas du texte vrai."
+      "notes": "C'est le modèle de bigrammes du carnet 08, en immensément plus grand. Le réglage par des humains s'appelle en anglais RLHF : apprentissage par renforcement à partir de retours humains. Insistez : le modèle prédit du texte plausible, pas du texte vrai.",
+      "debut": "Le chat boit du",
+      "suites": [
+        "lait",
+        "café",
+        "thé",
+        "jus"
+      ]
     },
     {
       "type": "chat",

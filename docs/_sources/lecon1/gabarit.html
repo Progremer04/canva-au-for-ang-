@@ -499,6 +499,34 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
   function svg(contenu, vb) { return '<svg viewBox="' + (vb || "0 0 400 300") + '" role="img" aria-hidden="true">' + contenu + '</svg>'; }
   function noeuds(xs, ys, r, classe) { var s = ""; xs.forEach(function (x, i) { s += '<circle class="trait ' + (classe || "f-s i-t") + '" cx="' + x + '" cy="' + ys[i] + '" r="' + r + '"/>'; }); return s; }
 
+  // Une rangée de mots dans des cases, centrée entre x0 et x1 ; de droite à gauche en arabe. Renvoie le dessin et les centres.
+  function rangee(mots, y, x0, x1, taille, couleur) {
+    var ecart = 8, larg = mots.map(function (m) { return Math.max(30, m.length * taille * .6 + 18); });
+    var somme = function (l) { return l.reduce(function (a, b) { return a + b; }, 0) + ecart * (l.length - 1); };
+    if (somme(larg) > x1 - x0) { var k = (x1 - x0 - ecart * (mots.length - 1)) / (somme(larg) - ecart * (mots.length - 1)); larg = larg.map(function (w) { return w * k; }); }
+    var x = x0 + (x1 - x0 - somme(larg)) / 2, centres = [], s = "";
+    mots.forEach(function (m, i) {
+      var cx = x + larg[i] / 2;
+      if (langue === "ar") cx = x0 + x1 - cx;
+      centres.push(cx);
+      s += '<rect class="trait f-s ' + (couleur ? couleur(i) : "i-t") + '" x="' + (cx - larg[i] / 2).toFixed(1) + '" y="' + (y - 18) + '" width="' + larg[i].toFixed(1) + '" height="36" rx="8"/>' +
+        '<text class="f-t" x="' + cx.toFixed(1) + '" y="' + (y + 6) + '" text-anchor="middle" font-size="' + taille + '">' + esc(m) + '</text>';
+      x += larg[i] + ecart;
+    });
+    return { s: s, c: centres, l: larg };
+  }
+  // Une flèche de (x1, y1) à (x2, y2), pointe comprise.
+  function fleche(x1, y1, x2, y2, classe, style) {
+    var a = Math.atan2(y2 - y1, x2 - x1), p = function (d, t) { return (x2 + d * Math.cos(a + t)).toFixed(1) + " " + (y2 + d * Math.sin(a + t)).toFixed(1); };
+    return '<g class="anim-apparait" style="' + (style || "") + '"><path class="trait ' + classe + '" d="M' + x1 + ' ' + y1 + ' L' + x2 + ' ' + y2 + '"/>' +
+      '<path class="' + classe.replace(/i-/g, "f-") + '" d="M' + x2 + ' ' + y2 + ' L' + p(14, Math.PI - .45) + ' L' + p(14, Math.PI + .45) + ' z"/></g>';
+  }
+  // Un arc d'attention au-dessus d'une rangée, entre deux mots.
+  function arc(x1, x2, y, classe, style) {
+    var h = 22 + Math.abs(x1 - x2) * .28;
+    return '<path class="trait ' + classe + ' anim-apparait" style="' + (style || "") + '" d="M' + x1.toFixed(1) + ' ' + y + ' C' + x1.toFixed(1) + ' ' + (y - h) + ' ' + x2.toFixed(1) + ' ' + (y - h) + ' ' + x2.toFixed(1) + ' ' + y + '"/>';
+  }
+
   var ILLUS = {
     engrenages: function () { return svg(engrenage(140, 150, 80, 12, "anim-tourne") + engrenage(262, 104, 52, 8, "anim-tourne-inverse") + engrenage(270, 222, 40, 6, "anim-tourne-inverse")); },
     elephant: function () {
@@ -661,12 +689,71 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
       });
       return svg(s);
     },
-    motsuivant: function () {
+    motsuivant: function (d) {
       var s = "";
+      if (d && d.debut && d.suites) {
+        var r = rangee(String(d.debut).split(/\s+/).concat("?"), 60, 10, 390, 18, function (i, n) { return "i-t"; });
+        s = r.s.replace(/<text class="f-t"([^>]*)>\?<\/text>/, '<text class="f-c1"$1>?</text>');
+        var dernier = r.c[r.c.length - 1];
+        s += '<rect class="trait i-c1 anim-clignote" x="' + (dernier - r.l[r.l.length - 1] / 2 - 4).toFixed(1) + '" y="38" width="' + (r.l[r.l.length - 1] + 8).toFixed(1) + '" height="44" rx="10"/>';
+        [[0.82, "f-c1"], [0.08, "f-c2"], [0.05, "f-c4"], [0.03, "f-c5"]].forEach(function (b, i) {
+          var y = 124 + i * 42, w = b[0] * 220 + 6, x = langue === "ar" ? 340 - w : 60;
+          s += '<g class="anim-apparait" style="--d:' + (.4 + i * .2) + '"><rect class="' + b[1] + '" x="' + x + '" y="' + y + '" width="' + w + '" height="28" rx="6"/>' +
+            '<text class="f-t" x="' + (langue === "ar" ? 350 : 50) + '" y="' + (y + 20) + '" text-anchor="' + (langue === "ar" ? "start" : "end") + '" font-size="15" direction="ltr">' + Math.round(b[0] * 100) + '%</text>' +
+            '<text class="f-t" x="' + (langue === "ar" ? x - 8 : x + w + 8) + '" y="' + (y + 20) + '" text-anchor="' + (langue === "ar" ? "end" : "start") + '" font-size="17" direction="ltr">' + esc(d.suites[i] || "") + '</text></g>';
+        });
+        return svg(s);
+      }
       for (var i = 0; i < 4; i++) s += '<rect class="trait f-s i-t" x="' + (20 + i * 62) + '" y="40" width="54" height="40" rx="8"/>';
       s += '<rect class="trait f-f i-c1 anim-clignote" x="268" y="40" width="54" height="40" rx="8"/><text class="f-c1" x="295" y="68" text-anchor="middle" font-size="24">?</text>';
       [[0.82, "f-c1"], [0.08, "f-c2"], [0.05, "f-c4"], [0.03, "f-c5"]].forEach(function (b, i) {
         s += '<rect class="' + b[1] + ' anim-apparait" style="--d:' + (.4 + i * .2) + '" x="60" y="' + (120 + i * 40) + '" width="' + (b[0] * 300 + 6) + '" height="28" rx="6"/><text class="f-t" x="50" y="' + (140 + i * 40) + '" text-anchor="end" font-size="16">' + Math.round(b[0] * 100) + '%</text>';
+      });
+      return svg(s);
+    },
+    // Du texte aux nombres : les mots deviennent des tokens, des numéros, puis des vecteurs (colonnes de nombres).
+    tokens: function (d) {
+      var mots = String((d && d.phrase) || "").split(/\s+/), ids = String((d && d.ids) || "").split(/\s+/);
+      var r = rangee(mots, 48, 10, 390, 19, function (i) { return "i-c" + (i % 5 + 1); }), s = r.s;
+      r.c.forEach(function (cx, i) {
+        var w = Math.min(r.l[i], 64), c = i % 5 + 1;
+        s += fleche(cx, 72, cx, 102, "i-d fin", "--d:" + (.2 + i * .12));
+        s += '<g class="anim-apparait" style="--d:' + (.4 + i * .12) + '"><rect class="trait f-f i-c' + c + '" x="' + (cx - w / 2).toFixed(1) + '" y="108" width="' + w.toFixed(1) + '" height="34" rx="8"/>' +
+          '<text class="f-t" x="' + cx.toFixed(1) + '" y="131" text-anchor="middle" font-size="16" direction="ltr">' + esc(ids[i] || "") + '</text></g>';
+        s += fleche(cx, 148, cx, 176, "i-d fin", "--d:" + (1 + i * .12));
+        var g = '<g class="anim-apparait" style="--d:' + (1.2 + i * .12) + '">';
+        for (var k = 0; k < 6; k++) g += '<rect class="f-c' + c + '" x="' + (cx - 13).toFixed(1) + '" y="' + (184 + k * 17) + '" width="26" height="14" rx="3" opacity="' + (.2 + ((i * 5 + k * 3) % 8) / 10).toFixed(2) + '"/>';
+        s += g + '<rect class="trait i-d fin" x="' + (cx - 17).toFixed(1) + '" y="180" width="34" height="108" rx="6"/></g>';
+      });
+      return svg(s);
+    },
+    // La carte des sens : les mots aux voisins semblables se regroupent ; homme → femme comme roi → reine.
+    sens: function (d) {
+      var m = (d && d.mots) || [], s = "";
+      var P = [[52, 64, 2], [120, 94, 2], [66, 126, 2], [44, 222, 3], [112, 202, 3], [92, 262, 3], [236, 244, 1], [280, 116, 1], [334, 244, 1], [378, 116, 1]];
+      s += '<ellipse class="trait i-c2 fin anim-apparait" cx="92" cy="96" rx="82" ry="62" stroke-dasharray="4 7"/>';
+      s += '<ellipse class="trait i-c3 fin anim-apparait" style="--d:.2" cx="100" cy="234" rx="88" ry="54" stroke-dasharray="4 7"/>';
+      s += '<path class="trait i-d fin anim-apparait" style="--d:.6" stroke-dasharray="6 6" d="M236 244 H334 M280 116 H378"/>';
+      s += fleche(239, 235, 276, 128, "i-c1", "--d:.9") + fleche(337, 235, 374, 128, "i-c1", "--d:1.1");
+      P.forEach(function (p, i) {
+        var droite = i >= 6, haut = i === 7 || i === 9;
+        s += '<g class="anim-apparait" style="--d:' + (.1 + i * .08) + '"><circle class="trait f-f i-c' + p[2] + '" cx="' + p[0] + '" cy="' + p[1] + '" r="8"/>' +
+          '<text class="f-t" direction="ltr" x="' + (droite ? p[0] : p[0] + 14) + '" y="' + (droite ? (haut ? p[1] - 16 : p[1] + 30) : p[1] + 6) + '" text-anchor="' + (droite ? "middle" : "start") + '" font-size="17">' + esc(m[i] || "") + '</text></g>';
+      });
+      return svg(s);
+    },
+    // Le contexte donne le sens : l'attention relie « souris » à « fromage » (l'animal) ou à « clique » (l'objet).
+    contexte: function (d) {
+      var s = "", ar = langue === "ar", phrases = [(d && d.phrase1) || "", (d && d.phrase2) || ""], liens = (d && d.liens) || [[0, 0], [0, 0]];
+      phrases.forEach(function (ph, j) {
+        var y = j ? 236 : 104, r = rangee(String(ph).split(/\s+/), y, ar ? 92 : 10, ar ? 390 : 308, 16, function (i) { return i === liens[j][0] ? "i-c1" : "i-t"; });
+        s += arc(r.c[liens[j][0]], r.c[liens[j][1]], y - 20, j ? "i-c4" : "i-c2", "--d:" + (.5 + j * .9)) + r.s;
+        var ix = ar ? 46 : 354;
+        s += '<g class="anim-apparait" style="--d:' + (.8 + j * .9) + '">' + (j ?
+          '<rect class="trait f-s i-c4" x="' + (ix - 20) + '" y="' + (y - 34) + '" width="40" height="60" rx="20"/><path class="trait i-c4" d="M' + ix + ' ' + (y - 34) + ' v20 M' + (ix - 20) + ' ' + (y - 12) + ' h40 M' + ix + ' ' + (y - 34) + ' q0 -18 18 -24"/>' :
+          '<path class="trait i-c2" d="M' + (ix - 20) + ' ' + (y + 8) + ' q-16 2 -14 -18"/>' +
+          '<path class="trait f-s i-c2" d="M' + (ix - 22) + ' ' + (y + 8) + ' q0 -24 28 -24 q16 0 28 22 q-10 4 -28 4 q-28 0 -28 -2 z"/>' +
+          '<circle class="trait f-s i-c2" cx="' + (ix + 8) + '" cy="' + (y - 16) + '" r="8"/><circle class="f-c2" cx="' + (ix + 18) + '" cy="' + (y - 2) + '" r="2.5"/>') + '</g>';
       });
       return svg(s);
     },
@@ -734,12 +821,51 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     var licence = p.licence === "PD" ? UI[langue].domaine : p.licence;
     return (p.auteur || "") + (licence ? " · " + licence : "");
   }
+  /* Dernier recours, en ligne : l'API de Wikimedia retrouve le fichier même renommé, sinon l'image principale de
+     l'article de Wikipédia, avec son auteur et sa licence. origin=* : requête anonyme permise depuis toute page. */
+  var RECHERCHES = {};
+  function apiWiki(hote, params) {
+    var q = Object.keys(params).map(function (k) { return k + "=" + encodeURIComponent(params[k]); }).join("&");
+    return fetch("https://" + hote + "/w/api.php?action=query&format=json&formatversion=2&redirects=1&origin=*&" + q)
+      .then(function (r) { return r.json(); }).then(function (j) { return ((j.query || {}).pages || [])[0] || {}; });
+  }
+  function texteSeul(html) { return new DOMParser().parseFromString(html || "", "text/html").body.textContent.replace(/\s+/g, " ").trim(); }
+  function infoFichier(nom, hote) {
+    return apiWiki(hote || "commons.wikimedia.org", { prop: "imageinfo", iiprop: "url|extmetadata", iiurlwidth: 500, titles: "File:" + nom }).then(function (page) {
+      var ii = (page.imageinfo || [])[0], m;
+      if (!ii) return null;
+      m = ii.extmetadata || {};
+      var licence = texteSeul((m.LicenseShortName || {}).value);
+      return { url: ii.thumburl || ii.url, page: ii.descriptionurl || "", auteur: texteSeul((m.Artist || {}).value).slice(0, 80) || "Wikimedia Commons",
+               licence: /^(public domain|pd)$/i.test(licence) ? "PD" : licence };
+    });
+  }
+  function chercherPhoto(cle) {
+    var p = PHOTOS[cle] || {};
+    if (!RECHERCHES[cle]) RECHERCHES[cle] = !window.fetch || !window.DOMParser ? Promise.resolve(null) :
+      (p.fichier ? infoFichier(p.fichier) : Promise.resolve(null)).then(function (info) {
+        if (info || !p.article) return info;
+        return apiWiki("en.wikipedia.org", { prop: "pageimages", piprop: "name", titles: p.article }).then(function (page) {
+          return page.pageimage ? infoFichier(page.pageimage).then(function (i) { return i || infoFichier(page.pageimage, "en.wikipedia.org"); }) : null;
+        });
+      }).catch(function () { return null; });
+    return RECHERCHES[cle];
+  }
   function chargerPhotos(racine) {
     Array.prototype.forEach.call(racine.querySelectorAll("img[data-photo]"), function (img) {
       if (img.dataset.pret) return;
       img.dataset.pret = "1";
-      var p = PHOTOS[img.dataset.photo] || {}, sources = p.sources || [], n = 0;
-      function essayer() { if (n < sources.length) img.src = sources[n++]; }
+      var p = PHOTOS[img.dataset.photo] || {}, sources = p.sources || [], n = 0, cherche = false;
+      function essayer() {
+        if (n < sources.length) { img.src = sources[n++]; return; }
+        if (cherche) return;
+        cherche = true;
+        chercherPhoto(img.dataset.photo).then(function (info) {
+          if (!info) return;
+          p = { page: info.page, auteur: info.auteur, licence: info.licence };
+          img.src = info.url;
+        });
+      }
       img.onload = function () {
         var cadre = img.parentNode, repli = cadre.querySelector(".photo__repli");
         img.hidden = false;
@@ -769,14 +895,14 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
   }
   function illustration(d, i) {
     if (d.personne && PHOTOS[d.personne] && d.type !== "schema") return photo(d.personne, d.nom || d.titre, d.encart);
-    if (d.illus && ILLUS[d.illus]) return '<div class="illus a" style="--i:' + (i || 1) + '">' + ILLUS[d.illus]() + '</div>';
+    if (d.illus && ILLUS[d.illus]) return '<div class="illus a" style="--i:' + (i || 1) + '">' + ILLUS[d.illus](d) + '</div>';
     return "";
   }
   function rendre(d, n, total) {
     var h = "", t = d.type;
     if (t === "couverture") {
       h = '<div><p class="surtitre a" style="--i:0">' + riche(d.surtitre) + '</p><h1 class="titre a" style="--i:1">' + riche(d.titre) + '</h1><p class="sous-titre a" style="--i:2">' + riche(d.sousTitre) + '</p></div>' +
-        '<div class="illus a" style="--i:3">' + ILLUS[d.illus || "agent"]() + '</div><span class="anneau-decor" aria-hidden="true"></span>';
+        '<div class="illus a" style="--i:3">' + ILLUS[d.illus || "agent"](d) + '</div><span class="anneau-decor" aria-hidden="true"></span>';
     } else if (t === "plan") {
       h = '<h2 class="titre a" style="--i:0">' + riche(d.titre) + '</h2><ol class="plan">' + d.points.map(function (p, i) { return '<li class="a" style="--i:' + (i + 1) + '"><span>' + riche(p) + '</span></li>'; }).join("") + '</ol>';
     } else if (t === "section") {
@@ -786,7 +912,7 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
       h = '<div class="' + (cote ? "colonnes" : "") + '"><div>' + (d.annee ? '<span class="annee a" style="--i:0">' + esc(d.annee) + '</span>' : "") +
         '<h2 class="titre a" style="--i:0">' + riche(d.titre) + '</h2>' + points(d.points, 1) + '</div>' + cote + '</div>';
     } else if (t === "schema") {
-      h = '<div class="colonnes colonnes--schema"><div class="illus a a--gauche' + (d.personne && PHOTOS[d.personne] ? " illus--photo" : "") + '" style="--i:0">' + (ILLUS[d.illus] ? ILLUS[d.illus]() : "") +
+      h = '<div class="colonnes colonnes--schema"><div class="illus a a--gauche' + (d.personne && PHOTOS[d.personne] ? " illus--photo" : "") + '" style="--i:0">' + (ILLUS[d.illus] ? ILLUS[d.illus](d) : "") +
         (d.personne && PHOTOS[d.personne] ? photo(d.personne, d.titre, null, true) : "") + '</div><div>' +
         (d.annee ? '<span class="annee a" style="--i:0">' + esc(d.annee) + '</span>' : "") + '<h2 class="titre a" style="--i:1">' + riche(d.titre) + '</h2>' + points(d.points, 2) + '</div></div>';
     } else if (t === "portrait") {

@@ -590,6 +590,68 @@
     },
     {
       "type": "schema",
+      "titre": "From text to numbers",
+      "illus": "tokens",
+      "phrase": "The cat drinks warm milk",
+      "ids": "412 8093 5871 88 2310",
+      "points": [
+        "A computer only knows numbers",
+        "The text is cut into pieces: **tokens**",
+        "Each token gets a number, then a long list of numbers: a **vector**",
+        "The model never sees letters, only these numbers"
+      ],
+      "notes": "The numbers in the picture are made up for the example. A real vocabulary has tens of thousands of tokens (just over 50,000 for GPT-2); a common word stays whole, a rare or long word is cut into several pieces. The colored columns stand for the vectors: hundreds of numbers per token, learned during training. Refer to the chapter 1 lesson “How an AI ‘understands’ a text”."
+    },
+    {
+      "type": "schema",
+      "titre": "The map of meanings",
+      "illus": "sens",
+      "mots": [
+        "cat",
+        "dog",
+        "horse",
+        "book",
+        "novel",
+        "reader",
+        "man",
+        "woman",
+        "king",
+        "queen"
+      ],
+      "points": [
+        "Each vector is an address on a huge map of meanings",
+        "Words with the same neighbors end up close: “cat”, “dog”",
+        "The model learns this by itself, guessing hidden words in billions of sentences",
+        "The map keeps relations: from “man” to “woman” as from “king” to “queen”"
+      ],
+      "notes": "A game to play with the class: “The ___ drinks milk and sleeps on the sofa.” Everyone guesses “cat” thanks to the neighbors: that is what the model does, on a huge scale. The linguist J. R. Firth put it this way in 1957: “You shall know a word by the company it keeps”. Real maps have hundreds of dimensions; here they are projected onto two. These maps also reproduce the stereotypes of their training texts."
+    },
+    {
+      "type": "schema",
+      "titre": "Context gives meaning",
+      "illus": "contexte",
+      "phrase1": "the mouse eats the cheese",
+      "phrase2": "I click with the mouse",
+      "liens": [
+        [
+          1,
+          4
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "points": [
+        "The same word can have several meanings: “mouse”",
+        "**Attention** links each word to its neighbors",
+        "With “cheese”, the mouse is the animal; with “click”, it is the device",
+        "The word's vector is recalculated from its context"
+      ],
+      "notes": "This is what sets Transformers (2017) apart from older methods, which gave each word a single vector whatever its meaning. Other examples: “bank” (of a river, for money), “bat” (the animal, the stick). Ask the students for an example in another language: in Arabic, “عين” (the eye, a spring)."
+    },
+    {
+      "type": "schema",
       "titre": "How a language model “writes”",
       "illus": "motsuivant",
       "points": [
@@ -598,7 +660,14 @@
         "It picks one, adds it to the text, and starts again",
         "Humans then rate its answers to refine it"
       ],
-      "notes": "It is the bigram model of notebook 08, on an immensely larger scale. Tuning by humans is called RLHF: reinforcement learning from human feedback. Stress this: the model predicts plausible text, not true text."
+      "notes": "It is the bigram model of notebook 08, on an immensely larger scale. Tuning by humans is called RLHF: reinforcement learning from human feedback. Stress this: the model predicts plausible text, not true text.",
+      "debut": "The cat drinks some",
+      "suites": [
+        "milk",
+        "water",
+        "tea",
+        "juice"
+      ]
     },
     {
       "type": "chat",
