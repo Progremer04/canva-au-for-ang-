@@ -10,6 +10,9 @@ Le programme officiel de la matière tient en trois pages : des intitulés de ch
 | --- | --- |
 | `docs/` | Le site statique, prêt pour GitHub Pages (`index.html`, `systeme-de-design.html`, `assets/`). |
 | `docs/_sources/` | Les sources des pages : gabarit et un fragment HTML par partie du cours ; `docs/_sources/en/` pour l'anglais, `docs/_sources/ar/` pour l'arabe. |
+| `docs/_sources/diapos/` | Les diaporamas, un fichier JSON par séance (`en/` et `ar/` pour les traductions). |
+| `docs/assets/vendor/` | sql.js (SQLite dans le navigateur) et PptxGenJS (export PowerPoint), copiés pour marcher hors ligne. |
+| `donnees/` | Créé au premier usage de « Mes groupes » : la base `classe.sqlite` et ses sauvegardes. Jamais dans git. |
 | `design-system/` | Lumineux : jetons (`tokens.json`), guide d'usage (`README.md`), audit du code d'origine (`extraction.md`), composants (`composants/<Nom>/README.md` et `apercu.html`). |
 | `tools/` | Scripts Python sans dépendance : construction du site, lancement local (`lancer.py`), vérification des bibliothèques (`verifier_bibliotheques.py`). |
 | `run.bat` | Tout-en-un pour Windows : téléchargement, installation, lancement. |
@@ -20,6 +23,8 @@ Le programme officiel de la matière tient en trois pages : des intitulés de ch
 
 - **En français, en anglais et en arabe** : `docs/index.html` (FR), `docs/en/index.html` (EN) et `docs/ar/index.html` (AR, de droite à gauche), avec un sélecteur FR / EN / عربي qui garde la leçon en cours.
 - **Guide de l'enseignant** (`docs/enseignant.html`, et `en/`, `ar/`) : par où commencer (même sans avoir jamais programmé), carte du cours, progression semaine par semaine, fiches de séance prêtes à l'emploi, activités pour la classe, sujet d'examen corrigé et grilles d'évaluation, charte d'usage de l'IA, bibliothèque de ressources classées.
+- **Diaporamas** (`docs/diaporamas.html`) : un « PowerPoint » dans le site, une présentation par fiche de séance (8) et une pour lancer le mini-projet, en trois langues, 181 diapositives chacune. Vue normale avec vignettes et notes de l'enseignant ; projection plein écran (flèches, clic, points qui apparaissent un à un, réponses à dévoiler, minuteur pour les activités, écran noir) ; mode présentateur dans une seconde fenêtre (notes, diapositive suivante, chronomètre) ; téléchargement en PowerPoint (`.pptx`, modifiable) ou en PDF.
+- **Mes groupes** (`docs/classe.html`) : la classe de l'enseignant. Six groupes au départ (nom, horaire, salle, sujet du mini-projet, couleur) ; les étudiants, saisis un par un ou collés depuis Excel, déplacés d'un groupe à l'autre par glisser-déposer ; une fiche par étudiant avec des observations datées, ses présences et ses notes ; pour chaque groupe, le planning des séances (généré d'après la progression du guide, puis modifiable : dates, horaires, sujets, « Décaler » pour repousser toutes les séances suivantes) et le cahier de textes (ce qui a été fait, travail donné, appel) ; les évaluations et les moyennes ; une feuille d'émargement imprimable ; exports CSV pour Excel.
 - **Accueil** : un lecteur de sentiments à lexique, à essayer sur une phrase (méthode du sujet 1).
 - **Comment apprendre ce cours** : habitudes de travail qui marchent, semaine type, méthode par chapitre, vocabulaire français–anglais, bon usage d'un assistant d'IA, préparation de l'examen.
 - **Fiche de la matière** et **calendrier** du semestre, avec renvois vers les parties du site.
@@ -48,6 +53,8 @@ Double-cliquez sur `run.bat`. Il fait tout, dans l'ordre :
 
 `run.bat` suffit à lui seul : copiez-le dans un dossier vide et double-cliquez, il télécharge le projet à côté de lui (dossier `canva-au-for-ang-`).
 
+**Où sont les données de « Mes groupes » ?** Lancé par `run.bat`, le site les enregistre dans une base SQLite ordinaire, `donnees\classe.sqlite`, dans le dossier du projet, avec une copie de sauvegarde par jour dans `donnees\sauvegardes\` (les 60 dernières). Le serveur n'écoute que sur cet ordinateur (127.0.0.1) et vérifie l'origine des requêtes ; `git pull` ne touche jamais ce dossier. Si le site est ouvert autrement (fichier ouvert directement, GitHub Pages), la base reste dans le navigateur : la page le signale, et l'onglet « Données » permet de télécharger la base ou d'en importer une. La base se lit aussi avec Python : `pandas.read_sql("SELECT * FROM etudiant", sqlite3.connect("donnees/classe.sqlite"))`.
+
 | Commande | Effet |
 | --- | --- |
 | `run.bat` | tout : téléchargement ou mise à jour, installation (une fois), site |
@@ -66,8 +73,11 @@ Sur macOS ou Linux : `python3 tools/lancer.py` ouvre le site, `python3 -m pip in
 ```sh
 python3 tools/build_tokens.py          # design-system/tokens.json → docs/assets/css/lumineux-tokens.css
 python3 tools/construire_systeme.py    # design-system/ → docs/systeme-de-design.html
-python3 tools/assembler.py             # docs/_sources/ → docs/index.html, docs/en/ et docs/ar/
+python3 tools/assembler.py             # docs/_sources/ → docs/index.html, docs/en/ et docs/ar/ (diaporamas compris)
+python3 tools/diapos.py --verifier docs/_sources/diapos/seance-1.json   # vérifie un diaporama
 ```
+
+Un diaporama est un fichier JSON : un titre, puis une liste de diapositives typées (`titre`, `points`, `deux`, `definition`, `citation`, `code`, `tableau`, `etapes`, `question`, `activite`, `chiffre`, `chronologie`, `fin`), chacune avec ses `notes` pour l'enseignant. Le détail des champs est en tête de `tools/diapos.py`.
 
 Pour voir le site en local : `python3 tools/lancer.py` (ou `python3 -m http.server --directory docs`, puis `http://localhost:8000`).
 

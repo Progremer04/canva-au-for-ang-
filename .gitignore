@@ -7,3 +7,5 @@ __pycache__/
 rapport*.xlsx
 rapport*.pdf
 *.gexf
+# Base de la page « Mes groupes » : données personnelles des étudiants, jamais dans git
+donnees/

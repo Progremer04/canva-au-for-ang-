@@ -1,0 +1,274 @@
+{
+  "id": "seance-1",
+  "numero": 1,
+  "titre": "First class: presenting the course and defining AI",
+  "resume": "Define AI through observable tasks, say whether an everyday object involves AI with a justification, and describe what the imitation game measures.",
+  "duree": "1 h 30 min",
+  "lien": "index.html#chapitre-1",
+  "fiche": "enseignant.html#guide-seance-1",
+  "diapos": [
+    {
+      "type": "titre",
+      "surtitre": "Artificial Intelligence · Session 1",
+      "titre": "First class: presenting the course and defining AI",
+      "sousTitre": "Master in General and Comparative Literature · Semester 3 · Université Yahia Farès, Médéa · 2025–2026",
+      "notes": "While you set up, write an opening question on the board: “Can a machine read a novel?” Do not settle it: it will come back with the imitation game. If the room allows, show the site’s home page, which computes the sentiment of a sentence: what does “reading” mean for a machine? Equipment to check: projector, the site open at the course card, printed questionnaire, strips of paper."
+    },
+    {
+      "type": "points",
+      "titre": "Session objectives",
+      "points": [
+        "**Define** AI through observable tasks",
+        "**Say** whether an everyday object involves AI, with a justification",
+        "**Describe** the imitation game and what it measures"
+      ],
+      "notes": "Read the three objectives aloud: each one starts with an action verb, so you can check at the end that it has been reached. Announce the outline: presenting the course, a questionnaire, an “AI or not AI?” vote, teacher input, then a game in which two students play the human and the machine."
+    },
+    {
+      "type": "tableau",
+      "titre": "The course in one semester",
+      "entetes": [
+        "Part",
+        "Content",
+        "Duration"
+      ],
+      "lignes": [
+        [
+          "Chapter 1",
+          "Introduction: defining AI, history, types of learning, approaches",
+          "1 week"
+        ],
+        [
+          "Chapter 2",
+          "Python: fundamentals, pandas and NumPy, objects, text files",
+          "2 weeks"
+        ],
+        [
+          "Chapter 3",
+          "Symbolic AI, machine learning, deep learning, reinforcement",
+          "6 weeks"
+        ],
+        [
+          "Mini-project",
+          "Guided independent work, handed out at the end of chapter 2",
+          "3 weeks"
+        ],
+        [
+          "Tutorials (TD) / labs (TP)",
+          "Exercises with solutions, then Python programming",
+          "All semester"
+        ],
+        [
+          "Round tables",
+          "4 debates: origins, methods in SHS, new issues, outlook",
+          "About 45 min"
+        ]
+      ],
+      "legende": "Durations set by the official syllabus; the exact calendar is set by the teacher.",
+      "notes": "15 min for this slide and the next. Show the course card and the calendar on the site. In front of the class, settle the two points that the syllabus leaves open: how the assessment is split, according to your faculty’s regulations in force, and the number of mini-project subjects (“1 subject of your choice” or “at least 3 of the 5 proposed subjects”). Announce the rule you have chosen today."
+    },
+    {
+      "type": "points",
+      "titre": "How to work in this course",
+      "points": [
+        "Programming starts from **zero**: no prior knowledge of computing is needed",
+        "About **3 hours** of personal work a week, done regularly",
+        "**Test yourself** instead of rereading; **space out** your revision",
+        "Work on each tutorial exercise **before** opening the solution",
+        "Learn each term in **French** and in **English**"
+      ],
+      "notes": "Open the “How to learn this course” page and show the “A typical week” table: five moments, three hours in all. Stress this point: a review of research on the psychology of learning (Dunlosky et al., 2013) ranks testing yourself and spacing out revision among the most useful techniques; rereading and highlighting give a feeling of mastery, but little of it stays. Reassure students about Python: we start from zero."
+    },
+    {
+      "type": "activite",
+      "titre": "Diagnostic questionnaire",
+      "duree": 10,
+      "consignes": [
+        "Have you ever used a chatbot?",
+        "Have you ever written code?",
+        "Do you have a laptop? An Internet connection at home?",
+        "In which language do you prefer to read technical documentation?",
+        "What do you expect from this course?"
+      ],
+      "materiel": "The printed questionnaire, one sheet per student",
+      "notes": "10 min. Collect the sheets without commenting on the answers in public. The answers about equipment will help you form the pairs for the lab sessions (TP): put each student who has no computer with a student who has one. The preferred reading language will tell you which students to point toward the English or Arabic version of the site."
+    },
+    {
+      "type": "activite",
+      "titre": "AI or not AI? Vote",
+      "duree": 15,
+      "consignes": [
+        "For each object, vote by a show of hands: AI or not AI?",
+        "Calculator · spellchecker · spam filter · machine translator",
+        "Thermostat · search engine · GPS · chatbot",
+        "Spot the objects that divide the class",
+        "A volunteer from each side justifies their vote in one sentence"
+      ],
+      "notes": "15 min. Count the votes and write the results on the board; keep them for the end of the teacher input. Give no answers: the aim is to bring disagreements to light. Conclusion to draw: if we disagree, we first need to define what we call “artificial intelligence”."
+    },
+    {
+      "type": "section",
+      "numero": 1,
+      "titre": "What is artificial intelligence?",
+      "sousTitre": "Dartmouth, agents, a working definition",
+      "notes": "20 min of teacher input, based on the lesson “What is artificial intelligence?” in chapter 1. Announce that you will then come back to the eight objects the class voted on."
+    },
+    {
+      "type": "chiffre",
+      "valeur": "1956",
+      "legende": "The Dartmouth workshop: the term “artificial intelligence” becomes the name of a research field",
+      "source": "Proposal written in 1955 by McCarthy, Minsky, Rochester and Shannon",
+      "notes": "Tell the story: in 1955, John McCarthy, Marvin Minsky, Nathaniel Rochester and Claude Shannon asked for funding to bring researchers together at Dartmouth College, in the United States, in the summer of 1956. Their hypothesis: every aspect of learning and intelligence could be described precisely enough for a machine to simulate it. This workshop is considered the birth of the field. Add straight away that there is no single definition: there is no agreement on what the word “intelligence” itself means."
+    },
+    {
+      "type": "definition",
+      "terme": "Agent",
+      "traduction": "agent",
+      "definition": "A system that perceives its environment and acts on it to achieve a goal.",
+      "exemple": "A spam filter “perceives” the text of an email and “acts” by putting it in the right folder.",
+      "notes": "This is how the standard textbook by Stuart Russell and Peter Norvig, *Artificial Intelligence: A Modern Approach* (1995), presents AI: as the study of agents. Ask for another agent among the eight objects voted on. Possible answers: the GPS perceives a position and suggests a route; the thermostat perceives the temperature and acts on the heating. Point out that this definition is very broad: it is not enough to settle the question."
+    },
+    {
+      "type": "definition",
+      "terme": "Artificial intelligence",
+      "traduction": "intelligence artificielle (IA)",
+      "definition": "The set of computing methods that allow a machine to perform tasks we usually associate with human intelligence: recognizing, classifying, predicting, reasoning, planning, understanding or producing language.",
+      "exemple": "Recognizing the characters of an old newspaper (OCR), translating between Arabic and French, sorting emails.",
+      "notes": "This is the course’s working definition. Stress that it is about observable tasks: it says nothing about what the machine “understands”. Add that talking about “AI” in the singular is misleading: it is a family of techniques (rules written by experts, exploring possibilities, learning from examples, neural networks). Have students write down the question to ask about any result produced by “an AI”: which technique, trained on which data, for which task?"
+    },
+    {
+      "type": "deux",
+      "titre": "Why AI matters for literary studies",
+      "colonnes": [
+        {
+          "titre": "Roberto Busa, 1949",
+          "points": [
+            "An Italian Jesuit indexes the works of Thomas Aquinas, with help from IBM",
+            "Often given as the origin of the **digital humanities** (*humanités numériques*)"
+          ]
+        },
+        {
+          "titre": "Franco Moretti, 2000 and 2013",
+          "points": [
+            "No one can read every novel published in the 19th century",
+            "**Distant reading** (*lecture distante*): thousands of texts, measurable features",
+            "It does not replace close reading"
+          ]
+        }
+      ],
+      "notes": "For a comparatist, Moretti is the reference: “Conjectures on World Literature” (2000), then *Distant Reading* (2013). Measurable features: genres, titles, character networks, the movement of forms from one language to another. Two concrete uses from chapter 1: in 2019, Florian Cafiero and Jean-Baptiste Camps provided quantitative arguments in favor of Molière in the controversy that set him against Corneille; you can also align a novel by Naguib Mahfouz sentence by sentence with its French and English translations, to compare the translators’ choices."
+    },
+    {
+      "type": "deux",
+      "titre": "Back to the eight objects",
+      "colonnes": [
+        {
+          "titre": "Examples the course uses",
+          "points": [
+            "Spam filter: an agent that sorts emails",
+            "Machine translator: a narrow AI",
+            "Search engine: AI in everyday life",
+            "GPS: searching for a route among possibilities",
+            "Chatbot: a large language model"
+          ]
+        },
+        {
+          "titre": "To discuss: which technique?",
+          "points": [
+            "Calculator: is calculating an “intelligent” task?",
+            "Thermostat: it perceives and acts; is that enough?",
+            "Spellchecker: a dictionary, or a learned model?"
+          ]
+        }
+      ],
+      "notes": "Go back to the votes on the board. For each object, ask the question of the definition: does it perform a task associated with human intelligence (recognizing, classifying, predicting, planning, producing language)? The first five are examples from chapter 1, where planning a route between Médéa and Algiers illustrates “state-space search”. For the other three, accept both answers if they are justified by the technique assumed: what counts is the justification, not the verdict."
+    },
+    {
+      "type": "section",
+      "numero": 2,
+      "titre": "The imitation game",
+      "sousTitre": "Alan Turing, 1950",
+      "notes": "25 min in all: the short version of the activity in the guide, with two witnesses, five minutes of questions, a vote and a discussion."
+    },
+    {
+      "type": "citation",
+      "texte": "I propose to consider the question, “Can machines think?”",
+      "source": "Alan M. Turing, “Computing Machinery and Intelligence”, *Mind*, 1950",
+      "notes": "This is the first sentence of the article, quoted here in Turing’s own words (the French slides give the course’s translation). Explain Turing’s move: rather than defining “thinking”, he proposes an observable test. In his original game, an interrogator must guess in writing who is the man and who is the woman; then a machine takes one of the places. If the interrogator cannot tell the machine from the human, the machine is behaving intelligently: this is the “Turing test”."
+    },
+    {
+      "type": "activite",
+      "titre": "Let’s play: which one is the machine?",
+      "duree": 25,
+      "consignes": [
+        "Two witnesses, out of sight: X answers sincerely, Y plays the machine",
+        "The class asks its questions in writing, on strips of paper",
+        "Five minutes of questions per witness; the teacher reads the answers aloud",
+        "Show of hands: which one is the machine? Then the reveal",
+        "Discussion: what gave the machine away?"
+      ],
+      "materiel": "Strips of paper, a place out of sight, the rule card given to Y",
+      "notes": "Timing: roles 3 min, questions 10 min (five minutes per witness, the length of time Turing mentions), vote 5 min, discussion for the rest. Discreetly give Y the rule card from the next slide, which you will only project after the vote. Read all the answers yourself: handwriting would give the witnesses away. Variation: Y is a chatbot whose answers you read out; the question then becomes “what does deceiving prove?”."
+    },
+    {
+      "type": "points",
+      "titre": "The reveal: the “machine’s” rule card",
+      "points": [
+        "The question contains “you” → “Why are you asking me that question?”",
+        "It contains a word about family → “Tell me about your family.”",
+        "It asks for a calculation → wait thirty seconds, then answer",
+        "Otherwise → “I am not sure I understand. Could you rephrase that?”"
+      ],
+      "notes": "Project it only after the vote. These rules are in the spirit of ELIZA, the program by Joseph Weizenbaum (MIT, 1966) that imitated a psychotherapist by rephrasing the user’s sentences. Ask: what gave the machine away? Should it imitate our mistakes? In Turing’s example, the machine answers an addition after about thirty seconds, and gets it wrong."
+    },
+    {
+      "type": "question",
+      "titre": "Discussion",
+      "question": "Is deceiving the interrogator the same as thinking?",
+      "reponse": "Not necessarily: Turing replaces a philosophical question with an observable test. Passing the test does not prove understanding.",
+      "explication": "This is the objection raised by the philosopher John Searle (1980) with the Chinese room, which we will see in session 2.",
+      "notes": "10 min of discussion. Let both sides speak before showing the answer. Point to bring out: the test measures a behavior, the ability to pass for a human in writing; it does not define intelligence and does not prove understanding."
+    },
+    {
+      "type": "definition",
+      "terme": "ELIZA effect",
+      "traduction": "effet ELIZA",
+      "definition": "The tendency to attribute intelligence, or even real understanding, to a program that talks.",
+      "exemple": "In 1966, users of ELIZA, which merely rephrased their sentences with simple rules, believed it truly understood them.",
+      "notes": "Link it to the game: if the class hesitated over Y, who applied only four rules, that is the ELIZA effect. It also applies to today’s chatbots: answering well does not prove understanding."
+    },
+    {
+      "type": "points",
+      "titre": "Common mistakes to correct",
+      "points": [
+        "Reducing AI to robots or to recent chatbots",
+        "Believing that a system understands because it answers well: this is the **ELIZA effect**",
+        "Taking the Turing test for a **definition** of intelligence"
+      ],
+      "notes": "Reread these three mistakes and ask, for each one, what in the session helps to correct it. Expected: the definition through tasks and the family of techniques (1); the “machine’s” rule card (2); the fact that Turing proposes an observable test, not a definition (3)."
+    },
+    {
+      "type": "fin",
+      "titre": "Wrap-up and homework",
+      "points": [
+        {
+          "texte": "**Exit ticket** (5 min)",
+          "sous": [
+            "One thing you learned today",
+            "One question you still have"
+          ]
+        },
+        {
+          "texte": "**To read** on the site",
+          "sous": [
+            "“What is artificial intelligence?” (chapter 1)",
+            "“A typical week” (How to learn this course)"
+          ]
+        },
+        "**To note**: one use of AI you met this week, with the technique it probably relies on"
+      ],
+      "texte": "Session 2: history of AI, weak AI and strong AI",
+      "notes": "Collect the tickets and read them the same evening: the best questions will open session 2. Before ending the class, check the objectives with two quick questions: “Define AI in one sentence.” “What does the imitation game measure?”"
+    }
+  ]
+}

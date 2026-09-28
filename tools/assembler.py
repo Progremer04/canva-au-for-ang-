@@ -3,7 +3,8 @@
 
   python3 tools/assembler.py
       → écrit docs/index.html (français), docs/en/index.html (anglais), docs/ar/index.html (arabe)
-        et, pour chaque langue, le guide de l'enseignant (enseignant.html)
+        et, pour chaque langue, le guide de l'enseignant (enseignant.html), les diaporamas
+        (diaporamas.html, via tools/diapos.py) et la page « Mes groupes » (classe.html)
 
   python3 tools/assembler.py --autonome CHEMIN [--langue fr|en|ar] [--lien-systeme URL]
       → écrit une version en un seul fichier : CSS et JS intégrés,
@@ -16,6 +17,8 @@ Sources : docs/_sources/<fragment>.html pour le français,
 import argparse
 import re
 from pathlib import Path
+
+import diapos
 
 RACINE = Path(__file__).resolve().parent.parent
 DOCS = RACINE / "docs"
@@ -38,6 +41,8 @@ NAV = [
     ("references", "i-livre", {"fr": "Références", "en": "References", "ar": "المراجع"}),
     ("glossaire", "Aa", {"fr": "Glossaire", "en": "Glossary", "ar": "المسرد"}),
     ("enseignant.html", "i-outil", {"fr": "Guide de l'enseignant", "en": "Teacher's guide", "ar": "دليل الأستاذ"}),
+    ("diaporamas.html", "i-ecran", {"fr": "Diaporamas", "en": "Slides", "ar": "العروض التقديمية"}),
+    ("classe.html", "i-groupe", {"fr": "Mes groupes", "en": "My groups", "ar": "أفواجي"}),
 ]
 
 # Page « Guide de l'enseignant » : fragments et menu.
@@ -52,20 +57,59 @@ NAV_GUIDE = [
     ("guide-evaluation", "i-coche", {"fr": "Évaluation", "en": "Assessment", "ar": "التقييم"}),
     ("guide-ia", "i-ampoule", {"fr": "L'IA générative en classe", "en": "Generative AI in class", "ar": "الذكاء التوليدي في القسم"}),
     ("guide-ressources", "i-livre", {"fr": "Ressources", "en": "Resources", "ar": "المراجع والموارد"}),
+    ("diaporamas.html", "i-ecran", {"fr": "Diaporamas", "en": "Slides", "ar": "العروض التقديمية"}),
+    ("classe.html", "i-groupe", {"fr": "Mes groupes", "en": "My groups", "ar": "أفواجي"}),
 ]
+
+# Pages outils (diaporamas, groupes) : menu du tiroir et textes d'en-tête.
+NAV_OUTILS = [
+    ("index.html", "i-retour", {"fr": "Retour au cours", "en": "Back to the course", "ar": "العودة إلى المقياس"}),
+    ("enseignant.html", "i-outil", {"fr": "Guide de l'enseignant", "en": "Teacher's guide", "ar": "دليل الأستاذ"}),
+    ("diaporamas.html", "i-ecran", {"fr": "Diaporamas", "en": "Slides", "ar": "العروض التقديمية"}),
+    ("classe.html", "i-groupe", {"fr": "Mes groupes", "en": "My groups", "ar": "أفواجي"}),
+]
+TEXTES_OUTILS = {
+    "diaporamas": {
+        "fr": {"titre": "Diaporamas · Cours d'IA", "surtitre": "Pour projeter en classe", "h1": "Diaporamas",
+               "chapeau": "Une présentation par séance, prête à projeter : plein écran, notes de l'enseignant, réponses à dévoiler, minuteur pour les activités. Chaque diaporama se télécharge aussi en PowerPoint (.pptx) ou en PDF.",
+               "nav": "Menu", "noscript": "Les diaporamas ont besoin de JavaScript. Activez-le dans votre navigateur."},
+        "en": {"titre": "Slides · AI Course", "surtitre": "To project in class", "h1": "Slides",
+               "chapeau": "One presentation per session, ready to project: full screen, teacher's notes, answers to reveal, a timer for activities. Every deck also downloads as PowerPoint (.pptx) or PDF.",
+               "nav": "Menu", "noscript": "The slides need JavaScript. Please enable it in your browser."},
+        "ar": {"titre": "العروض التقديمية · مقياس الذكاء الاصطناعي", "surtitre": "للعرض في القسم", "h1": "العروض التقديمية",
+               "chapeau": "عرض لكل حصة، جاهز للإسقاط على الشاشة: ملء الشاشة، ملاحظات الأستاذ، أجوبة تُكشف عند الطلب، مؤقّت للأنشطة. ويمكن تنزيل كل عرض بصيغة ⁦PowerPoint (.pptx)⁩ أو PDF.",
+               "nav": "القائمة", "noscript": "تحتاج العروض إلى JavaScript. فعّلوه في المتصفح."},
+    },
+    "classe": {
+        "fr": {"titre": "Mes groupes · Cours d'IA", "surtitre": "Pour l'enseignant", "h1": "Mes groupes",
+               "chapeau": "Vos groupes et vos étudiants, le planning et le cahier de textes de chaque groupe, les présences, les observations et les notes. Tout reste sur votre ordinateur, dans une base SQLite.",
+               "nav": "Menu", "noscript": "Cette page a besoin de JavaScript. Activez-le dans votre navigateur."},
+        "en": {"titre": "My groups · AI Course", "surtitre": "For the teacher", "h1": "My groups",
+               "chapeau": "Your groups and students, each group's schedule and class log, attendance, notes on students and grades. Everything stays on your computer, in an SQLite database.",
+               "nav": "Menu", "noscript": "This page needs JavaScript. Please enable it in your browser."},
+        "ar": {"titre": "أفواجي · مقياس الذكاء الاصطناعي", "surtitre": "للأستاذ", "h1": "أفواجي",
+               "chapeau": "أفواجكم وطلبتكم، ورزنامة كل فوج ودفتر نصوصه، والحضور، والملاحظات على الطلبة، والعلامات. كل شيء يبقى على حاسوبكم في قاعدة بيانات SQLite.",
+               "nav": "القائمة", "noscript": "تحتاج هذه الصفحة إلى JavaScript. فعّلوه في المتصفح."},
+    },
+}
+# Scripts propres à chaque page outil ({langue} est remplacé).
+SCRIPTS_OUTILS = {
+    "diaporamas": ["assets/diapos/diapos-{langue}.js", "assets/js/diaporama.js"],
+    "classe": ["assets/js/classe.js"],
+}
 TEXTES_GUIDE = {
     "fr": {"titre": "Guide de l'enseignant · Cours d'IA", "surtitre": "Pour l'enseignant",
            "h1": "<span>Guide de</span> <span>l'enseignant</span>",
            "chapeau": "Tout ce qu'il faut pour enseigner ce cours, même sans avoir jamais programmé : par où commencer, la carte du cours, une progression semaine par semaine, des fiches de séance prêtes à l'emploi, des activités pour la classe, un sujet d'examen corrigé et toutes les ressources utiles.",
-           "b1": "Par où commencer", "b2": "Toutes les ressources", "nav": ("Guide (menu)", "Sommaire du guide")},
+           "b1": "Par où commencer", "b2": "Toutes les ressources", "b3": "Diaporamas", "b4": "Mes groupes", "nav": ("Guide (menu)", "Sommaire du guide")},
     "en": {"titre": "Teacher's guide · AI Course", "surtitre": "For the teacher",
            "h1": "<span>Teacher's</span> <span>guide</span>",
            "chapeau": "Everything you need to teach this course, even if you have never programmed: where to start, a map of the course, a week-by-week plan, ready-to-use lesson plans, classroom activities, a model exam with answers, and every useful resource.",
-           "b1": "Where to start", "b2": "All resources", "nav": ("Guide (menu)", "Guide contents")},
+           "b1": "Where to start", "b2": "All resources", "b3": "Slides", "b4": "My groups", "nav": ("Guide (menu)", "Guide contents")},
     "ar": {"titre": "دليل الأستاذ · مقياس الذكاء الاصطناعي", "surtitre": "للأستاذ",
            "h1": "<span>دليل</span> <span>الأستاذ</span>",
            "chapeau": "كل ما تحتاجه لتدريس هذا المقياس حتى لو لم تبرمج من قبل: من أين تبدأ، خريطة المقياس، خطة أسبوعًا بأسبوع، مذكرات حصص جاهزة، أنشطة للقسم، نموذج امتحان مع الحل، وكل المراجع والموارد المفيدة.",
-           "b1": "من أين تبدأ", "b2": "كل المراجع", "nav": ("الدليل (القائمة)", "محتويات الدليل")},
+           "b1": "من أين تبدأ", "b2": "كل المراجع", "b3": "العروض التقديمية", "b4": "أفواجي", "nav": ("الدليل (القائمة)", "محتويات الدليل")},
 }
 
 # Par langue : dossier des sources, dossier de sortie, préfixe des assets, libellés des deux nav.
@@ -121,17 +165,24 @@ def assembler(langue, lien_systeme):
     return page
 
 
-def guide(langue, lien_systeme):
-    """Page « Guide de l'enseignant » : l'en-tête et le pied de page du cours, un héros sobre, les fragments du guide."""
-    conf, t = LANGUES[langue], TEXTES_GUIDE[langue]
+def habillage(langue, page, titre):
+    """L'en-tête et le pied de page du cours, adaptés à une page voisine de index.html."""
+    conf = LANGUES[langue]
     gabarit = (conf["sources"] / "gabarit.html").read_text(encoding="utf-8")
     tete = gabarit[:gabarit.index('<main id="contenu">')]
     pied = gabarit[gabarit.index("</main>") + len("</main>"):]
     pied = pied.replace('href="#', 'href="index.html#')   # le pied de page renvoie aux sections du cours
-    tete = re.sub(r"<title>[^<]*</title>", f"<title>{t['titre']}</title>", tete, count=1)
+    tete = re.sub(r"<title>[^<]*</title>", f"<title>{titre}</title>", tete, count=1)
     tete = tete.replace('class="entete__marque" href="#accueil"', 'class="entete__marque" href="index.html"')
-    # Le sélecteur de langue pointe vers le guide dans l'autre langue.
-    tete = re.sub(r'(<div class="langues".*?</div>)', lambda m: m.group(1).replace('index.html"', 'enseignant.html"'), tete, count=1, flags=re.S)
+    # Le sélecteur de langue pointe vers la même page dans l'autre langue.
+    tete = re.sub(r'(<div class="langues".*?</div>)', lambda m: m.group(1).replace('index.html"', f'{page}"'), tete, count=1, flags=re.S)
+    return tete, pied
+
+
+def guide(langue, lien_systeme):
+    """Page « Guide de l'enseignant » : l'en-tête et le pied de page du cours, un héros sobre, les fragments du guide."""
+    conf, t = LANGUES[langue], TEXTES_GUIDE[langue]
+    tete, pied = habillage(langue, "enseignant.html", t["titre"])
     fragments = "\n\n".join(lire(conf["sources"], n) for n in FRAGMENTS_GUIDE)
     corps = f"""<main id="contenu">
   <section class="heros heros--guide" id="guide-haut" aria-labelledby="titre-guide">
@@ -142,6 +193,8 @@ def guide(langue, lien_systeme):
       <div class="heros__actions">
         <a class="bouton bouton--prisme" href="#guide-demarrer">{t['b1']}</a>
         <a class="bouton" href="#guide-ressources">{t['b2']}</a>
+        <a class="bouton" href="diaporamas.html"><svg class="icone" aria-hidden="true"><use href="#i-ecran"/></svg>{t['b3']}</a>
+        <a class="bouton" href="classe.html"><svg class="icone" aria-hidden="true"><use href="#i-groupe"/></svg>{t['b4']}</a>
       </div>
     </div>
   </section>
@@ -160,6 +213,31 @@ def guide(langue, lien_systeme):
     page = page.replace("{{NAV}}", nav(t["nav"][1], langue, NAV_GUIDE), 1)
     page = page.replace("{{LIEN_SYSTEME}}", lien_systeme).replace("{{BASE}}", conf["base"])
     return page
+
+
+def page_outil(langue, cle, lien_systeme):
+    """Pages « Diaporamas » et « Mes groupes » : une application en pleine largeur, sans rail."""
+    conf, t = LANGUES[langue], TEXTES_OUTILS[cle][langue]
+    tete, pied = habillage(langue, f"{cle}.html", t["titre"])
+    tete = tete.replace('<link rel="stylesheet" href="{{BASE}}assets/css/cours.css">',
+                        '<link rel="stylesheet" href="{{BASE}}assets/css/cours.css">\n<link rel="stylesheet" href="{{BASE}}assets/css/outils.css">', 1)
+    corps = f"""<main id="contenu" class="page-outil">
+  <section class="outil-tete" aria-labelledby="titre-outil">
+    <p class="surtitre">{t['surtitre']}</p>
+    <h1 class="outil-tete__titre" id="titre-outil">{t['h1']}</h1>
+    <p class="outil-tete__chapeau">{t['chapeau']}</p>
+  </section>
+  <div class="outil" id="outil-{cle}" data-outil="{cle}" data-base="{{{{BASE}}}}" data-langue="{langue}">
+    <noscript><p class="outil-message">{t['noscript']}</p></noscript>
+  </div>
+</main>"""
+    page = tete + corps + pied
+    page = page.replace("{{NAV}}", nav(t["nav"], langue, NAV_OUTILS), 1)
+    page = page.replace("{{LIEN_SYSTEME}}", lien_systeme).replace("{{BASE}}", conf["base"])
+    lignes = [f'<script src="{u}"></script>' for u in (PRISM if cle == "diaporamas" else [])]
+    lignes.append(f'<script src="{conf["base"]}assets/js/lumineux.js"></script>')
+    lignes += [f'<script src="{conf["base"]}{f.format(langue=langue)}"></script>' for f in SCRIPTS_OUTILS[cle]]
+    return page.replace("{{SCRIPTS}}", "\n".join(lignes))
 
 
 def scripts_lies(base):
@@ -197,6 +275,8 @@ def main():
         sortie.write_text(autonome(assembler(a.langue, lien)), encoding="utf-8")
         print(f"écrit : {sortie} ({sortie.stat().st_size // 1024} Ko)")
         return
+    if diapos.construire(silencieux=True):
+        print("[x] des diaporamas ont des erreurs : ils sont absents du site (détail : python3 tools/diapos.py)")
     for langue, conf in LANGUES.items():
         lien = a.lien_systeme or f"{conf['base']}systeme-de-design.html"
         conf["sortie"].parent.mkdir(parents=True, exist_ok=True)
@@ -206,6 +286,10 @@ def main():
         sortie_guide = conf["sortie"].with_name("enseignant.html")
         sortie_guide.write_text(guide(langue, lien).replace("{{SCRIPTS}}", scripts_lies(conf["base"])), encoding="utf-8")
         print(f"écrit : {sortie_guide.relative_to(RACINE)} ({sortie_guide.stat().st_size // 1024} Ko)")
+        for cle in TEXTES_OUTILS:
+            sortie_outil = conf["sortie"].with_name(f"{cle}.html")
+            sortie_outil.write_text(page_outil(langue, cle, lien), encoding="utf-8")
+            print(f"écrit : {sortie_outil.relative_to(RACINE)} ({sortie_outil.stat().st_size // 1024} Ko)")
 
 
 if __name__ == "__main__":
