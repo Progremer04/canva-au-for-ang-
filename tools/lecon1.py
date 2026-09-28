@@ -3,6 +3,7 @@
 
   python3 tools/lecon1.py
   python3 tools/lecon1.py --mot-de-passe NOUVEAU   (change le mot de passe des notes, puis reconstruit)
+  python3 tools/lecon1.py --photos                 (télécharge les photos manquantes, puis reconstruit)
 
 Sources : docs/_sources/lecon1/gabarit.html (le moteur de présentation)
           docs/_sources/lecon1/{fr,en,ar}.json (les 60 diapositives, une version par langue)
@@ -17,7 +18,10 @@ pas conservé : docs/_sources/lecon1/cle-notes.json ne contient que le sel et la
 
 Photos : les copies de docs/_sources/lecon1/photos/ sont intégrées au fichier (visibles hors ligne) ;
 pour les autres, le fichier cherche docs/assets/img/lecon1/<clé>.jpg, puis la photo sur Wikimedia Commons
-(vignette de 500 px, puis l'original) ; sans connexion, il affiche une illustration dessinée.
+(vignette de 500 px, puis l'original), puis l'image principale de l'article de Wikipédia ; sans connexion,
+il affiche une illustration dessinée. --photos télécharge ces photos dans docs/_sources/lecon1/photos/ (il faut
+une connexion vers wikimedia.org) et note leur auteur et leur licence dans photos/credits.json. Le flux de
+travail GitHub « Photos de la leçon 1 » fait la même chose sur les serveurs de GitHub.
 """
 import argparse
 import base64
@@ -25,8 +29,12 @@ import hashlib
 import hmac
 import json
 import os
+import re
 import sys
+import urllib.request
+import urllib.parse
 from pathlib import Path
+from html import unescape
 from urllib.parse import quote
 
 RACINE = Path(__file__).resolve().parent.parent
@@ -63,6 +71,20 @@ PHOTOS = {
 }
 # Pages de référence des photos qui ne viennent pas de Wikimedia Commons.
 PAGES = {"perceptron": "https://en.wikipedia.org/wiki/Perceptron"}
+# Article de Wikipédia (en anglais) de chaque photo : si le fichier de Commons est introuvable, on prend
+# l'image principale de l'article.
+ARTICLES = {
+    "jazari": "Ismail al-Jazari", "pascaline": "Pascal's calculator", "babbage": "Charles Babbage",
+    "lovelace": "Ada Lovelace", "turing": "Alan Turing", "eniac": "ENIAC", "shannon": "Claude Shannon",
+    "mccarthy": "John McCarthy (computer scientist)", "dartmouth": "Dartmouth workshop", "perceptron": "Perceptron",
+    "shakey": "Shakey the robot", "deepblue": "Deep Blue (chess computer)", "kasparov": "Garry Kasparov",
+    "feifei": "Fei-Fei Li", "hinton": "Geoffrey Hinton", "lecun": "Yann LeCun", "hassabis": "Demis Hassabis",
+    "leesedol": "Lee Sedol",
+}
+DOSSIER_PHOTOS = SOURCES / "photos"
+CREDITS = DOSSIER_PHOTOS / "credits.json"
+FORMATS = {".jpg": "image/jpeg", ".png": "image/png", ".webp": "image/webp"}
+AGENT = "CoursIA-MasterLGC/1.0 (https://github.com/Progremer04/canva-au-for-ang-; photos de la leçon 1)"
 LARGEUR = 500  # une des tailles de vignette standard de Wikimedia : les autres sont refusées
 CLE_NOTES = SOURCES / "cle-notes.json"
 ITERATIONS = 60_000
@@ -85,11 +107,15 @@ def chiffrer(texte, cle):
     return iv, bytes(a ^ b for a, b in zip(texte, flux))
 
 
-def photo(cle, nom, auteur, licence, illus, fmt):
+def copie_locale(cle):
+    return next((DOSSIER_PHOTOS / f"{cle}{ext}" for ext in FORMATS if (DOSSIER_PHOTOS / f"{cle}{ext}").exists()), None)
+
+
+def photo(cle, nom, auteur, licence, illus, fmt, credits):
     sources = []
-    copie = SOURCES / "photos" / f"{cle}.jpg"
-    if copie.exists():
-        sources.append("data:image/jpeg;base64," + base64.b64encode(copie.read_bytes()).decode("ascii"))
+    copie = copie_locale(cle)
+    if copie:
+        sources.append(f"data:{FORMATS[copie.suffix]};base64," + base64.b64encode(copie.read_bytes()).decode("ascii"))
     else:
         sources.append(f"assets/img/lecon1/{cle}.jpg")
     page = PAGES.get(cle, "")
@@ -100,8 +126,79 @@ def photo(cle, nom, auteur, licence, illus, fmt):
         sources += [f"https://upload.wikimedia.org/wikipedia/commons/thumb/{chemin}/{vignette}",
                     f"https://upload.wikimedia.org/wikipedia/commons/{chemin}"]
         page = f"https://commons.wikimedia.org/wiki/File:{quote(nom)}"
+    c = credits.get(cle) if copie else None
+    if c:  # la copie téléchargée peut venir d'un autre fichier que celui du tableau : on affiche son propre crédit
+        page, auteur, licence = c.get("page") or page, c.get("auteur") or auteur, c.get("licence") or licence
     return {"sources": sources, "page": page, "auteur": auteur or "Wikimedia Commons", "licence": licence,
-            "illus": illus, "format": fmt}
+            "illus": illus, "format": fmt, "fichier": nom, "article": ARTICLES.get(cle, "")}
+
+
+def lire_json(url):
+    requete = urllib.request.Request(url, headers={"User-Agent": AGENT})
+    with urllib.request.urlopen(requete, timeout=30) as r:
+        return json.load(r)
+
+
+def info_fichier(nom, hote="commons.wikimedia.org"):
+    """Adresse de la vignette de 500 px, page, auteur et licence d'un fichier ; None s'il n'existe pas."""
+    r = lire_json(f"https://{hote}/w/api.php?" + urllib.parse.urlencode({
+        "action": "query", "format": "json", "formatversion": "2", "redirects": "1", "prop": "imageinfo",
+        "iiprop": "url|extmetadata", "iiurlwidth": str(LARGEUR), "titles": "File:" + nom}))
+    pages = r.get("query", {}).get("pages", [])
+    if not pages or "imageinfo" not in pages[0]:
+        return None
+    ii = pages[0]["imageinfo"][0]
+    meta = ii.get("extmetadata", {})
+    auteur = re.sub(r"\s+", " ", unescape(re.sub(r"<[^>]+>", "", meta.get("Artist", {}).get("value", "")))).strip()
+    licence = meta.get("LicenseShortName", {}).get("value", "").strip()
+    if licence.lower() in ("public domain", "domaine public", "pd"):
+        licence = "PD"
+    return {"url": ii.get("thumburl") or ii["url"], "page": ii.get("descriptionurl", ""),
+            "auteur": auteur[:80], "licence": licence}
+
+
+def image_article(titre):
+    r = lire_json("https://en.wikipedia.org/w/api.php?" + urllib.parse.urlencode({
+        "action": "query", "format": "json", "formatversion": "2", "redirects": "1", "prop": "pageimages",
+        "piprop": "name", "titles": titre}))
+    pages = r.get("query", {}).get("pages", [])
+    return pages[0].get("pageimage") if pages else None
+
+
+def telecharger_photos():
+    """Télécharge les photos qui n'ont pas de copie : le fichier du tableau PHOTOS, sinon l'image de l'article."""
+    DOSSIER_PHOTOS.mkdir(exist_ok=True)
+    credits = json.loads(CREDITS.read_text(encoding="utf-8")) if CREDITS.exists() else {}
+    manquantes = 0
+    for cle, (nom, *_reste) in PHOTOS.items():
+        if copie_locale(cle):
+            continue
+        info = None
+        try:
+            if nom:
+                info = info_fichier(nom)
+            if not info and ARTICLES.get(cle):
+                image = image_article(ARTICLES[cle])
+                if image:
+                    info = info_fichier(image) or info_fichier(image, "en.wikipedia.org")
+            if not info:
+                raise ValueError("aucune image trouvée")
+            requete = urllib.request.Request(info["url"], headers={"User-Agent": AGENT})
+            with urllib.request.urlopen(requete, timeout=60) as r:
+                donnees, type_mime = r.read(), r.headers.get_content_type()
+            ext = next((e for e, m in FORMATS.items() if m == type_mime), None)
+            if not ext:
+                raise ValueError(f"format inattendu {type_mime}")
+            (DOSSIER_PHOTOS / f"{cle}{ext}").write_bytes(donnees)
+            credits[cle] = {k: info[k] for k in ("page", "auteur", "licence")}
+            print(f"  {cle} : {len(donnees) // 1024} Ko ({info['page']})")
+        except Exception as e:  # une photo manquante ne bloque pas les autres : l'illustration dessinée la remplace
+            manquantes += 1
+            print(f"  [!] {cle} : {e}", file=sys.stderr)
+    if credits:
+        CREDITS.write_text(json.dumps(credits, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+                           encoding="utf-8")
+    print(f"photos : {len(PHOTOS) - manquantes} sur {len(PHOTOS)} dans {DOSSIER_PHOTOS.relative_to(RACINE)}")
 
 
 def comparer(a, b, chemin, erreurs):
@@ -147,7 +244,8 @@ def construire(silencieux=False):
                            bytes.fromhex(reglage["cle"]))
     notes_chiffrees = {"sel": reglage["sel"], "iterations": reglage["iterations"],
                        "iv": base64.b64encode(iv).decode("ascii"), "donnees": base64.b64encode(chiffre).decode("ascii")}
-    photos = {cle: photo(cle, *v) for cle, v in PHOTOS.items()}
+    credits = json.loads(CREDITS.read_text(encoding="utf-8")) if CREDITS.exists() else {}
+    photos = {cle: photo(cle, *v, credits) for cle, v in PHOTOS.items()}
     donnees = ("window.LECON = " + json.dumps(lecon, ensure_ascii=False, separators=(",", ":")) + ";\n"
                "window.PHOTOS = " + json.dumps(photos, ensure_ascii=False, separators=(",", ":")) + ";\n"
                "window.NOTES = " + json.dumps(notes_chiffrees, separators=(",", ":")) + ";")
@@ -166,7 +264,10 @@ def construire(silencieux=False):
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
     p.add_argument("--mot-de-passe", help="nouveau mot de passe des notes de l'enseignant")
+    p.add_argument("--photos", action="store_true", help="télécharge les photos manquantes depuis Wikimedia")
     a = p.parse_args()
+    if a.photos:
+        telecharger_photos()
     if a.mot_de_passe:
         definir_mot_de_passe(a.mot_de_passe)
         print(f"mot de passe des notes changé : {CLE_NOTES.relative_to(RACINE)}")
