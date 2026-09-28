@@ -71,7 +71,8 @@
         "His elephant clock marks the hours with automata"
       ],
       "illus": "elephant",
-      "notes": "Al-Jazari shows that the tradition of automata runs through the medieval Arab and Muslim world. His detailed drawings still make it possible to rebuild his machines today. Be careful: these are automata programmed in advance, not machines that learn."
+      "notes": "Al-Jazari shows that the tradition of automata runs through the medieval Arab and Muslim world. His detailed drawings still make it possible to rebuild his machines today. Be careful: these are automata programmed in advance, not machines that learn.",
+      "personne": "jazari"
     },
     {
       "type": "texte",
@@ -83,8 +84,9 @@
         "The Analytical Engine would never be completed in his lifetime"
       ],
       "illus": "calculatrice",
-      "personne": "babbage",
-      "notes": "A key transition: a machine that calculates takes over part of the work of the mind. Babbage's Analytical Engine already has a memory and a calculating unit, like our computers."
+      "personne": "pascaline",
+      "notes": "A key transition: a machine that calculates takes over part of the work of the mind. Babbage's Analytical Engine already has a memory and a calculating unit, like our computers.",
+      "encart": "babbage"
     },
     {
       "type": "portrait",
@@ -150,7 +152,8 @@
         "The machines finally exist; now they must be made “intelligent”"
       ],
       "personne": "eniac",
-      "notes": "ENIAC fills an entire room and is programmed by plugging in cables. Shannon, for his part, would be one of the four signatories of the Dartmouth proposal. End of the first stage: everything is ready for the birth of AI."
+      "notes": "ENIAC fills an entire room and is programmed by plugging in cables. Shannon, for his part, would be one of the four signatories of the Dartmouth proposal. End of the first stage: everything is ready for the birth of AI.",
+      "encart": "shannon"
     },
     {
       "type": "section",
@@ -191,7 +194,8 @@
         "1958: creates the Lisp language, long the language of AI",
         "With him: Marvin Minsky, Claude Shannon, Nathaniel Rochester"
       ],
-      "notes": "The Dartmouth workshop brought together about ten researchers during the summer of 1956. It produced no major discovery, but it gave the discipline a name, a community and a program."
+      "notes": "The Dartmouth workshop brought together about ten researchers during the summer of 1956. It produced no major discovery, but it gave the discipline a name, a community and a program.",
+      "encart": "dartmouth"
     },
     {
       "type": "texte",
@@ -399,7 +403,8 @@
         "Computing power, not learning: this is still search-based AI"
       ],
       "illus": "echecs",
-      "notes": "The event made headlines around the world. But Deep Blue does not understand chess: it calculates moves and evaluates them with rules written by experts. Compare with AlphaGo, which would learn by playing, twenty years later."
+      "notes": "The event made headlines around the world. But Deep Blue does not understand chess: it calculates moves and evaluates them with rules written by experts. Compare with AlphaGo, which would learn by playing, twenty years later.",
+      "encart": "kasparov"
     },
     {
       "type": "frise",
@@ -484,7 +489,8 @@
         "2018: Turing Award with Yoshua Bengio and Yann LeCun",
         "2024: Nobel Prize in Physics with John Hopfield"
       ],
-      "notes": "Hinton is an example of a researcher who was right too early: his ideas from the 1980s only really worked in 2012. In 2023, he left Google to warn about the risks of AI."
+      "notes": "Hinton is an example of a researcher who was right too early: his ideas from the 1980s only really worked in 2012. In 2023, he left Google to warn about the risks of AI.",
+      "encart": "lecun"
     },
     {
       "type": "frise",
@@ -525,7 +531,8 @@
         "The machine no longer imitates humans: it finds its own strategies"
       ],
       "illus": "go",
-      "notes": "“Move 37” has become the symbol of machine creativity. Go back to Lovelace's objection: did AlphaGo “create” something? In 2024, Demis Hassabis and John Jumper received the Nobel Prize in Chemistry for AlphaFold, which predicts the shape of proteins."
+      "notes": "“Move 37” has become the symbol of machine creativity. Go back to Lovelace's objection: did AlphaGo “create” something? In 2024, Demis Hassabis and John Jumper received the Nobel Prize in Chemistry for AlphaFold, which predicts the shape of proteins.",
+      "encart": "leesedol"
     },
     {
       "type": "section",

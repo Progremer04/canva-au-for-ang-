@@ -9,46 +9,71 @@ Sources : docs/_sources/lecon1/gabarit.html (le moteur de présentation)
 Les trois versions doivent avoir exactement la même structure : mêmes types, même nombre de points,
 mêmes valeurs pour les clés techniques (illustration, photo, vidéo, bonne réponse…).
 
-Photos : le fichier cherche d'abord docs/assets/img/lecon1/<clé>.jpg (pour un usage hors ligne),
-puis la photo sur Wikimedia Commons ; sans connexion, il affiche une illustration dessinée.
+Photos : les copies de docs/_sources/lecon1/photos/ sont intégrées au fichier (visibles hors ligne) ;
+pour les autres, le fichier cherche docs/assets/img/lecon1/<clé>.jpg, puis la photo sur Wikimedia Commons
+(vignette de 500 px, puis l'original) ; sans connexion, il affiche une illustration dessinée.
 """
+import base64
 import hashlib
 import json
 import sys
 from pathlib import Path
+from urllib.parse import quote
 
 RACINE = Path(__file__).resolve().parent.parent
 DOCS = RACINE / "docs"
 SOURCES = DOCS / "_sources" / "lecon1"
 SORTIE = DOCS / "chapitr1_first_lesson.html"
 LANGUES = ("fr", "en", "ar")
-FIXES = {"type", "illus", "personne", "youtube", "reponse", "qui", "numero", "annee"}
+FIXES = {"type", "illus", "personne", "encart", "youtube", "reponse", "qui", "numero", "annee"}
 
-# clé : (fichier sur Wikimedia Commons, illustration de repli : une silhouette pour les personnes)
+# clé : (fichier sur Wikimedia Commons, auteur, licence, illustration de repli, format)
+#   - le nom du fichier doit être exact (majuscules, extension) : il sert à calculer l'adresse de l'image ;
+#   - « PD » est affiché « domaine public » dans la langue de la présentation ;
+#   - format « l » : photo en largeur (machine, bâtiment), sinon en hauteur (portrait) ;
+#   - une copie dans docs/_sources/lecon1/photos/<clé>.jpg est intégrée au fichier : elle s'affiche hors ligne.
 PHOTOS = {
-    "babbage": ("Charles_Babbage_-_1860.jpg", "profil"),
-    "lovelace": ("Ada_Lovelace_portrait.jpg", "profil"),
-    "turing": ("Alan_Turing_Aged_16.jpg", "profil"),
-    "eniac": ("Eniac.jpg", "ordinateur"),
-    "mccarthy": ("John_McCarthy_Stanford.jpg", "profil"),
-    "perceptron": ("Mark_I_perceptron.jpeg", "perceptron"),
-    "shakey": ("SRI_Shakey_with_callouts.jpg", "robot"),
-    "deepblue": ("Deep_Blue.jpg", "echecs"),
-    "feifei": ("Fei-Fei_Li_at_AI_for_Good_2017.jpg", "profil"),
-    "hinton": ("Geoffrey_Hinton_at_UBC.jpg", "profil"),
-    "hassabis": ("Demis_Hassabis_Royal_Society.jpg", "go"),
+    "jazari": ("Al-jazari_elephant_clock.png", "al-Jazari, 1206", "PD", "elephant", ""),
+    "pascaline": ("Arts_et_Metiers_Pascaline_dsc03869.jpg", "Rama", "CC BY-SA 2.0 FR", "calculatrice", "l"),
+    "babbage": ("Charles_Babbage_-_1860.jpg", "", "PD", "profil", ""),
+    "lovelace": ("Ada_Lovelace_portrait.jpg", "Alfred Edward Chalon", "PD", "profil", ""),
+    "turing": ("Alan_Turing_Aged_16.jpg", "", "PD", "profil", ""),
+    "eniac": ("Classic_shot_of_the_ENIAC_(full_resolution).jpg", "U.S. Army", "PD", "ordinateur", "l"),
+    "shannon": ("C.E._Shannon._Tekniska_museet_43069.jpg", "Tekniska museet", "CC BY 2.0", "profil", ""),
+    "mccarthy": ("John_McCarthy_Stanford.jpg", "null0", "CC BY-SA 2.0", "profil", ""),
+    "dartmouth": ("Dartmouth_Hall_-_Dartmouth_College_-_DSC01608.jpg", "Daderot", "CC0", "", "l"),
+    "perceptron": ("", "Wikipedia", "", "perceptron", ""),
+    "shakey": ("SRI_Shakey_with_callouts.jpg", "SRI International", "CC BY-SA 3.0", "robot", ""),
+    "deepblue": ("Deep_Blue.jpg", "James the photographer", "CC BY 2.0", "echecs", ""),
+    "kasparov": ("Garry_Kasparov_IMG_0130.JPG", "", "CC BY-SA 3.0", "", ""),
+    "feifei": ("Fei-Fei_Li_at_AI_for_Good_2017.jpg", "ITU Pictures", "CC BY", "profil", ""),
+    "hinton": ("Geoffrey_Hinton_at_UBC.jpg", "Eviatar Bach", "CC BY-SA 3.0", "profil", ""),
+    "lecun": ("Yann_LeCun_-_2018_(cropped).jpg", "", "CC BY-SA 2.0", "", ""),
+    "hassabis": ("Demis_Hassabis_Royal_Society.jpg", "Royal Society", "CC BY-SA 4.0", "go", ""),
+    "leesedol": ("Lee_Se-Dol_-_2016_(cropped).jpg", "", "CC BY 2.0", "", ""),
 }
+# Pages de référence des photos qui ne viennent pas de Wikimedia Commons.
+PAGES = {"perceptron": "https://en.wikipedia.org/wiki/Perceptron"}
+LARGEUR = 500  # une des tailles de vignette standard de Wikimedia : les autres sont refusées
 
 
-def commons(nom, illus, cle):
-    m = hashlib.md5(nom.encode("utf-8")).hexdigest()
-    return {
-        "local": f"assets/img/lecon1/{cle}.jpg",
-        "miniature": f"https://upload.wikimedia.org/wikipedia/commons/thumb/{m[0]}/{m[:2]}/{nom}/360px-{nom}",
-        "original": f"https://upload.wikimedia.org/wikipedia/commons/{m[0]}/{m[:2]}/{nom}",
-        "page": f"https://commons.wikimedia.org/wiki/File:{nom}",
-        "illus": illus,
-    }
+def photo(cle, nom, auteur, licence, illus, fmt):
+    sources = []
+    copie = SOURCES / "photos" / f"{cle}.jpg"
+    if copie.exists():
+        sources.append("data:image/jpeg;base64," + base64.b64encode(copie.read_bytes()).decode("ascii"))
+    else:
+        sources.append(f"assets/img/lecon1/{cle}.jpg")
+    page = PAGES.get(cle, "")
+    if nom:
+        m = hashlib.md5(nom.encode("utf-8")).hexdigest()
+        chemin = f"{m[0]}/{m[:2]}/{quote(nom)}"
+        vignette = f"{LARGEUR}px-{quote(nom)}" + (".png" if nom.lower().endswith(".svg") else "")
+        sources += [f"https://upload.wikimedia.org/wikipedia/commons/thumb/{chemin}/{vignette}",
+                    f"https://upload.wikimedia.org/wikipedia/commons/{chemin}"]
+        page = f"https://commons.wikimedia.org/wiki/File:{quote(nom)}"
+    return {"sources": sources, "page": page, "auteur": auteur or "Wikimedia Commons", "licence": licence,
+            "illus": illus, "format": fmt}
 
 
 def comparer(a, b, chemin, erreurs):
@@ -78,12 +103,13 @@ def construire(silencieux=False):
         comparer(lecon["fr"], lecon[l], l, erreurs)
     for l, d in lecon.items():
         for i, diapo in enumerate(d["diapos"]):
-            if diapo.get("personne") and diapo["personne"] not in PHOTOS:
-                erreurs.append(f"{l}.diapos[{i}] : photo inconnue {diapo['personne']!r}")
+            for champ in ("personne", "encart"):
+                if diapo.get(champ) and diapo[champ] not in PHOTOS:
+                    erreurs.append(f"{l}.diapos[{i}] : photo inconnue {diapo[champ]!r}")
     if erreurs:
         print("[x] leçon 1 :\n  " + "\n  ".join(erreurs[:40]), file=sys.stderr)
         return 1
-    photos = {cle: commons(nom, illus, cle) for cle, (nom, illus) in PHOTOS.items()}
+    photos = {cle: photo(cle, *v) for cle, v in PHOTOS.items()}
     donnees = ("window.LECON = " + json.dumps(lecon, ensure_ascii=False, separators=(",", ":")) + ";\n"
                "window.PHOTOS = " + json.dumps(photos, ensure_ascii=False, separators=(",", ":")) + ";")
     donnees = donnees.replace("</", "<\\/")

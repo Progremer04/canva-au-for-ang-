@@ -268,7 +268,7 @@ TUILES_ETUDIANTS = [
                                       "ar": ("المقياس", "الفصول الثلاثة مشروحة خطوة بخطوة، مع عروض تفاعلية للتجريب.")}),
     ("{{LECON1}}", "i-ecran", "cobalt", {"fr": ("Leçon 1 : de l'automate à l'agent", "L'histoire de l'IA en 60 diapositives animées, avec photos, vidéos et quiz."),
                                        "en": ("Lesson 1: from automaton to agent", "The history of AI in 60 animated slides, with photos, videos and quizzes."),
-                                       "ar": ("الدرس 1: من الآلة ذاتية الحركة إلى الوكيل", "تاريخ الذكاء الاصطناعي في 60 شريحة متحركة، مع صور وفيديوهات واختبارات.")}),
+                                       "ar": ("الدرس 1: من الآلة الذاتية الحركة إلى الوكيل الذكي", "تاريخ الذكاء الاصطناعي في 60 شريحة متحركة، مع صور وفيديوهات واختبارات.")}),
     ("cours.html#methode", "i-boussole", "soleil", {"fr": ("Comment apprendre", "Une semaine type, une méthode par chapitre, le vocabulaire utile."),
                                                    "en": ("How to learn", "A typical week, a method for each chapter, the useful vocabulary."),
                                                    "ar": ("كيف تتعلّم", "أسبوع نموذجي، وطريقة لكل فصل، والمفردات المفيدة.")}),

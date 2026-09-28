@@ -123,6 +123,7 @@ em { font-style: italic; } strong { font-weight: 700; } .insecable { white-space
 /* Couverture */
 .diapo--couverture { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 40px; align-items: center; padding: 80px 90px; }
 .diapo--couverture .titre { font-size: 84px; }
+:root[lang="ar"] .diapo--couverture .titre { font-size: 64px; line-height: 1.25; }
 .diapo--couverture .titre::after { width: 220px; }
 .sous-titre { margin: 0; color: var(--doux); font-size: 30px; line-height: 1.4; }
 .anneau-decor { position: absolute; width: 420px; height: 420px; inset-inline-end: -170px; bottom: -250px; border-radius: 50%; background: var(--prisme-conique); -webkit-mask: radial-gradient(closest-side, transparent 74%, #000 75%); mask: radial-gradient(closest-side, transparent 74%, #000 75%); opacity: .8; }
@@ -150,7 +151,24 @@ em { font-style: italic; } strong { font-weight: 700; } .insecable { white-space
 .photo__repli { position: absolute; inset: 0; display: grid; place-items: center; }
 .photo__repli svg { width: 88%; height: auto; }
 .photo__initiales { position: absolute; inset: auto 0 18px; text-align: center; font: 700 44px var(--f-titre); color: var(--texte); }
-.photo__credit { position: absolute; inset: auto 12px 10px auto; padding: 2px 8px; border-radius: 8px; background: #000a; color: #fff; font: 600 12px var(--f-ui); text-decoration: none; }
+.photo__credit { position: absolute; inset-block-end: 10px; inset-inline-start: 10px; max-width: calc(100% - 20px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 2px 8px; border-radius: 8px; background: #000b; color: #fff; font: 600 12px/1.5 var(--f-ui); text-decoration: none; }
+[dir="rtl"] .photo__credit { direction: ltr; }
+.photo--largeur { width: 440px; height: 310px; }
+.portrait .photo--largeur { width: 340px; height: 250px; }
+/* Encart : une seconde photo posée sur le coin de la première, ou sur un schéma */
+.illus { position: relative; }
+.photo--encart { position: absolute; z-index: 2; display: none; width: 160px; height: 200px; padding: 5px; inset-inline-end: -46px; bottom: -34px; border-radius: 18px; rotate: 4deg; box-shadow: 0 18px 40px -12px #000; }
+.photo--encart.charge { display: block; }
+.active .photo--encart.charge { animation: encart .7s .9s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes encart { from { opacity: 0; transform: translateY(24px) scale(.9); } to { opacity: 1; transform: none; } }
+[dir="rtl"] .photo--encart { rotate: -4deg; }
+.photo--encart.photo--largeur { width: 240px; height: 165px; }
+.photo--encart .photo__cadre { border-radius: 14px; }
+.photo--encart .photo__credit { inset: auto 5px 5px 5px; max-width: none; padding: 1px 5px; white-space: normal; font-size: 9px; line-height: 1.25; text-align: center; }
+/* Sur un schéma : la photo se range à côté du dessin, qui se resserre */
+.illus--photo { display: flex; align-items: center; gap: 22px; }
+.illus--photo > svg { flex: 1 1 0; min-width: 0; }
+.illus--photo > .photo--encart { position: relative; inset: auto; flex: none; width: 184px; height: 226px; }
 .nom { margin: 0; font-family: var(--f-titre); font-size: 56px; line-height: 1.05; }
 .dates { margin: 6px 0 4px; color: var(--t1); font: 700 24px var(--f-ui); letter-spacing: .05em; }
 .role { margin: 0 0 22px; color: var(--doux); font-size: 26px; font-style: italic; }
@@ -333,13 +351,13 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
   var UI = {
     fr: { marque: "IA · Chapitre 1", notes: "Notes de l'enseignant", apercu: "Vue d'ensemble (O)", imprimer: "Imprimer / PDF (P)", theme: "Thème Nuit ou Jour (T)",
           plein: "Plein écran (F)", precedent: "Précédente (←)", suivant: "Suivante (→)", reveler: "Afficher la réponse", video_hors: "La vidéo demande une connexion Internet.",
-          video_ouvrir: "Ouvrir sur YouTube", video_lancer: "Lancer la vidéo", photo: "Photo : Wikimedia Commons", diapo: "Diapositive {n} sur {t}" },
+          video_ouvrir: "Ouvrir sur YouTube", video_lancer: "Lancer la vidéo", domaine: "domaine public", diapo: "Diapositive {n} sur {t}" },
     en: { marque: "AI · Chapter 1", notes: "Teacher's notes", apercu: "Overview (O)", imprimer: "Print / PDF (P)", theme: "Night or Day theme (T)",
           plein: "Full screen (F)", precedent: "Previous (←)", suivant: "Next (→)", reveler: "Show the answer", video_hors: "The video needs an Internet connection.",
-          video_ouvrir: "Open on YouTube", video_lancer: "Play the video", photo: "Photo: Wikimedia Commons", diapo: "Slide {n} of {t}" },
+          video_ouvrir: "Open on YouTube", video_lancer: "Play the video", domaine: "public domain", diapo: "Slide {n} of {t}" },
     ar: { marque: "الذكاء الاصطناعي · الفصل 1", notes: "ملاحظات الأستاذ", apercu: "نظرة شاملة (O)", imprimer: "طباعة / PDF ‏(P)", theme: "المظهر الليلي أو النهاري (T)",
           plein: "ملء الشاشة (F)", precedent: "السابقة", suivant: "التالية", reveler: "إظهار الجواب", video_hors: "يحتاج الفيديو إلى اتصال بالإنترنت.",
-          video_ouvrir: "فتح على YouTube", video_lancer: "تشغيل الفيديو", photo: "الصورة: ويكيميديا كومنز", diapo: "الشريحة {n} من {t}" }
+          video_ouvrir: "فتح على YouTube", video_lancer: "تشغيل الفيديو", domaine: "ملكية عامة", diapo: "الشريحة {n} من {t}" }
   };
   var LETTRES = { fr: ["A", "B", "C", "D"], en: ["A", "B", "C", "D"], ar: ["أ", "ب", "ج", "د"] };
 
@@ -585,38 +603,45 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     if (d.type === "portrait" && d.personne && (PHOTOS[d.personne] || {}).illus === "profil") INITIALES[d.personne] = d.nom.split(/\s+/).filter(function (m) { return /^[A-Z]/.test(m); }).slice(0, 2).map(function (m) { return m[0]; }).join("");
   });
 
-  /* ---------- Photos : dossier local, puis Wikimedia Commons, sinon une carte dessinée ---------- */
-  function photo(cle, nom) {
-    var p = PHOTOS[cle] || {};
-    var initiales = INITIALES[cle] || "";
-    var sources = [p.local, p.miniature, p.original].filter(Boolean);
-    return '<div class="photo a" style="--i:0"><div class="photo__cadre">' +
-      '<div class="photo__repli">' + (ILLUS[p.illus || "cerveau"] || ILLUS.cerveau)() + '<span class="photo__initiales">' + esc(initiales) + '</span></div>' +
-      (sources.length ? '<img alt="' + esc(nom) + '" data-sources="' + esc(sources.join("|")) + '" data-page="' + esc(p.page || "") + '" hidden>' : "") +
-      '</div></div>';
+  /* ---------- Photos : copie intégrée, dossier local, puis Wikimedia Commons ; sinon une carte dessinée ---------- */
+  // encart : une seconde photo, plus petite, posée sur le coin de la première ; petit : c'est cette seconde photo.
+  function photo(cle, nom, encart, petit) {
+    var p = PHOTOS[cle] || {}, h = '<div class="photo' + (p.format === "l" ? " photo--largeur" : "") + (petit ? ' photo--encart"' : ' a" style="--i:0"') + '><div class="photo__cadre">';
+    if (!petit) h += '<div class="photo__repli">' + (ILLUS[p.illus || "cerveau"] || ILLUS.cerveau)() + '<span class="photo__initiales">' + esc(INITIALES[cle] || "") + '</span></div>';
+    if ((p.sources || []).length) h += '<img alt="' + esc((nom || "").replace(/\*/g, "")) + '" data-photo="' + esc(cle) + '" hidden>';
+    h += '</div>';
+    if (encart && PHOTOS[encart]) h += photo(encart, "", null, true);
+    return h + '</div>';
+  }
+  function credit(p) {
+    var licence = p.licence === "PD" ? UI[langue].domaine : p.licence;
+    return (p.auteur || "") + (licence ? " · " + licence : "");
   }
   function chargerPhotos(racine) {
-    Array.prototype.forEach.call(racine.querySelectorAll("img[data-sources]"), function (img) {
+    Array.prototype.forEach.call(racine.querySelectorAll("img[data-photo]"), function (img) {
       if (img.dataset.pret) return;
       img.dataset.pret = "1";
-      var sources = img.dataset.sources.split("|"), n = 0;
-      function essayer() {
-        if (n >= sources.length) return;
-        img.src = sources[n++];
-      }
+      var p = PHOTOS[img.dataset.photo] || {}, sources = p.sources || [], n = 0;
+      function essayer() { if (n < sources.length) img.src = sources[n++]; }
       img.onload = function () {
+        var cadre = img.parentNode, repli = cadre.querySelector(".photo__repli");
         img.hidden = false;
-        var repli = img.parentNode.querySelector(".photo__repli");
+        cadre.parentNode.classList.add("charge");
         if (repli) repli.style.display = "none";
-        if (/^https?:/.test(img.src) && img.dataset.page) {
-          var a = document.createElement("a");
-          a.className = "photo__credit"; a.href = img.dataset.page; a.target = "_blank"; a.rel = "noopener"; a.textContent = UI[langue].photo;
-          img.parentNode.appendChild(a);
-        }
+        if (cadre.querySelector(".photo__credit")) return;
+        var a = document.createElement(p.page ? "a" : "span");
+        a.className = "photo__credit"; a.textContent = credit(p);
+        if (p.page) { a.href = p.page; a.target = "_blank"; a.rel = "noopener"; a.title = p.page; }
+        cadre.appendChild(a);
       };
       img.onerror = essayer;
       essayer();
     });
+  }
+  // Copies (vue d'ensemble, impression) : les photos déjà affichées restent, les autres sont chargées.
+  function rechargerCopies(racine) {
+    Array.prototype.forEach.call(racine.querySelectorAll("img[data-photo]"), function (img) { if (img.hidden) img.removeAttribute("data-pret"); });
+    chargerPhotos(racine);
   }
 
   /* ---------- Rendu d'une diapositive ---------- */
@@ -626,7 +651,7 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     return '<ul class="points">' + (liste || []).map(function (p, i) { return '<li class="a" style="--i:' + (debut + i) + '">' + riche(p) + '</li>'; }).join("") + '</ul>';
   }
   function illustration(d, i) {
-    if (d.personne && PHOTOS[d.personne] && d.type !== "schema") return photo(d.personne, d.nom || d.titre);
+    if (d.personne && PHOTOS[d.personne] && d.type !== "schema") return photo(d.personne, d.nom || d.titre, d.encart);
     if (d.illus && ILLUS[d.illus]) return '<div class="illus a" style="--i:' + (i || 1) + '">' + ILLUS[d.illus]() + '</div>';
     return "";
   }
@@ -644,10 +669,11 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
       h = '<div class="' + (cote ? "colonnes" : "") + '"><div>' + (d.annee ? '<span class="annee a" style="--i:0">' + esc(d.annee) + '</span>' : "") +
         '<h2 class="titre a" style="--i:0">' + riche(d.titre) + '</h2>' + points(d.points, 1) + '</div>' + cote + '</div>';
     } else if (t === "schema") {
-      h = '<div class="colonnes colonnes--schema"><div class="illus a a--gauche" style="--i:0">' + (ILLUS[d.illus] ? ILLUS[d.illus]() : "") + '</div><div>' +
+      h = '<div class="colonnes colonnes--schema"><div class="illus a a--gauche' + (d.personne && PHOTOS[d.personne] ? " illus--photo" : "") + '" style="--i:0">' + (ILLUS[d.illus] ? ILLUS[d.illus]() : "") +
+        (d.personne && PHOTOS[d.personne] ? photo(d.personne, d.titre, null, true) : "") + '</div><div>' +
         (d.annee ? '<span class="annee a" style="--i:0">' + esc(d.annee) + '</span>' : "") + '<h2 class="titre a" style="--i:1">' + riche(d.titre) + '</h2>' + points(d.points, 2) + '</div></div>';
     } else if (t === "portrait") {
-      h = '<div class="portrait">' + photo(d.personne, d.nom) + '<div><h2 class="nom a" style="--i:1">' + riche(d.nom) + '</h2><p class="dates a" style="--i:2">' + riche(d.dates) + '</p><p class="role a" style="--i:3">' + riche(d.role) + '</p>' +
+      h = '<div class="portrait">' + photo(d.personne, d.nom, d.encart) + '<div><h2 class="nom a" style="--i:1">' + riche(d.nom) + '</h2><p class="dates a" style="--i:2">' + riche(d.dates) + '</p><p class="role a" style="--i:3">' + riche(d.role) + '</p>' +
         points(d.points, 4) + (d.citation ? '<p class="citation-courte a" style="--i:8">« ' + riche(d.citation) + ' »<small>' + riche(d.source || "") + '</small></p>' : "") + '</div></div>';
     } else if (t === "citation") {
       h = '<span class="guillemet" aria-hidden="true">“</span><blockquote class="citation__texte a" style="--i:0">' + riche(d.texte) + '</blockquote><p class="citation__auteur a" style="--i:1">' + riche(d.auteur) + '</p><p class="citation__source a" style="--i:2">' + riche(d.source) + '</p>';
@@ -698,7 +724,7 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     var R = d.getBoundingClientRect(), r = R.height / 720 || 1, trop = false;
     Array.prototype.forEach.call(d.querySelectorAll("*"), function (el) {
       if (trop || (el instanceof SVGElement && !(el instanceof SVGSVGElement))) return;
-      if (el.closest(".diapo__marque, .diapo__num, .anneau-decor, .guillemet, .photo__repli, .frappe")) return;
+      if (el.closest(".diapo__marque, .diapo__num, .anneau-decor, .guillemet, .photo__repli, .photo--encart, .frappe")) return;
       var e = el.getBoundingClientRect();
       if (!e.width || !e.height) return;
       trop = e.bottom > R.bottom - 46 * r || e.right > R.right - 24 * r || e.left < R.left + 24 * r || e.top < R.top + 12 * r;
@@ -817,6 +843,7 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
       g.appendChild(b);
       requestAnimationFrame(function () { b.style.setProperty("--km", (b.clientWidth / 1280).toFixed(4)); c.style.setProperty("--km", (b.clientWidth / 1280).toFixed(4)); });
     });
+    rechargerCopies(g);
     var courant = g.children[index]; if (courant) courant.scrollIntoView({ block: "center" });
   }
   function notes() {
@@ -839,8 +866,7 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     zone.innerHTML = cadre.innerHTML;
     zone.querySelectorAll(".diapo").forEach(function (d) { d.classList.add("active"); d.classList.remove("passee"); d.querySelectorAll(".bulle").forEach(function (b) { b.classList.add("vue"); }); });
     zone.querySelectorAll(".quiz").forEach(function (q) { q.classList.add("quiz--revele"); });
-    zone.querySelectorAll("img[data-sources]").forEach(function (i) { i.removeAttribute("data-pret"); });
-    chargerPhotos(zone);
+    rechargerCopies(zone);
     setTimeout(function () { window.print(); }, 300);
   }
 

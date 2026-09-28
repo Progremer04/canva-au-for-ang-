@@ -71,7 +71,8 @@
         "Son horloge-éléphant marque les heures par des automates"
       ],
       "illus": "elephant",
-      "notes": "Al-Jazari montre que la tradition des automates traverse le monde arabe et musulman médiéval. Ses dessins détaillés permettent encore aujourd'hui de reconstruire ses machines. Restez prudent : ce sont des automates programmés d'avance, pas des machines qui apprennent."
+      "notes": "Al-Jazari montre que la tradition des automates traverse le monde arabe et musulman médiéval. Ses dessins détaillés permettent encore aujourd'hui de reconstruire ses machines. Restez prudent : ce sont des automates programmés d'avance, pas des machines qui apprennent.",
+      "personne": "jazari"
     },
     {
       "type": "texte",
@@ -83,8 +84,9 @@
         "La machine analytique ne sera jamais achevée de son vivant"
       ],
       "illus": "calculatrice",
-      "personne": "babbage",
-      "notes": "Passage clé : une machine qui calcule remplace une partie du travail de l'esprit. La machine analytique de Babbage a déjà une mémoire et une unité de calcul, comme nos ordinateurs."
+      "personne": "pascaline",
+      "notes": "Passage clé : une machine qui calcule remplace une partie du travail de l'esprit. La machine analytique de Babbage a déjà une mémoire et une unité de calcul, comme nos ordinateurs.",
+      "encart": "babbage"
     },
     {
       "type": "portrait",
@@ -150,7 +152,8 @@
         "Les machines existent enfin ; reste à les rendre « intelligentes »"
       ],
       "personne": "eniac",
-      "notes": "L'ENIAC occupe une salle entière et se programme en branchant des câbles. Shannon, lui, sera l'un des quatre signataires du projet de Dartmouth. Fin de la première étape : tout est prêt pour la naissance de l'IA."
+      "notes": "L'ENIAC occupe une salle entière et se programme en branchant des câbles. Shannon, lui, sera l'un des quatre signataires du projet de Dartmouth. Fin de la première étape : tout est prêt pour la naissance de l'IA.",
+      "encart": "shannon"
     },
     {
       "type": "section",
@@ -191,7 +194,8 @@
         "1958 : crée le langage Lisp, longtemps langage de l'IA",
         "Avec lui : Marvin Minsky, Claude Shannon, Nathaniel Rochester"
       ],
-      "notes": "L'atelier de Dartmouth réunit une dizaine de chercheurs pendant l'été 1956. Il ne produit pas de grande découverte, mais il donne un nom, une communauté et un programme à la discipline."
+      "notes": "L'atelier de Dartmouth réunit une dizaine de chercheurs pendant l'été 1956. Il ne produit pas de grande découverte, mais il donne un nom, une communauté et un programme à la discipline.",
+      "encart": "dartmouth"
     },
     {
       "type": "texte",
@@ -399,7 +403,8 @@
         "Une force de calcul, pas d'apprentissage : c'est encore une IA de recherche"
       ],
       "illus": "echecs",
-      "notes": "L'événement fait le tour du monde. Mais Deep Blue ne comprend pas les échecs : il calcule des coups et les évalue avec des règles écrites par des experts. Comparez avec AlphaGo, qui apprendra en jouant, vingt ans plus tard."
+      "notes": "L'événement fait le tour du monde. Mais Deep Blue ne comprend pas les échecs : il calcule des coups et les évalue avec des règles écrites par des experts. Comparez avec AlphaGo, qui apprendra en jouant, vingt ans plus tard.",
+      "encart": "kasparov"
     },
     {
       "type": "frise",
@@ -484,7 +489,8 @@
         "2018 : prix Turing avec Yoshua Bengio et Yann LeCun",
         "2024 : prix Nobel de physique avec John Hopfield"
       ],
-      "notes": "Hinton est l'exemple d'un chercheur qui a eu raison trop tôt : ses idées des années 1980 ne marchent vraiment qu'en 2012. En 2023, il quitte Google pour alerter sur les risques de l'IA."
+      "notes": "Hinton est l'exemple d'un chercheur qui a eu raison trop tôt : ses idées des années 1980 ne marchent vraiment qu'en 2012. En 2023, il quitte Google pour alerter sur les risques de l'IA.",
+      "encart": "lecun"
     },
     {
       "type": "frise",
@@ -525,7 +531,8 @@
         "La machine n'imite plus les humains : elle trouve ses propres stratégies"
       ],
       "illus": "go",
-      "notes": "Le « coup 37 » est devenu le symbole d'une créativité machinique. Revenez à l'objection de Lovelace : AlphaGo a-t-il « créé » quelque chose ? En 2024, Demis Hassabis et John Jumper reçoivent le prix Nobel de chimie pour AlphaFold, qui prédit la forme des protéines."
+      "notes": "Le « coup 37 » est devenu le symbole d'une créativité machinique. Revenez à l'objection de Lovelace : AlphaGo a-t-il « créé » quelque chose ? En 2024, Demis Hassabis et John Jumper reçoivent le prix Nobel de chimie pour AlphaFold, qui prédit la forme des protéines.",
+      "encart": "leesedol"
     },
     {
       "type": "section",
