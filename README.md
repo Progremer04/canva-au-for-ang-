@@ -76,6 +76,15 @@ Sans Python, `run.bat` ouvre quand même le site directement depuis `docs/index.
 
 Sur macOS ou Linux : `python3 tools/lancer.py` ouvre le site, `python3 -m pip install -r requirements.txt -r requirements-deep.txt` installe les bibliothèques.
 
+## Héberger sur Render
+
+Le site est déjà construit dans `docs/` : un service Web de [Render](https://render.com) n'a qu'à le servir.
+
+- **Service existant** (Dashboard > le service > Settings) : *Branch* `main`, *Build Command* `python --version`, *Start Command* `python tools/lancer.py --public`, puis *Manual Deploy > Deploy latest commit*. Chaque envoi sur `main` redéploie ensuite le site.
+- **Nouveau service** : *New > Blueprint*, puis ce dépôt ; `render.yaml` contient ces réglages.
+
+Sur Render (variable `RENDER`) ou avec `--public`, `tools/lancer.py` écoute sur `0.0.0.0` au port donné par `PORT`, sans ouvrir de navigateur. L'API de la base « Mes groupes » y est désactivée : sur un site public, chaque visiteur garde ses propres données dans son navigateur, et la base de l'enseignant reste sur son ordinateur (`run.bat`). Inutile d'installer `requirements.txt` sur Render : ces bibliothèques servent aux TP, pas au site.
+
 ## Construire
 
 ```sh

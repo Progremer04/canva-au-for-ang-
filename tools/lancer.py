@@ -6,6 +6,11 @@
   python tools/lancer.py --no-browser    → ne pas ouvrir le navigateur
   python tools/lancer.py --rebuild       → reconstruit d'abord le site depuis ses sources
   python tools/lancer.py --page classe.html  → ouvre directement une autre page
+  python tools/lancer.py --public        → hébergement (Render, serveur) : écoute sur 0.0.0.0:$PORT
+
+Hébergement : sur Render (variable RENDER définie) ou avec --public, le serveur écoute sur toutes les
+interfaces, au port donné par la variable PORT (10000 par défaut), sans ouvrir de navigateur. L'API de la
+base « Mes groupes » y est désactivée : chaque visiteur garde ses propres données dans son navigateur.
 
 La page « Mes groupes » (classe.html) enregistre ses données dans une base SQLite sur cet
 ordinateur : donnees/classe.sqlite, avec une copie de sauvegarde par jour dans donnees/sauvegardes/.
@@ -88,6 +93,7 @@ def reconstruire():
 
 
 class Gestionnaire(http.server.SimpleHTTPRequestHandler):
+    api_active = True  # False en hébergement public : la base « Mes groupes » ne quitte jamais l'ordinateur de l'enseignant
     # Types manquants dans certaines installations Windows (registre incomplet).
     extensions_map = {
         **http.server.SimpleHTTPRequestHandler.extensions_map,
@@ -142,6 +148,8 @@ class Gestionnaire(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
         chemin = self.path.split("?", 1)[0]
         if chemin.startswith("/api/"):
+            if not self.api_active:
+                return self.repondre_json(404, {"erreur": "inconnu"})
             if not self.hote_autorise():
                 return self.repondre_json(403, {"erreur": "origine refusée"})
             if chemin == "/api/classe/etat":
@@ -166,7 +174,7 @@ class Gestionnaire(http.server.SimpleHTTPRequestHandler):
         return super().do_GET()
 
     def do_PUT(self):
-        if self.path.split("?", 1)[0] != "/api/classe":
+        if not self.api_active or self.path.split("?", 1)[0] != "/api/classe":
             return self.repondre_json(404, {"erreur": "inconnu"})
         if not self.hote_autorise():
             return self.repondre_json(403, {"erreur": "origine refusée"})
@@ -200,11 +208,11 @@ class Gestionnaire(http.server.SimpleHTTPRequestHandler):
             sys.stderr.write(f"  {self.address_string()} {format % args}\n")
 
 
-def ouvrir_serveur(port_depart, essais=20):
+def ouvrir_serveur(port_depart, essais=20, hote=HOTE):
     gestionnaire = functools.partial(Gestionnaire, directory=str(DOCS))
     for port in range(port_depart, port_depart + essais):
         try:
-            serveur = http.server.ThreadingHTTPServer((HOTE, port), gestionnaire)
+            serveur = http.server.ThreadingHTTPServer((hote, port), gestionnaire)
             return serveur, port
         except OSError as e:
             if e.errno in (errno.EADDRINUSE, getattr(errno, "WSAEADDRINUSE", -1), errno.EACCES, 10013, 10048):
@@ -223,12 +231,25 @@ def main():
     p.add_argument("--no-browser", action="store_true")
     p.add_argument("--rebuild", action="store_true")
     p.add_argument("--page", default="", help="page à ouvrir, par exemple classe.html")
+    p.add_argument("--public", action="store_true", help="hébergement : écoute sur 0.0.0.0:$PORT, sans navigateur")
     a = p.parse_args()
+    public = a.public or bool(os.environ.get("RENDER"))
 
     if not (DOCS / "index.html").exists():
         raise SystemExit(f"[x] Site introuvable : {DOCS / 'index.html'}")
     if a.rebuild:
         reconstruire()
+
+    if public:
+        Gestionnaire.api_active = False
+        serveur, port = ouvrir_serveur(int(os.environ.get("PORT", "10000")), essais=1, hote="0.0.0.0")
+        print(f"  Cours d'IA du Master LGC : hébergement sur le port {port} (API « Mes groupes » désactivée)")
+        sys.stdout.flush()
+        try:
+            serveur.serve_forever()
+        finally:
+            serveur.server_close()
+        return
 
     serveur, port = ouvrir_serveur(a.port)
     adresse = f"http://{HOTE}:{port}/"

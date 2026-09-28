@@ -1,0 +1,13 @@
+# Hébergement sur Render (https://render.com) : le site est déjà construit dans docs/, il suffit de le servir.
+# Service Web existant : dans Settings, mettez les mêmes Build Command et Start Command qu'ici.
+# Nouveau service : New > Blueprint, puis choisissez ce dépôt.
+services:
+  - type: web
+    name: cours-ia-master-lgc
+    runtime: python
+    plan: free
+    branch: main
+    buildCommand: python --version
+    startCommand: python tools/lancer.py --public
+    healthCheckPath: /
+    autoDeploy: true
