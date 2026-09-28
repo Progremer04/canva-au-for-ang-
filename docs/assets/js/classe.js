@@ -118,7 +118,9 @@
         seance: "les séances : date, horaire, sujet prévu, ce qui a été fait, travail donné",
         presence: "l'appel : une ligne par étudiant et par séance",
         evaluation: "les évaluations : intitulé, barème, coefficient",
-        note: "les notes : une ligne par étudiant et par évaluation"
+        note: "les notes : une ligne par étudiant et par évaluation",
+        conge: "les vacances et jours fériés : aucune séance n'y est créée",
+        reglage: "les réglages : seuils d'absences, début du semestre 2"
       },
       vie_privee_titre: "Données personnelles",
       vie_privee: "Noms, notes et observations sont des données personnelles de vos étudiants (loi 18-07). Elles restent sur cet ordinateur : rien n'est envoyé sur Internet, et le dossier donnees/ est exclu de git.",
@@ -146,6 +148,41 @@
         ["Révision ; examen blanc", ""],
         ["Examen (date fixée par la faculté)", ""]
       ],
+      onglet_presences: "Présences", aujourdhui_titre: "Aujourd'hui · {date}", aucune_seance_auj: "Pas de séance aujourd'hui.",
+      prochaine_le: "Prochaine séance : {d} · {g}.", faire_appel: "Faire l'appel", modifier_appel: "Modifier l'appel",
+      appel_fait: "Appel fait : {p}/{n} présents", en_cours: "En cours", a_faire: "Appel à faire",
+      appels_retard: "Appels à rattraper", appels_retard_aide: "Séances passées sans appel : faites-le maintenant, ou marquez la séance annulée.",
+      annee_invitation: "Aucune séance prévue. Créez d'un coup les séances de l'année pour tous vos groupes, chacun à son jour et à son horaire, sans les vacances ni les jours fériés.",
+      preparer_annee: "Préparer l'année", annee_titre: "Préparer l'année : une séance par semaine pour chaque groupe",
+      annee_aide: "Chaque groupe coché reçoit une séance par semaine, à son jour et à son horaire, du premier au dernier jour, sauf pendant les vacances et les jours fériés ci-dessous.",
+      premier_jour: "Premier jour", dernier_jour: "Dernier jour", groupes_concernes: "Groupes",
+      remplacer: "Remplacer les séances prévues sans appel à partir du premier jour ({n})", sautees: "{n} semaine(s) sautée(s) (congés)",
+      creer_seances: "Créer les séances ({n})", aucun_groupe_horaire: "Donnez d'abord un jour et un horaire à vos groupes (onglet Groupes).",
+      conges: "Vacances et jours fériés", conge_libelle: "Libellé", conge_exemple: "Vacances d'hiver", du: "Du", au: "Au", du_au: "du {d1} au {d2}",
+      ajouter_conge: "Ajouter", aucun_conge: "Aucune période.",
+      conges_aide: "Aucune séance n'est créée pendant ces périodes. Ajoutez les vacances d'hiver et de printemps dès que la faculté publie son calendrier. Les dates des fêtes religieuses sont approximatives : corrigez-les au besoin.",
+      changer_horaire: "Changer l'horaire", horaire_titre: "Changer l'horaire d'un groupe", a_partir_du: "À partir du", nouveau_jour: "Nouveau jour",
+      horaire_apercu: "{n} séance(s) prévue(s) passeront de « {avant} » à « {apres} ».", horaire_aucune: "Aucune séance prévue à déplacer : seul l'horaire du groupe change.",
+      appliquer: "Appliquer", confirmer_horaire_groupe: "Appliquer aussi ce nouvel horaire aux {n} séance(s) prévue(s) à partir d'aujourd'hui ?",
+      horaire_conge: "tombe pendant un congé : annulée",
+      periode: "Période", semestre1: "Semestre 1", semestre2: "Semestre 2", annee: "Année",
+      registre: "Registre des présences", choisir_groupe: "Choisissez un groupe ci-dessus pour voir son registre des présences.",
+      lettres: { present: "P", absent: "A", excuse: "J", retard: "R" },
+      col_presents: "Présents", col_absences: "Absences", col_justifiees: "Justifiées", col_retards: "Retards", taux: "Taux de présence",
+      seances_faites: "Séances faites", en_alerte: "En alerte", exclus: "Exclusion", a_suivre: "Étudiants à suivre", aucun_suivi: "Aucun étudiant en alerte sur cette période.",
+      niveau: { alerte: "Alerte", exclusion: "Seuil d'exclusion" },
+      regles: "Règles d'assiduité", seuil_alerte: "Alerte à partir de … absences non justifiées", seuil_exclusion: "Exclusion à partir de … absences non justifiées",
+      seuil_total: "… ou à partir de … absences au total (justifiées ou non)", debut_s2: "Début du semestre 2",
+      regles_aide: "Règle souvent appliquée : exclusion de la matière après 3 absences non justifiées ou 5 absences au total en TD. Vérifiez le règlement de votre faculté. Les alertes sont calculées sur le semestre.",
+      legende: "P présent · A absent · J absence justifiée · R retard · case vide : appel non fait. Cliquez sur une case pour la changer.",
+      ajouter_rapide: "Ajouter un étudiant à ce groupe", exemple_nom: "NOM Prénom", ajouter_court: "Ajouter",
+      defaut_present: "Tout le monde est présent par défaut : touchez seulement les absents.", seance_annulee: "Séance annulée",
+      confirmer_annulee: "Marquer cette séance comme annulée ? Son appel est effacé et elle ne compte plus dans les présences.",
+      enregistrer_appel: "Enregistrer l'appel", cumul: "sem. : {a} abs. · {j} just.",
+      rappel_en_cours: "Séance en cours : {g} {h}", rappel_a_faire: "Appel à faire : {g} {h}",
+      imprimer_registre: "Imprimer le registre", semaine_courte: "S{n}",
+      conges_defaut: { revolution: "Fête de la Révolution", nouvel_an: "Nouvel An", yennayer: "Yennayer", travail: "Fête du Travail", independance: "Fête de l'Indépendance",
+        fitr: "Aïd el-Fitr (dates à confirmer)", adha: "Aïd el-Adha (dates à confirmer)", moharram: "Awal Moharram (date à confirmer)", achoura: "Achoura (date à confirmer)" },
       formes: {
         groupe: ["groupe", "groupes"], etudiant: ["étudiant", "étudiants"], seance: ["séance", "séances"],
         avenir: ["séance à venir", "séances à venir"], faite: ["séance faite", "séances faites"]
@@ -231,7 +268,9 @@
         seance: "the sessions: date, time, planned topic, what was done, homework",
         presence: "the roll call: one row per student and session",
         evaluation: "the assessments: title, out of, weight",
-        note: "the grades: one row per student and assessment"
+        note: "the grades: one row per student and assessment",
+        conge: "holidays: no session is created during them",
+        reglage: "settings: absence thresholds, start of semester 2"
       },
       vie_privee_titre: "Personal data",
       vie_privee: "Names, grades and notes are your students' personal data (Algerian law 18-07). They stay on this computer: nothing is sent over the Internet, and the donnees/ folder is excluded from git.",
@@ -259,6 +298,41 @@
         ["Revision; mock exam", ""],
         ["Exam (date set by the faculty)", ""]
       ],
+      onglet_presences: "Attendance", aujourdhui_titre: "Today · {date}", aucune_seance_auj: "No session today.",
+      prochaine_le: "Next session: {d} · {g}.", faire_appel: "Take the roll", modifier_appel: "Edit the roll",
+      appel_fait: "Roll taken: {p}/{n} present", en_cours: "In progress", a_faire: "Roll to take",
+      appels_retard: "Roll calls to catch up", appels_retard_aide: "Past sessions without a roll call: take it now, or mark the session as cancelled.",
+      annee_invitation: "No session planned. Create all the year's sessions for every group at once, each on its own day and time, skipping holidays.",
+      preparer_annee: "Prepare the year", annee_titre: "Prepare the year: one session a week for each group",
+      annee_aide: "Each ticked group gets one session a week, on its day and at its time, from the first to the last day, except during the holidays below.",
+      premier_jour: "First day", dernier_jour: "Last day", groupes_concernes: "Groups",
+      remplacer: "Replace the planned sessions without a roll call from the first day ({n})", sautees: "{n} week(s) skipped (holidays)",
+      creer_seances: "Create the sessions ({n})", aucun_groupe_horaire: "First give your groups a day and a time (Groups tab).",
+      conges: "Holidays", conge_libelle: "Label", conge_exemple: "Winter break", du: "From", au: "To", du_au: "{d1} to {d2}",
+      ajouter_conge: "Add", aucun_conge: "No period.",
+      conges_aide: "No session is created during these periods. Add the winter and spring breaks as soon as the faculty publishes its calendar. Religious holiday dates are approximate: correct them if needed.",
+      changer_horaire: "Change the schedule", horaire_titre: "Change a group's schedule", a_partir_du: "From", nouveau_jour: "New day",
+      horaire_apercu: "{n} planned session(s) will move from “{avant}” to “{apres}”.", horaire_aucune: "No planned session to move: only the group's schedule changes.",
+      appliquer: "Apply", confirmer_horaire_groupe: "Also apply this new schedule to the {n} planned session(s) from today?",
+      horaire_conge: "falls on a holiday: cancelled",
+      periode: "Period", semestre1: "Semester 1", semestre2: "Semester 2", annee: "Year",
+      registre: "Attendance register", choisir_groupe: "Choose a group above to see its attendance register.",
+      lettres: { present: "P", absent: "A", excuse: "E", retard: "L" },
+      col_presents: "Present", col_absences: "Absences", col_justifiees: "Excused", col_retards: "Late", taux: "Attendance rate",
+      seances_faites: "Sessions held", en_alerte: "Warning", exclus: "Exclusion", a_suivre: "Students to watch", aucun_suivi: "No student at risk in this period.",
+      niveau: { alerte: "Warning", exclusion: "Exclusion threshold" },
+      regles: "Attendance rules", seuil_alerte: "Warning from … unexcused absences", seuil_exclusion: "Exclusion from … unexcused absences",
+      seuil_total: "… or from … absences in total (excused or not)", debut_s2: "Semester 2 starts",
+      regles_aide: "A rule often applied: exclusion from the subject after 3 unexcused absences or 5 absences in total in tutorials. Check your faculty's regulations. Warnings are computed per semester.",
+      legende: "P present · A absent · E excused absence · L late · empty: no roll call. Click a box to change it.",
+      ajouter_rapide: "Add a student to this group", exemple_nom: "SURNAME First name", ajouter_court: "Add",
+      defaut_present: "Everyone is present by default: tap only the absent students.", seance_annulee: "Session cancelled",
+      confirmer_annulee: "Mark this session as cancelled? Its roll call is deleted and it no longer counts for attendance.",
+      enregistrer_appel: "Save the roll call", cumul: "sem.: {a} abs. · {j} exc.",
+      rappel_en_cours: "Session in progress: {g} {h}", rappel_a_faire: "Roll call to take: {g} {h}",
+      imprimer_registre: "Print the register", semaine_courte: "W{n}",
+      conges_defaut: { revolution: "Revolution Day", nouvel_an: "New Year's Day", yennayer: "Yennayer", travail: "Labour Day", independance: "Independence Day",
+        fitr: "Eid al-Fitr (dates to confirm)", adha: "Eid al-Adha (dates to confirm)", moharram: "Islamic New Year (date to confirm)", achoura: "Ashura (date to confirm)" },
       formes: {
         groupe: ["group", "groups"], etudiant: ["student", "students"], seance: ["session", "sessions"],
         avenir: ["upcoming session", "upcoming sessions"], faite: ["session held", "sessions held"]
@@ -344,7 +418,9 @@
         seance: "الحصص: التاريخ، التوقيت، الموضوع المقرَّر، ما تم إنجازه، العمل المطلوب",
         presence: "المناداة: سطر لكل طالب في كل حصة",
         evaluation: "التقييمات: العنوان، العلامة القصوى، المعامل",
-        note: "العلامات: سطر لكل طالب في كل تقييم"
+        note: "العلامات: سطر لكل طالب في كل تقييم",
+        conge: "العطل والأعياد: لا تُنشأ فيها أيّ حصة",
+        reglage: "الإعدادات: حدود الغيابات، بداية السداسي الثاني"
       },
       vie_privee_titre: "المعطيات الشخصية",
       vie_privee: "الأسماء والعلامات والملاحظات معطيات شخصية لطلبتكم (القانون 18-07). تبقى على هذا الحاسوب: لا يُرسل شيء عبر الإنترنت، والمجلد donnees/ مستثنى من git.",
@@ -372,6 +448,41 @@
         ["مراجعة؛ امتحان تجريبي", ""],
         ["الامتحان (في التاريخ الذي تحدّده الكلية)", ""]
       ],
+      onglet_presences: "الحضور والغياب", aujourdhui_titre: "اليوم · {date}", aucune_seance_auj: "لا توجد حصة اليوم.",
+      prochaine_le: "الحصة القادمة: {d} · {g}.", faire_appel: "تسجيل الحضور", modifier_appel: "تعديل الحضور",
+      appel_fait: "سُجّل الحضور: {p} من {n} حاضرون", en_cours: "جارية الآن", a_faire: "لم يُسجَّل الحضور",
+      appels_retard: "حصص فاتها تسجيل الحضور", appels_retard_aide: "حصص مضت دون تسجيل الحضور: سجّلوه الآن، أو اعتبروا الحصة ملغاة.",
+      annee_invitation: "لا توجد حصص مبرمجة. أنشئوا دفعة واحدة حصص السنة لكل أفواجكم، كلٌّ في يومه وتوقيته، دون العطل والأعياد.",
+      preparer_annee: "تحضير السنة", annee_titre: "تحضير السنة: حصة كل أسبوع لكل فوج",
+      annee_aide: "يحصل كل فوج مؤشَّر على حصة كل أسبوع، في يومه وتوقيته، من اليوم الأول إلى اليوم الأخير، ما عدا العطل والأعياد المذكورة أدناه.",
+      premier_jour: "اليوم الأول", dernier_jour: "اليوم الأخير", groupes_concernes: "الأفواج",
+      remplacer: "تعويض الحصص المبرمجة التي لم يُسجَّل فيها الحضور ابتداءً من اليوم الأول ({n})", sautees: "أسابيع متخطّاة بسبب العطل: {n}",
+      creer_seances: "إنشاء الحصص ({n})", aucun_groupe_horaire: "حدّدوا أولًا يومًا وتوقيتًا لأفواجكم (قسم الأفواج).",
+      conges: "العطل والأعياد", conge_libelle: "التسمية", conge_exemple: "عطلة الشتاء", du: "من", au: "إلى", du_au: "من {d1} إلى {d2}",
+      ajouter_conge: "إضافة", aucun_conge: "لا توجد فترات.",
+      conges_aide: "لا تُنشأ أيّ حصة خلال هذه الفترات. أضيفوا عطلتي الشتاء والربيع حين تنشر الكلية رزنامتها. تواريخ الأعياد الدينية تقريبية: صحّحوها عند الحاجة.",
+      changer_horaire: "تغيير التوقيت", horaire_titre: "تغيير توقيت فوج", a_partir_du: "ابتداءً من", nouveau_jour: "اليوم الجديد",
+      horaire_apercu: "ستنتقل الحصص المبرمجة ({n}) من «{avant}» إلى «{apres}».", horaire_aucune: "لا توجد حصص مبرمجة لنقلها: يتغيّر توقيت الفوج فقط.",
+      appliquer: "تطبيق", confirmer_horaire_groupe: "تطبيق هذا التوقيت الجديد أيضًا على الحصص المبرمجة ({n}) ابتداءً من اليوم؟",
+      horaire_conge: "تصادف عطلة: أُلغيت",
+      periode: "الفترة", semestre1: "السداسي الأول", semestre2: "السداسي الثاني", annee: "السنة كاملة",
+      registre: "سجلّ الحضور", choisir_groupe: "اختاروا فوجًا أعلاه لعرض سجلّ حضوره.",
+      lettres: { present: "ح", absent: "غ", excuse: "م", retard: "ت" },
+      col_presents: "حضور", col_absences: "غيابات", col_justifiees: "مبرَّرة", col_retards: "تأخّرات", taux: "نسبة الحضور",
+      seances_faites: "الحصص المنجزة", en_alerte: "إنذار", exclus: "إقصاء", a_suivre: "طلبة يستدعون المتابعة", aucun_suivi: "لا يوجد طالب في حالة إنذار خلال هذه الفترة.",
+      niveau: { alerte: "إنذار", exclusion: "بلغ حدّ الإقصاء" },
+      regles: "قواعد المواظبة", seuil_alerte: "إنذار ابتداءً من … غيابات غير مبرَّرة", seuil_exclusion: "إقصاء ابتداءً من … غيابات غير مبرَّرة",
+      seuil_total: "… أو ابتداءً من … غيابات إجمالًا (مبرَّرة أو لا)", debut_s2: "بداية السداسي الثاني",
+      regles_aide: "قاعدة شائعة التطبيق: الإقصاء من المقياس بعد 3 غيابات غير مبرَّرة أو 5 غيابات إجمالًا في الأعمال الموجَّهة. تحقّقوا من نظام كليتكم. تُحسب الإنذارات على السداسي.",
+      legende: "ح حاضر · غ غائب · م غياب مبرَّر · ت متأخر · خانة فارغة: لم يُسجَّل الحضور. انقروا على خانة لتغييرها.",
+      ajouter_rapide: "إضافة طالب إلى هذا الفوج", exemple_nom: "اللقب الاسم", ajouter_court: "إضافة",
+      defaut_present: "الجميع حاضرون افتراضيًا: انقروا على الغائبين فقط.", seance_annulee: "حصة ملغاة",
+      confirmer_annulee: "اعتبار هذه الحصة ملغاة؟ يُحذف تسجيل حضورها ولا تُحتسب في المواظبة.",
+      enregistrer_appel: "حفظ الحضور", cumul: "السداسي: غ {a} · م {j}",
+      rappel_en_cours: "حصة جارية الآن: {g} {h}", rappel_a_faire: "حضور لم يُسجَّل: {g} {h}",
+      imprimer_registre: "طباعة السجلّ", semaine_courte: "أ{n}",
+      conges_defaut: { revolution: "عيد الثورة", nouvel_an: "رأس السنة الميلادية", yennayer: "يناير، رأس السنة الأمازيغية", travail: "عيد العمال", independance: "عيد الاستقلال",
+        fitr: "عيد الفطر (تواريخ تقريبية)", adha: "عيد الأضحى (تواريخ تقريبية)", moharram: "رأس السنة الهجرية (تاريخ تقريبي)", achoura: "عاشوراء (تاريخ تقريبي)" },
       formes: {
         /* صفر، واحد، اثنان، 3–10، 11–99، غير ذلك */
         groupe: ["لا أفواج", "فوج واحد", "فوجان", "{n} أفواج", "{n} فوجًا", "{n} فوج"],
@@ -560,12 +671,19 @@
     });
   }
   // Version 2 : chaque groupe a une spécialité, un jour et un horaire (l'emploi du temps).
+  // Version 3 : vacances et jours fériés (conge), réglages de l'assiduité (reglage).
   function migrer() {
-    if (un("PRAGMA user_version").user_version >= 2) return false;
-    ["jour INTEGER", "debut TEXT NOT NULL DEFAULT ''", "fin TEXT NOT NULL DEFAULT ''", "specialite TEXT NOT NULL DEFAULT ''"].forEach(function (c) {
-      db.run("ALTER TABLE groupe ADD COLUMN " + c);
-    });
-    db.run("PRAGMA user_version = 2");
+    var v = un("PRAGMA user_version").user_version;
+    if (v >= 3) return false;
+    if (v < 2) {
+      ["jour INTEGER", "debut TEXT NOT NULL DEFAULT ''", "fin TEXT NOT NULL DEFAULT ''", "specialite TEXT NOT NULL DEFAULT ''"].forEach(function (c) {
+        db.run("ALTER TABLE groupe ADD COLUMN " + c);
+      });
+    }
+    db.run("CREATE TABLE IF NOT EXISTS conge (id INTEGER PRIMARY KEY, debut TEXT NOT NULL, fin TEXT NOT NULL, libelle TEXT NOT NULL DEFAULT '')");
+    db.run("CREATE TABLE IF NOT EXISTS reglage (cle TEXT PRIMARY KEY, valeur TEXT NOT NULL)");
+    if (!un("SELECT COUNT(*) AS n FROM conge").n) congesParDefaut();
+    db.run("PRAGMA user_version = 3");
     return true;
   }
   var baseMigree = false;
@@ -683,12 +801,12 @@
 
   /* ---------- État de l'interface ---------- */
 
-  var etat = { onglet: "groupes", groupe: 0, vue: "a-venir", recherche: "" };
+  var etat = { onglet: "groupes", groupe: 0, vue: "a-venir", recherche: "", periode: "" };
   try {
     var memo = JSON.parse(lireLocal(CLE_ETAT) || "{}");
-    ["onglet", "groupe", "vue", "vueGroupes"].forEach(function (k) { if (memo[k] != null) etat[k] = memo[k]; });
+    ["onglet", "groupe", "vue", "vueGroupes", "periode"].forEach(function (k) { if (memo[k] != null) etat[k] = memo[k]; });
   } catch (e) { /* état illisible : valeurs par défaut */ }
-  function memoriser() { ecrireLocal(CLE_ETAT, JSON.stringify({ onglet: etat.onglet, groupe: etat.groupe, vue: etat.vue, vueGroupes: etat.vueGroupes })); }
+  function memoriser() { ecrireLocal(CLE_ETAT, JSON.stringify({ onglet: etat.onglet, groupe: etat.groupe, vue: etat.vue, vueGroupes: etat.vueGroupes, periode: etat.periode })); }
 
   var zones = {};
   function construireCadre() {
@@ -696,12 +814,13 @@
     zones.etat = h("div", { class: "classe-etat", role: "status", "aria-live": "polite" });
     zones.alerte = h("div", { class: "classe-alerte", hidden: true, role: "alert" });
     zones.resume = h("p", { class: "classe-resume" });
+    zones.rappel = h("div", { class: "classe-rappel", role: "status", hidden: true });
     zones.onglets = h("div", { class: "onglets", role: "tablist", "aria-label": T.onglets });
     zones.filtre = h("div", { class: "filtre-groupes", role: "group", "aria-label": T.filtre });
     zones.panneau = h("div", { class: "classe-panneau", role: "tabpanel", id: "classe-panneau" });
     zones.fenetre = h("dialog", { class: "fenetre", "aria-labelledby": "fenetre-titre" });
     zones.fenetre.addEventListener("close", function () { vider(zones.fenetre); });
-    ajouter(racine, [zones.etat, zones.alerte, zones.resume, zones.onglets, zones.filtre, zones.panneau]);
+    ajouter(racine, [zones.etat, zones.alerte, zones.resume, zones.rappel, zones.onglets, zones.filtre, zones.panneau]);
     document.body.appendChild(zones.fenetre);
   }
 
@@ -772,7 +891,7 @@
   /* ---------- Rendu général ---------- */
 
   var ONGLETS = [["groupes", "onglet_groupes", "i-groupe"], ["etudiants", "onglet_etudiants", "i-fiche"],
-    ["seances", "onglet_seances", "i-calendrier"], ["notes", "onglet_notes", "i-coche"], ["donnees", "onglet_donnees", "i-base"]];
+    ["seances", "onglet_seances", "i-calendrier"], ["presences", "onglet_presences", "i-horloge"], ["notes", "onglet_notes", "i-coche"], ["donnees", "onglet_donnees", "i-base"]];
 
   function rendre() {
     if (!ONGLETS.some(function (o) { return o[0] === etat.onglet; })) etat.onglet = "groupes";
@@ -800,8 +919,9 @@
     if (!zones.filtre.hidden) {
       var sansGroupe = un("SELECT COUNT(*) AS n FROM etudiant WHERE groupe_id IS NULL").n;
       var choix = [[0, T.tous, null]].concat(gs.map(function (g) { return [g.id, g.nom, g.couleur]; }));
-      if (sansGroupe && etat.onglet !== "seances") choix.push([-1, T.sans_groupe, null]);
-      if (etat.groupe === -1 && etat.onglet === "seances") etat.groupe = 0;
+      var parSeance = etat.onglet === "seances" || etat.onglet === "presences";
+      if (sansGroupe && !parSeance) choix.push([-1, T.sans_groupe, null]);
+      if (etat.groupe === -1 && parSeance) etat.groupe = 0;
       choix.forEach(function (c) {
         zones.filtre.appendChild(h("button", { type: "button", class: "filtre-groupe" + (c[2] != null ? " " + teinte(c[2]) : ""),
           "aria-pressed": etat.groupe === c[0] ? "true" : "false", onclick: function () { etat.groupe = c[0]; rendre(); } },
@@ -811,7 +931,8 @@
 
     vider(zones.panneau);
     zones.panneau.setAttribute("aria-label", T["onglet_" + etat.onglet]);
-    ({ groupes: rendreGroupes, etudiants: rendreEtudiants, seances: rendreSeances, notes: rendreNotes, donnees: rendreDonnees })[etat.onglet](zones.panneau);
+    ({ groupes: rendreGroupes, etudiants: rendreEtudiants, seances: rendreSeances, presences: rendrePresences, notes: rendreNotes, donnees: rendreDonnees })[etat.onglet](zones.panneau);
+    majRappel();
   }
   // Un petit résumé pour la page d'accueil, qui l'affiche sans charger la base (aucune attente).
   function resumerPourAccueil(nbGroupes, nbEtudiants) {
@@ -1013,6 +1134,9 @@
         var couleur = form.querySelector('input[name="couleur"]:checked');
         if (!v.nom) { erreurFenetre(form, T.nom_obligatoire); return; }
         var params = [v.nom, v.specialite, v.jour === "" ? null : +v.jour, v.debut, v.fin, v.salle, +v.sujet || 0, couleur ? +couleur.value : 0, v.remarque];
+        var change = id && v.jour !== "" && (String(g.jour) !== String(v.jour) || g.debut !== v.debut || g.fin !== v.fin || g.salle !== v.salle);
+        var aDeplacer = change ? seancesADeplacer(id, aujourdhui()).length : 0;
+        if (aDeplacer && window.confirm(tpl(T.confirmer_horaire_groupe, { n: nombre(aDeplacer) }))) deplacerSeances(id, aujourdhui(), +v.jour, v.debut, v.fin, v.salle);
         if (id) executer("UPDATE groupe SET nom = ?, specialite = ?, jour = ?, debut = ?, fin = ?, salle = ?, sujet = ?, couleur = ?, remarque = ? WHERE id = ?", params.concat([id]));
         else executer("INSERT INTO groupe (nom, specialite, jour, debut, fin, salle, sujet, couleur, remarque, ordre) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, (SELECT COALESCE(MAX(ordre), 0) + 1 FROM groupe))", params);
         modifie(); fermerFenetre(); rendre();
@@ -1049,6 +1173,7 @@
       if (!liste.length) { tableau.appendChild(h("p", { class: "classe-vide", text: q ? tpl(T.aucun_resultat, { q: etat.recherche }) : T.aucun_etudiant })); return; }
       var moy = moyennes();
       var gs = groupes();
+      var sem = periodeDe(aujourdhui()), bs = bilans(sem.du, sem.au, 0);
       var t = h("table", { class: "tableau tableau--classe" },
         h("thead", null, h("tr", null, [[T.num, 1], [T.nom], [T.prenom], [T.matricule], [T.groupe], [T.absences, 1], [T.moyenne, 1], [T.observations, 1], [""]].map(function (x) {
           return h("th", { scope: "col", class: x[1] ? "nombre" : null, text: x[0] });
@@ -1069,7 +1194,8 @@
           h("td", { text: e.prenom }),
           h("td", null, h("bdi", { dir: "ltr", text: e.matricule })),
           h("td", null, choix),
-          h("td", { class: "nombre", text: e.absences ? nombre(e.absences) : "" }),
+          h("td", { class: "nombre" }, e.absences ? nombre(e.absences) : "",
+            bs[e.id] && bs[e.id].niveau ? h("span", { class: "puce puce--" + bs[e.id].niveau, title: T.niveau[bs[e.id].niveau], text: T.niveau[bs[e.id].niveau] }) : null),
           h("td", { class: "nombre", text: moy[e.id] != null ? nombre(moy[e.id]) : "" }),
           h("td", { class: "nombre", text: e.nb_obs ? nombre(e.nb_obs) : "" }),
           h("td", null, bouton(T.fiche, function () { fenetreEtudiant(e.id); }, { classe: "bouton--discret" }))));
@@ -1157,7 +1283,10 @@
     var n = { present: 0, absent: 0, retard: 0, excuse: 0 };
     lignes.forEach(function (l) { if (n[l.statut] != null) n[l.statut]++; });
     var manques = lignes.filter(function (l) { return l.statut !== "present"; });
+    var sem = periodeDe(aujourdhui()), b = bilans(sem.du, sem.au, 0)[id];
     return h("section", { class: "fenetre__partie" }, h("h3", { text: T.presences }),
+      b ? h("p", { class: "classe-aide" }, (sem.id === "s1" ? T.semestre1 : T.semestre2) + " · " + T.taux + " : " + pourcent(b.taux) + " ",
+        b.niveau ? h("span", { class: "puce puce--" + b.niveau, text: T.niveau[b.niveau] }) : null) : null,
       h("p", { class: "bilan-presences" }, Object.keys(n).map(function (k) {
         return h("span", { class: "puce puce--" + k }, T.presence[k] + " : " + nombre(n[k]));
       })),
@@ -1251,7 +1380,9 @@
     });
     ajouter(p, h("div", { class: "classe-outils" }, vues,
       bouton(T.nouvelle_seance, function () { fenetreSeance(null); }, { icone: "i-plus", classe: "bouton--prisme" }),
+      bouton(T.preparer_annee, fenetreAnnee, { icone: "i-calendrier" }),
       bouton(T.generer, fenetreGenerer, { icone: "i-calendrier" }),
+      bouton(T.changer_horaire, function () { fenetreHoraire(etat.groupe); }, { icone: "i-horloge" }),
       bouton(T.exporter_csv, function () { exporterCsv("seances"); }, { icone: "i-telecharger" })));
 
     var liste = seances(etat.groupe, etat.vue);
@@ -1354,10 +1485,16 @@
   }
 
   // L'appel : les étudiants du groupe (et ceux qui y étaient ce jour-là), un statut chacun.
-  function partieAppel(s) {
+  function partieAppel(s, options) {
+    options = options || {};
     var membres = tout("SELECT e.* FROM etudiant e WHERE e.groupe_id = ? OR e.id IN (SELECT etudiant_id FROM presence WHERE seance_id = ?)", [s.groupe_id, s.id]).sort(parNom);
     var statuts = {};
     tout("SELECT etudiant_id, statut FROM presence WHERE seance_id = ?", [s.id]).forEach(function (r) { statuts[r.etudiant_id] = r.statut; });
+    // Appel rapide : sans appel enregistré, tout le monde part « présent » ; on ne touche que les absents.
+    if (options.defautPresent && !Object.keys(statuts).length) membres.forEach(function (e) { statuts[e.id] = "present"; });
+    var per = options.cumul ? periodeDe(s.date) : null;
+    var cumul = per ? bilans(per.du, per.au, 0, s.id) : {};
+    var seuils = lireSeuils();
     var section = h("section", { class: "fenetre__partie" });
     var bilan = h("p", { class: "bilan-presences" });
     var lignes = h("ol", { class: "appel" });
@@ -1378,13 +1515,42 @@
               rendreLignes(); majBilan();
             } }));
         });
-        lignes.appendChild(h("li", { class: "appel__ligne" }, h("span", { class: "appel__nom", text: nomComplet(e) }), groupe));
+        var info = null;
+        if (options.cumul) {
+          // Le semestre jusqu'ici, plus le statut choisi aujourd'hui : l'alerte s'allume dès qu'on touche « absent ».
+          var b = cumul[e.id] ? Object.assign({}, cumul[e.id]) : vide();
+          if (statuts[e.id]) b[statuts[e.id]]++;
+          completer(b, seuils);
+          info = h("span", { class: "appel__cumul" }, tpl(T.cumul, { a: nombre(b.absent), j: nombre(b.excuse) }),
+            b.niveau ? h("span", { class: "puce puce--" + b.niveau, text: T.niveau[b.niveau] }) : null);
+        }
+        lignes.appendChild(h("li", { class: "appel__ligne" + (statuts[e.id] ? " appel__ligne--" + statuts[e.id] : "") },
+          h("span", { class: "appel__nom" }, nomComplet(e), info), groupe));
       });
     }
+    var ajout = null, vide0 = h("p", { class: "classe-vide", text: T.aucun_etudiant, hidden: !!membres.length });
+    if (options.ajout) {
+      var entree = h("input", { type: "text", class: "saisie-libre", placeholder: T.exemple_nom, "aria-label": T.ajouter_rapide, autocomplete: "off" });
+      var ajouterEtudiant = function () {
+        var x = decouperListe(entree.value)[0];
+        if (!x) { entree.focus(); return; }
+        executer("INSERT INTO etudiant (groupe_id, nom, prenom, matricule, email) VALUES (?, ?, ?, ?, ?)", [s.groupe_id, x.nom, x.prenom, x.matricule, x.email]);
+        var e = un("SELECT * FROM etudiant WHERE id = ?", [dernierId()]);
+        membres.push(e); membres.sort(parNom); statuts[e.id] = "present";
+        modifie(); entree.value = ""; vide0.hidden = true; bilan.hidden = false;
+        rendreLignes(); majBilan(); entree.focus();
+      };
+      // Entrée ajoute l'étudiant (et n'enregistre pas l'appel).
+      entree.addEventListener("keydown", function (k) { if (k.key === "Enter") { k.preventDefault(); ajouterEtudiant(); } });
+      ajout = h("div", { class: "appel__ajout" }, h("p", { class: "appel__ajout-titre", text: T.ajouter_rapide }),
+        h("div", { class: "appel__ajout-ligne" }, entree, bouton(T.ajouter_court, ajouterEtudiant, { icone: "i-plus" })));
+    }
+    bilan.hidden = !membres.length;
     ajouter(section, [h("div", { class: "fenetre__partie-tete" }, h("h3", { text: T.appel }),
-      membres.length ? bouton(T.tous_presents, function () { membres.forEach(function (e) { statuts[e.id] = "present"; }); rendreLignes(); majBilan(); }, { icone: "i-coche" }) : null,
-      membres.length ? bouton(T.effacer_appel, function () { statuts = {}; rendreLignes(); majBilan(); }, { classe: "bouton--discret" }) : null),
-      membres.length ? bilan : h("p", { class: "classe-vide", text: T.aucun_etudiant }), lignes]);
+      bouton(T.tous_presents, function () { membres.forEach(function (e) { statuts[e.id] = "present"; }); rendreLignes(); majBilan(); }, { icone: "i-coche" }),
+      bouton(T.effacer_appel, function () { statuts = {}; rendreLignes(); majBilan(); }, { classe: "bouton--discret" })),
+      options.defautPresent ? h("p", { class: "classe-aide", text: T.defaut_present }) : null,
+      bilan, vide0, lignes, ajout]);
     rendreLignes(); majBilan();
     return {
       section: section,
@@ -1511,6 +1677,591 @@
     maj();
   }
 
+  /* ---------- Assiduité : réglages, congés, bilans ---------- */
+
+  var SEUILS = { seuil_alerte: 2, seuil_exclusion: 3, seuil_total: 5 };
+  function reglage(cle) {
+    var r = un("SELECT valeur FROM reglage WHERE cle = ?", [cle]);
+    if (r) return r.valeur;
+    return cle === "debut_s2" ? anneeUniversitaire().debut_s2 : String(SEUILS[cle]);
+  }
+  function ecrireReglage(cle, valeur) {
+    executer("INSERT INTO reglage (cle, valeur) VALUES (?, ?) ON CONFLICT (cle) DO UPDATE SET valeur = excluded.valeur", [cle, String(valeur)]);
+  }
+  function lireSeuils() {
+    var r = {};
+    Object.keys(SEUILS).forEach(function (k) { var n = parseInt(reglage(k), 10); r[k] = n > 0 ? n : SEUILS[k]; });
+    return r;
+  }
+  // L'année universitaire va de septembre à juillet ; le semestre 2 commence en février (réglable).
+  function anneeUniversitaire(iso) {
+    var d = versDate(iso || aujourdhui()), y = d.getMonth() >= 7 ? d.getFullYear() : d.getFullYear() - 1;
+    return { y: y, debut: y + "-09-01", fin: (y + 1) + "-07-31", debut_s2: (y + 1) + "-02-01" };
+  }
+  function ajouterMois(iso, n) { var d = versDate(iso); d.setMonth(d.getMonth() + n); return isoDate(d); }
+  function periodes() {
+    var a = anneeUniversitaire(), s2 = reglage("debut_s2");
+    var r = [{ id: "s1", nom: T.semestre1, du: a.debut, au: plusJours(s2, -1) }, { id: "s2", nom: T.semestre2, du: s2, au: a.fin },
+      { id: "annee", nom: T.annee, du: a.debut, au: a.fin }];
+    for (var m = 0; m < 11; m++) {
+      var d = new Date(a.y, 8 + m, 1, 12);
+      r.push({ id: isoDate(d).slice(0, 7), nom: new Intl.DateTimeFormat(LOCALE, { month: "short" }).format(d), du: isoDate(d),
+        au: isoDate(new Date(a.y, 9 + m, 0, 12)), mois: true });
+    }
+    return r;
+  }
+  // Le semestre qui contient une date : c'est sur lui que les alertes sont calculées.
+  function periodeDe(iso) {
+    var a = anneeUniversitaire(iso), s2 = reglage("debut_s2");
+    return iso >= s2 ? { id: "s2", du: s2, au: a.fin } : { id: "s1", du: a.debut, au: plusJours(s2, -1) };
+  }
+  function conges() { return tout("SELECT * FROM conge ORDER BY debut, fin"); }
+  function congeDu(iso, liste) { return (liste || conges()).filter(function (c) { return iso >= c.debut && iso <= c.fin; })[0] || null; }
+  // Jours fériés algériens à date fixe ; fêtes religieuses de 2026–2027 à dates approximatives (à confirmer).
+  function congesParDefaut() {
+    var y = anneeUniversitaire().y, L = T.conges_defaut;
+    var c = [[y + "-11-01", y + "-11-01", L.revolution], [(y + 1) + "-01-01", (y + 1) + "-01-01", L.nouvel_an], [(y + 1) + "-01-12", (y + 1) + "-01-12", L.yennayer],
+      [(y + 1) + "-05-01", (y + 1) + "-05-01", L.travail], [(y + 1) + "-07-05", (y + 1) + "-07-05", L.independance]];
+    if (y === 2026) c.push(["2027-03-09", "2027-03-11", L.fitr], ["2027-05-16", "2027-05-18", L.adha], ["2027-06-06", "2027-06-06", L.moharram], ["2027-06-15", "2027-06-15", L.achoura]);
+    c.forEach(function (x) { executer("INSERT INTO conge (debut, fin, libelle) VALUES (?, ?, ?)", x); });
+  }
+
+  function vide() { return { present: 0, absent: 0, excuse: 0, retard: 0 }; }
+  function completer(x, seuils) {
+    x.total = x.present + x.absent + x.excuse + x.retard;
+    x.taux = x.total ? (x.present + x.retard) / x.total : null;
+    x.niveau = x.absent >= seuils.seuil_exclusion || x.absent + x.excuse >= seuils.seuil_total ? "exclusion"
+      : x.absent >= seuils.seuil_alerte || x.absent + x.excuse >= seuils.seuil_total - 1 ? "alerte" : "";
+    return x;
+  }
+  // Bilan de chaque étudiant sur une période (séances annulées exclues) ; « sauf » : une séance à ne pas compter.
+  function bilans(du, au, groupeId, sauf) {
+    var sql = "SELECT p.etudiant_id, p.statut, COUNT(*) AS n FROM presence p JOIN seance s ON s.id = p.seance_id WHERE s.date BETWEEN ? AND ? AND s.statut <> 'annulee'";
+    var params = [du, au];
+    if (groupeId > 0) { sql += " AND s.groupe_id = ?"; params.push(groupeId); }
+    if (sauf) { sql += " AND s.id <> ?"; params.push(sauf); }
+    var b = {}, seuils = lireSeuils();
+    tout(sql + " GROUP BY p.etudiant_id, p.statut", params).forEach(function (r) {
+      var x = b[r.etudiant_id] || (b[r.etudiant_id] = vide());
+      if (x[r.statut] != null) x[r.statut] = r.n;
+    });
+    Object.keys(b).forEach(function (k) { completer(b[k], seuils); });
+    return b;
+  }
+  function pourcent(x) { return x == null ? "" : new Intl.NumberFormat(LOCALE, { style: "percent", maximumFractionDigits: 0 }).format(x); }
+  function minutes(hhmm) { var p = String(hhmm || "").split(":"); return p.length === 2 ? +p[0] * 60 + +p[1] : null; }
+  function maintenant() { var d = new Date(); return d.getHours() * 60 + d.getMinutes(); }
+  function horaire(s) { return s.debut ? s.debut + (s.fin ? "–" + s.fin : "") : ""; }
+
+  function seancesDuJour(iso) {
+    return tout("SELECT s.*, g.nom AS groupe_nom, g.couleur AS groupe_couleur," +
+      " (SELECT COUNT(*) FROM presence p WHERE p.seance_id = s.id) AS nb_appel," +
+      " (SELECT COUNT(*) FROM presence p WHERE p.seance_id = s.id AND p.statut IN ('present', 'retard')) AS nb_presents" +
+      " FROM seance s JOIN groupe g ON g.id = s.groupe_id WHERE s.date = ? AND s.statut NOT IN ('annulee', 'reportee') ORDER BY s.debut, g.ordre", [iso]);
+  }
+  function enCours(s) {
+    var m = maintenant(), d = minutes(s.debut), f = minutes(s.fin);
+    return s.date === aujourdhui() && d != null && m >= d && (f == null || m <= f);
+  }
+  // Séances passées (ou finies aujourd'hui) sans aucun appel, pour un groupe qui a des étudiants.
+  function appelsEnRetard() {
+    var auj = aujourdhui(), m = maintenant();
+    return tout("SELECT s.*, g.nom AS groupe_nom, g.couleur AS groupe_couleur FROM seance s JOIN groupe g ON g.id = s.groupe_id" +
+      " WHERE s.statut IN ('prevue', 'faite') AND s.date <= ? AND NOT EXISTS (SELECT 1 FROM presence p WHERE p.seance_id = s.id)" +
+      " AND EXISTS (SELECT 1 FROM etudiant e WHERE e.groupe_id = s.groupe_id) ORDER BY s.date DESC, s.debut", [auj])
+      .filter(function (s) { var f = minutes(s.fin); return s.date < auj || (f != null && f < m); });
+  }
+
+  // Bandeau du jour, sur toutes les pages de « Mes groupes » : la séance en cours (ou qui commence) dont l'appel n'est pas fait.
+  function majRappel() {
+    if (!zones.rappel || !db) return;
+    vider(zones.rappel);
+    var m = maintenant();
+    var jour = seancesDuJour(aujourdhui()).filter(function (s) { return !s.nb_appel; });
+    var cible = jour.filter(enCours)[0] || jour.filter(function (s) { var d = minutes(s.debut); return d == null || d <= m + 15; })[0] || null;
+    zones.rappel.hidden = !cible;
+    if (!cible) return;
+    ajouter(zones.rappel, [icone("i-horloge"),
+      h("span", { class: "classe-rappel__texte" }, tpl(enCours(cible) ? T.rappel_en_cours : T.rappel_a_faire, { g: cible.groupe_nom, h: "" }), h("bdi", { dir: "ltr", text: horaire(cible) })),
+      bouton(T.faire_appel, function () { fenetreAppel(cible.id); }, { icone: "i-coche", classe: "bouton--prisme" })]);
+  }
+
+  /* ---------- Onglet Présences ---------- */
+
+  function rendrePresences(p) {
+    var auj = aujourdhui(), court = { weekday: "short", day: "numeric", month: "short" };
+    // 1. Aujourd'hui
+    var jour = seancesDuJour(auj);
+    var carte = h("section", { class: "carte carte-jour" }, h("h3", { text: tpl(T.aujourdhui_titre, { date: formatDate(auj, { weekday: "long", day: "numeric", month: "long" }) }) }));
+    if (jour.length) {
+      carte.appendChild(h("ul", { class: "jour__liste" }, jour.map(function (s) {
+        var fait = s.nb_appel > 0, cours = enCours(s);
+        return h("li", { class: "jour__seance " + teinte(s.groupe_couleur) + (cours ? " jour__seance--en-cours" : "") },
+          h("bdi", { class: "jour__heure", dir: "ltr", text: horaire(s) || "—" }),
+          h("span", { class: "jour__groupe" }, h("span", { class: "pastille-couleur", "aria-hidden": "true" }), s.groupe_nom),
+          h("span", { class: "puce " + (fait ? "puce--faite" : cours ? "puce--aujourdhui" : "puce--prevue"),
+            text: fait ? tpl(T.appel_fait, { p: nombre(s.nb_presents), n: nombre(s.nb_appel) }) : cours ? T.en_cours : T.a_faire }),
+          bouton(fait ? T.modifier_appel : T.faire_appel, function () { fenetreAppel(s.id); }, { icone: "i-coche", classe: fait ? "bouton--discret" : "bouton--prisme" }));
+      })));
+    } else {
+      var proch = un("SELECT s.date, s.debut, g.nom AS groupe_nom FROM seance s JOIN groupe g ON g.id = s.groupe_id WHERE s.date > ? AND s.statut IN ('prevue', 'reportee') ORDER BY s.date, s.debut LIMIT 1", [auj]);
+      carte.appendChild(h("p", { class: "classe-vide", text: T.aucune_seance_auj + (proch ? " " + tpl(T.prochaine_le, {
+        d: formatDate(proch.date, { weekday: "long", day: "numeric", month: "long" }) + (proch.debut ? " · " + proch.debut : ""), g: proch.groupe_nom }) : "") }));
+    }
+    if (!un("SELECT COUNT(*) AS n FROM seance WHERE date >= ?", [auj]).n) {
+      carte.appendChild(h("div", { class: "jour__annee" }, h("p", { text: T.annee_invitation }),
+        bouton(T.preparer_annee, fenetreAnnee, { icone: "i-calendrier", classe: "bouton--prisme" })));
+    }
+    p.appendChild(carte);
+
+    // 2. Appels oubliés
+    var retard = appelsEnRetard();
+    if (retard.length) {
+      p.appendChild(h("section", { class: "carte carte-jour carte-jour--retard" }, h("h3", { text: T.appels_retard + " (" + nombre(retard.length) + ")" }),
+        h("p", { class: "classe-aide", text: T.appels_retard_aide }),
+        h("ul", { class: "jour__liste" }, retard.slice(0, 6).map(function (s) {
+          return h("li", { class: "jour__seance " + teinte(s.groupe_couleur) },
+            h("span", { class: "jour__heure", text: formatDate(s.date, court) }),
+            h("span", { class: "jour__groupe" }, h("span", { class: "pastille-couleur", "aria-hidden": "true" }), s.groupe_nom, " ", h("bdi", { dir: "ltr", text: horaire(s) })),
+            bouton(T.faire_appel, function () { fenetreAppel(s.id); }, { icone: "i-coche" }));
+        }))));
+    }
+
+    // 3. Outils
+    var g = etat.groupe > 0 ? groupeParId(etat.groupe) : null;
+    var pers = periodes();
+    if (!pers.some(function (x) { return x.id === etat.periode; })) etat.periode = periodeDe(auj).id;
+    var per = pers.filter(function (x) { return x.id === etat.periode; })[0];
+    ajouter(p, h("div", { class: "classe-outils" },
+      bouton(T.preparer_annee, fenetreAnnee, { icone: "i-calendrier" }),
+      bouton(T.changer_horaire, function () { fenetreHoraire(etat.groupe); }, { icone: "i-horloge" }),
+      bouton(T.conges, fenetreConges, { icone: "i-calendrier" }),
+      bouton(T.regles, fenetreRegles, { icone: "i-outil" }),
+      g ? bouton(T.exporter_csv, function () { exporterRegistre(g, per); }, { icone: "i-telecharger" }) : null,
+      g ? bouton(T.imprimer_registre, function () { imprimerRegistre(g, per); }, { icone: "i-imprimer" }) : null));
+
+    // 4. Période
+    var principales = h("div", { class: "segmente", role: "group", "aria-label": T.periode });
+    var mois = h("div", { class: "segmente segmente--mois", role: "group", "aria-label": T.periode });
+    pers.forEach(function (x) {
+      (x.mois ? mois : principales).appendChild(h("button", { type: "button", "aria-pressed": x.id === etat.periode ? "true" : "false",
+        onclick: function () { etat.periode = x.id; rendre(); }, text: x.nom }));
+    });
+    p.appendChild(h("div", { class: "periodes" }, principales, mois));
+
+    // 5. Registre d'un groupe, ou synthèse de tous les groupes
+    if (g) rendreRegistre(p, g, per); else rendreSynthese(p, per);
+  }
+
+  // Le registre : étudiants en lignes, séances de la période en colonnes, bilans et alertes à droite.
+  function donneesRegistre(g, per) {
+    var ss = tout("SELECT * FROM seance WHERE groupe_id = ? AND date BETWEEN ? AND ? ORDER BY date, debut", [g.id, per.du, per.au]);
+    var membres = tout("SELECT e.* FROM etudiant e WHERE e.groupe_id = ? OR e.id IN (SELECT p.etudiant_id FROM presence p JOIN seance s ON s.id = p.seance_id WHERE s.groupe_id = ? AND s.date BETWEEN ? AND ?)",
+      [g.id, g.id, per.du, per.au]).sort(parNom);
+    var statuts = {};
+    tout("SELECT p.* FROM presence p JOIN seance s ON s.id = p.seance_id WHERE s.groupe_id = ? AND s.date BETWEEN ? AND ?", [g.id, per.du, per.au])
+      .forEach(function (r) { statuts[r.seance_id + ":" + r.etudiant_id] = r.statut; });
+    return { ss: ss, membres: membres, statuts: statuts, seuils: lireSeuils() };
+  }
+  function bilanLigne(d, e) {
+    var b = vide();
+    d.ss.forEach(function (s) { var x = d.statuts[s.id + ":" + e.id]; if (x && s.statut !== "annulee" && b[x] != null) b[x]++; });
+    return completer(b, d.seuils);
+  }
+  function rendreRegistre(p, g, per) {
+    var d = donneesRegistre(g, per), auj = aujourdhui(), court = { weekday: "short", day: "numeric", month: "short" };
+    p.appendChild(h("h3", { class: "titre-mois", text: T.registre + " · " + g.nom + " · " + per.nom }));
+    if (!d.ss.length) { p.appendChild(h("p", { class: "classe-vide", text: T.aucune_seance })); return; }
+    if (!d.membres.length) p.appendChild(h("p", { class: "classe-vide", text: T.aucun_etudiant }));
+    var ordre = ["", "present", "absent", "excuse", "retard"];
+    var tete = h("tr", null, h("th", { scope: "col", class: "nombre", text: T.num }), h("th", { scope: "col", class: "registre__nom", text: T.etudiant }),
+      d.ss.map(function (s) {
+        var futur = s.date > auj, cl = "registre__date" + (futur ? " registre__date--futur" : "") + (s.statut === "annulee" ? " registre__date--annulee" : "") + (s.date === auj ? " registre__date--aujourdhui" : "");
+        return h("th", { scope: "col", class: cl, title: formatDate(s.date, { weekday: "long", day: "numeric", month: "long" }) + (s.titre ? " · " + s.titre : "") + " · " + (T.statut_seance[s.statut] || s.statut) },
+          h("button", { type: "button", class: "registre__lien", disabled: futur || s.statut === "annulee", onclick: function () { fenetreAppel(s.id); } },
+            h("span", { text: new Intl.DateTimeFormat(LOCALE, { weekday: "short" }).format(versDate(s.date)) }),
+            h("span", { dir: "ltr", text: s.date.slice(8, 10) + "/" + s.date.slice(5, 7) })));
+      }),
+      [T.col_presents, T.col_absences, T.col_justifiees, T.col_retards, T.taux].map(function (x) { return h("th", { scope: "col", class: "registre__total", text: x }); }));
+    var corps = h("tbody");
+    var pieds = {};
+    d.membres.forEach(function (e, i) {
+      var totaux = [h("td", { class: "registre__total" }), h("td", { class: "registre__total" }), h("td", { class: "registre__total" }), h("td", { class: "registre__total" }), h("td", { class: "registre__total" })];
+      var puce = h("span");
+      var ligne = h("tr", null, h("td", { class: "nombre", text: nombre(i + 1) }),
+        h("th", { scope: "row", class: "registre__nom" }, h("button", { type: "button", class: "lien-nom", onclick: function () { fenetreEtudiant(e.id); }, text: nomComplet(e) }), puce));
+      function majTotaux() {
+        var b = bilanLigne(d, e);
+        [b.present + b.retard, b.absent, b.excuse, b.retard].forEach(function (n, k) { totaux[k].textContent = n ? nombre(n) : ""; });
+        totaux[4].textContent = pourcent(b.taux);
+        ligne.className = b.niveau ? "registre__ligne--" + b.niveau : "";
+        vider(puce);
+        if (b.niveau) puce.appendChild(h("span", { class: "puce puce--" + b.niveau, text: T.niveau[b.niveau] }));
+      }
+      d.ss.forEach(function (s) {
+        if (s.statut === "annulee") { ligne.appendChild(h("td", { class: "registre__vide", text: "—" })); return; }
+        if (s.date > auj) { ligne.appendChild(h("td", { class: "registre__vide" })); return; }
+        var cle = s.id + ":" + e.id;
+        var c = h("button", { type: "button", class: "cellule" });
+        function peindre() {
+          var x = d.statuts[cle] || "";
+          c.className = "cellule" + (x ? " cellule--" + x : "");
+          c.textContent = x ? T.lettres[x] : "";
+          c.setAttribute("aria-label", nomComplet(e) + " · " + formatDate(s.date, court) + " : " + (x ? T.presence[x] : T.appel_non_fait));
+        }
+        c.addEventListener("click", function () {
+          var x = ordre[(ordre.indexOf(d.statuts[cle] || "") + 1) % ordre.length];
+          if (x) d.statuts[cle] = x; else delete d.statuts[cle];
+          ecrireStatut(s.id, e.id, x);
+          peindre(); majTotaux(); majPied(s);
+        });
+        peindre();
+        ligne.appendChild(h("td", { class: "registre__case" }, c));
+      });
+      ajouter(ligne, totaux);
+      majTotaux();
+      corps.appendChild(ligne);
+    });
+    function majPied(s) {
+      var td = pieds[s.id];
+      if (!td) return;
+      var n = 0, ok = 0;
+      d.membres.forEach(function (e) { var x = d.statuts[s.id + ":" + e.id]; if (x) { n++; if (x === "present" || x === "retard") ok++; } });
+      td.textContent = n ? nombre(ok) + "/" + nombre(n) : "";
+    }
+    var pied = h("tr", null, h("td"), h("th", { scope: "row", class: "registre__nom", text: T.col_presents }), d.ss.map(function (s) {
+      var td = h("td", { class: "registre__pied" }); pieds[s.id] = td; return td;
+    }), h("td", { colspan: "5" }));
+    d.ss.forEach(majPied);
+    p.appendChild(h("div", { class: "tableau-defilant tableau-defilant--registre" },
+      h("table", { class: "tableau tableau--registre" }, h("thead", null, tete), corps, h("tfoot", null, pied))));
+    p.appendChild(h("p", { class: "legende-registre", text: T.legende }));
+    // Le registre s'ouvre sur les séances d'aujourd'hui (ou les dernières) : défilement jusqu'à elles.
+    var defilant = p.querySelector(".tableau-defilant--registre"), cible = p.querySelector(".registre__date--aujourdhui") || p.querySelector(".registre__date--futur");
+    function centrer() {
+      var a = cible.getBoundingClientRect(), b = defilant.getBoundingClientRect();
+      defilant.scrollLeft += (a.left + a.width / 2) - (b.left + b.width / 2);   // même calcul de gauche à droite et de droite à gauche
+    }
+    if (defilant && cible) {
+      requestAnimationFrame(centrer);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { requestAnimationFrame(centrer); });   // les polices changent la largeur des colonnes
+    }
+  }
+  function ecrireStatut(seanceId, etudiantId, statut) {
+    if (statut) executer("INSERT INTO presence (seance_id, etudiant_id, statut) VALUES (?, ?, ?) ON CONFLICT (seance_id, etudiant_id) DO UPDATE SET statut = excluded.statut", [seanceId, etudiantId, statut]);
+    else executer("DELETE FROM presence WHERE seance_id = ? AND etudiant_id = ?", [seanceId, etudiantId]);
+    // Un appel enregistré : la séance a eu lieu.
+    executer("UPDATE seance SET statut = 'faite' WHERE id = ? AND statut IN ('prevue', 'reportee') AND EXISTS (SELECT 1 FROM presence WHERE seance_id = ?)", [seanceId, seanceId]);
+    modifie();
+  }
+
+  // Tous les groupes : un tableau par groupe, puis les étudiants en alerte.
+  function rendreSynthese(p, per) {
+    var gs = groupes(), b = bilans(per.du, per.au, 0), seuils = lireSeuils();
+    var tous = etudiants(0);
+    var parGroupe = {};
+    tous.forEach(function (e) { (parGroupe[e.groupe_id] = parGroupe[e.groupe_id] || []).push(e); });
+    var lignes = gs.map(function (g) {
+      var membres = parGroupe[g.id] || [], ok = 0, total = 0, alerte = 0, exclusion = 0;
+      membres.forEach(function (e) {
+        var x = b[e.id];
+        if (!x) return;
+        ok += x.present + x.retard; total += x.total;
+        if (x.niveau === "alerte") alerte++; else if (x.niveau === "exclusion") exclusion++;
+      });
+      var faites = un("SELECT COUNT(*) AS n FROM seance WHERE groupe_id = ? AND date BETWEEN ? AND ? AND statut = 'faite'", [g.id, per.du, per.au]).n;
+      return h("tr", { class: teinte(g.couleur) },
+        h("th", { scope: "row" }, h("button", { type: "button", class: "lien-nom", onclick: function () { etat.groupe = g.id; rendre(); } },
+          h("span", { class: "pastille-couleur", "aria-hidden": "true" }), " ", g.nom)),
+        h("td", { class: "nombre", text: nombre(membres.length) }), h("td", { class: "nombre", text: nombre(faites) }),
+        h("td", { class: "nombre", text: total ? pourcent(ok / total) : "" }),
+        h("td", { class: "nombre" }, alerte ? h("span", { class: "puce puce--alerte", text: nombre(alerte) }) : ""),
+        h("td", { class: "nombre" }, exclusion ? h("span", { class: "puce puce--exclusion", text: nombre(exclusion) }) : ""));
+    });
+    p.appendChild(h("div", { class: "tableau-defilant" }, h("table", { class: "tableau tableau--classe" },
+      h("thead", null, h("tr", null, [[T.groupe], [T.onglet_etudiants, 1], [T.seances_faites, 1], [T.taux, 1], [T.en_alerte, 1], [T.exclus, 1]].map(function (x) {
+        return h("th", { scope: "col", class: x[1] ? "nombre" : null, text: x[0] });
+      }))), h("tbody", null, lignes))));
+
+    p.appendChild(h("h3", { class: "titre-mois", text: T.a_suivre }));
+    var suivis = tous.filter(function (e) { return b[e.id] && b[e.id].niveau; }).sort(function (x, y) {
+      var bx = b[x.id], by = b[y.id];
+      return (by.niveau === "exclusion") - (bx.niveau === "exclusion") || (by.absent + by.excuse) - (bx.absent + bx.excuse) || parNom(x, y);
+    });
+    if (!suivis.length) { p.appendChild(h("p", { class: "classe-vide", text: T.aucun_suivi })); return; }
+    p.appendChild(h("div", { class: "tableau-defilant" }, h("table", { class: "tableau tableau--classe" },
+      h("thead", null, h("tr", null, [[T.etudiant], [T.groupe], [T.col_absences, 1], [T.col_justifiees, 1], [T.col_retards, 1], [T.taux, 1], [""]].map(function (x) {
+        return h("th", { scope: "col", class: x[1] ? "nombre" : null, text: x[0] });
+      }))),
+      h("tbody", null, suivis.map(function (e) {
+        var x = b[e.id];
+        return h("tr", { class: "registre__ligne--" + x.niveau },
+          h("th", { scope: "row" }, h("button", { type: "button", class: "lien-nom", onclick: function () { fenetreEtudiant(e.id); }, text: nomComplet(e) })),
+          h("td", { text: e.groupe_nom || T.sans_groupe }),
+          h("td", { class: "nombre", text: nombre(x.absent) }), h("td", { class: "nombre", text: nombre(x.excuse) }), h("td", { class: "nombre", text: nombre(x.retard) }),
+          h("td", { class: "nombre", text: pourcent(x.taux) }),
+          h("td", null, h("span", { class: "puce puce--" + x.niveau, text: T.niveau[x.niveau] })));
+      })))));
+  }
+
+  // L'appel rapide : tout le monde présent par défaut, un étudiant s'ajoute sur-le-champ, la séance passe « faite ».
+  function fenetreAppel(id) {
+    var s = un("SELECT s.*, g.nom AS groupe_nom FROM seance s JOIN groupe g ON g.id = s.groupe_id WHERE s.id = ?", [id]);
+    if (!s) return;
+    var appel = partieAppel(s, { defautPresent: true, cumul: true, ajout: true });
+    var contenu = zoneTexte("contenu", s.contenu, 2);
+    var corps = [h("p", { class: "classe-aide" }, h("bdi", { dir: "ltr", text: horaire(s) }), [s.salle, s.titre].filter(Boolean).map(function (x) { return " · " + x; }).join("")),
+      appel.section, h("div", { class: "grille-champs" }, champ(T.contenu, contenu, "champ--large"))];
+    ouvrirFenetre(T.appel + " · " + s.groupe_nom + " · " + formatDate(s.date, { weekday: "long", day: "numeric", month: "long" }), corps, [
+      { texte: T.enregistrer_appel, principal: true, icone: "i-coche", action: function () {
+        transaction(function () {
+          appel.enregistrer(id);
+          executer("UPDATE seance SET contenu = ?, statut = CASE WHEN statut IN ('prevue', 'reportee') AND EXISTS (SELECT 1 FROM presence WHERE seance_id = ?) THEN 'faite' ELSE statut END WHERE id = ?", [contenu.value, id, id]);
+        });
+        fermerFenetre(); rendre();
+      } },
+      { texte: T.seance_annulee, action: function () {
+        if (!window.confirm(T.confirmer_annulee)) return;
+        transaction(function () {
+          executer("DELETE FROM presence WHERE seance_id = ?", [id]);
+          executer("UPDATE seance SET statut = 'annulee' WHERE id = ?", [id]);
+        });
+        fermerFenetre(); rendre();
+      } },
+      { texte: T.fermer, action: fermerFenetre }
+    ], { large: true, sansFocus: true });
+  }
+
+  // Préparer l'année : une séance par semaine pour chaque groupe, du premier au dernier jour, sans les congés.
+  function fenetreAnnee() {
+    var gs = groupes().filter(aUnJour);
+    if (!gs.length) { window.alert(T.aucun_groupe_horaire); return; }
+    var demain = plusJours(aujourdhui(), 1);
+    var premier = saisie("premier", demain, "date", { requis: true });
+    var dernier = saisie("dernier", plusJours(ajouterMois(demain, 10), -1), "date", { requis: true });
+    var genre = liste("genre", Object.keys(T.genre_seance).map(function (k) { return [k, T.genre_seance[k]]; }), "td");
+    var suivre = h("input", { type: "checkbox", name: "progression", checked: true });
+    var remplacer = h("input", { type: "checkbox", name: "remplacer", checked: true });
+    var texteRemplacer = h("span");
+    var caseRemplacer = h("label", { class: "case champ--large" }, remplacer, texteRemplacer);
+    var cases = gs.map(function (g) {
+      var c = h("input", { type: "checkbox", value: String(g.id), checked: true });
+      c.addEventListener("change", maj);
+      return { g: g, c: c, el: h("label", { class: "case " + teinte(g.couleur) }, c, h("span", { class: "pastille-couleur", "aria-hidden": "true" }),
+        g.nom + " · " + nomJour(g.jour) + " ", h("bdi", { dir: "ltr", text: horaire(g) })) };
+    });
+    var apercu = h("ol", { class: "apercu-planning" });
+    var bouton0 = null;
+    function choisis() { return cases.filter(function (x) { return x.c.checked; }).map(function (x) { return x.g; }); }
+    function plan(g, listeConges) {
+      var r = [], sautees = 0;
+      if (!dateValide(premier.value) || !dateValide(dernier.value)) return { dates: r, sautees: 0 };
+      for (var d = premierJour(premier.value, g.jour); d <= dernier.value; d = plusJours(d, 7)) {
+        if (congeDu(d, listeConges)) sautees++; else r.push(d);
+      }
+      return { dates: r, sautees: sautees };
+    }
+    function existantes() {
+      var ids = choisis().map(function (g) { return g.id; });
+      if (!ids.length || !dateValide(premier.value)) return 0;
+      return un("SELECT COUNT(*) AS n FROM seance s WHERE s.groupe_id IN (" + ids.map(function () { return "?"; }).join(",") + ") AND s.date >= ? AND s.statut IN ('prevue', 'reportee')" +
+        " AND NOT EXISTS (SELECT 1 FROM presence p WHERE p.seance_id = s.id)", ids.concat([premier.value])).n;
+    }
+    function maj() {
+      vider(apercu);
+      var lc = conges(), total = 0, court = { day: "numeric", month: "short", year: "numeric" };
+      choisis().forEach(function (g) {
+        var x = plan(g, lc);
+        total += x.dates.length;
+        if (!x.dates.length) return;
+        apercu.appendChild(h("li", null, tpl(T.gen_ligne, { g: g.nom, n: compte(x.dates.length, "seance"), d1: formatDate(x.dates[0], court), d2: formatDate(x.dates[x.dates.length - 1], court) }) +
+          (x.sautees ? " · " + tpl(T.sautees, { n: nombre(x.sautees) }) : "")));
+      });
+      var n = existantes();
+      texteRemplacer.textContent = tpl(T.remplacer, { n: nombre(n) });
+      caseRemplacer.hidden = !n;
+      if (bouton0) bouton0.lastChild.textContent = tpl(T.creer_seances, { n: nombre(total) });
+    }
+    [premier, dernier].forEach(function (c) { c.addEventListener("change", maj); c.addEventListener("input", maj); });
+    var corps = [h("p", { class: "classe-aide", text: T.annee_aide }),
+      h("div", { class: "grille-champs" }, champ(T.premier_jour, premier), champ(T.dernier_jour, dernier), champ(T.genre, genre),
+        h("div", { class: "champ champ--large" }, h("span", { class: "champ__nom", text: T.groupes_concernes }), h("div", { class: "cases-groupes" }, cases.map(function (x) { return x.el; }))),
+        h("label", { class: "case champ--large" }, suivre, T.progression), caseRemplacer),
+      apercu, editeurConges(maj)];
+    var form = ouvrirFenetre(T.annee_titre, corps, [
+      { texte: tpl(T.creer_seances, { n: "…" }), principal: true, icone: "i-calendrier", action: function (f) {
+        var gg = choisis(), lc = conges();
+        if (!gg.length || !dateValide(premier.value) || !dateValide(dernier.value) || dernier.value < premier.value) { erreurFenetre(f, T.date_obligatoire); return; }
+        transaction(function () {
+          if (remplacer.checked && !caseRemplacer.hidden) {
+            gg.forEach(function (g) {
+              executer("DELETE FROM seance WHERE groupe_id = ? AND date >= ? AND statut IN ('prevue', 'reportee') AND NOT EXISTS (SELECT 1 FROM presence p WHERE p.seance_id = seance.id)", [g.id, premier.value]);
+            });
+          }
+          gg.forEach(function (g) {
+            plan(g, lc).dates.forEach(function (d, i) {
+              var modele = suivre.checked && T.plan[i] ? T.plan[i] : null;
+              executer("INSERT INTO seance (groupe_id, date, debut, fin, salle, genre, titre, diaporama) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                [g.id, d, g.debut, g.fin, g.salle, genre.value, modele ? modele[0] : tpl(T.semaine, { n: i + 1 }), modele ? modele[1] : ""]);
+            });
+          });
+        });
+        fermerFenetre(); rendre();
+      } },
+      { texte: T.annuler, action: fermerFenetre }
+    ], { large: true, sansFocus: true });
+    bouton0 = form.querySelector(".fenetre__pied .bouton--prisme");
+    maj();
+  }
+
+  // Les vacances et jours fériés : liste, suppression, ajout d'une période.
+  function editeurConges(apresChangement) {
+    var boite = h("div", { class: "conges" }), court = { weekday: "short", day: "numeric", month: "short", year: "numeric" };
+    function remplir() {
+      vider(boite);
+      var cs = conges();
+      var lib = h("input", { type: "text", class: "saisie-libre", placeholder: T.conge_exemple, "aria-label": T.conge_libelle, autocomplete: "off" });
+      var du = h("input", { type: "date", class: "saisie-libre", "aria-label": T.du }), au = h("input", { type: "date", class: "saisie-libre", "aria-label": T.au });
+      function ajouterConge() {
+        if (!dateValide(du.value)) { du.focus(); return; }
+        var fin = dateValide(au.value) && au.value >= du.value ? au.value : du.value;
+        executer("INSERT INTO conge (debut, fin, libelle) VALUES (?, ?, ?)", [du.value, fin, lib.value.trim() || T.conges]);
+        modifie(); remplir();
+        if (apresChangement) apresChangement();
+      }
+      [lib, du, au].forEach(function (c) { c.addEventListener("keydown", function (k) { if (k.key === "Enter") { k.preventDefault(); ajouterConge(); } }); });
+      ajouter(boite, [cs.length ? h("ul", { class: "conges__liste" }, cs.map(function (c) {
+        return h("li", null,
+          h("span", { class: "conges__dates", text: c.debut === c.fin ? formatDate(c.debut, court) : tpl(T.du_au, { d1: formatDate(c.debut, court), d2: formatDate(c.fin, court) }) }),
+          h("span", { class: "conges__libelle", text: c.libelle }),
+          h("button", { type: "button", class: "bouton bouton--petit bouton--discret", "aria-label": T.supprimer + " · " + c.libelle, title: T.supprimer, onclick: function () {
+            executer("DELETE FROM conge WHERE id = ?", [c.id]); modifie(); remplir();
+            if (apresChangement) apresChangement();
+          } }, icone("i-poubelle")));
+      })) : h("p", { class: "classe-vide", text: T.aucun_conge }),
+        h("div", { class: "conges__ajout" }, lib, h("label", { class: "conges__date" }, T.du + " ", du), h("label", { class: "conges__date" }, T.au + " ", au),
+          bouton(T.ajouter_conge, ajouterConge, { icone: "i-plus" }))]);
+    }
+    remplir();
+    return h("section", { class: "fenetre__partie" }, h("h3", { text: T.conges }), h("p", { class: "classe-aide", text: T.conges_aide }), boite);
+  }
+  function fenetreConges() {
+    ouvrirFenetre(T.conges, [editeurConges(null)], [{ texte: T.fermer, principal: true, action: function () { fermerFenetre(); rendre(); } }], { large: true, sansFocus: true });
+  }
+
+  // Changer l'horaire d'un groupe à partir d'une date : les séances prévues (sans appel) suivent.
+  function seancesADeplacer(groupeId, depuis) {
+    return tout("SELECT s.* FROM seance s WHERE s.groupe_id = ? AND s.date >= ? AND s.statut IN ('prevue', 'reportee') AND NOT EXISTS (SELECT 1 FROM presence p WHERE p.seance_id = s.id) ORDER BY s.date",
+      [groupeId, depuis]);
+  }
+  function deplacerSeances(groupeId, depuis, jour, debut, fin, salle) {
+    var lc = conges(), ss = seancesADeplacer(groupeId, depuis);
+    ss.forEach(function (s) {
+      // Même semaine (du dimanche au samedi), nouveau jour ; jamais avant la date de départ.
+      var d = plusJours(s.date, jour - versDate(s.date).getDay());
+      if (d < depuis) d = plusJours(d, 7);
+      var c = congeDu(d, lc);
+      executer("UPDATE seance SET date = ?, debut = ?, fin = ?, salle = ?, statut = ?, remarque = ? WHERE id = ?",
+        [d, debut, fin, salle, c ? "annulee" : s.statut, c ? (c.libelle + " : " + T.horaire_conge) : s.remarque, s.id]);
+    });
+    modifie();
+    return ss.length;
+  }
+  function fenetreHoraire(id) {
+    var gs = groupes();
+    if (!gs.length) return;
+    var g0 = (id > 0 && groupeParId(id)) || gs[0];
+    var choix = liste("groupe_id", gs.map(function (g) { return [g.id, g.nom]; }), g0.id);
+    var depuis = saisie("depuis", aujourdhui(), "date", { requis: true });
+    var jour = liste("jour", SEMAINE.map(function (j) { return [j, nomJour(j)]; }), aUnJour(g0) ? g0.jour : 0);
+    var debut = saisie("debut", g0.debut, "time"), fin = saisie("fin", g0.fin, "time"), salle = saisie("salle", g0.salle);
+    var info = h("p", { class: "classe-aide" });
+    function maj() {
+      var g = groupeParId(+choix.value), n = dateValide(depuis.value) ? seancesADeplacer(g.id, depuis.value).length : 0;
+      var avant = (aUnJour(g) ? nomJour(g.jour) + " " : "") + horaire(g), apres = nomJour(jour.value) + " " + horaire({ debut: debut.value, fin: fin.value });
+      info.textContent = n ? tpl(T.horaire_apercu, { n: nombre(n), avant: avant.trim() || "—", apres: apres.trim() }) : T.horaire_aucune;
+    }
+    choix.addEventListener("change", function () {
+      var g = groupeParId(+choix.value);
+      if (aUnJour(g)) jour.value = String(g.jour);
+      debut.value = g.debut || ""; fin.value = g.fin || ""; salle.value = g.salle || "";
+      maj();
+    });
+    [depuis, jour, debut, fin].forEach(function (c) { c.addEventListener("change", maj); c.addEventListener("input", maj); });
+    ouvrirFenetre(T.horaire_titre, [h("div", { class: "grille-champs" },
+      champ(T.groupe, choix), champ(T.a_partir_du, depuis), champ(T.nouveau_jour, jour), champ(T.debut, debut), champ(T.fin, fin), champ(T.salle, salle)), info], [
+      { texte: T.appliquer, principal: true, icone: "i-horloge", action: function (f) {
+        if (!dateValide(depuis.value)) { erreurFenetre(f, T.date_obligatoire); return; }
+        var gid = +choix.value;
+        transaction(function () {
+          executer("UPDATE groupe SET jour = ?, debut = ?, fin = ?, salle = ? WHERE id = ?", [+jour.value, debut.value, fin.value, salle.value.trim(), gid]);
+          deplacerSeances(gid, depuis.value, +jour.value, debut.value, fin.value, salle.value.trim());
+        });
+        fermerFenetre(); rendre();
+      } },
+      { texte: T.annuler, action: fermerFenetre }
+    ]);
+    maj();
+  }
+
+  function fenetreRegles() {
+    var s = lireSeuils();
+    var champs = [["seuil_alerte", s.seuil_alerte], ["seuil_exclusion", s.seuil_exclusion], ["seuil_total", s.seuil_total]].map(function (x) {
+      return champ(T[x[0]], saisie(x[0], x[1], "number", { min: 1, max: 60 }));
+    });
+    var s2 = saisie("debut_s2", reglage("debut_s2"), "date");
+    ouvrirFenetre(T.regles, [h("p", { class: "classe-aide", text: T.regles_aide }), h("div", { class: "grille-champs" }, champs, champ(T.debut_s2, s2))], [
+      { texte: T.enregistrer, principal: true, action: function (f) {
+        var v = lireFormulaire(f);
+        transaction(function () {
+          ["seuil_alerte", "seuil_exclusion", "seuil_total"].forEach(function (k) { var n = parseInt(v[k], 10); if (n > 0) ecrireReglage(k, n); });
+          if (dateValide(v.debut_s2)) ecrireReglage("debut_s2", v.debut_s2);
+        });
+        fermerFenetre(); rendre();
+      } },
+      { texte: T.annuler, action: fermerFenetre }
+    ]);
+  }
+
+  function exporterRegistre(g, per) {
+    var d = donneesRegistre(g, per);
+    var ss = d.ss.filter(function (s) { return s.statut !== "annulee"; });
+    var lignes = [[T.num, T.nom, T.prenom, T.matricule].concat(ss.map(function (s) { return s.date; }), [T.col_presents, T.col_absences, T.col_justifiees, T.col_retards, T.taux, T.niveau.alerte])]
+      .concat(d.membres.map(function (e, i) {
+        var b = bilanLigne(d, e);
+        return [i + 1, e.nom, e.prenom, e.matricule].concat(ss.map(function (s) { var x = d.statuts[s.id + ":" + e.id]; return x ? T.lettres[x] : ""; }),
+          [b.present + b.retard, b.absent, b.excuse, b.retard, pourcent(b.taux), b.niveau ? T.niveau[b.niveau] : ""]);
+      }));
+    telecharger("registre-" + g.nom.replace(/[^\w؀-ۿ-]+/g, "_") + "-" + per.id + ".csv", csv(lignes), "text/csv;charset=utf-8");
+  }
+  function imprimerRegistre(g, per) {
+    var d = donneesRegistre(g, per), ss = d.ss.filter(function (s) { return s.statut !== "annulee"; });
+    var feuille = h("div", { class: "impression impression--registre", dir: document.documentElement.dir || "ltr" },
+      h("p", { class: "impression__cours", text: T.cours }),
+      h("h1", { text: T.registre + " · " + g.nom + " · " + per.nom }),
+      h("p", { text: [aUnJour(g) ? nomJour(g.jour) : "", horaire(g), g.salle].filter(Boolean).join(" · ") + " · " + T.legende.split(".")[0] }),
+      h("table", null,
+        h("thead", null, h("tr", null, [T.num, T.etudiant].map(function (x) { return h("th", { text: x }); })
+          .concat(ss.map(function (s) { return h("th", { class: "impression__date", text: s.date.slice(8, 10) + "/" + s.date.slice(5, 7) }); }),
+            [T.lettres.absent, T.lettres.excuse, T.lettres.retard, "%"].map(function (x) { return h("th", { text: x }); })))),
+        h("tbody", null, d.membres.map(function (e, i) {
+          var b = bilanLigne(d, e);
+          return h("tr", null, [nombre(i + 1), nomComplet(e)].map(function (x) { return h("td", { text: x }); })
+            .concat(ss.map(function (s) { var x = d.statuts[s.id + ":" + e.id]; return h("td", { class: "impression__case", text: x ? T.lettres[x] : "" }); }),
+              [nombre(b.absent), nombre(b.excuse), nombre(b.retard), pourcent(b.taux)].map(function (x) { return h("td", { class: "impression__case", text: x }); })));
+        }))));
+    document.body.appendChild(feuille);
+    document.documentElement.classList.add("lx-impression");
+    function nettoyer() {
+      document.documentElement.classList.remove("lx-impression");
+      feuille.remove();
+      window.removeEventListener("afterprint", nettoyer);
+    }
+    window.addEventListener("afterprint", nettoyer);
+    window.print();
+    setTimeout(function () { if (document.body.contains(feuille) && !window.matchMedia("print").matches) nettoyer(); }, 1500);
+  }
+
   /* ---------- Onglet Notes ---------- */
 
   function rendreNotes(p) {
@@ -1625,7 +2376,7 @@
       h("p", { text: T.python_aide }),
       h("pre", { dir: "ltr" }, h("code", { class: "language-python", text: code })),
       h("h4", { text: T.tables_titre }),
-      h("ul", { class: "liste-simple" }, TABLES.map(function (t) {
+      h("ul", { class: "liste-simple" }, TABLES.concat(["conge", "reglage"]).map(function (t) {
         var cols = tout("PRAGMA table_info(" + t + ")").map(function (c) { return c.name; }).join(", ");
         var n = un("SELECT COUNT(*) AS n FROM " + t).n;
         return h("li", null, h("code", { dir: "ltr", text: t }), " (" + nombre(n) + ") : " + T.tables_aide[t] + ". ", h("small", { dir: "ltr", class: "colonnes", text: cols }));
@@ -1768,6 +2519,7 @@
       afficherEtat();
       if (neuve || baseMigree) modifie();
       rendre();
+      setInterval(majRappel, 60000);
     }).catch(function (e) {
       vider(racine).appendChild(h("p", { class: "outil-message outil-message--erreur", text: T.erreur_moteur }));
       if (window.console) console.error(e);

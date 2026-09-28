@@ -49,7 +49,7 @@
 
 /* Champs de formulaire (complète .champ de lumineux.css) */
 .champ input[type="date"], .champ input[type="time"], .champ input[type="number"], .champ input[type="email"],
-.champ input[type="tel"], .champ input[type="search"], .recherche, .saisie-courte, .saisie-note {
+.champ input[type="tel"], .champ input[type="search"], .recherche, .saisie-courte, .saisie-note, .saisie-libre {
   inline-size: 100%;
   min-block-size: 44px;
   padding: 8px 12px;
@@ -65,6 +65,7 @@
 .champ select { min-block-size: 44px; }
 input[aria-invalid="true"] { border-color: var(--braise-texte); background: var(--braise-voile); }
 .case { display: flex; align-items: center; gap: var(--espace-2); min-block-size: 44px; cursor: pointer; }
+.case[hidden] { display: none; }
 .case input { inline-size: 20px; block-size: 20px; accent-color: var(--cobalt); }
 .grille-champs { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--espace-4); align-items: end; }
 .champ--large { grid-column: 1 / -1; }
@@ -396,6 +397,79 @@ input[aria-invalid="true"] { border-color: var(--braise-texte); background: var(
 .segmente--appel .appel__absent[aria-pressed="true"] { box-shadow: inset 0 -3px 0 var(--braise-texte); color: var(--braise-texte); }
 .segmente--appel .appel__retard[aria-pressed="true"] { box-shadow: inset 0 -3px 0 var(--soleil-texte); color: var(--soleil-texte); }
 .segmente--appel .appel__excuse[aria-pressed="true"] { box-shadow: inset 0 -3px 0 var(--ciel-texte); color: var(--ciel-texte); }
+.appel__ligne--absent { box-shadow: inset 3px 0 0 var(--braise-texte); }
+[dir="rtl"] .appel__ligne--absent { box-shadow: inset -3px 0 0 var(--braise-texte); }
+.appel__nom { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+.appel__cumul { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px; color: var(--texte-doux); font: 600 12px var(--font-signal); letter-spacing: .02em; }
+.appel__cumul .puce { min-block-size: 22px; font-size: 11px; }
+.appel__ajout { margin-block-start: var(--espace-4); padding: var(--espace-3); border: var(--trait-fin) dashed var(--ligne-forte); border-radius: var(--rayon-m); }
+.appel__ajout-titre { margin: 0 0 var(--espace-2); font-weight: 600; }
+.appel__ajout-ligne { display: flex; flex-wrap: wrap; gap: var(--espace-2); }
+.appel__ajout-ligne .saisie-libre { flex: 1; inline-size: auto; min-inline-size: 12rem; }
+
+/* ---------- Présences : le jour, le registre, les alertes ---------- */
+.classe-rappel { display: flex; flex-wrap: wrap; align-items: center; gap: var(--espace-2) var(--espace-3); margin-block: 0 var(--espace-4); padding: var(--espace-3) var(--espace-4);
+  border: var(--trait-fin) solid var(--soleil-texte); border-radius: var(--rayon-m); background: var(--soleil-voile); font-weight: 600; }
+.classe-rappel[hidden] { display: none; }
+.classe-rappel__texte { flex: 1; min-inline-size: 12rem; }
+.carte-jour { padding: var(--espace-5); margin-block-end: var(--espace-4); }
+.carte-jour h3 { margin: 0 0 var(--espace-3); font-family: var(--font-texte); font-size: 21px; font-weight: 600; }
+.carte-jour--retard { border-color: var(--braise-texte); }
+.carte-jour .classe-aide { margin-block-end: var(--espace-3); }
+.jour__liste { display: grid; gap: var(--espace-2); margin: 0; padding: 0; list-style: none; }
+.jour__seance { display: flex; flex-wrap: wrap; align-items: center; gap: var(--espace-2) var(--espace-3); padding: var(--espace-2) var(--espace-3);
+  border-inline-start: 4px solid var(--teinte, var(--ligne-forte)); border-radius: var(--rayon-s); background: var(--surface-2); }
+.jour__seance--en-cours { box-shadow: 0 0 0 2px var(--soleil-texte); }
+.jour__heure { min-inline-size: 7.5em; font-family: var(--font-signal); font-weight: 700; font-variant-numeric: tabular-nums; }
+.jour__groupe { display: inline-flex; flex: 1; align-items: center; gap: 6px; min-inline-size: 9em; font-weight: 600; }
+.jour__annee { display: flex; flex-wrap: wrap; align-items: center; gap: var(--espace-3); margin-block-start: var(--espace-4); padding: var(--espace-4);
+  border-radius: var(--rayon-m); background: var(--soleil-voile); }
+.jour__annee p { flex: 1; min-inline-size: 16rem; margin: 0; }
+.periodes { display: flex; flex-wrap: wrap; align-items: center; gap: var(--espace-2); margin-block: var(--espace-4); }
+.segmente--mois button { min-block-size: 34px; padding-inline: var(--espace-2); font-size: 13px; }
+.puce--alerte { border-color: var(--soleil-texte); background: var(--soleil-voile); color: var(--soleil-texte); }
+.puce--exclusion { border-color: var(--braise-texte); background: var(--braise-voile); color: var(--braise-texte); }
+.tableau--classe td .puce { min-block-size: 22px; margin-inline-start: 6px; font-size: 11px; }
+.tableau-defilant--registre { max-block-size: 70vh; }
+.tableau--registre { min-inline-size: 0; border-collapse: separate; border-spacing: 0; }
+.tableau--registre th, .tableau--registre td { padding: 3px 4px; }
+.tableau--registre thead th { position: sticky; inset-block-start: 0; z-index: 2; background: var(--surface-2); }
+.tableau--registre .registre__nom { position: sticky; inset-inline-start: 0; z-index: 1; min-inline-size: 13rem; background: var(--surface); text-align: start; white-space: nowrap; }
+.tableau--registre thead .registre__nom { z-index: 3; background: var(--surface-2); }
+.tableau--registre .registre__nom .puce { min-block-size: 22px; margin-inline-start: 6px; font-size: 11px; }
+.registre__date { min-inline-size: 2.6rem; text-align: center; }
+.registre__lien { display: grid; gap: 1px; inline-size: 100%; padding: 2px 0; border: 0; background: none; color: inherit; font: 600 11px/1.2 var(--font-signal); white-space: nowrap; cursor: pointer; }
+.registre__lien:disabled { cursor: default; }
+.registre__lien:not(:disabled):hover { color: var(--lien); }
+.registre__date--futur { opacity: .45; }
+.registre__date--annulee { opacity: .5; text-decoration: line-through; }
+.registre__date--aujourdhui { box-shadow: inset 0 -3px 0 var(--soleil-texte); }
+.registre__case { text-align: center; }
+.cellule { inline-size: 2.1rem; block-size: 2rem; padding: 0; border: var(--trait-fin) solid var(--ligne); border-radius: 6px; background: var(--fond); color: var(--texte-doux); font: 700 13px var(--font-signal); cursor: pointer; }
+.cellule:hover { border-color: var(--texte); }
+.cellule--present { border-color: var(--juste); background: var(--juste-voile); color: var(--juste); }
+.cellule--absent { border-color: var(--braise-texte); background: var(--braise-voile); color: var(--braise-texte); }
+.cellule--excuse { border-color: var(--ciel-texte); background: var(--ciel-voile); color: var(--ciel-texte); }
+.cellule--retard { border-color: var(--soleil-texte); background: var(--soleil-voile); color: var(--soleil-texte); }
+.registre__vide { color: var(--texte-doux); text-align: center; }
+.registre__total { min-inline-size: 3.2rem; text-align: center; font-variant-numeric: tabular-nums; font-weight: 700; }
+.registre__pied { color: var(--texte-doux); font: 600 11px var(--font-signal); text-align: center; white-space: nowrap; }
+.tableau--registre tfoot th, .tableau--registre tfoot td { background: var(--surface-2); }
+.registre__ligne--alerte > th:first-of-type, .registre__ligne--alerte .registre__nom { box-shadow: inset 4px 0 0 var(--soleil-texte); }
+.registre__ligne--exclusion > th:first-of-type, .registre__ligne--exclusion .registre__nom { box-shadow: inset 4px 0 0 var(--braise-texte); }
+[dir="rtl"] .registre__ligne--alerte > th:first-of-type, [dir="rtl"] .registre__ligne--alerte .registre__nom { box-shadow: inset -4px 0 0 var(--soleil-texte); }
+[dir="rtl"] .registre__ligne--exclusion > th:first-of-type, [dir="rtl"] .registre__ligne--exclusion .registre__nom { box-shadow: inset -4px 0 0 var(--braise-texte); }
+.legende-registre { margin: var(--espace-2) 0 0; color: var(--texte-doux); font-size: 14px; }
+.cases-groupes { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 0 var(--espace-3); }
+.cases-groupes .case { min-block-size: 38px; }
+.conges__liste { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; max-block-size: 240px; overflow-y: auto; }
+.conges__liste li { display: flex; align-items: center; gap: var(--espace-3); padding: 2px var(--espace-2); border-radius: var(--rayon-s); background: var(--surface-2); }
+.conges__dates { min-inline-size: 13rem; font-size: 14px; font-weight: 700; }
+.conges__libelle { flex: 1; }
+.conges__ajout { display: flex; flex-wrap: wrap; align-items: center; gap: var(--espace-2); margin-block-start: var(--espace-3); }
+.conges__ajout > .saisie-libre { flex: 1; inline-size: auto; min-inline-size: 10rem; }
+.conges__date { display: inline-flex; align-items: center; gap: 6px; color: var(--texte-doux); font-size: 14px; }
+.conges__date .saisie-libre { inline-size: auto; }
 
 .decalage { display: flex; flex-wrap: wrap; align-items: center; gap: var(--espace-2); margin: 0; }
 .saisie-courte { inline-size: 6em; }
@@ -441,6 +515,10 @@ input[aria-invalid="true"] { border-color: var(--braise-texte); background: var(
   .impression th, .impression td { border: 0.75pt solid #000; padding: 4pt 5pt; text-align: start; font-size: 10pt; }
   .impression tbody td { block-size: 20pt; }
   .impression__date { inline-size: 1.7cm; font-size: 8pt !important; }
+  .impression--registre th, .impression--registre td { padding: 2pt 3pt; font-size: 8pt; }
+  .impression--registre .impression__date { inline-size: auto; }
+  .impression--registre .impression__case { text-align: center; }
+  .impression--registre tbody td { block-size: auto; }
 }
 @page emargement { size: A4 landscape; margin: 1.2cm; }
 
