@@ -818,3 +818,26 @@ html.lx-projection { overflow: hidden; }
   .visionneuse__barre { align-items: stretch; }
   .visionneuse__nav { justify-content: center; inline-size: 100%; }
 }
+
+/* Emploi du temps hebdomadaire (onglet Groupes) */
+.tableau--emploi { min-inline-size: 760px; table-layout: fixed; }
+.tableau--emploi th[scope="row"] { inline-size: 8.5rem; text-transform: capitalize; }
+.tableau--emploi td { block-size: 88px; padding: 6px; }
+.case-emploi {
+  display: grid;
+  gap: 2px;
+  inline-size: 100%;
+  padding: 8px 10px;
+  border: var(--trait-fin) solid var(--teinte, var(--ligne-forte));
+  border-inline-start: var(--trait-cadre) solid var(--teinte, var(--ligne-forte));
+  border-radius: var(--rayon-s);
+  background: var(--teinte-voile, var(--surface-2));
+  color: var(--texte);
+  font: 13px/1.35 var(--font-signal);
+  text-align: start;
+  cursor: pointer;
+}
+.case-emploi strong { font-size: 15px; }
+.case-emploi span { color: var(--texte-doux); }
+.case-emploi:hover { box-shadow: 0 0 0 2px var(--teinte, var(--texte)); }
+.champ[hidden] { display: none; }

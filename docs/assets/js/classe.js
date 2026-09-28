@@ -20,6 +20,19 @@
   var COULEURS = ["soleil", "ciel", "braise", "fuchsia", "cobalt", "juste"];
   var TABLES = ["groupe", "etudiant", "observation", "seance", "presence", "evaluation", "note"];
   var CLE_ETAT = "lx-classe-etat";
+  // Emploi du temps 2025–2026 de l'enseignant (Labo 02) : les six groupes créés avec une base neuve.
+  // Jours comme Date.getDay() : 0 dimanche, 2 mardi, 4 jeudi.
+  var EMPLOI = [
+    { nom: "M02 ANG · 1", specialite: "ANG", jour: 2, debut: "09:30", fin: "11:00" },
+    { nom: "M02 ANG · 2", specialite: "ANG", jour: 2, debut: "11:00", fin: "12:30" },
+    { nom: "M02 LGC", specialite: "LGC", jour: 2, debut: "12:30", fin: "14:00" },
+    { nom: "M02 DID · 1", specialite: "DID", jour: 4, debut: "08:00", fin: "09:30" },
+    { nom: "M02 DID · 2", specialite: "DID", jour: 4, debut: "09:30", fin: "11:00" },
+    { nom: "M02 DID · 3", specialite: "DID", jour: 4, debut: "12:30", fin: "14:00" }
+  ];
+  var SALLE_EMPLOI = "Labo 02";
+  var CRENEAUX = [["08:00", "09:30"], ["09:30", "11:00"], ["11:00", "12:30"], ["12:30", "14:00"], ["14:00", "15:30"], ["15:30", "17:00"]];
+  var SEMAINE = [0, 1, 2, 3, 4, 5, 6];   // dimanche → samedi : la semaine universitaire algérienne commence le dimanche
   var CLE_IDB = "classe.sqlite";
 
   /* ---------- Textes ---------- */
@@ -41,9 +54,15 @@
       voir_etudiants: "Étudiants", voir_seances: "Séances", emargement: "Feuille d'émargement",
       prochaine: "Prochaine séance", derniere: "Dernière séance faite", assiduite: "Assiduité", aucune: "aucune",
       horaire_vide: "Horaire non renseigné", glisser: "Glissez un nom sur un autre groupe pour l'y déplacer.",
+      specialite: "Spécialité", jour: "Jour", vue_cartes: "Cartes", vue_emploi: "Emploi du temps", sans_horaire: "Sans jour ni horaire",
+      emploi_aide: "Cliquez sur un groupe pour changer son jour, son horaire ou sa salle.",
+      appliquer_emploi: "Remplir avec l'emploi du temps 2025–2026",
+      confirmer_emploi: "Donner aux six premiers groupes les noms, jours et horaires de l'emploi du temps 2025–2026 (M02 ANG, M02 LGC, M02 DID, Labo 02) ? Les étudiants, séances et notes sont gardés.",
+      gen_portee: "Pour", gen_un: "Un groupe", gen_tous: "Tous les groupes, chacun à son jour et à son horaire",
+      debut_semestre: "Début du semestre (première semaine)", gen_ligne: "{g} : {n}, du {d1} au {d2}", gen_ignores: "Sans jour ni horaire, donc ignorés : {liste}.",
       nom_groupe_defaut: "Groupe {n}", nouveau_groupe: "Nouveau groupe", modifier_groupe: "Modifier le groupe",
       nom: "Nom", prenom: "Prénom", matricule: "Matricule", email: "E-mail", telephone: "Téléphone", groupe: "Groupe",
-      responsable: "Chef de groupe", remarque: "Remarques", horaire: "Horaire (jour, heure)", salle: "Salle",
+      responsable: "Chef de groupe", remarque: "Remarques", horaire: "Horaire", salle: "Salle",
       sujet: "Sujet du mini-projet", couleur: "Couleur", aucun: "— aucun —",
       nom_obligatoire: "Le nom est obligatoire.", date_obligatoire: "La date est obligatoire.",
       confirmer_suppr_groupe: "Supprimer le groupe « {nom} » et toutes ses séances ? Ses étudiants sont gardés, sans groupe.",
@@ -148,9 +167,15 @@
       voir_etudiants: "Students", voir_seances: "Sessions", emargement: "Sign-in sheet",
       prochaine: "Next session", derniere: "Last session held", assiduite: "Attendance", aucune: "none",
       horaire_vide: "No timetable yet", glisser: "Drag a name onto another group to move it there.",
+      specialite: "Programme", jour: "Day", vue_cartes: "Cards", vue_emploi: "Timetable", sans_horaire: "No day or time",
+      emploi_aide: "Click a group to change its day, time or room.",
+      appliquer_emploi: "Fill in the 2025–2026 timetable",
+      confirmer_emploi: "Give the first six groups the names, days and times of the 2025–2026 timetable (M02 ANG, M02 LGC, M02 DID, Labo 02)? Students, sessions and grades are kept.",
+      gen_portee: "For", gen_un: "One group", gen_tous: "All groups, each on its own day and time",
+      debut_semestre: "Start of the semester (first week)", gen_ligne: "{g}: {n}, from {d1} to {d2}", gen_ignores: "No day or time, so skipped: {liste}.",
       nom_groupe_defaut: "Group {n}", nouveau_groupe: "New group", modifier_groupe: "Edit group",
       nom: "Surname", prenom: "First name", matricule: "Student number", email: "Email", telephone: "Phone", groupe: "Group",
-      responsable: "Group leader", remarque: "Remarks", horaire: "Timetable (day, time)", salle: "Room",
+      responsable: "Group leader", remarque: "Remarks", horaire: "Timetable", salle: "Room",
       sujet: "Mini-project subject", couleur: "Colour", aucun: "— none —",
       nom_obligatoire: "The surname is required.", date_obligatoire: "The date is required.",
       confirmer_suppr_groupe: "Delete the group “{nom}” and all its sessions? Its students are kept, with no group.",
@@ -255,9 +280,15 @@
       voir_etudiants: "الطلبة", voir_seances: "الحصص", emargement: "ورقة الحضور",
       prochaine: "الحصة القادمة", derniere: "آخر حصة أُنجزت", assiduite: "المواظبة", aucune: "لا توجد",
       horaire_vide: "التوقيت غير محدَّد", glisser: "اسحبوا اسمًا إلى فوج آخر لنقله إليه.",
+      specialite: "التخصص", jour: "اليوم", vue_cartes: "البطاقات", vue_emploi: "التوقيت الأسبوعي", sans_horaire: "دون يوم أو توقيت",
+      emploi_aide: "انقروا على فوج لتغيير يومه أو توقيته أو قاعته.",
+      appliquer_emploi: "ملء التوقيت الأسبوعي 2025–2026",
+      confirmer_emploi: "إعطاء الأفواج الستة الأولى أسماء التوقيت الأسبوعي 2025–2026 وأيامه وساعاته (M02 ANG وM02 LGC وM02 DID، المخبر 02)؟ يُحتفظ بالطلبة والحصص والعلامات.",
+      gen_portee: "لـ", gen_un: "فوج واحد", gen_tous: "كل الأفواج، كلٌّ في يومه وتوقيته",
+      debut_semestre: "بداية السداسي (الأسبوع الأول)", gen_ligne: "{g}: {n}، من {d1} إلى {d2}", gen_ignores: "دون يوم أو توقيت، فلم تُبرمج: {liste}.",
       nom_groupe_defaut: "الفوج {n}", nouveau_groupe: "فوج جديد", modifier_groupe: "تعديل الفوج",
       nom: "اللقب", prenom: "الاسم", matricule: "رقم التسجيل", email: "البريد الإلكتروني", telephone: "الهاتف", groupe: "الفوج",
-      responsable: "رئيس الفوج", remarque: "ملاحظات", horaire: "التوقيت (اليوم والساعة)", salle: "القاعة",
+      responsable: "رئيس الفوج", remarque: "ملاحظات", horaire: "التوقيت", salle: "القاعة",
       sujet: "موضوع المشروع المصغَّر", couleur: "اللون", aucun: "— لا شيء —",
       nom_obligatoire: "اللقب إلزامي.", date_obligatoire: "التاريخ إلزامي.",
       confirmer_suppr_groupe: "حذف الفوج «{nom}» وكل حصصه؟ يبقى طلبته دون فوج.",
@@ -441,6 +472,13 @@
   }
   function heureMaintenant() { return new Intl.DateTimeFormat(LOCALE, { hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).format(new Date()); }
   var trieur = new Intl.Collator(LOCALE, { sensitivity: "base", numeric: true });
+  function nomJour(j, format) { return new Intl.DateTimeFormat(LOCALE, { weekday: format || "long" }).format(new Date(2024, 0, 7 + (+j), 12)); }
+  function aUnJour(g) { return g && g.jour != null && g.jour !== ""; }
+  function horaireGroupe(g) {
+    if (!aUnJour(g)) return g.horaire || T.horaire_vide;
+    return nomJour(g.jour) + (g.debut ? " " + g.debut + (g.fin ? "–" + g.fin : "") : "");
+  }
+  function premierJour(iso, jour) { var d = versDate(iso); while (d.getDay() !== +jour) d.setDate(d.getDate() + 1); return isoDate(d); }
   function nomComplet(e) { return (e.nom + " " + (e.prenom || "")).trim(); }
   function parNom(a, b) { return trieur.compare(a.nom, b.nom) || trieur.compare(a.prenom || "", b.prenom || ""); }
   function lireLocal(cle) { try { return window.localStorage.getItem(cle); } catch (e) { return null; } }
@@ -514,11 +552,23 @@
   function creerBase() {
     db.run("PRAGMA foreign_keys = ON");
     SCHEMA.forEach(function (s) { db.run(s); });
-    for (var i = 1; i <= 6; i++) {
-      executer("INSERT INTO groupe (nom, couleur, ordre) VALUES (?, ?, ?)", [tpl(T.nom_groupe_defaut, { n: i }), i - 1, i]);
-    }
     db.run("PRAGMA user_version = 1");
+    migrer();
+    EMPLOI.forEach(function (g, i) {
+      executer("INSERT INTO groupe (nom, specialite, jour, debut, fin, salle, couleur, ordre) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+        [g.nom, g.specialite, g.jour, g.debut, g.fin, SALLE_EMPLOI, i, i + 1]);
+    });
   }
+  // Version 2 : chaque groupe a une spécialité, un jour et un horaire (l'emploi du temps).
+  function migrer() {
+    if (un("PRAGMA user_version").user_version >= 2) return false;
+    ["jour INTEGER", "debut TEXT NOT NULL DEFAULT ''", "fin TEXT NOT NULL DEFAULT ''", "specialite TEXT NOT NULL DEFAULT ''"].forEach(function (c) {
+      db.run("ALTER TABLE groupe ADD COLUMN " + c);
+    });
+    db.run("PRAGMA user_version = 2");
+    return true;
+  }
+  var baseMigree = false;
   function baseReconnue(base) {
     try {
       var noms = [];
@@ -534,6 +584,7 @@
     if (!octets) { creerBase(); return true; }
     if (!baseReconnue(db)) return false;
     db.run("PRAGMA foreign_keys = ON");
+    if (migrer()) baseMigree = true;
     return true;
   }
   function exporter() {
@@ -635,9 +686,9 @@
   var etat = { onglet: "groupes", groupe: 0, vue: "a-venir", recherche: "" };
   try {
     var memo = JSON.parse(lireLocal(CLE_ETAT) || "{}");
-    ["onglet", "groupe", "vue"].forEach(function (k) { if (memo[k] != null) etat[k] = memo[k]; });
+    ["onglet", "groupe", "vue", "vueGroupes"].forEach(function (k) { if (memo[k] != null) etat[k] = memo[k]; });
   } catch (e) { /* état illisible : valeurs par défaut */ }
-  function memoriser() { ecrireLocal(CLE_ETAT, JSON.stringify({ onglet: etat.onglet, groupe: etat.groupe, vue: etat.vue })); }
+  function memoriser() { ecrireLocal(CLE_ETAT, JSON.stringify({ onglet: etat.onglet, groupe: etat.groupe, vue: etat.vue, vueGroupes: etat.vueGroupes })); }
 
   var zones = {};
   function construireCadre() {
@@ -786,14 +837,62 @@
   function rendreGroupes(p) {
     var gs = groupes();
     var auj = aujourdhui();
-    ajouter(p, h("div", { class: "classe-outils" },
+    var vues = h("div", { class: "segmente", role: "group", "aria-label": T.onglet_groupes });
+    [["cartes", T.vue_cartes], ["emploi", T.vue_emploi]].forEach(function (v) {
+      vues.appendChild(h("button", { type: "button", "aria-pressed": (etat.vueGroupes || "cartes") === v[0] ? "true" : "false",
+        onclick: function () { etat.vueGroupes = v[0]; rendre(); }, text: v[1] }));
+    });
+    ajouter(p, h("div", { class: "classe-outils" }, vues,
       bouton(T.ajouter_groupe, function () { fenetreGroupe(null); }, { icone: "i-plus", classe: "bouton--prisme" }),
-      h("p", { class: "classe-aide", text: T.glisser })));
+      h("p", { class: "classe-aide", text: etat.vueGroupes === "emploi" ? T.emploi_aide : T.glisser })));
+    if (etat.vueGroupes === "emploi") { rendreEmploi(p, gs); return; }
     var grille = h("div", { class: "grille-groupes" });
     var sansGroupe = etudiants(-1);
     gs.forEach(function (g) { grille.appendChild(carteGroupe(g, etudiants(g.id), auj)); });
     if (sansGroupe.length) grille.appendChild(carteGroupe(null, sansGroupe, auj));
     p.appendChild(grille);
+  }
+
+  // La semaine en grille, comme l'emploi du temps papier : un jour par ligne, un créneau par colonne.
+  function rendreEmploi(p, gs) {
+    var creneaux = CRENEAUX.map(function (c) { return c.slice(); });
+    gs.forEach(function (g) {
+      if (aUnJour(g) && g.debut && !creneaux.some(function (c) { return c[0] === g.debut; })) creneaux.push([g.debut, g.fin]);
+    });
+    creneaux.sort(function (a, b) { return a[0] < b[0] ? -1 : 1; });
+    var jours = [0, 1, 2, 3, 4].concat([5, 6].filter(function (j) { return gs.some(function (g) { return aUnJour(g) && +g.jour === j; }); }));
+    var table = h("table", { class: "tableau tableau--emploi" },
+      h("thead", null, h("tr", null, h("th", { scope: "col", text: T.jour }), creneaux.map(function (c) {
+        return h("th", { scope: "col", dir: "ltr", text: c[0] + "–" + c[1] });
+      }))),
+      h("tbody", null, jours.map(function (j) {
+        return h("tr", null, h("th", { scope: "row", text: nomJour(j) }), creneaux.map(function (c) {
+          var ici = gs.filter(function (g) { return aUnJour(g) && +g.jour === j && g.debut === c[0]; });
+          return h("td", null, ici.map(function (g) {
+            return h("button", { type: "button", class: "case-emploi " + teinte(g.couleur), onclick: function () { fenetreGroupe(g.id); } },
+              h("strong", { text: g.nom }), g.salle ? h("span", { text: g.salle }) : null,
+              h("span", { text: compte(g.nb, "etudiant") }));
+          }));
+        }));
+      })));
+    ajouter(p, h("div", { class: "tableau-defilant" }, table));
+    var sans = gs.filter(function (g) { return !aUnJour(g); });
+    if (sans.length) p.appendChild(h("p", { class: "classe-aide" }, T.sans_horaire + " : ", sans.map(function (g, i) {
+      return [i ? ", " : "", h("button", { type: "button", class: "lien-nom", onclick: function () { fenetreGroupe(g.id); }, text: g.nom })];
+    })));
+    p.appendChild(h("div", { class: "classe-actions" }, bouton(T.appliquer_emploi, appliquerEmploi, { icone: "i-calendrier" })));
+  }
+  function appliquerEmploi() {
+    if (!window.confirm(T.confirmer_emploi)) return;
+    var gs = groupes();
+    transaction(function () {
+      EMPLOI.forEach(function (e, i) {
+        var params = [e.nom, e.specialite, e.jour, e.debut, e.fin, SALLE_EMPLOI];
+        if (gs[i]) executer("UPDATE groupe SET nom = ?, specialite = ?, jour = ?, debut = ?, fin = ?, salle = ? WHERE id = ?", params.concat([gs[i].id]));
+        else executer("INSERT INTO groupe (nom, specialite, jour, debut, fin, salle, couleur, ordre) VALUES (?, ?, ?, ?, ?, ?, ?, (SELECT COALESCE(MAX(ordre), 0) + 1 FROM groupe))", params.concat([i]));
+      });
+    });
+    rendre();
   }
 
   function carteGroupe(g, membres, auj) {
@@ -802,6 +901,7 @@
     var tete = h("header", { class: "carte-groupe__tete" },
       h("span", { class: "pastille-couleur", "aria-hidden": "true" }),
       h("h3", { class: "carte-groupe__nom", text: g ? g.nom : T.sans_groupe }),
+      g && g.specialite ? h("span", { class: "puce", text: g.specialite }) : null,
       h("span", { class: "carte-groupe__nb", text: compte(membres.length, "etudiant") }));
     carte.appendChild(tete);
     if (g) {
@@ -810,7 +910,7 @@
       var ass = un("SELECT SUM(p.statut IN ('present', 'retard')) AS ok, COUNT(*) AS n FROM presence p JOIN seance s ON s.id = p.seance_id WHERE s.groupe_id = ?", [g.id]);
       var infos = h("dl", { class: "carte-groupe__infos" });
       function ligne(nom, valeur) { infos.appendChild(h("div", null, h("dt", { text: nom }), h("dd", null, valeur))); }
-      ligne(T.horaire, [g.horaire || T.horaire_vide, g.salle ? " · " + g.salle : ""]);
+      ligne(T.horaire, [horaireGroupe(g), g.salle ? " · " + g.salle : ""]);
       if (g.sujet >= 1 && g.sujet <= 5) ligne(T.sujet, tpl(T.sujet_court, { n: g.sujet }) + " · " + T.mp[g.sujet - 1]);
       ligne(T.prochaine, prochaine ? formatDate(prochaine.date, { weekday: "short", day: "numeric", month: "short" }) + (prochaine.debut ? " " + prochaine.debut : "") + (prochaine.titre ? " · " + prochaine.titre : "") : T.aucune);
       ligne(T.derniere, derniere ? formatDate(derniere.date, { day: "numeric", month: "short" }) + " · " + (derniere.contenu || derniere.titre || T.statut_seance.faite) : T.aucune);
@@ -880,7 +980,8 @@
   function fermerFenetre() { if (zones.fenetre.open) zones.fenetre.close(); }
 
   function fenetreGroupe(id) {
-    var g = id ? groupeParId(id) : { nom: "", horaire: "", salle: "", sujet: 0, couleur: (un("SELECT COUNT(*) AS n FROM groupe").n) % COULEURS.length, remarque: "" };
+    var g = id ? groupeParId(id) : { nom: "", horaire: "", salle: "", sujet: 0, couleur: (un("SELECT COUNT(*) AS n FROM groupe").n) % COULEURS.length, remarque: "",
+      specialite: "", jour: null, debut: "", fin: "" };
     var couleurs = h("div", { class: "choix-couleurs", role: "radiogroup", "aria-label": T.couleur });
     COULEURS.forEach(function (c, i) {
       couleurs.appendChild(h("label", { class: "choix-couleur " + teinte(i) },
@@ -890,7 +991,11 @@
     var sujets = [[0, T.aucun]].concat(T.mp.map(function (t, i) { return [i + 1, tpl(T.sujet_court, { n: i + 1 }) + " · " + t]; }));
     var corps = h("div", { class: "grille-champs" },
       champ(T.nom, saisie("nom", g.nom, "text", { requis: true })),
-      champ(T.horaire, saisie("horaire", g.horaire)),
+      champ(T.specialite, h("input", { type: "text", name: "specialite", value: g.specialite || "", list: "liste-specialites", autocomplete: "off" })),
+      h("datalist", { id: "liste-specialites" }, ["ANG", "LGC", "DID"].map(function (x) { return h("option", { value: x }); })),
+      champ(T.jour, liste("jour", [["", T.aucun]].concat(SEMAINE.map(function (j) { return [j, nomJour(j)]; })), aUnJour(g) ? g.jour : "")),
+      champ(T.debut, saisie("debut", g.debut, "time")),
+      champ(T.fin, saisie("fin", g.fin, "time")),
       champ(T.salle, saisie("salle", g.salle)),
       champ(T.sujet, liste("sujet", sujets, g.sujet)),
       h("div", { class: "champ" }, h("span", { class: "champ__nom", text: T.couleur }), couleurs),
@@ -900,9 +1005,9 @@
         var v = lireFormulaire(form);
         var couleur = form.querySelector('input[name="couleur"]:checked');
         if (!v.nom) { erreurFenetre(form, T.nom_obligatoire); return; }
-        var params = [v.nom, v.horaire, v.salle, +v.sujet || 0, couleur ? +couleur.value : 0, v.remarque];
-        if (id) executer("UPDATE groupe SET nom = ?, horaire = ?, salle = ?, sujet = ?, couleur = ?, remarque = ? WHERE id = ?", params.concat([id]));
-        else executer("INSERT INTO groupe (nom, horaire, salle, sujet, couleur, remarque, ordre) VALUES (?, ?, ?, ?, ?, ?, (SELECT COALESCE(MAX(ordre), 0) + 1 FROM groupe))", params);
+        var params = [v.nom, v.specialite, v.jour === "" ? null : +v.jour, v.debut, v.fin, v.salle, +v.sujet || 0, couleur ? +couleur.value : 0, v.remarque];
+        if (id) executer("UPDATE groupe SET nom = ?, specialite = ?, jour = ?, debut = ?, fin = ?, salle = ?, sujet = ?, couleur = ?, remarque = ? WHERE id = ?", params.concat([id]));
+        else executer("INSERT INTO groupe (nom, specialite, jour, debut, fin, salle, sujet, couleur, remarque, ordre) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, (SELECT COALESCE(MAX(ordre), 0) + 1 FROM groupe))", params);
         modifie(); fermerFenetre(); rendre();
       } },
       { texte: T.annuler, action: fermerFenetre }
@@ -1305,52 +1410,93 @@
     var gs = groupes();
     if (!gs.length) return;
     var g0 = etat.groupe > 0 ? groupeParId(etat.groupe) : gs[0];
+    var portee = liste("portee", [["tous", T.gen_tous], ["un", T.gen_un]], etat.groupe > 0 ? "un" : "tous");
     var choixGroupe = liste("groupe_id", gs.map(function (g) { return [g.id, g.nom]; }), g0.id);
     var premiere = saisie("date", aujourdhui(), "date", { requis: true });
     var semaines = saisie("semaines", "13", "number", { min: 1, max: 30 });
-    var debut = saisie("debut", "08:00", "time"), fin = saisie("fin", "09:30", "time");
+    var debut = saisie("debut", g0.debut || "08:00", "time"), fin = saisie("fin", g0.fin || "09:30", "time");
     var salle = saisie("salle", g0.salle);
     var genre = liste("genre", Object.keys(T.genre_seance).map(function (k) { return [k, T.genre_seance[k]]; }), "td");
     var suivre = h("input", { type: "checkbox", name: "progression", checked: true });
     var apercu = h("ol", { class: "apercu-planning" });
     var info = h("p", { class: "classe-aide" });
-    function plan() {
-      var n = Math.max(1, Math.min(30, parseInt(semaines.value, 10) || 13));
-      if (!dateValide(premiere.value)) return [];
+    var champsUn = [champ(T.groupe, choixGroupe), champ(T.debut, debut), champ(T.fin, fin), champ(T.salle, salle)];
+    var libelleDate = h("label", { for: "" });
+
+    function tous() { return portee.value === "tous"; }
+    function nbSemaines() { return Math.max(1, Math.min(30, parseInt(semaines.value, 10) || 13)); }
+    // Les séances d'un groupe : une par semaine à partir de « depart », avec la progression du cours si demandé.
+    function plan(depart) {
       var r = [];
-      for (var i = 0; i < n; i++) {
+      if (!dateValide(depart)) return r;
+      for (var i = 0; i < nbSemaines(); i++) {
         var modele = suivre.checked && T.plan[i] ? T.plan[i] : null;
-        r.push({ date: plusJours(premiere.value, 7 * i), titre: modele ? modele[0] : tpl(T.semaine, { n: i + 1 }), diaporama: modele ? modele[1] : "",
+        r.push({ date: plusJours(depart, 7 * i), titre: modele ? modele[0] : tpl(T.semaine, { n: i + 1 }), diaporama: modele ? modele[1] : "",
           genre: modele && i === T.plan.length - 1 ? "examen" : genre.value });
       }
       return r;
     }
-    function maj() {
-      vider(apercu);
-      plan().forEach(function (x, i) {
-        apercu.appendChild(h("li", null, h("strong", { text: tpl(T.semaine, { n: i + 1 }) + " · " + formatDate(x.date, { weekday: "short", day: "numeric", month: "short", year: "numeric" }) }), " · ", x.titre));
+    // Pour « tous les groupes » : chaque groupe à son jour, à partir de la semaine de départ.
+    function plans() {
+      if (!tous()) {
+        return [{ groupe: +choixGroupe.value, nom: (groupeParId(+choixGroupe.value) || {}).nom, seances: plan(premiere.value),
+          debut: debut.value, fin: fin.value, salle: salle.value.trim() }];
+      }
+      return gs.filter(aUnJour).map(function (g) {
+        return { groupe: g.id, nom: g.nom, seances: dateValide(premiere.value) ? plan(premierJour(premiere.value, g.jour)) : [],
+          debut: g.debut, fin: g.fin, salle: g.salle };
       });
-      var n = un("SELECT COUNT(*) AS n FROM seance WHERE groupe_id = ?", [+choixGroupe.value]).n;
-      info.textContent = n ? tpl(T.deja_seances, { n: nombre(n) }) : "";
-      info.hidden = !n;
     }
-    choixGroupe.addEventListener("change", function () { var g = groupeParId(+choixGroupe.value); if (g) salle.value = g.salle; maj(); });
-    [premiere, semaines, suivre, genre].forEach(function (c) { c.addEventListener("input", maj); c.addEventListener("change", maj); });
+    function maj() {
+      champsUn.forEach(function (c) { c.hidden = tous(); });
+      libelleDate.textContent = tous() ? T.debut_semestre : T.premiere_date;
+      vider(apercu);
+      var court = { weekday: "short", day: "numeric", month: "short" };
+      var ps = plans();
+      if (tous()) {
+        ps.forEach(function (x) {
+          if (!x.seances.length) return;
+          apercu.appendChild(h("li", null, tpl(T.gen_ligne, { g: x.nom, n: compte(x.seances.length, "seance"),
+            d1: formatDate(x.seances[0].date, court), d2: formatDate(x.seances[x.seances.length - 1].date, court) }) + (x.debut ? " · " + x.debut + "–" + x.fin : "")));
+        });
+        var ignores = gs.filter(function (g) { return !aUnJour(g); }).map(function (g) { return g.nom; });
+        info.textContent = ignores.length ? tpl(T.gen_ignores, { liste: ignores.join(", ") }) : "";
+        info.hidden = !ignores.length;
+      } else {
+        (ps[0] ? ps[0].seances : []).forEach(function (x, i) {
+          apercu.appendChild(h("li", null, h("strong", { text: tpl(T.semaine, { n: i + 1 }) + " · " + formatDate(x.date, { weekday: "short", day: "numeric", month: "short", year: "numeric" }) }), " · ", x.titre));
+        });
+        var n = un("SELECT COUNT(*) AS n FROM seance WHERE groupe_id = ?", [+choixGroupe.value]).n;
+        info.textContent = n ? tpl(T.deja_seances, { n: nombre(n) }) : "";
+        info.hidden = !n;
+      }
+    }
+    choixGroupe.addEventListener("change", function () {
+      var g = groupeParId(+choixGroupe.value);
+      if (g) { salle.value = g.salle; if (g.debut) debut.value = g.debut; if (g.fin) fin.value = g.fin; if (aUnJour(g)) premiere.value = premierJour(premiere.value, g.jour); }
+      maj();
+    });
+    [portee, premiere, semaines, suivre, genre].forEach(function (c) { c.addEventListener("input", maj); c.addEventListener("change", maj); });
+    var champDate = champ(T.premiere_date, premiere);
+    champDate.replaceChild(libelleDate, champDate.querySelector("label"));
+    libelleDate.setAttribute("for", premiere.id);
     var corps = [h("div", { class: "grille-champs" },
-      champ(T.groupe, choixGroupe), champ(T.premiere_date, premiere), champ(T.nb_semaines, semaines),
-      champ(T.debut, debut), champ(T.fin, fin), champ(T.salle, salle), champ(T.genre, genre),
+      champ(T.gen_portee, portee, "champ--large"), champsUn[0], champDate, champ(T.nb_semaines, semaines),
+      champsUn[1], champsUn[2], champsUn[3], champ(T.genre, genre),
       h("label", { class: "case champ--large" }, suivre, T.progression)), info, apercu];
     ouvrirFenetre(T.generer_titre, corps, [
       { texte: T.generer_n, principal: true, icone: "i-calendrier", action: function (form) {
-        var p = plan();
-        if (!p.length) { erreurFenetre(form, T.date_obligatoire); return; }
+        var ps = plans().filter(function (x) { return x.seances.length; });
+        if (!ps.length) { erreurFenetre(form, T.date_obligatoire); return; }
         transaction(function () {
-          p.forEach(function (x) {
-            executer("INSERT INTO seance (groupe_id, date, debut, fin, salle, genre, titre, diaporama) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-              [+choixGroupe.value, x.date, debut.value, fin.value, salle.value.trim(), x.genre, x.titre, x.diaporama]);
+          ps.forEach(function (x) {
+            x.seances.forEach(function (se) {
+              executer("INSERT INTO seance (groupe_id, date, debut, fin, salle, genre, titre, diaporama) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                [x.groupe, se.date, x.debut, x.fin, x.salle, se.genre, se.titre, se.diaporama]);
+            });
           });
         });
-        etat.groupe = +choixGroupe.value; etat.vue = "toutes";
+        etat.groupe = tous() ? 0 : +choixGroupe.value; etat.vue = "toutes";
         fermerFenetre(); rendre();
       } },
       { texte: T.annuler, action: fermerFenetre }
@@ -1608,7 +1754,7 @@
       construireCadre();
       zones.onglets.addEventListener("keydown", clavierOnglets);
       afficherEtat();
-      if (neuve) modifie();
+      if (neuve || baseMigree) modifie();
       rendre();
     }).catch(function (e) {
       vider(racine).appendChild(h("p", { class: "outil-message outil-message--erreur", text: T.erreur_moteur }));

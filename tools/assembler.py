@@ -46,12 +46,13 @@ NAV = [
 ]
 
 # Page « Guide de l'enseignant » : fragments et menu.
-FRAGMENTS_GUIDE = ["guide-1", "guide-2", "guide-3", "guide-4"]
+FRAGMENTS_GUIDE = ["guide-1", "guide-5", "guide-2", "guide-3", "guide-4"]
 NAV_GUIDE = [
     ("index.html", "i-retour", {"fr": "Retour au cours", "en": "Back to the course", "ar": "العودة إلى المقياس"}),
     ("guide-demarrer", "i-boussole", {"fr": "Par où commencer", "en": "Where to start", "ar": "من أين تبدأ"}),
     ("guide-carte", "i-carte", {"fr": "Carte du cours", "en": "Course map", "ar": "خريطة المقياس"}),
     ("guide-progression", "i-calendrier", {"fr": "Progression", "en": "Week-by-week plan", "ar": "الخطة الأسبوعية"}),
+    ("guide-langues", "i-groupe", {"fr": "Étudiants de langues", "en": "Language students", "ar": "طلبة اللغات"}),
     ("guide-seances", "i-crayon", {"fr": "Fiches de séance", "en": "Lesson plans", "ar": "مذكرات الحصص"}),
     ("guide-activites", "i-bulle", {"fr": "Activités en classe", "en": "Classroom activities", "ar": "أنشطة القسم"}),
     ("guide-evaluation", "i-coche", {"fr": "Évaluation", "en": "Assessment", "ar": "التقييم"}),
