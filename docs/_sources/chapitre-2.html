@@ -37,7 +37,7 @@
   <!-- ============================================================ 0 -->
   <article class="lecon" id="c2-prompts">
     <h3>Bien formuler une demande à un assistant d'IA</h3>
-    <p>Un <dfn>assistant d'IA</dfn> (ChatGPT, Gemini, Claude, Copilot…) est un grand modèle de langage que l'on interroge en langue naturelle. Le texte qu'on lui donne s'appelle un <dfn>prompt</dfn> (<span class="terme-en" lang="en">prompt</span>, « consigne »), et l'art de l'écrire, l'<dfn>ingénierie de prompt</dfn> (<span class="terme-en" lang="en">prompt engineering</span>). Le modèle produit la suite la plus probable du texte reçu (<a href="index.html#c3-deep">chapitre 3</a>) : plus la consigne est précise, plus cette suite ressemble à ce que vous attendez. Dans ce cours, l'assistant sert à deux choses : analyser des textes, et vous aider à lire et à écrire du code Python. Jamais à rendre un travail à votre place.</p>
+    <p>Un <dfn>assistant d'IA</dfn> (ChatGPT, Gemini, Claude, Copilot…) est un grand modèle de langage que l'on interroge en langue naturelle. Le texte qu'on lui donne s'appelle un <dfn>prompt</dfn> (<span class="terme-en" lang="en">prompt</span>, « consigne »), et l'art de l'écrire, l'<dfn>ingénierie de prompt</dfn> (<span class="terme-en" lang="en">prompt engineering</span>). Le modèle produit la suite la plus probable du texte reçu (<a href="#c3-deep">chapitre 3</a>) : plus la consigne est précise, plus cette suite ressemble à ce que vous attendez. Dans ce cours, l'assistant sert à deux choses : analyser des textes, et vous aider à lire et à écrire du code Python. Jamais à rendre un travail à votre place.</p>
 
     <h4>Les six éléments d'une bonne consigne</h4>
     <div class="tableau-defilant"><table class="tableau">
@@ -57,12 +57,12 @@
     <div class="comparaison">
       <div class="comparaison-col">
         <h4>Consigne vague</h4>
-        <figure class="code"><pre><code>Analyse ce poème.</code></pre></figure>
+        <figure class="code"><pre class="consigne"><code>Analyse ce poème.</code></pre></figure>
         <p>L'assistant choisit seul l'angle, la longueur et le vocabulaire : la réponse est générale, et rien ne permet de la vérifier.</p>
       </div>
       <div class="comparaison-col">
         <h4>Consigne précise</h4>
-        <figure class="code"><pre><code>Tu es professeur de littérature. Voici un poème entre triples guillemets.
+        <figure class="code"><pre class="consigne"><code>Tu es professeur de littérature. Voici un poème entre triples guillemets.
 1. Donne son thème principal en une phrase.
 2. Relève trois images qui le soutiennent (citations exactes).
 3. Indique le ton dominant : positif, négatif ou mitigé, et justifie-le.
@@ -84,7 +84,7 @@ Réponds par un tableau. N'invente aucune citation.
     <p>Un assistant écrit du code vite, et parfois faux. Traitez-le comme un camarade qui explique, pas comme l'auteur de votre travail :</p>
     <figure class="code">
       <figcaption class="code-legende">Trois prompts pour apprendre, pas pour recopier</figcaption>
-      <pre><code>Explique ligne par ligne ce que fait ce code, pour quelqu'un qui débute : [code]
+      <pre class="consigne"><code>Explique ligne par ligne ce que fait ce code, pour quelqu'un qui débute : [code]
 Mon code affiche cette erreur : [message]. Explique la cause sans me donner la solution.
 Écris une fonction qui compte les mots d'un texte, puis trois exemples pour la tester.</code></pre>
     </figure>

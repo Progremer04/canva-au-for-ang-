@@ -10,6 +10,7 @@
   var TEXTES_AR = {
     "Switch to the Day theme": "التبديل إلى المظهر النهاري", "Switch to the Night theme": "التبديل إلى المظهر الليلي",
     "Day theme": "المظهر النهاري", "Night theme": "المظهر الليلي",
+    "Prompt": "أمر (prompt)",
     "slide": "شريحة", " of ": " من ", "Go to slide ": "الانتقال إلى الشريحة ", "Pause": "إيقاف مؤقت", "Play": "تشغيل",
     "Correct.": "إجابة صحيحة.", "That is not the right answer. Try again.": "ليست هذه الإجابة الصحيحة. حاول مرة أخرى.",
     "Copy": "نسخ", "Copied": "تم النسخ", "Selected: Ctrl+C": "تم التحديد: Ctrl+C"
@@ -206,7 +207,7 @@
       if (!legende) {
         legende = document.createElement("figcaption");
         legende.className = "code-legende";
-        legende.textContent = "Python";
+        legende.textContent = figure.querySelector("pre.consigne") ? t("Prompt", "Prompt") : "Python";   // une consigne en langue naturelle n'est pas du code
         figure.insertBefore(legende, figure.firstChild);
       }
       var bouton = document.createElement("button");

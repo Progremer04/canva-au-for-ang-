@@ -37,7 +37,7 @@
   <!-- ============================================================ 0 -->
   <article class="lecon" id="c2-prompts">
     <h3>Writing a clear request to an AI assistant</h3>
-    <p>An <dfn>AI assistant</dfn> (ChatGPT, Gemini, Claude, Copilot…) is a large language model that you query in natural language. The text you give it is called a <dfn>prompt</dfn> (<span class="terme-en" lang="fr">consigne</span>), and the art of writing one is called <dfn>prompt engineering</dfn> (<span class="terme-en" lang="fr">ingénierie de prompt</span>). The model produces the most probable continuation of the text it receives (<a href="index.html#c3-deep">chapter 3</a>): the more precise the prompt, the closer this continuation comes to what you expect. In this course, the assistant is used for two things: analyzing texts, and helping you read and write Python code. Never to do your work for you.</p>
+    <p>An <dfn>AI assistant</dfn> (ChatGPT, Gemini, Claude, Copilot…) is a large language model that you query in natural language. The text you give it is called a <dfn>prompt</dfn> (<span class="terme-en" lang="fr">consigne</span>), and the art of writing one is called <dfn>prompt engineering</dfn> (<span class="terme-en" lang="fr">ingénierie de prompt</span>). The model produces the most probable continuation of the text it receives (<a href="#c3-deep">chapter 3</a>): the more precise the prompt, the closer this continuation comes to what you expect. In this course, the assistant is used for two things: analyzing texts, and helping you read and write Python code. Never to do your work for you.</p>
 
     <h4>The six elements of a good prompt</h4>
     <div class="tableau-defilant"><table class="tableau">
@@ -57,12 +57,12 @@
     <div class="comparaison">
       <div class="comparaison-col">
         <h4>Vague prompt</h4>
-        <figure class="code"><pre><code>Analyze this poem.</code></pre></figure>
+        <figure class="code"><pre class="consigne"><code>Analyze this poem.</code></pre></figure>
         <p>The assistant chooses the angle, the length and the vocabulary on its own: the answer is general, and there is no way to check it.</p>
       </div>
       <div class="comparaison-col">
         <h4>Precise prompt</h4>
-        <figure class="code"><pre><code>You are a literature teacher. Here is a poem between triple quotes.
+        <figure class="code"><pre class="consigne"><code>You are a literature teacher. Here is a poem between triple quotes.
 1. Give its main theme in one sentence.
 2. Find three images that support it (exact quotations).
 3. State the dominant tone: positive, negative or mixed, and justify it.
@@ -84,7 +84,7 @@ Answer with a table. Do not invent any quotation.
     <p>An assistant writes code quickly, and sometimes wrongly. Treat it as a classmate who explains, not as the author of your work:</p>
     <figure class="code">
       <figcaption class="code-legende">Three prompts for learning, not for copying</figcaption>
-      <pre><code>Explain line by line what this code does, for a beginner: [code]
+      <pre class="consigne"><code>Explain line by line what this code does, for a beginner: [code]
 My code shows this error: [message]. Explain the cause without giving me the solution.
 Write a function that counts the words in a text, then three examples to test it.</code></pre>
     </figure>
