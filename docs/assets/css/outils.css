@@ -831,6 +831,12 @@ input[aria-invalid="true"] { border-color: var(--braise-texte); background: var(
 .notes-panneau { padding: var(--espace-4) var(--espace-5); border: var(--trait-fin) solid var(--ligne); border-radius: var(--rayon-l); background: var(--surface); }
 .notes-panneau h3 { margin: 0 0 var(--espace-2); color: var(--texte-doux); font: 700 14px var(--font-signal); letter-spacing: .08em; text-transform: uppercase; }
 .notes-panneau__texte { font-size: 17px; line-height: 1.65; white-space: pre-line; }
+.notes-panneau__tete { display: flex; align-items: center; justify-content: space-between; gap: var(--espace-3); margin-bottom: var(--espace-2); }
+.notes-panneau__tete h3 { margin: 0; }
+.notes-panneau__langue { height: 32px; max-width: 12rem; padding: 0 var(--espace-3); border: var(--trait-fin) solid var(--ligne); border-radius: 999px; background: var(--surface-2, var(--surface)); color: var(--texte); font: 600 13px var(--font-signal); cursor: pointer; }
+/* Notes dans une autre langue que la page : leur police et leur sens de lecture. */
+.notes-panneau__texte[lang="ar"] { font-family: "Noto Naskh Arabic", "Amiri", serif; line-height: 1.9; text-align: right; }
+.notes-panneau__texte[lang="fr"], .notes-panneau__texte[lang="en"] { font-family: Literata, Georgia, serif; text-align: left; }
 .sans-notes .notes-panneau { display: none; }
 .visionneuse__aide { margin: var(--espace-5) 0 0; color: var(--texte-doux); font: 600 14px var(--font-signal); letter-spacing: .02em; }
 

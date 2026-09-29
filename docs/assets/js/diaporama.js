@@ -25,7 +25,7 @@
     fr: {
       tous: "Tous les diaporamas", ouvrir: "Ouvrir", presenter: "Présenter", presentateur: "Mode présentateur",
       pptx: "PowerPoint (.pptx)", pdf: "PDF / imprimer", fiche: "Fiche de séance", lecon: "Leçon du cours",
-      notes: "Notes de l'enseignant", aucune_note: "Pas de note pour cette diapositive.",
+      notes: "Notes de l'enseignant", aucune_note: "Pas de note pour cette diapositive.", langue_notes: "Langue des notes", notes_auto: "Comme les diapositives", notes_chargement: "Chargement des notes…",
       precedente: "Diapositive précédente", suivante: "Diapositive suivante", position: "Diapositive {n} sur {t}",
       vignettes: "Diapositives", reponse: "Réponse", afficher_reponse: "Afficher la réponse", masquer_reponse: "Masquer la réponse",
       question: "Question", minuteur: "Minuteur", demarrer: "Démarrer", pause: "Pause", reinitialiser: "Remettre à zéro",
@@ -43,7 +43,7 @@
     en: {
       tous: "All slide decks", ouvrir: "Open", presenter: "Present", presentateur: "Presenter view",
       pptx: "PowerPoint (.pptx)", pdf: "PDF / print", fiche: "Lesson plan", lecon: "Course lesson",
-      notes: "Teacher's notes", aucune_note: "No notes for this slide.",
+      notes: "Teacher's notes", aucune_note: "No notes for this slide.", langue_notes: "Language of the notes", notes_auto: "Same as the slides", notes_chargement: "Loading the notes…",
       precedente: "Previous slide", suivante: "Next slide", position: "Slide {n} of {t}",
       vignettes: "Slides", reponse: "Answer", afficher_reponse: "Show the answer", masquer_reponse: "Hide the answer",
       question: "Question", minuteur: "Timer", demarrer: "Start", pause: "Pause", reinitialiser: "Reset",
@@ -61,7 +61,7 @@
     ar: {
       tous: "كل العروض", ouvrir: "فتح", presenter: "عرض", presentateur: "وضع المقدِّم",
       pptx: "\u2066PowerPoint (.pptx)\u2069", pdf: "PDF / طباعة", fiche: "مذكرة الحصة", lecon: "درس المقياس",
-      notes: "ملاحظات الأستاذ", aucune_note: "لا توجد ملاحظات لهذه الشريحة.",
+      notes: "ملاحظات الأستاذ", aucune_note: "لا توجد ملاحظات لهذه الشريحة.", langue_notes: "لغة الملاحظات", notes_auto: "مثل الشرائح", notes_chargement: "جارٍ تحميل الملاحظات…",
       precedente: "الشريحة السابقة", suivante: "الشريحة التالية", position: "الشريحة {n} من {t}",
       vignettes: "الشرائح", reponse: "الجواب", afficher_reponse: "إظهار الجواب", masquer_reponse: "إخفاء الجواب",
       question: "سؤال", minuteur: "المؤقّت", demarrer: "ابدأ", pause: "توقّف", reinitialiser: "إعادة الضبط",
@@ -419,6 +419,53 @@
     racine.appendChild(grille);
   }
 
+  /* ---------- Langue des notes : les diapositives dans une langue, les notes dans une autre ---------- */
+  var LANGUES_NOTES = { fr: "Français", en: "English", ar: "العربية" };
+  var AUTRES = {};  // langue -> diaporamas de cette langue (mêmes identifiants, mêmes diapositives)
+  AUTRES[LANGUE] = DECKS;
+  function langueNotesChoisie() { var v = null; try { v = localStorage.getItem("lx-diapos-langue-notes"); } catch (e) { /* facultatif */ } return LANGUES_NOTES[v] ? v : "auto"; }
+  function langueDesNotes() { var v = langueNotesChoisie(); return v === "auto" ? LANGUE : v; }
+  // Charge assets/diapos/diapos-<langue>.js sans remplacer les diaporamas de la page (marche aussi en file://).
+  function chargerLangue(l) {
+    if (AUTRES[l]) return Promise.resolve(AUTRES[l]);
+    var garde = window.LX_DIAPOS;
+    return chargerScript(BASE + "assets/diapos/diapos-" + l + ".js").then(function () {
+      AUTRES[l] = Array.isArray(window.LX_DIAPOS) ? window.LX_DIAPOS : [];
+      window.LX_DIAPOS = garde;
+      return AUTRES[l];
+    }, function (e) { window.LX_DIAPOS = garde; throw e; });
+  }
+  // La diapositive i du diaporama deck, dans la langue des notes (celle de la page à défaut).
+  function diapoNotes(deck, i) {
+    var autre = (AUTRES[langueDesNotes()] || []).filter(function (d) { return d.id === deck.id; })[0];
+    return (autre && autre.diapos[i]) || deck.diapos[i];
+  }
+  function afficherNotes() {
+    var deck = vue.deck, i = vue.index, l = langueDesNotes(), d;
+    if (!deck || !zones.notes) return;
+    zones.notes.setAttribute("lang", l);
+    zones.notes.setAttribute("dir", l === "ar" ? "rtl" : "ltr");
+    if (!AUTRES[l]) {
+      vider(zones.notes).appendChild(h("em", { text: T.notes_chargement }));
+      chargerLangue(l).then(afficherNotes, function () { vider(zones.notes).appendChild(h("em", { text: T.aucune_note })); });
+      return;
+    }
+    d = diapoNotes(deck, i);
+    vider(zones.notes).appendChild(d.notes ? enrichir(d.notes) : h("em", { text: T.aucune_note }));
+  }
+  function choixLangueNotes() {
+    var v = langueNotesChoisie();
+    var s = h("select", { class: "notes-panneau__langue", "aria-label": T.langue_notes, title: T.langue_notes,
+      onchange: function () {
+        try { localStorage.setItem("lx-diapos-langue-notes", s.value); } catch (e) { /* facultatif */ }
+        afficherNotes();
+      } }, [h("option", { value: "auto", text: T.notes_auto })].concat(Object.keys(LANGUES_NOTES).map(function (l) {
+        return h("option", { value: l, lang: l, text: LANGUES_NOTES[l] });
+      })));
+    s.value = v;
+    return s;
+  }
+
   var zones = {};
   function ouvrirDeck(id, index, majAdresse) {
     var deck = deckParId(id);
@@ -464,7 +511,8 @@
         h("div", { class: "visionneuse__principal" },
           zones.principale,
           h("div", { class: "visionneuse__sous-scene" }, zones.reponse, liens),
-          h("section", { class: "notes-panneau", "aria-label": T.notes }, h("h3", { text: T.notes }), zones.notes))),
+          h("section", { class: "notes-panneau", "aria-label": T.notes },
+            h("div", { class: "notes-panneau__tete" }, h("h3", { text: T.notes }), choixLangueNotes()), zones.notes))),
       h("p", { class: "visionneuse__aide", text: T.aide_clavier })]);
 
     // Les vignettes se dessinent après coup, et seulement celles qui sont visibles.
@@ -486,7 +534,7 @@
     if (changement || !zones.principale.firstChild) placer(zones.principale, rendreDiapo(deck, i, { tout: false }));
     appliquerEtape(zones.principale.firstChild, vue.etape, !vue.projection);
     zones.position.textContent = tpl(T.position, { n: i + 1, t: deck.diapos.length });
-    vider(zones.notes).appendChild(deck.diapos[i].notes ? enrichir(deck.diapos[i].notes) : h("em", { text: T.aucune_note }));
+    afficherNotes();
     zones.reponse.hidden = deck.diapos[i].type !== "question";
     majBoutonReponse();
     Array.prototype.forEach.call(zones.vignettes.querySelectorAll(".vignette"), function (b, k) {
@@ -716,7 +764,9 @@
   function exporterPptx(deck) {
     var message = h("p", { class: "toast", role: "status", text: T.pptx_prepa });
     document.body.appendChild(message);
-    chargerPptx().then(function () { return construirePptx(deck); }).then(function () {
+    // Notes de l'orateur dans la langue choisie : on charge d'abord ses diaporamas (sinon, celles de la page).
+    chargerPptx().then(function () { return chargerLangue(langueDesNotes()).catch(function () { return null; }); })
+      .then(function () { return construirePptx(deck); }).then(function () {
       message.remove();
     }).catch(function (e) {
       message.textContent = T.pptx_erreur;
@@ -806,7 +856,7 @@
       return { contenu: contenu, options: base({ x: x, y: y, w: w, h: hh, fontSize: fs }) };
     }
     function notes(s, d, extra) {
-      var t = brut(d.notes || "");
+      var t = brut(diapoNotes(deck, deck.diapos.indexOf(d)).notes || "");
       if (extra) t = extra + (t ? "\n\n" + t : "");
       if (t) s.addNotes(t);
     }
