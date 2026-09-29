@@ -66,6 +66,7 @@ a { color: var(--t2); }
 .outil:hover { border-color: var(--texte); transform: scale(1.06); }
 .outil[hidden] { display: none; }
 .outil[aria-pressed="true"] { border-color: var(--t2); color: var(--t2); }
+.outil--projecteur { border-color: var(--t2); color: var(--t2); box-shadow: 0 0 0 3px color-mix(in srgb, var(--t2) 30%, transparent); }
 .outil svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 :focus-visible { outline: 2px solid var(--c1); outline-offset: 2px; }
 
@@ -297,6 +298,7 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
 .notes__tete { display: flex; align-items: center; justify-content: space-between; }
 .notes__tete .outil { width: 32px; height: 32px; font: 700 13px var(--f-ui); }
 .notes__tete span { display: flex; gap: 6px; align-items: center; }
+.console__projetee { display: flex; align-items: center; justify-content: space-between; gap: 10px; color: var(--doux); font: 700 12px var(--f-ui); letter-spacing: .08em; text-transform: uppercase; }
 .choix-langue { height: 32px; max-width: 170px; padding: 0 10px; border: 1px solid var(--ligne); border-radius: 999px; background: var(--surface); color: var(--texte); font: 700 13px var(--f-ui); cursor: pointer; }
 /* Les notes peuvent être dans une autre langue que les diapositives : chacune garde sa police et son sens de lecture. */
 .notes__texte[lang="fr"], .notes__texte[lang="en"] { font-family: Literata, Georgia, "Times New Roman", serif; }
@@ -404,6 +406,7 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     <button type="button" class="outil" data-action="zero" data-titre="zero"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4h4"/></svg></button>
     <button type="button" class="outil" data-action="noir" data-titre="noir" aria-pressed="false"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="12" rx="1.5" fill="currentColor"/><path d="M9 20h6"/></svg></button>
   </div>
+  <label class="console__projetee"><span data-t="projetee"></span><select id="langue-projetee" class="choix-langue"></select></label>
   <div class="console__suivante"><h2 data-t="suivante"></h2><div id="suivante"></div></div>
   <section class="notes" aria-labelledby="notes-titre">
     <div class="notes__tete"><h2 id="notes-titre" data-t="notes"></h2>
@@ -447,9 +450,9 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
 
   var L = window.LECON, PHOTOS = window.PHOTOS || {};
   var UI = {
-    fr: { presentateur: "Mode présentateur : vos notes dans une seconde fenêtre, vue de vous seul (S)", chrono: "Chronomètre", heure: "Heure", zero: "Remettre le chronomètre à zéro",
+    fr: { presentateur: "Mode présentateur : vos notes dans une seconde fenêtre, vue de vous seul (S)", projecteur: "Vidéoprojecteur détecté : S met les diapositives en plein écran dessus et ouvre vos notes sur cet écran", projetee: "Langue projetée", chrono: "Chronomètre", heure: "Heure", zero: "Remettre le chronomètre à zéro",
           suivante: "Diapositive suivante", fin: "Fin de la présentation", reponse: "Réponse :", plus: "Agrandir les notes", moins: "Réduire les notes", ecran: "Présentateur",
-          aide: "Cette fenêtre n'est vue que par vous. Placez l'autre fenêtre sur le vidéoprojecteur (écran étendu : touches Windows + P, puis « Étendre ») et appuyez sur F pour le diaporama en plein écran. Les deux fenêtres avancent ensemble ; B : écran noir.",
+          aide: "Cette fenêtre n'est vue que par vous. Placez l'autre fenêtre sur le vidéoprojecteur (écran étendu : touches Windows + P, puis « Étendre ») et appuyez sur F pour le diaporama en plein écran. Les deux fenêtres avancent ensemble ; B : écran noir. Les boutons FR / EN / عربي ne changent que cette fenêtre : diapositives et notes pour vous seul ; « Langue projetée » choisit ce que voit la classe.",
           popup: "Le navigateur a bloqué la fenêtre du présentateur : autorisez les fenêtres surgissantes (pop-ups) pour cette page.",
           marque: "IA · Chapitre 1", notes: "Notes de l'enseignant", apercu: "Vue d'ensemble (O)", imprimer: "Imprimer / PDF (P)", theme: "Thème Nuit ou Jour (T)",
           diaporama: "Diaporama", diaporama_titre: "Lancer le diaporama en plein écran (F5 : depuis le début, Maj+F5 ou F : depuis cette diapositive)",
@@ -458,9 +461,9 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
           verrouille: "Notes protégées par un mot de passe", mdp: "Mot de passe", ouvrir: "Afficher les notes", mdp_faux: "Mot de passe incorrect.",
           calcul: "Vérification…", verrouiller: "Verrouiller les notes", langue_notes: "Langue des notes", notes_auto: "Comme les diapositives", precedent: "Précédente (←)", suivant: "Suivante (→)", reveler: "Afficher la réponse", video_hors: "La vidéo demande une connexion Internet.",
           video_ouvrir: "Ouvrir sur YouTube", video_lancer: "Lancer la vidéo", domaine: "domaine public", diapo: "Diapositive {n} sur {t}" },
-    en: { presentateur: "Presenter view: your notes in a second window that only you see (S)", chrono: "Timer", heure: "Time", zero: "Reset the timer",
+    en: { presentateur: "Presenter view: your notes in a second window that only you see (S)", projecteur: "Projector detected: S puts the slides full screen on it and opens your notes on this screen", projetee: "Projected language", chrono: "Timer", heure: "Time", zero: "Reset the timer",
           suivante: "Next slide", fin: "End of the presentation", reponse: "Answer:", plus: "Larger notes", moins: "Smaller notes", ecran: "Presenter",
-          aide: "Only you see this window. Put the other window on the projector (extended display: Windows + P, then “Extend”) and press F for the full-screen slide show. Both windows move together; B: black screen.",
+          aide: "Only you see this window. Put the other window on the projector (extended display: Windows + P, then “Extend”) and press F for the full-screen slide show. Both windows move together; B: black screen. The FR / EN / عربي buttons only change this window: slides and notes for you alone; “Projected language” picks what the class sees.",
           popup: "The browser blocked the presenter window: allow pop-ups for this page.",
           marque: "AI · Chapter 1", notes: "Teacher's notes", apercu: "Overview (O)", imprimer: "Print / PDF (P)", theme: "Night or Day theme (T)",
           diaporama: "Slide show", diaporama_titre: "Start the full-screen slide show (F5: from the beginning, Shift+F5 or F: from this slide)",
@@ -469,9 +472,9 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
           verrouille: "Notes protected by a password", mdp: "Password", ouvrir: "Show the notes", mdp_faux: "Wrong password.",
           calcul: "Checking…", verrouiller: "Lock the notes", langue_notes: "Language of the notes", notes_auto: "Same as the slides", precedent: "Previous (←)", suivant: "Next (→)", reveler: "Show the answer", video_hors: "The video needs an Internet connection.",
           video_ouvrir: "Open on YouTube", video_lancer: "Play the video", domaine: "public domain", diapo: "Slide {n} of {t}" },
-    ar: { presentateur: "وضع المقدِّم: ملاحظاتكم في نافذة ثانية لا يراها غيركم (S)", chrono: "الميقاتية", heure: "الساعة", zero: "إعادة ضبط الميقاتية",
+    ar: { presentateur: "وضع المقدِّم: ملاحظاتكم في نافذة ثانية لا يراها غيركم (S)", projecteur: "تمّ اكتشاف جهاز العرض: يعرض S الشرائح عليه بملء الشاشة ويفتح ملاحظاتكم على هذه الشاشة", projetee: "لغة الشاشة المعروضة", chrono: "الميقاتية", heure: "الساعة", zero: "إعادة ضبط الميقاتية",
           suivante: "الشريحة التالية", fin: "نهاية العرض", reponse: "الجواب:", plus: "تكبير خط الملاحظات", moins: "تصغير خط الملاحظات", ecran: "المقدِّم",
-          aide: "لا يرى هذه النافذة أحدٌ غيركم. ضعوا النافذة الأخرى على جهاز العرض (الشاشة الممتدّة: مفتاحا Windows + P، ثم «توسيع») واضغطوا F لعرض الشرائح بملء الشاشة. تتقدّم النافذتان معًا؛ B: شاشة سوداء.",
+          aide: "لا يرى هذه النافذة أحدٌ غيركم. ضعوا النافذة الأخرى على جهاز العرض (الشاشة الممتدّة: مفتاحا Windows + P، ثم «توسيع») واضغطوا F لعرض الشرائح بملء الشاشة. تتقدّم النافذتان معًا؛ B: شاشة سوداء. لا تغيّر أزرار FR / EN / عربي إلا هذه النافذة: الشرائح والملاحظات لكم وحدكم؛ و«لغة الشاشة المعروضة» تحدّد ما يراه الطلبة.",
           popup: "منع المتصفّح نافذة المقدِّم: اسمحوا بالنوافذ المنبثقة لهذه الصفحة.",
           marque: "الذكاء الاصطناعي · الفصل 1", notes: "ملاحظات الأستاذ", apercu: "نظرة شاملة (O)", imprimer: "طباعة / PDF ‏(P)", theme: "المظهر الليلي أو النهاري (T)",
           diaporama: "عرض الشرائح", diaporama_titre: "بدء عرض الشرائح بملء الشاشة (F5: من البداية، Shift+F5 أو F: من هذه الشريحة)",
@@ -963,6 +966,8 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     Array.prototype.forEach.call(document.querySelectorAll("[data-titre]"), function (el) { el.title = UI[langue][el.dataset.titre]; el.setAttribute("aria-label", UI[langue][el.dataset.titre]); });
     Array.prototype.forEach.call(document.querySelectorAll("[data-langue]"), function (b) { b.setAttribute("aria-pressed", b.dataset.langue === langue ? "true" : "false"); });
     remplirLangueNotes();
+    remplirLangueProjetee();
+    signalerProjecteur();
     Array.prototype.forEach.call(document.querySelectorAll(".fleche"), function (p) { p.style.transform = langue === "ar" ? "scaleX(-1)" : ""; p.style.transformOrigin = "12px 12px"; });
     cadre.querySelectorAll(".quiz").forEach(initQuiz);
     aller(Math.min(index, diapos.length - 1), true);
@@ -1021,12 +1026,14 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     if (!PRESENTATEUR) ecrire("lx-lecon1", JSON.stringify({ langue: langue, index: n }));
     // Précharge les photos de la diapositive suivante.
     if (diapos[n + 1]) chargerPhotos(diapos[n + 1]);
-    envoyer({ type: "etat", n: n, langue: langue });
+    envoyer({ type: "etat", n: n, langue: PRESENTATEUR ? (langueProjection || langue) : langue });
   }
 
   /* ---------- Mode présentateur ---------- */
   var PRESENTATEUR = /[?&]presentateur\b/.test(location.search);
   var moi = Math.random().toString(36).slice(2), role = PRESENTATEUR ? "presentateur" : "projection", distant = false, fenetre = null, canal = null;
+  // Fenêtre du présentateur : sa langue (diapositives, notes) est à l'enseignant seul ; la classe voit langueProjection.
+  var langueProjection = null;
   try { canal = new BroadcastChannel("lx-lecon1"); } catch (e) { canal = null; }
   // Les messages passent par la fenêtre ouvreuse (fonctionne aussi en file://) et par un canal (si l'une des fenêtres est rechargée).
   function envoyer(m) {
@@ -1042,7 +1049,10 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     if (m.type === "bonjour") { envoyer({ type: "etat", n: index, langue: langue }); return; }
     distant = true;
     try {
-      if (m.type === "etat" && L[m.langue]) {
+      if (m.type === "etat" && L[m.langue] && PRESENTATEUR) {
+        langueProjection = m.langue; remplirLangueProjetee();
+        if (m.n !== index) aller(m.n);
+      } else if (m.type === "etat" && L[m.langue]) {
         if (m.langue !== langue) { langue = m.langue; index = m.n; construire(); } else aller(m.n);
       } else if (m.type === "noir") {
         ecranNoir(m.valeur, true);
@@ -1057,7 +1067,23 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
   function ouvrirPresentateur() {
     if (PRESENTATEUR) return;
     var adresse = location.href.split(/[?#]/)[0] + "?presentateur&lang=" + langue + "#" + (index + 1);
-    fenetre = window.open(adresse, "lx-lecon1-presentateur", "width=1200,height=760");
+    // Un vidéoprojecteur branché (écran étendu) ? Chrome et Edge le trouvent : cette fenêtre passe en plein écran
+    // sur le projecteur, la fenêtre du présentateur s'ouvre sur l'écran de l'ordinateur. Sinon : comme avant.
+    if (window.screen && window.screen.isExtended && window.getScreenDetails) {
+      window.getScreenDetails().then(function (d) {
+        var ici = d.currentScreen, loin = d.screens.filter(function (s) { return s !== ici && !s.isPrimary; })[0] || d.screens.filter(function (s) { return s !== ici; })[0];
+        if (!loin) throw new Error("un seul écran");
+        return document.documentElement.requestFullscreen({ screen: loin }).then(function () {
+          pleinEcranDemande = true;
+          ouvrirFenetre(adresse, "left=" + ici.availLeft + ",top=" + ici.availTop + ",width=" + ici.availWidth + ",height=" + ici.availHeight);
+        });
+      }).catch(function () { ouvrirFenetre(adresse, "width=1200,height=760"); });
+      return;
+    }
+    ouvrirFenetre(adresse, "width=1200,height=760");
+  }
+  function ouvrirFenetre(adresse, dimensions) {
+    fenetre = window.open(adresse, "lx-lecon1-presentateur", dimensions);
     if (!fenetre) { window.alert(UI[langue].popup); return; }
     // Cette fenêtre-ci devient l'écran projeté : plus de barre ni de boutons, comme le diaporama de PowerPoint.
     if (!diaporamaActif) {
@@ -1072,6 +1098,20 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
   // Langue des notes : celle des diapositives (« auto »), ou une autre, gardée d'une séance à l'autre.
   function langueNotesChoisie() { var v = lire("lx-lecon1-langue-notes"); return L[v] ? v : "auto"; }
   function langueDesNotes() { var v = langueNotesChoisie(); return v === "auto" ? langue : v; }
+  // Un second écran branché : le bouton du présentateur s'allume et dit ce que fera S.
+  function signalerProjecteur() {
+    var bouton = document.querySelector('[data-action="presentateur"]'), etendu = !!(window.screen && window.screen.isExtended);
+    if (!bouton) return;
+    bouton.classList.toggle("outil--projecteur", etendu);
+    bouton.title = etendu ? UI[langue].projecteur : UI[langue][bouton.dataset.titre];
+  }
+  if (window.screen && "onchange" in window.screen) window.screen.addEventListener("change", signalerProjecteur);
+  function remplirLangueProjetee() {
+    var s = document.getElementById("langue-projetee"), v = langueProjection || langue;
+    s.innerHTML = [["fr", "Français"], ["en", "English"], ["ar", "العربية"]].map(function (o) {
+      return '<option value="' + o[0] + '" lang="' + o[0] + '"' + (o[0] === v ? " selected" : "") + '>' + o[1] + '</option>';
+    }).join("");
+  }
   function remplirLangueNotes() {
     var v = langueNotesChoisie();
     document.getElementById("langue-notes").innerHTML = [["auto", UI[langue].notes_auto], ["fr", "Français"], ["en", "English"], ["ar", "العربية"]]
@@ -1294,7 +1334,7 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     try { n = JSON.parse(texte); } catch (e) { return false; }
     Object.keys(L).forEach(function (l) { L[l].diapos.forEach(function (d, i) { d.notes = (n[l] || [])[i] || ""; }); });
     notesOuvertes = true;
-    try { sessionStorage.setItem("lx-lecon1-cle", versHex(cle)); } catch (e) { /* stockage indisponible */ }
+    try { sessionStorage.setItem("lx-cle-enseignant", versHex(cle)); } catch (e) { /* stockage indisponible */ }
     afficherVerrou();
     return true;
   }
@@ -1302,7 +1342,7 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     if (!NOTES) return;
     Object.keys(L).forEach(function (l) { L[l].diapos.forEach(function (d) { delete d.notes; }); });
     notesOuvertes = false;
-    try { sessionStorage.removeItem("lx-lecon1-cle"); } catch (e) { /* stockage indisponible */ }
+    try { sessionStorage.removeItem("lx-cle-enseignant"); sessionStorage.removeItem("lx-lecon1-cle"); } catch (e) { /* stockage indisponible */ }
     afficherVerrou();
   }
   function afficherVerrou() {
@@ -1312,6 +1352,10 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     if (PRESENTATEUR && diapos.length) majConsole(index, L[langue].diapos[index]);
     if (!notesOuvertes) setTimeout(function () { document.getElementById("mdp").focus(); }, 50);
   }
+  document.getElementById("langue-projetee").addEventListener("change", function (e) {
+    langueProjection = e.target.value;
+    envoyer({ type: "etat", n: index, langue: langueProjection });
+  });
   document.getElementById("langue-notes").addEventListener("change", function (e) {
     ecrire("lx-lecon1-langue-notes", e.target.value);
     if (diapos.length) majConsole(index, L[langue].diapos[index]);
@@ -1448,8 +1492,10 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
   }
   construire();
   if (PRESENTATEUR) {
+    langueProjection = langue;
+    remplirLangueProjetee();
     // Notes : déjà ouvertes dans cet onglet ? Sinon, le mot de passe est demandé.
-    var memoCle = null; try { memoCle = sessionStorage.getItem("lx-lecon1-cle"); } catch (e) { memoCle = null; }
+    var memoCle = null; try { memoCle = sessionStorage.getItem("lx-cle-enseignant") || sessionStorage.getItem("lx-lecon1-cle"); } catch (e) { memoCle = null; }
     if (!(NOTES && memoCle && /^[0-9a-f]{64}$/.test(memoCle) && ouvrirNotes(depuisHex(memoCle)))) afficherVerrou();
     envoyer({ type: "bonjour" });
   }

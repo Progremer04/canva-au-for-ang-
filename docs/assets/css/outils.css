@@ -833,6 +833,10 @@ input[aria-invalid="true"] { border-color: var(--braise-texte); background: var(
 .notes-panneau__texte { font-size: 17px; line-height: 1.65; white-space: pre-line; }
 .notes-panneau__tete { display: flex; align-items: center; justify-content: space-between; gap: var(--espace-3); margin-bottom: var(--espace-2); }
 .notes-panneau__tete h3 { margin: 0; }
+.presentateur__langue { display: flex; align-items: center; justify-content: space-between; gap: var(--espace-3); }
+.presentateur__langue .surtitre { margin: 0; }
+/* Un vidéoprojecteur est branché : le bouton « Mode présentateur » le signale. */
+.bouton--projecteur { border-color: var(--cobalt-texte, #87ceeb) !important; box-shadow: 0 0 0 3px color-mix(in srgb, var(--cobalt-texte, #87ceeb) 30%, transparent); }
 .notes-panneau__langue { height: 32px; max-width: 12rem; padding: 0 var(--espace-3); border: var(--trait-fin) solid var(--ligne); border-radius: 999px; background: var(--surface-2, var(--surface)); color: var(--texte); font: 600 13px var(--font-signal); cursor: pointer; }
 /* Notes dans une autre langue que la page : leur police et leur sens de lecture. */
 .notes-panneau__texte[lang="ar"] { font-family: "Noto Naskh Arabic", "Amiri", serif; line-height: 1.9; text-align: right; }

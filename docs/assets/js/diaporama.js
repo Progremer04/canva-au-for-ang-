@@ -36,7 +36,7 @@
       aucun_deck: "Aucun diaporama pour l'instant : lancez « python3 tools/assembler.py ».",
       introuvable: "Ce diaporama n'existe pas.", diapo_suivante: "Ensuite", fin: "Fin du diaporama",
       chrono: "Chronomètre", heure: "Heure", presentateur_aide: "Cette fenêtre pilote la projection. Placez l'autre fenêtre sur l'écran du vidéoprojecteur et appuyez sur F pour le plein écran.",
-      popup_bloquee: "Le navigateur a bloqué la fenêtre du présentateur : autorisez les fenêtres surgissantes pour ce site.",
+      popup_bloquee: "Le navigateur a bloqué la fenêtre du présentateur : autorisez les fenêtres surgissantes pour ce site.", langue_ecran: "Langue de mon écran", projecteur: "Vidéoprojecteur détecté : « Mode présentateur » met la projection en plein écran dessus et ouvre vos notes sur cet écran",
       galerie_aide: "Une présentation par séance du guide de l'enseignant, plus le lancement du mini-projet. Ouvrez-en une pour la parcourir avec vos notes, puis « Présenter » pour projeter.",
       duree: "Durée", minutes: "{n} min", sortie: "Sortie", mini_projet: "Mini-projet"
     },
@@ -54,7 +54,7 @@
       aucun_deck: "No slide decks yet: run “python3 tools/assembler.py”.",
       introuvable: "This slide deck does not exist.", diapo_suivante: "Next", fin: "End of the deck",
       chrono: "Stopwatch", heure: "Time", presentateur_aide: "This window controls the projection. Put the other window on the projector screen and press F for full screen.",
-      popup_bloquee: "The browser blocked the presenter window: allow pop-ups for this site.",
+      popup_bloquee: "The browser blocked the presenter window: allow pop-ups for this site.", langue_ecran: "My screen's language", projecteur: "Projector detected: “Presenter view” puts the projection full screen on it and opens your notes on this screen",
       galerie_aide: "One presentation per session of the teacher's guide, plus the mini-project launch. Open one to go through it with your notes, then “Present” to project it.",
       duree: "Duration", minutes: "{n} min", sortie: "Output", mini_projet: "Mini-project"
     },
@@ -72,7 +72,7 @@
       aucun_deck: "لا توجد عروض بعد: شغّلوا «python3 tools/assembler.py».",
       introuvable: "هذا العرض غير موجود.", diapo_suivante: "التالية", fin: "نهاية العرض",
       chrono: "الميقاتية", heure: "الساعة", presentateur_aide: "هذه النافذة تتحكّم في العرض. ضعوا النافذة الأخرى على شاشة جهاز العرض واضغطوا F لملء الشاشة.",
-      popup_bloquee: "منع المتصفح نافذة المقدِّم: اسمحوا بالنوافذ المنبثقة لهذا الموقع.",
+      popup_bloquee: "منع المتصفح نافذة المقدِّم: اسمحوا بالنوافذ المنبثقة لهذا الموقع.", langue_ecran: "لغة شاشتي", projecteur: "تمّ اكتشاف جهاز العرض: يعرض «وضع المقدِّم» الشرائح عليه بملء الشاشة ويفتح ملاحظاتكم على هذه الشاشة",
       galerie_aide: "عرض لكل حصة من حصص دليل الأستاذ، إضافة إلى عرض إطلاق المشروع المصغَّر. افتحوا عرضًا لتصفّحه مع ملاحظاتكم، ثم «عرض» لإسقاطه على الشاشة.",
       duree: "المدة", minutes: "{n} د", sortie: "المُخرَج", mini_projet: "المشروع المصغَّر"
     }
@@ -490,7 +490,7 @@
         bouton(T.suivante, function () { avancer(); }, { icone: "i-suivant", classe: "bouton-verre", seulIcone: true })),
       h("div", { class: "visionneuse__actions" },
         bouton(T.presenter, function () { projeter(); }, { icone: "i-lecture", classe: "bouton bouton--petit bouton--prisme" }),
-        bouton(T.presentateur, ouvrirPresentateur, { icone: "i-ecran" }),
+        zones.boutonPresentateur = bouton(T.presentateur, ouvrirPresentateur, { icone: "i-ecran" }),
         bouton(T.pptx, function () { exporterPptx(deck); }, { icone: "i-telecharger" }),
         bouton(T.pdf, function () { imprimer(deck); }, { icone: "i-imprimer" })));
 
@@ -520,6 +520,7 @@
       plusTard(sc, function () { placer(sc, rendreDiapo(deck, i, { vignette: true, tout: true })); });
     });
     aller(Math.max(0, Math.min(deck.diapos.length - 1, index || 0)), null, majAdresse);
+    signalerProjecteur();
     if (PRESENTATEUR) modePresentateur();
   }
 
@@ -668,14 +669,45 @@
 
   /* ---------- Mode présentateur ---------- */
 
+  // La fenêtre du présentateur peut être dans une autre langue que la projection (diapositives et notes pour
+  // l'enseignant seul) : c'est la même page dans l'autre dossier de langue, synchronisée par le canal.
+  function langueEcranChoisie() { var v = null; try { v = localStorage.getItem("lx-diapos-langue-ecran"); } catch (e) { /* facultatif */ } return LANGUES_NOTES[v] ? v : LANGUE; }
+  function adressePresentateur(l) {
+    return BASE + (l === "fr" ? "" : l + "/") + "diaporamas.html?presentateur#" + vue.deck.id + "/" + (vue.index + 1);
+  }
   function ouvrirPresentateur() {
-    var adresse = location.pathname + "?presentateur#" + vue.deck.id + "/" + (vue.index + 1);
-    var w = window.open(adresse, "lx-presentateur", "width=1100,height=720");
+    var adresse = adressePresentateur(langueEcranChoisie());
+    // Un vidéoprojecteur branché (écran étendu) ? Chrome et Edge le trouvent : la projection passe en plein écran
+    // dessus, la fenêtre du présentateur s'ouvre sur l'écran de l'ordinateur. Sinon : comme avant.
+    if (window.screen && window.screen.isExtended && window.getScreenDetails) {
+      window.getScreenDetails().then(function (d) {
+        var ici = d.currentScreen, loin = d.screens.filter(function (s) { return s !== ici && !s.isPrimary; })[0] || d.screens.filter(function (s) { return s !== ici; })[0];
+        if (!loin) throw new Error("un seul écran");
+        if (!vue.projection) projeter(true);
+        vue.projection.pilotee = true;
+        return vue.projection.el.requestFullscreen({ screen: loin }).then(function () {
+          ouvrirFenetre(adresse, "left=" + ici.availLeft + ",top=" + ici.availTop + ",width=" + ici.availWidth + ",height=" + ici.availHeight);
+        });
+      }).catch(function () { ouvrirFenetre(adresse, "width=1100,height=720"); });
+      return;
+    }
+    ouvrirFenetre(adresse, "width=1100,height=720");
+  }
+  function ouvrirFenetre(adresse, dimensions) {
+    var w = window.open(adresse, "lx-presentateur", dimensions);
     if (!w) { window.alert(T.popup_bloquee); return; }
     // Cette fenêtre-ci devient l'écran projeté ; F la met en plein écran une fois sur le vidéoprojecteur.
-    projeter(true);
+    if (!vue.projection) projeter(true);
     vue.projection.pilotee = true;
   }
+  // Un second écran branché : le bouton « Mode présentateur » s'allume et dit ce qu'il fera.
+  function signalerProjecteur() {
+    var b = zones.boutonPresentateur, etendu = !!(window.screen && window.screen.isExtended);
+    if (!b) return;
+    b.classList.toggle("bouton--projecteur", etendu);
+    b.title = etendu ? T.projecteur : T.presentateur;
+  }
+  if (window.screen && "onchange" in window.screen) window.screen.addEventListener("change", signalerProjecteur);
   function modePresentateur() {
     document.documentElement.classList.add("lx-presentateur");
     vue.presentateur = true;
@@ -683,8 +715,15 @@
     var suivante = scene("scene--vignette");
     var chrono = h("span", { class: "presentateur__chrono", dir: "ltr", text: "00:00" });
     var heure = h("span", { class: "presentateur__heure", dir: "ltr" });
+    var choixEcran = h("select", { class: "notes-panneau__langue", "aria-label": T.langue_ecran, title: T.langue_ecran,
+      onchange: function () {
+        try { localStorage.setItem("lx-diapos-langue-ecran", choixEcran.value); } catch (e) { /* facultatif */ }
+        location.href = adressePresentateur(choixEcran.value);
+      } }, Object.keys(LANGUES_NOTES).map(function (l) { return h("option", { value: l, lang: l, text: LANGUES_NOTES[l] }); }));
+    choixEcran.value = LANGUE;
     var el = h("div", { class: "presentateur" },
       h("p", { class: "presentateur__aide", text: T.presentateur_aide }),
+      h("label", { class: "presentateur__langue" }, h("span", { class: "surtitre", text: T.langue_ecran }), choixEcran),
       h("div", { class: "presentateur__horloges" },
         h("p", null, h("span", { class: "surtitre", text: T.chrono }), chrono,
           bouton(T.reinitialiser, function () { vue.debut = Date.now(); }, { icone: "i-retour", classe: "bouton-verre", seulIcone: true })),

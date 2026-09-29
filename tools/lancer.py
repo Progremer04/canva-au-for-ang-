@@ -147,6 +147,9 @@ class Gestionnaire(http.server.SimpleHTTPRequestHandler):
 
     def do_GET(self):
         chemin = self.path.split("?", 1)[0]
+        # En ligne, les sources du site (notes en clair, clé des pages de l'enseignant) ne sont jamais servies.
+        if not self.api_active and (chemin.startswith("/_sources") or "/." in chemin):
+            return self.repondre_json(404, {"erreur": "inconnu"})
         if chemin.startswith("/api/"):
             if not self.api_active:
                 return self.repondre_json(404, {"erreur": "inconnu"})
@@ -172,6 +175,14 @@ class Gestionnaire(http.server.SimpleHTTPRequestHandler):
                 return
             return self.repondre_json(404, {"erreur": "inconnu"})
         return super().do_GET()
+
+    def do_HEAD(self):
+        chemin = self.path.split("?", 1)[0]
+        if not self.api_active and (chemin.startswith("/_sources") or "/." in chemin or chemin.startswith("/api/")):
+            self.send_response(404)
+            self.end_headers()
+            return
+        return super().do_HEAD()
 
     def do_PUT(self):
         if not self.api_active or self.path.split("?", 1)[0] != "/api/classe":

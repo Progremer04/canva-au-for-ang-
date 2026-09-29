@@ -21,6 +21,7 @@ from pathlib import Path
 
 import diapos
 import lecon1
+import verrou
 
 RACINE = Path(__file__).resolve().parent.parent
 DOCS = RACINE / "docs"
@@ -100,8 +101,8 @@ TEXTES_OUTILS = {
 }
 # Scripts propres à chaque page outil ({langue} est remplacé).
 SCRIPTS_OUTILS = {
-    "diaporamas": ["assets/diapos/diapos-{langue}.js", "assets/js/diaporama.js"],
-    "classe": ["assets/js/classe.js"],
+    "diaporamas": ["assets/js/verrou.js", "assets/diapos/diapos-{langue}.js", "assets/js/diaporama.js"],
+    "classe": ["assets/js/verrou.js", "assets/js/classe.js"],
 }
 TEXTES_GUIDE = {
     "fr": {"titre": "Guide de l'enseignant · Cours d'IA", "surtitre": "Pour l'enseignant",
@@ -433,6 +434,9 @@ def main():
         return
     if diapos.construire(silencieux=True):
         print("[x] des diaporamas ont des erreurs : ils sont absents du site (détail : python3 tools/diapos.py)")
+    # Les diaporamas (notes de l'enseignant comprises) ne se lisent qu'avec le code de l'enseignant.
+    for fichier in sorted((DOCS / "assets" / "diapos").glob("diapos-*.js")):
+        verrou.proteger_diapos(fichier)
     lecon1.construire()
     for langue, conf in LANGUES.items():
         lien = a.lien_systeme or f"{conf['base']}systeme-de-design.html"
@@ -441,12 +445,15 @@ def main():
         conf["sortie"].write_text(page, encoding="utf-8")
         print(f"écrit : {conf['sortie'].relative_to(RACINE)} ({conf['sortie'].stat().st_size // 1024} Ko)")
         sortie_guide = conf["sortie"].with_name("enseignant.html")
-        sortie_guide.write_text(guide(langue, lien).replace("{{SCRIPTS}}", scripts_lies(conf["base"])), encoding="utf-8")
+        sortie_guide.write_text(verrou.proteger_page(guide(langue, lien).replace("{{SCRIPTS}}", scripts_lies(conf["base"])),
+                                                     langue, conf["base"]), encoding="utf-8")
         print(f"écrit : {sortie_guide.relative_to(RACINE)} ({sortie_guide.stat().st_size // 1024} Ko)")
         pages = {f"{cle}.html": page_outil(langue, cle, lien) for cle in TEXTES_OUTILS}
         pages["index.html"] = accueil(langue, lien)
         pages["programme.html"] = programme(langue, lien)
         for nom, contenu in pages.items():
+            if nom in verrou.PAGES:  # espace de l'enseignant : la page ne s'ouvre qu'avec le code
+                contenu = verrou.proteger_page(contenu, langue, conf["base"])
             sortie_page = conf["sortie"].with_name(nom)
             sortie_page.write_text(contenu, encoding="utf-8")
             print(f"écrit : {sortie_page.relative_to(RACINE)} ({sortie_page.stat().st_size // 1024} Ko)")
