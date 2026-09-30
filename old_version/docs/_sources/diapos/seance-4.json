@@ -1,0 +1,226 @@
+{
+  "id": "seance-4",
+  "numero": 4,
+  "titre": "Premier TP Python : variables, listes et mots d’un poème",
+  "resume": "Ouvrir un notebook, créer des variables et une liste, puis compter les mots d’une strophe de Verlaine et expliquer l’écart dû à la ponctuation.",
+  "duree": "1 h 30",
+  "lien": "index.html#c2-fondamentaux",
+  "fiche": "enseignant.html#guide-seance-4",
+  "diapos": [
+    {
+      "type": "titre",
+      "surtitre": "Chapitre 2 · Séance 4 · TP",
+      "titre": "Premier TP Python",
+      "sousTitre": "Un notebook, des variables, une liste et les mots d’un poème de Verlaine",
+      "notes": "Avant la séance : vérifiez que les comptes Google sont créés (Colab) ou que Jupyter s’ouvre, par exemple avec run.bat notebook. Préparez un notebook avec les titres des étapes et agrandissez la police : vous taperez le code en direct. Un ordinateur pour deux suffit ; aucun prérequis en programmation n’est demandé."
+    },
+    {
+      "type": "points",
+      "titre": "Objectifs de la séance",
+      "points": [
+        "Ouvrir un **notebook**, exécuter et enregistrer une cellule",
+        "Créer des **variables** et une **liste**",
+        "Compter les mots d’une strophe de Verlaine",
+        "Expliquer l’écart entre « éléments » et « mots » : la ponctuation"
+      ],
+      "notes": "Lisez les objectifs à voix haute et rassurez : personne n’est censé savoir déjà programmer. Annoncez la règle du jour : on prédit la sortie avant d’exécuter, et l’on lit les messages d’erreur au lieu de les craindre. En fin de séance, chacun doit pouvoir dire ce que fait split() et ce que signifie NameError."
+    },
+    {
+      "type": "activite",
+      "titre": "Former les binômes",
+      "duree": 10,
+      "consignes": [
+        "Un ordinateur pour deux : le **pilote** tient le clavier, le **copilote** lit l’énoncé, relit et propose",
+        "Le moins à l’aise commence au clavier ; le copilote ne le lui prend jamais",
+        "On échange les rôles toutes les 15 minutes, au signal",
+        "Environnement par défaut : Google Colab, dans le navigateur"
+      ],
+      "materiel": "Ordinateurs, connexion, comptes Google (Colab) ou Jupyter installé",
+      "notes": "Formez les binômes d’après le questionnaire : mêlez les niveaux et les équipements, et placez les étudiants sans ordinateur avec un camarade équipé. Colab ne demande rien à installer : un compte Google suffit. C’est vous qui donnez le signal d’échange des rôles."
+    },
+    {
+      "type": "section",
+      "numero": 1,
+      "titre": "Premier notebook",
+      "sousTitre": "Une cellule, Maj + Entrée, un résultat",
+      "notes": "15 min. Objectif : que chaque binôme voie s’afficher son premier résultat."
+    },
+    {
+      "type": "etapes",
+      "titre": "Ouvrir et utiliser un notebook",
+      "progressif": true,
+      "etapes": [
+        {
+          "titre": "Ouvrir Colab",
+          "texte": "colab.research.google.com, puis créer un notebook"
+        },
+        {
+          "titre": "Taper le code",
+          "texte": "Dans une cellule, sans copier-coller"
+        },
+        {
+          "titre": "Exécuter",
+          "texte": "Maj + Entrée : le résultat s’affiche sous la cellule"
+        },
+        {
+          "titre": "Enregistrer",
+          "texte": "Dans Google Drive : les fichiers de la session sont effacés à sa fermeture"
+        }
+      ],
+      "notes": "Un notebook mêle cellules de code, résultats et texte. Avec Jupyter, lancez run.bat notebook ou tapez jupyter notebook dans le terminal : un onglet s’ouvre dans le navigateur. Montrez chaque geste au vidéoprojecteur, puis passez dans les rangs jusqu’à ce que chacun voie son résultat."
+    },
+    {
+      "type": "code",
+      "titre": "La première cellule",
+      "code": "# Un commentaire : Python ignore cette ligne\nprint(\"Bonjour, Médéa !\")\nprint(\"Kateb Yacine est né en\", 1929)",
+      "sortie": "Bonjour, Médéa !\nKateb Yacine est né en 1929",
+      "legende": "`print()` affiche les valeurs qu’on lui donne, séparées par une espace.",
+      "notes": "Tapez en direct en disant ce que vous faites, puis Maj + Entrée. Faites remarquer les guillemets droits, les parenthèses, et la virgule qui sépare le texte du nombre 1929. Ce qui suit # est un commentaire, destiné au lecteur humain."
+    },
+    {
+      "type": "section",
+      "numero": 2,
+      "titre": "Variables et listes",
+      "sousTitre": "Ranger des valeurs sous un nom",
+      "notes": "30 min : variables et types (15 min), puis listes (15 min)."
+    },
+    {
+      "type": "definition",
+      "terme": "Variable",
+      "traduction": "variable",
+      "definition": "Un nom qui désigne une valeur en mémoire. Le signe = signifie « reçoit », et non « est égal à ».",
+      "exemple": "`annee = 1956` range 1956 sous le nom `annee`.",
+      "notes": "Insistez sur le sens de = : « annee reçoit 1956 ». Chaque valeur a un type : int (nombre entier), float (nombre décimal), str (chaîne de caractères, entre guillemets), bool (True ou False). Un nom de variable ne contient ni espace ni, de préférence, d’accent : on relie les mots par un tiret bas, comme mots_par_page."
+    },
+    {
+      "type": "code",
+      "titre": "Variables, types et f-string",
+      "code": "titre = \"Nedjma\"   # str : chaîne de caractères\nannee = 1956       # int : nombre entier\nprint(type(titre), type(annee))\nprint(f\"{titre} de Kateb Yacine paraît en {annee}.\")",
+      "sortie": "<class 'str'> <class 'int'>\nNedjma de Kateb Yacine paraît en 1956.",
+      "legende": "Dans une **f-string**, chaque expression entre accolades est remplacée par sa valeur.",
+      "notes": "Faites prédire chaque ligne avant d’exécuter. type() donne le type d’une valeur : str pour le texte, int pour un nombre entier. Question à poser : que se passe-t-il si l’on oublie le f devant les guillemets ? Attendu : les accolades s’affichent telles quelles, {titre} au lieu de Nedjma."
+    },
+    {
+      "type": "code",
+      "titre": "Une erreur volontaire",
+      "code": "titre = \"Nedjma",
+      "sortie": "SyntaxError: unterminated string literal (detected at line 1)",
+      "legende": "La dernière ligne du message : le type d’erreur, puis l’explication (une chaîne non terminée).",
+      "notes": "Oubliez exprès le guillemet fermant et exécutez. Le message commence par l’emplacement de l’erreur, avec un ^ sous l’endroit fautif ; lisez d’abord la dernière ligne, à voix haute : « chaîne de caractères non terminée, détectée à la ligne 1 ». Corrigez, réexécutez. Message à faire passer : une erreur est une information, pas un échec."
+    },
+    {
+      "type": "question",
+      "titre": "Prédire avant d’exécuter",
+      "question": "`auteurs = [\"Hugo\", \"Baudelaire\", \"Maupassant\"]` : que vaut `auteurs[0]` ?",
+      "choix": [
+        "Hugo",
+        "Baudelaire",
+        "Maupassant",
+        "Une erreur"
+      ],
+      "reponse": "Hugo : les indices commencent à 0.",
+      "explication": "`auteurs[0]` est le premier élément, `auteurs[1]` le deuxième, `auteurs[-1]` le dernier.",
+      "notes": "Faites voter à main levée avant de révéler la réponse. Beaucoup répondront Baudelaire : c’est l’erreur fréquente du premier élément cherché en [1]. Exécutez ensuite pour trancher."
+    },
+    {
+      "type": "code",
+      "titre": "Les listes",
+      "code": "auteurs = [\"Hugo\", \"Baudelaire\", \"Maupassant\"]\nauteurs.append(\"Kateb Yacine\")       # ajouter à la fin\nprint(auteurs[0], \"|\", auteurs[-1])  # premier et dernier\nprint(len(auteurs), \"auteurs\")\nauteurs.sort()                       # trier sur place\nprint(auteurs)\nprint(auteurs[1:3])                  # positions 1 et 2",
+      "sortie": "Hugo | Kateb Yacine\n4 auteurs\n['Baudelaire', 'Hugo', 'Kateb Yacine', 'Maupassant']\n['Hugo', 'Kateb Yacine']",
+      "legende": "`append` ajoute à la fin, `sort` trie sur place, `len` compte les éléments.",
+      "notes": "Exécutez en faisant prédire chaque ligne. auteurs[-1] désigne le dernier élément. La tranche auteurs[1:3] prend les positions 1 et 2 : la borne de droite est exclue. sort() modifie la liste elle-même, par ordre alphabétique."
+    },
+    {
+      "type": "section",
+      "numero": 3,
+      "titre": "Compter les mots d’un poème",
+      "sousTitre": "Verlaine, « Il pleure dans mon cœur » (1874)",
+      "notes": "25 min, dont le temps de taper le programme."
+    },
+    {
+      "type": "activite",
+      "titre": "Compter les mots d’une strophe",
+      "duree": 25,
+      "consignes": [
+        "Tapez le programme `compter_mots.py`, sans copier-coller",
+        "Exécutez-le et notez les deux lignes affichées",
+        "Expliquez l’écart : pourquoi 21 éléments pour 19 mots ?",
+        "Plus rapides : trouvez le mot le plus fréquent (exercice 3 du TD)"
+      ],
+      "materiel": "Le programme projeté ; le TD du chapitre 2 sur le site",
+      "notes": "Pilote et copilote échangent leurs rôles à mi-parcours. Pour les plus rapides, attendu : trois mots à égalité, il, mon et cœur, deux fois chacun ; Counter(mots).most_common(3), du module collections, donne [('il', 2), ('mon', 2), ('cœur', 2)]. Remarque de lecteur à partager : « pleure » et « pleut » sont comptés comme deux mots sans rapport ; le rapprochement sonore qui fait le poème échappe au comptage."
+    },
+    {
+      "type": "code",
+      "titre": "compter_mots.py",
+      "code": "poeme = \"\"\"Il pleure dans mon cœur\nComme il pleut sur la ville ;\nQuelle est cette langueur\nQui pénètre mon cœur ?\"\"\"\n\nmots = poeme.lower().split()   # minuscules, puis découpage\nprint(len(mots), \"éléments\")   # « ; » et « ? » comptent aussi\nmots = [m for m in mots if m.isalpha()]  # lettres seulement\nprint(len(mots), \"mots,\", len(set(mots)), \"mots différents\")",
+      "sortie": "21 éléments\n19 mots, 16 mots différents",
+      "legende": "Paul Verlaine, « Il pleure dans mon cœur », *Romances sans paroles* (1874), première strophe.",
+      "notes": "Les triples guillemets permettent un texte sur plusieurs lignes. lower() met en minuscules, split() découpe aux espaces et renvoie une liste. [m for m in mots if m.isalpha()] est une compréhension de liste : « les m de mots qui ne contiennent que des lettres ». set() supprime les doublons : sa longueur donne le nombre de mots différents."
+    },
+    {
+      "type": "question",
+      "titre": "Expliquer l’écart",
+      "question": "Pourquoi le programme trouve-t-il 21 éléments pour 19 mots ?",
+      "reponse": "`split()` coupe aux espaces : « ; » et « ? », précédés d’une espace en français, deviennent deux « mots » de plus.",
+      "explication": "`isalpha()` ne garde que les éléments faits de lettres : la ponctuation disparaît, il reste 19 mots.",
+      "notes": "Laissez chercher deux ou trois minutes. Indice possible : afficher une partie de la liste avec print(poeme.lower().split()[8:12]), qui donne ['sur', 'la', 'ville', ';']. La typographie française place une espace avant « ; » et « : », et split() les compte comme des mots. Comparer des textes oblige à définir ce qu’est un « mot » avant de compter."
+    },
+    {
+      "type": "tableau",
+      "titre": "Erreurs fréquentes",
+      "entetes": [
+        "Symptôme",
+        "Cause",
+        "Remède"
+      ],
+      "lignes": [
+        [
+          "`SyntaxError`",
+          "Code copié depuis Word ou un PDF : guillemets typographiques “ ”",
+          "Retaper le code avec des guillemets droits \" \""
+        ],
+        [
+          "`NameError`",
+          "Cellules exécutées dans le désordre",
+          "Réexécuter les cellules dans l’ordre, de haut en bas"
+        ],
+        [
+          "Mauvais élément",
+          "Premier élément cherché en `[1]`",
+          "Le premier élément est `[0]`"
+        ]
+      ],
+      "legende": "Réflexe à prendre : lire d’abord la dernière ligne du message d’erreur.",
+      "notes": "Si le temps le permet, montrez la première en direct : print(“Bonjour, Médéa !”) avec des guillemets typographiques donne SyntaxError: invalid character '“' (U+201C). Pour la deuxième : une cellule qui utilise mots avant que la cellule qui crée mots ait été exécutée donne NameError: name 'mots' is not defined."
+    },
+    {
+      "type": "question",
+      "titre": "Bilan",
+      "question": "Que fait `split()` ?",
+      "reponse": "Elle découpe une chaîne aux espaces et renvoie une **liste** de mots.",
+      "explication": "`\"Il pleure dans mon cœur\".split()` donne `['Il', 'pleure', 'dans', 'mon', 'cœur']`.",
+      "notes": "Bilan, 10 min en tout. Tirez au sort le binôme qui répond : chacun doit être prêt. Rappelez que split() ne modifie pas la chaîne : elle renvoie une nouvelle liste."
+    },
+    {
+      "type": "question",
+      "titre": "Bilan",
+      "question": "Que signifie `NameError: name 'mots' is not defined` ?",
+      "reponse": "Python ne connaît pas le nom `mots` : la variable n’a pas (encore) été créée.",
+      "explication": "Dans un notebook, la cellule qui crée `mots` n’a pas été exécutée, ou les cellules l’ont été dans le désordre. Autre cause : une faute de frappe dans le nom.",
+      "notes": "Faites le lien avec l’erreur fréquente de la séance. Remède : réexécuter les cellules dans l’ordre, de haut en bas."
+    },
+    {
+      "type": "fin",
+      "titre": "Avant de partir",
+      "points": [
+        "Enregistrez votre notebook (dans Google Drive avec Colab)",
+        "Retapez les exemples des « Fondamentaux du langage » en prédisant chaque sortie",
+        "Faites l’exercice 1 du TD : les palindromes",
+        "Codez vingt minutes, trois fois dans la semaine"
+      ],
+      "texte": "Prochaine séance : interroger un corpus avec pandas.",
+      "notes": "Vérifiez que chaque binôme a enregistré son notebook avant de quitter la salle : les fichiers d’une session Colab sont effacés à sa fermeture. Les exemples à retaper sont dans la leçon « Les fondamentaux du langage » du chapitre 2 ; l’exercice 1 du TD a un corrigé en ligne, à ouvrir seulement après avoir cherché."
+    }
+  ]
+}

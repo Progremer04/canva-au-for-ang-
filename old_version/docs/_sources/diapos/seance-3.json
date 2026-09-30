@@ -1,0 +1,365 @@
+{
+  "id": "seance-3",
+  "numero": 3,
+  "titre": "TD du chapitre 1 : supervisé ou non supervisé ?",
+  "resume": "Classer au moins 8 situations sur 10 (supervisé, non supervisé, renforcement) en justifiant par les étiquettes, expliquer le rôle du jeu de test et donner deux exemples en SHS.",
+  "duree": "1 h 30",
+  "lien": "index.html#td-ch1",
+  "fiche": "enseignant.html#guide-seance-3",
+  "diapos": [
+    {
+      "type": "titre",
+      "surtitre": "Intelligence artificielle · Séance 3 · TD",
+      "titre": "TD du chapitre 1 : supervisé ou non supervisé ?",
+      "sousTitre": "Trier des situations, comparer, chercher des exemples",
+      "notes": "Prérequis : la leçon « Apprentissage supervisé et non supervisé » du chapitre 1. Préparez dix cartes-situations par groupe (le tableau de la fiche de séance) et ouvrez sur le site les énoncés du TD du chapitre 1. Formez des groupes de trois ou quatre, niveaux et équipements mêlés."
+    },
+    {
+      "type": "points",
+      "titre": "Objectifs de la séance",
+      "points": [
+        "**Classer** au moins 8 situations sur 10 : supervisé, non supervisé ou renforcement",
+        "**Justifier** chaque choix par les étiquettes",
+        "**Expliquer** le rôle du jeu de test",
+        "**Donner** deux exemples d'apprentissage en sciences humaines"
+      ],
+      "notes": "Le premier objectif a un critère chiffré : 8 situations sur 10. Annoncez-le, il servira de repère aux groupes pendant le tri."
+    },
+    {
+      "type": "activite",
+      "titre": "Trier dix cartes-situations",
+      "duree": 25,
+      "consignes": [
+        "En groupes de trois ou quatre",
+        "Répartissez les dix cartes en trois tas : supervisé, non supervisé, renforcement",
+        "Sur chaque carte, notez l'indice décisif",
+        "Chaque groupe défend ensuite une carte devant la classe"
+      ],
+      "materiel": "Dix cartes-situations par groupe",
+      "notes": "Pendant le tri, circulez et demandez « qu'avez-vous essayé ? » plutôt que de donner la réponse. Deux cartes sont des pièges (le go et le filtre anti-spam) : ne les signalez pas. Pour la défense, tirez le porte-parole au sort : chacun doit être prêt. N'affichez la correction qu'après les défenses."
+    },
+    {
+      "type": "deux",
+      "titre": "Correction : huit cartes sans piège",
+      "colonnes": [
+        {
+          "titre": "Supervisé : les exemples portent la réponse",
+          "points": [
+            "Dater un poème d'après 600 poèmes datés",
+            "Estimer l'année de composition d'un poème (régression)",
+            "Classer 3 000 discours d'après 500 discours classés",
+            "Repérer des commentaires haineux d'après 5 000 exemples annotés",
+            "Identifier la langue d'un message d'après des messages étiquetés"
+          ]
+        },
+        {
+          "titre": "Non supervisé : des groupes à interpréter",
+          "points": [
+            "Répartir 200 romans en familles stylistiques",
+            "Regrouper 2 000 réponses ouvertes sans grille",
+            "Faire apparaître les thèmes de 1 000 articles"
+          ]
+        }
+      ],
+      "notes": "Pour chaque carte, faites dire l'indice : des exemples datés, classés, annotés ou étiquetés → supervisé ; aucune grille, des groupes ou des thèmes à découvrir → non supervisé. L'année de composition est une étiquette numérique : c'est une régression, non une classification. Pour les 3 000 discours, rappelez le quiz de la leçon : que les nouveaux discours n'aient pas d'étiquette est normal, c'est justement ce que le modèle doit prédire."
+    },
+    {
+      "type": "question",
+      "titre": "Piège n° 1",
+      "question": "« Apprendre le go en gagnant ou en perdant des parties » : quel type d'apprentissage ?",
+      "choix": [
+        "Supervisé",
+        "Non supervisé",
+        "Par renforcement"
+      ],
+      "reponse": "Par renforcement",
+      "explication": "Pas d'exemples corrigés : le programme joue, et la victoire ou la défaite lui sert de récompense ou de pénalité.",
+      "notes": "Réponse fausse probable : « non supervisé », faute d'étiquettes. Montrez la différence : ici, le programme apprend en agissant et en recevant des récompenses. C'est ainsi qu'AlphaGo Zero (DeepMind, 2017) a appris le go en jouant contre lui-même. Le renforcement sera étudié au chapitre 3."
+    },
+    {
+      "type": "question",
+      "titre": "Piège n° 2",
+      "question": "Un filtre apprend d'après les courriels que les utilisateurs ont marqués « spam ». Quel type d'apprentissage ?",
+      "choix": [
+        "Supervisé",
+        "Non supervisé",
+        "Par renforcement"
+      ],
+      "reponse": "Supervisé",
+      "explication": "Le clic « spam » de l'utilisateur est une étiquette : chaque exemple porte la bonne réponse.",
+      "notes": "Réponses fausses probables : « non supervisé », parce que personne n'a annoté les courriels exprès, ou « renforcement », parce que le filtre s'améliore avec l'usage. Or chaque courriel marqué porte la réponse attendue : c'est exactement une étiquette. Trier les courriels en « spam » et « non-spam » est l'exemple type de classification supervisée."
+    },
+    {
+      "type": "etapes",
+      "titre": "La question décisive",
+      "etapes": [
+        {
+          "titre": "Les exemples portent-ils la réponse ?",
+          "texte": "La question à poser pour chaque situation, sur les exemples d'entraînement"
+        },
+        {
+          "titre": "Oui : supervisé",
+          "texte": "Classification si la réponse est une catégorie, régression si c'est un nombre"
+        },
+        {
+          "titre": "Non : non supervisé",
+          "texte": "L'algorithme forme des groupes que le chercheur doit interpréter"
+        },
+        {
+          "titre": "Des récompenses : renforcement",
+          "texte": "Le programme apprend en agissant et en recevant des récompenses ou des pénalités"
+        }
+      ],
+      "notes": "10 min de mise en commun. Écrivez la question au tableau : « Les exemples d'entraînement portent-ils la bonne réponse ? » Elle tranche presque tous les cas. Attention : on regarde les exemples qui servent à l'entraînement, pas les nouveaux cas, qui n'ont jamais d'étiquette."
+    },
+    {
+      "type": "definition",
+      "terme": "Jeu de test",
+      "traduction": "test set",
+      "definition": "Partie des données mise de côté pour évaluer le modèle sur des exemples qu'il n'a jamais vus.",
+      "exemple": "Comme un examen fait de questions que l'étudiant n'a jamais vues.",
+      "notes": "Règle à faire noter : on n'évalue jamais un modèle sur les exemples qui ont servi à l'entraîner. On partage les données en deux : le jeu d'entraînement (training set) ajuste le modèle ; le jeu de test, mis de côté, mesure ses performances à la fin. Le but est la généralisation : bien traiter des cas nouveaux."
+    },
+    {
+      "type": "definition",
+      "terme": "Sur-apprentissage",
+      "traduction": "overfitting",
+      "definition": "Défaut d'un modèle qui mémorise les détails du jeu d'entraînement et généralise mal à des données nouvelles.",
+      "exemple": "Presque parfait à l'entraînement, médiocre au test : comme l'étudiant qui a mémorisé les corrigés sans comprendre le cours.",
+      "notes": "Le signal d'alerte : un écart important entre le score d'entraînement et le score de test. Dans l'exemple de la leçon, un modèle trop complexe apprend par cœur les poèmes d'entraînement avec leurs détails accidentels, au lieu de saisir ce qui caractérise chaque période."
+    },
+    {
+      "type": "question",
+      "titre": "Un autre piège : les « enfans »",
+      "question": "Tous vos poèmes romantiques viennent d'éditions anciennes qui écrivent « enfans » pour « enfants ». Qu'apprend le modèle ?",
+      "reponse": "L'orthographe de l'édition, plutôt que le style de l'époque.",
+      "explication": "Un modèle s'appuie sur tout ce qui distingue les exemples, même un détail accidentel : un bon score ne garantit pas qu'il a appris ce que l'on cherche.",
+      "notes": "Exemple tiré de la leçon. Laissez chercher une minute avant d'afficher la réponse. Point à retenir pour des littéraires : connaître l'origine de chaque texte du corpus (édition, orthographe, numérisation) fait partie de la méthode."
+    },
+    {
+      "type": "section",
+      "numero": 2,
+      "titre": "Exercices du TD",
+      "sousTitre": "Exercices 1 à 3 en séance, exercice 4 en travail personnel",
+      "notes": "Les énoncés sont sur le site, dans le TD du chapitre 1. Demandez de ne pas ouvrir « Voir le corrigé » avant la correction collective."
+    },
+    {
+      "type": "activite",
+      "titre": "Exercices 1 et 2",
+      "duree": 25,
+      "consignes": [
+        "Exercice 1 : pour le supervisé et le non supervisé, une définition, les données, les tâches, une difficulté",
+        "Exercice 2 : un tableau comparatif des deux apprentissages, écrit de mémoire",
+        "Seuls d'abord, puis en binôme",
+        "Correction collective"
+      ],
+      "notes": "Seuls, puis en binôme, puis correction. Le tableau de l'exercice 2 s'écrit sans notes : c'est exactement ce qu'on demande à l'examen. Si un binôme finit tôt, demandez-lui où placer l'apprentissage semi-supervisé et l'apprentissage auto-supervisé."
+    },
+    {
+      "type": "deux",
+      "titre": "Correction de l'exercice 1",
+      "colonnes": [
+        {
+          "titre": "Supervisé",
+          "points": [
+            "Données : des exemples avec leur **étiquette** (un courriel et « spam »)",
+            "Tâches : classification, régression",
+            "Évaluation : comparer aux étiquettes du jeu de test",
+            "Difficulté : annoter coûte ; les étiquettes reflètent les choix, parfois les préjugés, des annotateurs"
+          ]
+        },
+        {
+          "titre": "Non supervisé",
+          "points": [
+            "Données : des exemples **sans étiquette**",
+            "Tâches : clustering, réduction de dimension, détection d'anomalies, modélisation thématique",
+            "Évaluation : cohérence des groupes, intérêt pour l'interprétation",
+            "Difficulté : nommer et interpréter les groupes obtenus"
+          ]
+        }
+      ],
+      "notes": "Complétez à l'oral avec les cas intermédiaires. Le semi-supervisé combine quelques exemples étiquetés et beaucoup d'exemples bruts. L'auto-supervisé tire l'étiquette des données elles-mêmes, par exemple en cachant le mot suivant d'une phrase : c'est ainsi que sont pré-entraînés les grands modèles de langage. Le renforcement n'a pas d'exemples corrigés : un agent reçoit des récompenses ou des pénalités et apprend la stratégie qui les maximise."
+    },
+    {
+      "type": "tableau",
+      "titre": "Correction de l'exercice 2",
+      "entetes": [
+        "Critère",
+        "Supervisé",
+        "Non supervisé"
+      ],
+      "lignes": [
+        [
+          "Données",
+          "Exemples accompagnés de leur étiquette",
+          "Exemples seuls"
+        ],
+        [
+          "Question posée",
+          "Quelle catégorie ? Quelle valeur ?",
+          "Quels groupes, quelles structures ?"
+        ],
+        [
+          "Tâches typiques",
+          "Classification, régression",
+          "Clustering, réduction de dimension, thèmes"
+        ],
+        [
+          "Algorithmes",
+          "Régressions, k plus proches voisins, arbres, réseaux",
+          "k-moyennes, classification hiérarchique, ACP, LDA"
+        ],
+        [
+          "Évaluation",
+          "Directe : étiquettes du jeu de test",
+          "Indirecte : cohérence des groupes, lecture humaine"
+        ],
+        [
+          "Travail humain",
+          "Annoter avant l'apprentissage",
+          "Interpréter après l'apprentissage"
+        ],
+        [
+          "Exemple en SHS",
+          "Attribuer un texte anonyme à un auteur connu",
+          "Regrouper des romans selon leur vocabulaire"
+        ]
+      ],
+      "legende": "En supervisé, on apprend à reproduire des réponses connues ; en non supervisé, on cherche une organisation que l'on ne connaît pas encore.",
+      "notes": "Faites comparer ligne par ligne avec les tableaux des binômes. Détail de la ligne « Algorithmes » : régression linéaire et logistique, k plus proches voisins, arbres de décision, réseaux de neurones ; en non supervisé, l'analyse en composantes principales (ACP) et la LDA, pour la modélisation thématique. Pour l'évaluation : exactitude ou erreur moyenne d'un côté, score de silhouette de l'autre. Faites recopier la phrase de synthèse."
+    },
+    {
+      "type": "activite",
+      "titre": "Exercice 3 : six exemples d'apprentissage",
+      "duree": 15,
+      "consignes": [
+        "En binôme, trouvez six exemples d'apprentissage",
+        "Pour chacun : le type d'apprentissage, la tâche, les données utilisées",
+        "Au moins deux exemples en sciences humaines ou en littérature"
+      ],
+      "notes": "Vérifiez surtout la cohérence entre le type et les données : s'il faut des étiquettes, l'apprentissage est supervisé. Encouragez des exemples tirés du cours : poèmes, romans du Maghreb, discours politiques, messages en darja, enquêtes sur la lecture."
+    },
+    {
+      "type": "tableau",
+      "titre": "Correction de l'exercice 3 : une réponse possible",
+      "entetes": [
+        "Exemple",
+        "Type",
+        "Tâche",
+        "Données"
+      ],
+      "lignes": [
+        [
+          "Trier les courriels en « spam » et « non-spam »",
+          "Supervisé",
+          "Classification",
+          "Courriels marqués par des utilisateurs"
+        ],
+        [
+          "Attribuer un texte disputé à un auteur (stylométrie)",
+          "Supervisé",
+          "Classification",
+          "Textes dont l'auteur est connu"
+        ],
+        [
+          "Estimer la date de composition d'un poème",
+          "Supervisé",
+          "Régression",
+          "Poèmes dont la date est connue"
+        ],
+        [
+          "Regrouper des romans selon leur vocabulaire",
+          "Non supervisé",
+          "Clustering",
+          "Textes seuls"
+        ],
+        [
+          "Profils de répondants d'une enquête sur la lecture",
+          "Non supervisé",
+          "Clustering",
+          "Réponses sans étiquette"
+        ],
+        [
+          "Apprendre le go en jouant contre soi-même",
+          "Renforcement",
+          "Actions successives",
+          "Parties ; la victoire sert de récompense"
+        ]
+      ],
+      "legende": "D'autres réponses sont possibles : vérifiez que le type est cohérent avec les données.",
+      "notes": "Les exemples en SHS : la stylométrie, que Mosteller et Wallace ont appliquée en 1964 à certains articles des *Federalist Papers* ; la date d'un poème ; les profils de lecteurs. Le go renvoie à AlphaGo Zero (DeepMind, 2017). Faites lire un exemple par binôme : la classe dit si le type et les données concordent."
+    },
+    {
+      "type": "activite",
+      "titre": "Lancer l'exercice 4",
+      "duree": 15,
+      "consignes": [
+        "Les ordinateurs actuels savent-ils faire ces six tâches ? Une tâche par binôme",
+        "Jouer correctement au ping-pong · conduire une voiture en centre-ville · découvrir et démontrer des théorèmes",
+        "Écrire une histoire drôle · donner un avis juridique pertinent · réaliser une opération chirurgicale complexe",
+        "Définissez le critère de réussite : face à qui, dans quelles conditions ?",
+        "Cherchez des sources primaires et datées",
+        "Restitution de 3 minutes à la séance suivante"
+      ],
+      "notes": "Répartissez les six tâches, quitte à confier la même tâche à plusieurs binômes. Insistez sur les mots de la consigne : « correctement », « pertinent », « drôle » ; préciser ces critères fait partie du travail. Ne montrez pas le corrigé du site : c'est un état des connaissances de septembre 2026, dans un domaine qui évolue très vite. Les étudiants devront vérifier ce qui a changé depuis."
+    },
+    {
+      "type": "etapes",
+      "titre": "Méthode : mener la recherche",
+      "progressif": true,
+      "etapes": [
+        {
+          "titre": "Définir le critère",
+          "texte": "Face à un débutant, un professionnel, le meilleur humain ? Dans quelles conditions ?"
+        },
+        {
+          "titre": "Remonter aux sources primaires",
+          "texte": "Articles à comité de lecture, rapports techniques ; prépublications (arXiv, HAL) avec prudence"
+        },
+        {
+          "titre": "Démonstration, produit ou annonce ?",
+          "texte": "Une entreprise qui présente son propre produit est une source intéressée"
+        },
+        {
+          "titre": "Examiner les conditions",
+          "texte": "Nombre d'essais, environnement, adversaires, part de supervision humaine, taux d'échec"
+        },
+        {
+          "titre": "Dater et croiser",
+          "texte": "Date du résultat, date de consultation ; au moins deux sources indépendantes"
+        },
+        {
+          "titre": "Un verdict nuancé",
+          "texte": "« Oui, mais… », « en conditions contrôlées », « pas encore »"
+        }
+      ],
+      "notes": "Cette méthode vaut pour toute recherche documentaire sur l'IA. Les prépublications sont utiles mais n'ont pas toujours été relues par des pairs ; Google Scholar aide à retrouver les articles. Pour croiser, un ouvrage de synthèse comme celui de Jean-Gabriel Ganascia (*L'IA expliquée aux humains*, 2024), cité dans les références du cours, peut servir de seconde source. Les nuances sont la réponse attendue, pas un aveu de faiblesse."
+    },
+    {
+      "type": "points",
+      "titre": "Erreurs fréquentes à corriger",
+      "points": [
+        "« Non supervisé » ne veut pas dire « sans humain » : le chercheur choisit, puis interprète",
+        "Les nouveaux cas n'ont pas d'étiquette : ce n'est pas une raison de conclure au non supervisé",
+        "**Classification** : des catégories connues ; **partitionnement** : des groupes découverts"
+      ],
+      "notes": "Faites retrouver, pour chaque erreur, la carte qui la montre. Première erreur : le chercheur choisit les données et le nombre de groupes, puis interprète ; les 200 romans ne se rangent pas seuls en « familles ». Deuxième : les 3 000 discours. Troisième : dater un poème d'après 600 poèmes datés (classification) contre répartir 200 romans en familles stylistiques (partitionnement)."
+    },
+    {
+      "type": "fin",
+      "titre": "Travail personnel",
+      "points": [
+        {
+          "texte": "**Préparer l'exercice 4** : restitution de 3 minutes",
+          "sous": [
+            "Le corrigé du site date de septembre 2026 : vérifiez ce qui a changé depuis"
+          ]
+        },
+        "**Relire** « Les approches de l'IA » (chapitre 1)",
+        "**Apprendre** le glossaire, en français et en anglais"
+      ],
+      "texte": "Prochaine séance : premier TP Python",
+      "notes": "Avant de lever la séance, vérifiez l'objectif chiffré par un vote à main levée : qui a classé au moins 8 cartes sur 10 ? Le glossaire s'apprend par paires : une fiche français → anglais et une fiche anglais → français, avec la définition au dos."
+    }
+  ]
+}

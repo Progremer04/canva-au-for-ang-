@@ -1,0 +1,359 @@
+<section class="chapitre" id="guide-langues" aria-labelledby="guide-langues-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">Guide de l'enseignant · Des étudiants de langues</p>
+    <h2 class="titre-section" id="guide-langues-titre">Enseigner l'IA et le code à des étudiants de langues</h2>
+    <p class="chapeau">Vos six groupes de Master 2 (anglais, littérature générale et comparée, didactique) n'ont jamais programmé. Les groupes ANG et LGC suivent exactement le même programme, code compris : ils lisent, prédisent, exécutent et modifient chaque exemple, puis écrivent le leur, pas à pas, dans les mêmes séances et avec les mêmes carnets ; seules changent la langue de travail et les données. Les groupes DID suivent la même progression et peuvent s'en tenir à lire et à exécuter le code. Le programme officiel reste couvert.</p>
+    <ul class="puces"><li class="puce">Six groupes</li><li class="puce">ANG et LGC : même programme, code compris</li><li class="puce">Dix carnets prêts</li></ul>
+  </header>
+
+  <nav class="sommaire-chapitre" aria-label="Sommaire : enseigner l'IA à des étudiants de langues">
+    <ol>
+      <li><a href="#guide-langues-principe">Le diagnostic et la réponse</a></li>
+      <li><a href="#guide-langues-outils">Des outils sans code pour chaque partie</a></li>
+      <li><a href="#guide-langues-parcours">Un programme pour ANG et LGC, une adaptation pour DID</a></li>
+      <li><a href="#guide-langues-carnets">Les carnets prêts à exécuter</a></li>
+      <li><a href="#guide-langues-seance">Une séance type en salle machine</a></li>
+      <li><a href="#guide-langues-evaluation">Évaluer le code et l'interprétation</a></li>
+    </ol>
+  </nav>
+
+  <article class="lecon" id="guide-langues-principe">
+    <h3>Le diagnostic et la réponse</h3>
+    <p>En 1 h 30 par semaine, des étudiants de langues ne deviendront pas développeurs, mais ils peuvent écrire de courts programmes utiles. Un étudiant qui lit dix lignes de Python, prédit leur sortie, les exécute, change une valeur, explique pourquoi le résultat a changé, puis réécrit ces lignes pour son propre texte a compris ce que fait la machine. Le programme demande l'« aptitude à utiliser le logiciel Python » : ANG et LGC la travaillent jusqu'à l'écriture du code, DID jusqu'à son exécution. Et l'étape la plus difficile, dire ce qu'un chiffre signifie pour un texte ou pour une classe, relève déjà de leur formation.</p>
+
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>Ce qu'ils ne feront pas</h4>
+        <ul>
+          <li>Partir d'une page blanche : chaque programme part d'un exemple qui fonctionne.</li>
+          <li>Apprendre la syntaxe par cœur : documentation et assistant d'IA expliquent, eux vérifient.</li>
+          <li>Faire rédiger leur code par un assistant : ils le tapent et l'expliquent.</li>
+        </ul>
+      </div>
+      <div class="comparaison-col">
+        <h4>Ce qu'ils feront</h4>
+        <ul>
+          <li>Prédire par écrit ce qu'une cellule va afficher, puis l'exécuter.</li>
+          <li>Changer une seule valeur et observer l'effet.</li>
+          <li>ANG et LGC : taper eux-mêmes le code des TD et des TP, compléter puis écrire de courts programmes.</li>
+          <li>Interpréter le résultat dans leur discipline, et en écrire les limites.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Le programme, partie par partie : ANG et LGC ensemble, DID adapté</caption>
+      <thead><tr><th scope="col">Partie du programme</th><th scope="col">Comment elle est traitée</th><th scope="col">Supports</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><a href="index.html#chapitre-1">Chapitre 1</a></th><td>Pour tous : notions, histoire, agents d'IA, éthique, TD sur papier</td><td>Démonstration de l'accueil, <a href="chapitr1_first_lesson.html">leçon 1 en diaporama</a>, Teachable Machine</td></tr>
+        <tr><th scope="row"><a href="index.html#chapitre-2">Chapitre 2</a> · Prompts et Python</th><td>Pour tous : l'<a href="index.html#td-ch2-prompts">atelier de prompts</a>, puis des exemples lus, prédits, exécutés, modifiés ; on apprend à lire un message d'erreur. ANG et LGC tapent aussi le code des exercices du TD 2 ; DID peut s'en tenir à l'exécution</td><td>Carnet 00, exercices du TD 2, tableur</td></tr>
+        <tr><th scope="row"><a href="index.html#chapitre-3">Chapitre 3</a></th><td>Calculs à la main du <a href="index.html#td-ch3">TD 3</a>, démonstrations du site, puis le même algorithme dans un carnet</td><td>Carnets 06, 07, 08</td></tr>
+        <tr><th scope="row"><a href="index.html#mini-projet">Mini-projet</a></th><td>Un carnet complet par sujet : l'étudiant choisit données et question, règle les champs, interprète, rédige. ANG et LGC ajoutent au moins une cellule de leur main (un filtre, un comptage, un graphique) et l'expliquent</td><td>Carnets 01 à 05, et 09</td></tr>
+      </tbody>
+    </table></div>
+
+    <h4>Deux démarches éprouvées</h4>
+    <p>La démarche <dfn>PRIMM</dfn> (<span class="terme-en" lang="en">Predict, Run, Investigate, Modify, Make</span> : prédire, exécuter, examiner, modifier, créer) a été décrite par Sue Sentance, Jane Waite et Maria Kallia (<em lang="en">Computer Science Education</em>, 2019) à partir d'un travail dans l'enseignement secondaire anglais. L'élève prédit la sortie d'un programme qui fonctionne en discutant avec un camarade, l'exécute pour vérifier, l'examine, le modifie, et n'écrit le sien qu'à la fin. La progression <dfn>Use–Modify–Create</dfn> (utiliser, modifier, créer) d'Irene Lee et ses coauteurs (<em lang="en">ACM Inroads</em>, 2011) suit la même logique.</p>
+    <p>Ces deux démarches ont été conçues pour de jeunes élèves qui apprennent à programmer, non pour des étudiants de master en langues : nous en reprenons l'ordre des étapes, sans promettre de résultats. Avec ANG et LGC, on va jusqu'à la dernière étape : « créer » veut dire écrire un court programme, en partant d'un modèle, et produire l'analyse qu'il permet. Avec DID, « créer » peut rester produire une analyse (choisir des données, poser une question, interpréter, écrire).</p>
+
+    <h4>Ce qui change dans l'évaluation</h4>
+    <p>On note d'abord la compréhension et l'interprétation : une prédiction raisonnée, même fausse, l'explication d'une ligne, le commentaire d'un résultat. Pour ANG et LGC, le code compte aussi : celui que l'étudiant a écrit ou complété s'exécute, et il en explique chaque ligne. Dans la <a href="#guide-evaluation-grilles">grille du mini-projet</a>, « Méthode et code » devient : le carnet s'exécute, les valeurs changées sont justifiées, les cellules ajoutées fonctionnent (ANG, LGC), l'étudiant explique à l'oral une cellule choisie par vous (<a href="#guide-langues-evaluation">détails</a>).</p>
+
+    <aside class="encadre encadre--retenir"><p class="encadre-titre">La règle de conduite</p>
+      <p>Jamais de page blanche de code. Chaque cellule est lue, prédite, exécutée ; une seule valeur change à la fois ; en ANG et en LGC, l'étudiant réécrit ensuite la cellule pour son propre texte. Chaque séance se termine par quelques lignes d'interprétation écrites dans la discipline de l'étudiant.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-langues-outils">
+    <h3>Des outils sans code pour chaque partie</h3>
+    <p>Un outil à boutons fait voir une idée en dix minutes ; le carnet montre ensuite les mêmes calculs derrière les boutons. Présentations détaillées au rayon <a href="#guide-ressources-outils">Outils</a> et dans les activités <a href="#guide-activite-voyant">Voyant Tools</a> et <a href="#guide-activite-teachable">Teachable Machine</a>. Testez chaque outil sur le réseau du Labo 02 avant la séance.</p>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Un outil sans code ou presque pour chaque partie du cours</caption>
+      <thead><tr><th scope="col">Outil</th><th scope="col">Ce que font les étudiants</th><th scope="col">Chapitre ou sujet</th><th scope="col">Lien</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Lecteur de sentiments du site</th><td>Taper une phrase (critique, vers, réponse d'apprenant), voir les mots qui font monter ou baisser le score, puis chercher une phrase qui trompe l'outil</td><td>Chapitre 1 ; sujet 1</td><td><a href="index.html#accueil">Accueil</a></td></tr>
+        <tr><th scope="row">Démonstrations du chapitre 3</th><td>Prédire la règle déclenchée par le chaînage avant ; changer le pas de la descente de gradient ; avancer les k-moyennes pas à pas, puis changer de centres de départ</td><td>Chapitre 3 ; sujet 2</td><td><a href="index.html#c3-symbolique">Chaînage</a>, <a href="index.html#c3-algorithmes">algorithmes</a></td></tr>
+        <tr><th scope="row">Teachable Machine</th><td>Entraîner par l'exemple un classifieur d'images, de sons ou de postures, puis le piéger. En anglais : deux mots prononcés (<span lang="en">ship</span>, <span lang="en">sheep</span>), testés avec une autre voix</td><td>Chapitres 1 et 3, apprentissage supervisé</td><td><a href="https://teachablemachine.withgoogle.com" target="_blank" rel="noopener">teachablemachine.withgoogle.com</a></td></tr>
+        <tr><th scope="row">Orange Data Mining, module Text</th><td>Relier des blocs à la souris : corpus, nettoyage, nuage de mots, sentiment, k-moyennes, arbre de décision, matrice de confusion. Le module Text s'ajoute par Options › Add-ons</td><td>Sujets 1, 2 et 4</td><td><a href="https://orangedatamining.com" target="_blank" rel="noopener">orangedatamining.com</a></td></tr>
+        <tr><th scope="row">Voyant Tools</th><td>Coller un texte : fréquences, nuage de mots, concordances, répartition d'un mot au fil du texte</td><td>Chapitre 2, fichiers texte ; sujet 3</td><td><a href="https://voyant-tools.org" target="_blank" rel="noopener">voyant-tools.org</a></td></tr>
+        <tr><th scope="row">AntConc</th><td>Le concordancier gratuit de Laurence Anthony, courant en linguistique de corpus : concordances, listes de mots, collocations, mots-clés face à un corpus de référence. S'installe sur les postes, fonctionne hors ligne</td><td>Chapitre 2 ; sujet 3 ; corpus d'apprenants</td><td><a href="https://www.laurenceanthony.net/software/antconc/" target="_blank" rel="noopener">laurenceanthony.net</a></td></tr>
+        <tr><th scope="row">Gephi, ou Gephi Lite dans le navigateur</th><td>Importer un tableau de liens entre personnages, calculer degré, intermédiarité et communautés, dessiner le réseau</td><td>Sujet 5</td><td><a href="https://gephi.org" target="_blank" rel="noopener">gephi.org</a></td></tr>
+        <tr><th scope="row">Tableur (LibreOffice Calc, Excel)</th><td>Trier, filtrer, compter, tableau croisé dynamique (l'équivalent du <code>groupby</code> de pandas). Les cinq points de l'<a href="index.html#td-ch3-ex2a">exercice 2 a du TD 3</a> en nuage de points, avec une courbe de tendance linéaire et son équation : on retrouve 0,9 et 1,3</td><td>Chapitre 2, tableaux ; chapitre 3, régression ; sujets 2 et 4</td><td><a href="https://www.libreoffice.org" target="_blank" rel="noopener">libreoffice.org</a></td></tr>
+        <tr><th scope="row">Agents conversationnels</th><td>Objets d'étude, pas assistants : vérifier des références, relever les erreurs d'une explication, comparer les réponses selon la langue de la question</td><td>Chapitre 3, Transformers ; éthique</td><td><a href="#guide-ia">L'IA générative en classe</a></td></tr>
+      </tbody>
+    </table></div>
+
+    <aside class="encadre encadre--attention"><p class="encadre-titre">Des textes d'apprenants dans un service en ligne</p><p>Voyant Tools et les agents conversationnels envoient le texte sur un serveur : n'y collez ni copies, ni réponses de questionnaire, ni textes protégés. Pour ces données, préférez les outils installés sur les postes (AntConc, Orange, tableur, Jupyter).</p></aside>
+  </article>
+
+  <article class="lecon" id="guide-langues-parcours">
+    <h3>Un programme pour ANG et LGC, une adaptation pour DID</h3>
+    <p>ANG et LGC suivent le même programme : mêmes séances, même atelier de prompts, mêmes TD et TP, même code, mêmes carnets (en anglais pour ANG, en français pour LGC), mêmes sujets de mini-projet. Aucun des deux ne saute une partie du code. DID suit la même progression, avec la possibilité de s'en tenir à la lecture et à l'exécution. Les cinq sujets du <a href="index.html#mini-projet">mini-projet</a> restent ceux du programme ; d'un public à l'autre, seules changent les données et la question. Des données fictives se déclarent comme telles dans le rapport.</p>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Les cinq sujets, adaptés aux trois publics (propositions)</caption>
+      <thead><tr><th scope="col">Sujet</th><th scope="col">ANG · études anglaises</th><th scope="col">LGC · littérature comparée</th><th scope="col">DID · didactique</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><a href="index.html#mp-sujet-1">1 · Sentiments</a></th><td>VADER sur des critiques de romans ou des messages publics, comparé au jugement de l'étudiant sur 30 exemples</td><td>Le ton d'un roman chapitre par chapitre ; un texte comparé à sa traduction anglaise</td><td>Commentaires anonymes d'apprenants sur un cours ; ton des annotations d'enseignants sur des copies</td></tr>
+        <tr><th scope="row"><a href="index.html#mp-sujet-2">2 · Clustering</a></th><td>Questionnaire d'apprenants d'anglais : lecture, motivation, anxiété à l'oral, usage de l'IA</td><td>Poèmes ou romans décrits par quelques traits (longueur des phrases, part du dialogue), comme dans l'<a href="#guide-activite-kmoyennes">activité des fiches</a></td><td>Profils d'apprenants tirés d'un questionnaire consenti ; items inspirés d'échelles publiées, comme l'anxiété en langue étrangère (Horwitz, Horwitz et Cope, 1986)</td></tr>
+        <tr><th scope="row"><a href="index.html#mp-sujet-3">3 · Discours</a></th><td>Discours d'investiture des présidents américains, <span lang="en">Gettysburg Address</span>, <a href="#guide-ressources-donnees">UN General Debate Corpus</a> : mots-clés, entités nommées, concordances</td><td>Discours d'écrivains du domaine public : Hugo à l'Assemblée, Jaurès et son « Discours à la jeunesse » (1903)</td><td>Discours institutionnel et discours de classe : consignes de manuels, programmes officiels, transcriptions anonymisées</td></tr>
+        <tr><th scope="row"><a href="index.html#mp-sujet-4">4 · Prédiction</a></th><td>Consommation de médias en anglais (séries, podcasts, lecture) et résultat à un test de niveau, données fictives</td><td>Habitudes de lecture et d'achat de livres, pour prédire le genre préféré, données fictives</td><td>Usage des ressources d'un cours (vidéos, exercices) et réussite, données fictives ; éthique de la prédiction scolaire</td></tr>
+        <tr><th scope="row"><a href="index.html#mp-sujet-5">5 · Réseaux</a></th><td>Les personnages d'une pièce de Shakespeare, reliés quand ils partagent une scène</td><td>Les <em>Misérables</em>, fournis avec NetworkX, puis une pièce de Molière ou de Racine relevée à la main</td><td>Qui répond à qui dans un forum de classe ou une relecture entre pairs, noms codés</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="grille-cartes">
+      <article class="carte">
+        <h4>ANG · travailler en anglais</h4>
+        <p>Le programme de LGC, code compris, en anglais : carnets et <a href="en/cours.html">site en anglais</a>, VADER, modèle anglais de spaCy. Les réponses écrites se font en anglais : chaque carnet devient une pratique de la langue et de son vocabulaire technique.</p>
+        <p>Pour les linguistes : AntConc et des corpus d'apprenants, de préférence les productions de vos étudiants, anonymisées et avec leur accord ; l'accès aux corpus publiés peut exiger une licence.</p>
+      </article>
+      <article class="carte">
+        <h4>LGC · les corpus littéraires</h4>
+        <p>Le programme d'ANG, code compris, en français : carnets en français, textes du domaine public (<a href="#guide-ressources-donnees">Gallica, Wikisource, Gutenberg</a>). L'angle comparatiste s'y prête : même analyse sur un texte et sa traduction, deux auteurs, deux époques.</p>
+        <p>La question à reposer sans cesse : que voit le calcul que la lecture rapprochée ne voit pas, et inversement ?</p>
+      </article>
+      <article class="carte">
+        <h4>DID · la classe de langue</h4>
+        <p>Carnets dans la langue que les étudiants enseigneront, français ou anglais. Le carnet 09 leur est destiné : lisibilité, profil lexical, texte à trous, réponse d'apprenant comparée à la réponse attendue.</p>
+        <p>Un thème propre : les tuteurs IA en classe de langue. Faites tester un agent conversationnel comme correcteur ou partenaire de conversation, puis relever ses réussites, ses erreurs, les règles qu'il invente et le sort des données des apprenants (<a href="#guide-ia-devoirs">travaux qui gardent leur sens</a>).</p>
+      </article>
+    </div>
+  </article>
+
+  <article class="lecon" id="guide-langues-carnets">
+    <h3>Les carnets prêts à exécuter</h3>
+    <p>Dix carnets Jupyter complets, en français et en anglais : même code, textes et données dans la langue du carnet. Chacun suit PRIMM : une question de prédiction avant chaque cellule, le résultat attendu après, des champs « À MODIFIER » (« TO CHANGE »), puis « À vous », « Pour le mini-projet », « À rendre », « Ce qu'il faut retenir » et le lien vers la leçon. Les données sont incluses ; seules les cellules marquées « en ligne » (spaCy, Transformers) demandent une connexion, et aucune autre n'en dépend.</p>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Les dix carnets et leurs liens</caption>
+      <thead><tr><th scope="col">Titre</th><th scope="col">Partie du cours</th><th scope="col">Ce que font les étudiants</th><th scope="col">Ouvrir ou télécharger</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Prendre en main un carnet : Python sans peur<br><code>00-prise-en-main</code></th><td><a href="index.html#chapitre-2">Chapitre 2</a></td><td>Exécuter une cellule, changer une valeur, observer ; les bases du chapitre 2 sur des exemples de lettres</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/00-prise-en-main.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/00-prise-en-main.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="{{BASE}}notebooks/fr/00-prise-en-main.ipynb" download>Télécharger</a></td></tr>
+        <tr><th scope="row">Analyse de sentiments : des avis de lecteurs<br><code>01-sentiments</code></th><td><a href="index.html#mp-sujet-1">Sujet 1</a></td><td>Scorer des phrases : listes de mots transparentes en français, VADER en anglais ; cellule facultative en ligne avec un modèle multilingue</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/01-sentiments.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/01-sentiments.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="{{BASE}}notebooks/fr/01-sentiments.ipynb" download>Télécharger</a></td></tr>
+        <tr><th scope="row">Des profils d'apprenants : clustering d'un questionnaire<br><code>02-questionnaire</code></th><td><a href="index.html#mp-sujet-2">Sujet 2</a></td><td>Lancer les k-moyennes sur des réponses (motivation, lecture, anxiété, usage de l'IA), changer k, nommer les profils</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/02-questionnaire.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/02-questionnaire.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="{{BASE}}notebooks/fr/02-questionnaire.ipynb" download>Télécharger</a></td></tr>
+        <tr><th scope="row">Ce que disent les discours<br><code>03-discours</code></th><td><a href="index.html#mp-sujet-3">Sujet 3</a></td><td>Fréquences, mots-clés (TF-IDF), concordances ; entités nommées avec spaCy, en ligne</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/03-discours.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/03-discours.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="{{BASE}}notebooks/fr/03-discours.ipynb" download>Télécharger</a></td></tr>
+        <tr><th scope="row">Prédire la réussite à un examen<br><code>04-prediction</code></th><td><a href="index.html#mp-sujet-4">Sujet 4</a></td><td>Arbre de décision et régression logistique, jeux d'entraînement et de test, exactitude, matrice de confusion, question éthique</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/04-prediction.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/04-prediction.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="{{BASE}}notebooks/fr/04-prediction.ipynb" download>Télécharger</a></td></tr>
+        <tr><th scope="row">Le réseau des personnages des <em>Misérables</em><br><code>05-reseaux</code></th><td><a href="index.html#mp-sujet-5">Sujet 5</a></td><td>Le réseau des <em>Misérables</em> : degré, intermédiarité, dessin, communautés</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/05-reseaux.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/05-reseaux.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="{{BASE}}notebooks/fr/05-reseaux.ipynb" download>Télécharger</a></td></tr>
+        <tr><th scope="row">Système expert et chaînage avant<br><code>06-systeme-expert</code></th><td><a href="index.html#c3-symbolique">Chapitre 3</a></td><td>Les règles des formes poétiques et l'exercice 1 du TD 3, déroulés par le programme</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/06-systeme-expert.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/06-systeme-expert.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="{{BASE}}notebooks/fr/06-systeme-expert.ipynb" download>Télécharger</a></td></tr>
+        <tr><th scope="row">Apprendre à partir des données<br><code>07-apprentissage</code></th><td><a href="index.html#c3-algorithmes">Chapitre 3</a></td><td>Refaire par le programme les calculs du TD, puis comparer avec scikit-learn</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/07-apprentissage.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/07-apprentissage.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="{{BASE}}notebooks/fr/07-apprentissage.ipynb" download>Télécharger</a></td></tr>
+        <tr><th scope="row">Prédire le mot suivant : des bigrammes aux Transformers<br><code>08-ia-generative</code></th><td><a href="index.html#c3-deep">Chapitre 3</a></td><td>Un modèle de bigrammes construit sur un petit corpus, puis Transformers en ligne (mot masqué, génération)</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/08-ia-generative.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/08-ia-generative.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="{{BASE}}notebooks/fr/08-ia-generative.ipynb" download>Télécharger</a></td></tr>
+        <tr><th scope="row">La classe de langue : lisibilité, vocabulaire, textes à trous<br><code>09-classe-de-langue</code></th><td>ANG, LGC et DID</td><td>Lisibilité (Flesch pour l'anglais, Kandel et Moles pour le français), profil lexical, texte à trous automatique, réponse d'apprenant comparée à la réponse attendue</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/09-classe-de-langue.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/09-classe-de-langue.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="{{BASE}}notebooks/fr/09-classe-de-langue.ipynb" download>Télécharger</a></td></tr>
+      </tbody>
+    </table></div>
+    <p>Version anglaise à télécharger : même adresse, <code>en</code> au lieu de <code>fr</code>. Ordre indicatif, selon la <a href="#guide-progression">progression</a> : 00 au chapitre 2 ; 06 en semaine 4 ; 07 en semaines 5 et 6 ; 08 en semaine 8 ; 01 à 05 pendant le mini-projet ; 09 après 00, pour tous les groupes.</p>
+
+    <h4>Exécuter un carnet dans Colab, pour la première fois</h4>
+    <ol class="etapes">
+      <li><p class="etape-titre">Un compte Google</p><p>Chaque étudiant utilise le sien. Faites-le créer avant la séance : en salle, cela prend du temps et demande souvent un téléphone.</p></li>
+      <li><p class="etape-titre">Ouvrir le lien</p><p>« Colab (FR) » ou « Colab (EN) » ouvre le carnet dans le navigateur. À la première exécution, Colab avertit que le carnet ne vient pas de Google : « Exécuter quand même ».</p></li>
+      <li><p class="etape-titre">Exécuter</p><p>Cellule par cellule, avec le bouton ▶ ou <kbd>Maj</kbd> + <kbd>Entrée</kbd>, après avoir lu la question de prédiction. Pour tout relancer : « Exécution › Tout exécuter ».</p></li>
+      <li><p class="etape-titre">Modifier seulement les champs « À MODIFIER »</p><p>Des cases, curseurs ou listes à droite de la cellule. Après un changement, réexécutez cette cellule et les suivantes. Le reste du code ne se touche pas.</p></li>
+      <li><p class="etape-titre">Enregistrer une copie</p><p>« Fichier › Enregistrer une copie dans Drive », rangée dans le dossier « Colab Notebooks ». Sans elle, tout est perdu à la fermeture.</p></li>
+      <li><p class="etape-titre">Rendre le travail</p><p>« Fichier › Télécharger › Télécharger le fichier .ipynb », ou « Fichier › Imprimer » puis « Enregistrer au format PDF ». Le fichier garde les sorties et les réponses écrites.</p></li>
+    </ol>
+
+    <h4>Sans Internet : Jupyter sur les postes</h4>
+    <p>Si Python est installé au Labo 02, <code>run.bat notebook</code> installe au besoin les bibliothèques du cours et ouvre Jupyter dans le dossier du projet (<a href="#guide-demarrer-etapes">étape 2 du démarrage</a>). Les carnets sont dans <code>docs › notebooks › fr</code> (ou <code>en</code>). Les champs « À MODIFIER » y sont de simples lignes suivies du commentaire <code>#@param</code> : on change seulement la valeur. Passez les cellules « en ligne ».</p>
+
+    <aside class="encadre encadre--attention"><p class="encadre-titre">Si le dépôt GitHub est privé</p><p>Les liens Colab lisent les carnets sur GitHub ; pour un dépôt privé, Colab demande une autorisation GitHub que les étudiants n'ont pas. Distribuez alors le fichier téléchargé (espace de la classe, clé USB) et faites-le ouvrir par « Fichier › Importer un notebook ».</p></aside>
+    <aside class="encadre encadre--attention"><p class="encadre-titre">Postes partagés</p><p>Au Labo 02, les groupes se succèdent sans pause. Gardez cinq minutes pour enregistrer et se déconnecter du compte Google, sinon l'étudiant suivant trouve le Drive du précédent ouvert.</p></aside>
+  </article>
+
+  <article class="lecon" id="guide-langues-seance">
+    <h3>Une séance type en salle machine</h3>
+    <p>Chaque groupe a 1 h 30 par semaine au Labo 02 : la séance réunit cours, TD et TP. La leçon du site se lit avant, comme le prévoit la <a href="index.html#me-semaine">semaine type</a> des étudiants.</p>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Votre semaine au Labo 02</caption>
+      <thead><tr><th scope="col">Jour</th><th scope="col">Horaire</th><th scope="col">Groupe</th><th scope="col">Carnets</th></tr></thead>
+      <tbody>
+        <tr><td>Mardi</td><td>09:30–11:00</td><td>IA M02 ANG, groupe 1</td><td>Anglais</td></tr>
+        <tr><td>Mardi</td><td>11:00–12:30</td><td>IA M02 ANG, groupe 2</td><td>Anglais</td></tr>
+        <tr><td>Mardi</td><td>12:30–14:00</td><td>IA M02 LGC</td><td>Français</td></tr>
+        <tr><td>Jeudi</td><td>08:00–09:30</td><td>IA M02 DID, groupe 1</td><td>Langue enseignée</td></tr>
+        <tr><td>Jeudi</td><td>09:30–11:00</td><td>IA M02 DID, groupe 2</td><td>Langue enseignée</td></tr>
+        <tr><td>Jeudi</td><td>12:30–14:00</td><td>IA M02 DID, groupe 3</td><td>Langue enseignée</td></tr>
+      </tbody>
+    </table></div>
+
+    <h4>Le déroulé de 1 h 30</h4>
+    <ol class="etapes">
+      <li><p class="etape-titre">Question d'ouverture · 5 min</p><p>Une question de leur discipline : « Une machine peut-elle dire si une critique de roman est positive ? »</p><p><strong>Vous :</strong> notez les réponses au tableau, sans corriger ; vous y reviendrez.</p></li>
+      <li><p class="etape-titre">Prédire sur papier · 15 min</p><p>Une fiche imprimée : la cellule principale du carnet et trois questions (que va-t-elle afficher ? quel mot comptera le plus ? et si l'on change ce nombre ?). En binôme, par écrit, écran éteint.</p><p><strong>Vous :</strong> lisez le code à voix haute en disant ce que fait chaque ligne ; ramassez quelques prédictions.</p></li>
+      <li><p class="etape-titre">Exécuter · 15 min</p><p>Le carnet est exécuté de haut en bas ; à chaque cellule, on compare sortie et prédiction.</p><p><strong>Vous :</strong> circulez sans prendre le clavier. À « ça ne marche pas », répondez d'abord : « Lisez la dernière ligne du message. » Projetez votre carnet pour qui a perdu le fil.</p></li>
+      <li><p class="etape-titre">Modifier, puis écrire · 20 min</p><p>Une valeur à la fois : la phrase, le nombre de groupes, le texte. Nouvelle prédiction, puis exécution. En ANG et en LGC, chacun réécrit ensuite la cellule principale sans la regarder, ou complète deux lignes effacées ; en DID, on continue à modifier.</p><p><strong>Vous :</strong> imposez la prédiction avant chaque essai ; repérez deux résultats surprenants à montrer à tous.</p></li>
+      <li><p class="etape-titre">Interpréter · 15 min</p><p>En binôme, puis ensemble : que signifie ce résultat pour un angliciste, un comparatiste, un futur enseignant ? Que ne voit pas la méthode ?</p><p><strong>Vous :</strong> revenez aux réponses du début, reliez à la leçon, exigez un exemple tiré de la sortie pour chaque affirmation.</p></li>
+      <li><p class="etape-titre">Écrire, enregistrer, se déconnecter · 20 min</p><p>Dans la dernière cellule de texte, 100 à 150 mots : ce que j'ai prédit, obtenu, ce que j'en conclus pour ma discipline, une limite. En anglais pour les groupes ANG. Puis copie dans Drive, remise, déconnexion.</p><p><strong>Vous :</strong> lisez deux ou trois paragraphes par-dessus l'épaule ; notez la séance dans « Mes groupes ».</p></li>
+    </ol>
+
+    <h4>Six groupes, une seule préparation</h4>
+    <ul>
+      <li><strong>Préparez une fois par semaine</strong> : même carnet, même fiche de prédiction, même code pour les six groupes. ANG et LGC font exactement la même séance ; seules la langue de travail et les données changent.</li>
+      <li><strong>Faites varier les exemples</strong> : une demi-page de valeurs pour les champs « À MODIFIER », en trois colonnes (ANG, LGC, DID), par exemple une critique de roman en anglais, un vers de Baudelaire, une consigne de manuel.</li>
+      <li><strong>Le mardi sert de répétition</strong> : quatre heures et demie d'affilée révèlent ce qui accroche ; arrivez avec les fiches triées par groupe. Le jeudi, le creux de 11:00 à 12:30 sert à remplir le cahier de textes et à corriger la fiche avant le dernier groupe.</li>
+      <li><strong>Prévoyez une panne</strong> : sans réseau, projetez votre carnet ou des captures et gardez la prédiction sur papier (<a href="#guide-demarrer-materiel">solutions sans ordinateur</a>).</li>
+    </ul>
+
+    <h4>Suivre les six groupes avec « Mes groupes »</h4>
+    <p>La page <a href="classe.html">Mes groupes</a> garde tout sur votre ordinateur : dans un fichier si elle est ouverte par <code>run.bat</code>, sinon dans le navigateur (téléchargez alors une copie de temps en temps).</p>
+    <ol class="etapes">
+      <li><p class="etape-titre">Créer les six groupes</p><p>« Ajouter un groupe » : nom (IA M02 ANG 1, ANG 2, LGC, DID 1 à 3), horaire, salle, sujet du mini-projet, une couleur par public.</p></li>
+      <li><p class="etape-titre">Importer les listes</p><p>« Coller une liste » : collez la colonne des noms copiée depuis la liste administrative.</p></li>
+      <li><p class="etape-titre">Préparer l'année</p><p>Onglet « Présences », « Préparer l'année » : une séance par semaine pour chaque groupe, à son jour et à son horaire, sur dix mois, sans les vacances ni les jours fériés. Si un créneau change, « Changer l'horaire » déplace les séances prévues à partir d'une date.</p></li>
+      <li><p class="etape-titre">À chaque séance</p><p>Le bandeau du jour ouvre l'appel : tout le monde est présent par défaut, on touche les absents et les retards. Puis « Ce qui a été fait », « Travail personnel donné », une observation si besoin. Le registre compte les absences et signale les étudiants en alerte ; en fin de semestre : les notes, et l'export CSV vers Excel.</p></li>
+    </ol>
+  </article>
+
+  <article class="lecon" id="guide-langues-evaluation">
+    <h3>Évaluer le code et l'interprétation</h3>
+    <p>Cette grille note un carnet rendu (paragraphe de séance ou partie « À rendre »). Distribuez-la dès le premier carnet : les étudiants voient qu'une prédiction fausse mais raisonnée rapporte des points. Elle vaut pour les six groupes ; pour ANG et LGC, le critère « Exécution et code » porte aussi sur le code écrit par l'étudiant. Points indicatifs ; le poids de ces travaux dans la note relève des textes en vigueur.</p>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Grille d'évaluation d'un carnet (points indicatifs sur 20)</caption>
+      <thead><tr><th scope="col">Critère</th><th scope="col">Ce que l'on attend</th><th scope="col">Points</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Prédiction</th><td>Écrites avant l'exécution, justifiées ; l'écart avec la sortie est expliqué. Fausse mais bien raisonnée, elle vaut les points.</td><td>4</td></tr>
+        <tr><th scope="row">Exécution et code</th><td>Le carnet s'exécute de haut en bas ; les champs demandés sont modifiés ; les sorties sont présentes. ANG et LGC : les cellules écrites ou complétées par l'étudiant fonctionnent, et il en explique chaque ligne.</td><td>4</td></tr>
+        <tr><th scope="row">Interprétation</th><td>Le résultat est relié à la question de la discipline (texte, apprenant, classe), avec des exemples tirés de la sortie.</td><td>5</td></tr>
+        <tr><th scope="row">Distance critique</th><td>Une limite de la méthode ou des données (ironie, négation, petit échantillon) ; l'éthique si elle se pose (consentement, anonymat).</td><td>4</td></tr>
+        <tr><th scope="row">Expression écrite</th><td>Clarté, termes justes du <a href="index.html#glossaire">glossaire</a> ; pour les groupes ANG, la langue anglaise est jugée ici, et seulement ici.</td><td>3</td></tr>
+      </tbody>
+    </table></div>
+
+    <h4>Trois questions d'examen sur un code imprimé</h4>
+    <p>Chaque question donne un programme court et sa sortie réelle (Python 3.11, scikit-learn 1.9) : lire, retrouver une ligne effacée, expliquer, interpréter. Barème indicatif : 6 + 7 + 7. Pour ANG et LGC, remplacez une sous-question d'explication par l'écriture ou la correction de trois lignes de code, comme dans les exercices du TD 2. Pour les groupes ANG, traduisez énoncés et exemples, puis réexécutez le code : les sorties changent avec le texte.</p>
+
+    <div class="exercice" id="guide-langues-q1">
+      <p class="exercice-num">Question 1 · Compter les mots (6 points)</p>
+      <div class="exercice-enonce">
+        <figure class="code">
+          <figcaption class="code-legende">compter.py</figcaption>
+          <pre><code class="language-python">from collections import Counter
+
+# Compter les mots d'une phrase
+texte = "The sea is calm, the sky is grey, and the sea is silent."
+mots = texte.lower().replace(",", "").replace(".", "").split()
+print(len(mots))
+print(mots[:4])
+compte = Counter(mots)
+print(len(compte))
+print(compte.most_common(3))</code></pre>
+          <pre class="sortie"><samp>13
+['the', 'sea', 'is', 'calm']
+8
+(dernière ligne effacée)</samp></pre>
+        </figure>
+        <ol>
+          <li>Que fait la ligne qui commence par <code>mots =</code> ? Décrivez ses trois opérations en une phrase chacune. (1,5 point)</li>
+          <li>Pourquoi le programme affiche-t-il 13, puis 8 ? Nommez les deux notions. (1,5 point)</li>
+          <li>Écrivez la dernière ligne effacée. (1,5 point)</li>
+          <li>Sans <code>.lower()</code>, la troisième ligne affiche 9 : pourquoi ? Un étudiant conclut que « the » est le mot le plus important du texte : que lui répondez-vous ? (1,5 point)</li>
+        </ol>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé et le barème</summary>
+        <div class="corrige-corps">
+          <p><strong>1.</strong> <code>lower()</code> met en minuscules ; les deux <code>replace</code> suppriment virgules et points ; <code>split()</code> découpe aux espaces et produit une liste de mots. 0,5 par opération.</p>
+          <p><strong>2.</strong> 13 occurrences (répétitions comprises), 8 formes distinctes : <em>the, sea, is, calm, sky, grey, and, silent</em> ; en linguistique de corpus, <span class="terme-en" lang="en">tokens</span> et <span class="terme-en" lang="en">types</span>. Valorisez le rapport 8 / 13, environ 0,62, que calcule le carnet 09.</p>
+          <p><strong>3.</strong> <code>[('the', 3), ('is', 3), ('sea', 2)]</code>. 1 point pour les trois mots et leurs nombres, 0,5 pour la forme. À égalité, <code>Counter</code> garde l'ordre d'apparition : acceptez <code>('is', 3)</code> avant <code>('the', 3)</code>.</p>
+          <p><strong>4.</strong> Sans minuscules, « The » et « the » sont deux chaînes, donc deux formes : 9 (0,5) ; la dernière ligne devient <code>[('is', 3), ('sea', 2), ('the', 2)]</code>. « The » est un mot grammatical, le plus fréquent de presque tout texte anglais : fréquence n'est pas importance. On retire les mots vides, on compare à un corpus de référence (TF-IDF), on revient au texte (1).</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="guide-langues-q2">
+      <p class="exercice-num">Question 2 · Un score de sentiment (7 points)</p>
+      <div class="exercice-enonce">
+        <figure class="code">
+          <figcaption class="code-legende">sentiment_listes.py</figcaption>
+          <pre><code class="language-python"># Un score de sentiment par listes de mots
+positifs = ["beau", "magnifique", "émouvant", "réussi"]
+negatifs = ["ennuyeux", "décevant", "raté", "long"]
+
+def score(phrase):
+    mots = phrase.lower().replace(",", " ").replace(".", " ").split()
+    total = 0
+    for mot in mots:
+        if mot in positifs:
+            total = total + 1
+        if mot in negatifs:
+            total = total - 1
+    return total
+
+avis = ["Un roman magnifique et émouvant.",
+        "Ce n'est pas un livre ennuyeux.",
+        "Magnifique, vraiment : trois cents pages pour ne rien dire.",
+        "Le début est long, mais la fin est réussie."]
+for a in avis:
+    print(score(a), a)</code></pre>
+          <pre class="sortie"><samp>2 Un roman magnifique et émouvant.
+-1 Ce n'est pas un livre ennuyeux.
+1 Magnifique, vraiment : trois cents pages pour ne rien dire.
+-1 Le début est long, mais la fin est réussie.</samp></pre>
+        </figure>
+        <ol>
+          <li>Expliquez en deux phrases ce que fait la fonction <code>score</code>. (1 point)</li>
+          <li>La deuxième phrase obtient −1. Pourquoi ? Est-ce l'avis du lecteur ? (1,5 point)</li>
+          <li>Dans la quatrième, « long » est compté, « réussie » ne l'est pas. Pourquoi ? Que faudrait-il changer, sans écrire de code ? (1,5 point)</li>
+          <li>Quelle connaissance manque au programme pour la troisième phrase ? (1 point)</li>
+          <li>Pour analyser 300 avis de lecteurs ou commentaires d'apprenants, utiliseriez-vous ce programme ? Que feriez-vous avant de vous fier aux scores ? (2 points)</li>
+        </ol>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé et le barème</summary>
+        <div class="corrige-corps">
+          <p><strong>1.</strong> Elle découpe la phrase en mots (minuscules, sans ponctuation), ajoute 1 pour chaque mot positif, retire 1 pour chaque mot négatif, et renvoie le total.</p>
+          <p><strong>2.</strong> Seul « ennuyeux » est reconnu ; la négation « n'est pas » est ignorée, chaque mot étant jugé seul (1). L'avis est plutôt favorable (0,5). Le lecteur de l'accueil du site, inspiré de VADER, traite la négation.</p>
+          <p><strong>3.</strong> Le programme compare des chaînes exactes : « réussie » n'est pas « réussi » (0,5). Il faudrait ajouter les formes fléchies, ou ramener chaque mot à son lemme avec spaCy (0,5). Et « long » n'est pas toujours négatif (« un long poème ») : la liste ignore le contexte (0,5).</p>
+          <p><strong>4.</strong> L'ironie : « Magnifique, vraiment » suivi d'un reproche. Il faudrait saisir le ton et l'intention ; le programme ne voit qu'un mot positif.</p>
+          <p><strong>5.</strong> Pas tel quel. Annoter à la main un échantillon (50 avis, par exemple), le comparer aux scores, classer les erreurs (négation, ironie, flexion, mots absents), enrichir les listes ou changer de méthode, et présenter le résultat avec cette marge d'erreur. Pour des commentaires d'apprenants : anonymat et accord. 1 point pour la vérification sur échantillon, 1 pour une limite ou une précaution justifiée.</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="guide-langues-q3">
+      <p class="exercice-num">Question 3 · Des profils d'apprenants (7 points)</p>
+      <div class="exercice-enonce">
+        <figure class="code">
+          <figcaption class="code-legende">profils.py</figcaption>
+          <pre><code class="language-python">from sklearn.cluster import KMeans
+
+# Questionnaire fictif : huit apprenants d'anglais
+# colonne 1 : heures de lecture en anglais par semaine
+# colonne 2 : anxiété à l'oral, de 1 (faible) à 5 (forte)
+reponses = [[1, 5], [2, 4], [1, 4], [2, 5],
+            [6, 2], [7, 1], [5, 2], [8, 1]]
+
+modele = KMeans(n_clusters=2, n_init=10, random_state=0)
+groupes = modele.fit_predict(reponses)
+print(groupes)
+print(modele.cluster_centers_)</code></pre>
+          <pre class="sortie"><samp>[1 1 1 1 0 0 0 0]
+[[6.5 1.5]
+ [1.5 4.5]]</samp></pre>
+        </figure>
+        <ol>
+          <li>Apprentissage supervisé ou non supervisé ? Justifiez à partir du code. (1,5 point)</li>
+          <li>Que signifie <code>n_clusters=2</code> ? Qui a choisi cette valeur ? (1 point)</li>
+          <li>Décrivez en mots les deux groupes à partir de la dernière sortie. Les numéros 0 et 1 ont-ils un sens ? (2 points)</li>
+          <li>Une collègue en conclut que lire en anglais fait baisser l'anxiété à l'oral. Qu'en pensez-vous ? (1,5 point)</li>
+          <li>Donnez une précaution éthique pour l'usage d'un tel classement dans une classe réelle. (1 point)</li>
+        </ol>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé et le barème</summary>
+        <div class="corrige-corps">
+          <p><strong>1.</strong> Non supervisé (0,5) : aucune étiquette ni bonne réponse, <code>fit_predict</code> ne reçoit que les réponses et forme lui-même les groupes par les k-moyennes (1).</p>
+          <p><strong>2.</strong> Le nombre de groupes demandé (0,5). C'est l'analyste qui l'a fixé, pas la machine ; la méthode du coude du <a href="index.html#mp-sujet-2">sujet 2</a> aide à le choisir (0,5).</p>
+          <p><strong>3.</strong> Chaque ligne de <code>cluster_centers_</code> est un profil moyen. Groupe 1, les quatre premiers : 1,5 heure de lecture par semaine, anxiété 4,5, soit « lit peu, très anxieux à l'oral ». Groupe 0, les quatre derniers : 6,5 heures, anxiété 1,5, soit « lit beaucoup, peu anxieux » (1,5). Les numéros sont arbitraires et peuvent s'inverser selon la version de scikit-learn ; nommer les groupes revient au chercheur (0,5).</p>
+          <p><strong>4.</strong> Non fondé : données fictives, huit personnes, et le clustering décrit des ressemblances sans établir de cause (0,75). Le lien pourrait aller dans l'autre sens (les moins anxieux lisent davantage) ou venir d'un troisième facteur, comme le niveau en anglais (0,75).</p>
+          <p><strong>5.</strong> Une précaution justifiée suffit : questionnaire anonyme et consenti ; pas d'étiquette « anxieux » dans un dossier ni devant la classe ; aucune décision sur un apprenant à partir de deux variables ; des profils présentés comme hypothèses à discuter.</p>
+        </div></details>
+    </div>
+
+    <aside class="encadre encadre--retenir"><p class="encadre-titre">À retenir</p>
+      <ul>
+        <li>On note la prédiction raisonnée, l'explication et l'interprétation, jamais la syntaxe.</li>
+        <li>Un examen peut montrer du code et sa sortie : lire, compléter une ligne effacée, expliquer, critiquer.</li>
+        <li>Toute sortie imprimée dans un sujet doit avoir été obtenue en exécutant le code.</li>
+      </ul>
+    </aside>
+  </article>
+</section>
