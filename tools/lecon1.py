@@ -6,7 +6,7 @@
   python3 tools/lecon1.py --photos                 (télécharge les photos manquantes, puis reconstruit)
 
 Sources : docs/_sources/lecon1/gabarit.html (le moteur de présentation)
-          docs/_sources/lecon1/{fr,en,ar}.json (les 83 diapositives, une version par langue)
+          docs/_sources/lecon1/{fr,en,ar}.json (les 110 diapositives, une version par langue)
 
 Les trois versions doivent avoir exactement la même structure : mêmes types, même nombre de points,
 mêmes valeurs pour les clés techniques (illustration, photo, vidéo, bonne réponse…).
