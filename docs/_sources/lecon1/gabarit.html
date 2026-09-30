@@ -765,6 +765,151 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
       });
       return svg(s);
     },
+    // Courbes d'adoption : ordinateur, téléphone, Internet en S ; l'IA générative presque verticale.
+    adoption: function (d) {
+      var n = (d && d.courbes) || ["", "", "", ""], s = '<path class="trait i-l fin" d="M30 270 H380 M30 270 V30"/>';
+      [40, 80, 120].forEach(function (x, i) {
+        var y = 100 + i * 40;
+        s += '<path class="trait i-d anim-apparait" style="--d:' + (i * .3) + '" d="M' + x + ' 265 C' + (x + 50) + ' 262 ' + (x + 70) + ' ' + (y + 10) + ' ' + (x + 105) + ' ' + (y + 2) + ' S' + (x + 140) + ' ' + y + ' ' + (x + 150) + ' ' + y + '"/>' +
+          '<text class="f-d anim-apparait" style="--d:' + (i * .3) + '" x="' + (x + 156) + '" y="' + (y + 5) + '" font-size="13" direction="ltr">' + esc(n[i]) + '</text>';
+      });
+      s += fleche(345, 266, 368, 62, "i-c1", "--d:1.2") + '<text class="f-c1 anim-apparait" style="--d:1.4" x="390" y="42" text-anchor="end" font-size="15" direction="ltr">' + esc(n[3]) + '</text>';
+      return svg(s);
+    },
+    // Trois niveaux d'IA : étroite (atteinte), générale (théorique), super (inconnue).
+    niveaux: function (d) {
+      var n = (d && d.niveaux) || ["", "", ""], s = "";
+      [[80, "i-c2", ""], [200, "i-c5", ' stroke-dasharray="8 7"'], [320, "i-d", ' stroke-dasharray="3 7"']].forEach(function (c, i) {
+        s += '<g class="anim-apparait" style="--d:' + (i * .35) + '"><circle class="trait f-s ' + c[1] + '" cx="' + c[0] + '" cy="140" r="' + (26 + i * 14) + '"' + c[2] + '/>';
+        if (i === 0) s += '<circle class="f-c2" cx="80" cy="140" r="8"/>';
+        if (i === 1) for (var k = 0; k < 6; k++) s += '<circle class="f-c5" cx="' + (200 + 26 * Math.cos(k)).toFixed(1) + '" cy="' + (140 + 26 * Math.sin(k)).toFixed(1) + '" r="5"/>';
+        if (i === 2) s += '<text class="f-d" x="320" y="152" text-anchor="middle" font-size="34">?</text>';
+        s += '<text class="f-t" x="' + c[0] + '" y="240" text-anchor="middle" font-size="16">' + esc(n[i]) + '</text></g>';
+      });
+      return svg(s);
+    },
+    // Trois couches : données (carburant), calcul (puces), algorithmes (moteur).
+    couches: function (d) {
+      var n = (d && d.couches) || ["", "", ""], s = "", cl = ["i-c1", "i-c4", "i-c2"];
+      for (var i = 0; i < 3; i++) {
+        var y = 70 + i * 70;
+        s += '<g class="anim-apparait" style="--d:' + ((2 - i) * .35) + '"><path class="trait f-s ' + cl[i] + '" d="M200 ' + (y - 28) + ' L350 ' + y + ' L200 ' + (y + 28) + ' L50 ' + y + ' Z"/>' +
+          '<text class="f-t" x="200" y="' + (y + 6) + '" text-anchor="middle" font-size="16">' + esc(n[i]) + '</text></g>';
+      }
+      return svg(s);
+    },
+    // Le XOR : aucune ligne droite ne sépare les deux couleurs.
+    xor: function () {
+      var s = '<path class="trait i-l fin" d="M60 250 H350 M60 250 V40"/>';
+      [[110, 200, "f-c1"], [300, 90, "f-c1"], [110, 90, "f-c5"], [300, 200, "f-c5"]].forEach(function (p, i) {
+        s += '<circle class="' + p[2] + ' anim-apparait" style="--d:' + (i * .15) + '" cx="' + p[0] + '" cy="' + p[1] + '" r="18"/>';
+      });
+      s += '<path class="trait i-d anim-apparait" style="--d:.8" stroke-dasharray="8 8" d="M70 60 L340 240"/><path class="trait i-d anim-apparait" style="--d:1.1" stroke-dasharray="8 8" d="M205 30 L205 260"/>';
+      s += '<text class="f-c4 anim-clignote" x="205" y="160" text-anchor="middle" font-size="40">✗</text>';
+      return svg(s);
+    },
+    // Des couches empilées ; l'erreur remonte de la sortie vers l'entrée pour corriger les poids.
+    retro: function () {
+      var s = "", xs = [70, 170, 270, 350];
+      xs.forEach(function (x, j) { for (var k = 0; k < (j === 3 ? 1 : 3); k++) s += '<circle class="trait f-s i-t" cx="' + x + '" cy="' + (j === 3 ? 150 : 80 + k * 70) + '" r="16"/>'; });
+      for (var j = 0; j < 3; j++) for (var a = 0; a < 3; a++) for (var b = 0; b < (j === 2 ? 1 : 3); b++)
+        s += '<line class="trait i-l fin" x1="' + (xs[j] + 16) + '" y1="' + (80 + a * 70) + '" x2="' + (xs[j + 1] - 16) + '" y2="' + (j === 2 ? 150 : 80 + b * 70) + '"/>';
+      s += '<circle class="f-c4 anim-pulse" cx="350" cy="150" r="7"/>';
+      s += '<path class="trait i-c4 anim-apparait" style="--d:.6" d="M340 190 C300 280 120 280 80 245" marker-end=""/>' + fleche(110, 262, 78, 248, "i-c4", "--d:1");
+      return svg(s);
+    },
+    // Le jeu des devinettes : trois indices pondérés, une conclusion.
+    devinette: function (d) {
+      var n = (d && d.indices) || ["", "", ""], s = "", ys = [70, 150, 230], w = [9, 6, 4];
+      ys.forEach(function (y, i) {
+        s += '<g class="anim-apparait" style="--d:' + (i * .3) + '"><rect class="trait f-s i-c' + (i + 1) + '" x="14" y="' + (y - 24) + '" width="150" height="48" rx="12"/>' +
+          '<text class="f-t" x="89" y="' + (y + 6) + '" text-anchor="middle" font-size="15">' + esc(n[i]) + '</text></g>' +
+          '<path class="trait i-c' + (i + 1) + ' anim-apparait" style="--d:' + (.9 + i * .2) + '" stroke-width="' + w[i] + '" d="M168 ' + y + ' C230 ' + y + ' 230 150 280 150"/>';
+      });
+      s += '<g class="anim-apparait" style="--d:1.6"><rect class="trait f-f i-c1" x="282" y="118" width="110" height="64" rx="14"/><text class="f-c1" x="337" y="146" text-anchor="middle" font-size="15">' + esc((d && d.resultat) || "") + '</text>' +
+        '<text class="f-t" x="337" y="170" text-anchor="middle" font-size="18" direction="ltr">≈ 77 %</text></g>';
+      return svg(s);
+    },
+    // Anatomie d'une décision : entrées × poids, somme + biais, activation, sortie.
+    decision: function (d) {
+      var n = (d && d.etapes) || ["", "", ""], s = "";
+      [70, 130, 190].forEach(function (y, i) {
+        s += '<circle class="trait f-s i-t" cx="40" cy="' + y + '" r="14"/><path class="trait i-c' + (i + 2) + '" stroke-width="' + (6 - i * 2) + '" d="M54 ' + y + ' L150 130"/>';
+      });
+      s += '<circle class="trait f-s i-c1 anim-pulse" cx="175" cy="130" r="28"/><text class="f-t" x="175" y="140" text-anchor="middle" font-size="26">Σ</text>' +
+        '<text class="f-c4" x="175" y="84" text-anchor="middle" font-size="18" direction="ltr">+ b</text><path class="trait i-c4" d="M175 90 V100"/>';
+      s += '<path class="trait i-t" d="M203 130 H240"/><rect class="trait f-s i-c5" x="240" y="100" width="70" height="60" rx="10"/><path class="trait i-c5" d="M252 148 C270 148 272 112 298 112"/>';
+      s += fleche(312, 130, 350, 130, "i-t", "") + '<text class="f-t" x="378" y="136" text-anchor="middle" font-size="16" direction="ltr">77 %</text>';
+      [[60, 250], [175, 250], [275, 250]].forEach(function (p, i) { s += '<text class="f-d" x="' + p[0] + '" y="' + p[1] + '" text-anchor="middle" font-size="13">' + esc(n[i]) + '</text>'; });
+      return svg(s);
+    },
+    // Trois façons d'apprendre : le maître corrige, la machine regroupe seule, l'essai et la récompense.
+    apprendre: function (d) {
+      var n = (d && d.types) || ["", "", ""], s = "";
+      // supervisé : ✓ et ✗
+      s += '<g class="anim-apparait"><rect class="trait f-s i-c2" x="14" y="60" width="116" height="120" rx="14"/><text class="f-j" x="50" y="130" text-anchor="middle" font-size="40">✓</text><text class="f-c4" x="95" y="130" text-anchor="middle" font-size="40">✗</text></g>';
+      // non supervisé : deux groupes
+      s += '<g class="anim-apparait" style="--d:.3"><rect class="trait f-s i-c3" x="142" y="60" width="116" height="120" rx="14"/>';
+      [[165, 90], [180, 110], [160, 125], [230, 140], [215, 155], [235, 120]].forEach(function (p, i) { s += (i < 3 ? '<circle class="f-c1"' : '<rect class="f-c5"') + (i < 3 ? ' cx="' + p[0] + '" cy="' + p[1] + '" r="8"/>' : ' x="' + (p[0] - 8) + '" y="' + (p[1] - 8) + '" width="16" height="16" rx="3"/>'); });
+      s += '</g>';
+      // renforcement : labyrinthe et étoile
+      s += '<g class="anim-apparait" style="--d:.6"><rect class="trait f-s i-c1" x="270" y="60" width="116" height="120" rx="14"/><path class="trait i-d fin" d="M285 80 H370 V110 H300 V140 H370 V165"/><text class="f-c1" x="370" y="104" text-anchor="middle" font-size="22">★</text></g>';
+      [72, 200, 328].forEach(function (x, i) { s += '<text class="f-t" x="' + x + '" y="215" text-anchor="middle" font-size="15">' + esc(n[i]) + '</text>'; });
+      return svg(s);
+    },
+    // La nuit de Tempe : la voiture « voit » quelqu'un, mais ne sait pas le classer.
+    uber: function () {
+      var s = '<path class="trait i-l fin" d="M120 20 V280 M280 20 V280"/><path class="trait i-d fin" stroke-dasharray="14 12" d="M200 20 V280"/>';
+      s += '<g opacity=".2"><path class="f-c1 anim-pulse" d="M200 210 L140 90 L260 90 Z"/></g>';
+      s += '<rect class="trait f-s i-t" x="178" y="200" width="44" height="72" rx="12"/><rect class="trait i-t fin" x="186" y="212" width="28" height="18" rx="4"/>';
+      s += '<circle class="trait i-c5" cx="222" cy="112" r="14"/><circle class="trait i-c5" cx="262" cy="112" r="14"/><path class="trait i-c5" d="M222 112 L240 90 L262 112 M240 90 L246 80"/>';
+      s += '<circle class="trait f-s i-t" cx="236" cy="52" r="8"/><path class="trait i-t" d="M236 60 V84 L228 102 M236 84 L244 102 M236 70 L250 78"/>';
+      s += '<text class="f-c4 anim-clignote" x="300" y="70" font-size="36">?</text>';
+      return svg(s);
+    },
+    // Sous-apprentissage, juste équilibre, surapprentissage.
+    ajustement: function (d) {
+      var n = (d && d.cas) || ["", "", ""], s = "", pts = [[0, 80], [12, 60], [24, 40], [36, 38], [48, 55], [60, 70], [72, 60], [84, 35], [96, 20]];
+      [14, 142, 270].forEach(function (x0, i) {
+        s += '<g class="anim-apparait" style="--d:' + (i * .3) + '"><rect class="trait f-s i-l" x="' + x0 + '" y="60" width="116" height="120" rx="12"/>';
+        pts.forEach(function (p) { s += '<circle class="f-d" cx="' + (x0 + 10 + p[0]) + '" cy="' + (70 + p[1]) + '" r="4"/>'; });
+        if (i === 0) s += '<path class="trait i-c2" d="M' + (x0 + 8) + ' 150 L' + (x0 + 110) + ' 105"/>';
+        if (i === 1) s += '<path class="trait i-c1" d="M' + (x0 + 8) + ' 150 C' + (x0 + 34) + ' 90 ' + (x0 + 52) + ' 100 ' + (x0 + 64) + ' 130 S' + (x0 + 96) + ' 100 ' + (x0 + 110) + ' 88"/>';
+        if (i === 2) s += '<path class="trait i-c4" d="' + pts.map(function (p, k) { return (k ? "L" : "M") + (x0 + 10 + p[0]) + " " + (70 + p[1] + (k % 2 ? -8 : 8)); }).join(" ") + '"/>';
+        s += '<text class="f-t" x="' + (x0 + 58) + '" y="210" text-anchor="middle" font-size="14">' + esc(n[i]) + '</text></g>';
+      });
+      return svg(s);
+    },
+    // Deux échelles : celle d'hier, et celle dont l'IA casse les premiers barreaux.
+    echelle: function () {
+      function echelle(x, casse) {
+        var s = '<path class="trait i-t" d="M' + x + ' 40 L' + (x + 10) + ' 270 M' + (x + 70) + ' 40 L' + (x + 80) + ' 270"/>';
+        for (var k = 0; k < 7; k++) {
+          var y = 60 + k * 32, cl = casse && k > 4 ? "i-c4 anim-clignote" : "i-t";
+          s += '<path class="trait ' + cl + '"' + (casse && k > 4 ? ' stroke-dasharray="10 8"' : "") + ' d="M' + (x + 1 + k * 1.3) + ' ' + y + ' H' + (x + 71 + k * 1.3) + '"/>';
+        }
+        return s;
+      }
+      return svg('<g class="anim-apparait">' + echelle(70) + '</g><g class="anim-apparait" style="--d:.5">' + echelle(250, true) + '</g>');
+    },
+    // La balance : qui donne l'autorité à la machine, qui en répond ?
+    balance: function () {
+      var s = '<path class="trait i-t" d="M200 50 V250 M140 250 H260"/><path class="trait i-t anim-balance" d="M80 90 L320 70"/>';
+      s += '<path class="trait i-c2" d="M80 90 L55 150 H105 Z"/><path class="trait i-c1" d="M320 70 L295 130 H345 Z"/>';
+      s += '<circle class="trait f-s i-c2" cx="80" cy="140" r="12"/><rect class="trait f-s i-c1" x="308" y="112" width="24" height="18" rx="3"/>';
+      s += '<circle class="f-c1 anim-pulse" cx="200" cy="50" r="8"/>';
+      return svg(s);
+    },
+    // Les saisons de l'IA : les attentes montent et retombent, la puissance de calcul monte toujours.
+    saisons: function (d) {
+      var n = (d && d.courbes) || ["", ""];
+      var s = '<path class="trait i-l fin" d="M20 270 H385 M20 270 V30"/>';
+      s += '<path class="trait i-c2 anim-apparait" d="M20 210 C40 120 60 70 85 70 S120 200 150 205 S185 80 210 80 S250 215 275 200 S340 60 380 45"/>';
+      s += '<path class="trait i-c1 anim-apparait" style="--d:.6" d="M20 262 C140 258 250 230 380 70"/>';
+      s += '<path class="trait i-c2" d="M30 287 H52"/><text class="f-c2" x="58" y="292" font-size="14" direction="ltr">' + esc(n[0]) + '</text>' +
+        '<path class="trait i-c1" d="M200 287 H222"/><text class="f-c1" x="228" y="292" font-size="14" direction="ltr">' + esc(n[1]) + '</text>';
+      return svg(s);
+    },
     boucle: function () {
       var c = [[200, 55], [330, 150], [200, 245], [70, 150]], cl = ["i-c1", "i-c2", "i-c4", "i-c5"], s = "";
       s += '<circle class="trait i-l" cx="200" cy="150" r="95"/><path class="trait i-c1 anim-tourne" style="transform-origin:200px 150px;transform-box:view-box" d="M200 55 A95 95 0 0 1 295 150"/>';
