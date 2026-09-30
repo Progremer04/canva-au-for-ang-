@@ -1,0 +1,135 @@
+<section class="chapitre" id="methode" aria-labelledby="methode-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">Study method</p>
+    <h2 class="titre-section" id="methode-titre">How to learn this course</h2>
+    <p class="chapeau">This course mixes three different kinds of learning: ideas (chapters 1 and 3), a practical skill (Python, chapter 2) and a project. Each one needs its own method. Here are the methods that work, and how to apply them here.</p>
+    <ul class="puces"><li class="puce">Read this first</li><li class="puce">10 minutes</li></ul>
+  </header>
+
+  <nav class="sommaire-chapitre" aria-label="Study method contents">
+    <ol>
+      <li><a href="#me-principes">Four habits that work</a></li>
+      <li><a href="#me-semaine">A typical week</a></li>
+      <li><a href="#me-parties">How to approach each part</a></li>
+      <li><a href="#me-langues">Vocabulary in French and English</a></li>
+      <li><a href="#me-assistant">Learning with an AI assistant, without cheating</a></li>
+      <li><a href="#me-examen">Preparing for the exam</a></li>
+    </ol>
+  </nav>
+
+  <article class="lecon" id="me-principes">
+    <h3>Four habits that work</h3>
+    <p>Rereading your notes and highlighting feel productive, but little of it stays. A review of research on learning (Dunlosky et al., 2013) ranks two techniques among the most useful instead: <strong>testing yourself</strong> and <strong>spacing out your revision</strong>. Add explaining ideas out loud, and trying exercises before looking at the solution.</p>
+    <div class="grille-cartes">
+      <article class="carte">
+        <h4>Test yourself instead of rereading</h4>
+        <p>Close the page and write down what you remember: a definition, the steps of k-means, the difference between forward and backward chaining. Then check. The "Self-check" quizzes on this site are made for this.</p>
+      </article>
+      <article class="carte">
+        <h4>Space out your revision</h4>
+        <p>Review a lesson the next day, three days later, a week later, then three weeks later. Four short sessions beat one long session the night before the exam.</p>
+      </article>
+      <article class="carte">
+        <h4>Explain it simply</h4>
+        <p>Explain an idea in a few sentences to someone who does not take the course, or in writing. Where you get stuck shows you what to reread.</p>
+      </article>
+      <article class="carte">
+        <h4>Try before the solution</h4>
+        <p>Work on each tutorial exercise for at least twenty minutes before opening "Show the solution". A mistake you find and fix yourself is remembered far better than a solution you read.</p>
+      </article>
+    </div>
+    <div class="quiz">
+      <p class="quiz-question">You have one hour to revise chapter 1. Which method will you remember most from?</p>
+      <ul class="quiz-options">
+        <li><button type="button" class="quiz-option">Reread the lesson twice while highlighting</button></li>
+        <li><button type="button" class="quiz-option" data-correct>Read it once, then rewrite the main ideas from memory and check</button></li>
+        <li><button type="button" class="quiz-option">Copy the lesson out neatly</button></li>
+      </ul>
+      <p class="quiz-explication" hidden>Testing yourself forces you to pull the information out of memory, and that effort is what makes it stick. Rereading and copying take almost no memory effort.</p>
+    </div>
+  </article>
+
+  <article class="lecon" id="me-semaine">
+    <h3>A typical week</h3>
+    <p>About three hours of personal work a week is enough if it is regular. Move the days to fit your timetable; keep the order.</p>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Three hours a week, in five moments</caption>
+      <thead><tr><th scope="col">When</th><th scope="col">What</th><th scope="col">Time</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Before the lecture</th><td>Skim the lesson on this site: headings, "Key points" boxes, diagrams. Write down two questions.</td><td>20 min</td></tr>
+        <tr><th scope="row">The evening after</th><td>Write five questions and their answers about the lesson from memory, then take the quiz on the site.</td><td>30 min</td></tr>
+        <tr><th scope="row">Before the tutorial</th><td>Work on the exercises alone, without the solution. Note exactly where you get stuck.</td><td>45 min</td></tr>
+        <tr><th scope="row">Two days later</th><td>Python: retype the chapter's examples, then change one line and predict the result before running it.</td><td>45 min</td></tr>
+        <tr><th scope="row">At the weekend</th><td>Spaced review: answer your questions from previous weeks again; learn ten glossary terms.</td><td>30 min</td></tr>
+      </tbody>
+    </table></div>
+  </article>
+
+  <article class="lecon" id="me-parties">
+    <h3>How to approach each part</h3>
+    <dl class="definitions">
+      <div><dt>Chapter 1</dt><dd><p>Ideas and landmarks. Make your own timeline (ten dates are enough) and, for each pair of notions (weak and strong AI, supervised and unsupervised learning), a table of differences written from memory. These tables are exactly what the exam and the round tables ask for.</p></dd></div>
+      <div><dt>Chapter 2</dt><dd><p>A skill, learned by doing. Twenty to thirty minutes of code almost every day beat one long session. Do not copy and paste: retype. Before running code, predict what it will print. Read error messages to the end: the last line almost always says what is wrong. To practise, <code>run.bat notebook</code> opens Jupyter, and Google Colab works with nothing to install.</p></dd></div>
+      <div><dt>Chapter 3</dt><dd><p>Algorithms. For each one, follow the same order: compute it by hand on a tiny example (the tutorial exercises), then use the interactive demo on this site, then write a few lines of scikit-learn. If you can redo the calculation by hand, you have understood the algorithm.</p></dd></div>
+      <div><dt>Mini-project</dt><dd><p>Choose your subject as soon as chapter 2 ends, and start small: a corpus of fifty texts that works is better than ten thousand that do not. Keep a logbook (what you tried, what failed, why). Show your progress to your teacher every week.</p></dd></div>
+      <div><dt>Round tables</dt><dd><p>Prepare three arguments, one precise example and one checked source. Listen to the others so you can answer their arguments, not only make yours.</p></dd></div>
+    </dl>
+  </article>
+
+  <article class="lecon" id="me-langues">
+    <h3>Vocabulary in French and English</h3>
+    <p>The course and the exam are in French, but most AI documentation, tutorials and papers are in English. So learn every term as a pair.</p>
+    <ol class="etapes">
+      <li><p class="etape-titre">Flashcards in both directions</p><p>For each term in the <a href="#glossaire">glossary</a>, make one "English → French" card and one "French → English" card, with the definition on the back. A free flashcard app such as Anki schedules the spaced reviews for you.</p></li>
+      <li><p class="etape-titre">Read the same lesson in both languages</p><p>The FR / EN button at the top of the page opens the same lesson in French. Read a paragraph in one language, then the same paragraph in the other: you learn the vocabulary in context and check that you understood.</p></li>
+      <li><p class="etape-titre">Good resources in each language</p><p>The <a href="https://docs.python.org/3/tutorial/" target="_blank" rel="noopener">official Python tutorial</a> exists in English and <a href="https://docs.python.org/fr/3/tutorial/" target="_blank" rel="noopener">in French</a>. The <a href="https://course.spacy.io/en/" target="_blank" rel="noopener">free spaCy course</a> exists in English and French. The scikit-learn user guide and the Hugging Face NLP course are mostly in English: read them with the glossary open next to them.</p></li>
+      <li><p class="etape-titre">A personal notebook</p><p>Write down each new term with its translation, a definition in your own words and an example taken from literature. This notebook is what you will reread before the exam.</p></li>
+    </ol>
+  </article>
+
+  <article class="lecon" id="me-assistant">
+    <h3>Learning with an AI assistant, without cheating</h3>
+    <p>A chatbot can be a good tutor, as long as you ask it to make you work rather than to work in your place.</p>
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>Uses that help</h4>
+        <ul>
+          <li>"Ask me five questions about forward chaining and correct my answers."</li>
+          <li>"Explain gradient descent with an example about reading."</li>
+          <li>"Here is my reasoning for exercise 2: where is the mistake?"</li>
+          <li>Asking for a line-by-line explanation of code you did not understand.</li>
+        </ul>
+      </div>
+      <div class="comparaison-col">
+        <h4>Uses that harm</h4>
+        <ul>
+          <li>Copying code you could not explain.</li>
+          <li>Asking for the solution of an exercise before trying it.</li>
+          <li>Quoting a number, date or reference without checking it: chatbots invent them.</li>
+          <li>Handing in generated text as if it were your own.</li>
+        </ul>
+      </div>
+    </div>
+    <p>For the mini-project, declare any use of an AI tool, as the lesson on <a href="#c1-perspectives">ethics</a> explains.</p>
+  </article>
+
+  <article class="lecon" id="me-examen">
+    <h3>Preparing for the exam</h3>
+    <ol class="etapes">
+      <li><p class="etape-titre">Three weeks before</p><p>List everything in the syllabus from the <a href="#fiche">course card</a>. Mark each point: known, to review, not understood. Start with "not understood".</p></li>
+      <li><p class="etape-titre">Two weeks before</p><p>Redo every tutorial exercise without looking at the solutions, with a time limit. Then compare, and redo the ones you missed three days later.</p></li>
+      <li><p class="etape-titre">One week before</p><p>Answer the questions on your cards and the site's quizzes from memory. Explain out loud the four families of AI and how they differ.</p></li>
+      <li><p class="etape-titre">The last two days</p><p>Only short reviews of your cards and your vocabulary notebook. Sleep: sleep consolidates what you have learned.</p></li>
+    </ol>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">Key points</p>
+      <ul>
+        <li>Testing yourself and spacing out revision: the two techniques that make learning stick best.</li>
+        <li>Python is learned by typing code, a little every day.</li>
+        <li>You understand an algorithm when you can redo it by hand.</li>
+        <li>Learn every term in French and in English.</li>
+        <li>An AI assistant should make you work, not work in your place.</li>
+      </ul>
+    </aside>
+  </article>
+</section>

@@ -135,7 +135,6 @@ em { font-style: italic; } strong { font-weight: 700; } .insecable { white-space
 .plan { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 20px 40px; counter-reset: etape; }
 .plan li { display: flex; gap: 18px; align-items: center; padding: 18px 22px; border: 1px solid var(--ligne); border-radius: 18px; background: var(--surface-2); counter-increment: etape; font-size: 25px; line-height: 1.3; }
 .plan li::before { content: counter(etape); flex: none; display: grid; place-items: center; width: 50px; height: 50px; border-radius: 50%; background: var(--prisme-conique); color: #111; font: 700 24px var(--f-ui); }
-.plan--dense { gap: 12px 32px; } .plan--dense li { gap: 14px; padding: 9px 18px; font-size: 21px; } .plan--dense li::before { width: 38px; height: 38px; font-size: 19px; }
 
 /* Section */
 .diapo--section { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 40px; align-items: center; }
@@ -911,89 +910,6 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
         '<path class="trait i-c1" d="M200 287 H222"/><text class="f-c1" x="228" y="292" font-size="14" direction="ltr">' + esc(n[1]) + '</text>';
       return svg(s);
     },
-    // L'escalier des capacités : à chaque marche, la machine sait faire une chose de plus.
-    capacites: function (d) {
-      var n = (d && d.etapes) || ["", "", "", "", "", ""], s = '<path class="trait i-l fin" d="M10 270 H392"/>';
-      for (var i = 0; i < 6; i++) {
-        var x = 14 + i * 62, y = 250 - i * 34;
-        s += '<g class="anim-apparait" style="--d:' + (i * .25) + '"><rect class="trait f-s i-c' + (i % 5 + 1) + '" x="' + x + '" y="' + y + '" width="58" height="' + (20 + i * 34) + '" rx="6"/>' +
-          '<text class="f-t" x="' + (x + 29) + '" y="' + (y - 8) + '" text-anchor="middle" font-size="12">' + esc(n[i] || "") + '</text></g>';
-      }
-      return svg(s + '<text class="f-c1 anim-clignote" x="354" y="46" text-anchor="middle" font-size="34">?</text>');
-    },
-    // Le chapeau du magicien : on va ouvrir la boîte et comprendre le tour.
-    chapeau: function () {
-      var s = '<text class="f-c1 anim-flotte" x="200" y="92" text-anchor="middle" font-size="64">?</text>';
-      s += '<path class="trait f-s i-t" d="M152 205 V118 H248 V205"/><ellipse class="trait f-s i-t" cx="200" cy="118" rx="48" ry="11"/>';
-      s += '<rect class="f-c4" x="154" y="176" width="92" height="18"/><ellipse class="trait f-s i-t" cx="200" cy="208" rx="88" ry="17"/>';
-      s += '<path class="trait i-t" d="M262 250 L338 168"/><path class="trait i-c1" d="M328 179 L338 168"/>';
-      [[352, 150, 0], [318, 132, .5], [368, 196, 1]].forEach(function (e) {
-        s += '<path class="f-c1 anim-pulse" style="--d:' + e[2] + '" d="M' + e[0] + ' ' + (e[1] - 12) + ' L' + (e[0] + 4) + ' ' + (e[1] - 4) + ' L' + (e[0] + 12) + ' ' + e[1] + ' L' + (e[0] + 4) + ' ' + (e[1] + 4) + ' L' + e[0] + ' ' + (e[1] + 12) + ' L' + (e[0] - 4) + ' ' + (e[1] + 4) + ' L' + (e[0] - 12) + ' ' + e[1] + ' L' + (e[0] - 4) + ' ' + (e[1] - 4) + ' Z"/>';
-      });
-      return svg(s);
-    },
-    // Copier la nature : l'oiseau a donné l'avion, le neurone a donné le réseau.
-    oiseau: function () {
-      var s = '<path class="trait i-c2 anim-flotte" d="M40 88 q22 -30 44 0 q22 -30 44 0"/>';
-      s += fleche(150, 80, 228, 80, "i-d", "--d:.4");
-      s += '<g class="anim-apparait" style="--d:.8"><path class="trait i-c5" d="M262 80 H352 M312 80 L290 42 M312 80 L290 118 M266 80 L256 64 M266 80 L256 96"/><circle class="f-c5" cx="354" cy="80" r="5"/></g>';
-      s += '<g><circle class="trait f-s i-c1" cx="92" cy="215" r="20"/><path class="trait i-c1 fin" d="M73 207 L44 190 M72 218 L40 218 M74 228 L46 246 M112 215 H138 M138 215 L150 202 M138 215 L150 228"/></g>';
-      s += fleche(160, 215, 228, 215, "i-d", "--d:1.2");
-      var c = [[262, [195, 235]], [306, [180, 215, 250]], [350, [195, 235]]];
-      for (var k = 0; k < 2; k++) c[k][1].forEach(function (a) { c[k + 1][1].forEach(function (b) { s += '<line class="i-l anim-apparait" style="--d:1.6" stroke-width="1.5" x1="' + c[k][0] + '" y1="' + a + '" x2="' + c[k + 1][0] + '" y2="' + b + '"/>'; }); });
-      c.forEach(function (col, k) { col[1].forEach(function (y) { s += '<circle class="trait f-s i-c' + (k + 2) + ' anim-apparait" style="--d:1.6" cx="' + col[0] + '" cy="' + y + '" r="11"/>'; }); });
-      return svg(s);
-    },
-    // Processeur et carte graphique : quelques grands cœurs, ou des milliers de petits qui calculent en même temps.
-    gpu: function (d) {
-      var n = (d && d.puces) || ["", ""], s = "";
-      function puce(x, y, l, h) {
-        var p = '<rect class="trait f-s i-t" x="' + x + '" y="' + y + '" width="' + l + '" height="' + h + '" rx="10"/>';
-        for (var k = 1; k < 6; k++) p += '<path class="trait i-d fin" d="M' + (x + k * l / 6) + ' ' + (y - 12) + ' v12 M' + (x + k * l / 6) + ' ' + (y + h) + ' v12"/>';
-        return p;
-      }
-      s += puce(28, 72, 140, 140) + puce(222, 72, 150, 140);
-      [[48, 92], [102, 92], [48, 146], [102, 146]].forEach(function (c, i) { s += '<rect class="f-c2 anim-pulse" style="--d:' + (i * .45) + '" x="' + c[0] + '" y="' + c[1] + '" width="46" height="46" rx="6"/>'; });
-      for (var r = 0; r < 11; r++) for (var c = 0; c < 12; c++) s += '<rect class="f-c1 anim-pulse" style="--d:' + ((r + c) * .08).toFixed(2) + '" x="' + (234 + c * 11.2) + '" y="' + (84 + r * 11.2) + '" width="8" height="8" rx="1.5"/>';
-      s += '<text class="f-t" x="98" y="258" text-anchor="middle" font-size="15">' + esc(n[0]) + '</text><text class="f-t" x="297" y="258" text-anchor="middle" font-size="15">' + esc(n[1]) + '</text>';
-      return svg(s);
-    },
-    // Le chat de Google (2012) : des millions de vignettes vidéo, et un « chat » qui se dessine tout seul.
-    chat: function () {
-      var s = "", cl = ["f-c1", "f-c2", "f-c3", "f-c4", "f-c5"];
-      for (var i = 0; i < 20; i++) {
-        var x = 18 + (i % 4) * 44, y = 42 + Math.floor(i / 4) * 44;
-        s += '<g class="anim-pulse" style="--d:' + ((i * 7 % 20) * .09).toFixed(2) + '"><rect class="' + cl[i % 5] + '" x="' + x + '" y="' + y + '" width="38" height="36" rx="6" opacity=".55"/><path class="f-f" d="M' + (x + 15) + ' ' + (y + 11) + ' l11 7 l-11 7 z"/></g>';
-      }
-      s += fleche(196, 150, 238, 150, "i-d", "--d:.6");
-      s += '<g class="anim-apparait" style="--d:1"><path class="trait f-s i-c1" d="M262 118 L268 70 L296 100 Q310 94 324 100 L352 70 L358 118 Q372 150 352 184 Q310 212 268 184 Q248 150 262 118 Z"/>';
-      s += '<circle class="f-c1" cx="290" cy="138" r="7"/><circle class="f-c1" cx="330" cy="138" r="7"/><path class="trait i-c1 fin" d="M304 160 l6 6 l6 -6 M310 166 v8 M298 176 q12 8 24 0 M280 160 L246 154 M280 168 L248 172 M340 160 L374 154 M340 168 L372 172"/></g>';
-      return svg(s);
-    },
-    // Les GAN (2014) : un faussaire fabrique des images, un détective les démasque ; chacun progresse grâce à l'autre.
-    gan: function (d) {
-      var n = (d && d.roles) || ["", ""], s = "";
-      s += '<path class="trait i-d" d="M70 214 L92 170 M128 170 L150 214 M110 170 V214"/><rect class="trait f-s i-t" x="52" y="66" width="116" height="104" rx="6"/>';
-      s += '<circle class="trait i-c1" cx="110" cy="112" r="26"/><circle class="f-c1" cx="101" cy="106" r="3.5"/><circle class="f-c1" cx="119" cy="106" r="3.5"/><path class="trait i-c1 fin" d="M99 121 q11 9 22 0"/>';
-      s += fleche(182, 96, 246, 96, "i-c1", "--d:.3") + fleche(246, 150, 182, 150, "i-c4", "--d:.9");
-      s += '<circle class="trait f-s i-c2" cx="296" cy="112" r="40"/><path class="trait i-c2" d="M324 142 L360 182"/><text class="f-c4 anim-clignote" x="296" y="126" text-anchor="middle" font-size="38">✗</text>';
-      s += '<text class="f-t" x="110" y="252" text-anchor="middle" font-size="16">' + esc(n[0]) + '</text><text class="f-t" x="306" y="252" text-anchor="middle" font-size="16">' + esc(n[1]) + '</text>';
-      return svg(s);
-    },
-    // Des nombres astronomiques : les parties d'échecs, les atomes de l'univers, les positions du go (exposants lus dans les étiquettes).
-    go10: function (d) {
-      var n = (d && d.echelle) || ["", "", ""], sup = "⁰¹²³⁴⁵⁶⁷⁸⁹", defaut = [120, 80, 170], s = "";
-      var barres = n.map(function (e, i) {
-        var m = /10([⁰¹²³⁴⁵⁶⁷⁸⁹]+)/.exec(e || ""), x = m ? parseInt(m[1].split("").map(function (c) { return sup.indexOf(c); }).join(""), 10) : defaut[i];
-        return { t: e, x: x, cl: ["i-c2", "i-d", "i-c1"][i] };
-      }).sort(function (a, b) { return a.x - b.x; });
-      barres.forEach(function (b, i) {
-        var y = 78 + i * 80, l = Math.round(b.x * 1.9);
-        s += '<text class="f-t" x="' + (24 + l / 2) + '" y="' + (y - 18) + '" text-anchor="middle" font-size="16">' + esc(b.t) + '</text>' +
-          '<path class="trait ' + b.cl + ' anim-trace" style="--l:' + l + ';stroke-width:22px" d="M24 ' + y + ' H' + (24 + l) + '"/>';
-      });
-      return svg(s + '<circle class="f-t anim-apparait" style="--d:1.8" cx="' + (24 + Math.round(barres[2].x * 1.9) + 30) + '" cy="238" r="11"/>');
-    },
     boucle: function () {
       var c = [[200, 55], [330, 150], [200, 245], [70, 150]], cl = ["i-c1", "i-c2", "i-c4", "i-c5"], s = "";
       s += '<circle class="trait i-l" cx="200" cy="150" r="95"/><path class="trait i-c1 anim-tourne" style="transform-origin:200px 150px;transform-box:view-box" d="M200 55 A95 95 0 0 1 295 150"/>';
@@ -1141,7 +1057,7 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
       h = '<div><p class="surtitre a" style="--i:0">' + riche(d.surtitre) + '</p><h1 class="titre a" style="--i:1">' + riche(d.titre) + '</h1><p class="sous-titre a" style="--i:2">' + riche(d.sousTitre) + '</p></div>' +
         '<div class="illus a" style="--i:3">' + ILLUS[d.illus || "agent"](d) + '</div><span class="anneau-decor" aria-hidden="true"></span>';
     } else if (t === "plan") {
-      h = '<h2 class="titre a" style="--i:0">' + riche(d.titre) + '</h2><ol class="plan' + (d.points.length > 8 ? " plan--dense" : "") + '">' + d.points.map(function (p, i) { return '<li class="a" style="--i:' + (i + 1) + '"><span>' + riche(p) + '</span></li>'; }).join("") + '</ol>';
+      h = '<h2 class="titre a" style="--i:0">' + riche(d.titre) + '</h2><ol class="plan">' + d.points.map(function (p, i) { return '<li class="a" style="--i:' + (i + 1) + '"><span>' + riche(p) + '</span></li>'; }).join("") + '</ol>';
     } else if (t === "section") {
       h = '<div><div class="grand-numero">' + esc(d.numero) + '</div><h2 class="titre a" style="--i:1">' + riche(d.titre) + '</h2><p class="periode a" style="--i:2">' + riche(d.periode) + '</p><p class="texte a" style="--i:3">' + riche(d.texte) + '</p></div>' + illustration(d, 3);
     } else if (t === "texte") {

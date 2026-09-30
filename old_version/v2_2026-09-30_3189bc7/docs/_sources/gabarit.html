@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cours d'IA du Master LGC</title>
+<meta name="description" content="Le cours d'intelligence artificielle du Master Littérature Générale et Comparée (Université Yahia Farès, Médéa, 2025-2026), expliqué en entier : leçons, Python, démonstrations, TD corrigés et mini-projets.">
+<link rel="preload" href="{{BASE}}assets/fonts/literata-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{BASE}}assets/fonts/im-fell-dw-pica-sc-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{BASE}}assets/css/polices.css">
+<link rel="stylesheet" href="{{BASE}}assets/css/lumineux-tokens.css">
+<link rel="stylesheet" href="{{BASE}}assets/css/lumineux.css">
+<link rel="stylesheet" href="{{BASE}}assets/css/cours.css">
+<link rel="alternate" hreflang="en" href="en/index.html">
+<link rel="alternate" hreflang="ar" href="ar/index.html">
+</head>
+<body>
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-fermer" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-contraste" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></symbol>
+  <symbol id="i-maison" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5h4v5"/></symbol>
+  <symbol id="i-fiche" viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 13h6M10 17h6"/></symbol>
+  <symbol id="i-calendrier" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-ampoule" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.5 1 2.5h6c0-1 .2-1.7 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+  <symbol id="i-crayon" viewBox="0 0 24 24"><path d="M4 20l4-1L19 8l-3-3L5 16z"/><path d="M14 7l3 3"/></symbol>
+  <symbol id="i-bulle" viewBox="0 0 24 24"><path d="M4 5h16v11H10l-5 4v-4H4z"/></symbol>
+  <symbol id="i-livre" viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></symbol>
+  <symbol id="i-boussole" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></symbol>
+  <symbol id="i-carte" viewBox="0 0 24 24"><path d="M3 6.5l6-2.5 6 2.5 6-2.5v13.5l-6 2.5-6-2.5-6 2.5z"/><path d="M9 4v13.5M15 6.5V20"/></symbol>
+  <symbol id="i-coche" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-retour" viewBox="0 0 24 24"><path class="fleche-retour" d="M10 6l-6 6 6 6M4 12h16"/></symbol>
+  <symbol id="i-outil" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></symbol>
+  <symbol id="i-ecran" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8"/><path d="M10.5 7.8v4.4l3.6-2.2z"/></symbol>
+  <symbol id="i-groupe" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3"/><path d="M3.5 19.5a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9.5" r="2.4"/><path d="M15.6 14.3a4.6 4.6 0 0 1 5.4 4.7"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-poubelle" viewBox="0 0 24 24"><path d="M4.5 7h15M10 7V4.5h4V7M6.5 7l1 13h9l1-13"/><path d="M10 11v5.5M14 11v5.5"/></symbol>
+  <symbol id="i-telecharger" viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5"/><path d="M5 19.5h14"/></symbol>
+  <symbol id="i-importer" viewBox="0 0 24 24"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5"/><path d="M5 19.5h14"/></symbol>
+  <symbol id="i-imprimer" viewBox="0 0 24 24"><path d="M7 9V3.5h10V9"/><rect x="3.5" y="9" width="17" height="8" rx="1.5"/><path d="M7 14h10v6.5H7z"/></symbol>
+  <symbol id="i-lecture" viewBox="0 0 24 24"><path d="M7.5 5v14l11-7z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+  <symbol id="i-plein-ecran" viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></symbol>
+  <symbol id="i-grille" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></symbol>
+  <symbol id="i-precedent" viewBox="0 0 24 24"><path class="fleche-retour" d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-suivant" viewBox="0 0 24 24"><path class="fleche-retour" d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-etoile" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 17l-5.2 2.7 1-5.9-4.3-4.1 5.9-.8z"/></symbol>
+  <symbol id="i-horloge" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-recherche" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/></symbol>
+  <symbol id="i-base" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7.5" ry="2.8"/><path d="M4.5 6v12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8V6M4.5 12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8"/></symbol>
+  <symbol id="i-copier" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11" height="11" rx="1.5"/><path d="M15.5 8.5V5.5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3"/></symbol>
+</svg>
+
+<header class="entete">
+  <div class="entete__barre">
+    <button type="button" class="bouton-verre entete__burger" data-ouvre-tiroir="tiroir-nav" aria-controls="tiroir-nav" aria-label="Ouvrir le menu">
+      <svg class="icone"><use href="#i-menu"/></svg>
+    </button>
+    <a class="entete__marque" href="#accueil"><span class="anneau-prisme" aria-hidden="true"></span>IA <small>Master LGC</small></a>
+    <nav class="entete__liens" aria-label="Liens utiles">
+      <a class="bouton bouton--discret bouton--petit entete__lien-systeme" href="{{LIEN_SYSTEME}}">Système de design</a>
+      <div class="langues" role="group" aria-label="Langue du cours"><a href="index.html" lang="fr" hreflang="fr" aria-current="page">FR</a><a href="en/index.html" lang="en" hreflang="en" data-lien-langue>EN</a><a href="ar/index.html" lang="ar" hreflang="ar" data-lien-langue>عربي</a></div>
+      <button type="button" class="bouton-verre" data-bascule-theme aria-label="Changer de thème">
+        <svg class="icone"><use href="#i-contraste"/></svg>
+      </button>
+    </nav>
+  </div>
+  <div class="progression" aria-hidden="true"></div>
+</header>
+
+<div class="tiroir-voile" data-voile-tiroir="tiroir-nav"></div>
+<aside class="tiroir" id="tiroir-nav" aria-label="Menu du cours">
+  <div class="tiroir__tete">
+    <p class="tiroir__titre">Sommaire du cours</p>
+    <button type="button" class="bouton-verre" data-ferme-tiroir aria-label="Fermer le menu">
+      <svg class="icone"><use href="#i-fermer"/></svg>
+    </button>
+  </div>
+  {{NAV}}
+</aside>
+
+<main id="contenu">
+  <section class="heros" id="accueil" aria-labelledby="titre-cours">
+    <div>
+      <p class="surtitre">Master Littérature Générale et Comparée · Semestre 3</p>
+      <h1 class="heros__titre" id="titre-cours"><span>Intelligence</span> <span>artificielle</span></h1>
+      <p class="heros__chapeau">Le programme de la matière, expliqué en entier : l'histoire de l'IA, Python pour les textes, les systèmes experts, l'apprentissage automatique et profond, cinq mini-projets appliqués aux sciences humaines, et tous les TD corrigés.</p>
+      <ul class="heros__fiche">
+        <li class="puce">UE transversale</li>
+        <li class="puce">2 crédits</li>
+        <li class="puce">Coefficient 2</li>
+        <li class="puce">2025–2026</li>
+      </ul>
+      <div class="heros__actions">
+        <a class="bouton bouton--prisme" href="#chapitre-1">Commencer le chapitre 1</a>
+        <a class="bouton" href="#methode">Comment apprendre ce cours</a>
+      </div>
+    </div>
+
+    <div class="cadre-lumineux">
+      <div class="cadre-lumineux__contenu" data-lecteur>
+        <div class="demo__tete">
+          <span class="anneau-prisme" aria-hidden="true"></span>
+          <p class="demo__etiquette">Démonstration interactive</p>
+        </div>
+        <h2 class="demo__titre">Lire une phrase comme une machine</h2>
+        <div class="champ">
+          <label for="lecteur-phrase">Votre phrase</label>
+          <textarea id="lecteur-phrase" class="lecteur__phrase" rows="3" spellcheck="false">Ce roman est magnifique, mais la fin est vraiment décevante.</textarea>
+        </div>
+        <div class="lecteur__exemples">
+          <button type="button" class="bouton bouton--petit" data-phrase="Ce roman est magnifique, mais la fin est vraiment décevante.">Critique</button>
+          <button type="button" class="bouton bouton--petit" data-phrase="Aujourd'hui, maman est morte.">Camus, 1942</button>
+          <button type="button" class="bouton bouton--petit" data-phrase="Je ne suis pas du tout convaincu par ce discours.">Discours</button>
+          <button type="button" class="bouton bouton--petit" data-phrase="Quel livre génial ! Une joie, une lumière, un vrai chef-d'œuvre !">Enthousiasme</button>
+        </div>
+        <div class="lecteur__resultat" aria-live="polite">
+          <div class="lecteur__verdict"><span class="lecteur__etiquette">Négatif</span><span class="lecteur__score"></span></div>
+          <div class="lecteur__jauge"><span class="lecteur__curseur" style="left:50%"></span></div>
+          <div class="lecteur__echelle"><span>Négatif</span><span>Neutre</span><span>Positif</span></div>
+          <p class="lecteur__mots"></p>
+        </div>
+        <p class="demo__note">Méthode à lexique inspirée de VADER (sujet 1 du mini-projet) : chaque mot connu porte un score, une négation l'inverse, « très » l'amplifie, « mais » donne plus de poids à la suite de la phrase. Un vrai modèle apprend ces poids sur des milliers d'exemples.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="page">
+    <div class="page__rail">
+      {{NAV}}
+    </div>
+
+    <div class="page__contenu">
+
+      <section class="chapitre" id="fiche" aria-labelledby="fiche-titre">
+        <header class="chapitre-tete">
+          <p class="surtitre">Programme officiel</p>
+          <h2 class="titre-section" id="fiche-titre">Fiche de la matière</h2>
+          <p class="chapeau">Ce que le programme demande, tel qu'il est écrit, avec des renvois vers les parties du site qui y répondent.</p>
+        </header>
+
+        <dl class="definitions">
+          <div><dt>Master</dt><dd>Littérature Générale et Comparée</dd></div>
+          <div><dt>Semestre</dt><dd>3</dd></div>
+          <div><dt>Unité</dt><dd>Unité d'Enseignement Transversale</dd></div>
+          <div><dt>Matière</dt><dd>Intelligence artificielle</dd></div>
+          <div><dt>Crédits</dt><dd>2</dd></div>
+          <div><dt>Coefficient</dt><dd>2</dd></div>
+          <div><dt>Établissement</dt><dd>Université Yahia Farès, Médéa</dd></div>
+          <div><dt>Année</dt><dd>2025–2026</dd></div>
+        </dl>
+
+        <div class="fiche-grille">
+          <article class="carte">
+            <h3>Objectifs de l'enseignement</h3>
+            <ul>
+              <li>Maîtrise des algorithmes d'IA pour le traitement textuel des enquêtes <a href="#chapitre-3">(chap. 3)</a>.</li>
+              <li>Aptitude à utiliser le logiciel Python <a href="#chapitre-2">(chap. 2)</a>.</li>
+              <li>Comprendre les approches de l'IA dans la résolution de problèmes <a href="#c1-approches">(chap. 1)</a>.</li>
+              <li>Aptitude à traiter un corpus de textes <a href="#c2-fichiers">(chap. 2)</a>.</li>
+            </ul>
+          </article>
+          <article class="carte">
+            <h3>Méthode pédagogique</h3>
+            <ul>
+              <li>Cours magistraux, travaux dirigés, travaux pratiques <a href="#td-tp">(TD/TP)</a>.</li>
+              <li>Mini-projet : réaliser au moins 3 sujets parmi les 5 proposés <a href="#mini-projet">(voir la note)</a>.</li>
+              <li>Interactivité maximale enseignant – étudiants.</li>
+              <li>Travail personnel, surtout pour la programmation.</li>
+              <li>Évaluation identique aux textes en vigueur.</li>
+              <li>Tables rondes <a href="#tables-rondes">(4 thèmes)</a>.</li>
+            </ul>
+          </article>
+          <article class="carte carte--large">
+            <h3>Connaissances visées</h3>
+            <ul>
+              <li>Identifier les opportunités de l'intelligence artificielle en sciences humaines et sociales <a href="#c1-perspectives">(chap. 1)</a>.</li>
+              <li>Comprendre quelles peuvent être les différentes applications de l'IA pour les SHS <a href="#c3-synthese">(chap. 3)</a>.</li>
+              <li>Comprendre les implications éthiques de l'IA et les bonnes pratiques de son utilisation <a href="#c1-perspectives">(chap. 1)</a>.</li>
+              <li>Réaliser le clustering de comportements sociaux dans des enquêtes et la modélisation prédictive <a href="#mp-sujet-2">(sujets 2</a> <a href="#mp-sujet-4">et 4)</a>.</li>
+              <li>Comprendre les sentiments exprimés sur les réseaux et savoir les analyser <a href="#mp-sujet-1">(sujet 1)</a>.</li>
+              <li>Extraire des informations de discours politiques <a href="#mp-sujet-3">(sujet 3)</a>.</li>
+              <li>Analyser les réseaux sociologiques <a href="#mp-sujet-5">(sujet 5)</a>.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="chapitre" id="parcours" aria-labelledby="parcours-titre">
+        <header class="chapitre-tete">
+          <p class="surtitre">Calendrier</p>
+          <h2 class="titre-section" id="parcours-titre">Le semestre en un coup d'œil</h2>
+          <p class="chapeau">Neuf semaines de cours (1 + 2 + 6), un mini-projet de trois semaines lancé à la fin du chapitre 2, et des TD/TP tout au long du semestre.</p>
+        </header>
+        <div class="planning" role="group" aria-label="Planning indicatif du semestre">
+          <div class="planning__grille">
+            <span></span>
+            <span class="planning__semaine">S1</span><span class="planning__semaine">S2</span><span class="planning__semaine">S3</span>
+            <span class="planning__semaine">S4</span><span class="planning__semaine">S5</span><span class="planning__semaine">S6</span>
+            <span class="planning__semaine">S7</span><span class="planning__semaine">S8</span><span class="planning__semaine">S9</span>
+
+            <span class="planning__ligne">Chapitre 1</span>
+            <a class="planning__barre planning__barre--c1" href="#chapitre-1" style="grid-column: 2 / span 1">1 sem.</a>
+            <span style="grid-column: 3 / span 8"></span>
+
+            <span class="planning__ligne">Chapitre 2</span>
+            <span style="grid-column: 2 / span 1"></span>
+            <a class="planning__barre planning__barre--c2" href="#chapitre-2" style="grid-column: 3 / span 2">Prompts et Python · 2 sem.</a>
+            <span style="grid-column: 5 / span 6"></span>
+
+            <span class="planning__ligne">Chapitre 3</span>
+            <span style="grid-column: 2 / span 3"></span>
+            <a class="planning__barre planning__barre--c3" href="#chapitre-3" style="grid-column: 5 / span 6">Types d'IA et approches · 6 semaines</a>
+
+            <span class="planning__ligne">Mini-projet</span>
+            <span style="grid-column: 2 / span 3"></span>
+            <a class="planning__barre planning__barre--mp" href="#mini-projet" style="grid-column: 5 / span 3">3 sem. (indicatif)</a>
+            <span style="grid-column: 8 / span 3"></span>
+
+            <span class="planning__ligne">TD / TP</span>
+            <a class="planning__barre planning__barre--td" href="#td-tp" style="grid-column: 2 / span 9">Exercices du chapitre en cours, puis programmation en Python et mini-projet</a>
+          </div>
+        </div>
+        <p class="planning__note">Les durées des chapitres sont celles du programme. Si la semaine du chapitre 1 ne suffit pas, le programme prévoit d'utiliser une séance de TP pour le compléter. Le programme dit seulement que le mini-projet est distribué à la fin du chapitre 2 : sa place exacte dans le calendrier est fixée par l'enseignant.</p>
+      </section>
+
+{{FRAGMENTS}}
+
+      <section class="chapitre" id="references" aria-labelledby="references-titre">
+        <header class="chapitre-tete">
+          <p class="surtitre">Bibliographie</p>
+          <h2 class="titre-section" id="references-titre">Références</h2>
+          <p class="chapeau">Les références du programme, mises en forme. Les coquilles du document d'origine sont corrigées et signalées.</p>
+        </header>
+        <ol class="references">
+          <li><div><p>Inglehart, R. (1997). <em>Modernization and Postmodernization: Cultural, Economic, and Political Change in 43 Societies</em>. Princeton University Press.</p><p class="ref-note">Théorie des valeurs matérialistes et post-matérialistes ; cadre de lecture pour les données d'enquête des sujets 2 et 4.</p></div></li>
+          <li><div><p>« Western values are diverging from the rest of the world's ». <em>The Economist</em>, 2023.</p><p class="ref-note">Le programme écrit « The Economiste ». Article de presse fondé sur les données du World Values Survey.</p></div></li>
+          <li><div><p>Western Michigan University. <em>World Values Survey</em>. <a href="https://wmich.edu/economics/world-values-survey" target="_blank" rel="noopener">wmich.edu/economics/world-values-survey</a></p><p class="ref-note">Présentation de l'enquête mondiale sur les valeurs. Les données elles-mêmes se téléchargent sur <a href="https://www.worldvaluessurvey.org" target="_blank" rel="noopener">worldvaluessurvey.org</a>.</p></div></li>
+          <li><div><p>Ganascia, J.-G. (2024). <em>L'IA expliquée aux humains</em>. Paris : Éditions du Seuil.</p><p class="ref-note">Introduction accessible, utile pour le chapitre 1 et les tables rondes.</p></div></li>
+          <li><div><p>Langlois, L., Dilhac, M.-A., Dratwa, J. <i>et al.</i> (2023). <em>L'éthique au cœur de l'IA</em>. Québec : Obvia.</p><p class="ref-note">Le programme écrit « Anglais, Lise, Dilhac, Antione » ; les noms sont corrigés d'après la publication de l'Obvia.</p></div></li>
+          <li><div><p>Robert, J. (2024). « Natural Language Processing (NLP) : définition et principes ». DataScientest. <a href="https://datascientest.com/introduction-au-nlp-natural-language-processing" target="_blank" rel="noopener">datascientest.com/introduction-au-nlp-natural-language-processing</a></p></div></li>
+          <li><div><p>« Qu'est-ce que le traitement du langage naturel (NLP) ? ». Amazon Web Services. <a href="https://aws.amazon.com/fr/what-is/nlp/" target="_blank" rel="noopener">aws.amazon.com/fr/what-is/nlp</a></p></div></li>
+          <li><div><p>Belhadef, H., Djemal, I. <em>Méthode TALN</em>. Cours de l'Université de M'sila, Algérie.</p><p class="ref-note">TALN : traitement automatique des langues naturelles, l'équivalent français de NLP.</p></div></li>
+          <li><div><p>Prieur, B. <em>Traitement automatique du langage naturel avec Python. Le NLP avec spaCy et NLTK</em>.</p><p class="ref-note">Référence pratique pour le chapitre 2 et le sujet 3.</p></div></li>
+          <li><div><p>Baddari, K., Herzallah, A. (2015). <em>La recherche de l'information</em>. Alger : Office des publications universitaires (OPU).</p></div></li>
+        </ol>
+
+        <aside class="encadre encadre--shs"><p class="encadre-titre">Pour aller plus loin</p><p>Le <a href="enseignant.html#guide-ressources">guide de l'enseignant</a> rassemble plus de soixante ressources classées : livres, cours en ligne gratuits, outils sans code, ressources en arabe, données et textes, éthique.</p></aside>
+
+        <h3 class="surtitre" style="margin-block-start: var(--espace-6)">Documentation officielle des outils</h3>
+        <ul class="puces">
+          <li><a class="puce puce--outil" href="https://docs.python.org/fr/3/tutorial/" target="_blank" rel="noopener">Tutoriel Python (fr)</a></li>
+          <li><a class="puce puce--outil" href="https://pandas.pydata.org/docs/" target="_blank" rel="noopener">pandas</a></li>
+          <li><a class="puce puce--outil" href="https://numpy.org/doc/" target="_blank" rel="noopener">NumPy</a></li>
+          <li><a class="puce puce--outil" href="https://scikit-learn.org/stable/" target="_blank" rel="noopener">scikit-learn</a></li>
+          <li><a class="puce puce--outil" href="https://spacy.io/usage" target="_blank" rel="noopener">spaCy</a></li>
+          <li><a class="puce puce--outil" href="https://huggingface.co/docs/transformers" target="_blank" rel="noopener">Transformers</a></li>
+          <li><a class="puce puce--outil" href="https://radimrehurek.com/gensim/" target="_blank" rel="noopener">gensim</a></li>
+          <li><a class="puce puce--outil" href="https://networkx.org/documentation/stable/" target="_blank" rel="noopener">NetworkX</a></li>
+          <li><a class="puce puce--outil" href="https://gephi.org" target="_blank" rel="noopener">Gephi</a></li>
+          <li><a class="puce puce--outil" href="https://matplotlib.org/stable/" target="_blank" rel="noopener">matplotlib</a></li>
+        </ul>
+      </section>
+
+{{GLOSSAIRE}}
+
+    </div>
+  </div>
+</main>
+
+<footer class="pied">
+  <div class="pied__interieur">
+    <div>
+      <p class="pied__signature"><span class="anneau-prisme" aria-hidden="true"></span>Intelligence artificielle</p>
+      <p>Master Littérature Générale et Comparée, semestre 3. Université Yahia Farès, Médéa. Année universitaire 2025–2026.</p>
+      <p>Contenu fondé sur le programme officiel de la matière (pages 84 à 86 de l'offre de formation). Les explications, exemples et corrigés accompagnent le cours de l'enseignant et ne le remplacent pas.</p>
+    </div>
+    <div>
+      <h2>Parcourir</h2>
+      <ul>
+        <li><a href="#methode">Comment apprendre ce cours</a></li>
+        <li><a href="#chapitre-1">Chapitre 1 · Introduction</a></li>
+        <li><a href="#chapitre-2">Chapitre 2 · Python</a></li>
+        <li><a href="#chapitre-3">Chapitre 3 · Types d'IA</a></li>
+        <li><a href="#mini-projet">Mini-projet</a></li>
+        <li><a href="#td-tp">TD / TP corrigés</a></li>
+        <li><a href="enseignant.html">Guide de l'enseignant</a></li>
+        <li><a href="diaporamas.html">Diaporamas</a></li>
+        <li><a href="classe.html">Mes groupes</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Ce site</h2>
+      <p>Mis en forme avec <a href="{{LIEN_SYSTEME}}">Lumineux</a>, un système de design tiré des démos « Cadre Lumineux », « menu capsule » et « slider » de ce dépôt.</p>
+      <p>Thème Nuit ou Jour : bouton en haut à droite. Autres langues : <a href="en/index.html" hreflang="en" lang="en">English</a>, <a href="ar/index.html" hreflang="ar" lang="ar">العربية</a>.</p>
+      <p>Code source, et <code>run.bat</code> pour tout installer sous Windows : <a href="https://github.com/Progremer04/canva-au-for-ang-" target="_blank" rel="noopener">github.com/Progremer04/canva-au-for-ang-</a>.</p>
+    </div>
+  </div>
+</footer>
+
+{{SCRIPTS}}
+</body>
+</html>

@@ -1,0 +1,274 @@
+{
+  "id": "seance-1",
+  "numero": 1,
+  "titre": "Premier cours : présenter le cours et définir l'IA",
+  "resume": "Définir l'IA par des tâches observables, dire d'un objet courant s'il relève de l'IA en justifiant, et décrire ce que mesure le jeu de l'imitation.",
+  "duree": "1 h 30",
+  "lien": "index.html#chapitre-1",
+  "fiche": "enseignant.html#guide-seance-1",
+  "diapos": [
+    {
+      "type": "titre",
+      "surtitre": "Intelligence artificielle · Séance 1",
+      "titre": "Premier cours : présenter le cours et définir l'IA",
+      "sousTitre": "Master Littérature Générale et Comparée · Semestre 3 · Université Yahia Farès, Médéa · 2025–2026",
+      "notes": "Pendant l'installation, écrivez au tableau une question d'ouverture : « Une machine peut-elle lire un roman ? » Ne la tranchez pas : elle reviendra avec le jeu de l'imitation. Si la salle le permet, montrez l'accueil du site, qui calcule le sentiment d'une phrase : que veut dire « lire » pour une machine ? Matériel à vérifier : vidéoprojecteur, site ouvert sur la fiche de la matière, questionnaire imprimé, bandes de papier."
+    },
+    {
+      "type": "points",
+      "titre": "Objectifs de la séance",
+      "points": [
+        "**Définir** l'IA par des tâches observables",
+        "**Dire** d'un objet courant s'il relève de l'IA, en justifiant",
+        "**Décrire** le jeu de l'imitation et ce qu'il mesure"
+      ],
+      "notes": "Lisez les trois objectifs à voix haute : chacun commence par un verbe d'action, vous pourrez vérifier à la fin qu'il est atteint. Annoncez le déroulé : présentation du cours, questionnaire, un vote « IA ou pas IA ? », un apport, puis un jeu où deux étudiants joueront l'humain et la machine."
+    },
+    {
+      "type": "tableau",
+      "titre": "Le cours en un semestre",
+      "entetes": [
+        "Partie",
+        "Contenu",
+        "Durée"
+      ],
+      "lignes": [
+        [
+          "Chapitre 1",
+          "Introduction : définir l'IA, histoire, agents, types d'apprentissage",
+          "1 semaine"
+        ],
+        [
+          "Chapitre 2",
+          "Ingénierie de prompt et Python : fondamentaux, fichiers texte, pandas",
+          "2 semaines"
+        ],
+        [
+          "Chapitre 3",
+          "Machine learning, deep learning (TAL), assistants d'IA pour les textes",
+          "6 semaines"
+        ],
+        [
+          "Mini-projet",
+          "Travail autonome guidé : agents et Python en littérature ou sociologie",
+          "3 semaines"
+        ],
+        [
+          "TD / TP",
+          "Atelier de prompts, exercices corrigés, puis programmation en Python",
+          "Tout le semestre"
+        ],
+        [
+          "Tables rondes",
+          "4 débats : genèse, méthodes en SHS, problématiques, perspectives",
+          "Environ 45 min"
+        ]
+      ],
+      "legende": "Durées fixées par le programme officiel ; le calendrier précis est fixé par l'enseignant.",
+      "notes": "15 min pour cette diapositive et la suivante. Montrez sur le site la fiche de la matière et le calendrier. Tranchez devant la classe les deux points que le programme laisse ouverts : la répartition de l'évaluation, selon les textes en vigueur de votre faculté, et le nombre de sujets du mini-projet (« 1 sujet au choix » ou « au moins 3 sujets parmi les 5 proposés »). Annoncez dès aujourd'hui la règle retenue."
+    },
+    {
+      "type": "points",
+      "titre": "Comment travailler dans ce cours",
+      "points": [
+        "La programmation part de **zéro** : aucun prérequis en informatique",
+        "Environ **3 heures** de travail personnel par semaine, mais régulières",
+        "**Se tester** plutôt que relire ; **espacer** les révisions",
+        "Chercher chaque exercice du TD **avant** d'ouvrir le corrigé",
+        "Apprendre chaque terme en **français** et en **anglais**"
+      ],
+      "notes": "Ouvrez la page « Comment apprendre ce cours » et montrez le tableau « Une semaine type » : cinq moments, trois heures en tout. Insistez : une synthèse de la recherche en psychologie de l'apprentissage (Dunlosky et al., 2013) classe se tester et espacer les révisions parmi les techniques les plus utiles ; relire et surligner donnent une impression de maîtrise, mais retiennent peu. Rassurez sur Python : on part de zéro."
+    },
+    {
+      "type": "activite",
+      "titre": "Questionnaire diagnostique",
+      "duree": 10,
+      "consignes": [
+        "Avez-vous déjà utilisé un agent conversationnel ?",
+        "Avez-vous déjà écrit du code ?",
+        "Disposez-vous d'un ordinateur portable ? D'une connexion chez vous ?",
+        "Dans quelle langue préférez-vous lire une documentation technique ?",
+        "Qu'attendez-vous de ce cours ?"
+      ],
+      "materiel": "Le questionnaire imprimé, une feuille par étudiant",
+      "notes": "10 min. Ramassez les feuilles sans commenter les réponses en public. Les réponses sur l'équipement serviront à former les binômes de TP : placez chaque étudiant sans ordinateur avec un étudiant équipé. La langue de lecture préférée vous dira qui orienter vers la version anglaise ou arabe du site."
+    },
+    {
+      "type": "activite",
+      "titre": "IA ou pas IA ? Votez",
+      "duree": 15,
+      "consignes": [
+        "Pour chaque objet, votez à main levée : IA ou pas IA ?",
+        "Calculatrice · correcteur orthographique · filtre anti-spam · traducteur automatique",
+        "Thermostat · moteur de recherche · GPS · agent conversationnel",
+        "Repérez les objets qui divisent la classe",
+        "Un volontaire de chaque camp justifie son vote en une phrase"
+      ],
+      "notes": "15 min. Comptez les voix et notez les résultats au tableau ; gardez-les pour la fin de l'apport. Ne donnez aucune réponse : le but est de faire apparaître des désaccords. Conclusion à tirer : si nous ne sommes pas d'accord, c'est qu'il faut d'abord définir ce que l'on appelle « intelligence artificielle »."
+    },
+    {
+      "type": "section",
+      "numero": 1,
+      "titre": "Qu'est-ce que l'intelligence artificielle ?",
+      "sousTitre": "Dartmouth, les agents, une définition de travail",
+      "notes": "20 min d'apport, d'après la leçon « Qu'est-ce que l'intelligence artificielle ? » du chapitre 1. Annoncez qu'on reviendra ensuite aux huit objets votés."
+    },
+    {
+      "type": "chiffre",
+      "valeur": "1956",
+      "legende": "Atelier de Dartmouth : l'expression « intelligence artificielle » devient le nom d'un domaine de recherche",
+      "source": "Projet rédigé en 1955 par McCarthy, Minsky, Rochester et Shannon",
+      "notes": "Racontez : en 1955, John McCarthy, Marvin Minsky, Nathaniel Rochester et Claude Shannon demandent un financement pour réunir des chercheurs au Dartmouth College, aux États-Unis, pendant l'été 1956. Leur hypothèse : chaque aspect de l'apprentissage et de l'intelligence pourrait être décrit assez précisément pour qu'une machine le simule. Cet atelier est considéré comme l'acte de naissance du domaine. Ajoutez aussitôt qu'il n'existe pas de définition unique : le mot « intelligence » lui-même ne fait pas consensus."
+    },
+    {
+      "type": "definition",
+      "terme": "Agent",
+      "traduction": "agent",
+      "definition": "Système qui perçoit son environnement et agit sur lui pour atteindre un objectif.",
+      "exemple": "Un filtre anti-spam « perçoit » le texte d'un courriel et « agit » en le rangeant dans la bonne boîte.",
+      "notes": "C'est ainsi que le manuel de référence de Stuart Russell et Peter Norvig, *Artificial Intelligence: A Modern Approach* (1995), présente l'IA : comme l'étude des agents. Demandez un autre agent parmi les huit objets votés. Réponses possibles : le GPS perçoit une position et propose un itinéraire ; le thermostat perçoit la température et agit sur le chauffage. Faites remarquer que cette définition est très large : elle ne suffit pas à trancher."
+    },
+    {
+      "type": "definition",
+      "terme": "Intelligence artificielle",
+      "traduction": "artificial intelligence (AI)",
+      "definition": "Ensemble des méthodes informatiques qui permettent à une machine d'accomplir des tâches que l'on associe habituellement à l'intelligence humaine : reconnaître, classer, prédire, raisonner, planifier, comprendre ou produire du langage.",
+      "exemple": "Reconnaître les caractères d'un journal ancien (OCR), traduire entre l'arabe et le français, trier des courriels.",
+      "notes": "C'est la définition de travail du cours. Soulignez qu'elle porte sur des tâches observables : elle ne dit rien de ce que la machine « comprend ». Ajoutez que parler de « l'IA » au singulier est trompeur : c'est une famille de techniques (règles écrites par des experts, exploration de possibilités, apprentissage à partir d'exemples, réseaux de neurones). Faites noter la question à poser devant tout résultat d'« une IA » : quelle technique, entraînée sur quelles données, pour quelle tâche ?"
+    },
+    {
+      "type": "deux",
+      "titre": "Pourquoi l'IA concerne les études littéraires",
+      "colonnes": [
+        {
+          "titre": "Roberto Busa, 1949",
+          "points": [
+            "Un jésuite italien indexe l'œuvre de Thomas d'Aquin, avec l'aide d'IBM",
+            "Origine souvent donnée aux **humanités numériques** (*digital humanities*)"
+          ]
+        },
+        {
+          "titre": "Franco Moretti, 2000 et 2013",
+          "points": [
+            "Personne ne peut lire tous les romans publiés au XIXe siècle",
+            "**Lecture distante** (*distant reading*) : des milliers de textes, des traits mesurables",
+            "Elle ne remplace pas la lecture rapprochée"
+          ]
+        }
+      ],
+      "notes": "Pour un comparatiste, Moretti est la référence : « Conjectures on World Literature » (2000), puis *Distant Reading* (2013). Traits mesurables : genres, titres, réseaux de personnages, circulation des formes d'une langue à l'autre. Deux usages concrets du chapitre 1 : en 2019, Florian Cafiero et Jean-Baptiste Camps ont apporté des arguments quantitatifs en faveur de Molière dans la controverse qui l'opposait à Corneille ; on peut aussi aligner phrase à phrase un roman de Naguib Mahfouz et ses traductions française et anglaise pour comparer les choix des traducteurs."
+    },
+    {
+      "type": "deux",
+      "titre": "Retour aux huit objets",
+      "colonnes": [
+        {
+          "titre": "Des exemples que le cours retient",
+          "points": [
+            "Filtre anti-spam : un agent qui range des courriels",
+            "Traducteur automatique : une IA étroite",
+            "Moteur de recherche : l'IA au quotidien",
+            "GPS : chercher un itinéraire parmi des possibilités",
+            "Agent conversationnel : un grand modèle de langage"
+          ]
+        },
+        {
+          "titre": "À discuter : quelle technique ?",
+          "points": [
+            "Calculatrice : calculer, est-ce une tâche « intelligente » ?",
+            "Thermostat : il perçoit et agit ; est-ce assez ?",
+            "Correcteur orthographique : un dictionnaire, ou un modèle appris ?"
+          ]
+        }
+      ],
+      "notes": "Reprenez les votes du tableau. Pour chaque objet, posez la question de la définition : accomplit-il une tâche associée à l'intelligence humaine (reconnaître, classer, prédire, planifier, produire du langage) ? Les cinq premiers sont des exemples du chapitre 1 ; le calcul d'itinéraire entre Médéa et Alger y illustre la « recherche dans un espace d'états ». Pour les trois autres, acceptez les deux réponses si elles sont justifiées par la technique supposée : c'est la justification qui compte, pas le verdict."
+    },
+    {
+      "type": "section",
+      "numero": 2,
+      "titre": "Le jeu de l'imitation",
+      "sousTitre": "Alan Turing, 1950",
+      "notes": "25 min au total : la version courte de l'activité du guide, avec deux témoins, cinq minutes de questions, un vote et une discussion."
+    },
+    {
+      "type": "citation",
+      "texte": "Je propose d'examiner la question suivante : les machines peuvent-elles penser ?",
+      "source": "Alan M. Turing, « Computing Machinery and Intelligence », *Mind*, 1950",
+      "notes": "C'est la première phrase de l'article, dans la traduction du cours ; l'original dit : « I propose to consider the question, “Can machines think?” ». Expliquez le geste de Turing : plutôt que de définir « penser », il propose une épreuve observable. Dans son jeu original, un interrogateur doit deviner par écrit qui est l'homme et qui est la femme ; puis une machine prend l'une des places. S'il ne parvient pas à distinguer la machine de l'humain, elle se comporte de façon intelligente : c'est le « test de Turing »."
+    },
+    {
+      "type": "activite",
+      "titre": "Jouons : qui est la machine ?",
+      "duree": 25,
+      "consignes": [
+        "Deux témoins, hors de vue : X répond sincèrement, Y joue la machine",
+        "La classe pose ses questions par écrit, sur des bandes de papier",
+        "Cinq minutes de questions par témoin ; l'enseignant lit les réponses à voix haute",
+        "Vote à main levée : qui est la machine ? Puis révélation",
+        "Discussion : qu'est-ce qui a trahi la machine ?"
+      ],
+      "materiel": "Bandes de papier, un lieu hors de vue, la carte de règles remise à Y",
+      "notes": "Minutage : rôles 3 min, questions 10 min (cinq minutes par témoin, la durée qu'évoque Turing), vote 5 min, discussion le reste. Remettez discrètement à Y la carte de règles de la diapositive suivante, que vous ne projetterez qu'après le vote. Lisez vous-même toutes les réponses : l'écriture trahirait les témoins. Variante : Y est un agent conversationnel dont vous lisez les réponses ; la question devient alors « que prouve le fait de tromper ? »."
+    },
+    {
+      "type": "points",
+      "titre": "Révélation : la carte de règles de la « machine »",
+      "points": [
+        "La question contient « vous » ou « tu » → « Pourquoi me posez-vous cette question ? »",
+        "Elle contient un mot de la famille → « Parlez-moi de votre famille. »",
+        "Elle demande un calcul → attendre trente secondes, puis répondre",
+        "Sinon → « Je ne suis pas sûr de comprendre. Pouvez-vous reformuler ? »"
+      ],
+      "notes": "À projeter seulement après le vote. Ces règles sont dans l'esprit d'ELIZA, le programme de Joseph Weizenbaum (MIT, 1966) qui imitait un psychothérapeute en reformulant les phrases de l'utilisateur. Demandez : qu'est-ce qui a trahi la machine ? Doit-elle imiter nos erreurs ? Dans l'exemple de Turing, la machine répond à une addition après une trentaine de secondes, et se trompe."
+    },
+    {
+      "type": "question",
+      "titre": "Discussion",
+      "question": "Tromper l'interrogateur, est-ce penser ?",
+      "reponse": "Pas forcément : Turing remplace une question philosophique par une épreuve observable. Réussir l'épreuve ne prouve pas la compréhension.",
+      "explication": "C'est l'objection du philosophe John Searle (1980), avec la chambre chinoise, que nous verrons à la séance 2.",
+      "notes": "10 min de discussion. Laissez les deux camps s'exprimer avant d'afficher la réponse. Point à faire émerger : l'épreuve mesure un comportement, la capacité à se faire passer pour un humain à l'écrit ; elle ne définit pas l'intelligence et ne prouve pas la compréhension."
+    },
+    {
+      "type": "definition",
+      "terme": "Effet ELIZA",
+      "traduction": "ELIZA effect",
+      "definition": "Tendance à prêter de l'intelligence, voire une compréhension réelle, à un programme qui parle.",
+      "exemple": "En 1966, des utilisateurs d'ELIZA, qui se contentait de reformuler leurs phrases par des règles simples, lui prêtaient une compréhension réelle.",
+      "notes": "Reliez au jeu : si la classe a hésité devant Y, qui n'appliquait que quatre règles, c'est l'effet ELIZA. Il vaut aussi pour les agents conversationnels actuels : répondre bien ne prouve pas comprendre."
+    },
+    {
+      "type": "points",
+      "titre": "Erreurs fréquentes à corriger",
+      "points": [
+        "Réduire l'IA aux robots ou aux agents conversationnels récents",
+        "Croire qu'un système comprend parce qu'il répond bien : c'est l'**effet ELIZA**",
+        "Prendre le test de Turing pour une **définition** de l'intelligence"
+      ],
+      "notes": "Relisez ces trois erreurs et demandez, pour chacune, ce qui dans la séance permet de la corriger. Attendu : la définition par les tâches et la famille de techniques (1) ; la carte de règles de la « machine » (2) ; le fait que Turing propose une épreuve observable, non une définition (3)."
+    },
+    {
+      "type": "fin",
+      "titre": "Bilan et travail personnel",
+      "points": [
+        {
+          "texte": "**Ticket de sortie** (5 min)",
+          "sous": [
+            "Une chose apprise aujourd'hui",
+            "Une question qui reste"
+          ]
+        },
+        {
+          "texte": "**À lire** sur le site",
+          "sous": [
+            "« Qu'est-ce que l'intelligence artificielle ? » (chapitre 1)",
+            "« Une semaine type » (Comment apprendre ce cours)"
+          ]
+        },
+        "**À noter** : un usage de l'IA rencontré cette semaine, avec la technique supposée"
+      ],
+      "texte": "Séance 2 : histoire de l'IA, IA faible et IA forte",
+      "notes": "Ramassez les tickets et lisez-les le soir même : les meilleures questions ouvriront la séance 2. Avant de lever la séance, vérifiez les objectifs par deux questions rapides : « Définissez l'IA en une phrase. » « Que mesure le jeu de l'imitation ? »"
+    }
+  ]
+}

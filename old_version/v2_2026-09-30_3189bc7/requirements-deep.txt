@@ -1,0 +1,4 @@
+# Apprentissage profond (chapitre 3 : Transformers). Telechargement important (plusieurs centaines de Mo).
+# Installe par run.bat apres requirements.txt ; un echec ici n'empeche pas le reste de fonctionner.
+transformers
+torch

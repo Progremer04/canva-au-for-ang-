@@ -68,15 +68,6 @@ PHOTOS = {
     "lecun": ("Yann_LeCun_-_2018_(cropped).jpg", "", "CC BY-SA 2.0", "", ""),
     "hassabis": ("Demis_Hassabis_Royal_Society.jpg", "Royal Society", "CC BY-SA 4.0", "go", ""),
     "leesedol": ("Lee_Se-Dol_-_2016_(cropped).jpg", "", "CC BY 2.0", "", ""),
-    "minsky": ("Marvin_Minsky_at_OLPCc.jpg", "Sethwoodworth", "CC BY 3.0", "profil", ""),
-    "rumelhart": ("DavidRumelhart-IJCNNseattle1991-07-08.jpg", "Rolf Kickuth", "CC BY-SA 4.0", "profil", ""),
-    "goodfellow": ("Ian_Goodfellow.jpg", "Ian Goodfellow", "CC BY-SA 4.0", "profil", "l"),
-    "watson": ("IBM_Watson_w_Jeopardy.jpg", "Atomic Taco", "CC BY-SA 2.0", "ordinateur", "l"),
-    "gpu": ("NVIDIA_GPU.jpg", "Mickael Courtiade", "CC BY 2.0", "ordinateur", "l"),
-    "tpu": ("Tensor_Processing_Unit_3.0.jpg", "Zinskauf", "CC BY-SA 4.0", "ordinateur", "l"),
-    "datacenter": ("Datacenter_Server_Racks_(22370909788).jpg", "CLender", "CC BY 2.0", "ordinateur", "l"),
-    "goban": ("FloorGoban.JPG", "Goban1", "PD", "go", "l"),
-    "ubercar": ("Uber_Self_Driving_Volvo_at_Otto_Headquarters_at_737_Harrison.jpg", "Dllu", "CC BY-SA 4.0", "uber", "l"),
 }
 # Pages de référence des photos qui ne viennent pas de Wikimedia Commons.
 PAGES = {"perceptron": "https://en.wikipedia.org/wiki/Perceptron"}
@@ -88,9 +79,7 @@ ARTICLES = {
     "mccarthy": "John McCarthy (computer scientist)", "dartmouth": "Dartmouth workshop", "perceptron": "Perceptron",
     "shakey": "Shakey the robot", "deepblue": "Deep Blue (chess computer)", "kasparov": "Garry Kasparov",
     "feifei": "Fei-Fei Li", "hinton": "Geoffrey Hinton", "lecun": "Yann LeCun", "hassabis": "Demis Hassabis",
-    "leesedol": "Lee Sedol", "minsky": "Marvin Minsky", "rumelhart": "David Rumelhart", "goodfellow": "Ian Goodfellow",
-    "watson": "IBM Watson", "gpu": "GeForce", "tpu": "Tensor Processing Unit", "datacenter": "Data center",
-    "goban": "Go (game)", "ubercar": "Self-driving car",
+    "leesedol": "Lee Sedol",
 }
 DOSSIER_PHOTOS = SOURCES / "photos"
 CREDITS = DOSSIER_PHOTOS / "credits.json"

@@ -1,0 +1,242 @@
+{
+  "id": "seance-8",
+  "numero": 8,
+  "titre": "Transformers et IA générative",
+  "resume": "Expliquer token, plongement et attention, décrire la génération de texte comme la prédiction répétée du token suivant et vérifier une référence produite par un agent conversationnel.",
+  "duree": "1 h 30",
+  "lien": "index.html#c3-deep",
+  "fiche": "enseignant.html#guide-seance-8",
+  "diapos": [
+    {
+      "type": "titre",
+      "surtitre": "Chapitre 3 · Séance 8",
+      "titre": "Transformers et IA générative",
+      "sousTitre": "Comment une machine écrit, et pourquoi il faut la vérifier",
+      "notes": "Déroulé : deviner le mot suivant (15 min), tokens, plongements, attention (20), démonstration (20), l'épreuve des références (15), éthique (15), bilan (5). La veille : installez `transformers` et `torch` et téléchargez les modèles (ou préparez Colab), faites des captures des sorties en secours, et demandez à un agent conversationnel cinq références sur un sujet précis. Prérequis : séance 7 et leçon « L'apprentissage profond » parcourue."
+    },
+    {
+      "type": "points",
+      "titre": "Objectifs de la séance",
+      "points": [
+        "Expliquer **token**, **plongement** et **attention**",
+        "Décrire la génération comme la **prédiction répétée du token suivant**",
+        "**Vérifier** une référence produite par un agent conversationnel"
+      ],
+      "notes": "Annoncez le fil de la séance : la classe joue d'abord le rôle d'un modèle de langage, on ouvre ensuite la boîte, on fait tourner de vrais modèles, puis on les met à l'épreuve."
+    },
+    {
+      "type": "section",
+      "numero": 1,
+      "titre": "Deviner le mot suivant",
+      "sousTitre": "15 min, sans ordinateur",
+      "notes": "Pas de théorie pour l'instant : les étudiants vont faire eux-mêmes ce que fait un modèle génératif."
+    },
+    {
+      "type": "question",
+      "titre": "Complétez à voix haute",
+      "question": "« Il pleure dans mon… »",
+      "reponse": "« cœur » : Verlaine, *Romances sans paroles* (1874).",
+      "explication": "Tout le monde donne le même mot : dans ce contexte, une seule suite est très probable.",
+      "notes": "Demandez une réponse collective. Attendu : « cœur », à l'unanimité. C'est le poème compté en Python au TD du chapitre 2 (exercice 3). Question à poser : comment le savez-vous ? Parce que vous avez déjà lu cette suite. Un modèle de langage estime de même la probabilité d'une suite de mots, à partir d'un très grand nombre de textes."
+    },
+    {
+      "type": "activite",
+      "titre": "« L'étudiante ouvrit le livre et… »",
+      "duree": 7,
+      "consignes": [
+        "Chacun écrit en secret le mot qui suit, puis le lit à voix haute.",
+        "Au tableau : chaque proposition et le nombre d'étudiants qui l'ont donnée.",
+        "Ce tableau est une **distribution de probabilités** sur le mot suivant."
+      ],
+      "materiel": "Une demi-feuille par étudiant ; le tableau",
+      "notes": "Notez chaque proposition avec son nombre. Cette fois, les réponses divergent : plusieurs suites sont plausibles. Faites dire que la plus fréquente n'est pas la seule possible. Laissez le tableau visible pour la diapositive suivante."
+    },
+    {
+      "type": "deux",
+      "titre": "Choisir le mot suivant : la température",
+      "colonnes": [
+        {
+          "titre": "Température basse",
+          "points": [
+            "Prendre toujours la proposition la plus fréquente",
+            "Texte prévisible",
+            "T < 1 : les écarts entre probabilités s'accentuent"
+          ]
+        },
+        {
+          "titre": "Température haute",
+          "points": [
+            "Tirer au sort parmi les propositions",
+            "Texte surprenant, puis incohérent",
+            "T > 1 : les écarts s'aplatissent"
+          ]
+        }
+      ],
+      "notes": "Faites les deux tirages avec le tableau de la classe : une fois en prenant le mot le plus fréquent, une fois au hasard (papiers tirés dans une boîte, par exemple). Un modèle fait exactement cela, token après token. La formule de la leçon, p(tokenᵢ) = exp(zᵢ / T) / Σⱼ exp(zⱼ / T), n'est pas à exiger."
+    },
+    {
+      "type": "section",
+      "numero": 2,
+      "titre": "Tokens, plongements, attention",
+      "sousTitre": "20 min",
+      "notes": "Suivez la leçon « L'apprentissage profond », partie « Génération de texte avec les Transformers ». Situez : en 2017, l'article « Attention Is All You Need » (Ashish Vaswani et ses coauteurs, Google) propose le Transformer, qui traite tous les mots d'un passage en même temps et calcule leurs relations par un mécanisme d'attention."
+    },
+    {
+      "type": "definition",
+      "terme": "Token (jeton)",
+      "traduction": "token",
+      "definition": "L'unité de texte que traite le modèle : un mot, un morceau de mot ou un signe de ponctuation. Un mot rare est coupé en plusieurs morceaux.",
+      "exemple": "Le vocabulaire de GPT-2 compte un peu plus de 50 000 tokens.",
+      "notes": "Insistez : le modèle ne voit ni des lettres ni des idées, mais une suite de tokens. Il prédit toujours le token suivant, pas une phrase entière ni une réponse toute faite."
+    },
+    {
+      "type": "definition",
+      "terme": "Plongement",
+      "traduction": "embedding",
+      "definition": "Chaque token devient un vecteur de plusieurs centaines de nombres. Les mots employés dans des contextes semblables reçoivent des vecteurs proches.",
+      "exemple": "L'hypothèse distributionnelle, résumée par J. R. Firth en 1957 : « *You shall know a word by the company it keeps* ».",
+      "notes": "Traduisez la citation : on reconnaît un mot à ses fréquentations. Reliez à la lecture littéraire : le sens d'un mot se construit aussi dans ses contextes. Le vecteur ne comprend rien ; il résume des voisinages."
+    },
+    {
+      "type": "question",
+      "titre": "L'attention",
+      "question": "« L'étudiante a rendu son mémoire au professeur parce qu'elle avait terminé. » Quel mot le token « elle » doit-il regarder surtout ?",
+      "choix": [
+        "« mémoire »",
+        "« professeur »",
+        "« étudiante »"
+      ],
+      "reponse": "« étudiante »",
+      "explication": "**Attention** : chaque token calcule à quel point il doit « regarder » chacun des autres, quelle que soit leur distance. C'est le cœur du Transformer.",
+      "notes": "Faites voter, puis demandez comment on le sait : l'accord au féminin, le sens de la phrase. Le modèle, lui, apprend ces liens à partir d'exemples. La formule Attention(Q, K, V) = softmax(Q · Kᵀ / √d) · V est dans la leçon : inutile de la détailler. Ce mécanisme permet aussi de traiter tous les mots en parallèle, là où un réseau récurrent (RNN) lisait mot après mot."
+    },
+    {
+      "type": "deux",
+      "titre": "Deux familles de Transformers",
+      "colonnes": [
+        {
+          "titre": "Encodeurs : BERT (Google, 2018)",
+          "points": [
+            "Lisent la phrase dans les deux sens",
+            "Servent à **comprendre** : classer, sentiment, entités nommées",
+            "Pour le français : CamemBERT ; pour l'arabe : AraBERT"
+          ]
+        },
+        {
+          "titre": "Décodeurs : GPT (OpenAI, depuis 2018)",
+          "points": [
+            "Lisent de gauche à droite",
+            "Prédisent le token suivant",
+            "Servent à **générer** du texte"
+          ]
+        }
+      ],
+      "notes": "Erreur fréquente : confondre BERT, qui comprend et classe, et GPT, qui génère. Reliez au mini-projet : l'analyse de sentiments (sujet 1) et les entités nommées d'un discours politique (sujet 3) relèvent des encodeurs."
+    },
+    {
+      "type": "etapes",
+      "titre": "Générer, c'est boucler",
+      "etapes": [
+        {
+          "titre": "Calculer",
+          "texte": "Le modèle donne une probabilité à chaque token du vocabulaire."
+        },
+        {
+          "titre": "Tirer",
+          "texte": "On tire un token au sort selon ces probabilités, réglées par la température."
+        },
+        {
+          "titre": "Ajouter",
+          "texte": "Le token tiré est ajouté à la fin du texte."
+        },
+        {
+          "titre": "Recommencer",
+          "texte": "Le texte allongé sert de nouveau point de départ."
+        }
+      ],
+      "progressif": true,
+      "notes": "C'est l'objectif central de la séance. Faites reformuler par un étudiant à partir du jeu du début : la classe a fait ces quatre étapes avec « L'étudiante ouvrit le livre et… ». Conséquence à faire dire : le modèle ne cherche pas une information, il prolonge un texte de façon plausible."
+    },
+    {
+      "type": "section",
+      "numero": 3,
+      "titre": "Utiliser, vérifier, déclarer",
+      "sousTitre": "Démonstration (20 min) · références (15 min) · éthique (15 min)",
+      "notes": "On fait maintenant tourner de vrais modèles, puis on les met à l'épreuve. Si la connexion ou l'installation fait défaut, montrez les captures préparées la veille."
+    },
+    {
+      "type": "code",
+      "titre": "Démonstration : générer avec GPT-2",
+      "code": "from transformers import pipeline, set_seed\n\n# GPT-2 (2019) : petit modèle génératif, textes anglais\ngenerateur = pipeline(\"text-generation\", model=\"gpt2\")\nset_seed(42)  # tirage reproductible sur une même installation\n\ndebut = \"The old librarian opened the forbidden book and\"\nsorties = generateur(debut, max_new_tokens=40, do_sample=True,\n                     temperature=0.3, num_return_sequences=2)\nfor s in sorties:\n    print(s[\"generated_text\"], end=\"\\n\\n\")",
+      "legende": "`generation_texte.py` (leçon), avec `temperature=0.3`, puis `1.5`. La suite dépend de la graine, de la température et des versions installées : pas de sortie fixe.",
+      "notes": "Faites prédire avant d'exécuter : à 0,3, un texte plutôt prévisible ; à 1,5, un texte surprenant, puis incohérent. Lisez les sorties à voix haute et faites relever les phrases plausibles mais absurdes ou fausses. GPT-2 est un modèle anglais publié en 2019 ; pour le français ou l'arabe, il faut choisir un autre modèle sur le Hub de Hugging Face. Environ 10 minutes."
+    },
+    {
+      "type": "code",
+      "titre": "Démonstration : un modèle anglais qui classe",
+      "code": "from transformers import pipeline\n\n# Modèle anglais affiné sur des critiques de films (SST-2)\nmodele = (\"distilbert/distilbert-base-uncased-\"\n          \"finetuned-sst-2-english\")\nanalyseur = pipeline(\"sentiment-analysis\", model=modele)\navis = [\n    \"I loved this novel, the characters are unforgettable.\",\n    \"The ending was a real disappointment.\",\n]\nfor texte, resultat in zip(avis, analyseur(avis)):\n    print(resultat[\"label\"], \"|\", texte)",
+      "sortie": "POSITIVE | I loved this novel, the characters are unforgettable.\nNEGATIVE | The ending was a real disappointment.",
+      "legende": "`sentiment_transformers.py` (leçon). Ajoutez ensuite une phrase en français à la liste `avis` : que répond ce modèle entraîné sur de l'anglais ?",
+      "notes": "Exécutez d'abord tel quel : les deux avis anglais sont bien classés. Ajoutez une phrase en français de votre choix et relancez devant la classe sans annoncer le résultat. Quel qu'il soit, posez la question : un modèle affiné sur des critiques de films en anglais peut-il juger un texte français ? Reliez aux sujets 1 (sentiments) et 3 (discours politiques) du mini-projet. Environ 10 minutes."
+    },
+    {
+      "type": "activite",
+      "titre": "L'épreuve des références",
+      "duree": 15,
+      "consignes": [
+        "Voici cinq références proposées par un agent conversationnel sur un sujet précis.",
+        "Chaque groupe en prend une et la cherche dans un catalogue de bibliothèque.",
+        "Existe-t-elle ? Auteur, titre, éditeur et année sont-ils exacts ?",
+        "Chaque groupe annonce son verdict en une phrase."
+      ],
+      "materiel": "Les cinq références, demandées la veille, imprimées ou projetées ; un accès à un catalogue de bibliothèque",
+      "notes": "Choisissez un sujet précis de votre discipline. Vous pouvez vérifier les références avant le cours, mais n'annoncez pas le résultat. Si certaines n'existent pas, montrez que l'outil les a inventées avec aplomb ; si tout existe, la leçon porte sur la vérification elle-même. Erreur fréquente à nommer : se fier à une référence parce qu'elle est bien présentée."
+    },
+    {
+      "type": "definition",
+      "terme": "Hallucination",
+      "traduction": "hallucination",
+      "definition": "Un modèle génératif produit la suite la plus plausible, pas la plus vraie : il peut inventer avec aplomb une citation, une date ou une référence complète qui n'existe pas.",
+      "exemple": "Règle pour le mémoire : ne citez jamais une source que vous n'avez pas retrouvée et lue vous-même.",
+      "notes": "Tirez la leçon de l'épreuve : une référence inexistante dans un mémoire est une faute scientifique, quelle que soit sa provenance. Chaque citation se vérifie dans l'édition d'origine."
+    },
+    {
+      "type": "activite",
+      "titre": "Éthique : trois règles pour la classe",
+      "duree": 15,
+      "consignes": [
+        "Déclarer l'usage de l'IA dans un mémoire : que faut-il indiquer ?",
+        "Déposer des textes en ligne : lesquels ne faut-il jamais déposer ?",
+        "Darja, tamazight : que faire quand une langue est moins bien traitée ?",
+        "Rédigez ensemble trois règles, une phrase chacune."
+      ],
+      "materiel": "Leçons « Perspectives : opportunités, limites et éthique » et « Apprendre avec un assistant d'IA, sans tricher »",
+      "notes": "Attendus, d'après les leçons. Déclarer : le nom de l'outil, sa version, la date, l'usage précis et les consignes formulées ; présenter comme sien un texte généré relève du plagiat. Ne jamais déposer de données personnelles ni de textes inédits ou protégés dans un service qui réutilise les contenus. Les langues peu présentes sur le Web, comme la darja ou le tamazight, sont moins bien traitées que l'anglais : vérifier les résultats sur un échantillon. Écrivez les trois règles au tableau."
+    },
+    {
+      "type": "points",
+      "titre": "Erreurs fréquentes",
+      "points": [
+        "Croire que le modèle sait ou cherche : il prolonge un texte de façon plausible",
+        "Se fier à une référence parce qu'elle est bien présentée",
+        "Confondre BERT, qui comprend et classe, et GPT, qui génère"
+      ],
+      "notes": "Faites associer chaque erreur à un moment de la séance : le jeu du mot suivant, l'épreuve des références, les deux familles de Transformers."
+    },
+    {
+      "type": "fin",
+      "titre": "Bilan · 5 min",
+      "texte": "Complétez sur une demi-feuille : « Générer du texte, pour un modèle, c'est… »",
+      "points": [
+        {
+          "texte": "**Travail personnel**",
+          "sous": [
+            "Relire l'encadré « Hallucinations et sources », puis écrire en cinq lignes sa règle d'usage d'un assistant d'IA",
+            "Groupe concerné : préparer la table ronde « L'IA, vecteur de nouvelles problématiques »"
+          ]
+        }
+      ],
+      "notes": "Ramassez les phrases complétées. Attendu : prédire, token après token, une suite plausible ; calculer des probabilités, tirer un token, l'ajouter, recommencer. Ouvrez la séance suivante sur les réponses les plus fréquentes."
+    }
+  ]
+}
