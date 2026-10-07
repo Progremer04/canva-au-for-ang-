@@ -30,7 +30,7 @@
     fr: {
       nom: "Nom complet", nom_aide: "Prénom et nom, comme sur la liste du groupe.", groupe: "Groupe", autre: "Autre…",
       autre_groupe: "Votre groupe", premiere: "Votre question", premiere_aide: "Écrivez la question en entier : ce que vous avez essayé, où vous bloquez.",
-      commencer: "Envoyer à l'enseignant", intro: "Écrivez à l'enseignant : il voit votre nom et votre groupe, et vous répond ici.",
+      commencer: "Envoyer à l'enseignant", suite: "Ensuite, la conversation s'ouvre : vous pourrez envoyer des photos, des messages vocaux et des fichiers.", intro: "Écrivez à l'enseignant : il voit votre nom et votre groupe, et vous répond ici.",
       vous: "Vous", prof: "Enseignant", pas_vous: "Ce n'est pas vous ? Recommencer", confirmer_recommencer: "Quitter cette conversation sur ce navigateur ? Vous ne pourrez plus la rouvrir ici.",
       ecrire: "Écrire un message…", legende: "Ajouter une légende…", envoyer: "Envoyer", joindre: "Joindre un fichier", photo: "Envoyer une photo",
       micro: "Enregistrer un message vocal", arreter: "Arrêter", annuler: "Annuler", repondre: "Répondre", reponse_a: "Réponse à",
@@ -50,7 +50,7 @@
     en: {
       nom: "Full name", nom_aide: "First and last name, as on the group list.", groupe: "Group", autre: "Other…",
       autre_groupe: "Your group", premiere: "Your question", premiere_aide: "Write the whole question: what you tried and where you are stuck.",
-      commencer: "Send to the teacher", intro: "Write to the teacher: they see your name and group, and answer you here.",
+      commencer: "Send to the teacher", suite: "Then the conversation opens: you can send photos, voice messages and files.", intro: "Write to the teacher: they see your name and group, and answer you here.",
       vous: "You", prof: "Teacher", pas_vous: "Not you? Start again", confirmer_recommencer: "Leave this conversation on this browser? You won't be able to reopen it here.",
       ecrire: "Write a message…", legende: "Add a caption…", envoyer: "Send", joindre: "Attach a file", photo: "Send a photo",
       micro: "Record a voice message", arreter: "Stop", annuler: "Cancel", repondre: "Reply", reponse_a: "Reply to",
@@ -70,7 +70,7 @@
     ar: {
       nom: "الاسم الكامل", nom_aide: "الاسم واللقب كما في قائمة الفوج.", groupe: "الفوج", autre: "آخر…",
       autre_groupe: "فوجك", premiere: "سؤالك", premiere_aide: "اكتب السؤال كاملًا: ما الذي جرّبته وأين توقفت.",
-      commencer: "أرسل إلى الأستاذ", intro: "راسل الأستاذ: يرى اسمك وفوجك، ويجيبك هنا.",
+      commencer: "أرسل إلى الأستاذ", suite: "بعدها تُفتح المحادثة: يمكنك إرسال صور ورسائل صوتية وملفات.", intro: "راسل الأستاذ: يرى اسمك وفوجك، ويجيبك هنا.",
       vous: "أنت", prof: "الأستاذ", pas_vous: "لست أنت؟ ابدأ من جديد", confirmer_recommencer: "مغادرة هذه المحادثة على هذا المتصفح؟ لن تتمكن من فتحها هنا مرة أخرى.",
       ecrire: "اكتب رسالة…", legende: "أضف تعليقًا…", envoyer: "إرسال", joindre: "إرفاق ملف", photo: "إرسال صورة",
       micro: "تسجيل رسالة صوتية", arreter: "إيقاف", annuler: "إلغاء", repondre: "رد", reponse_a: "ردًّا على",
@@ -580,7 +580,7 @@
       el("div", { "class": "champ" }, [el("label", { "for": "q-groupe", texte: t("groupe") }), groupe]),
       champAutre,
       el("div", { "class": "champ" }, [el("label", { "for": "q-question", texte: t("premiere") }), question, el("small", { "class": "q-discret", texte: t("premiere_aide") })]),
-      bouton, info
+      bouton, el("small", { "class": "q-discret", texte: t("suite") }), info
     ]);
     racine.appendChild(form);
   }
