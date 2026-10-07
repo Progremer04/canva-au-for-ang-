@@ -2,8 +2,9 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
+<meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>الذكاء الاصطناعي · ماستر 2 · جامعة يحيى فارس بالمدية</title>
+<title>أسئلة الطلبة · مقياس الذكاء الاصطناعي</title>
 <meta name="description" content="مقياس الذكاء الاصطناعي لماستر الأدب العام والمقارن (جامعة يحيى فارس بالمدية، 2025-2026) مشروحًا كاملًا: دروس، بايثون، عروض تفاعلية، حلول الأعمال الموجهة والمشاريع المصغرة.">
 <link rel="preload" href="../assets/fonts/noto-naskh-arabic-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/el-messiri-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -12,9 +13,8 @@
 <link rel="stylesheet" href="../assets/css/lumineux.css">
 <link rel="stylesheet" href="../assets/css/cours.css">
 <link rel="stylesheet" href="../assets/css/outils.css">
-<link rel="alternate" hreflang="fr" href="../index.html">
-<link rel="alternate" hreflang="en" href="../en/index.html">
-<script>(function () { var h = location.hash; if (h.length > 1 && !/^#(contenu|portail-[\w-]+)$/.test(h)) location.replace("cours.html" + h); })();</script>
+<link rel="alternate" hreflang="fr" href="../messages.html">
+<link rel="alternate" hreflang="en" href="../en/messages.html">
 </head>
 <body>
 <a class="lien-evitement" href="#contenu">الانتقال إلى المحتوى</a>
@@ -63,7 +63,7 @@
     <a class="entete__marque" href="index.html"><span class="anneau-prisme" aria-hidden="true"></span>ذ.ا <small>ماستر LGC</small></a>
     <nav class="entete__liens" aria-label="روابط مفيدة">
       <a class="bouton bouton--discret bouton--petit entete__lien-systeme" href="../systeme-de-design.html">نظام التصميم</a>
-      <div class="langues" role="group" aria-label="لغة الدرس"><a href="../index.html" lang="fr" hreflang="fr" data-lien-langue>FR</a><a href="../en/index.html" lang="en" hreflang="en" data-lien-langue>EN</a><a href="index.html" lang="ar" hreflang="ar" aria-current="page">عربي</a></div>
+      <div class="langues" role="group" aria-label="لغة الدرس"><a href="../messages.html" lang="fr" hreflang="fr" data-lien-langue>FR</a><a href="../en/messages.html" lang="en" hreflang="en" data-lien-langue>EN</a><a href="messages.html" lang="ar" hreflang="ar" aria-current="page">عربي</a></div>
       <button type="button" class="bouton-verre" data-bascule-theme aria-label="تغيير المظهر">
         <svg class="icone"><use href="#i-contraste"/></svg>
       </button>
@@ -94,38 +94,16 @@
 </nav>
 </aside>
 
-<main id="contenu" class="page-outil portail" data-base="../" data-langue="ar">
-  <section class="outil-tete portail__tete" aria-labelledby="titre-portail">
-    <p class="surtitre">جامعة يحيى فارس بالمدية · ماستر 2 · 2025–2026</p>
-    <h1 class="outil-tete__titre" id="titre-portail">الذكاء الاصطناعي</h1>
-    <p class="outil-tete__chapeau">المقياس كاملًا، وحلول تمارينه، وأدوات الأستاذ، بالفرنسية والإنجليزية والعربية.</p>
-    <div class="heros__actions"><a class="bouton bouton--prisme" href="cours.html">افتح المقياس</a><a class="bouton" href="enseignant.html">دليل الأستاذ</a></div>
+<main id="contenu" class="page-outil">
+  <section class="outil-tete" aria-labelledby="titre-outil">
+    <p class="surtitre">للأستاذ</p>
+    <h1 class="outil-tete__titre" id="titre-outil">أسئلة الطلبة</h1>
+    <p class="outil-tete__chapeau">أسئلة طلبتكم حسب الفوج، مع أسمائهم. أجيبوا كما في تطبيق مراسلة: نص أو رسالة صوتية أو صورة أو ملف، أو ردّ على رسالة بعينها.</p>
   </section>
-  <section class="portail__bloc" id="portail-etudiants" aria-labelledby="portail-etudiants-titre">
-    <h2 class="portail__titre" id="portail-etudiants-titre">للطلبة</h2>
-    <ul class="tuiles">
-      <li><a class="tuile teinte-braise" href="questions.html"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-bulle"/></svg></span><span class="tuile__titre">اطرح سؤالًا</span><span class="tuile__texte">راسل الأستاذ: نص أو رسالة صوتية أو صورة أو ملف، ويجيبك هنا.</span><span class="tuile__info" hidden></span></a></li>
-      <li><a class="tuile teinte-ciel" href="cours.html"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-livre"/></svg></span><span class="tuile__titre">المقياس</span><span class="tuile__texte">الفصول الثلاثة مشروحة خطوة بخطوة، مع عروض تفاعلية للتجريب.</span><span class="tuile__info" hidden></span></a></li>
-      <li><a class="tuile teinte-cobalt" href="../chapitr1_first_lesson.html?lang=ar"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-ecran"/></svg></span><span class="tuile__titre">الدرس 1: من الآلة الذاتية الحركة إلى الوكيل الذكي</span><span class="tuile__texte">تاريخ الذكاء الاصطناعي في 110 شرائح متحركة، مع صور وفيديوهات واختبارات.</span><span class="tuile__info" hidden></span></a></li>
-      <li><a class="tuile teinte-soleil" href="cours.html#methode"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-boussole"/></svg></span><span class="tuile__titre">كيف تتعلّم</span><span class="tuile__texte">أسبوع نموذجي، وطريقة لكل فصل، والمفردات المفيدة.</span><span class="tuile__info" hidden></span></a></li>
-      <li><a class="tuile teinte-braise" href="cours.html#td-tp"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-crayon"/></svg></span><span class="tuile__titre">حلول TD / TP</span><span class="tuile__texte">كل تمارين البرنامج مع حلولها المفصّلة.</span><span class="tuile__info" hidden></span></a></li>
-      <li><a class="tuile teinte-fuchsia" href="cours.html#mini-projet"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-ampoule"/></svg></span><span class="tuile__titre">المشروع المصغَّر</span><span class="tuile__texte">المواضيع الخمسة: المنهجية، البيانات، شيفرة الانطلاق، المطلوب تسليمه.</span><span class="tuile__info" hidden></span></a></li>
-      <li><a class="tuile teinte-cobalt" href="enseignant.html#guide-langues-carnets"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-lecture"/></svg></span><span class="tuile__titre">دفاتر جاهزة للتشغيل</span><span class="tuile__texte">بايثون في Google Colab خطوة بخطوة: شغّل، غيّر قيمة، لاحظ، ثم اكتب شيفرتك بنفسك.</span><span class="tuile__info" hidden></span></a></li>
-      <li><a class="tuile teinte-juste" href="cours.html#glossaire"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-fiche"/></svg></span><span class="tuile__titre">المسرد</span><span class="tuile__texte">مصطلحات المقياس بالعربية والفرنسية والإنجليزية.</span><span class="tuile__info" hidden></span></a></li>
-    </ul>
-  </section>
-  <section class="portail__bloc" id="portail-enseignant" aria-labelledby="portail-enseignant-titre">
-    <h2 class="portail__titre" id="portail-enseignant-titre">للأستاذ</h2>
-    <ul class="tuiles">
-      <li><a class="tuile teinte-braise" href="messages.html"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-bulle"/></svg></span><span class="tuile__titre">أسئلة الطلبة</span><span class="tuile__texte">أسئلة طلبتكم حسب الفوج: اقرؤوا وأجيبوا كما في تطبيق مراسلة.</span><span class="tuile__info" hidden></span></a></li>
-      <li><a class="tuile teinte-ciel" href="classe.html" data-info="classe"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-groupe"/></svg></span><span class="tuile__titre">أفواجي</span><span class="tuile__texte">أفواجكم الستة: الطلبة، التوقيت، دفتر النصوص، المناداة، العلامات.</span><span class="tuile__info" hidden></span></a></li>
-      <li><a class="tuile teinte-fuchsia" href="diaporamas.html" data-info="diaporamas"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-ecran"/></svg></span><span class="tuile__titre">العروض التقديمية</span><span class="tuile__texte">عرض لكل حصة، للإسقاط على الشاشة أو للتنزيل بصيغة PowerPoint.</span><span class="tuile__info" hidden></span></a></li>
-      <li><a class="tuile teinte-soleil" href="enseignant.html"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-outil"/></svg></span><span class="tuile__titre">دليل الأستاذ</span><span class="tuile__texte">من أين تبدأ، الخطة الأسبوعية، مذكرات الحصص، التقييم، الموارد.</span><span class="tuile__info" hidden></span></a></li>
-      <li><a class="tuile teinte-braise" href="enseignant.html#guide-langues"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-bulle"/></svg></span><span class="tuile__titre">طلبة اللغات</span><span class="tuile__texte">تدريس الذكاء الاصطناعي والبرمجة: برنامج واحد للإنجليزية والأدب المقارن، ومسار مكيَّف للتعليمية.</span><span class="tuile__info" hidden></span></a></li>
-      <li><a class="tuile teinte-cobalt" href="programme.html"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-fiche"/></svg></span><span class="tuile__titre">البرنامج الرسمي</span><span class="tuile__texte">النص الكامل لبرنامج المقياس بالفرنسية والإنجليزية والعربية.</span><span class="tuile__info" hidden></span></a></li>
-      <li><a class="tuile teinte-juste" href="enseignant.html#guide-seances"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-calendrier"/></svg></span><span class="tuile__titre">مذكرات الحصص</span><span class="tuile__texte">ثماني حصص جاهزة ومحدَّدة التوقيت مع أنشطتها.</span><span class="tuile__info" hidden></span></a></li>
-    </ul>
-  </section>
+  <div class="outil" id="outil-messages" data-outil="messages" data-base="../" data-langue="ar">
+    <noscript><p class="outil-message">تحتاج هذه الصفحة إلى JavaScript. فعّلوه في المتصفح.</p></noscript>
+    <div class="chargement" role="status"><span class="chargement__anneau" aria-hidden="true"></span><p class="chargement__texte">جارٍ فتح الرسائل…</p></div>
+  </div>
 </main>
 
 <footer class="pied">
@@ -158,7 +136,8 @@
   </div>
 </footer>
 
-<script src="../assets/js/lumineux.js" defer></script>
-<script src="../assets/js/accueil.js" defer></script>
+<script src="../assets/js/lumineux.js"></script>
+<script src="../assets/js/questions-config.js"></script>
+<script src="../assets/js/questions.js"></script>
 </body>
 </html>

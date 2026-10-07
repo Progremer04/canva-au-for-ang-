@@ -8,7 +8,7 @@ The official syllabus of the course fits on three pages: chapter titles, five mi
 
 | Folder | Role |
 | --- | --- |
-| `docs/` | The static site, ready for GitHub Pages: `index.html` (home), `cours.html` (the course), `enseignant.html`, `diaporamas.html`, `classe.html`, `programme.html`, `systeme-de-design.html`, `assets/`; the same pages in `en/` and `ar/`. |
+| `docs/` | The static site, ready for GitHub Pages: `index.html` (home), `cours.html` (the course), `enseignant.html`, `diaporamas.html`, `classe.html`, `programme.html`, `questions.html`, `messages.html`, `systeme-de-design.html`, `assets/`; the same pages in `en/` and `ar/`. |
 | `docs/_sources/` | Page sources: a template and one HTML fragment per part of the course; `docs/_sources/en/` for English, `docs/_sources/ar/` for Arabic. |
 | `docs/_sources/diapos/` | The slide decks, one JSON file per session (`en/` and `ar/` for the translations). |
 | `docs/notebooks/` | Ten complete Jupyter notebooks, ready to run in Google Colab or with `run.bat notebook`, in French (`fr/`) and English (`en/`). |
@@ -17,10 +17,11 @@ The official syllabus of the course fits on three pages: chapter titles, five mi
 | `design-system/` | Lumineux: tokens (`tokens.json`), usage guide (`README.md`), audit of the original code (`extraction.md`), components (`composants/<Name>/README.md` and `apercu.html`). |
 | `tools/` | Dependency-free Python scripts: site build, local launcher (`lancer.py`), library check (`verifier_bibliotheques.py`). |
 | `run.bat` | All-in-one for Windows: download, install, launch. Also starts the site on Linux (`bash run.bat`, used by Render). |
+| `supabase/questions.sql` | The database of the student questions chat, to paste once into Supabase (see [Student questions](#student-questions)). |
 | `render.yaml` | Render settings (see [Hosting](#hosting)). |
 | `vercel.json` | Vercel settings (see [Hosting](#hosting)). |
 | `requirements.txt`, `requirements-deep.txt` | Python libraries of the course. |
-| `old_version/` | A full copy of the project as it was before the lesson 1 history update (see `old_version/LISEZMOI.md`). Not served by the site. |
+| `old_version/` | Full copies of the project saved before each big change (see `old_version/LISEZMOI.md`). Not served by the site. |
 | `ليان ليان/` | The original demos (“Cadre Lumineux”, capsule menu, slider) that Lumineux is drawn from. Kept as they are. |
 
 ## The site
@@ -43,6 +44,7 @@ The official syllabus of the course fits on three pages: chapter titles, five mi
   - **Sessions:** for each group, the session schedule (generated from the guide's progression, for one group or all at once, each on its own day, then editable: dates, times, topics, “Shift” to push back all later sessions) and the class log (what was done, homework, roll call); assessments and averages; a printable sign-in sheet; CSV exports for Excel.
   - **Attendance tab:** today's roll call in one gesture (everyone present by default, tap the absent students, add a student on the spot, the session is marked “done”), a banner that recalls the current session, forgotten roll calls, the register for the year (by semester or by month: presences, absences, excused absences, late arrivals, attendance rate), automatic alerts with adjustable thresholds (by default: warning at 2 unexcused absences, exclusion at 3, or at 5 absences in total, counted over the semester) and a summary of all groups.
   - **The year:** “Prepare the year” creates the sessions of the ten months at once, each group on its own day and time, skipping holidays and public holidays (editable list); “Change the schedule” moves the planned sessions from a given date (changing a group's day or time also offers it).
+- **Student questions** (`questions.html` for students, `messages.html` for the teacher): a chat between the students and the teacher. See [Student questions](#student-questions).
 - **Home page demo**: a lexicon-based sentiment reader to try on a sentence (the method of topic 1).
 - **How to learn this course**: study habits that work, a model week, a method for each chapter, French–English vocabulary, good use of an AI assistant, exam preparation.
 - **Course sheet** and semester **calendar**, with links to the parts of the site.
@@ -87,6 +89,17 @@ Double-click `run.bat`. It does everything, in order:
 Without Python, `run.bat` still opens the site directly from `docs/index.html`. The first time a downloaded file is run, Windows may show “Windows protected your PC”: *More info → Run anyway*.
 
 On macOS or Linux: `python3 tools/lancer.py` opens the site, and `python3 -m pip install -r requirements.txt -r requirements-deep.txt` installs the libraries.
+
+## Student questions
+
+Students open **Ask a question** (`questions.html`, tile “For students” on the home page), write their full name and pick their group, then write their question. After that it works like a chat app: text, voice message (microphone button), photo or file with a caption (5 MB at most; photos are reduced to 1600 px), and “Reply” on a message to quote it. The conversation stays in their browser, so they find it again when they come back, and the teacher's answers arrive by themselves (the page checks every few seconds). Two ticks “Seen” show that the other side has read the message.
+
+The teacher opens **Student questions** (`messages.html`, tile “For the teacher”), enters the teacher code (the same as for the notes), and sees every conversation with the student's name, group and unread count; a search box and a group filter; then answers the same way (text, voice, photo, file, reply). The tab title shows the number of unread messages. A conversation can be deleted with the bin button.
+
+**Where the messages are:** in the Supabase project `xvzqtrijpsbxejfjrcpo`. The site only holds the project address and its *publishable* key (`docs/assets/js/questions-config.js`), which are meant to be public: the tables are closed (row-level security with no rule), and the page can only call the `qr_*` functions of `supabase/questions.sql`. A student only reads their own conversation (a secret token kept in their browser); the teacher functions check the teacher code (stored hashed with bcrypt; after 30 wrong codes in 10 minutes, tries are refused for 10 minutes). The database password is never in the site or in git.
+
+**Setting it up (once):** in Supabase, *SQL Editor → New query*, paste the whole of `supabase/questions.sql`, *Run*. Running it again is safe. To change the teacher code of the chat, run in the SQL Editor:
+`update public.qr_reglage set valeur = extensions.crypt('NEW_CODE', extensions.gen_salt('bf', 10)) where cle = 'code_prof';`
 
 ## Hosting
 
