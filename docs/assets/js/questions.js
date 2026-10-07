@@ -3,7 +3,7 @@
    - questions.html (étudiant) : nom complet et groupe, puis une conversation avec l'enseignant :
      texte, message vocal, photo ou fichier (avec légende), réponse à un message précis ;
    - messages.html (enseignant) : toutes les conversations, par groupe, avec les non-lus ; il répond
-     de la même façon. Le code de l'enseignant est demandé une fois par onglet.
+     de la même façon. Le code de l'enseignant est demandé à chaque ouverture de la page.
    Les messages sont dans Supabase (supabase/questions.sql), lus et écrits par les fonctions qr_*.
    La page interroge la base toutes les quelques secondes : les nouveaux messages arrivent seuls.
    ========================================================================== */
@@ -18,7 +18,7 @@
   var LOCALE = { fr: "fr-DZ", en: "en-GB", ar: "ar-DZ" }[LANGUE] || "fr";
   var CONF = window.LX_QUESTIONS || {};
   var CLE_ELEVE = "lx-questions-eleve";
-  var CLE_CODE = "lx-questions-code";
+  var CLE_CODE = "lx-questions-code";   // ancienne mémoire du code, effacée au chargement
   var MAX_OCTETS = 5 * 1024 * 1024;
   var MAX_AUDIO = 5 * 60;   // secondes
   var IMAGES = ["image/jpeg", "image/png", "image/gif", "image/webp"];
@@ -241,7 +241,7 @@
 
   var etat = {
     eleve: PROF ? null : lire(CLE_ELEVE),
-    code: PROF ? lire(CLE_CODE, sessionStorage) : null,
+    code: null,          // le code de l'enseignant n'est gardé qu'en mémoire : demandé à chaque ouverture de la page
     conv: null,          // conversation ouverte (enseignant)
     messages: [],
     dernierId: 0,
@@ -621,7 +621,6 @@
       rpc("qr_prof_conversations", { p_code: code.value.trim() }).then(function (r) {
         if (r.erreur) { info.textContent = t("code_faux"); bouton.disabled = false; code.select(); return; }
         etat.code = code.value.trim();
-        ecrire(CLE_CODE, etat.code, sessionStorage);
         boiteProf(r.conversations);
       }).catch(function (e) {
         bouton.disabled = false;
@@ -728,12 +727,6 @@
 
   /* ---------- Démarrage ---------- */
 
-  if (PROF) {
-    if (etat.code) {
-      rpc("qr_prof_conversations", { p_code: etat.code }).then(function (r) {
-        if (r.erreur) verrouiller(true); else boiteProf(r.conversations);
-      }).catch(function () { verrouiller(false); });
-    } else verrouiller(false);
-  } else if (etat.eleve && etat.eleve.id) conversationEleve();
+  if (PROF) verrouiller(false); else if (etat.eleve && etat.eleve.id) conversationEleve();
   else accueilEleve();
 })();
