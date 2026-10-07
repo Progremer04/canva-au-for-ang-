@@ -1723,9 +1723,8 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
   if (PRESENTATEUR) {
     langueProjection = langue;
     remplirLangueProjetee();
-    // Notes : déjà ouvertes dans cet onglet ? Sinon, le mot de passe est demandé.
-    var memoCle = null; try { memoCle = sessionStorage.getItem("lx-cle-enseignant") || sessionStorage.getItem("lx-lecon1-cle"); } catch (e) { memoCle = null; }
-    if (!(NOTES && memoCle && /^[0-9a-f]{64}$/.test(memoCle) && ouvrirNotes(depuisHex(memoCle)))) afficherVerrou();
+    // Notes : le mot de passe est demandé à chaque ouverture de la fenêtre du présentateur.
+    afficherVerrou();
     envoyer({ type: "bonjour" });
   }
 })();

@@ -1725,9 +1725,8 @@ window.NOTES = {"sel":"f86145f4a837ff5796b6f68e53c2f5c6","iterations":60000,"iv"
   if (PRESENTATEUR) {
     langueProjection = langue;
     remplirLangueProjetee();
-    // Notes : déjà ouvertes dans cet onglet ? Sinon, le mot de passe est demandé.
-    var memoCle = null; try { memoCle = sessionStorage.getItem("lx-cle-enseignant") || sessionStorage.getItem("lx-lecon1-cle"); } catch (e) { memoCle = null; }
-    if (!(NOTES && memoCle && /^[0-9a-f]{64}$/.test(memoCle) && ouvrirNotes(depuisHex(memoCle)))) afficherVerrou();
+    // Notes : le mot de passe est demandé à chaque ouverture de la fenêtre du présentateur.
+    afficherVerrou();
     envoyer({ type: "bonjour" });
   }
 })();
