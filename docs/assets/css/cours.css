@@ -447,3 +447,16 @@ section[id^="guide-"] .sommaire-chapitre::before { content: "Dans cette partie";
   .affiche-lecon__actions { justify-content: center; }
 }
 @media print { .affiche-lecon { break-inside: avoid; } }
+
+/* Télécharger un chapitre en PowerPoint ou en PDF (assets/js/telecharger.js). */
+.telecharger-chapitre { display: flex; flex-wrap: wrap; gap: var(--espace-2); margin: var(--espace-3) 0 0; }
+.avis-telechargement { position: fixed; z-index: 60; inset-inline: 16px; inset-block-end: 24px; margin: 0 auto; inline-size: fit-content; max-inline-size: calc(100vw - 32px);
+  padding: 12px 18px; border-radius: var(--rayon-m); background: var(--texte); color: var(--fond); font-family: var(--font-signal); font-weight: 700; box-shadow: var(--ombre-carte); }
+@media print {
+  body[data-imprimer] > :not(main), body[data-imprimer] #contenu > :not(.page), body[data-imprimer] .page__rail,
+  body[data-imprimer] .page__contenu > :not(.a-imprimer), body[data-imprimer] .telecharger-chapitre,
+  body[data-imprimer] .sommaire-chapitre, body[data-imprimer] .chapitre-tete__lecon, body[data-imprimer] .affiche-lecon__actions,
+  body[data-imprimer] .avis-telechargement { display: none !important; }
+  body[data-imprimer] .page { display: block; }
+  body[data-imprimer] .page__contenu { max-inline-size: none; }
+}
