@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body class="body">
+    <style>
+        
+*{
+    padding: 0;
+    margin: 0;
+}
+.body{
+    height: 915px;
+    background: black;
+}
+/* cadre lumineau */
+.haut{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 700px;
+}
+
+
+.card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+    padding: 14px, 17px;
+    position: relative;
+    background-color: #151515;
+    border: 27px solid;
+    border-image:
+    linear-gradient(
+          #FFFF00, 
+           #87CEEB,
+           #ff512f,
+           #dd2476,
+           #1c64ff) 1;
+    animation: rotate
+     2.5s
+     ease-in infinite;}
+
+
+@keyframes rotate {
+    50%{
+        border-image: 
+        linear-gradient(
+            360deg,
+            #FFFF00, 
+            #87CEEB,
+            #ff512f,
+            #dd2476,
+            #1c64ff) 1;
+    }
+}
+.fig{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 250px;
+    width: 250px;
+    border: 12px solid darkred; 
+    border-radius: 50%;
+    animation: 7s infinite img;
+}
+@keyframes img{
+    50%{
+        transform: scale(0.8, 0.8);
+    }
+}
+.nom{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+}
+
+
+.title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 350px;
+    border-radius: 27px;
+    border: 1px solid whitesmoke;
+    background:  
+     linear-gradient(45deg,
+        #FFFF00, 
+         #87CEEB,
+         #ff512f,
+         #dd2476,
+         #1c64ff);
+         animation: 1s infinite title;
+}
+
+
+
+@keyframes title{
+    50%{
+        background: 
+        linear-gradient(60deg,
+        #1c64ff,
+        #dd2476,
+        #ff512f,
+        #87ceeb,
+        #ffff00);
+    }
+}
+.h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    width: 320px;
+    border-radius: 27px;
+    background-color: rgba(20, 20, 20, 0.3);
+    font-size: 40px;
+    color: white;
+    font-family: 'IM Fell DW Pica SC', serif;
+}
+    </style>
+    <!-- cadre lumineux -->
+    <div class="haut">
+        <div class="nom">
+                <style>
+                @import url('https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Cinzel+Decorative&family=Cookie&family=El+Messiri&family=IM+Fell+DW+Pica+SC&family=Pacifico&family=Rajdhani:wght@400;500&family=Schoolbell&family=Square+Peg&family=Tapestry&display=swap');
+                </style>              
+                </style>
+        <div class="title"><h1 class="h1"> Cadre Lumineux</h1></div>
+        </div>
+        <figure class="card">
+           <figcaption class="fig">
+            <img class="img" src="1.png" alt="">
+            </figcaption>
+        </figure>
+    </div>
+    
+
+    <script src="code.js"></script>
+</body>
+</html>

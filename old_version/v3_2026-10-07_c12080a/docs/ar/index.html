@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>الذكاء الاصطناعي · ماستر 2 · جامعة يحيى فارس بالمدية</title>
+<meta name="description" content="مقياس الذكاء الاصطناعي لماستر الأدب العام والمقارن (جامعة يحيى فارس بالمدية، 2025-2026) مشروحًا كاملًا: دروس، بايثون، عروض تفاعلية، حلول الأعمال الموجهة والمشاريع المصغرة.">
+<link rel="preload" href="../assets/fonts/noto-naskh-arabic-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/el-messiri-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/polices.css">
+<link rel="stylesheet" href="../assets/css/lumineux-tokens.css">
+<link rel="stylesheet" href="../assets/css/lumineux.css">
+<link rel="stylesheet" href="../assets/css/cours.css">
+<link rel="stylesheet" href="../assets/css/outils.css">
+<link rel="alternate" hreflang="fr" href="../index.html">
+<link rel="alternate" hreflang="en" href="../en/index.html">
+<script>(function () { var h = location.hash; if (h.length > 1 && !/^#(contenu|portail-[\w-]+)$/.test(h)) location.replace("cours.html" + h); })();</script>
+</head>
+<body>
+<a class="lien-evitement" href="#contenu">الانتقال إلى المحتوى</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-fermer" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-contraste" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></symbol>
+  <symbol id="i-maison" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5h4v5"/></symbol>
+  <symbol id="i-fiche" viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 13h6M10 17h6"/></symbol>
+  <symbol id="i-calendrier" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-ampoule" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.5 1 2.5h6c0-1 .2-1.7 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+  <symbol id="i-crayon" viewBox="0 0 24 24"><path d="M4 20l4-1L19 8l-3-3L5 16z"/><path d="M14 7l3 3"/></symbol>
+  <symbol id="i-bulle" viewBox="0 0 24 24"><path d="M4 5h16v11H10l-5 4v-4H4z"/></symbol>
+  <symbol id="i-livre" viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></symbol>
+  <symbol id="i-boussole" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></symbol>
+  <symbol id="i-carte" viewBox="0 0 24 24"><path d="M3 6.5l6-2.5 6 2.5 6-2.5v13.5l-6 2.5-6-2.5-6 2.5z"/><path d="M9 4v13.5M15 6.5V20"/></symbol>
+  <symbol id="i-coche" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-retour" viewBox="0 0 24 24"><path class="fleche-retour" d="M10 6l-6 6 6 6M4 12h16"/></symbol>
+  <symbol id="i-outil" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></symbol>
+  <symbol id="i-ecran" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8"/><path d="M10.5 7.8v4.4l3.6-2.2z"/></symbol>
+  <symbol id="i-groupe" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3"/><path d="M3.5 19.5a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9.5" r="2.4"/><path d="M15.6 14.3a4.6 4.6 0 0 1 5.4 4.7"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-poubelle" viewBox="0 0 24 24"><path d="M4.5 7h15M10 7V4.5h4V7M6.5 7l1 13h9l1-13"/><path d="M10 11v5.5M14 11v5.5"/></symbol>
+  <symbol id="i-telecharger" viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5"/><path d="M5 19.5h14"/></symbol>
+  <symbol id="i-importer" viewBox="0 0 24 24"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5"/><path d="M5 19.5h14"/></symbol>
+  <symbol id="i-imprimer" viewBox="0 0 24 24"><path d="M7 9V3.5h10V9"/><rect x="3.5" y="9" width="17" height="8" rx="1.5"/><path d="M7 14h10v6.5H7z"/></symbol>
+  <symbol id="i-lecture" viewBox="0 0 24 24"><path d="M7.5 5v14l11-7z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+  <symbol id="i-plein-ecran" viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></symbol>
+  <symbol id="i-grille" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></symbol>
+  <symbol id="i-precedent" viewBox="0 0 24 24"><path class="fleche-retour" d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-suivant" viewBox="0 0 24 24"><path class="fleche-retour" d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-etoile" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 17l-5.2 2.7 1-5.9-4.3-4.1 5.9-.8z"/></symbol>
+  <symbol id="i-horloge" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-recherche" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/></symbol>
+  <symbol id="i-base" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7.5" ry="2.8"/><path d="M4.5 6v12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8V6M4.5 12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8"/></symbol>
+  <symbol id="i-copier" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11" height="11" rx="1.5"/><path d="M15.5 8.5V5.5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3"/></symbol>
+</svg>
+
+<header class="entete">
+  <div class="entete__barre">
+    <button type="button" class="bouton-verre entete__burger" data-ouvre-tiroir="tiroir-nav" aria-controls="tiroir-nav" aria-label="فتح القائمة">
+      <svg class="icone"><use href="#i-menu"/></svg>
+    </button>
+    <a class="entete__marque" href="index.html"><span class="anneau-prisme" aria-hidden="true"></span>ذ.ا <small>ماستر LGC</small></a>
+    <nav class="entete__liens" aria-label="روابط مفيدة">
+      <a class="bouton bouton--discret bouton--petit entete__lien-systeme" href="../systeme-de-design.html">نظام التصميم</a>
+      <div class="langues" role="group" aria-label="لغة الدرس"><a href="../index.html" lang="fr" hreflang="fr" data-lien-langue>FR</a><a href="../en/index.html" lang="en" hreflang="en" data-lien-langue>EN</a><a href="index.html" lang="ar" hreflang="ar" aria-current="page">عربي</a></div>
+      <button type="button" class="bouton-verre" data-bascule-theme aria-label="تغيير المظهر">
+        <svg class="icone"><use href="#i-contraste"/></svg>
+      </button>
+    </nav>
+  </div>
+  <div class="progression" aria-hidden="true"></div>
+</header>
+
+<div class="tiroir-voile" data-voile-tiroir="tiroir-nav"></div>
+<aside class="tiroir" id="tiroir-nav" aria-label="قائمة المقياس">
+  <div class="tiroir__tete">
+    <p class="tiroir__titre">محتويات المقياس</p>
+    <button type="button" class="bouton-verre" data-ferme-tiroir aria-label="إغلاق القائمة">
+      <svg class="icone"><use href="#i-fermer"/></svg>
+    </button>
+  </div>
+  <nav aria-label="القائمة" data-rail>
+<ul class="rail-capsule">
+<li><a href="index.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-maison"/></svg></span>الرئيسية</a></li>
+<li><a href="cours.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-livre"/></svg></span>المقياس</a></li>
+<li><a href="enseignant.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-outil"/></svg></span>دليل الأستاذ</a></li>
+<li><a href="diaporamas.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-ecran"/></svg></span>العروض التقديمية</a></li>
+<li><a href="classe.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-groupe"/></svg></span>أفواجي</a></li>
+<li><a href="programme.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-fiche"/></svg></span>البرنامج الرسمي</a></li>
+</ul>
+</nav>
+</aside>
+
+<main id="contenu" class="page-outil portail" data-base="../" data-langue="ar">
+  <section class="outil-tete portail__tete" aria-labelledby="titre-portail">
+    <p class="surtitre">جامعة يحيى فارس بالمدية · ماستر 2 · 2025–2026</p>
+    <h1 class="outil-tete__titre" id="titre-portail">الذكاء الاصطناعي</h1>
+    <p class="outil-tete__chapeau">المقياس كاملًا، وحلول تمارينه، وأدوات الأستاذ، بالفرنسية والإنجليزية والعربية.</p>
+    <div class="heros__actions"><a class="bouton bouton--prisme" href="cours.html">افتح المقياس</a><a class="bouton" href="enseignant.html">دليل الأستاذ</a></div>
+  </section>
+  <section class="portail__bloc" id="portail-etudiants" aria-labelledby="portail-etudiants-titre">
+    <h2 class="portail__titre" id="portail-etudiants-titre">للطلبة</h2>
+    <ul class="tuiles">
+      <li><a class="tuile teinte-ciel" href="cours.html"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-livre"/></svg></span><span class="tuile__titre">المقياس</span><span class="tuile__texte">الفصول الثلاثة مشروحة خطوة بخطوة، مع عروض تفاعلية للتجريب.</span><span class="tuile__info" hidden></span></a></li>
+      <li><a class="tuile teinte-cobalt" href="../chapitr1_first_lesson.html?lang=ar"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-ecran"/></svg></span><span class="tuile__titre">الدرس 1: من الآلة الذاتية الحركة إلى الوكيل الذكي</span><span class="tuile__texte">تاريخ الذكاء الاصطناعي في 110 شرائح متحركة، مع صور وفيديوهات واختبارات.</span><span class="tuile__info" hidden></span></a></li>
+      <li><a class="tuile teinte-soleil" href="cours.html#methode"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-boussole"/></svg></span><span class="tuile__titre">كيف تتعلّم</span><span class="tuile__texte">أسبوع نموذجي، وطريقة لكل فصل، والمفردات المفيدة.</span><span class="tuile__info" hidden></span></a></li>
+      <li><a class="tuile teinte-braise" href="cours.html#td-tp"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-crayon"/></svg></span><span class="tuile__titre">حلول TD / TP</span><span class="tuile__texte">كل تمارين البرنامج مع حلولها المفصّلة.</span><span class="tuile__info" hidden></span></a></li>
+      <li><a class="tuile teinte-fuchsia" href="cours.html#mini-projet"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-ampoule"/></svg></span><span class="tuile__titre">المشروع المصغَّر</span><span class="tuile__texte">المواضيع الخمسة: المنهجية، البيانات، شيفرة الانطلاق، المطلوب تسليمه.</span><span class="tuile__info" hidden></span></a></li>
+      <li><a class="tuile teinte-cobalt" href="enseignant.html#guide-langues-carnets"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-lecture"/></svg></span><span class="tuile__titre">دفاتر جاهزة للتشغيل</span><span class="tuile__texte">بايثون في Google Colab خطوة بخطوة: شغّل، غيّر قيمة، لاحظ، ثم اكتب شيفرتك بنفسك.</span><span class="tuile__info" hidden></span></a></li>
+      <li><a class="tuile teinte-juste" href="cours.html#glossaire"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-fiche"/></svg></span><span class="tuile__titre">المسرد</span><span class="tuile__texte">مصطلحات المقياس بالعربية والفرنسية والإنجليزية.</span><span class="tuile__info" hidden></span></a></li>
+    </ul>
+  </section>
+  <section class="portail__bloc" id="portail-enseignant" aria-labelledby="portail-enseignant-titre">
+    <h2 class="portail__titre" id="portail-enseignant-titre">للأستاذ</h2>
+    <ul class="tuiles">
+      <li><a class="tuile teinte-ciel" href="classe.html" data-info="classe"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-groupe"/></svg></span><span class="tuile__titre">أفواجي</span><span class="tuile__texte">أفواجكم الستة: الطلبة، التوقيت، دفتر النصوص، المناداة، العلامات.</span><span class="tuile__info" hidden></span></a></li>
+      <li><a class="tuile teinte-fuchsia" href="diaporamas.html" data-info="diaporamas"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-ecran"/></svg></span><span class="tuile__titre">العروض التقديمية</span><span class="tuile__texte">عرض لكل حصة، للإسقاط على الشاشة أو للتنزيل بصيغة PowerPoint.</span><span class="tuile__info" hidden></span></a></li>
+      <li><a class="tuile teinte-soleil" href="enseignant.html"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-outil"/></svg></span><span class="tuile__titre">دليل الأستاذ</span><span class="tuile__texte">من أين تبدأ، الخطة الأسبوعية، مذكرات الحصص، التقييم، الموارد.</span><span class="tuile__info" hidden></span></a></li>
+      <li><a class="tuile teinte-braise" href="enseignant.html#guide-langues"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-bulle"/></svg></span><span class="tuile__titre">طلبة اللغات</span><span class="tuile__texte">تدريس الذكاء الاصطناعي والبرمجة: برنامج واحد للإنجليزية والأدب المقارن، ومسار مكيَّف للتعليمية.</span><span class="tuile__info" hidden></span></a></li>
+      <li><a class="tuile teinte-cobalt" href="programme.html"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-fiche"/></svg></span><span class="tuile__titre">البرنامج الرسمي</span><span class="tuile__texte">النص الكامل لبرنامج المقياس بالفرنسية والإنجليزية والعربية.</span><span class="tuile__info" hidden></span></a></li>
+      <li><a class="tuile teinte-juste" href="enseignant.html#guide-seances"><span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#i-calendrier"/></svg></span><span class="tuile__titre">مذكرات الحصص</span><span class="tuile__texte">ثماني حصص جاهزة ومحدَّدة التوقيت مع أنشطتها.</span><span class="tuile__info" hidden></span></a></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="pied">
+  <div class="pied__interieur">
+    <div>
+      <p class="pied__signature"><span class="anneau-prisme" aria-hidden="true"></span>الذكاء الاصطناعي</p>
+      <p>ماستر الأدب العام والمقارن، السداسي الثالث. جامعة يحيى فارس بالمدية. السنة الجامعية 2025–2026.</p>
+      <p>المحتوى مبني على البرنامج الرسمي للمقياس (الصفحات 84 إلى 86 من عرض التكوين). الشروح والأمثلة والحلول ترافق درس الأستاذ ولا تعوّضه. المقياس وامتحانه باللغة الفرنسية، وهذه النسخة العربية أداة مساعدة على المراجعة.</p>
+    </div>
+    <div>
+      <h2>تصفّح</h2>
+      <ul>
+        <li><a href="cours.html#methode">كيف تتعلّم هذا المقياس</a></li>
+        <li><a href="cours.html#chapitre-1">الفصل 1 · مدخل</a></li>
+        <li><a href="cours.html#chapitre-2">الفصل 2 · بايثون</a></li>
+        <li><a href="cours.html#chapitre-3">الفصل 3 · أنواع الذكاء الاصطناعي</a></li>
+        <li><a href="cours.html#mini-projet">المشروع المصغَّر</a></li>
+        <li><a href="cours.html#td-tp">حلول TD / TP</a></li>
+        <li><a href="enseignant.html">دليل الأستاذ</a></li>
+        <li><a href="diaporamas.html">العروض التقديمية</a></li>
+        <li><a href="classe.html">أفواجي</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>عن الموقع</h2>
+      <p>صُمّم بنظام <a href="../systeme-de-design.html">Lumineux</a>، وهو نظام تصميم مستخرج من عروض «Cadre Lumineux» والقائمة الكبسولية وشريط الصور في هذا المستودع.</p>
+      <p>المظهر الليلي أو النهاري: الزر في أعلى الصفحة. لغات أخرى: <a href="../index.html" hreflang="fr" lang="fr">Français</a>، <a href="../en/index.html" hreflang="en" lang="en">English</a>.</p>
+      <p>الشيفرة المصدرية، وملف <code>run.bat</code> لتثبيت كل شيء على ويندوز: <a href="https://github.com/Progremer04/canva-au-for-ang-" target="_blank" rel="noopener">github.com/Progremer04/canva-au-for-ang-</a>.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/lumineux.js" defer></script>
+<script src="../assets/js/accueil.js" defer></script>
+</body>
+</html>

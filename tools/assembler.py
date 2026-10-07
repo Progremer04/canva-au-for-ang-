@@ -4,8 +4,9 @@
   python3 tools/assembler.py
       → pour chaque langue (docs/, docs/en/, docs/ar/) : la page d'accueil (index.html), le cours
         (cours.html), le guide de l'enseignant (enseignant.html), les diaporamas (diaporamas.html,
-        via tools/diapos.py), la page « Mes groupes » (classe.html) et le programme officiel
-        (programme.html)
+        via tools/diapos.py), la page « Mes groupes » (classe.html), le programme officiel
+        (programme.html) et la messagerie des questions (questions.html pour les étudiants,
+        messages.html pour l'enseignant ; base : supabase/questions.sql)
 
   python3 tools/assembler.py --autonome CHEMIN [--langue fr|en|ar] [--lien-systeme URL]
       → écrit une version en un seul fichier : CSS et JS intégrés,
@@ -73,7 +74,9 @@ NAV_OUTILS = [
     ("enseignant.html", "i-outil", {"fr": "Guide de l'enseignant", "en": "Teacher's guide", "ar": "دليل الأستاذ"}),
     ("diaporamas.html", "i-ecran", {"fr": "Diaporamas", "en": "Slides", "ar": "العروض التقديمية"}),
     ("classe.html", "i-groupe", {"fr": "Mes groupes", "en": "My groups", "ar": "أفواجي"}),
+    ("messages.html", "i-bulle", {"fr": "Questions des étudiants", "en": "Student questions", "ar": "أسئلة الطلبة"}),
     ("programme.html", "i-fiche", {"fr": "Programme officiel", "en": "Official syllabus", "ar": "البرنامج الرسمي"}),
+    ("questions.html", "i-bulle", {"fr": "Poser une question", "en": "Ask a question", "ar": "اطرح سؤالًا"}),
 ]
 TEXTES_OUTILS = {
     "diaporamas": {
@@ -98,11 +101,35 @@ TEXTES_OUTILS = {
                "chapeau": "أفواجكم وطلبتكم، ورزنامة كل فوج ودفتر نصوصه، والحضور، والملاحظات على الطلبة، والعلامات. كل شيء يبقى على حاسوبكم في قاعدة بيانات SQLite.",
                "nav": "القائمة", "noscript": "تحتاج هذه الصفحة إلى JavaScript. فعّلوه في المتصفح.", "chargement": "جارٍ فتح قاعدة البيانات…"},
     },
+    "questions": {
+        "fr": {"titre": "Poser une question · Cours d'IA", "surtitre": "Pour les étudiants", "h1": "Poser une question",
+               "chapeau": "Écrivez votre nom complet et votre groupe, puis posez votre question à l'enseignant. Vous pouvez envoyer un texte, un message vocal, une photo ou un fichier avec une légende ; la réponse arrive ici.",
+               "nav": "Menu", "noscript": "Cette page a besoin de JavaScript. Activez-le dans votre navigateur.", "chargement": "Ouverture de la messagerie…"},
+        "en": {"titre": "Ask a question · AI Course", "surtitre": "For students", "h1": "Ask a question",
+               "chapeau": "Write your full name and group, then ask the teacher your question. You can send text, a voice message, a photo or a file with a caption; the answer arrives here.",
+               "nav": "Menu", "noscript": "This page needs JavaScript. Please enable it in your browser.", "chargement": "Opening the messages…"},
+        "ar": {"titre": "اطرح سؤالًا · مقياس الذكاء الاصطناعي", "surtitre": "للطلبة", "h1": "اطرح سؤالًا",
+               "chapeau": "اكتب اسمك الكامل وفوجك، ثم اطرح سؤالك على الأستاذ. يمكنك إرسال نص أو رسالة صوتية أو صورة أو ملف مع تعليق؛ وتصلك الإجابة هنا.",
+               "nav": "القائمة", "noscript": "تحتاج هذه الصفحة إلى JavaScript. فعّلوه في المتصفح.", "chargement": "جارٍ فتح الرسائل…"},
+    },
+    "messages": {
+        "fr": {"titre": "Questions des étudiants · Cours d'IA", "surtitre": "Pour l'enseignant", "h1": "Questions des étudiants",
+               "chapeau": "Les questions de vos étudiants, par groupe, avec leur nom. Répondez comme dans une messagerie : texte, message vocal, photo ou fichier, ou réponse à un message précis.",
+               "nav": "Menu", "noscript": "Cette page a besoin de JavaScript. Activez-le dans votre navigateur.", "chargement": "Ouverture de la messagerie…"},
+        "en": {"titre": "Student questions · AI Course", "surtitre": "For the teacher", "h1": "Student questions",
+               "chapeau": "Your students' questions, by group, with their names. Answer as in a chat app: text, voice message, photo or file, or a reply to a specific message.",
+               "nav": "Menu", "noscript": "This page needs JavaScript. Please enable it in your browser.", "chargement": "Opening the messages…"},
+        "ar": {"titre": "أسئلة الطلبة · مقياس الذكاء الاصطناعي", "surtitre": "للأستاذ", "h1": "أسئلة الطلبة",
+               "chapeau": "أسئلة طلبتكم حسب الفوج، مع أسمائهم. أجيبوا كما في تطبيق مراسلة: نص أو رسالة صوتية أو صورة أو ملف، أو ردّ على رسالة بعينها.",
+               "nav": "القائمة", "noscript": "تحتاج هذه الصفحة إلى JavaScript. فعّلوه في المتصفح.", "chargement": "جارٍ فتح الرسائل…"},
+    },
 }
 # Scripts propres à chaque page outil ({langue} est remplacé).
 SCRIPTS_OUTILS = {
     "diaporamas": ["assets/js/verrou.js", "assets/diapos/diapos-{langue}.js", "assets/js/diaporama.js"],
     "classe": ["assets/js/verrou.js", "assets/js/classe.js"],
+    "questions": ["assets/js/questions-config.js", "assets/js/questions.js"],
+    "messages": ["assets/js/questions-config.js", "assets/js/questions.js"],
 }
 TEXTES_GUIDE = {
     "fr": {"titre": "Guide de l'enseignant · Cours d'IA", "surtitre": "Pour l'enseignant",
@@ -239,9 +266,11 @@ def guide(langue, lien_systeme):
 
 
 def page_outil(langue, cle, lien_systeme):
-    """Pages « Diaporamas » et « Mes groupes » : une application en pleine largeur, sans rail."""
+    """Pages « Diaporamas », « Mes groupes » et « Questions » : une application en pleine largeur, sans rail."""
     conf, t = LANGUES[langue], TEXTES_OUTILS[cle][langue]
     tete, pied = habillage(langue, f"{cle}.html", t["titre"])
+    if cle == "messages":  # la messagerie de l'enseignant n'a rien à faire dans les moteurs de recherche
+        tete = tete.replace('<meta name="viewport"', '<meta name="robots" content="noindex">\n<meta name="viewport"', 1)
     corps = f"""<main id="contenu" class="page-outil">
   <section class="outil-tete" aria-labelledby="titre-outil">
     <p class="surtitre">{t['surtitre']}</p>
@@ -264,6 +293,9 @@ def page_outil(langue, cle, lien_systeme):
 
 # Page d'accueil : légère, elle mène à tout. (cible, icône, teinte, {langue: (titre, texte)}, info)
 TUILES_ETUDIANTS = [
+    ("questions.html", "i-bulle", "braise", {"fr": ("Poser une question", "Écrivez à l'enseignant : texte, message vocal, photo ou fichier. Il vous répond ici."),
+                                            "en": ("Ask a question", "Write to the teacher: text, voice message, photo or file. The answer arrives here."),
+                                            "ar": ("اطرح سؤالًا", "راسل الأستاذ: نص أو رسالة صوتية أو صورة أو ملف، ويجيبك هنا.")}),
     ("cours.html", "i-livre", "ciel", {"fr": ("Le cours", "Les trois chapitres expliqués pas à pas, avec des démonstrations à essayer."),
                                       "en": ("The course", "The three chapters explained step by step, with demos to try."),
                                       "ar": ("المقياس", "الفصول الثلاثة مشروحة خطوة بخطوة، مع عروض تفاعلية للتجريب.")}),
@@ -287,6 +319,9 @@ TUILES_ETUDIANTS = [
                                                  "ar": ("المسرد", "مصطلحات المقياس بالعربية والفرنسية والإنجليزية.")}),
 ]
 TUILES_ENSEIGNANT = [
+    ("messages.html", "i-bulle", "braise", {"fr": ("Questions des étudiants", "Les questions de vos étudiants, par groupe : lisez et répondez comme dans une messagerie."),
+                                           "en": ("Student questions", "Your students' questions, by group: read and answer as in a chat app."),
+                                           "ar": ("أسئلة الطلبة", "أسئلة طلبتكم حسب الفوج: اقرؤوا وأجيبوا كما في تطبيق مراسلة.")}),
     ("classe.html", "i-groupe", "ciel", {"fr": ("Mes groupes", "Vos six groupes : étudiants, emploi du temps, cahier de textes, appel, notes."),
                                         "en": ("My groups", "Your six groups: students, timetable, class log, attendance, grades."),
                                         "ar": ("أفواجي", "أفواجكم الستة: الطلبة، التوقيت، دفتر النصوص، المناداة، العلامات.")}, "classe"),

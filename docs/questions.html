@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Poser une question · Cours d'IA</title>
+<meta name="description" content="Le cours d'intelligence artificielle du Master Littérature Générale et Comparée (Université Yahia Farès, Médéa, 2025-2026), expliqué en entier : leçons, Python, démonstrations, TD corrigés et mini-projets.">
+<link rel="preload" href="assets/fonts/literata-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/im-fell-dw-pica-sc-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/polices.css">
+<link rel="stylesheet" href="assets/css/lumineux-tokens.css">
+<link rel="stylesheet" href="assets/css/lumineux.css">
+<link rel="stylesheet" href="assets/css/cours.css">
+<link rel="stylesheet" href="assets/css/outils.css">
+<link rel="alternate" hreflang="en" href="en/questions.html">
+<link rel="alternate" hreflang="ar" href="ar/questions.html">
+</head>
+<body>
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-fermer" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-contraste" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></symbol>
+  <symbol id="i-maison" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5h4v5"/></symbol>
+  <symbol id="i-fiche" viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 13h6M10 17h6"/></symbol>
+  <symbol id="i-calendrier" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-ampoule" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.5 1 2.5h6c0-1 .2-1.7 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+  <symbol id="i-crayon" viewBox="0 0 24 24"><path d="M4 20l4-1L19 8l-3-3L5 16z"/><path d="M14 7l3 3"/></symbol>
+  <symbol id="i-bulle" viewBox="0 0 24 24"><path d="M4 5h16v11H10l-5 4v-4H4z"/></symbol>
+  <symbol id="i-livre" viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></symbol>
+  <symbol id="i-boussole" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></symbol>
+  <symbol id="i-carte" viewBox="0 0 24 24"><path d="M3 6.5l6-2.5 6 2.5 6-2.5v13.5l-6 2.5-6-2.5-6 2.5z"/><path d="M9 4v13.5M15 6.5V20"/></symbol>
+  <symbol id="i-coche" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-retour" viewBox="0 0 24 24"><path class="fleche-retour" d="M10 6l-6 6 6 6M4 12h16"/></symbol>
+  <symbol id="i-outil" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></symbol>
+  <symbol id="i-ecran" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8"/><path d="M10.5 7.8v4.4l3.6-2.2z"/></symbol>
+  <symbol id="i-groupe" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3"/><path d="M3.5 19.5a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9.5" r="2.4"/><path d="M15.6 14.3a4.6 4.6 0 0 1 5.4 4.7"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-poubelle" viewBox="0 0 24 24"><path d="M4.5 7h15M10 7V4.5h4V7M6.5 7l1 13h9l1-13"/><path d="M10 11v5.5M14 11v5.5"/></symbol>
+  <symbol id="i-telecharger" viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5"/><path d="M5 19.5h14"/></symbol>
+  <symbol id="i-importer" viewBox="0 0 24 24"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5"/><path d="M5 19.5h14"/></symbol>
+  <symbol id="i-imprimer" viewBox="0 0 24 24"><path d="M7 9V3.5h10V9"/><rect x="3.5" y="9" width="17" height="8" rx="1.5"/><path d="M7 14h10v6.5H7z"/></symbol>
+  <symbol id="i-lecture" viewBox="0 0 24 24"><path d="M7.5 5v14l11-7z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+  <symbol id="i-plein-ecran" viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></symbol>
+  <symbol id="i-grille" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></symbol>
+  <symbol id="i-precedent" viewBox="0 0 24 24"><path class="fleche-retour" d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-suivant" viewBox="0 0 24 24"><path class="fleche-retour" d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-etoile" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 17l-5.2 2.7 1-5.9-4.3-4.1 5.9-.8z"/></symbol>
+  <symbol id="i-horloge" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-recherche" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/></symbol>
+  <symbol id="i-base" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7.5" ry="2.8"/><path d="M4.5 6v12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8V6M4.5 12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8"/></symbol>
+  <symbol id="i-copier" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11" height="11" rx="1.5"/><path d="M15.5 8.5V5.5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3"/></symbol>
+</svg>
+
+<header class="entete">
+  <div class="entete__barre">
+    <button type="button" class="bouton-verre entete__burger" data-ouvre-tiroir="tiroir-nav" aria-controls="tiroir-nav" aria-label="Ouvrir le menu">
+      <svg class="icone"><use href="#i-menu"/></svg>
+    </button>
+    <a class="entete__marque" href="index.html"><span class="anneau-prisme" aria-hidden="true"></span>IA <small>Master LGC</small></a>
+    <nav class="entete__liens" aria-label="Liens utiles">
+      <a class="bouton bouton--discret bouton--petit entete__lien-systeme" href="systeme-de-design.html">Système de design</a>
+      <div class="langues" role="group" aria-label="Langue du cours"><a href="questions.html" lang="fr" hreflang="fr" aria-current="page">FR</a><a href="en/questions.html" lang="en" hreflang="en" data-lien-langue>EN</a><a href="ar/questions.html" lang="ar" hreflang="ar" data-lien-langue>عربي</a></div>
+      <button type="button" class="bouton-verre" data-bascule-theme aria-label="Changer de thème">
+        <svg class="icone"><use href="#i-contraste"/></svg>
+      </button>
+    </nav>
+  </div>
+  <div class="progression" aria-hidden="true"></div>
+</header>
+
+<div class="tiroir-voile" data-voile-tiroir="tiroir-nav"></div>
+<aside class="tiroir" id="tiroir-nav" aria-label="Menu du cours">
+  <div class="tiroir__tete">
+    <p class="tiroir__titre">Sommaire du cours</p>
+    <button type="button" class="bouton-verre" data-ferme-tiroir aria-label="Fermer le menu">
+      <svg class="icone"><use href="#i-fermer"/></svg>
+    </button>
+  </div>
+  <nav aria-label="Menu" data-rail>
+<ul class="rail-capsule">
+<li><a href="index.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-maison"/></svg></span>Accueil</a></li>
+<li><a href="cours.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-livre"/></svg></span>Le cours</a></li>
+<li><a href="enseignant.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-outil"/></svg></span>Guide de l'enseignant</a></li>
+<li><a href="diaporamas.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-ecran"/></svg></span>Diaporamas</a></li>
+<li><a href="classe.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-groupe"/></svg></span>Mes groupes</a></li>
+<li><a href="messages.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-bulle"/></svg></span>Questions des étudiants</a></li>
+<li><a href="programme.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-fiche"/></svg></span>Programme officiel</a></li>
+<li><a href="questions.html"><span class="rail-capsule__marque" aria-hidden="true"><svg class="icone" aria-hidden="true"><use href="#i-bulle"/></svg></span>Poser une question</a></li>
+</ul>
+</nav>
+</aside>
+
+<main id="contenu" class="page-outil">
+  <section class="outil-tete" aria-labelledby="titre-outil">
+    <p class="surtitre">Pour les étudiants</p>
+    <h1 class="outil-tete__titre" id="titre-outil">Poser une question</h1>
+    <p class="outil-tete__chapeau">Écrivez votre nom complet et votre groupe, puis posez votre question à l'enseignant. Vous pouvez envoyer un texte, un message vocal, une photo ou un fichier avec une légende ; la réponse arrive ici.</p>
+  </section>
+  <div class="outil" id="outil-questions" data-outil="questions" data-base="" data-langue="fr">
+    <noscript><p class="outil-message">Cette page a besoin de JavaScript. Activez-le dans votre navigateur.</p></noscript>
+    <div class="chargement" role="status"><span class="chargement__anneau" aria-hidden="true"></span><p class="chargement__texte">Ouverture de la messagerie…</p></div>
+  </div>
+</main>
+
+<footer class="pied">
+  <div class="pied__interieur">
+    <div>
+      <p class="pied__signature"><span class="anneau-prisme" aria-hidden="true"></span>Intelligence artificielle</p>
+      <p>Master Littérature Générale et Comparée, semestre 3. Université Yahia Farès, Médéa. Année universitaire 2025–2026.</p>
+      <p>Contenu fondé sur le programme officiel de la matière (pages 84 à 86 de l'offre de formation). Les explications, exemples et corrigés accompagnent le cours de l'enseignant et ne le remplacent pas.</p>
+    </div>
+    <div>
+      <h2>Parcourir</h2>
+      <ul>
+        <li><a href="cours.html#methode">Comment apprendre ce cours</a></li>
+        <li><a href="cours.html#chapitre-1">Chapitre 1 · Introduction</a></li>
+        <li><a href="cours.html#chapitre-2">Chapitre 2 · Python</a></li>
+        <li><a href="cours.html#chapitre-3">Chapitre 3 · Types d'IA</a></li>
+        <li><a href="cours.html#mini-projet">Mini-projet</a></li>
+        <li><a href="cours.html#td-tp">TD / TP corrigés</a></li>
+        <li><a href="enseignant.html">Guide de l'enseignant</a></li>
+        <li><a href="diaporamas.html">Diaporamas</a></li>
+        <li><a href="classe.html">Mes groupes</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Ce site</h2>
+      <p>Mis en forme avec <a href="systeme-de-design.html">Lumineux</a>, un système de design tiré des démos « Cadre Lumineux », « menu capsule » et « slider » de ce dépôt.</p>
+      <p>Thème Nuit ou Jour : bouton en haut à droite. Autres langues : <a href="en/index.html" hreflang="en" lang="en">English</a>, <a href="ar/index.html" hreflang="ar" lang="ar">العربية</a>.</p>
+      <p>Code source, et <code>run.bat</code> pour tout installer sous Windows : <a href="https://github.com/Progremer04/canva-au-for-ang-" target="_blank" rel="noopener">github.com/Progremer04/canva-au-for-ang-</a>.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/lumineux.js"></script>
+<script src="assets/js/questions-config.js"></script>
+<script src="assets/js/questions.js"></script>
+</body>
+</html>

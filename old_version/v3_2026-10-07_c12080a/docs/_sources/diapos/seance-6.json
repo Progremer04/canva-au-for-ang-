@@ -1,0 +1,388 @@
+{
+  "id": "seance-6",
+  "numero": 6,
+  "titre": "TD : système expert et chaînage avant",
+  "resume": "Nommer les trois composants d’un système expert, dessiner le graphe des règles du TD et dérouler le chaînage avant en expliquant pourquoi R4 et R7 ne se déclenchent pas.",
+  "duree": "1 h 30",
+  "lien": "index.html#c3-symbolique",
+  "fiche": "enseignant.html#guide-seance-6",
+  "diapos": [
+    {
+      "type": "titre",
+      "surtitre": "Chapitre 3 · Séance 6 · TD",
+      "titre": "Système expert et chaînage avant",
+      "sousTitre": "Des règles de versification à l’exercice 1 du TD",
+      "notes": "Matériel : les sept cartes-règles A5 du jeu de rôle, l’énoncé de l’exercice 1 du TD, le vidéoprojecteur pour la démonstration. Partagez le tableau en deux colonnes : « base de faits » et « règles déclenchées ». Prérequis : la leçon « IA symbolique : les systèmes experts »."
+    },
+    {
+      "type": "points",
+      "titre": "Objectifs de la séance",
+      "points": [
+        "Nommer les **trois composants** d’un système expert",
+        "Dessiner le **graphe des règles** de l’exercice 1 du TD",
+        "Dérouler le **chaînage avant**, étape par étape",
+        "Expliquer pourquoi **R4** et **R7** ne se déclenchent pas"
+      ],
+      "notes": "Annoncez le chemin : on joue d’abord le raisonnement avec des règles de poésie, puis on le formalise sur l’exercice du TD, où les faits sont de simples lettres."
+    },
+    {
+      "type": "question",
+      "titre": "Accroche",
+      "question": "Comment reconnaissez-vous un sonnet ?",
+      "reponse": "SI le poème a 14 vers ET 2 quatrains ET 2 tercets, ALORS c’est un sonnet.",
+      "explication": "Chaque réponse écrite sous la forme SI … ALORS … est une **règle** : ensemble, elles forment une **base de règles**.",
+      "notes": "10 min. Notez les réponses au tableau, puis réécrivez-les avec la classe sous la forme SI … ALORS. Attendu aussi : 14 vers, 3 quatrains ET 1 distique pour le sonnet anglais, dit shakespearien. Un traité de versification qui énonce « un sonnet compte quatorze vers répartis en deux quatrains et deux tercets » formule déjà une règle."
+    },
+    {
+      "type": "definition",
+      "terme": "Système expert",
+      "traduction": "expert system",
+      "definition": "Un programme d’IA symbolique qui reproduit le raisonnement d’un spécialiste dans un domaine étroit, à partir de faits et de règles lisibles par un humain.",
+      "exemple": "MYCIN (Stanford, années 1970) diagnostiquait des infections bactériennes du sang et proposait un antibiotique.",
+      "notes": "L’IA symbolique représente le savoir par des symboles lisibles, des faits et des règles, plutôt que par des nombres appris sur des données. DENDRAL (Stanford, à partir de 1965) est souvent considéré comme le premier système expert ; MYCIN n’a jamais servi en routine à l’hôpital. Force de l’approche : l’explicabilité, puisque chaque conclusion se justifie par la chaîne exacte des règles déclenchées."
+    },
+    {
+      "type": "tableau",
+      "titre": "Les trois composants",
+      "entetes": [
+        "Composant",
+        "Rôle",
+        "Exemple"
+      ],
+      "lignes": [
+        [
+          "**Base de faits**",
+          "Ce que l’on sait ; elle s’enrichit au fil du raisonnement",
+          "« le poème a 14 vers »"
+        ],
+        [
+          "**Base de règles**",
+          "Les connaissances : SI prémisses ALORS conclusion",
+          "SI 14 vers ET 2 quatrains ET 2 tercets ALORS sonnet"
+        ],
+        [
+          "**Moteur d’inférence**",
+          "Repère les règles applicables, les déclenche, ajoute leurs conclusions",
+          "Le même pour la médecine ou la poésie"
+        ]
+      ],
+      "notes": "Le moteur d’inférence ne dépend pas du domaine : on passe de la médecine à la poésie en changeant seulement les règles. Les prémisses d’une règle sont reliées par ET, noté aussi ∩ dans l’énoncé du TD ; nous écrirons ∧."
+    },
+    {
+      "type": "tableau",
+      "titre": "Les règles des formes poétiques",
+      "entetes": [
+        "Règle",
+        "SI (prémisses)",
+        "ALORS (conclusion)"
+      ],
+      "lignes": [
+        [
+          "R1",
+          "3 vers ET syllabes 5-7-5",
+          "haïku"
+        ],
+        [
+          "R2",
+          "14 vers ET 2 quatrains ET 2 tercets",
+          "sonnet"
+        ],
+        [
+          "R3",
+          "14 vers ET 3 quatrains ET 1 distique",
+          "sonnet"
+        ],
+        [
+          "R4",
+          "sonnet ET 2 tercets",
+          "sonnet italien ou français"
+        ],
+        [
+          "R5",
+          "sonnet ET 1 distique",
+          "sonnet anglais"
+        ],
+        [
+          "R6",
+          "sonnet",
+          "forme fixe"
+        ],
+        [
+          "R7",
+          "haïku",
+          "forme fixe"
+        ]
+      ],
+      "legende": "Dans l’ordre de priorité. Les observations (« 14 vers », « 2 tercets »…) sont des faits non déductibles.",
+      "notes": "Distribuez les sept cartes-règles. Le sonnet italien ou français (Pétrarque, Ronsard, Baudelaire) compte deux quatrains et deux tercets ; le sonnet anglais, dit shakespearien, trois quatrains et un distique. Faites remarquer que R4 à R7 utilisent des faits que d’autres règles doivent d’abord déduire."
+    },
+    {
+      "type": "activite",
+      "titre": "Jeu de rôle : le moteur d’inférence",
+      "duree": 20,
+      "consignes": [
+        "Sept étudiants sont les règles R1 à R7 ; un autre joue le moteur, un autre le secrétaire",
+        "Au tableau, la base initiale : 14 vers, 2 quatrains, 2 tercets, alexandrins",
+        "Le moteur appelle les règles dans l’ordre, à partir de R1",
+        "Une règle se déclenche si toutes ses prémisses sont au tableau et sa conclusion nouvelle",
+        "Le secrétaire écrit la conclusion, la règle s’assoit, on repart de R1",
+        "Un passage complet sans déclenchement arrête le jeu"
+      ],
+      "materiel": "Une carte A5 par règle ; le tableau partagé en « base de faits » et « règles déclenchées »",
+      "notes": "Minutage : rôles 3 min, faits 2 min, cycles 10 min, puis 5 min pour deux autres cas : un haïku (R1 puis R7) et un sonnet imprimé d’un seul bloc, qui ne déclenche rien. La base initiale est celle du sonnet de Du Bellay « Heureux qui, comme Ulysse, a fait un beau voyage » (Les Regrets, 1558). Débriefing : « Qui savait que c’était un sonnet ? » Personne : chaque règle ne regardait que le tableau."
+    },
+    {
+      "type": "etapes",
+      "titre": "Attendu : le sonnet de Du Bellay",
+      "progressif": true,
+      "etapes": [
+        {
+          "titre": "Base initiale",
+          "texte": "14 vers, 2 quatrains, 2 tercets, alexandrins"
+        },
+        {
+          "titre": "Cycle 1",
+          "texte": "R1 échoue (pas de « 3 vers ») ; R2 s’applique : on ajoute « sonnet »"
+        },
+        {
+          "titre": "Cycle 2",
+          "texte": "On repart de R1 ; R4 s’applique : « sonnet italien ou français »"
+        },
+        {
+          "titre": "Cycle 3",
+          "texte": "R5 échoue (pas de « 1 distique ») ; R6 ajoute « forme fixe »"
+        },
+        {
+          "titre": "Cycle 4 : arrêt",
+          "texte": "Aucune règle ne produit plus de fait nouveau"
+        }
+      ],
+      "notes": "Règles déclenchées : R2, R4, R6 ; trois faits déduits. « Alexandrins » n’est utilisé par aucune règle : ce fait reste inerte. Ce qu’il faut en retirer : le moteur compare des symboles sans les comprendre ; l’ordre des règles change le chemin ; hors des cas prévus, le système échoue."
+    },
+    {
+      "type": "deux",
+      "titre": "Chaînage avant ou chaînage arrière ?",
+      "colonnes": [
+        {
+          "titre": "Chaînage avant",
+          "points": [
+            "Guidé par les **données** : des faits vers le but",
+            "« Que puis-je déduire ? »",
+            "Limite : peut déduire beaucoup de faits inutiles"
+          ]
+        },
+        {
+          "titre": "Chaînage arrière",
+          "points": [
+            "Guidé par le **but** : du but vers les faits",
+            "« Que me faut-il pour prouver ceci ? »",
+            "Atout : seules les règles utiles au but sont examinées ; convient au diagnostic"
+          ]
+        }
+      ],
+      "notes": "Mini-cours : 10 min avec la diapositive suivante. Exemple de chaînage arrière : l’hypothèse « sonnet anglais ? » exige, par R5, « sonnet » et « 1 distique ». Ce dernier fait est non déductible et absent de la base : l’hypothèse est rejetée aussitôt. Termes anglais : forward chaining, backward chaining."
+    },
+    {
+      "type": "points",
+      "titre": "Ordre des règles et faits non déductibles",
+      "points": [
+        "**Résolution de conflit** : plusieurs règles sont applicables, le moteur doit en choisir une",
+        "Stratégie du TD : un **ordre des règles** fixé à l’avance",
+        "Une règle déjà déclenchée ne l’est pas une seconde fois",
+        "**Fait non déductible** : il n’est la conclusion d’aucune règle",
+        "Seuls l’observation ou l’utilisateur peuvent le fournir : H, G et K dans le TD"
+      ],
+      "notes": "Dans la leçon, le moteur déclenche la première règle applicable dans l’ordre, puis repart du début de la liste, comme dans le jeu de rôle. Le corrigé du TD parcourt les règles dans l’ordre imposé sans revenir en tête : le résultat est le même. En chaînage arrière, un sous-but non déductible absent de la base fait échouer la piste, ou conduit le système à interroger l’utilisateur."
+    },
+    {
+      "type": "section",
+      "titre": "Exercice 1 du TD",
+      "sousTitre": "Sept règles, base initiale {H, K}, but C",
+      "notes": "35 min : question a (15 min), puis question b (20 min)."
+    },
+    {
+      "type": "tableau",
+      "titre": "L’énoncé : sept règles",
+      "entetes": [
+        "Règle",
+        "SI",
+        "ALORS"
+      ],
+      "lignes": [
+        [
+          "R1",
+          "A",
+          "E"
+        ],
+        [
+          "R2",
+          "B",
+          "D"
+        ],
+        [
+          "R3",
+          "H",
+          "A ∧ F"
+        ],
+        [
+          "R4",
+          "E ∧ G",
+          "C"
+        ],
+        [
+          "R5",
+          "E ∧ K",
+          "B"
+        ],
+        [
+          "R6",
+          "D ∧ E ∧ K",
+          "C"
+        ],
+        [
+          "R7",
+          "G ∧ K ∧ F",
+          "A"
+        ]
+      ],
+      "legende": "Ordre : R3 R7 R1 R4 R5 R2 R6 · Non déductibles : H, G, K · Base initiale : {H, K} · But : C",
+      "notes": "Dans le texte du programme, la conjonction est notée ∩ : ce symbole signifie ici « ET », que nous écrivons ∧. « E ∧ G → C » se lit : si E et G sont établis, alors C est établi. Faites relire l’ordre à voix haute : il ne suit pas la numérotation."
+    },
+    {
+      "type": "activite",
+      "titre": "Question a : dessiner le graphe",
+      "duree": 15,
+      "consignes": [
+        "Un **rectangle** par fait, un **cercle** par règle",
+        "Une flèche de chaque condition vers la règle, puis de la règle vers chaque conclusion",
+        "Flèches qui entrent dans une même règle : conditions liées par ET",
+        "Deux règles qui mènent au même fait (R3 et R7 pour A, R4 et R6 pour C) : OU",
+        "Repérez les faits sur lesquels n’arrive aucune flèche"
+      ],
+      "notes": "On parle de graphe ET/OU. Travail individuel ou en binôme, puis correction au tableau. Astuce de mise en page tirée du corrigé : placer H sous R3 pour qu’aucune flèche n’en croise une autre. Le graphe corrigé figure dans le TD en ligne."
+    },
+    {
+      "type": "question",
+      "titre": "Question a : premier diagnostic",
+      "question": "Sur quels faits n’arrive aucune flèche ? Qu’en conclure ?",
+      "reponse": "G, H et K : ce sont les faits non déductibles. G n’est pas dans la base initiale : R4 et R7 ne pourront jamais se déclencher.",
+      "explication": "Le seul chemin possible vers C passe donc par R6.",
+      "notes": "Laissez les étudiants formuler eux-mêmes la conclusion. H et K sont fournis par la base initiale ; G manque, et aucune règle ne peut le produire. C’est la clé de tout l’exercice."
+    },
+    {
+      "type": "activite",
+      "titre": "Question b : dérouler le chaînage avant",
+      "duree": 20,
+      "consignes": [
+        "Examinez les règles dans l’ordre imposé : R3, R7, R1, R4, R5, R2, R6",
+        "Une règle se déclenche si **toutes** ses conditions sont dans la base",
+        "Ajoutez **toutes** ses conclusions à la base de faits",
+        "Une règle déjà déclenchée n’est pas rejouée",
+        "Arrêtez dès que C est dans la base, ou quand un passage n’ajoute plus rien"
+      ],
+      "materiel": "Une grille par étudiant : étape, règle examinée, condition, déclenchée ?, base de faits après",
+      "notes": "Chacun remplit sa grille seul, étape par étape ; la correction se fait ensuite au tableau. Circulez et surveillez : R7 déclenchée alors que G manque, F oublié après R3, une règle rejouée, l’ordre de la numérotation suivi au lieu de l’ordre imposé."
+    },
+    {
+      "type": "tableau",
+      "titre": "Question b : la correction",
+      "entetes": [
+        "Étape",
+        "Règle",
+        "Condition",
+        "Déclenchée ?",
+        "Base de faits après"
+      ],
+      "lignes": [
+        [
+          "1",
+          "R3",
+          "H",
+          "Oui : H est dans la base",
+          "H, K, A, F"
+        ],
+        [
+          "2",
+          "R7",
+          "G ∧ K ∧ F",
+          "Non : G est absent",
+          "H, K, A, F"
+        ],
+        [
+          "3",
+          "R1",
+          "A",
+          "Oui",
+          "H, K, A, F, E"
+        ],
+        [
+          "4",
+          "R4",
+          "E ∧ G",
+          "Non : G est absent",
+          "H, K, A, F, E"
+        ],
+        [
+          "5",
+          "R5",
+          "E ∧ K",
+          "Oui",
+          "H, K, A, F, E, B"
+        ],
+        [
+          "6",
+          "R2",
+          "B",
+          "Oui",
+          "H, K, A, F, E, B, D"
+        ],
+        [
+          "7",
+          "R6",
+          "D ∧ E ∧ K",
+          "Oui",
+          "H, K, A, F, E, B, D, C : but atteint"
+        ]
+      ],
+      "legende": "Règles déclenchées : R3, R1, R5, R2, R6. Base finale : {H, K, A, F, E, B, D, C}.",
+      "notes": "Le but C est établi dès le premier passage sur les règles. R4 et R7 ne se déclenchent jamais, puisque G n’est ni dans la base initiale ni déductible. Variante : si le moteur revient à la première règle après chaque déclenchement, comme dans le jeu de rôle, on obtient les mêmes déclenchements et la même base finale ; seul le nombre de règles parcourues augmente."
+    },
+    {
+      "type": "question",
+      "titre": "Démonstration : et si G était connu ?",
+      "question": "On ajoute G à la base initiale : {H, K, G}. Que se passe-t-il ?",
+      "reponse": "Le but C est atteint plus tôt, par **R4** : R3, puis R1, puis R4, car E et G sont connus.",
+      "explication": "R7 devient applicable, mais n’apporte rien de nouveau : A est déjà dans la base.",
+      "notes": "10 min. Ouvrez la démonstration interactive de la leçon « IA symbolique : les systèmes experts » : H et K sont cochés ; avancez avec « Examiner la règle suivante » et faites commenter chaque étape. Faites ensuite prédire l’effet de G avant de cocher sa case. La démonstration marque alors R7 « inutile » ; le programme Python du TD, lui, la compte comme déclenchée (R3, R7, R1, R4). Dans les deux cas, C arrive par R4."
+    },
+    {
+      "type": "points",
+      "titre": "Erreurs fréquentes",
+      "points": [
+        "Déclencher une règle dont une partie seulement des prémisses est connue",
+        "Oublier l’une des conclusions de R3 : A **et** F",
+        "Redéclencher une règle, ou ignorer l’ordre imposé",
+        "Chercher à déduire G : c’est un fait non déductible"
+      ],
+      "notes": "Reprenez ces erreurs à partir des grilles observées pendant la question b. Pour chacune, demandez à la classe quelle consigne du moteur a été oubliée."
+    },
+    {
+      "type": "question",
+      "titre": "Bilan",
+      "question": "En une phrase : quelle différence entre chaînage avant et chaînage arrière ?",
+      "reponse": "Le chaînage avant part des faits connus et applique les règles jusqu’au but ; le chaînage arrière part du but et remonte vers les faits nécessaires pour l’établir.",
+      "notes": "5 min. Chacun écrit sa phrase sur un papier avant la révélation ; ramassez-les comme ticket de sortie : ils vous diront si la notion est acquise."
+    },
+    {
+      "type": "fin",
+      "titre": "Travail personnel",
+      "points": [
+        "Refaites l’exercice 1 sans corrigé, dans trois jours",
+        "Écrivez cinq règles qui distinguent fable, conte et nouvelle",
+        "Déroulez-les en chaînage avant sur deux textes connus"
+      ],
+      "texte": "Prochaine séance : l’apprentissage automatique.",
+      "notes": "Pour les cinq règles, rappelez le modèle de la séance : des prémisses observables (longueur, présence d’une morale, personnages, merveilleux…) et une conclusion. Devant des textes réels, les étudiants constateront la fragilité des règles hors des cas prévus : c’est la limite des systèmes experts soulignée dans la leçon."
+    }
+  ]
+}
