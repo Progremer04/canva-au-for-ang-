@@ -18,6 +18,7 @@ The official syllabus of the course fits on three pages: chapter titles, five mi
 | `tools/` | Dependency-free Python scripts: site build, local launcher (`lancer.py`), library check (`verifier_bibliotheques.py`). |
 | `run.bat` | All-in-one for Windows: download, install, launch. Also starts the site on Linux (`bash run.bat`, used by Render). |
 | `render.yaml` | Render settings (see [Hosting](#hosting)). |
+| `vercel.json` | Vercel settings (see [Hosting](#hosting)). |
 | `requirements.txt`, `requirements-deep.txt` | Python libraries of the course. |
 | `old_version/` | A full copy of the project as it was before the lesson 1 history update (see `old_version/LISEZMOI.md`). Not served by the site. |
 | `ليان ليان/` | The original demos (“Cadre Lumineux”, capsule menu, slider) that Lumineux is drawn from. Kept as they are. |
@@ -107,6 +108,10 @@ The Render web service `canva-au-for-ang-` is connected to this repository and r
 - **New service:** *New → Blueprint*, then this repository; `render.yaml` holds these settings.
 
 On Render (variable `RENDER`) or with `--public`, `tools/lancer.py` listens on `0.0.0.0` on the port given by `PORT`, without opening a browser. The site sources (`docs/_sources`, where the notes are in plain text) are never served there, and the “My groups” database API is turned off: on a public site, each visitor keeps their own data in their browser, and the teacher's database stays on their computer (`run.bat`).
+
+### Vercel
+
+The Vercel project `canva-au-for-ang` is connected to this repository and redeploys on every push to `main`. `vercel.json` publishes a copy of `docs/` without `docs/_sources`, with no Python and no server: as on GitHub Pages, the “My groups” data stays in each visitor's browser.
 
 **Keep the repository private for real protection.** The code protects the published site, but a public GitHub repository shows the sources, notes included, to anyone who opens it. Make it private (*Settings → General → Danger Zone → Change visibility*); Render keeps deploying it if its GitHub app has access to the repository.
 
