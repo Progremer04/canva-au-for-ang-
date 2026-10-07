@@ -382,6 +382,20 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
   .impression .explication { visibility: visible; opacity: 1; }
 }
 .impression { display: none; }
+/* Export PowerPoint / PDF : copie des diapositives, hors écran, photographiée une par une (html-to-image). */
+.outil--texte { width: auto; padding: 0 12px; gap: 6px; grid-auto-flow: column; font: 700 13px/1 system-ui, sans-serif; letter-spacing: .02em; }
+.outil--texte svg { width: 18px; height: 18px; }
+.export-zone { position: fixed; left: -100000px; top: 0; width: 1280px; pointer-events: none; }
+.export-zone .diapo { position: relative; opacity: 1; visibility: visible; transform: none; width: 1280px; height: 720px; border-radius: 0; box-shadow: none; transition: none; }
+.export-zone .a, .export-zone .bulle { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
+.export-zone .frise__ligne { transform: none !important; }
+.export-zone .explication { visibility: visible; opacity: 1; }
+.export-zone *, .export-zone *::before, .export-zone *::after { animation: none !important; transition: none !important; }
+.export-zone .anim-trace { stroke-dasharray: none !important; stroke-dashoffset: 0 !important; }
+.export-zone .anim-apparait { opacity: 1 !important; }
+.export-avis { position: fixed; z-index: 50; left: 50%; bottom: 72px; transform: translateX(-50%); max-width: calc(100vw - 32px); padding: 12px 18px; border-radius: 14px;
+  background: var(--texte); color: var(--fond); font: 600 15px/1.4 system-ui, sans-serif; box-shadow: 0 10px 30px -10px #000; }
+@media (max-width: 720px) { .outil--texte span { display: none; } .outil--texte { width: 40px; padding: 0; } }
 </style>
 </head>
 <body>
@@ -394,6 +408,8 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
   <div class="outils">
     <button type="button" class="outil outil--secondaire" data-action="apercu" data-titre="apercu"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></svg></button>
     <button type="button" class="outil outil--secondaire" data-action="presentateur" data-titre="presentateur"><svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="11" height="8" rx="1.2"/><rect x="10.5" y="11" width="11" height="8" rx="1.2"/><path d="M5 15.5h3M5 18.5h3"/></svg></button>
+    <button type="button" class="outil outil--texte" data-action="pptx" data-titre="pptx_titre"><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg><span>PPTX</span></button>
+    <button type="button" class="outil outil--texte" data-action="pdf" data-titre="pdf_titre"><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg><span>PDF</span></button>
     <button type="button" class="outil outil--secondaire" data-action="imprimer" data-titre="imprimer"><svg viewBox="0 0 24 24"><path d="M7 9V3.5h10V9"/><rect x="3.5" y="9" width="17" height="8" rx="1.5"/><path d="M7 14h10v6.5H7z"/></svg></button>
     <button type="button" class="outil" data-action="theme" data-titre="theme"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></svg></button>
     <button type="button" class="outil outil--diaporama" data-action="diaporama" data-titre="diaporama_titre"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z"/></svg><span data-t="diaporama"></span></button>
@@ -456,6 +472,9 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
           aide: "Cette fenêtre n'est vue que par vous. Placez l'autre fenêtre sur le vidéoprojecteur (écran étendu : touches Windows + P, puis « Étendre ») et appuyez sur F pour le diaporama en plein écran. Les deux fenêtres avancent ensemble ; B : écran noir. Les boutons FR / EN / عربي ne changent que cette fenêtre : diapositives et notes pour vous seul ; « Langue projetée » choisit ce que voit la classe.",
           popup: "Le navigateur a bloqué la fenêtre du présentateur : autorisez les fenêtres surgissantes (pop-ups) pour cette page.",
           marque: "IA · Chapitre 1", notes: "Notes de l'enseignant", apercu: "Vue d'ensemble (O)", imprimer: "Imprimer / PDF (P)", theme: "Thème Nuit ou Jour (T)",
+          pptx_titre: "Télécharger la leçon en PowerPoint (.pptx)", pdf_titre: "Télécharger la leçon en PDF",
+          export_prepa: "Préparation du fichier : diapositive {n} sur {t}…", export_photos: "Chargement des photos…",
+          export_fin: "Fichier prêt : {f}", export_erreur: "Le fichier n'a pas pu être préparé. Vérifiez la connexion, puis réessayez.",
           diaporama: "Diaporama", diaporama_titre: "Lancer le diaporama en plein écran (F5 : depuis le début, Maj+F5 ou F : depuis cette diapositive)",
           fin_diaporama: "Fin du diaporama. Cliquez pour quitter.", toutes: "Toutes les diapositives (G)", noir: "Écran noir (B)", sortir: "Quitter le diaporama (Échap)",
           projeter: "Placez cette fenêtre sur le vidéoprojecteur, puis appuyez sur F pour le plein écran.",
@@ -467,6 +486,9 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
           aide: "Only you see this window. Put the other window on the projector (extended display: Windows + P, then “Extend”) and press F for the full-screen slide show. Both windows move together; B: black screen. The FR / EN / عربي buttons only change this window: slides and notes for you alone; “Projected language” picks what the class sees.",
           popup: "The browser blocked the presenter window: allow pop-ups for this page.",
           marque: "AI · Chapter 1", notes: "Teacher's notes", apercu: "Overview (O)", imprimer: "Print / PDF (P)", theme: "Night or Day theme (T)",
+          pptx_titre: "Download the lesson as PowerPoint (.pptx)", pdf_titre: "Download the lesson as PDF",
+          export_prepa: "Preparing the file: slide {n} of {t}…", export_photos: "Loading the photos…",
+          export_fin: "File ready: {f}", export_erreur: "The file could not be prepared. Check the connection, then try again.",
           diaporama: "Slide show", diaporama_titre: "Start the full-screen slide show (F5: from the beginning, Shift+F5 or F: from this slide)",
           fin_diaporama: "End of slide show. Click to exit.", toutes: "All slides (G)", noir: "Black screen (B)", sortir: "End the show (Esc)",
           projeter: "Put this window on the projector, then press F for full screen.",
@@ -478,6 +500,9 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
           aide: "لا يرى هذه النافذة أحدٌ غيركم. ضعوا النافذة الأخرى على جهاز العرض (الشاشة الممتدّة: مفتاحا Windows + P، ثم «توسيع») واضغطوا F لعرض الشرائح بملء الشاشة. تتقدّم النافذتان معًا؛ B: شاشة سوداء. لا تغيّر أزرار FR / EN / عربي إلا هذه النافذة: الشرائح والملاحظات لكم وحدكم؛ و«لغة الشاشة المعروضة» تحدّد ما يراه الطلبة.",
           popup: "منع المتصفّح نافذة المقدِّم: اسمحوا بالنوافذ المنبثقة لهذه الصفحة.",
           marque: "الذكاء الاصطناعي · الفصل 1", notes: "ملاحظات الأستاذ", apercu: "نظرة شاملة (O)", imprimer: "طباعة / PDF ‏(P)", theme: "المظهر الليلي أو النهاري (T)",
+          pptx_titre: "تنزيل الدرس بصيغة PowerPoint ‏(.pptx)", pdf_titre: "تنزيل الدرس بصيغة PDF",
+          export_prepa: "جارٍ تحضير الملف: الشريحة {n} من {t}…", export_photos: "جارٍ تحميل الصور…",
+          export_fin: "الملف جاهز: {f}", export_erreur: "تعذّر تحضير الملف. تحقّق من الاتصال ثم أعد المحاولة.",
           diaporama: "عرض الشرائح", diaporama_titre: "بدء عرض الشرائح بملء الشاشة (F5: من البداية، Shift+F5 أو F: من هذه الشريحة)",
           fin_diaporama: "نهاية عرض الشرائح. انقروا للخروج.", toutes: "كل الشرائح (G)", noir: "شاشة سوداء (B)", sortir: "إنهاء العرض (Esc)",
           projeter: "ضعوا هذه النافذة على جهاز العرض، ثم اضغطوا F لملء الشاشة.",
@@ -1644,13 +1669,91 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     setTimeout(function () { window.print(); }, 300);
   }
 
+  /* ---------- Téléchargement en PowerPoint ou en PDF ----------
+     Chaque diapositive (toutes étapes et réponses visibles, comme à l'impression) est photographiée
+     par html-to-image, puis placée en pleine page dans un .pptx (PptxGenJS) ou un .pdf (jsPDF).
+     Les notes de l'enseignant n'y figurent jamais. Bibliothèques : assets/vendor/, chargées au premier clic. */
+  var VENDOR = "assets/vendor/", exportEnCours = false;
+  function chargerScript(src) {
+    return new Promise(function (ok, ko) {
+      var s = document.createElement("script");
+      s.src = src; s.onload = ok; s.onerror = function () { ko(new Error(src)); };
+      document.head.appendChild(s);
+    });
+  }
+  function attendreImages(racine, maxMs) {
+    var debut = Date.now();
+    return new Promise(function (ok) {
+      (function verifier() {
+        var enAttente = Array.prototype.some.call(racine.querySelectorAll("img"), function (i) { return i.getAttribute("src") && !i.complete; });
+        if (!enAttente || Date.now() - debut > maxMs) ok(); else setTimeout(verifier, 200);
+      })();
+    });
+  }
+  function exporter(format) {
+    if (exportEnCours) return;
+    exportEnCours = true;
+    var u = UI[langue], avis = document.createElement("div");
+    avis.className = "export-avis"; avis.setAttribute("role", "status"); avis.textContent = u.export_photos;
+    document.body.appendChild(avis);
+    var zone = document.createElement("div");
+    zone.className = "export-zone"; zone.setAttribute("aria-hidden", "true"); zone.dir = document.documentElement.dir;
+    zone.innerHTML = cadre.innerHTML;
+    zone.querySelectorAll(".diapo").forEach(function (d) { d.classList.add("active"); d.classList.remove("passee"); d.querySelectorAll(".bulle").forEach(function (b) { b.classList.add("vue"); }); });
+    zone.querySelectorAll(".quiz").forEach(function (q) { q.classList.add("quiz--revele"); });
+    zone.querySelectorAll("iframe").forEach(function (f) { f.remove(); });
+    document.body.appendChild(zone);
+    rechargerCopies(zone);
+    // Les dessins (SVG) prennent leurs couleurs dans la feuille de style : on les écrit sur chaque élément,
+    // sinon la copie photographiée les perd (traits et textes en noir).
+    var PROPRIETES_SVG = ["fill", "stroke", "stroke-width", "stroke-dasharray", "stroke-dashoffset", "stroke-linecap", "stroke-linejoin",
+                          "opacity", "fill-opacity", "stroke-opacity", "font-family", "font-size", "font-weight", "text-anchor", "dominant-baseline", "letter-spacing"];
+    zone.querySelectorAll("svg, svg *").forEach(function (n) {
+      var cs = getComputedStyle(n);
+      PROPRIETES_SVG.forEach(function (pr) { var v = cs.getPropertyValue(pr); if (v) n.style.setProperty(pr, v); });
+    });
+    var libs = [window.htmlToImage ? null : chargerScript(VENDOR + "htmltoimage/html-to-image.js"),
+                format === "pptx" ? (window.PptxGenJS ? null : chargerScript(VENDOR + "pptxgenjs/pptxgen.bundle.js"))
+                                  : (window.jspdf ? null : chargerScript(VENDOR + "jspdf/jspdf.umd.min.js"))];
+    var vide = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
+    var images = [], liste = Array.prototype.slice.call(zone.querySelectorAll(".diapo"));
+    Promise.all(libs).then(function () { return attendreImages(zone, 10000); }).then(function () {
+      return liste.reduce(function (suite, d, i) {
+        return suite.then(function () {
+          avis.textContent = u.export_prepa.replace("{n}", i + 1).replace("{t}", liste.length);
+          return window.htmlToImage.toJpeg(d, { width: 1280, height: 720, pixelRatio: 1.25, quality: 0.85, imagePlaceholder: vide, cacheBust: false })
+            .then(function (url) { images.push(url); });
+        });
+      }, Promise.resolve());
+    }).then(function () {
+      var nom = "Lecon1-IA-" + langue + "." + format;
+      if (format === "pptx") {
+        var p = new window.PptxGenJS();
+        p.layout = "LAYOUT_16x9"; p.title = document.title; p.rtlMode = langue === "ar";
+        images.forEach(function (url) { p.addSlide().addImage({ data: url, x: 0, y: 0, w: 10, h: 5.625 }); });
+        return p.writeFile({ fileName: nom }).then(function () { return nom; });
+      }
+      var J = window.jspdf.jsPDF, doc = new J({ orientation: "landscape", unit: "px", format: [1280, 720], hotfixes: ["px_scaling"], compress: true });
+      images.forEach(function (url, i) { if (i) doc.addPage([1280, 720], "landscape"); doc.addImage(url, "JPEG", 0, 0, 1280, 720, undefined, "FAST"); });
+      doc.save(nom);
+      return nom;
+    }).then(function (nom) {
+      avis.textContent = u.export_fin.replace("{f}", nom);
+      setTimeout(function () { avis.remove(); }, 4000);
+    }).catch(function (e) {
+      if (window.console) console.error(e);
+      avis.textContent = u.export_erreur;
+      setTimeout(function () { avis.remove(); }, 6000);
+    }).then(function () { zone.remove(); exportEnCours = false; });
+  }
+
   /* ---------- Commandes ---------- */
   document.addEventListener("click", function (e) {
     var b = e.target.closest("[data-action]");
     if (b) {
       var a = b.dataset.action;
       if (a === "suivant") suivant(); else if (a === "precedent") precedent(); else if (a === "apercu") apercu();
-      else if (a === "presentateur") ouvrirPresentateur(); else if (a === "theme") theme(); else if (a === "diaporama") diaporama(false); else if (a === "imprimer") imprimer();
+      else if (a === "presentateur") ouvrirPresentateur(); else if (a === "theme") theme(); else if (a === "diaporama") diaporama(false); else if (a === "imprimer") imprimer(); else if (a === "pptx" || a === "pdf") exporter(a);
       else if (a === "sortir") quitterDiaporama(); else if (a === "noir") ecranNoir(noir === "noir" ? "" : "noir"); else if (a === "verrouiller") verrouillerNotes();
       else if (a === "zero") { debut = Date.now(); horloges(); } else if (a === "plus") tailleNotes(2); else if (a === "moins") tailleNotes(-2);
       return;
@@ -1720,6 +1823,9 @@ svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center
     setInterval(function () { try { if (window.opener && !window.opener.closed) window.opener.postMessage({ type: "presence" }, "*"); } catch (e) { /* fermée */ } }, 3000);
   }
   construire();
+  // Lien direct depuis la page « Télécharger » : ?telecharger=pptx ou ?telecharger=pdf lance le fichier.
+  var demande = (location.search.match(/[?&]telecharger=(pptx|pdf)\b/) || [])[1];
+  if (demande && !PRESENTATEUR) setTimeout(function () { exporter(demande); }, 800);
   if (PRESENTATEUR) {
     langueProjection = langue;
     remplirLangueProjetee();

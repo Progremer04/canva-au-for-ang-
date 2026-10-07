@@ -77,6 +77,7 @@ NAV_OUTILS = [
     ("messages.html", "i-bulle", {"fr": "Questions des étudiants", "en": "Student questions", "ar": "أسئلة الطلبة"}),
     ("programme.html", "i-fiche", {"fr": "Programme officiel", "en": "Official syllabus", "ar": "البرنامج الرسمي"}),
     ("questions.html", "i-bulle", {"fr": "Poser une question", "en": "Ask a question", "ar": "اطرح سؤالًا"}),
+    ("telechargements.html", "i-telecharger", {"fr": "Télécharger", "en": "Downloads", "ar": "التنزيل"}),
 ]
 TEXTES_OUTILS = {
     "diaporamas": {
@@ -325,6 +326,9 @@ def page_outil(langue, cle, lien_systeme):
 
 # Page d'accueil : légère, elle mène à tout. (cible, icône, teinte, {langue: (titre, texte)}, info)
 TUILES_ETUDIANTS = [
+    ("telechargements.html", "i-telecharger", "juste", {"fr": ("Télécharger (PowerPoint, PDF)", "La leçon 1 et chaque chapitre du cours, en PowerPoint ou en PDF."),
+                                                        "en": ("Download (PowerPoint, PDF)", "Lesson 1 and every chapter of the course, as PowerPoint or PDF."),
+                                                        "ar": ("تنزيل (PowerPoint و PDF)", "الدرس 1 وكل فصول المقياس بصيغة PowerPoint أو PDF.")}),
     ("questions.html", "i-bulle", "braise", {"fr": ("Poser une question", "Écrivez à l'enseignant : texte, message vocal, photo ou fichier. Il vous répond ici."),
                                             "en": ("Ask a question", "Write to the teacher: text, voice message, photo or file. The answer arrives here."),
                                             "ar": ("اطرح سؤالًا", "راسل الأستاذ: نص أو رسالة صوتية أو صورة أو ملف، ويجيبك هنا.")}),
@@ -445,6 +449,63 @@ def accueil(langue, lien_systeme):
     return vers_cours(page.replace("{{SCRIPTS}}", scripts))
 
 
+TEXTES_TELECHARGER = {
+    "fr": {"titre": "Télécharger · Cours d'IA", "surtitre": "PowerPoint et PDF", "h1": "Télécharger le cours",
+           "chapeau": "La leçon 1 et chaque chapitre du cours en PowerPoint (.pptx) ou en PDF. Le fichier se prépare dans votre navigateur : gardez la page ouverte quelques secondes après le clic.",
+           "lecon": "Leçon 1 : de l'automate à l'agent", "lecon_texte": "Les 110 diapositives, telles qu'à l'écran (photos et dessins compris), une par page.",
+           "chapitres": "Les chapitres du cours", "chapitres_texte": "PowerPoint : un diaporama modifiable, une diapositive par partie. PDF : le texte complet du chapitre (dans la fenêtre d'impression, choisissez « Enregistrer au format PDF »).",
+           "seances": "Diaporamas des séances", "seances_texte": "Les diaporamas de chaque séance (avec les notes de l'enseignant) se téléchargent en PowerPoint et en PDF depuis la page Diaporamas, après le code de l'enseignant.",
+           "ouvrir": "Ouvrir les diaporamas", "nav": "Menu"},
+    "en": {"titre": "Downloads · AI Course", "surtitre": "PowerPoint and PDF", "h1": "Download the course",
+           "chapeau": "Lesson 1 and every chapter of the course as PowerPoint (.pptx) or PDF. The file is prepared in your browser: keep the page open for a few seconds after clicking.",
+           "lecon": "Lesson 1: from automaton to agent", "lecon_texte": "All 110 slides as they look on screen (photos and drawings included), one per page.",
+           "chapitres": "The course chapters", "chapitres_texte": "PowerPoint: an editable deck, one slide per part. PDF: the full text of the chapter (in the print window, choose “Save as PDF”).",
+           "seances": "Session slide decks", "seances_texte": "Each session's slide deck (with the teacher's notes) downloads as PowerPoint and PDF from the Slides page, after the teacher code.",
+           "ouvrir": "Open the slides", "nav": "Menu"},
+    "ar": {"titre": "التنزيل · مقياس الذكاء الاصطناعي", "surtitre": "PowerPoint و PDF", "h1": "تنزيل المقياس",
+           "chapeau": "الدرس 1 وكل فصول المقياس بصيغة PowerPoint ‏(.pptx) أو PDF. يُحضَّر الملف في متصفحك: أبقِ الصفحة مفتوحة بضع ثوانٍ بعد النقر.",
+           "lecon": "الدرس 1: من الآلة الذاتية الحركة إلى الوكيل", "lecon_texte": "الشرائح الـ110 كما تظهر على الشاشة (مع الصور والرسوم)، شريحة في كل صفحة.",
+           "chapitres": "فصول المقياس", "chapitres_texte": "PowerPoint: عرض قابل للتعديل، شريحة لكل جزء. PDF: النص الكامل للفصل (في نافذة الطباعة اختر «حفظ بصيغة PDF»).",
+           "seances": "عروض الحصص", "seances_texte": "تُنزَّل عروض كل حصة (مع ملاحظات الأستاذ) بصيغة PowerPoint و PDF من صفحة العروض التقديمية، بعد رمز الأستاذ.",
+           "ouvrir": "فتح العروض التقديمية", "nav": "القائمة"},
+}
+NOMS_LANGUES = {"fr": "Français", "en": "English", "ar": "العربية"}
+
+
+def telechargements(langue, lien_systeme):
+    """Page « Télécharger » : des liens qui lancent la préparation du fichier dans la leçon 1 ou le cours."""
+    conf, t = LANGUES[langue], TEXTES_TELECHARGER[langue]
+    tete, pied = habillage(langue, "telechargements.html", t["titre"])
+    ico = '<svg class="icone" aria-hidden="true"><use href="#i-telecharger"/></svg>'
+    def liens(pptx, pdf):
+        return (f'<a class="bouton bouton--petit" href="{pptx}">{ico}PowerPoint</a>'
+                f'<a class="bouton bouton--petit" href="{pdf}">{ico}PDF</a>')
+    lecon = "".join(
+        f'<li class="telechargement"><span class="telechargement__nom">{NOMS_LANGUES[l]}</span>'
+        f'<span class="telechargement__liens">{liens(f"{conf["base"]}chapitr1_first_lesson.html?lang={l}&telecharger=pptx", f"{conf["base"]}chapitr1_first_lesson.html?lang={l}&telecharger=pdf")}</span></li>'
+        for l in ("fr", "en", "ar"))
+    noms = {cible: textes[langue] for cible, _m, textes in NAV}
+    chapitres = "".join(
+        f'<li class="telechargement"><span class="telechargement__nom">{noms[c]}</span>'
+        f'<span class="telechargement__liens">{liens(f"cours.html?telecharger=pptx#{c}", f"cours.html?telecharger=pdf#{c}")}</span></li>'
+        for c in FRAGMENTS)
+    corps = (f'<main id="contenu" class="page-outil">\n'
+             f'  <section class="outil-tete" aria-labelledby="titre-outil">\n'
+             f'    <p class="surtitre">{t["surtitre"]}</p>\n'
+             f'    <h1 class="outil-tete__titre" id="titre-outil">{t["h1"]}</h1>\n'
+             f'    <p class="outil-tete__chapeau">{t["chapeau"]}</p>\n'
+             f'  </section>\n'
+             f'  <section class="telechargements" aria-labelledby="t-lecon"><h2 id="t-lecon">{t["lecon"]}</h2><p>{t["lecon_texte"]}</p><ul>{lecon}</ul></section>\n'
+             f'  <section class="telechargements" aria-labelledby="t-chap"><h2 id="t-chap">{t["chapitres"]}</h2><p>{t["chapitres_texte"]}</p><ul>{chapitres}</ul></section>\n'
+             f'  <section class="telechargements" aria-labelledby="t-seances"><h2 id="t-seances">{t["seances"]}</h2><p>{t["seances_texte"]}</p>'
+             f'<p><a class="bouton bouton--petit" href="diaporamas.html"><svg class="icone" aria-hidden="true"><use href="#i-ecran"/></svg>{t["ouvrir"]}</a></p></section>\n'
+             f'</main>')
+    page = tete + corps + pied
+    page = page.replace("{{NAV}}", nav(t["nav"], langue, NAV_OUTILS), 1)
+    page = page.replace("{{LIEN_SYSTEME}}", lien_systeme).replace("{{BASE}}", conf["base"])
+    return vers_cours(page.replace("{{SCRIPTS}}", f'<script src="{conf["base"]}assets/js/lumineux.js" defer></script>'))
+
+
 def programme(langue, lien_systeme):
     """Le programme officiel, en texte intégral : pour l'enseignant, non indexé par les moteurs de recherche."""
     conf, t = LANGUES[langue], TEXTES_PROGRAMME[langue]
@@ -467,7 +528,8 @@ def programme(langue, lien_systeme):
 
 def scripts_lies(base):
     lignes = [f'<script src="{base}{u}"></script>' for u in PRISM]
-    lignes += [f'<script src="{base}assets/js/lumineux.js"></script>', f'<script src="{base}assets/js/cours.js"></script>']
+    lignes += [f'<script src="{base}assets/js/lumineux.js"></script>', f'<script src="{base}assets/js/cours.js"></script>',
+               f'<script src="{base}assets/js/telecharger.js"></script>']
     return "\n".join(lignes)
 
 
@@ -519,6 +581,7 @@ def main():
         pages = {f"{cle}.html": page_outil(langue, cle, lien) for cle in TEXTES_OUTILS}
         pages["index.html"] = accueil(langue, lien)
         pages["programme.html"] = programme(langue, lien)
+        pages["telechargements.html"] = telechargements(langue, lien)
         for nom, contenu in pages.items():
             if nom in verrou.PAGES:  # espace de l'enseignant : la page ne s'ouvre qu'avec le code
                 contenu = verrou.proteger_page(contenu, langue, conf["base"])

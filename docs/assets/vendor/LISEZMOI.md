@@ -5,7 +5,9 @@ Copiées telles quelles depuis npm, pour que le site marche hors ligne (run.bat,
 | Dossier | Paquet | Version | Licence | Utilisé par |
 | --- | --- | --- | --- | --- |
 | `sqljs/` | [sql.js](https://github.com/sql-js/sql.js) (`sql-wasm.js`, `sql-wasm.wasm`, `sql-asm.js`) | 1.14.2 | MIT | `classe.html` : la base SQLite de « Mes groupes » |
-| `pptxgenjs/` | [PptxGenJS](https://github.com/gitbrent/PptxGenJS) (`pptxgen.bundle.js`, JSZip inclus) | 4.0.1 | MIT | `diaporamas.html` : export PowerPoint |
+| `pptxgenjs/` | [PptxGenJS](https://github.com/gitbrent/PptxGenJS) (`pptxgen.bundle.js`, JSZip inclus) | 4.0.1 | MIT | `diaporamas.html`, `cours.html` et la leçon 1 : export PowerPoint |
+| `htmltoimage/` | [html-to-image](https://github.com/bubkoo/html-to-image) (`html-to-image.js`) | 1.11.13 | MIT | leçon 1 : chaque diapositive en image pour les fichiers PowerPoint et PDF |
+| `jspdf/` | [jsPDF](https://github.com/parallax/jsPDF) (`jspdf.umd.min.js`) | 2.5.2 | MIT | leçon 1 : fichier PDF |
 
 ## Une modification
 
