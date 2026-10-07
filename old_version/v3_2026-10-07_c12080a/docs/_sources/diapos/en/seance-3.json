@@ -1,0 +1,365 @@
+{
+  "id": "seance-3",
+  "numero": 3,
+  "titre": "Chapter 1 tutorial (TD): supervised or unsupervised?",
+  "resume": "Classify at least 8 situations out of 10 (supervised, unsupervised, reinforcement) using the labels as justification, explain the role of the test set and give two examples in SHS.",
+  "duree": "1 h 30 min",
+  "lien": "index.html#td-ch1",
+  "fiche": "enseignant.html#guide-seance-3",
+  "diapos": [
+    {
+      "type": "titre",
+      "surtitre": "Artificial Intelligence · Session 3 · Tutorial (TD)",
+      "titre": "Chapter 1 tutorial (TD): supervised or unsupervised?",
+      "sousTitre": "Sorting situations, comparing, finding examples",
+      "notes": "Prerequisite: the chapter 1 lesson “Supervised learning and unsupervised learning”. Prepare ten situation cards per group (the table in the lesson plan) and open the exercises of the chapter 1 tutorial (TD) on the site. Form groups of three or four, mixing levels and equipment."
+    },
+    {
+      "type": "points",
+      "titre": "Session objectives",
+      "points": [
+        "**Classify** at least 8 situations out of 10: supervised, unsupervised or reinforcement",
+        "**Justify** each choice using the labels",
+        "**Explain** the role of the test set",
+        "**Give** two examples of learning in the humanities and social sciences"
+      ],
+      "notes": "The first objective has a numerical criterion: 8 situations out of 10. Announce it: it will give the groups a benchmark during the sorting."
+    },
+    {
+      "type": "activite",
+      "titre": "Sorting ten situation cards",
+      "duree": 25,
+      "consignes": [
+        "In groups of three or four",
+        "Sort the ten cards into three piles: supervised, unsupervised, reinforcement",
+        "On each card, write down the decisive clue",
+        "Each group then defends one card in front of the class"
+      ],
+      "materiel": "Ten situation cards per group",
+      "notes": "During the sorting, walk around and ask “what have you tried?” rather than giving the answer. Two cards are traps (Go and the spam filter): do not point them out. For the defense, draw the spokesperson at random: everyone must be ready. Only show the correction after the defenses."
+    },
+    {
+      "type": "deux",
+      "titre": "Correction: eight cards without a trap",
+      "colonnes": [
+        {
+          "titre": "Supervised: the examples carry the answer",
+          "points": [
+            "Dating a poem using 600 dated poems",
+            "Estimating the year a poem was written (regression)",
+            "Classifying 3,000 speeches using 500 classified speeches",
+            "Detecting hateful comments using 5,000 annotated examples",
+            "Identifying the language of a message using labeled messages"
+          ]
+        },
+        {
+          "titre": "Unsupervised: groups to interpret",
+          "points": [
+            "Dividing 200 novels into stylistic families",
+            "Grouping 2,000 open-ended answers without a grid",
+            "Bringing out the themes of 1,000 articles"
+          ]
+        }
+      ],
+      "notes": "For each card, have students state the clue: dated, classified, annotated or labeled examples → supervised; no grid, groups or themes to discover → unsupervised. The year of composition is a numerical label: this is regression, not classification. For the 3,000 speeches, recall the quiz in the lesson: it is normal that the new speeches have no label, because that is exactly what the model must predict."
+    },
+    {
+      "type": "question",
+      "titre": "Trap no. 1",
+      "question": "“Learning Go by winning or losing games”: what type of learning is this?",
+      "choix": [
+        "Supervised",
+        "Unsupervised",
+        "Reinforcement"
+      ],
+      "reponse": "Reinforcement",
+      "explication": "There are no corrected examples: the program plays, and winning or losing serves as its reward or penalty.",
+      "notes": "Likely wrong answer: “unsupervised”, because there are no labels. Show the difference: here, the program learns by acting and receiving rewards. This is how AlphaGo Zero (DeepMind, 2017) learned Go by playing against itself. Reinforcement learning will be studied in chapter 3."
+    },
+    {
+      "type": "question",
+      "titre": "Trap no. 2",
+      "question": "A filter learns from the emails that users have marked as “spam”. What type of learning is this?",
+      "choix": [
+        "Supervised",
+        "Unsupervised",
+        "Reinforcement"
+      ],
+      "reponse": "Supervised",
+      "explication": "The user’s “spam” click is a label: each example carries the right answer.",
+      "notes": "Likely wrong answers: “unsupervised”, because nobody annotated the emails on purpose, or “reinforcement”, because the filter improves with use. Yet each marked email carries the expected answer: that is exactly a label. Sorting emails into “spam” and “not spam” is the textbook example of supervised classification."
+    },
+    {
+      "type": "etapes",
+      "titre": "The decisive question",
+      "etapes": [
+        {
+          "titre": "Do the examples carry the answer?",
+          "texte": "The question to ask for each situation, about the training examples"
+        },
+        {
+          "titre": "Yes: supervised",
+          "texte": "Classification if the answer is a category, regression if it is a number"
+        },
+        {
+          "titre": "No: unsupervised",
+          "texte": "The algorithm forms groups that the researcher must interpret"
+        },
+        {
+          "titre": "Rewards: reinforcement",
+          "texte": "The program learns by acting and receiving rewards or penalties"
+        }
+      ],
+      "notes": "10 min of sharing results. Write the question on the board: “Do the training examples carry the right answer?” It settles almost every case. Careful: look at the examples used for training, not at the new cases, which never have a label."
+    },
+    {
+      "type": "definition",
+      "terme": "Test set",
+      "traduction": "jeu de test",
+      "definition": "The part of the data set aside to evaluate the model on examples it has never seen.",
+      "exemple": "Like an exam made of questions the student has never seen.",
+      "notes": "A rule to have students write down: a model is never evaluated on the examples used to train it. The data are split in two: the training set (jeu d’entraînement) fits the model; the test set, set aside, measures its performance at the end. The goal is generalization: handling new cases well."
+    },
+    {
+      "type": "definition",
+      "terme": "Overfitting",
+      "traduction": "sur-apprentissage",
+      "definition": "A flaw of a model that memorizes the details of the training set and generalizes poorly to new data.",
+      "exemple": "Almost perfect in training, poor in the test: like the student who memorized the solutions without understanding the course.",
+      "notes": "The warning sign: a large gap between the training score and the test score. In the lesson’s example, a model that is too complex learns the training poems by heart, with their accidental details, instead of grasping what characterizes each period."
+    },
+    {
+      "type": "question",
+      "titre": "Another trap: “enfans”",
+      "question": "All your Romantic poems come from old editions that write “enfans” for “enfants”. What does the model learn?",
+      "reponse": "The spelling of the edition, rather than the style of the period.",
+      "explication": "A model relies on anything that distinguishes the examples, even an accidental detail: a good score does not guarantee that it has learned what you are looking for.",
+      "notes": "An example taken from the lesson. Let students think for a minute before showing the answer. A point to remember for literature students: knowing the origin of every text in the corpus (edition, spelling, digitization) is part of the method."
+    },
+    {
+      "type": "section",
+      "numero": 2,
+      "titre": "Tutorial exercises",
+      "sousTitre": "Exercises 1 to 3 in class, exercise 4 as homework",
+      "notes": "The exercises are on the site, in the chapter 1 tutorial (TD). Ask students not to open “Show the solution” before the class correction."
+    },
+    {
+      "type": "activite",
+      "titre": "Exercises 1 and 2",
+      "duree": 25,
+      "consignes": [
+        "Exercise 1: for supervised and unsupervised learning, a definition, the data, the tasks, one difficulty",
+        "Exercise 2: a comparison table of the two types of learning, written from memory",
+        "Alone first, then in pairs",
+        "Class correction"
+      ],
+      "notes": "Alone, then in pairs, then correction. The table in exercise 2 is written without notes: this is exactly what the exam asks for. If a pair finishes early, ask them where to place semi-supervised learning and self-supervised learning."
+    },
+    {
+      "type": "deux",
+      "titre": "Correcting exercise 1",
+      "colonnes": [
+        {
+          "titre": "Supervised",
+          "points": [
+            "Data: examples with their **label** (an email and “spam”)",
+            "Tasks: classification, regression",
+            "Evaluation: comparing with the labels of the test set",
+            "Difficulty: annotating is costly; labels reflect the choices, sometimes the prejudices, of annotators"
+          ]
+        },
+        {
+          "titre": "Unsupervised",
+          "points": [
+            "Data: examples **without labels**",
+            "Tasks: clustering, dimensionality reduction, anomaly detection, topic modeling",
+            "Evaluation: coherence of the groups, usefulness for interpretation",
+            "Difficulty: naming and interpreting the groups obtained"
+          ]
+        }
+      ],
+      "notes": "Add the in-between cases orally. Semi-supervised learning combines a few labeled examples with many raw examples. Self-supervised learning takes the label from the data itself, for example by hiding the next word of a sentence: this is how large language models are pre-trained. Reinforcement learning has no corrected examples: an agent receives rewards or penalties and learns the strategy that maximizes them."
+    },
+    {
+      "type": "tableau",
+      "titre": "Correcting exercise 2",
+      "entetes": [
+        "Criterion",
+        "Supervised",
+        "Unsupervised"
+      ],
+      "lignes": [
+        [
+          "Data",
+          "Examples with their labels",
+          "Examples only"
+        ],
+        [
+          "Question asked",
+          "Which category? What value?",
+          "What groups, what structures?"
+        ],
+        [
+          "Typical tasks",
+          "Classification, regression",
+          "Clustering, dimensionality reduction, topics"
+        ],
+        [
+          "Algorithms",
+          "Regressions, k-nearest neighbors, trees, networks",
+          "k-means, hierarchical clustering, PCA, LDA"
+        ],
+        [
+          "Evaluation",
+          "Direct: labels of the test set",
+          "Indirect: coherence of the groups, human reading"
+        ],
+        [
+          "Human work",
+          "Annotating before learning",
+          "Interpreting after learning"
+        ],
+        [
+          "Example in SHS",
+          "Attributing an anonymous text to a known author",
+          "Grouping novels by their vocabulary"
+        ]
+      ],
+      "legende": "In supervised learning, we learn to reproduce known answers; in unsupervised learning, we look for an organization that we do not know yet.",
+      "notes": "Have students compare row by row with the pairs’ tables. Details of the “Algorithms” row: linear and logistic regression, k-nearest neighbors, decision trees, neural networks; for unsupervised learning, principal component analysis (PCA) and LDA, for topic modeling. For evaluation: accuracy or mean error on one side, silhouette score on the other. Have students copy the summary sentence."
+    },
+    {
+      "type": "activite",
+      "titre": "Exercise 3: six examples of learning",
+      "duree": 15,
+      "consignes": [
+        "In pairs, find six examples of learning",
+        "For each one: the type of learning, the task, the data used",
+        "At least two examples from the humanities or from literature"
+      ],
+      "notes": "Above all, check that the type and the data are consistent: if labels are needed, the learning is supervised. Encourage examples taken from the course: poems, novels from the Maghreb, political speeches, messages in Darja, surveys on reading."
+    },
+    {
+      "type": "tableau",
+      "titre": "Correcting exercise 3: one possible answer",
+      "entetes": [
+        "Example",
+        "Type",
+        "Task",
+        "Data"
+      ],
+      "lignes": [
+        [
+          "Sorting emails into “spam” and “not spam”",
+          "Supervised",
+          "Classification",
+          "Emails marked by users"
+        ],
+        [
+          "Attributing a disputed text to an author (stylometry)",
+          "Supervised",
+          "Classification",
+          "Texts whose author is known"
+        ],
+        [
+          "Estimating when a poem was written",
+          "Supervised",
+          "Regression",
+          "Poems whose date is known"
+        ],
+        [
+          "Grouping novels by their vocabulary",
+          "Unsupervised",
+          "Clustering",
+          "Texts only"
+        ],
+        [
+          "Respondent profiles in a survey on reading",
+          "Unsupervised",
+          "Clustering",
+          "Answers without labels"
+        ],
+        [
+          "Learning Go by playing against oneself",
+          "Reinforcement",
+          "Successive actions",
+          "Games; winning serves as the reward"
+        ]
+      ],
+      "legende": "Other answers are possible: check that the type is consistent with the data.",
+      "notes": "The SHS examples: stylometry, which Mosteller and Wallace applied in 1964 to some of the *Federalist Papers*; the date of a poem; reader profiles. Go refers to AlphaGo Zero (DeepMind, 2017). Have each pair read out one example: the class says whether the type and the data match."
+    },
+    {
+      "type": "activite",
+      "titre": "Launching exercise 4",
+      "duree": 15,
+      "consignes": [
+        "Can today’s computers do these six tasks? One task per pair",
+        "Play ping-pong properly · drive a car in a city center · discover and prove theorems",
+        "Write a funny story · give a relevant legal opinion · perform a complex surgical operation",
+        "Define the success criterion: compared with whom, under what conditions?",
+        "Look for primary, dated sources",
+        "A 3-minute report at the next session"
+      ],
+      "notes": "Share out the six tasks, even if it means giving the same task to several pairs. Stress the words in the instructions: “properly”, “relevant”, “funny”; defining these criteria is part of the work. Do not show the solution on the site: it is a state of knowledge from September 2026, in a field that changes very fast. Students will have to check what has changed since then."
+    },
+    {
+      "type": "etapes",
+      "titre": "Method: carrying out the research",
+      "progressif": true,
+      "etapes": [
+        {
+          "titre": "Define the criterion",
+          "texte": "Compared with a beginner, a professional, the best human? Under what conditions?"
+        },
+        {
+          "titre": "Go back to primary sources",
+          "texte": "Peer-reviewed articles, technical reports; preprints (arXiv, HAL) with caution"
+        },
+        {
+          "titre": "Demo, product or announcement?",
+          "texte": "A company presenting its own product is not a neutral source"
+        },
+        {
+          "titre": "Examine the conditions",
+          "texte": "Number of trials, environment, opponents, share of human supervision, failure rate"
+        },
+        {
+          "titre": "Date and cross-check",
+          "texte": "Date of the result, date you consulted it; at least two independent sources"
+        },
+        {
+          "titre": "A nuanced verdict",
+          "texte": "“Yes, but…”, “under controlled conditions”, “not yet”"
+        }
+      ],
+      "notes": "This method applies to any documentary research on AI. Preprints are useful but have not always been peer-reviewed; Google Scholar helps you find articles. To cross-check, a general overview such as the book by Jean-Gabriel Ganascia (*L’IA expliquée aux humains*, 2024), cited in the course references, can serve as a second source. Nuances are the expected answer, not an admission of weakness."
+    },
+    {
+      "type": "points",
+      "titre": "Common mistakes to correct",
+      "points": [
+        "“Unsupervised” does not mean “without humans”: the researcher chooses, then interprets",
+        "The new cases have no label: that is no reason to conclude it is unsupervised",
+        "**Classification**: known categories; **clustering**: discovered groups"
+      ],
+      "notes": "For each mistake, have students find the card that shows it. First mistake: the researcher chooses the data and the number of groups, then interprets; the 200 novels do not sort themselves into “families”. Second: the 3,000 speeches. Third: dating a poem using 600 dated poems (classification) versus dividing 200 novels into stylistic families (clustering)."
+    },
+    {
+      "type": "fin",
+      "titre": "Homework",
+      "points": [
+        {
+          "texte": "**Prepare exercise 4**: a 3-minute report",
+          "sous": [
+            "The site’s solution dates from September 2026: check what has changed since then"
+          ]
+        },
+        "**Reread** “AI approaches to problem solving” (chapter 1)",
+        "**Learn** the glossary, in French and in English"
+      ],
+      "texte": "Next session: first Python lab session (TP)",
+      "notes": "Before ending the class, check the numerical objective with a show of hands: who classified at least 8 cards out of 10? The glossary is learned in pairs: one French → English card and one English → French card, with the definition on the back."
+    }
+  ]
+}

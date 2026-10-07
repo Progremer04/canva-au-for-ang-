@@ -1,0 +1,233 @@
+{
+  "id": "seance-5",
+  "numero": 5,
+  "titre": "Lab session (TP): querying a corpus with pandas",
+  "resume": "Load a CSV file, filter it, sort it and group it to answer a question asked in plain language, then draw a chart with a title and interpret it with caution.",
+  "duree": "1 h 30 min",
+  "lien": "index.html#c2-numpy-pandas",
+  "fiche": "enseignant.html#guide-seance-5",
+  "diapos": [
+    {
+      "type": "titre",
+      "surtitre": "Chapter 2 · Session 5 · Lab session (TP)",
+      "titre": "Querying a corpus with pandas",
+      "sousTitre": "Ten works, six columns, questions asked in plain language",
+      "notes": "Before the session, put oeuvres.csv, the file from the pandas lesson, where the students will work: in the notebook’s folder with Jupyter, otherwise in the Colab session. Same pairs as in session 4, with driver and navigator swapping roles every fifteen minutes."
+    },
+    {
+      "type": "points",
+      "titre": "Session objectives",
+      "points": [
+        "Load a **CSV** file and describe it",
+        "**Filter**, **sort** and **group** to answer a question asked in plain language",
+        "Draw a chart with a title and **interpret it with caution**"
+      ],
+      "notes": "Announce the thread of the session: a question in plain language first, the code afterwards. Remind students right away that the word counts in the corpus are rounded values invented for the exercise, not real counts."
+    },
+    {
+      "type": "code",
+      "titre": "Review: predict before running",
+      "code": "vers = \"Il pleure dans mon cœur\"\nmots = vers.split()\nprint(len(mots), mots[0], mots[-1])",
+      "legende": "Write on paper what the last line will display, then run it.",
+      "notes": "10 min. Everyone writes their prediction on paper, alone, before running anything. The pairs then type the three lines and compare. The answer is on the next slide."
+    },
+    {
+      "type": "question",
+      "titre": "Review: the answer",
+      "question": "What does `print(len(mots), mots[0], mots[-1])` display?",
+      "reponse": "`5 Il cœur`",
+      "explication": "`split()` gives 5 words; index 0 refers to the first, index -1 to the last.",
+      "notes": "Expected mistakes: “pleure” for mots[0], if indices are counted from 1, or an answer in square brackets. Have students justify each of the three values displayed."
+    },
+    {
+      "type": "section",
+      "numero": 1,
+      "titre": "Reading and describing the corpus",
+      "sousTitre": "From spreadsheet to DataFrame",
+      "notes": "15 min."
+    },
+    {
+      "type": "definition",
+      "terme": "DataFrame",
+      "traduction": "DataFrame",
+      "definition": "A pandas table made of columns (**Series**) that share the same index: the equivalent of a spreadsheet.",
+      "exemple": "One row = one work; one column = one variable (title, author, year, genre, language, number of words).",
+      "notes": "First open oeuvres.csv in a spreadsheet: it is a simple text file, one line per work, with columns separated by commas (CSV, comma-separated values). The DataFrame is the same table, in Python. The index is the labels of the rows: 0, 1, 2… by default."
+    },
+    {
+      "type": "code",
+      "titre": "Reading the CSV file",
+      "code": "import pandas as pd\ndf = pd.read_csv(\"oeuvres.csv\", encoding=\"utf-8\")\nprint(df.shape)                     # (rows, columns)\nprint(df[[\"titre\", \"annee\"]].head(4))",
+      "sortie": "(10, 6)\n               titre  annee\n0     Les Misérables   1862\n1  Les Fleurs du mal   1857\n2            Bel-Ami   1885\n3   La Grande Maison   1952",
+      "legende": "`shape` gives the dimensions, `head()` the first rows (5 by default).",
+      "notes": "import pandas as pd loads the library under its usual alias. Get into the habit of writing encoding=\"utf-8\", as for every file in the course. In a notebook, df.head() on its own as the last line of a cell displays a readable table of the first 5 rows and the 6 columns. If Python answers FileNotFoundError, the file is not in the notebook’s folder or in the Colab session."
+    },
+    {
+      "type": "tableau",
+      "titre": "What info() reveals",
+      "entetes": [
+        "Column",
+        "Type (Dtype)",
+        "Non-empty values"
+      ],
+      "lignes": [
+        [
+          "titre",
+          "str",
+          "10"
+        ],
+        [
+          "auteur",
+          "str",
+          "10"
+        ],
+        [
+          "annee",
+          "int64",
+          "10"
+        ],
+        [
+          "genre",
+          "str",
+          "10"
+        ],
+        [
+          "langue",
+          "str",
+          "10"
+        ],
+        [
+          "nb_mots",
+          "int64",
+          "10"
+        ]
+      ],
+      "legende": "Output of `df.info()` with pandas 3; with pandas 2, text appears as `object` instead of `str`.",
+      "notes": "Have students run df.info(): the command lists the columns, their type and the number of non-empty values. Here it is 10 everywhere: no missing data. int64 refers to whole numbers, str to text. Remind them again that the word counts are fictitious: we are learning a method, not facts about these works."
+    },
+    {
+      "type": "section",
+      "numero": 2,
+      "titre": "Querying the corpus",
+      "sousTitre": "Filter, sort, group, plot",
+      "notes": "20 min to filter and sort, 20 min to group, 15 min for the chart."
+    },
+    {
+      "type": "question",
+      "titre": "First the question, in plain language",
+      "question": "Which works in the corpus are in Arabic and were published after 1950?",
+      "reponse": "*Bayn al-Qasrayn* (1956) and *Awraq al-Zaytun* (1964).",
+      "explication": "*Al-Ayyam* (1929) is indeed in Arabic, but was published before 1950: **two** conditions are needed at once.",
+      "notes": "First have students answer by hand, looking at the projected table: the question guides the code, not the other way round. Then ask which columns to query. Expected: langue and annee."
+    },
+    {
+      "type": "code",
+      "titre": "Turning the question into a filter",
+      "code": "choix = df[(df[\"langue\"] == \"arabe\") & (df[\"annee\"] > 1950)]\nprint(choix[[\"titre\", \"annee\"]])",
+      "sortie": "             titre  annee\n6  Bayn al-Qasrayn   1956\n7  Awraq al-Zaytun   1964",
+      "legende": "Each condition in parentheses; `&` means “and”, `|` means “or”.",
+      "notes": "Each condition produces a column of True and False; df[condition] keeps the rows that are true. The original index (6, 7) is kept. A common trap: and instead of &, which causes ValueError: The truth value of a Series is ambiguous… Forgetting the parentheses around each condition also causes an error."
+    },
+    {
+      "type": "code",
+      "titre": "Sorting with sort_values()",
+      "code": "plus_longs = df.sort_values(\"nb_mots\", ascending=False)\nprint(plus_longs[[\"titre\", \"nb_mots\"]].head(3))",
+      "sortie": "             titre  nb_mots\n0   Les Misérables   530000\n6  Bayn al-Qasrayn   160000\n2          Bel-Ami   125000",
+      "legende": "`ascending=False`: descending order, from the longest to the shortest.",
+      "notes": "The question in plain language first: “which are the three longest works?”. Without ascending=False, the sort is ascending. For the fastest pairs: sort the result of the previous filter by year, with choix.sort_values(\"annee\")."
+    },
+    {
+      "type": "code",
+      "titre": "Grouping with groupby()",
+      "code": "# Average number of words for each genre, rounded\nprint(df.groupby(\"genre\")[\"nb_mots\"].mean().round())",
+      "sortie": "genre\npoésie     28333.0\nroman     174500.0\nrécit      48000.0\nName: nb_mots, dtype: float64",
+      "legende": "`groupby` splits the rows by genre, then calculates the mean of each group.",
+      "notes": "Read the line like a sentence: “group by genre, take the nb_mots column, calculate its mean, round it”. “récit” is placed after “roman”: Python sorts strings by the Unicode number of their characters, and “é” comes after all the letters without accents. Without round(), poésie would display 28333.333333."
+    },
+    {
+      "type": "code",
+      "titre": "Counting with value_counts()",
+      "code": "print(df[\"genre\"].value_counts())   # counts per genre",
+      "sortie": "genre\nroman     6\npoésie    3\nrécit     1\nName: count, dtype: int64",
+      "legende": "The count of each value, from the most frequent to the rarest.",
+      "notes": "value_counts() counts the occurrences of each value. The same move on language: df[\"langue\"].value_counts() gives français 5, arabe 3, anglais 2. Point out the 1 for récit: it sets up the next question."
+    },
+    {
+      "type": "question",
+      "titre": "Interpreting with caution",
+      "question": "The genre “récit” has an average of 48,000 words. What is this figure worth?",
+      "reponse": "Not much: it rests on **a single** text, *Al-Ayyam*.",
+      "explication": "An exact calculation does not make a solid conclusion: before a mean, check how many texts it summarizes.",
+      "notes": "Let the pairs discuss for a minute. Going further: three poetry collections are no more enough to speak of “poetry” in general. Ten works chosen for an exercise do not represent any literature."
+    },
+    {
+      "type": "chiffre",
+      "valeur": "530,000",
+      "legende": "words for *Les Misérables* (fictitious value): the corpus mean rises to 118,000 words, while the median stays at 68,500.",
+      "source": "Chapter 2 exercise corpus (invented word counts)",
+      "notes": "Have students calculate: df[\"nb_mots\"].mean() gives 118000.0, df[\"nb_mots\"].median() gives 68500.0. The median splits the series into two halves; a single very long novel pulls the mean up. The same effect on the novels: 174,500 words on average with Les Misérables, 103,400 without it, that is (1,047,000 − 530,000) / 5. To remember: when texts have unequal lengths, always look at the median."
+    },
+    {
+      "type": "code",
+      "titre": "A bar chart",
+      "code": "import matplotlib.pyplot as plt\nmoyennes = df.groupby(\"genre\")[\"nb_mots\"].mean()\nmoyennes.plot(kind=\"bar\")            # a bar chart\nplt.title(\"Longueur moyenne des œuvres par genre\")\nplt.xlabel(\"Genre\")\nplt.ylabel(\"Nombre de mots (valeurs fictives)\")\nplt.tight_layout()\nplt.savefig(\"mots_par_genre.png\")    # save the image\nplt.show()                           # display it",
+      "legende": "Three bars, one per genre (poésie, roman, récit): the bar for the novel is clearly the tallest.",
+      "notes": "15 min. The title and axis labels are not decoration: without them, the chart cannot be interpreted. savefig() saves a PNG image that can be inserted into a thesis; have students find the file in the notebook’s folder or the Colab session. Ask: what does the bar for the novel show, and what does it hide? Expected: the weight of Les Misérables."
+    },
+    {
+      "type": "activite",
+      "titre": "Wrap-up: “In this small corpus…”",
+      "duree": 10,
+      "consignes": [
+        "Each pair writes a sentence that begins with “In this small corpus…”",
+        "The sentence relies on a displayed result: filter, mean, count or chart",
+        "It does not generalize beyond the ten works",
+        "Then start tutorial exercise 4: filter, group and sort eight texts"
+      ],
+      "materiel": "The chapter 2 tutorial (TD), exercise 4, on the website",
+      "notes": "Have two or three sentences read aloud and correct the generalizations: ten works and fictitious numbers allow no general conclusion. For you, the answers to exercise 4: novels of more than 70,000 words, T2, T3 and T8; by language, English 2 texts and 46,750 words on average, Arabic 3 and 24,067, French 3 and 52,300; the three shortest, T5, T1 and T7."
+    },
+    {
+      "type": "tableau",
+      "titre": "Common mistakes",
+      "entetes": [
+        "Symptom",
+        "Cause",
+        "Remedy"
+      ],
+      "lignes": [
+        [
+          "`FileNotFoundError`",
+          "The CSV is neither in the notebook’s folder nor in the Colab session",
+          "Put the file in the right place, check its name"
+        ],
+        [
+          "Only one column",
+          "CSV saved by an Excel set to French",
+          "`pd.read_csv(\"oeuvres.csv\", sep=\";\")`"
+        ],
+        [
+          "`KeyError`",
+          "`df[\"genre\", \"titre\"]`",
+          "`df[[\"genre\", \"titre\"]]`: double brackets"
+        ],
+        [
+          "`ValueError`",
+          "`and` between two conditions",
+          "`&`, each condition in parentheses"
+        ]
+      ],
+      "notes": "An Excel set to French often separates columns with semicolons: shape then displays (10, 1) instead of (10, 6). One column is selected with single brackets, several columns with a list of names, hence the double brackets."
+    },
+    {
+      "type": "fin",
+      "titre": "Homework",
+      "points": [
+        "Finish tutorial exercise 4 after twenty minutes of working on it without the solution",
+        "Add three works to the CSV and note what changes in the results"
+      ],
+      "texte": "Next session: chapter 3 tutorial (TD), expert system and forward chaining.",
+      "notes": "For the three added works, advise students to watch the mean and the median above all: a single very long or very short text is enough to move them. The solution to exercise 4 is online, to be opened only after working on it."
+    }
+  ]
+}

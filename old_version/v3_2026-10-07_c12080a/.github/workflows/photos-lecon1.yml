@@ -1,0 +1,27 @@
+# Télécharge depuis Wikimedia les photos de la leçon 1 qui n'ont pas encore de copie, et les enregistre dans
+# docs/_sources/lecon1/photos/ : la leçon (docs/chapitr1_first_lesson.html) les intègre à la construction
+# suivante et les affiche même hors ligne. Il se lance seul quand ce fichier ou tools/lecon1.py change sur
+# main, et à la demande depuis l'onglet Actions (« Run workflow »).
+name: Photos de la leçon 1
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/workflows/photos-lecon1.yml", "tools/lecon1.py"]
+permissions:
+  contents: write
+jobs:
+  photos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Télécharger les photos manquantes et reconstruire la leçon
+        run: python3 tools/lecon1.py --photos
+      - name: Enregistrer les photos
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/_sources/lecon1/photos docs/chapitr1_first_lesson.html
+          if git diff --cached --quiet; then echo "Aucune nouvelle photo."; exit 0; fi
+          git commit -m "Leçon 1 : photos téléchargées depuis Wikimedia Commons"
+          git push

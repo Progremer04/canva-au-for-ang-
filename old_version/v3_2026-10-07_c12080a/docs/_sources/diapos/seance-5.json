@@ -1,0 +1,233 @@
+{
+  "id": "seance-5",
+  "numero": 5,
+  "titre": "TP : interroger un corpus avec pandas",
+  "resume": "Charger un CSV, le filtrer, le trier et le regrouper pour répondre à une question posée en français, puis tracer un diagramme titré et l’interpréter prudemment.",
+  "duree": "1 h 30",
+  "lien": "index.html#c2-numpy-pandas",
+  "fiche": "enseignant.html#guide-seance-5",
+  "diapos": [
+    {
+      "type": "titre",
+      "surtitre": "Chapitre 2 · Séance 5 · TP",
+      "titre": "Interroger un corpus avec pandas",
+      "sousTitre": "Dix œuvres, six colonnes, des questions posées en français",
+      "notes": "Avant la séance, déposez oeuvres.csv, le fichier de la leçon sur pandas, là où les étudiants travailleront : dans le dossier du notebook avec Jupyter, dans la session Colab sinon. Mêmes binômes qu’à la séance 4, avec échange pilote et copilote toutes les quinze minutes."
+    },
+    {
+      "type": "points",
+      "titre": "Objectifs de la séance",
+      "points": [
+        "Charger un fichier **CSV** et le décrire",
+        "**Filtrer**, **trier** et **regrouper** pour répondre à une question posée en français",
+        "Tracer un diagramme titré et l’**interpréter prudemment**"
+      ],
+      "notes": "Annoncez le fil de la séance : une question en français d’abord, le code ensuite. Rappelez dès maintenant que les nombres de mots du corpus sont des valeurs arrondies inventées pour l’exercice, non des comptages réels."
+    },
+    {
+      "type": "code",
+      "titre": "Rappel : prédire avant d’exécuter",
+      "code": "vers = \"Il pleure dans mon cœur\"\nmots = vers.split()\nprint(len(mots), mots[0], mots[-1])",
+      "legende": "Écrivez sur papier ce que la dernière ligne va afficher, puis exécutez.",
+      "notes": "10 min. Chacun écrit sa prédiction sur papier, seul, avant toute exécution. Les binômes tapent ensuite les trois lignes et comparent. La réponse est sur la diapositive suivante."
+    },
+    {
+      "type": "question",
+      "titre": "Rappel : la réponse",
+      "question": "Qu’affiche `print(len(mots), mots[0], mots[-1])` ?",
+      "reponse": "`5 Il cœur`",
+      "explication": "`split()` donne 5 mots ; l’indice 0 désigne le premier, l’indice -1 le dernier.",
+      "notes": "Erreurs attendues : « pleure » pour mots[0], si l’on compte les indices à partir de 1, ou une réponse entre crochets. Faites justifier chacune des trois valeurs affichées."
+    },
+    {
+      "type": "section",
+      "numero": 1,
+      "titre": "Lire et décrire le corpus",
+      "sousTitre": "Du tableur au DataFrame",
+      "notes": "15 min."
+    },
+    {
+      "type": "definition",
+      "terme": "DataFrame",
+      "traduction": "DataFrame",
+      "definition": "Un tableau de pandas fait de colonnes (des **Series**) qui partagent le même index : l’équivalent d’une feuille de calcul.",
+      "exemple": "Une ligne = une œuvre ; une colonne = une variable (titre, auteur, année, genre, langue, nombre de mots).",
+      "notes": "Ouvrez d’abord oeuvres.csv dans un tableur : c’est un simple fichier texte, une ligne par œuvre, des colonnes séparées par des virgules (CSV, comma-separated values). Le DataFrame est ce même tableau, dans Python. L’index, ce sont les étiquettes des lignes : 0, 1, 2… par défaut."
+    },
+    {
+      "type": "code",
+      "titre": "Lire le fichier CSV",
+      "code": "import pandas as pd\ndf = pd.read_csv(\"oeuvres.csv\", encoding=\"utf-8\")\nprint(df.shape)                     # (lignes, colonnes)\nprint(df[[\"titre\", \"annee\"]].head(4))",
+      "sortie": "(10, 6)\n               titre  annee\n0     Les Misérables   1862\n1  Les Fleurs du mal   1857\n2            Bel-Ami   1885\n3   La Grande Maison   1952",
+      "legende": "`shape` donne les dimensions, `head()` les premières lignes (5 par défaut).",
+      "notes": "import pandas as pd charge la bibliothèque sous son alias habituel. Prenez l’habitude d’écrire encoding=\"utf-8\", comme pour tout fichier du cours. Dans un notebook, df.head() seul en dernière ligne d’une cellule affiche un tableau lisible des 5 premières lignes et des 6 colonnes. Si Python répond FileNotFoundError, le fichier n’est pas dans le dossier du notebook ou dans la session Colab."
+    },
+    {
+      "type": "tableau",
+      "titre": "Ce que révèle info()",
+      "entetes": [
+        "Colonne",
+        "Type (Dtype)",
+        "Valeurs non vides"
+      ],
+      "lignes": [
+        [
+          "titre",
+          "str",
+          "10"
+        ],
+        [
+          "auteur",
+          "str",
+          "10"
+        ],
+        [
+          "annee",
+          "int64",
+          "10"
+        ],
+        [
+          "genre",
+          "str",
+          "10"
+        ],
+        [
+          "langue",
+          "str",
+          "10"
+        ],
+        [
+          "nb_mots",
+          "int64",
+          "10"
+        ]
+      ],
+      "legende": "Sortie de `df.info()` avec pandas 3 ; avec pandas 2, le texte apparaît comme `object` au lieu de `str`.",
+      "notes": "Faites exécuter df.info() : la commande liste les colonnes, leur type et le nombre de valeurs non vides. Ici 10 partout : aucune donnée manquante. int64 désigne des nombres entiers, str du texte. Rappelez encore que les nombres de mots sont fictifs : on apprend une méthode, pas des faits sur ces œuvres."
+    },
+    {
+      "type": "section",
+      "numero": 2,
+      "titre": "Interroger le corpus",
+      "sousTitre": "Filtrer, trier, regrouper, tracer",
+      "notes": "20 min pour filtrer et trier, 20 min pour regrouper, 15 min pour le graphique."
+    },
+    {
+      "type": "question",
+      "titre": "D’abord la question, en français",
+      "question": "Quelles œuvres du corpus sont en arabe et parues après 1950 ?",
+      "reponse": "*Bayn al-Qasrayn* (1956) et *Awraq al-Zaytun* (1964).",
+      "explication": "*Al-Ayyam* (1929) est bien en arabe, mais parue avant 1950 : il faut **deux** conditions à la fois.",
+      "notes": "Faites d’abord répondre à la main, en regardant le tableau projeté : c’est la question qui guide le code, pas l’inverse. Demandez ensuite quelles colonnes interroger. Attendu : langue et annee."
+    },
+    {
+      "type": "code",
+      "titre": "Traduire la question en filtre",
+      "code": "choix = df[(df[\"langue\"] == \"arabe\") & (df[\"annee\"] > 1950)]\nprint(choix[[\"titre\", \"annee\"]])",
+      "sortie": "             titre  annee\n6  Bayn al-Qasrayn   1956\n7  Awraq al-Zaytun   1964",
+      "legende": "Chaque condition entre parenthèses ; `&` signifie « et », `|` signifie « ou ».",
+      "notes": "Chaque condition produit une colonne de True et False ; df[condition] garde les lignes vraies. L’index d’origine (6, 7) est conservé. Piège fréquent : and au lieu de &, qui provoque ValueError: The truth value of a Series is ambiguous… Oublier les parenthèses autour de chaque condition provoque aussi une erreur."
+    },
+    {
+      "type": "code",
+      "titre": "Trier avec sort_values()",
+      "code": "plus_longs = df.sort_values(\"nb_mots\", ascending=False)\nprint(plus_longs[[\"titre\", \"nb_mots\"]].head(3))",
+      "sortie": "             titre  nb_mots\n0   Les Misérables   530000\n6  Bayn al-Qasrayn   160000\n2          Bel-Ami   125000",
+      "legende": "`ascending=False` : ordre décroissant, du plus long au plus court.",
+      "notes": "Question en français d’abord : « quelles sont les trois œuvres les plus longues ? ». Sans ascending=False, le tri est croissant. Pour les plus rapides : trier le résultat du filtre précédent par année, avec choix.sort_values(\"annee\")."
+    },
+    {
+      "type": "code",
+      "titre": "Regrouper avec groupby()",
+      "code": "# Nombre moyen de mots pour chaque genre, arrondi\nprint(df.groupby(\"genre\")[\"nb_mots\"].mean().round())",
+      "sortie": "genre\npoésie     28333.0\nroman     174500.0\nrécit      48000.0\nName: nb_mots, dtype: float64",
+      "legende": "`groupby` répartit les lignes par genre, puis calcule la moyenne de chaque groupe.",
+      "notes": "Lisez la ligne comme une phrase : « grouper par genre, prendre la colonne nb_mots, en faire la moyenne, arrondir ». « récit » est rangé après « roman » : Python classe les chaînes selon le numéro Unicode des caractères, et « é » vient après toutes les lettres sans accent. Sans round(), la poésie afficherait 28333.333333."
+    },
+    {
+      "type": "code",
+      "titre": "Compter avec value_counts()",
+      "code": "print(df[\"genre\"].value_counts())   # effectifs par genre",
+      "sortie": "genre\nroman     6\npoésie    3\nrécit     1\nName: count, dtype: int64",
+      "legende": "Les effectifs de chaque valeur, du plus fréquent au plus rare.",
+      "notes": "value_counts() compte les occurrences de chaque valeur. Même geste sur la langue : df[\"langue\"].value_counts() donne français 5, arabe 3, anglais 2. Faites remarquer le 1 du récit : il prépare la question suivante."
+    },
+    {
+      "type": "question",
+      "titre": "Interpréter prudemment",
+      "question": "Le genre « récit » a une moyenne de 48 000 mots. Que vaut ce chiffre ?",
+      "reponse": "Pas grand-chose : il repose sur **un seul** texte, *Al-Ayyam*.",
+      "explication": "Un calcul exact ne fait pas une conclusion solide : avant une moyenne, regardez combien de textes elle résume.",
+      "notes": "Laissez discuter les binômes une minute. Prolongement : trois recueils de poésie ne suffisent pas davantage pour parler de « la poésie » en général. Dix œuvres choisies pour un exercice ne représentent aucune littérature."
+    },
+    {
+      "type": "chiffre",
+      "valeur": "530 000",
+      "legende": "mots pour *Les Misérables* (valeur fictive) : la moyenne du corpus monte à 118 000 mots, la médiane reste à 68 500.",
+      "source": "Corpus d’exercice du chapitre 2 (nombres de mots inventés)",
+      "notes": "Faites calculer : df[\"nb_mots\"].mean() donne 118000.0, df[\"nb_mots\"].median() donne 68500.0. La médiane partage la série en deux moitiés ; un seul très long roman tire la moyenne vers le haut. Même effet sur les romans : 174 500 mots en moyenne avec Les Misérables, 103 400 sans eux, soit (1 047 000 − 530 000) / 5. À retenir : devant des textes de longueurs inégales, regardez toujours la médiane."
+    },
+    {
+      "type": "code",
+      "titre": "Un diagramme en barres",
+      "code": "import matplotlib.pyplot as plt\nmoyennes = df.groupby(\"genre\")[\"nb_mots\"].mean()\nmoyennes.plot(kind=\"bar\")            # diagramme en barres\nplt.title(\"Longueur moyenne des œuvres par genre\")\nplt.xlabel(\"Genre\")\nplt.ylabel(\"Nombre de mots (valeurs fictives)\")\nplt.tight_layout()\nplt.savefig(\"mots_par_genre.png\")    # enregistrer l'image\nplt.show()                           # l'afficher",
+      "legende": "Trois barres, une par genre (poésie, roman, récit) : celle du roman domine nettement.",
+      "notes": "15 min. Titre et noms d’axes ne sont pas décoratifs : sans eux, le graphique est ininterprétable. savefig() enregistre une image PNG à insérer dans un mémoire ; faites retrouver le fichier dans le dossier du notebook ou la session Colab. Demandez : que montre la barre du roman, et que cache-t-elle ? Attendu : le poids des Misérables."
+    },
+    {
+      "type": "activite",
+      "titre": "Bilan : « Dans ce petit corpus… »",
+      "duree": 10,
+      "consignes": [
+        "Chaque binôme écrit une phrase qui commence par « Dans ce petit corpus… »",
+        "La phrase s’appuie sur un résultat affiché : filtre, moyenne, effectif ou graphique",
+        "Elle ne généralise pas au-delà des dix œuvres",
+        "Puis commencez l’exercice 4 du TD : filtrer, regrouper, trier huit textes"
+      ],
+      "materiel": "Le TD du chapitre 2, exercice 4, sur le site",
+      "notes": "Faites lire deux ou trois phrases et corrigez les généralisations : dix œuvres et des nombres fictifs n’autorisent aucune conclusion générale. Pour vous, les réponses de l’exercice 4 : romans de plus de 70 000 mots, T2, T3 et T8 ; par langue, anglais 2 textes et 46 750 mots en moyenne, arabe 3 et 24 067, français 3 et 52 300 ; les trois plus courts, T5, T1 et T7."
+    },
+    {
+      "type": "tableau",
+      "titre": "Erreurs fréquentes",
+      "entetes": [
+        "Symptôme",
+        "Cause",
+        "Remède"
+      ],
+      "lignes": [
+        [
+          "`FileNotFoundError`",
+          "Le CSV n’est ni dans le dossier du notebook ni dans la session Colab",
+          "Déposer le fichier au bon endroit, vérifier son nom"
+        ],
+        [
+          "Une seule colonne",
+          "CSV enregistré par un Excel réglé en français",
+          "`pd.read_csv(\"oeuvres.csv\", sep=\";\")`"
+        ],
+        [
+          "`KeyError`",
+          "`df[\"genre\", \"titre\"]`",
+          "`df[[\"genre\", \"titre\"]]` : doubles crochets"
+        ],
+        [
+          "`ValueError`",
+          "`and` entre deux conditions",
+          "`&`, chaque condition entre parenthèses"
+        ]
+      ],
+      "notes": "Un Excel réglé en français sépare souvent les colonnes par des points-virgules : shape affiche alors (10, 1) au lieu de (10, 6). Une colonne s’obtient avec des crochets simples, plusieurs colonnes avec une liste de noms, d’où les doubles crochets."
+    },
+    {
+      "type": "fin",
+      "titre": "Travail personnel",
+      "points": [
+        "Finissez l’exercice 4 du TD après vingt minutes de recherche sans corrigé",
+        "Ajoutez trois œuvres au CSV et notez ce qui change dans les résultats"
+      ],
+      "texte": "Prochaine séance : TD du chapitre 3, système expert et chaînage avant.",
+      "notes": "Pour l’ajout de trois œuvres, conseillez d’observer surtout la moyenne et la médiane : un seul texte très long ou très court suffit à les faire bouger. Le corrigé de l’exercice 4 est en ligne, à n’ouvrir qu’après avoir cherché."
+    }
+  ]
+}

@@ -1,0 +1,226 @@
+{
+  "id": "seance-4",
+  "numero": 4,
+  "titre": "First Python lab (TP): variables, lists and a poem’s words",
+  "resume": "Open a notebook, create variables and a list, then count the words of a stanza by Verlaine and explain the difference caused by punctuation.",
+  "duree": "1 h 30 min",
+  "lien": "index.html#c2-fondamentaux",
+  "fiche": "enseignant.html#guide-seance-4",
+  "diapos": [
+    {
+      "type": "titre",
+      "surtitre": "Chapter 2 · Session 4 · Lab session (TP)",
+      "titre": "First Python lab session",
+      "sousTitre": "A notebook, variables, a list and the words of a poem by Verlaine",
+      "notes": "Before the session: check that the Google accounts have been created (Colab) or that Jupyter opens, for example with run.bat notebook. Prepare a notebook with the headings of the steps and enlarge the font: you will type the code live. One computer for two is enough; no programming prerequisites are required."
+    },
+    {
+      "type": "points",
+      "titre": "Session objectives",
+      "points": [
+        "Open a **notebook**, run and save a cell",
+        "Create **variables** and a **list**",
+        "Count the words of a stanza by Verlaine",
+        "Explain the gap between “items” and “words”: punctuation"
+      ],
+      "notes": "Read the objectives aloud and reassure the students: nobody is expected to know how to program already. Announce the rule of the day: we predict the output before running the code, and we read error messages instead of fearing them. By the end of the session, everyone should be able to say what split() does and what NameError means."
+    },
+    {
+      "type": "activite",
+      "titre": "Forming the pairs",
+      "duree": 10,
+      "consignes": [
+        "One computer for two: the **driver** types, the **navigator** reads the instructions, checks and suggests",
+        "The less confident student starts at the keyboard; the navigator never takes it over",
+        "Swap roles every 15 minutes, at the signal",
+        "Default environment: Google Colab, in the browser"
+      ],
+      "materiel": "Computers, a connection, Google accounts (Colab) or Jupyter installed",
+      "notes": "Form the pairs based on the questionnaire: mix levels and equipment, and seat students without a computer with a classmate who has one. Colab needs nothing to be installed: a Google account is enough. You are the one who gives the signal to swap roles."
+    },
+    {
+      "type": "section",
+      "numero": 1,
+      "titre": "First notebook",
+      "sousTitre": "One cell, Shift + Enter, one result",
+      "notes": "15 min. Goal: every pair sees its first result appear."
+    },
+    {
+      "type": "etapes",
+      "titre": "Opening and using a notebook",
+      "progressif": true,
+      "etapes": [
+        {
+          "titre": "Open Colab",
+          "texte": "colab.research.google.com, then create a notebook"
+        },
+        {
+          "titre": "Type the code",
+          "texte": "In a cell, without copying and pasting"
+        },
+        {
+          "titre": "Run it",
+          "texte": "Shift + Enter: the result appears below the cell"
+        },
+        {
+          "titre": "Save it",
+          "texte": "In Google Drive: the files in the session are deleted when it closes"
+        }
+      ],
+      "notes": "A notebook mixes code cells, results and text. With Jupyter, launch run.bat notebook or type jupyter notebook in the terminal: a tab opens in the browser. Show each action on the projector, then walk round the room until everyone sees their result."
+    },
+    {
+      "type": "code",
+      "titre": "The first cell",
+      "code": "# A comment: Python ignores this line\nprint(\"Bonjour, Médéa !\")\nprint(\"Kateb Yacine est né en\", 1929)",
+      "sortie": "Bonjour, Médéa !\nKateb Yacine est né en 1929",
+      "legende": "`print()` displays the values you give it, separated by a space.",
+      "notes": "Type live while saying what you are doing, then press Shift + Enter. Point out the straight quotation marks, the parentheses, and the comma that separates the text from the number 1929. Everything after # is a comment, meant for the human reader."
+    },
+    {
+      "type": "section",
+      "numero": 2,
+      "titre": "Variables and lists",
+      "sousTitre": "Storing values under a name",
+      "notes": "30 min: variables and types (15 min), then lists (15 min)."
+    },
+    {
+      "type": "definition",
+      "terme": "Variable",
+      "traduction": "variable",
+      "definition": "A name that refers to a value in memory. The = sign means “receives”, not “is equal to”.",
+      "exemple": "`annee = 1956` stores 1956 under the name `annee`.",
+      "notes": "Insist on the meaning of =: “annee receives 1956”. Each value has a type: int (whole number), float (decimal number), str (character string, in quotation marks), bool (True or False). A variable name contains no spaces and, preferably, no accents: words are joined with an underscore, as in mots_par_page."
+    },
+    {
+      "type": "code",
+      "titre": "Variables, types and f-strings",
+      "code": "titre = \"Nedjma\"   # str: character string\nannee = 1956       # int: whole number\nprint(type(titre), type(annee))\nprint(f\"{titre} de Kateb Yacine paraît en {annee}.\")",
+      "sortie": "<class 'str'> <class 'int'>\nNedjma de Kateb Yacine paraît en 1956.",
+      "legende": "In an **f-string**, each expression in curly braces is replaced by its value.",
+      "notes": "Have students predict each line before running it. type() gives the type of a value: str for text, int for a whole number. Question to ask: what happens if you forget the f before the quotation marks? Expected: the curly braces are displayed as they are, {titre} instead of Nedjma."
+    },
+    {
+      "type": "code",
+      "titre": "A deliberate error",
+      "code": "titre = \"Nedjma",
+      "sortie": "SyntaxError: unterminated string literal (detected at line 1)",
+      "legende": "The last line of the message: the type of error, then the explanation (an unterminated string).",
+      "notes": "Leave out the closing quotation mark on purpose and run the cell. The message starts with the location of the error, with a ^ under the faulty spot; read the last line first, aloud: “unterminated string literal, detected at line 1”. Correct it and run it again. The message to get across: an error is information, not a failure."
+    },
+    {
+      "type": "question",
+      "titre": "Predict before running",
+      "question": "`auteurs = [\"Hugo\", \"Baudelaire\", \"Maupassant\"]`: what is the value of `auteurs[0]`?",
+      "choix": [
+        "Hugo",
+        "Baudelaire",
+        "Maupassant",
+        "An error"
+      ],
+      "reponse": "Hugo: indices start at 0.",
+      "explication": "`auteurs[0]` is the first item, `auteurs[1]` the second, `auteurs[-1]` the last.",
+      "notes": "Have students vote by a show of hands before revealing the answer. Many will answer Baudelaire: this is the common mistake of looking for the first item at [1]. Then run the code to settle it."
+    },
+    {
+      "type": "code",
+      "titre": "Lists",
+      "code": "auteurs = [\"Hugo\", \"Baudelaire\", \"Maupassant\"]\nauteurs.append(\"Kateb Yacine\")       # add at the end\nprint(auteurs[0], \"|\", auteurs[-1])  # first and last\nprint(len(auteurs), \"auteurs\")\nauteurs.sort()                       # sort in place\nprint(auteurs)\nprint(auteurs[1:3])                  # positions 1 and 2",
+      "sortie": "Hugo | Kateb Yacine\n4 auteurs\n['Baudelaire', 'Hugo', 'Kateb Yacine', 'Maupassant']\n['Hugo', 'Kateb Yacine']",
+      "legende": "`append` adds at the end, `sort` sorts in place, `len` counts the items.",
+      "notes": "Run the code, having students predict each line. auteurs[-1] refers to the last item. The slice auteurs[1:3] takes positions 1 and 2: the right-hand bound is excluded. sort() changes the list itself, in alphabetical order."
+    },
+    {
+      "type": "section",
+      "numero": 3,
+      "titre": "Counting the words of a poem",
+      "sousTitre": "Verlaine, “Il pleure dans mon cœur” (1874)",
+      "notes": "25 min, including the time to type the program."
+    },
+    {
+      "type": "activite",
+      "titre": "Counting the words of a stanza",
+      "duree": 25,
+      "consignes": [
+        "Type the program `compter_mots.py`, without copying and pasting",
+        "Run it and write down the two lines it displays",
+        "Explain the gap: why 21 items for 19 words?",
+        "Fastest pairs: find the most frequent word (tutorial exercise 3)"
+      ],
+      "materiel": "The program on the projector; the chapter 2 tutorial (TD) on the website",
+      "notes": "Driver and navigator swap roles halfway through. For the fastest pairs, expected: three words tie, il, mon and cœur, twice each; Counter(mots).most_common(3), from the collections module, gives [('il', 2), ('mon', 2), ('cœur', 2)]. A reader’s remark to share: “pleure” and “pleut” are counted as two unrelated words; the echo of sounds that makes the poem escapes the count."
+    },
+    {
+      "type": "code",
+      "titre": "compter_mots.py",
+      "code": "poeme = \"\"\"Il pleure dans mon cœur\nComme il pleut sur la ville ;\nQuelle est cette langueur\nQui pénètre mon cœur ?\"\"\"\n\nmots = poeme.lower().split()   # lowercase, then split\nprint(len(mots), \"éléments\")   # \";\" and \"?\" count too\nmots = [m for m in mots if m.isalpha()]  # letters only\nprint(len(mots), \"mots,\", len(set(mots)), \"mots différents\")",
+      "sortie": "21 éléments\n19 mots, 16 mots différents",
+      "legende": "Paul Verlaine, “Il pleure dans mon cœur”, *Romances sans paroles* (1874), first stanza.",
+      "notes": "Triple quotation marks allow a text over several lines. lower() converts to lowercase, split() cuts at spaces and returns a list. [m for m in mots if m.isalpha()] is a list comprehension: “the m in mots that contain only letters”. set() removes duplicates: its length gives the number of different words."
+    },
+    {
+      "type": "question",
+      "titre": "Explaining the gap",
+      "question": "Why does the program find 21 items for 19 words?",
+      "reponse": "`split()` cuts at spaces: “;” and “?”, preceded by a space in French, become two extra “words”.",
+      "explication": "`isalpha()` keeps only the items made of letters: the punctuation disappears, leaving 19 words.",
+      "notes": "Let them search for two or three minutes. Possible hint: display part of the list with print(poeme.lower().split()[8:12]), which gives ['sur', 'la', 'ville', ';']. French typography puts a space before “;” and “:”, and split() counts them as words. Comparing texts requires defining what a “word” is before counting."
+    },
+    {
+      "type": "tableau",
+      "titre": "Common mistakes",
+      "entetes": [
+        "Symptom",
+        "Cause",
+        "Remedy"
+      ],
+      "lignes": [
+        [
+          "`SyntaxError`",
+          "Code copied from Word or a PDF: curly quotation marks “ ”",
+          "Retype the code with straight quotation marks \" \""
+        ],
+        [
+          "`NameError`",
+          "Cells run in the wrong order",
+          "Run the cells again in order, from top to bottom"
+        ],
+        [
+          "Wrong item",
+          "First item looked for at `[1]`",
+          "The first item is `[0]`"
+        ]
+      ],
+      "legende": "A reflex to acquire: read the last line of the error message first.",
+      "notes": "If time allows, show the first one live: print(“Bonjour, Médéa !”) with curly quotation marks gives SyntaxError: invalid character '“' (U+201C). For the second: a cell that uses mots, run before the cell that creates mots, gives NameError: name 'mots' is not defined."
+    },
+    {
+      "type": "question",
+      "titre": "Wrap-up",
+      "question": "What does `split()` do?",
+      "reponse": "It cuts a string at spaces and returns a **list** of words.",
+      "explication": "`\"Il pleure dans mon cœur\".split()` gives `['Il', 'pleure', 'dans', 'mon', 'cœur']`.",
+      "notes": "Wrap-up, 10 min in all. Draw lots for the pair that answers: everyone must be ready. Remind students that split() does not change the string: it returns a new list."
+    },
+    {
+      "type": "question",
+      "titre": "Wrap-up",
+      "question": "What does `NameError: name 'mots' is not defined` mean?",
+      "reponse": "Python does not know the name `mots`: the variable has not been created (yet).",
+      "explication": "In a notebook, the cell that creates `mots` has not been run, or the cells were run in the wrong order. Another cause: a typo in the name.",
+      "notes": "Link this to the common mistake of the session. Remedy: run the cells again in order, from top to bottom."
+    },
+    {
+      "type": "fin",
+      "titre": "Before you leave",
+      "points": [
+        "Save your notebook (in Google Drive with Colab)",
+        "Retype the examples from “The fundamentals of the language”, predicting each output",
+        "Do tutorial exercise 1: palindromes",
+        "Code for twenty minutes, three times during the week"
+      ],
+      "texte": "Next session: querying a corpus with pandas.",
+      "notes": "Check that each pair has saved its notebook before leaving the room: the files in a Colab session are deleted when it closes. The examples to retype are in the lesson “The fundamentals of the language” in chapter 2; tutorial exercise 1 has a solution online, to be opened only after working on it."
+    }
+  ]
+}

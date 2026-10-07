@@ -1,0 +1,1651 @@
+{
+  "langue": "fr",
+  "titre": "De l'automate à l'agent",
+  "sousTitre": "L'histoire complète de l'intelligence artificielle, des premières machines aux agents d'aujourd'hui",
+  "diapos": [
+    {
+      "type": "couverture",
+      "surtitre": "Intelligence artificielle · Chapitre 1 · Première leçon",
+      "titre": "De l'automate à l'agent",
+      "sousTitre": "L'histoire complète de l'intelligence artificielle, des premières machines aux agents d'aujourd'hui",
+      "illus": "agent",
+      "notes": "Accueillez la classe avec une question au tableau : « Une machine peut-elle penser ? » Ne répondez pas : toute la leçon y revient. Annoncez le fil conducteur : le rêve de machines intelligentes est très ancien, mais l'IA comme science a soixante-dix ans, et ses agents quelques années seulement."
+    },
+    {
+      "type": "plan",
+      "titre": "Le voyage de cette leçon",
+      "points": [
+        "Pourquoi l'IA, pourquoi maintenant ? (2026)",
+        "Qu'est-ce que l'IA ? (définitions)",
+        "Le rêve des machines (de l'Antiquité à 1949)",
+        "La naissance de l'IA (1950–1980)",
+        "Des règles aux données (1980–2005)",
+        "La révolution de l'apprentissage profond (2006–2017)",
+        "Transformers et IA générative (2017–2026)",
+        "Comment une machine apprend-elle ? (épisode 3 : le réseau de neurones)",
+        "Comment une machine lit-elle un texte ? (des mots aux nombres)",
+        "L'ère des agents (2023–2026)",
+        "Synthèse (de 1206 à 2026)"
+      ],
+      "notes": "Cette leçon suit le cours *La dernière invention* d'Ahmed El-Ghandour, dans l'ordre de ses épisodes. D'abord, pourquoi l'IA compte aujourd'hui (épisode 1), puis ce qu'elle est vraiment. Ensuite, toute son histoire, sans sauter d'une époque à l'autre : des automates anciens aux modèles de 2026 (épisode 2). Enfin, on ouvre la machine : comment un réseau de neurones apprend (épisode 3), comment une machine lit un texte, comment un agent agit, avant la synthèse. Dites aux étudiants où vous allez : on part des questions d'aujourd'hui, on remonte le temps, puis on revient au présent en ayant compris le « tour du magicien ». Conseil : demandez à chacun de noter une date clé par partie ; à la fin, la classe reconstituera la frise ensemble. Source : cours *La dernière invention* d'Ahmed El-Ghandour (2026), épisodes 1 à 3."
+    },
+    {
+      "type": "section",
+      "numero": "1",
+      "titre": "Pourquoi l'IA, pourquoi maintenant ?",
+      "periode": "2026",
+      "texte": "Chaque fois que nous croyons avoir compris l'IA, elle nous surprend encore. Pourquoi tout s'accélère-t-il maintenant ?",
+      "illus": "ampoule",
+      "notes": "Première partie, tirée de l'épisode 1 du cours *La dernière invention*. Avant l'histoire et avant la technique, on regarde le présent : pourquoi l'IA est-elle devenue, en quelques années, une affaire d'États, d'argent, d'emplois et de pouvoir ? Voici le chemin de cette partie : une machine qui nous surprend sans cesse, des chiffres de diffusion jamais vus, une course entre nations, des « usines à penser », la bataille des puces et des données, puis ce que l'IA change pour les débutants et pour ceux qui décident. Conseil : ouvrez par un tour de table rapide : « Quel outil d'IA avez-vous utilisé cette semaine, et pour quoi faire ? » Notez trois réponses au tableau : vous y reviendrez à la fin de la partie. Source : épisode 1 de *La dernière invention* d'Ahmed El-Ghandour (2026)."
+    },
+    {
+      "type": "texte",
+      "titre": "L'IA nous surprend encore",
+      "illus": "capacites",
+      "etapes": [
+        "calculer",
+        "jouer",
+        "traduire",
+        "écrire",
+        "dessiner",
+        "filmer"
+      ],
+      "points": [
+        "Elle a calculé, joué aux échecs, traduit, écrit, dessiné, filmé… et demain ?",
+        "À chaque fois on se dit « c'est sa limite », et à chaque fois elle va plus loin",
+        "Ce que je croyais réservé à l'humain, une machine le fait, des milliers de fois plus vite",
+        "La question de ce cours : qu'est-ce que l'IA, et pourquoi maintenant ?"
+      ],
+      "notes": "Le cours s'ouvre ainsi : chaque fois que nous avons cru comprendre l'IA, nous avons découvert que nous n'étions qu'au début. Régulièrement, elle nous réveille avec une nouvelle surprise. D'abord la machine calculait (l'ENIAC, 1946). Puis elle a joué aux échecs et battu le champion du monde (Deep Blue, 1997). Puis elle a traduit des phrases entières d'un coup (Google Traduction, 2016), écrit des textes (GPT-3, 2020), dessiné (DALL-E, 2021), fabriqué des vidéos (Sora, 2024). Demain, peut-être, des films entiers. À chaque étape, nous disons : « Cette fois, c'est sa limite, elle ne nous surprendra plus. » Et elle va plus loin. Le plus troublant : ce que je croyais propre à moi, être humain, une machine le fait maintenant, parfois des milliers de fois plus vite. D'où la question du cours : qu'est-ce que l'IA, et pourquoi maintenant ? Conseil : faites lever la main : qui a déjà utilisé une IA pour traduire ? pour écrire ? pour créer une image ? Chaque main levée est une marche de l'escalier. Source : épisode 1 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; repères : ENIAC, IBM, Google, OpenAI."
+    },
+    {
+      "type": "texte",
+      "titre": "*La dernière invention* : pourquoi maintenant ?",
+      "illus": "adoption",
+      "courbes": [
+        "ordinateur",
+        "téléphone",
+        "Internet",
+        "IA générative"
+      ],
+      "points": [
+        "En trois ans, l'IA générative s'est répandue plus vite que le PC, le mobile et Internet",
+        "ChatGPT à lui seul : 900 millions d'utilisateurs chaque semaine (février 2026)",
+        "88 % des organisations l'utilisent dans au moins une fonction (McKinsey, 2025)",
+        "2025 : 345 milliards $ investis ; 2026 : plus de 1 000 milliards $ en centres de données"
+      ],
+      "notes": "Le cours commence par des chiffres qui donnent le vertige : en trois ans, l'IA générative aurait touché la moitié de l'humanité, environ 4 milliards de personnes. Prudence : ce chiffre n'est confirmé nulle part. Le rapport de Stanford (AI Index 2026) écrit que l'IA générative a atteint 53 % d'adoption en trois ans, plus vite que l'ordinateur personnel et Internet. Mais Microsoft ne compte que 18,8 % de la population mondiale en âge de travailler (juin 2026). ChatGPT, à lui seul, annonçait 900 millions d'utilisateurs par semaine en février 2026. Dans les entreprises, 88 % des organisations interrogées par McKinsey utilisent l'IA. Et l'argent suit : le cours parle de 300 milliards ; Stanford compte 345 milliards de dollars d'investissements privés en 2025. Pour 2026, le cabinet Dell'Oro prévoit plus de 1 000 milliards de dollars de dépenses en centres de données. Conseil : montrez que deux sources sérieuses donnent des chiffres différents, puis demandez pourquoi : qui compte-t-on, et comment ? Source : épisode 1 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; Stanford HAI, AI Index 2026 ; Microsoft, AI Diffusion Report (2026) ; OpenAI (2026) ; McKinsey, The State of AI (2025) ; Dell'Oro Group (2026)."
+    },
+    {
+      "type": "citation",
+      "texte": "La première machine ultra-intelligente sera la dernière invention que l'homme aura besoin de faire, pourvu que la machine soit assez docile pour nous dire comment la garder sous contrôle.",
+      "auteur": "Irving John Good",
+      "source": "« Speculations Concerning the First Ultraintelligent Machine », 1965",
+      "notes": "I. J. Good, statisticien, avait travaillé avec Alan Turing à Bletchley Park pendant la guerre. C'est de lui que vient l'idée de la « dernière invention » : une machine capable de s'améliorer elle-même inventerait tout le reste. Notez la condition, souvent oubliée : « pourvu qu'elle reste sous contrôle ». Débat de deux minutes : est-ce de la science ou de la science-fiction ?"
+    },
+    {
+      "type": "texte",
+      "titre": "Une course entre nations",
+      "illus": "engrenages",
+      "points": [
+        "Les États courent : celui qui gagnera pourrait mener le monde dans les années à venir",
+        "« Une nouvelle bombe nucléaire » qui ne fait pas que détruire : elle construit et planifie",
+        "Un pari économique : l'IA devient une infrastructure, comme l'électricité ou Internet",
+        "Les investisseurs veulent acheter la « terre » tôt, avant que son prix ne s'envole"
+      ],
+      "notes": "Le cours le dit avec une image forte : l'IA est, au sens figuré, la nouvelle bombe nucléaire. Mais une bombe qui ne fait pas que détruire : elle fait vivre, construit, réfléchit et planifie. Tous les pays courent, car celui qui gagnera pourrait mener le monde. Ce n'est pas une exagération : le 1er septembre 2017, Vladimir Poutine déclarait que « celui qui deviendra le leader dans ce domaine sera le maître du monde », et en juillet 2017 la Chine visait la place de premier centre mondial d'innovation en IA d'ici 2030. Chacun veut atteindre le premier la « dernière invention » de Good, celle qui s'améliorerait toute seule. Ce ne sont donc pas des applications amusantes, mais un pari économique : l'IA deviendrait une infrastructure, comme l'électricité ou Internet. Le cours évoque le grand-père qui n'a pas acheté de terrain quand il ne coûtait presque rien : aucun investisseur ne veut être ce grand-père. Conseil : demandez quelles inventions sont devenues des infrastructures (chemin de fer, électricité, Internet) et ce qu'elles ont changé. Source : épisode 1 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; V. Poutine, 1er septembre 2017 (CNN) ; plan chinois pour l'IA de nouvelle génération, juillet 2017."
+    },
+    {
+      "type": "texte",
+      "titre": "Des usines à penser : les centres de données",
+      "personne": "datacenter",
+      "points": [
+        "Le « nuage » est bien sur terre : des bâtiments de puces, de câbles et de climatiseurs",
+        "Les plus grands campus d'IA dépassent 1 gigawatt ; Hyperion (Meta, Louisiane) en vise 5",
+        "5 GW : près d'un quart de la pointe record de l'Algérie (près de 22 GW, été 2026)",
+        "La pensée devient une marchandise : on la produit, on la vend, on la facture"
+      ],
+      "notes": "On parle de « cloud », de nuage, comme si l'IA flottait dans le ciel. Le cours corrige : c'est un nuage intelligent construit sur la terre ferme. À l'intérieur, des puces, des kilomètres de câbles, des machines de refroidissement, et une facture d'électricité énorme. Le cours affirme que certains centres consomment 30 gigawatts, autant que l'État de New York un après-midi de canicule. C'est exagéré pour un seul site : la pointe record de l'État de New York est de 34 GW (2013), alors que les plus grands campus d'IA dépassent à peine 1 GW, comme Stargate d'OpenAI à Abilene, au Texas (1,2 GW). Hyperion, le projet géant de Meta en Louisiane, vise 5 GW. Au total, selon l'Agence internationale de l'énergie, les centres de données ont consommé 1,5 % de l'électricité mondiale en 2024, et cela pourrait doubler d'ici 2030. D'où la conclusion du cours : la pensée devient une marchandise. Conseil : demandez combien de foyers alimente 1 GW (800 000 à 1 million de foyers américains, selon l'opérateur du réseau new-yorkais). Source : épisode 1 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; NYISO ; AIE, Energy and AI (2025) ; Sonelgaz (août 2026)."
+    },
+    {
+      "type": "texte",
+      "titre": "Puces, terres rares, données : la géopolitique de l'IA",
+      "illus": "carte",
+      "points": [
+        "Octobre 2022 : Washington limite la vente à la Chine des puces d'IA les plus puissantes",
+        "Pékin répond par les métaux : gallium et germanium (2023), terres rares (2025)",
+        "Chaque pays s'interroge : modèles américains ou chinois ? Où partent mes données ?",
+        "Souveraineté : l'Arabie saoudite et l'Algérie (loi 18-07) encadrent la sortie des données"
+      ],
+      "notes": "Chacun veut garder ce qu'il possède. Depuis le 7 octobre 2022, les États-Unis interdisent de vendre à la Chine les puces d'IA les plus avancées, celles de NVIDIA en tête ; les règles ont été durcies en 2023 et 2024. La Chine répond, raconte le cours : « Tu ne me vends pas tes puces ? Je ne te vends pas mes métaux rares », indispensables à leur fabrication : licences obligatoires pour le gallium et le germanium en août 2023, pour sept terres rares en avril 2025. Ces règles bougent : Washington a réautorisé certaines ventes en janvier 2026. D'autres pays s'inquiètent : en cas de conflit, puis-je dépendre des modèles et des serveurs de l'un d'eux ? Car les données sont le carburant de l'IA. D'où les lois de souveraineté : l'Arabie saoudite (loi sur les données personnelles, 2023) encadre strictement leur transfert à l'étranger ; en Algérie, la loi 18-07 (2018, modifiée en 2025) le soumet au contrôle de l'Autorité nationale de protection des données. Conseil : demandez aux étudiants où sont stockées les questions qu'ils posent à un chatbot. Source : épisode 1 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; BIS (États-Unis) ; ministère chinois du Commerce ; PDPL saoudienne ; lois algériennes 18-07 et 25-11."
+    },
+    {
+      "type": "texte",
+      "titre": "L'échelle cassée des débutants",
+      "illus": "echelle",
+      "points": [
+        "La révolution industrielle a pris un à deux siècles ; l'IA change la société en 3 ou 4 ans",
+        "États-Unis, développeurs de 22 à 25 ans : près de 20 % d'emplois en moins depuis fin 2022",
+        "L'IA ne remplace pas encore l'expert : elle prend les tâches qui forment les débutants",
+        "Pas d'apprenti à l'atelier aujourd'hui, pas de maître demain"
+      ],
+      "notes": "Toute grande invention change la société. La révolution industrielle nous a fait passer des champs aux usines : les paysans sont partis vers les villes, des familles se sont enrichies, d'autres ont tout perdu. Mais il lui a fallu un à deux siècles. Nous, nous voyons le monde changer en trois ou quatre ans. Exemple du cours : la programmation. Il y a quelques années, c'était un métier vedette, très demandé et bien payé. Aujourd'hui, aux États-Unis, l'emploi des développeurs de 22 à 25 ans a baissé de près de 20 % depuis son sommet de fin 2022, alors que celui des plus âgés est resté stable ou a progressé. L'IA n'est pas la seule cause, mais regardez l'échelle : l'IA ne fait pas encore le travail de l'expert ; elle fait les tâches simples qui transformaient les débutants en experts. S'il n'y a pas d'apprenti à l'atelier, qui deviendra le maître ? Conseil : demandez quelles tâches d'un traducteur débutant une IA fait déjà, et comment continuer à apprendre malgré tout. Source : épisode 1 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; E. Brynjolfsson et al., « Canaries in the Coal Mine? », Stanford Digital Economy Lab, août 2025."
+    },
+    {
+      "type": "texte",
+      "titre": "La vraie question : qui donne le pouvoir à la machine ?",
+      "illus": "balance",
+      "points": [
+        "Elle aide à décider d'un prêt, d'un achat en bourse, de mesures pour des millions de gens",
+        "Elle sert aussi à la guerre… le même type de modèle qui fait vos devoirs de maths !",
+        "La question n'est plus « est-elle intelligente ? »",
+        "Mais : qui lui a donné l'autorité ? Qui l'a testée ? Qui répond quand elle se trompe ?"
+      ],
+      "notes": "L'IA ne s'arrête pas aux emplois : elle est partout, de l'école à l'hôpital. Imaginez : vous demandez un prêt, et c'est un algorithme qui décide si vous le méritez. En bourse, il dit quoi acheter et quoi vendre. Au gouvernement, il aide à prendre des décisions qui touchent des millions de personnes. Et à la guerre : en février 2024, l'armée américaine a reconnu que des algorithmes du projet Maven l'avaient aidée à choisir des cibles en Irak et en Syrie. En juillet 2025, le Pentagone a signé des contrats avec OpenAI, Google, Anthropic et xAI, ceux-là mêmes dont les chatbots font vos devoirs de maths et à qui vous demandez quoi faire d'un bouton sur le visage ! La question change : qui lui a donné ce pouvoir, qui l'a testée, qui rendra des comptes quand elle se trompera ? L'Union européenne (AI Act, 2024) classe la notation de crédit par IA « à haut risque » : tests et contrôle humain obligatoires. Conseil : débat de cinq minutes : dans votre futur métier, quelle décision refuseriez-vous de confier à une IA ? Source : épisode 1 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; Bloomberg, 26 février 2024 ; CDAO (Pentagone), juillet 2025 ; règlement (UE) 2024/1689, annexe III."
+    },
+    {
+      "type": "texte",
+      "titre": "Le tour du magicien",
+      "illus": "chapeau",
+      "points": [
+        "Pas « bonne ou mauvaise ? » : ce qu'elle fait bien ou mal, pour qui, aux dépens de qui",
+        "Comprendre remet tout à sa place : la peur ou l'émerveillement, quand il le faut",
+        "Connaître le tour n'enlève rien au magicien : on mesure mieux son habileté",
+        "Le chemin : son histoire, puis l'intérieur de la machine (réseaux, poids, attention)"
+      ],
+      "notes": "Fin de l'épisode 1. Le cours ne veut pas vous apprendre soixante outils : ils changent trop vite. Il veut raconter ce qui se passe maintenant, et ce qui y a mené. Voici notre chemin : définir l'IA, remonter son histoire dans l'ordre, puis ouvrir la machine (neurones, poids, attention) pour comprendre comment elle voit, lit, parle et agit. Nous ne demanderons pas si elle est bonne ou mauvaise, mais ce qu'elle fait bien, ce qu'elle fait mal, à qui elle profite et aux dépens de qui. Car ce n'est pas seulement l'histoire d'une machine qui apprend de l'humain ; c'est aussi celle d'un humain qui apprend de la machine, qui parfois la craint, parfois s'y attache au point de l'aimer. Comprendre remet chaque chose à sa place : avoir peur quand il faut avoir peur, s'émerveiller quand il le faut. Le magicien reste habile même quand on connaît son tour ; c'est même en le connaissant qu'on mesure son habileté. Conseil : faites écrire à chacun la question qu'il voudrait voir résolue d'ici la fin du cours ; relisez-les à la dernière séance. Source : épisode 1 de *La dernière invention* (Ahmed El-Ghandour, 2026)."
+    },
+    {
+      "type": "section",
+      "numero": "2",
+      "titre": "Qu'est-ce que l'IA ?",
+      "periode": "Définitions",
+      "texte": "Avant de raconter l'histoire, mettons-nous d'accord sur les mots : que veut dire « intelligence artificielle » ?",
+      "illus": "profil",
+      "notes": "Nous savons maintenant pourquoi l'IA compte aujourd'hui. Avant de raconter son histoire, il faut s'entendre sur les mots. Ahmed El-Ghandour pose la question sans détour : si quelqu'un vous demande « c'est quoi, l'IA ? », que répondez-vous ? Beaucoup d'étudiants utilisent ChatGPT tous les jours, mais peu savent la définir. Cette partie donne trois outils : une définition (une machine qui imite l'intelligence), trois niveaux (étroite, générale, super) et trois couches (données, calcul, algorithmes). Ce seront nos lunettes pour lire toute l'histoire qui suit. Activité : interrogez trois ou quatre étudiants, chacun donne sa définition de l'IA en une phrase ; notez les mots clés dans un coin du tableau et revenez-y à la fin de cette partie pour voir ce qui a changé. Source : cours *La dernière invention* d'Ahmed El-Ghandour (2026), épisode 3, et supports NotebookLM de l'enseignant."
+    },
+    {
+      "type": "texte",
+      "titre": "Et vous, qu'appelez-vous « intelligence » ?",
+      "points": [
+        "Comprendre une phrase, traduire un poème",
+        "Reconnaître un visage parmi mille",
+        "Gagner aux échecs, résoudre un problème",
+        "Apprendre de ses erreurs",
+        "Agir seul pour atteindre un but"
+      ],
+      "illus": "cerveau",
+      "notes": "Deux minutes de vote à main levée : lesquelles de ces capacités une machine a-t-elle déjà ? Réponse de fin de leçon : toutes, à des degrés divers, mais aucune machine ne les réunit comme un humain. La dernière ligne, agir seul pour un but, définit l'agent : c'est la destination de la leçon."
+    },
+    {
+      "type": "texte",
+      "titre": "Une intelligence « artificielle »",
+      "points": [
+        "Définition simple : l'IA est une tentative de la machine pour *simuler* l'intelligence",
+        "Elle n'a pas besoin de comprendre : il lui suffit de *paraître* comprendre",
+        "« Artificiel », comme un sourire artificiel : imité, et pas seulement fabriqué",
+        "« Je vous comprends », dit l'agent conversationnel : sans doute pas, mais il aide souvent"
+      ],
+      "illus": "imitation",
+      "notes": "Le cours part d'une définition très simple : l'IA est une tentative de la machine pour *simuler* l'intelligence. On ne lui demande pas de comprendre, mais d'en avoir l'air : d'où le mot « artificielle ». En arabe, la nuance saute aux yeux : on dit « اصطناعي », de la famille de « مُصطنَع » (feint, comme un sourire forcé), et non « صناعي », fabriqué en usine. En français, « artificiel » a la même racine qu'« artifice » ; au XIVe siècle, chez Nicole Oresme, il désigne déjà ce « qui contrefait la nature au moyen de l'art » (CNRTL). Pensez aux fleurs artificielles : elles ressemblent aux vraies, elles décorent, mais elles ne poussent pas. Quand un agent conversationnel vous dit « je vous comprends », comprend-il ? Probablement pas. Mais l'imitation est utile : en voulant paraître intelligente, la machine rend souvent de vrais services. Pour des littéraires : c'est la *mimèsis* d'Aristote, que la poétique d'Avicenne et d'Averroès appelle « المحاكاة ». Question : quel autre objet « artificiel » imite sans être ? Source : cours *La dernière invention* d'Ahmed El-Ghandour (2026), épisode 3 ; CNRTL, étymologie d'« artificiel »."
+    },
+    {
+      "type": "schema",
+      "titre": "Trois niveaux d'IA",
+      "illus": "niveaux",
+      "niveaux": [
+        "étroite",
+        "générale",
+        "super"
+      ],
+      "points": [
+        "IA étroite : un génie d'une seule tâche (Google Maps, échecs, jeux vidéo) ; elle existe",
+        "Google Traduction : près de 250 langues… mais il ne sait pas jouer aux échecs",
+        "IA générale : traduire, jouer, trouver sa route… comme un humain ; encore théorique",
+        "Superintelligence : au-delà de l'humain, peut-être consciente, libre de ses buts ; inconnue"
+      ],
+      "notes": "Le cours range l'IA en trois niveaux selon ses capacités. L'IA étroite est conçue pour un seul problème, où elle excelle. Google Traduction, qui a fêté ses 20 ans en avril 2026 et nous a si souvent tirés d'affaire, est un génie de la traduction ; mais il ne sait ni jouer aux échecs ni programmer, des choses que vous savez faire. L'IA générale vous ressemblerait : elle saurait traduire, jouer, trouver son chemin dans les embouteillages. Demandez-lui la route : au lieu de dire aussitôt « à droite », elle réfléchirait et vous demanderait « le plus court ou le plus agréable ? ». Pourquoi ne pas toujours la préférer ? Parce qu'elle peut se tromper, et qu'un modèle étroit, entraîné sur des données spécialisées, est souvent plus fiable. Enfin, la superintelligence : un esprit bien plus fort que le nôtre, peut-être conscient de lui-même, capable de se fixer ses propres buts ; la « dernière invention » d'I. J. Good. Rassurez-vous : nous n'avons même pas l'IA générale. Question : quelle IA étroite avez-vous utilisée aujourd'hui ? Source : cours *La dernière invention* d'Ahmed El-Ghandour (2026), épisode 3 ; blog de Google (avril 2026)."
+    },
+    {
+      "type": "texte",
+      "titre": "Et ChatGPT, alors ?",
+      "points": [
+        "Il traduit, écrit, code, crée des images… et même des poèmes, pas toujours bons",
+        "Mais il a appris des données reçues, pas du monde lui-même, et en sort difficilement",
+        "Étroit ou général ? Les experts en débattent ; l'IA générale n'existe pas encore",
+        "Argent, puces, électricité, algorithmes : beaucoup pensent qu'on y arrivera ; soyons prêts"
+      ],
+      "illus": "attention",
+      "notes": "ChatGPT, lancé fin 2022 et utilisé chaque semaine par 900 millions de personnes début 2026, en trouble plus d'un : IA étroite ou générale ? Il a un côté « général » : il traduit, écrit, aide à programmer, fait des images ; il écrit même des poèmes, parfois mauvais, mais il en écrit. Pourtant, une vraie IA générale apprendrait en essayant le monde elle-même. ChatGPT, lui, a appris des données qu'on lui a fournies, et il en sort difficilement. Les experts ne sont pas d'accord : en 2025, Demis Hassabis (Google DeepMind) annonçait une IA de niveau humain d'ici cinq à dix ans, tandis que Yann LeCun jugeait qu'on n'y arriverait pas en agrandissant seulement les modèles de langue. Mais avec l'argent, les puces, l'électricité et les algorithmes, la course est lancée : soyons prêts. Pour s'en approcher, on fera ce qu'on a toujours fait : copier la nature, ici le cerveau. Activité : demandez à ChatGPT un poème à la manière d'un poète étudié en cours, puis critiquez-le ensemble. Source : cours *La dernière invention* d'Ahmed El-Ghandour (2026), épisode 3 ; OpenAI (février 2026) ; CNBC (mars 2025) ; podcast *Big Technology* (mai 2025)."
+    },
+    {
+      "type": "texte",
+      "titre": "De quoi est faite une IA ? Trois couches",
+      "illus": "couches",
+      "couches": [
+        "algorithmes : le moteur",
+        "calcul : les puces",
+        "données : le carburant"
+      ],
+      "points": [
+        "Les données, le carburant : les textes, images et sons dont la machine apprend",
+        "Le calcul, la puissance : puces graphiques (GPU), serveurs, centres de données",
+        "Les algorithmes, le moteur : la recette qui transforme les données en savoir-faire",
+        "Les trois avancent ensemble : l'histoire qui suit est celle de ces trois couches"
+      ],
+      "notes": "Souvenez-vous de la partie 1 : l'IA n'est pas une petite application amusante, c'est une infrastructure. Mais de quoi est-elle faite ? Les supports NotebookLM la dessinent en trois étages. En bas, les données : le carburant, sans lequel rien ne bouge. Au milieu, le calcul : des milliers de puces qui travaillent en même temps. En haut, les algorithmes : le moteur, la méthode qui apprend. Un exemple réel : pour entraîner Llama 3.1 (Meta, juillet 2024), il a fallu plus de 15 000 milliards de morceaux de mots, plus de 16 000 puces NVIDIA H100 pendant plusieurs mois, et une recette publiée en 2017, le Transformer. L'idée à retenir : les trois couches avancent ensemble, et quand l'une manque, tout s'arrête. Vous verrez que l'idée des réseaux de neurones, née avec le perceptron (1958), ne triomphera qu'en 2012, quand les données et le calcul l'auront enfin rattrapée. Au tableau : dessinez une cuisine, avec la recette (algorithme), les ingrédients (données) et le feu (calcul). Que se passe-t-il s'il en manque un ? Source : cours *La dernière invention* d'Ahmed El-Ghandour (2026), épisode 1, et supports NotebookLM de l'enseignant ; Meta AI (juillet 2024)."
+    },
+    {
+      "type": "section",
+      "numero": "3",
+      "titre": "Le rêve des machines",
+      "periode": "De l'Antiquité à 1949",
+      "texte": "Bien avant les ordinateurs, les humains ont imaginé et construit des machines qui imitent la vie, puis des machines qui calculent.",
+      "illus": "engrenages",
+      "notes": "Première étape : l'IA n'est pas née de rien. Deux lignes se rejoignent ici : les automates, qui imitent le mouvement, et les machines à calculer, qui imitent le raisonnement."
+    },
+    {
+      "type": "texte",
+      "titre": "Des automates dans les mythes et les ateliers",
+      "points": [
+        "Mythe grec : Talos, géant de bronze qui garde la Crète",
+        "Ier siècle : Héron d'Alexandrie décrit des automates de théâtre",
+        "1739 : le canard de Vaucanson bat des ailes et « digère »",
+        "Vers 1770 : l'Écrivain des Jaquet-Droz trace des lettres à la plume"
+      ],
+      "illus": "engrenages",
+      "notes": "Un automate reproduit un mouvement prévu d'avance par ses engrenages ou ses cames. Il ne décide rien : c'est la différence avec une IA. Demandez : l'Écrivain des Jaquet-Droz « écrit »-il vraiment ?"
+    },
+    {
+      "type": "texte",
+      "titre": "Al-Jazari, l'ingénieur des machines ingénieuses",
+      "annee": "1206",
+      "points": [
+        "Ingénieur de la cour artuqide, en Haute-Mésopotamie",
+        "Écrit en 1206 le *Livre de la connaissance des procédés mécaniques ingénieux*",
+        "Décrit une cinquantaine de machines : horloges, pompes, automates",
+        "Son horloge-éléphant marque les heures par des automates"
+      ],
+      "illus": "elephant",
+      "notes": "Al-Jazari montre que la tradition des automates traverse le monde arabe et musulman médiéval. Ses dessins détaillés permettent encore aujourd'hui de reconstruire ses machines. Restez prudent : ce sont des automates programmés d'avance, pas des machines qui apprennent.",
+      "personne": "jazari"
+    },
+    {
+      "type": "texte",
+      "titre": "Des machines qui calculent",
+      "points": [
+        "1642 : Blaise Pascal construit la Pascaline, qui additionne",
+        "1673 : Leibniz présente une machine qui multiplie",
+        "1837 : Charles Babbage conçoit la machine analytique, programmable par cartes perforées",
+        "La machine analytique ne sera jamais achevée de son vivant"
+      ],
+      "illus": "calculatrice",
+      "personne": "pascaline",
+      "notes": "Passage clé : une machine qui calcule remplace une partie du travail de l'esprit. La machine analytique de Babbage a déjà une mémoire et une unité de calcul, comme nos ordinateurs.",
+      "encart": "babbage"
+    },
+    {
+      "type": "portrait",
+      "personne": "lovelace",
+      "nom": "Ada Lovelace",
+      "dates": "1815–1852",
+      "role": "Mathématicienne, première programmeuse",
+      "points": [
+        "1843 : ses notes sur la machine analytique de Babbage",
+        "Elle y écrit un algorithme pour calculer les nombres de Bernoulli",
+        "Elle imagine que la machine pourrait composer de la musique"
+      ],
+      "citation": "La machine analytique n'a aucune prétention à créer quoi que ce soit.",
+      "source": "Ada Lovelace, notes de 1843",
+      "notes": "Sa phrase, l'« objection de Lady Lovelace », sera discutée par Turing un siècle plus tard : une machine ne fait-elle que ce qu'on lui dit ? Question à poser à la classe : un modèle qui écrit un poème crée-t-il quelque chose ?"
+    },
+    {
+      "type": "texte",
+      "titre": "Quand la pensée devient calcul",
+      "points": [
+        "1854 : George Boole réduit le raisonnement à des calculs sur vrai et faux",
+        "1936 : Alan Turing décrit une machine abstraite capable de tout calcul",
+        "Un ruban, une tête de lecture, une table de règles : c'est la « machine de Turing »",
+        "Tout ordinateur actuel est, en principe, une machine de Turing"
+      ],
+      "illus": "turing",
+      "notes": "Boole fournit l'alphabet (vrai, faux, et, ou, non) ; Turing fournit la machine universelle. Montrez l'animation : la tête lit une case, écrit, se déplace, change d'état. Avec des règles aussi simples, on peut tout calculer."
+    },
+    {
+      "type": "portrait",
+      "personne": "turing",
+      "nom": "Alan Turing",
+      "dates": "1912–1954",
+      "role": "Mathématicien, père de l'informatique théorique",
+      "points": [
+        "1936 : la machine universelle",
+        "1939–1945 : contribue à casser le code Enigma à Bletchley Park",
+        "1950 : « Computing Machinery and Intelligence », l'article fondateur"
+      ],
+      "citation": "Je propose d'examiner la question suivante : les machines peuvent-elles penser ?",
+      "source": "Alan Turing, Mind, 1950",
+      "notes": "Turing remplace une question impossible (« penser ») par un test observable, le jeu de l'imitation. C'est le geste fondateur de l'IA. La phrase citée ouvre son article de 1950."
+    },
+    {
+      "type": "schema",
+      "titre": "Le neurone formel",
+      "annee": "1943",
+      "illus": "neurone",
+      "points": [
+        "Warren McCulloch et Walter Pitts modélisent un neurone par un calcul",
+        "Il additionne des signaux d'entrée et « s'active » au-delà d'un seuil",
+        "C'est l'ancêtre de tous les réseaux de neurones actuels"
+      ],
+      "notes": "Premier pont entre biologie et calcul. Dessinez au tableau : trois entrées, des poids, une somme, un seuil. On retrouvera exactement ce schéma avec le perceptron en 1958, puis dans l'apprentissage profond."
+    },
+    {
+      "type": "texte",
+      "titre": "Les premiers ordinateurs",
+      "points": [
+        "1945 : l'ENIAC, 30 tonnes, calcule des trajectoires balistiques",
+        "1948 : Claude Shannon fonde la théorie de l'information",
+        "Le bit devient l'unité de toute information : texte, image, son",
+        "Les machines existent enfin ; reste à les rendre « intelligentes »"
+      ],
+      "personne": "eniac",
+      "notes": "L'ENIAC occupe une salle entière et se programme en branchant des câbles. Shannon, lui, sera l'un des quatre signataires du projet de Dartmouth. Fin de la première étape : tout est prêt pour la naissance de l'IA.",
+      "encart": "shannon"
+    },
+    {
+      "type": "section",
+      "numero": "4",
+      "titre": "La naissance de l'IA",
+      "periode": "1950–1980",
+      "texte": "Une question qui semblait absurde : un ordinateur peut-il penser ? Deux réponses vont s'affronter : écrire des règles, ou copier les neurones.",
+      "illus": "ampoule",
+      "notes": "Où commence la vraie histoire de l'IA ? Au milieu du XXe siècle. En 1950, le mathématicien anglais Alan Turing, l'homme du jeu de l'imitation, pose une question qui semblait alors presque ridicule : « Les machines peuvent-elles penser ? » Imaginez : à l'époque, un ordinateur remplit toute une pièce et ne sert qu'à calculer. Pourtant, ces idées étranges, vieilles de plus de 75 ans, deviennent la base de tout ce qui suit. Cette partie raconte trente ans d'aventure : l'âge des règles (« si… alors… »), puis un jeune chercheur qui préfère copier les neurones du cerveau, l'emballement de la presse et, pour finir, la chute : le premier hiver de l'IA. Retenez les deux chemins, règles ou neurones : toute la suite de l'histoire est leur rivalité. Conseil : écrivez au tableau « Un ordinateur peut-il penser ? » et faites voter la classe (oui, non, ça dépend) ; refaites le vote à la fin de la partie. Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; A. M. Turing, « Computing Machinery and Intelligence », *Mind*, 1950."
+    },
+    {
+      "type": "schema",
+      "titre": "Le jeu de l'imitation",
+      "annee": "1950",
+      "illus": "imitation",
+      "points": [
+        "Un juge dialogue par écrit avec deux interlocuteurs cachés",
+        "L'un est un humain, l'autre une machine",
+        "Si le juge ne sait pas les distinguer, la machine « réussit »"
+      ],
+      "notes": "Faites jouer la scène : deux volontaires cachés, un juge, cinq minutes de questions écrites. Discussion : le test mesure-t-il l'intelligence, ou l'art de faire illusion ? Les agents conversationnels actuels ont relancé ce débat."
+    },
+    {
+      "type": "citation",
+      "texte": "Chaque aspect de l'apprentissage ou de toute autre caractéristique de l'intelligence peut en principe être décrit si précisément qu'une machine peut être construite pour le simuler.",
+      "auteur": "J. McCarthy, M. Minsky, N. Rochester, C. Shannon",
+      "source": "Proposition pour l'atelier de Dartmouth, 31 août 1955",
+      "notes": "C'est dans ce texte qu'apparaît l'expression « intelligence artificielle ». L'hypothèse est très ambitieuse : tout ce que fait l'intelligence pourrait être décrit précisément. Demandez : est-ce vrai pour l'humour ? pour l'intuition poétique ?"
+    },
+    {
+      "type": "portrait",
+      "personne": "mccarthy",
+      "nom": "John McCarthy",
+      "dates": "1927–2011",
+      "role": "Informaticien, a donné son nom à l'IA",
+      "points": [
+        "Été 1956 : organise l'atelier de Dartmouth, acte de naissance de l'IA",
+        "1958 : crée le langage Lisp, longtemps langage de l'IA",
+        "Avec lui : Marvin Minsky, Claude Shannon, Nathaniel Rochester"
+      ],
+      "notes": "L'atelier de Dartmouth réunit une dizaine de chercheurs pendant l'été 1956. Il ne produit pas de grande découverte, mais il donne un nom, une communauté et un programme à la discipline.",
+      "encart": "dartmouth"
+    },
+    {
+      "type": "texte",
+      "titre": "Le premier programme « intelligent »",
+      "annee": "1956",
+      "points": [
+        "Le Logic Theorist d'Allen Newell, Herbert Simon et Cliff Shaw",
+        "Il démontre 38 des 52 premiers théorèmes des *Principia Mathematica*",
+        "Pour l'un d'eux, une preuve plus élégante que celle des auteurs",
+        "Une idée clé : chercher parmi des possibilités avec des règles"
+      ],
+      "illus": "arbre",
+      "notes": "Le Logic Theorist incarne l'IA symbolique : des symboles, des règles, une recherche dans un arbre de possibilités. C'est la même logique que le chaînage avant du TD du chapitre 3."
+    },
+    {
+      "type": "texte",
+      "titre": "L'âge des règles : SI… ALORS…",
+      "points": [
+        "Première époque de l'IA : l'âge de la logique, ou des règles",
+        "Pour agir comme nous, la machine reçoit des règles : « SI ceci, ALORS cela »",
+        "Résultat : un bon exécutant qui suit des étapes, pas une intelligence",
+        "Mais les règles sont faites pour être brisées… et un jeune chercheur va s'en charger"
+      ],
+      "illus": "regles",
+      "notes": "Après Turing et Dartmouth s'ouvre la première grande époque de l'IA : l'âge de la logique, que les Anglais appellent *rule-based*, « fondé sur des règles ». L'idée est simple : si nous voulons que la machine se comporte comme un humain intelligent, donnons-lui des règles logiques, et elle les suivra. « Madame la Machine, s'il se passe ceci, vous ferez cela. » Le Logic Theorist, que nous venons de voir, fonctionnait ainsi. Le problème, dit Ahmed El-Ghandour, c'est que cela ne produit pas de l'intelligence : cela produit un bon exécutant, quelqu'un qui suit des étapes sans comprendre. Et les règles, comme on dit, sont faites pour être brisées : c'est exactement ce qu'un jeune chercheur va faire en 1957. Conseil : donnez deux minutes aux étudiants pour écrire les règles SI… ALORS… qui reconnaissent un sonnet (quatorze vers, deux quatrains, deux tercets), puis celles qui reconnaissent « un beau poème ». Pourquoi la seconde liste est-elle impossible ? Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026)."
+    },
+    {
+      "type": "portrait",
+      "personne": "perceptron",
+      "nom": "Frank Rosenblatt et le Mark I Perceptron",
+      "dates": "1957–1960",
+      "role": "Psychologue au Cornell Aeronautical Laboratory (Buffalo, États-Unis)",
+      "points": [
+        "Au lieu de règles fixes, apprendre comme un humain : copier les neurones du cerveau",
+        "Une « rétine » de 20 × 20 = 400 cellules photoélectriques traduit l'image en nombres",
+        "Cercle ou carré ? S'il se trompe, il corrige ses poids : il apprend de ses erreurs"
+      ],
+      "citation": "La première machine capable d'avoir une idée originale",
+      "source": "Frank Rosenblatt, 1958",
+      "illus": "perceptron",
+      "notes": "1957, dans un laboratoire de recherche aéronautique lié à l'université Cornell, à Buffalo. Un jeune psychologue, Frank Rosenblatt, décide de briser les règles. Au lieu de faire suivre à la machine des règles fixes, il veut qu'elle apprenne comme nous. Il regarde le cerveau : des cellules nerveuses reçoivent des signaux, les traitent et en renvoient un. Son idée : ne pas inventer l'intelligence, mais copier celle de la nature. Il simule d'abord son « perceptron » sur un ordinateur IBM 704, puis construit une vraie machine, le Mark I, présentée au public le 23 juin 1960 : une caméra de 400 cellules photoélectriques, et des poids réglés par des boutons rotatifs que de petits moteurs électriques tournent tout seuls. On lui montre une forme : cercle ou carré ? S'il se trompe, il corrige ses poids pour mieux répondre la fois suivante. Juger, se tromper, se corriger : c'est simple, et c'est immense. Conseil : montrez la photo et demandez où sont « l'œil », « les neurones » et « la mémoire » de la machine. Source : épisode 2 de *La dernière invention* ; Smithsonian, fiche du Mark I Perceptron ; Cornell Chronicle, 2019."
+    },
+    {
+      "type": "schema",
+      "titre": "Comment décide le perceptron",
+      "annee": "1958",
+      "illus": "perceptron",
+      "points": [
+        "Chaque information d'entrée est multipliée par un *poids*, puis tout est additionné",
+        "Somme au-dessus du seuil → 1, en dessous → 0 : comme un neurone qui s'active ou non",
+        "Ingénieur ? La moyenne au bac pèse lourd ; la taille, presque rien",
+        "Sportif ? L'inverse : la taille compte (volley, basket). Chaque information a son poids"
+      ],
+      "notes": "Voici comment « pense » le perceptron, avec l'exemple d'Ahmed El-Ghandour. La machine reçoit des informations d'entrée. Elle multiplie chacune par un poids, additionne le tout et compare le total à un nombre fixé d'avance, le seuil. Au-dessus du seuil, elle répond 1 ; en dessous, 0. C'est ce que fait un neurone du cerveau : il envoie un signal, ou il n'en envoie pas. Pourquoi des poids ? Parce que toutes les informations ne se valent pas. Pour deviner si la personne en face de moi est ingénieur, sa moyenne au baccalauréat compte beaucoup ; sa taille, 1,75 m, ne m'apprend rien. Pour deviner si c'est un sportif, c'est l'inverse : la moyenne compte peu, mais si la personne est très grande, elle joue peut-être au volley ou au basket. Apprendre, pour le perceptron, c'est trouver les bons poids. Conseil : faites deviner le métier d'un volontaire à partir de deux indices écrits au tableau, et demandez quel indice « pèse » le plus ; les poids reviendront en détail dans la partie 8. Source : épisode 2 de *La dernière invention* ; F. Rosenblatt, *Psychological Review*, 1958."
+    },
+    {
+      "type": "citation",
+      "texte": "La Marine a dévoilé aujourd'hui l'embryon d'un ordinateur électronique qui, espère-t-elle, pourra marcher, parler, voir, écrire, se reproduire et avoir conscience de son existence.",
+      "auteur": "*The New York Times*",
+      "source": "« New Navy Device Learns by Doing », 8 juillet 1958",
+      "notes": "7 juillet 1958, à Washington. La Marine américaine, qui finance les travaux de Rosenblatt, invite les journalistes. Devant eux, un énorme ordinateur IBM 704 reçoit des cartes perforées ; après une cinquantaine d'essais, il apprend à distinguer les cartes marquées à gauche de celles marquées à droite. C'est tout. Mais le lendemain, le *New York Times* annonce une machine qui marchera, parlera et aura conscience d'elle-même. Comme le raconte l'épisode 2, la presse s'emballe : « Attention, faites place, une révolution arrive ! » Et le gouvernement américain ouvre les robinets. Nous sommes en pleine guerre froide : après le Spoutnik soviétique (octobre 1957), Washington a créé en février 1958 l'ARPA, une agence chargée de garder l'avance technologique du pays. Une machine qui apprend pourrait servir l'armée ; on croit l'intelligence presque résolue. Conseil : mettez côte à côte ce que la machine a vraiment fait (gauche ou droite ?) et ce qu'écrit le journal ; demandez aux étudiants de repérer les verbes qui exagèrent. Source : épisode 2 de *La dernière invention* ; *The New York Times*, 8 juillet 1958 ; Cornell Chronicle, 2019."
+    },
+    {
+      "type": "texte",
+      "titre": "Arthur Samuel : apprendre en jouant",
+      "annee": "1959",
+      "points": [
+        "Chez IBM, Arthur Samuel crée un programme de dames qui progresse en jouant contre lui-même",
+        "1959 : son article lance l'expression « machine learning », l'apprentissage automatique",
+        "Après 8 à 10 heures de jeu, le programme joue mieux que son propre créateur",
+        "Deux voies se dessinent : écrire les règles, ou les faire apprendre"
+      ],
+      "illus": "dames",
+      "notes": "Pendant ce temps, chez IBM, un ingénieur prend un autre chemin vers l'apprentissage. Arthur Samuel ne copie pas les neurones : il écrit un programme de jeu de dames qui retient les positions déjà vues et joue contre lui-même, en gardant ce qui mène à la victoire. Le 24 février 1956, le programme passe à la télévision ; le patron d'IBM, Thomas Watson, avait prédit que la démonstration ferait monter l'action de 15 points, et ce fut le cas. En 1959, Samuel publie un article qui commence ainsi : un ordinateur peut être programmé pour apprendre à jouer aux dames mieux que la personne qui a écrit le programme. La définition souvent citée, « apprendre sans être explicitement programmé », résume bien son idée, mais elle ne figure pas dans l'article. Conseil : demandez aux étudiants ce qu'« apprendre » veut dire : mémoriser, s'entraîner, comprendre ? Laquelle de ces choses la machine de Samuel fait-elle ? Source : A. L. Samuel, *IBM Journal of Research and Development*, juillet 1959 ; université de l'Alberta, « Arthur Samuel's Legacy »."
+    },
+    {
+      "type": "citation",
+      "texte": "Les machines seront capables, d'ici vingt ans, de faire tout travail qu'un homme peut faire.",
+      "auteur": "Herbert Simon",
+      "source": "1965",
+      "notes": "Les promesses de l'époque étaient démesurées. Vingt ans plus tard, en 1985, on en était très loin. Demandez aux étudiants de trouver une promesse actuelle sur l'IA et de se demander comment on la jugera dans vingt ans."
+    },
+    {
+      "type": "chat",
+      "titre": "ELIZA, la première psychothérapeute artificielle",
+      "annee": "1966",
+      "legende": "Extrait de l'article de Joseph Weizenbaum (1966), traduit",
+      "echanges": [
+        {
+          "qui": "h",
+          "texte": "Les hommes sont tous pareils."
+        },
+        {
+          "qui": "m",
+          "texte": "EN QUEL SENS ?"
+        },
+        {
+          "qui": "h",
+          "texte": "Ils nous embêtent toujours avec une chose ou une autre."
+        },
+        {
+          "qui": "m",
+          "texte": "POUVEZ-VOUS DONNER UN EXEMPLE PRÉCIS ?"
+        },
+        {
+          "qui": "h",
+          "texte": "Eh bien, c'est mon ami qui m'a fait venir ici."
+        },
+        {
+          "qui": "m",
+          "texte": "VOTRE AMI VOUS A FAIT VENIR ICI."
+        }
+      ],
+      "notes": "ELIZA ne comprend rien : elle repère des mots-clés et renvoie la phrase avec des règles de transformation. Pourtant, des utilisateurs lui confiaient leurs secrets. Weizenbaum en fut inquiet toute sa vie. C'est l'« effet ELIZA » : prêter une compréhension à une machine qui répond bien."
+    },
+    {
+      "type": "texte",
+      "titre": "Shakey, le premier robot qui raisonne",
+      "annee": "1966–1972",
+      "points": [
+        "Construit au Stanford Research Institute (SRI)",
+        "Il perçoit son environnement avec une caméra",
+        "Il planifie une suite d'actions pour atteindre un but",
+        "Pour lui naît l'algorithme A*, encore utilisé pour calculer des itinéraires"
+      ],
+      "personne": "shakey",
+      "illus": "robot",
+      "notes": "Shakey est un ancêtre direct des agents : il perçoit, planifie, agit. Mais il met des minutes à décider de pousser une boîte. Retenez le schéma percevoir, planifier, agir : il revient à la fin de la leçon."
+    },
+    {
+      "type": "schema",
+      "titre": "1969 : le mur du XOR",
+      "annee": "1969",
+      "illus": "xor",
+      "points": [
+        "1969 : Marvin Minsky et Seymour Papert (MIT) publient le livre *Perceptrons*",
+        "Le perceptron sépare deux groupes par une ligne droite : cercle ou carré, malade ou sain",
+        "Porte à deux clés : elle s'ouvre si l'un OU l'autre tourne sa clé, pas si les deux le font",
+        "Il faut une règle sur une règle : aucune ligne ne suffit, c'est le « OU exclusif » (XOR)"
+      ],
+      "personne": "minsky",
+      "notes": "Pendant que la presse rêve, deux chercheurs du MIT examinent la machine de près. Marvin Minsky, l'un des pères de l'IA à Dartmouth, connaît Rosenblatt depuis le lycée, à New York, et les deux hommes se sont déjà affrontés en public. En 1969, avec le mathématicien Seymour Papert, il publie *Perceptrons*. Le message : ce perceptron dont parlent les journaux est très simple ; comme un petit enfant qui dit « papa » ou « maman », il sépare deux groupes par une ligne. L'épisode l'explique avec une porte : vous êtes dehors, votre conjoint dedans, chacun a une clé. La porte s'ouvre si l'un de vous tourne sa clé ; elle reste fermée si personne ne le fait… et aussi si vous tournez tous les deux au même instant. Il faut une règle sur une règle. Plusieurs couches de neurones y arriveraient, mais personne ne sait encore les entraîner, et Minsky et Papert pressentent que cette piste est « stérile ». Conseil : faites jouer la porte par deux étudiants et laissez la classe deviner la règle. Source : épisode 2 de *La dernière invention* ; M. Minsky et S. Papert, *Perceptrons*, MIT Press, 1969."
+    },
+    {
+      "type": "schema",
+      "titre": "Le premier hiver de l'IA",
+      "annee": "1974–1980",
+      "illus": "courbe",
+      "points": [
+        "Après *Perceptrons*, la peur : l'argent pour les réseaux de neurones s'arrête",
+        "1973 : le rapport Lighthill (Royaume-Uni) juge les promesses non tenues ; crédits coupés",
+        "Vers 1974, aux États-Unis, la DARPA exige des résultats militaires et réduit ses crédits",
+        "Réseaux de neurones : une quinzaine d'années de doute, « seul le cerveau est intelligent »"
+      ],
+      "notes": "Après le livre de Minsky et Papert, raconte Ahmed El-Ghandour, les gens ont très peur. L'enthousiasme retombe, l'argent s'arrête, et la pause n'est pas courte : pour les réseaux de neurones, elle dure une quinzaine d'années. On se dit : nous nous sommes trompés, nous cherchons dans le vide ; l'intelligence, c'est le cerveau, et lui seul en a le secret. Les autres promesses déçoivent aussi. En 1973, le mathématicien James Lighthill remet au gouvernement britannique un rapport sévère : nulle part les découvertes n'ont eu l'impact promis, et dès qu'un problème grandit, le nombre de possibilités à examiner explose. La plupart des universités britanniques perdent leurs crédits d'IA. Aux États-Unis, la DARPA (l'ancienne ARPA), qui depuis 1969 ne doit financer que des recherches utiles à l'armée, coupe à son tour. C'est le premier hiver de l'IA. Rosenblatt ne verra pas le printemps : il meurt en 1971, le jour de ses 43 ans, dans un accident de bateau. Conseil : dessinez la courbe des attentes au tableau et placez-y 1958 (le *New York Times*) et 1973 (Lighthill). Source : épisode 2 de *La dernière invention* ; J. Lighthill, *Artificial Intelligence: A General Survey*, 1973."
+    },
+    {
+      "type": "section",
+      "numero": "5",
+      "titre": "Des règles aux données",
+      "periode": "1980–2005",
+      "texte": "Les règles conquièrent les entreprises, puis se heurtent au réel. Pendant ce temps, les machines commencent à apprendre à partir d'exemples.",
+      "illus": "regles",
+      "notes": "Nous sortons du premier hiver. Dans les années 1980, l'IA revient par la porte des entreprises : on met le savoir des experts en règles SI… ALORS…, et les systèmes experts se vendent bien. Mais le monde réel est plein d'exceptions, et les règles finissent par craquer. Pendant ce temps, une autre idée grandit sans bruit : au lieu de tout écrire, montrer des exemples à la machine et la laisser apprendre, comme un enfant. Le cours appelle cela le printemps de l'IA, apporté par une révolution : l'apprentissage automatique (machine learning). Cette partie va de 1980 à 2005 : les règles, le retour des neurones, le premier vrai métier de l'IA, un second hiver, et un match d'échecs qui fait le tour du monde. Conseil : tracez au tableau deux colonnes, « règles » et « exemples » ; à chaque diapositive, demandez aux étudiants dans quelle colonne ranger ce qu'ils voient. Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026)."
+    },
+    {
+      "type": "schema",
+      "titre": "Mettre le savoir en règles",
+      "illus": "regles",
+      "points": [
+        "Une base de faits, une base de règles SI … ALORS …, un moteur d'inférence",
+        "Années 1970 : MYCIN, à Stanford, diagnostique des infections du sang",
+        "1980 : XCON configure les ordinateurs de l'entreprise DEC",
+        "Les entreprises investissent : l'IA devient une industrie"
+      ],
+      "notes": "Reliez à la séance 6 : le jeu de rôle des formes poétiques est un petit système expert. MYCIN comptait environ 600 règles écrites avec des médecins."
+    },
+    {
+      "type": "texte",
+      "titre": "Apprendre plutôt que tout écrire",
+      "points": [
+        "Chat, chien ou hyène ? Tous ont une queue, deux yeux, du poil : les règles s'y perdent",
+        "Il faut apprendre comme un enfant : voir beaucoup d'exemples et repérer les différences",
+        "Années 1980 : des ordinateurs plus rapides et moins chers ; on expérimente librement",
+        "Les données sont la salle de sport de l'IA : plus il y en a, plus le muscle se renforce"
+      ],
+      "illus": "donnees",
+      "notes": "Le cours propose une petite expérience. Imaginez un programme qui reconnaît les animaux : on lui montre une photo, il répond « chat », « chien » ou « hyène ». Avec des règles, c'est presque impossible. « Le chat a une queue » ? Le chien et la hyène aussi. Deux yeux, du poil : tout est partagé. Il faut changer de méthode : ne plus seulement écrire des règles, mais laisser la machine apprendre, comme un enfant qui regarde le monde et découvre peu à peu les différences. Le moment est favorable : dans les années 1980, les ordinateurs deviennent plus puissants et moins chers, et les chercheurs n'attendent plus les crédits de l'État pour essayer. Les universités partagent aussi des données : en 1987, l'université de Californie à Irvine ouvre une bibliothèque publique de jeux de données, encore utilisée aujourd'hui. Les données sont la salle de sport de l'IA : plus elle s'entraîne, mieux elle repère ce qui se répète. C'est en forgeant qu'on devient forgeron. Conseil : demandez d'écrire une règle qui distingue un chat d'un chien, puis cherchez ensemble le contre-exemple. Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; UCI Machine Learning Repository (1987)."
+    },
+    {
+      "type": "deux",
+      "titre": "Deux façons de faire une IA",
+      "gauche": {
+        "titre": "IA symbolique",
+        "points": [
+          "Un expert écrit les règles",
+          "Explicable : on suit le raisonnement",
+          "Fragile hors de son domaine",
+          "Exemple : un système expert"
+        ]
+      },
+      "droite": {
+        "titre": "Apprentissage automatique",
+        "points": [
+          "La machine tire des régularités des exemples",
+          "Souvent difficile à expliquer",
+          "Robuste, s'il y a beaucoup de données",
+          "Exemple : un filtre anti-spam"
+        ]
+      },
+      "notes": "Faites classer trois objets par les étudiants : un correcteur orthographique, un traducteur automatique, un GPS. Aujourd'hui, les meilleurs systèmes combinent souvent les deux approches."
+    },
+    {
+      "type": "texte",
+      "titre": "Le retour des neurones",
+      "annee": "1986",
+      "points": [
+        "L'idée : empiler des perceptrons en couches, comme les feuilles d'un plat de lasagnes",
+        "Chaque couche vérifie une condition et passe à la suivante : le XOR devient possible",
+        "Plus le problème est compliqué, plus on ajoute de couches",
+        "1986 : Rumelhart, Hinton et Williams popularisent la rétropropagation pour les entraîner"
+      ],
+      "personne": "rumelhart",
+      "illus": "reseau",
+      "notes": "Après l'hiver, des chercheurs se disent : nous voulons une IA qui ressemble à l'intelligence humaine ; alors imitons vraiment le cerveau, avec un réseau de neurones artificiels. Le défaut du perceptron était de n'appliquer qu'une seule règle, une seule ligne droite. La solution : plusieurs couches de perceptrons, l'une sur l'autre. Le cours prend l'image d'un plat au four, lasagnes ou béchamel : chaque couche reçoit le travail de la précédente. Première condition remplie ? Parfait, passons à la deuxième, puis à la troisième… Plus le problème est compliqué, plus le plat est haut, et le XOR n'est plus un mur. Restait à savoir entraîner toutes ces couches. En octobre 1986, David Rumelhart, psychologue (sur la photo, en 1991), Geoffrey Hinton et Ronald Williams publient la méthode dans la revue Nature. L'idée mathématique existait depuis les années 1970 ; eux la rendent claire, convaincante et célèbre. Conseil : demandez ce qui arrive aux lasagnes si une couche est ratée : tout le plat en souffre, il faut donc retrouver la couche fautive (diapositive suivante). Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; Rumelhart, Hinton et Williams, Nature, vol. 323 (9 octobre 1986)."
+    },
+    {
+      "type": "schema",
+      "titre": "Faire remonter l'erreur",
+      "annee": "1986",
+      "illus": "retro",
+      "points": [
+        "La machine répond ; le maître compare avec la bonne réponse : juste ou faux ?",
+        "Si c'est faux, elle remonte les couches : quels poids ont causé l'erreur, et de combien ?",
+        "Elle corrige ces poids et recommence, des milliers de fois : c'est la rétropropagation",
+        "Un maître qui connaît la réponse : c'est l'apprentissage *supervisé*"
+      ],
+      "notes": "Le cours explique l'idée de 1986 très simplement. L'ordinateur reçoit une entrée et donne une sortie. Mais quand on lui dit qu'il s'est trompé, il revient en arrière : quels poids m'ont fait me tromper, et chacun de combien ? Il les change un peu et essaie de nouveau. Juste ? Parfait. Faux ? Il recommence. À ce stade, la machine apprend comme un petit enfant : « C'est quel chiffre ? — Cinq. » Le maître corrige : « Bravo ! » ou « Non, c'est un trois. » Les humains laissent la machine apprendre, mais ils la surveillent : c'est l'apprentissage supervisé. Et la machine a un avantage : chaque correction reste inscrite dans ses poids ; pas besoin de tout réviser la veille de l'examen. Attention : cela ne veut pas dire qu'elle ne se trompe plus jamais ; la partie 8 montrera qu'elle peut apprendre trop, ou pas assez. Conseil : jouez la scène : un étudiant est la machine, un autre le maître, qui donne la bonne réponse après chaque erreur. Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; Rumelhart, Hinton et Williams, Nature (1986)."
+    },
+    {
+      "type": "portrait",
+      "personne": "lecun",
+      "nom": "Yann LeCun et LeNet",
+      "dates": "1989–1998",
+      "role": "Chercheur français aux Bell Labs, puis à la tête de la recherche en IA de Meta",
+      "points": [
+        "1989 : son réseau lit les chiffres écrits à la main sur les codes postaux américains",
+        "Pour la première fois, l'IA fait un vrai travail, hors du laboratoire",
+        "Dès 1996, LeNet lit les chèques : vers 2001, environ 10 % des chèques américains"
+      ],
+      "illus": "reseau",
+      "notes": "Les années passent, et nous voici en 1989. Un jeune Français ambitieux, Yann LeCun, a travaillé à Toronto avec Geoffrey Hinton, puis rejoint les laboratoires Bell, aux États-Unis. Il entraîne un réseau de neurones, avec la rétropropagation, à lire des chiffres écrits à la main : « ça, c'est un 3 ; ça, un 5 ». La poste américaine fournit 9 298 chiffres tirés de codes postaux, sur des lettres triées à Buffalo. Cela paraît simple ; c'est un exploit, car chaque main écrit à sa façon. Surtout, pour la première fois, l'IA fait un travail utile hors du laboratoire. À partir de 1996, des machines de l'entreprise NCR, bâties autour de ce réseau (LeNet), lisent le montant écrit à la main sur les chèques ; vers 2001, elles en lisent environ 10 % aux États-Unis. L'employé de banque n'a plus à déchiffrer chaque chiffre. Jusque-là, les exemples étaient des jouets ; désormais, le public voit à quoi sert l'IA. Conseil : écrivez un 1 et un 7 « à la française » puis « à l'américaine » : qu'est-ce qui rend la lecture difficile pour une machine ? Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; LeCun et al., Neural Computation (1989) et Proceedings of the IEEE (1998)."
+    },
+    {
+      "type": "texte",
+      "titre": "Le second hiver",
+      "annee": "1987–1993",
+      "points": [
+        "1987 : le marché des machines Lisp s'effondre ; les systèmes experts déçoivent",
+        "Les réseaux restent faibles : entraînement trop lent, ordinateurs pas assez puissants",
+        "Pas un échec, mais des attentes trop hautes : après 5 buts, 2 buts semblent une défaite",
+        "Pour les réseaux de neurones, le froid dure jusque vers 2006"
+      ],
+      "illus": "flocon",
+      "notes": "Le cours le dit bien : quand quelque chose de beau arrive, on se met à rêver très grand, jusqu'à ce qu'on se cogne contre le mur de la réalité. On annonçait que l'IA remplacerait bientôt les humains en tout ; le monde découvre qu'elle n'avance pas si vite. Côté règles : en 1987, le marché des machines Lisp, ces ordinateurs spéciaux pour l'IA, s'effondre face à des stations de travail et des PC moins chers ; les systèmes experts coûtent cher à entretenir et se trompent hors de leur domaine. Côté neurones : les réseaux restent imprécis et leur entraînement est long. El-Ghandour insiste : la cause n'est pas l'échec, le travail était bon ; la cause, ce sont les attentes. Si votre équipe marque cinq buts au premier match, deux buts au suivant ressemblent à une défaite. Beaucoup de chercheurs évitent alors le mot « IA » et parlent d'« informatique » ou d'« apprentissage automatique ». Conseil : demandez si, en 2026, nos attentes ne sont pas elles aussi très hautes : que promet-on aujourd'hui ? Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; D. Crevier, AI: The Tumultuous History of the Search for Artificial Intelligence (1993)."
+    },
+    {
+      "type": "portrait",
+      "personne": "deepblue",
+      "nom": "Deep Blue contre Kasparov",
+      "dates": "Mai 1997",
+      "role": "L'ordinateur d'IBM bat le champion du monde d'échecs",
+      "points": [
+        "New York, six parties : 2 victoires, 1 défaite, 3 nulles, soit 3½ à 2½",
+        "Partie 2 : un coup si « humain » que Kasparov accuse IBM de tricher",
+        "Aucun réseau de neurones : 200 millions de positions par seconde et des règles d'experts"
+      ],
+      "illus": "echecs",
+      "notes": "Le second hiver n'est pas froid tous les jours : il y a quelques jours de soleil, où la pluie s'arrête et où l'on sent un peu de chaleur. Mai 1997, New York. IBM fait jouer son superordinateur Deep Blue contre Garry Kasparov, champion du monde d'échecs depuis 1985. Un an plus tôt, à Philadelphie, Kasparov avait gagné 4 à 2. Cette fois, Kasparov gagne la première partie, Deep Blue la deuxième, puis trois nulles ; le 11 mai, la machine gagne la dernière : 3½ à 2½. Kasparov n'y croit pas. Dans la deuxième partie, la machine a joué un coup calme, presque créatif, « humain » ; il accuse IBM d'avoir fait intervenir un grand maître. Aucune preuve n'a été trouvée ; IBM refuse la revanche et retire la machine. La surprise : Deep Blue n'utilise aucun réseau de neurones. Il calcule très vite, avec 480 puces spécialisées, et juge les positions avec des règles mises au point avec des grands maîtres. Conseil : faites voter la classe, « Deep Blue est-il intelligent ? », et gardez le résultat pour AlphaGo (partie 6). Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; IBM, « Deep Blue » (ibm.com/history) ; Campbell, Hoane et Hsu, « Deep Blue », Artificial Intelligence (2002).",
+      "encart": "kasparov"
+    },
+    {
+      "type": "frise",
+      "titre": "L'apprentissage s'installe partout",
+      "evenements": [
+        {
+          "annee": "1992",
+          "titre": "TD-Gammon",
+          "texte": "Un réseau apprend le jacquet en jouant contre lui-même, sans parties humaines"
+        },
+        {
+          "annee": "1997",
+          "titre": "Mémoire (LSTM)",
+          "texte": "Hochreiter et Schmidhuber donnent aux réseaux une mémoire pour lire des suites"
+        },
+        {
+          "annee": "2001",
+          "titre": "Visages",
+          "texte": "Viola et Jones : une machine apprend à repérer les visages en temps réel"
+        },
+        {
+          "annee": "2002",
+          "titre": "Filtres anti-spam",
+          "texte": "Des filtres apprennent de vos propres courriels à reconnaître le spam"
+        },
+        {
+          "annee": "2005",
+          "titre": "Stanley",
+          "texte": "Une voiture sans conducteur de Stanford gagne la course du désert de la DARPA"
+        }
+      ],
+      "notes": "Pendant le second hiver, l'apprentissage automatique avance sans bruit. En 1992, TD-Gammon, de Gerald Tesauro (IBM), apprend le jacquet en jouant des centaines de milliers de parties contre lui-même, jusqu'à approcher le niveau des meilleurs joueurs. En 1997, la mémoire LSTM permet aux réseaux de suivre une phrase dans la durée ; Google Traduction s'en servira en 2016. En 2001, Paul Viola et Michael Jones entraînent une machine à trouver les visages dans une image, en temps réel ; leur méthode passera dans les appareils photo. En 2002, le programmeur Paul Graham propose des filtres anti-spam qui apprennent à partir de vos propres messages. En 2005, Stanley, la voiture de l'université Stanford, parcourt seule 212 km dans le désert et gagne 2 millions de dollars. Remarquez que l'IA devient invisible : elle trie le courrier, lit les chèques, filtre le spam, sans qu'on l'appelle IA. C'est l'« effet IA » : dès qu'une technique marche, on cesse de l'appeler intelligence. Conseil : demandez aux étudiants de citer une IA « invisible » qu'ils ont utilisée aujourd'hui. Source : compléments à l'épisode 2 de *La dernière invention* : Tesauro (1995) ; Hochreiter et Schmidhuber (1997) ; Viola et Jones (2001) ; P. Graham, A Plan for Spam (2002) ; Thrun et al. (2006)."
+    },
+    {
+      "type": "section",
+      "numero": "6",
+      "titre": "La révolution de l'apprentissage profond",
+      "periode": "2006–2017",
+      "texte": "En plein hiver, un chercheur relance les réseaux profonds. En 2012, données, cartes graphiques et algorithmes se rencontrent : la machine apprend à voir, à créer, puis à battre les champions.",
+      "illus": "reseau",
+      "notes": "Sixième étape, et c'est un réveil. En 2006, pour les réseaux de neurones, c'est encore l'hiver : presque personne n'y croit plus. Le cours raconte alors une suite de coups de théâtre. Un chercheur têtu, Geoffrey Hinton, montre comment entraîner un réseau à nombreuses couches. NVIDIA transforme les cartes graphiques des jeux vidéo en calculatrices géantes. Fei-Fei Li rassemble des millions d'images étiquetées. En 2011, Watson et Siri font sortir l'IA du laboratoire. En 2012, après le chat de Google, AlexNet fait s'emboîter les trois engrenages, et l'IA entre dans ce que le cours appelle son « deuxième printemps », celui que nous vivons encore. Viennent ensuite le faussaire et le détective, puis AlphaGo. Le mot « profond » désigne le nombre de couches du réseau, pas la profondeur de la pensée. Conseil : tracez au tableau trois colonnes, « algorithmes », « données », « calcul », et demandez aux étudiants de ranger chaque événement de cette partie dans la bonne colonne. Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026)."
+    },
+    {
+      "type": "portrait",
+      "personne": "hinton",
+      "nom": "Geoffrey Hinton",
+      "dates": "Né en 1947",
+      "role": "Chercheur à l'université de Toronto, pionnier des réseaux de neurones",
+      "points": [
+        "Il défend les réseaux de neurones pendant les deux hivers, contre presque tout le monde",
+        "2006 : il entraîne un réseau profond couche par couche ; « profond » = beaucoup de couches",
+        "Prix Turing 2018 (avec Bengio et LeCun), prix Nobel de physique 2024 (avec Hopfield)"
+      ],
+      "notes": "Nous sommes en 2006 et, pour les réseaux de neurones, il fait encore nuit. Presque tout le monde pense qu'entraîner un réseau profond est impossible. Souvenez-vous des lasagnes : on empile des couches de neurones ; plus il y en a, plus il faut monter et descendre pour régler les poids, et plus le calcul est long. Geoffrey Hinton, qui n'a jamais abandonné, publie alors avec Simon Osindero et Yee-Whye Teh un article au titre austère : « A fast learning algorithm for deep belief nets ». L'idée est d'une grande simplicité : au lieu d'entraîner toutes les couches à la fois, on les entraîne une par une, couche après couche. Son réseau reconnaît les chiffres écrits à la main mieux que les meilleures méthodes de l'époque. Avant cet article, dit le cours, le monde était une chose ; après, une autre. En 2023, Hinton quitte Google pour parler librement des risques de l'IA. Conseil : demandez « Qu'est-ce qui est profond, dans l'apprentissage profond ? » ; réponse attendue : le nombre de couches. Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; Hinton, Osindero et Teh, Neural Computation, 2006 ; ACM (prix Turing 2018) ; NobelPrize.org (physique 2024)."
+    },
+    {
+      "type": "schema",
+      "titre": "Des cartes graphiques pour calculer",
+      "annee": "2007",
+      "illus": "gpu",
+      "puces": [
+        "CPU : 4 cœurs",
+        "GPU : des milliers"
+      ],
+      "personne": "gpu",
+      "points": [
+        "Les cartes graphiques (GPU) servent aux jeux vidéo : des millions de pixels à la fois",
+        "2007 : avec CUDA, NVIDIA permet de les programmer pour n'importe quel calcul",
+        "Un CPU a quelques gros cœurs ; un GPU, des centaines puis des milliers de petits",
+        "Un réseau s'entraîne jusqu'à 70 fois plus vite ; en 2016, Google dévoile ses puces TPU"
+      ],
+      "notes": "Seul, l'article de Hinton n'aurait pas suffi, dit le cours : il fallait des machines. En novembre 2006, NVIDIA, qui fabrique des cartes graphiques pour les jeux vidéo, annonce CUDA ; les outils sont publiés en 2007. Un chercheur peut désormais utiliser sa carte graphique comme une calculatrice géante. Pourquoi est-ce si utile ? Le processeur (CPU), c'est quelques professeurs de mathématiques très forts, qui résolvent les problèmes un par un. La carte graphique (GPU), c'est un amphithéâtre de milliers d'élèves qui font chacun une petite multiplication, tous en même temps. Or un réseau de neurones n'est qu'une montagne de petites multiplications : entrées × poids. En 2009, une équipe de Stanford entraîne un réseau profond jusqu'à 70 fois plus vite sur GPU : des semaines de calcul deviennent un jour. Google va plus loin : ses propres puces pour l'IA, les TPU, tournent dès 2015 et sont dévoilées en 2016 ; ce sont elles qui feront tourner AlphaGo. Conseil : un étudiant fait seul dix multiplications, dix étudiants en font une chacun : qui finit le premier ? Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; NVIDIA (annonce de CUDA, 2006) ; Raina, Madhavan et Ng, ICML 2009 ; Google I/O (TPU, mai 2016)."
+    },
+    {
+      "type": "portrait",
+      "personne": "feifei",
+      "nom": "Fei-Fei Li et ImageNet",
+      "dates": "2009–2017",
+      "role": "Chercheuse à Princeton, puis à Stanford : elle mise sur les données",
+      "points": [
+        "2009 : ImageNet ; la base dépassera 14 millions d'images, en près de 22 000 catégories",
+        "Étiquetées à la main par près de 49 000 personnes de 167 pays, via Amazon Mechanical Turk",
+        "De 2010 à 2017, un concours annuel : quel programme reconnaît le mieux 1 000 catégories ?"
+      ],
+      "illus": "imagenet",
+      "notes": "Pendant que Hinton s'occupe des algorithmes et NVIDIA du calcul, une jeune chercheuse s'occupe du troisième engrenage : les données. Fei-Fei Li part d'une idée simple : un enfant apprend à voir en regardant des milliers de choses ; la machine aussi a besoin de sa « salle de sport ». Vers 2007, à Princeton, elle lance un projet que beaucoup jugent démesuré : rassembler des images de presque tout ce qui existe, et nommer chacune. La solution : Amazon Mechanical Turk, une plateforme où près de 49 000 travailleurs de 167 pays trient et étiquettent les photos, payés à la tâche. En 2009, ImageNet est présentée avec 3,2 millions d'images ; elle en comptera plus de 14 millions. À partir de 2010, un concours annuel oppose les meilleurs programmes sur 1 000 catégories. Les deux premières années, les progrès sont lents : 28 %, puis 26 % d'erreur… jusqu'en 2012. Conseil : ouvrez un débat : qui sont les travailleurs invisibles derrière l'IA, et comment sont-ils payés ? Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026), pour le rôle des données ; Deng et al., CVPR 2009 ; Russakovsky et al., International Journal of Computer Vision, 2015."
+    },
+    {
+      "type": "texte",
+      "titre": "2011 : l'IA sort du laboratoire",
+      "annee": "2011",
+      "points": [
+        "Février 2011 : Watson, d'IBM, bat les deux plus grands champions du jeu *Jeopardy!*",
+        "Des indices pleins de jeux de mots : il faut saisir le contexte, pas seulement savoir",
+        "Watson gagne 1 million de dollars, qu'IBM offre à des œuvres caritatives",
+        "Octobre 2011 : Siri arrive sur l'iPhone 4S ; des millions de gens parlent à leur téléphone"
+      ],
+      "personne": "watson",
+      "notes": "Après Deep Blue, IBM veut briller à la télévision. Son nouveau programme, Watson, participe à Jeopardy!, un jeu télévisé américain très populaire. Ce n'est pas un quiz ordinaire du type « quelle est la capitale de l'Égypte ? » : on donne la réponse, il faut trouver la question, et les indices sont pleins de jeux de mots et de sous-entendus. Comprendre le langage et le contexte : justement ce qu'on disait impossible pour une machine. Dans les émissions diffusées du 14 au 16 février 2011, Watson, sans connexion à Internet, affronte Ken Jennings et Brad Rutter et termine avec 77 147 dollars, contre 24 000 et 21 600. Il se trompe aussi : à une question sur les villes américaines, il répond « Toronto », suivi de cinq points d'interrogation. En octobre, Apple lance Siri sur l'iPhone 4S ; Siri est née au SRI, l'institut du robot Shakey. Conseil : posez la devinette du cours : un pays qui commence par « al », finit par « al », avec au milieu un pilier de l'islam (réponse : الصومال, avec صوم, le jeûne, au milieu). Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; IBM, « Watson, Jeopardy! champion » ; Apple, communiqué du 4 octobre 2011."
+    },
+    {
+      "type": "texte",
+      "titre": "2012 : la machine découvre le chat toute seule",
+      "annee": "2012",
+      "points": [
+        "Google Brain (Andrew Ng, Jeff Dean) relie 1 000 ordinateurs : 16 000 cœurs de calcul",
+        "Le réseau regarde 10 millions d'images tirées de vidéos YouTube ; personne ne lui dit rien",
+        "Seul, il forme un détecteur de « chat » : c'est l'apprentissage *non supervisé*",
+        "Premier signe qu'un réseau profond peut trouver des concepts, pas seulement mémoriser"
+      ],
+      "illus": "chat",
+      "notes": "Siri a ouvert la voie ; Google ne veut pas rester derrière. Son équipe Google Brain, avec Andrew Ng, de Stanford, et Jeff Dean, construit un réseau de neurones immense : plus d'un milliard de connexions. Pendant trois jours, on lui montre 10 millions d'images tirées de vidéos YouTube. Cette fois, personne ne lui dit « ceci est un chat, ceci est un humain ». On lui dit seulement, comme le résume le cours : « va dans la mer, et apprends à nager tout seul ». Peu à peu, les formes qui se répètent deviennent une seule chose, et un neurone du réseau se met à réagir aux visages de chats, très nombreux sur YouTube. Il ne lui manque que le mot « chat ». Jeff Dean résume au New York Times : « Nous ne lui avons jamais dit que c'était un chat. Il a, en quelque sorte, inventé le concept de chat. » La machine ne comprend peut-être pas, mais elle semble comprendre. Conseil : montrez trois chats très différents et demandez ce qu'ils ont en commun, sans prononcer le mot « chat ». Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; Le, Ranzato et al., ICML 2012 ; New York Times, juin 2012."
+    },
+    {
+      "type": "schema",
+      "titre": "2012 : AlexNet, les trois engrenages se rencontrent",
+      "annee": "2012",
+      "illus": "engrenages",
+      "points": [
+        "Krizhevsky, Sutskever et Hinton (Toronto) entraînent un réseau profond sur deux GPU de jeu",
+        "Concours ImageNet 2012 : 15,3 % d'erreur, contre 26,2 % pour le deuxième",
+        "Algorithmes (réseaux profonds) + données (ImageNet) + calcul (GPU) : tout se rencontre",
+        "Le deuxième printemps de l'IA commence : l'ère de l'apprentissage profond"
+      ],
+      "notes": "Tout est prêt : l'algorithme de Hinton, les images de Fei-Fei Li, les cartes graphiques de NVIDIA. En 2012, trois chercheurs de Toronto les réunissent : Alex Krizhevsky, Ilya Sutskever, futur cofondateur d'OpenAI, et leur professeur, Geoffrey Hinton. Leur réseau, AlexNet, compte 60 millions de paramètres, c'est-à-dire de poids à régler. Il s'entraîne cinq à six jours sur deux cartes graphiques de jeu vidéo, dans la chambre d'Alex, chez ses parents. Au concours ImageNet, la machine doit dire ce que montre chaque photo, parmi 1 000 catégories ; elle a cinq essais, et on compte une erreur si la bonne réponse n'y est pas. AlexNet se trompe 15,3 fois sur 100 ; le deuxième, 26,2 fois. Le cours le dit : il n'a pas seulement gagné, il a écrasé la compétition. Une seule lettre de différence, GPU au lieu de CPU, mais des années d'avance. On ne se contente plus d'une couche ou deux : on construit de vraies tours de lasagnes. Conseil : demandez quels engrenages manquaient en 1986, quand la rétropropagation est apparue (réponse : les données et le calcul). Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; Krizhevsky, Sutskever et Hinton, NeurIPS 2012 ; résultats du concours ILSVRC 2012."
+    },
+    {
+      "type": "schema",
+      "titre": "Un réseau profond, couche après couche",
+      "illus": "reseau",
+      "points": [
+        "Les premières couches repèrent des traits simples : bords, taches",
+        "Les couches suivantes combinent : formes, textures, parties",
+        "Les dernières reconnaissent des objets entiers : « chat », « voiture »",
+        "Chaque couche apprend seule ce qu'elle doit repérer"
+      ],
+      "notes": "Montrez l'animation : le signal traverse les couches de gauche à droite. Dans un texte, c'est pareil : lettres, mots, expressions, sens. Personne n'écrit ce que chaque neurone doit repérer : il l'apprend."
+    },
+    {
+      "type": "schema",
+      "titre": "2014 : le faussaire et le détective",
+      "annee": "2014",
+      "illus": "gan",
+      "roles": [
+        "faussaire",
+        "détective"
+      ],
+      "personne": "goodfellow",
+      "points": [
+        "Ian Goodfellow invente les GAN : deux réseaux qui s'entraînent l'un contre l'autre",
+        "Le faussaire fabrique de fausses images ; le détective essaie de les démasquer",
+        "Chaque fois qu'il est pris, le faussaire s'améliore ; le détective aussi",
+        "Des images presque vraies, puis les « deepfakes » : l'IA ne juge plus seulement, elle crée"
+      ],
+      "notes": "Jusqu'ici, l'IA juge surtout : chat ou chien, quel chiffre, quelle maladie. En 2014, un doctorant de Montréal, Ian Goodfellow, lui apprend à créer. Un soir, dans une brasserie de la ville, Les Trois Brasseurs, des amis lui demandent comment faire fabriquer des photos par un ordinateur. Il a une idée : faire se disputer deux réseaux, pour le bien de chacun. Rentré chez lui, il la programme dans la nuit, et elle marche du premier coup ; l'article remercie même la brasserie « d'avoir stimulé notre créativité ». Le premier réseau est un faussaire : il fabrique de fausses images. Le second est un détective : il doit dire si l'image est vraie ou fausse. Chaque fois qu'il est pris, le faussaire recommence en mieux, et le détective devient plus fin. Au bout de la course : des visages qui n'existent pas, presque parfaits. Revers de la médaille : en 2017 naît le mot « deepfake », pour les fausses vidéos de personnes réelles. Conseil : montrez un vrai visage et un visage généré (par exemple sur thispersondoesnotexist.com) et faites voter la classe. Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; Goodfellow et al., « Generative Adversarial Nets », NeurIPS 2014 ; MIT Technology Review, « The GANfather », 2018."
+    },
+    {
+      "type": "schema",
+      "titre": "Le go : plus de positions que d'atomes",
+      "illus": "go10",
+      "echelle": [
+        "échecs 10⁴³",
+        "atomes 10⁸⁰",
+        "go 10¹⁷⁰"
+      ],
+      "personne": "goban",
+      "points": [
+        "Plateau de 19 × 19 lignes, pierres noires et blanches : il faut encercler l'adversaire",
+        "Né en Chine il y a plus de 2 500 ans, c'est un jeu d'intuition plus que de calcul",
+        "Échecs : environ 10⁴³ positions possibles (Shannon, 1950) ; go : environ 10¹⁷⁰",
+        "C'est bien plus que les quelque 10⁸⁰ atomes de l'univers observable"
+      ],
+      "notes": "L'épisode 2 s'ouvre sur un jeu que peu d'entre nous connaissent : le go. Sur un plateau de 19 lignes sur 19, un joueur pose des pierres noires, l'autre des pierres blanches ; pour gagner, il faut encercler l'adversaire, comme dans une tenaille. Depuis toujours, le vainqueur est celui qui a de l'intuition et du flair. Le mathématicien Claude Shannon estimait en 1950 qu'il y a aux échecs environ 10⁴³ positions possibles, un 1 suivi de 43 zéros, et environ 10¹²⁰ parties différentes. C'est énorme, mais sans comparaison avec le go : environ 10¹⁷⁰ positions légales, selon le calcul exact publié en 2016. Comptez tous les atomes de l'univers observable : environ 10⁸⁰, beaucoup moins. Impossible donc de gagner par la seule force du calcul, comme Deep Blue aux échecs. Le cours conclut prudemment : à notre connaissance, c'est le jeu le plus complexe de l'histoire humaine. C'est ce défi que DeepMind, filiale de Google, décide de relever avec AlphaGo. Conseil : écrivez 10¹⁷⁰ en entier au tableau et laissez un étudiant compter les zéros. Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; Shannon, « Programming a Computer for Playing Chess », 1950 ; J. Tromp, « The Number of Legal Go Positions », 2016."
+    },
+    {
+      "type": "portrait",
+      "personne": "hassabis",
+      "nom": "AlphaGo et le coup 37",
+      "dates": "Mars 2016, Séoul",
+      "role": "DeepMind (Google), cofondée par Demis Hassabis",
+      "points": [
+        "Cinq parties contre Lee Sedol, légende du go : tous attendent la victoire de l'humain",
+        "Partie 2, coup 37 : un coup qu'aucun humain n'aurait joué ; on croit à une erreur",
+        "AlphaGo gagne 4 à 1 ; Lee Sedol gagne la partie 4 grâce à son propre coup génial, le 78e"
+      ],
+      "citation": "Ce n'est pas un coup humain. Je n'ai jamais vu un humain jouer ce coup. Si beau.",
+      "source": "Fan Hui, champion d'Europe de go, dans *Wired*, mars 2016",
+      "illus": "go",
+      "notes": "C'est l'histoire qui ouvre l'épisode 2. Mars 2016, Séoul. D'un côté, Lee Sedol, légende du go, dix-huit titres mondiaux ; de l'autre, AlphaGo, le programme de DeepMind. Tout le monde attend la victoire de l'humain : au go, il faut de l'intuition. Première partie : la machine gagne. « La chance du débutant », se dit le public. Deuxième partie : au 37e coup, AlphaGo pose une pierre si étrange que les commentateurs croient à une erreur ; selon ses propres calculs, un humain ne l'aurait jouée qu'une fois sur 10 000. Lee Sedol quitte un moment la salle, puis met près de 15 minutes à répondre. Ce n'est plus du calcul, dit le cours : c'est de la création. Troisième partie : encore perdue. Dans la quatrième, Lee Sedol trouve à son tour un coup génial, le 78e, et gagne. La cinquième est perdue : 4 à 1. En 2019, Lee Sedol prend sa retraite : l'IA est, dit-il, « une entité qui ne peut pas être vaincue ». Conseil : refaites le vote de Deep Blue : AlphaGo est-il intelligent ? Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026), qui place à tort le coup 37 dans la troisième partie ; Silver et al., Nature, 2016 ; Wired, mars 2016.",
+      "encart": "leesedol"
+    },
+    {
+      "type": "texte",
+      "titre": "AlphaZero, puis AlphaFold : du jeu à la science",
+      "annee": "2017–2024",
+      "points": [
+        "2017 : AlphaGo Zero apprend le go en jouant contre lui-même, sans aucune partie humaine",
+        "En 3 jours, il bat 100 à 0 la version qui avait vaincu Lee Sedol",
+        "AlphaZero apprend aussi les échecs et le shogi, avec les seules règles, en quelques heures",
+        "2020 : AlphaFold prédit la forme des protéines ; Nobel de chimie 2024 (Hassabis, Jumper)"
+      ],
+      "notes": "Le cours le dit : l'histoire ne s'arrête pas à Séoul, elle commence. AlphaGo avait d'abord étudié 30 millions de positions tirées de parties humaines, puis joué contre lui-même. En 2017, DeepMind supprime les maîtres humains : AlphaGo Zero ne reçoit que les règles du go. Il joue contre lui-même, se trompe, recommence : c'est l'apprentissage par renforcement, que nous verrons dans la partie 8. En trois jours, il bat 100 à 0 la version qui avait vaincu Lee Sedol. Puis AlphaZero apprend d'autres jeux à partir de leurs seules règles : en quatre heures, il dépasse Stockfish, le champion des programmes d'échecs. Enfin, raconte le cours, on se dit : assez joué, passons à la biologie. En 2020, AlphaFold prédit la forme en trois dimensions des protéines, un défi vieux de cinquante ans. En 2024, Demis Hassabis et John Jumper reçoivent le prix Nobel de chimie, avec David Baker. La leçon du cours : l'IA commence petite, presque futile, puis elle grandit et s'étend. Conseil : demandez si un jeu peut encore être appelé « futile ». Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; Silver et al., Nature, 2016 et 2017, et Science, 2018 ; NobelPrize.org (chimie 2024).",
+      "illus": "echecs"
+    },
+    {
+      "type": "frise",
+      "titre": "Trois victoires, trois façons de battre l'humain",
+      "evenements": [
+        {
+          "annee": "1997",
+          "titre": "Deep Blue",
+          "texte": "Le calcul : 200 millions de positions par seconde et des règles écrites par des experts"
+        },
+        {
+          "annee": "2011",
+          "titre": "Watson",
+          "texte": "Le langage : il gagne *Jeopardy!*, jeu plein de sous-entendus, et 1 million de dollars"
+        },
+        {
+          "annee": "2016",
+          "titre": "AlphaGo",
+          "texte": "La créativité : au go, 10¹⁷⁰ positions ; le coup 37 surprend ses propres créateurs"
+        },
+        {
+          "annee": "2017",
+          "titre": "AlphaGo Zero",
+          "texte": "Sans parties humaines : en 3 jours de jeu contre lui-même, il bat AlphaGo 100 à 0"
+        },
+        {
+          "annee": "2024",
+          "titre": "AlphaFold",
+          "texte": "Des jeux à la science : la forme des protéines, et le prix Nobel de chimie"
+        }
+      ],
+      "notes": "Une frise pour tout récapituler. Trois victoires, trois façons de battre l'humain, selon les supports NotebookLM : la force du calcul (Deep Blue, 1997), le langage et le contexte (Watson, 2011), l'intuition, presque la créativité (AlphaGo, 2016). Puis deux suites : AlphaGo Zero se passe des humains (2017), et AlphaFold passe des jeux à la science (prix Nobel 2024). Remarquez le changement de méthode : Deep Blue suivait des règles écrites par des experts ; AlphaGo apprenait de parties humaines avant de jouer contre lui-même ; AlphaGo Zero apprend seul, à partir des règles. Précision historique : le coup 37 a été joué dans la deuxième partie (le cours le place dans la troisième), et Lee Sedol n'a gagné que la quatrième. Conseil : cachez les années et demandez aux étudiants de remettre les cinq événements dans l'ordre, en justifiant par la méthode de la machine. Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026) et supports NotebookLM de l'enseignant ; IBM ; DeepMind ; NobelPrize.org."
+    },
+    {
+      "type": "section",
+      "numero": "7",
+      "titre": "Transformers et IA générative",
+      "periode": "2017–2026",
+      "texte": "Jusqu'ici, la machine jugeait. Avec le Transformer (2017), elle apprend à lire des textes entiers, puis se met à écrire, dessiner, composer et créer des vidéos.",
+      "illus": "attention",
+      "notes": "Rappelez le chemin parcouru : le perceptron, les deux hivers, puis la revanche des réseaux profonds avec AlexNet et AlphaGo. Jusqu'ici, presque tout ce que faisait l'IA revenait à juger : chat ou chien, montant d'un chèque, risque d'une maladie. Cette septième partie raconte le moment où la machine se met à produire. Elle suit quatre étapes : l'idée de l'IA générative ; un article de Google publié en 2017, qui invente le Transformer ; la course des modèles GPT, jusqu'à ChatGPT en novembre 2022 ; enfin des modèles qui voient, lisent et parlent à la fois. Elle se termine sur la question que le cours pose depuis le début : après tant de printemps et d'hivers, où en sommes-nous en 2026 ? En moins de dix ans, on passe d'un article de recherche à des outils que des centaines de millions de personnes utilisent chaque semaine. Conseil : demandez à main levée qui a utilisé un assistant (ChatGPT, Gemini, Claude…) cette semaine, et pour quoi faire ; notez trois usages au tableau, vous y reviendrez à la dernière diapositive de la partie. Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; chiffres d'utilisation : OpenAI (2025–2026)."
+    },
+    {
+      "type": "deux",
+      "titre": "Du classement à la création",
+      "gauche": {
+        "titre": "L'IA qui juge (hier)",
+        "points": [
+          "Une photo : « chat ou chien ? »",
+          "Un chèque : quel montant est écrit ?",
+          "Un malade : quel risque de maladie ?",
+          "Elle répond par une étiquette ou un pourcentage"
+        ]
+      },
+      "droite": {
+        "titre": "L'IA qui génère (aujourd'hui)",
+        "points": [
+          "Elle a appris des motifs : visages, ordre des mots, sons",
+          "Elle produit du neuf : images, musique, histoires",
+          "Elle imite un style : « à la manière de Picasso, de Dalí »",
+          "Inventer un style vraiment nouveau ? La question reste ouverte"
+        ]
+      },
+      "notes": "Longtemps, l'IA a passé des examens : une photo, elle répond « chien » ; un chèque, elle lit le chiffre ; un malade, elle estime le risque. Une IA qui classe et qui prédit. Puis les chercheurs se demandent : une machine qui a vu des millions de chats peut-elle en dessiner un ? C'est l'IA générative : elle ne juge plus, elle produit. Elle ne crée pas à partir de rien : elle a appris des motifs (la forme des visages, l'ordre des mots, les relations entre les sons) et elle les recombine. Elle prend le style, pas l'image : fin mars 2025, plus de 130 millions de personnes ont produit plus de 700 millions d'images en une semaine avec ChatGPT, beaucoup « à la manière du studio Ghibli ». Or son cofondateur, Hayao Miyazaki, avait jugé en 2016 une animation produite par IA « une insulte à la vie elle-même ». En lettres, on parle de *pastiche* ; la poésie arabe connaît la *mu'ârada* (Chawqi répondant à la *Burda* d'al-Bousiri). Conseil : faites écrire par un assistant un quatrain « à la manière » d'un poète étudié en cours ; la classe juge : pastiche réussi, ou création ? Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; OpenAI (avril 2025) ; NHK, *Never-Ending Man: Hayao Miyazaki* (2016)."
+    },
+    {
+      "type": "schema",
+      "titre": "« Attention Is All You Need »",
+      "annee": "2017",
+      "illus": "attention",
+      "points": [
+        "Juin 2017 : huit chercheurs de Google présentent le **Transformer**, testé sur la traduction",
+        "Il lit toute la phrase d'un coup : l'**attention** relie chaque mot à ceux qui l'éclairent",
+        "« L'étudiante ouvrit le livre car elle… » : « elle » regarde « étudiante »",
+        "C'est le « T » de GPT ; tous les grands modèles de langue en descendent (partie 9)"
+      ],
+      "notes": "2017, dit le cours, est « l'année charnière ». Huit chercheurs de Google publient un article au titre étonnant : *Attention Is All You Need*, « l'attention est tout ce qu'il vous faut ». C'est un clin d'œil à la chanson des Beatles *All You Need Is Love*, proposé par Llion Jones, l'un des huit auteurs ; le nom « Transformer », lui, a été choisi par Jakob Uszkoreit, qui aimait sa sonorité. L'idée : au lieu de lire mot après mot, comme un élève qui suit la ligne du doigt, le modèle regarde toute la phrase d'un coup et cherche, pour chaque mot, ceux qui lui donnent son sens. Le Transformer a d'abord été évalué sur la traduction (de l'anglais vers l'allemand et le français), où il a égalé ou dépassé les meilleurs systèmes. C'est aujourd'hui le T de GPT, *Generative Pre-trained Transformer*, et le 7e article le plus cité du XXIe siècle selon *Nature*. Conseil : écrivez au tableau la phrase de la diapositive ; faites flécher par la classe le mot que regarde « elle », sans aller plus loin : le mécanisme sera ouvert en partie 9. Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; Vaswani et al. (arXiv, juin 2017) ; *Wired* (mars 2024) ; *Nature* (avril 2025)."
+    },
+    {
+      "type": "frise",
+      "titre": "De GPT-1 à ChatGPT",
+      "evenements": [
+        {
+          "annee": "2018",
+          "titre": "GPT-1 et BERT",
+          "texte": "OpenAI entraîne GPT-1 sur plus de 7 000 livres inédits ; Google lance BERT"
+        },
+        {
+          "annee": "2019",
+          "titre": "GPT-2",
+          "texte": "1,5 milliard de paramètres ; OpenAI retarde sa diffusion complète par peur des abus"
+        },
+        {
+          "annee": "2020",
+          "titre": "GPT-3",
+          "texte": "175 milliards de paramètres : il rédige, résume et reformule"
+        },
+        {
+          "annee": "2022",
+          "titre": "ChatGPT",
+          "texte": "30 novembre : 1 million d'utilisateurs en 5 jours, 100 millions en 2 mois"
+        },
+        {
+          "annee": "2023",
+          "titre": "GPT-4",
+          "texte": "14 mars : il accepte aussi des images et réussit un examen du barreau simulé"
+        }
+      ],
+      "notes": "Le cours raconte cette course en quelques phrases. GPT-1 (juin 2018) n'était pas un génie, mais c'était le début de quelque chose de très intelligent ; il a appris la langue dans plus de 7 000 livres inédits : aventure, fantasy, romans d'amour. En 2019, GPT-2 écrit des paragraphes entiers : on lui donne le début d'une fausse dépêche sur des licornes découvertes dans une vallée des Andes, qui parlent un anglais parfait, et il invente la suite, jusqu'au nom de l'espèce, « la licorne d'Ovide ». En 2020, GPT-3 rédige, résume, reformule : médiocre selon nos critères d'aujourd'hui, mais éblouissant à l'époque. Le *Guardian* publie même une tribune « écrite par un robot » : en réalité, la rédaction a assemblé les meilleurs passages de huit textes produits par la machine. Puis, le 30 novembre 2022, ChatGPT met tout cela dans une simple fenêtre de conversation. Conseil : lancez le débat : qui est l'auteur de la tribune du *Guardian* ? La machine, la personne qui a écrit la consigne, ou le rédacteur qui a monté les passages ? Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; articles et annonces d'OpenAI (2018–2023) ; *The Guardian* (8 sept. 2020) ; UBS, via Reuters (févr. 2023)."
+    },
+    {
+      "type": "frise",
+      "titre": "Vers le multimodal : voir, lire, parler",
+      "evenements": [
+        {
+          "annee": "2014",
+          "titre": "Légendes",
+          "texte": "Un réseau qui voit et un réseau qui écrit, collés ensemble, décrivent une photo"
+        },
+        {
+          "annee": "2021",
+          "titre": "CLIP",
+          "texte": "400 millions de paires image-texte : images et mots dans le même espace"
+        },
+        {
+          "annee": "2022",
+          "titre": "Diffusion",
+          "texte": "DALL·E 2, Stable Diffusion : une image naît d'un bruit qu'on débruite"
+        },
+        {
+          "annee": "2023",
+          "titre": "Ponts",
+          "texte": "On relie un grand modèle de vision à un grand modèle de langue"
+        },
+        {
+          "annee": "2024",
+          "titre": "Natif",
+          "texte": "Un seul réseau pour le texte, l'image et la voix : environ un tiers de seconde pour répondre"
+        }
+      ],
+      "notes": "Le mot « multimodal » fait croire à un pouvoir magique ; les supports NotebookLM montrent au contraire une chaîne de pièces assemblées pas à pas : d'abord deux systèmes séparés, puis un espace commun (CLIP), puis des ponts entre modèles gelés, enfin des modèles entraînés dès le départ sur tout à la fois (GPT-4o, Gemini). Source : cours *La dernière invention* d'Ahmed El-Ghandour (2026) et supports NotebookLM de l'enseignant."
+    },
+    {
+      "type": "texte",
+      "titre": "2026 : printemps éternel ou nouvel hiver ?",
+      "illus": "saisons",
+      "courbes": [
+        "attentes",
+        "capacités"
+      ],
+      "points": [
+        "L'IA est multimodale : elle écrit, résume, dessine, compose, fait des vidéos, programme",
+        "La question de toute cette histoire : nos attentes dépassent-elles ses capacités ?",
+        "Si oui, un nouvel hiver peut venir, même quand les réussites restent immenses",
+        "La leçon des deux hivers : juger sur les résultats, pas sur les promesses"
+      ],
+      "notes": "Nous voici en 2026. L'IA écrit, résume, dessine, compose de la musique, produit des vidéos avec le son, programme, et souvent tout cela dans la même conversation. Le cours pose alors la question qui l'inquiète le plus, celle qu'on a vue revenir avant chaque hiver : nos attentes ont-elles dépassé ses capacités ? Une technologie peut être excellente, capable de changer le monde, et décevoir quand même, parce qu'on attendait d'elle bien plus. Souvenez-vous de l'équipe qui avait marqué 5 buts : ses 2 buts suivants ont eu l'air d'un échec. Les signes vont dans les deux sens. Côté printemps : plus de 900 millions de personnes utilisent ChatGPT chaque semaine (OpenAI, février 2026). Côté nuages : en 2025, le cabinet Gartner place l'IA générative dans le « creux de la désillusion » ; moins de 30 % des responsables de l'IA disent que leur PDG est satisfait du retour sur investissement. Personne ne connaît l'avenir. Conseil : dessinez les deux courbes au tableau et demandez à trois étudiants d'y placer 2026 : montée, sommet ou descente des attentes ? Chacun justifie avec un fait, pas une impression. Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; OpenAI (27 février 2026) ; Gartner, *Hype Cycle for Artificial Intelligence* (août 2025)."
+    },
+    {
+      "type": "section",
+      "numero": "8",
+      "titre": "Comment une machine apprend-elle ?",
+      "periode": "Épisode 3 : le réseau de neurones",
+      "texte": "Ouvrons la machine : comment un réseau de neurones artificiels apprend-il ? Mais d'abord, une histoire.",
+      "illus": "reseau",
+      "notes": "Nous avons suivi l'histoire de l'IA jusqu'à aujourd'hui ; nous avons croisé le perceptron (1958) et la rétropropagation (1986). Il est temps d'ouvrir la machine, comme le fait l'épisode 3 de *La dernière invention*. Voici le chemin de cette partie. D'abord une histoire vraie et triste : une voiture qui a « vu » sans comprendre. Puis l'idée de copier le cerveau. Puis un jeu de devinettes qui explique, sans formule compliquée, les poids, le biais et l'activation. Enfin, les trois façons d'apprendre, et les deux erreurs d'une machine qui apprend trop, ou pas assez. À la fin, nous reviendrons à la voiture, et chacun saura expliquer ce qui s'est passé. Conseil : demandez d'abord à la classe : « Pour vous, qu'est-ce qu'apprendre : répéter, se tromper, comprendre ? » Notez les réponses au tableau ; la machine fera les deux premières choses, mais la troisième ? Source : épisode 3 de *La dernière invention* (Ahmed El-Ghandour, 2026)."
+    },
+    {
+      "type": "texte",
+      "titre": "Une nuit à Tempe",
+      "annee": "2018",
+      "personne": "ubercar",
+      "points": [
+        "18 mars 2018, vers 22 h, Tempe (Arizona) : une femme traverse une rue sombre avec son vélo",
+        "Sur le vélo, ses sacs de courses. Une voiture arrive, ne freine pas à temps : elle meurt",
+        "La voiture se conduisait seule : un essai d'Uber, avec une conductrice de sécurité à bord",
+        "Ses capteurs l'avaient « vue ». Pourquoi n'a-t-elle pas compris ? Uber suspend ses essais"
+      ],
+      "notes": "Racontez lentement, sans effet. Un dimanche soir, une grande avenue mal éclairée. Une femme de 49 ans, Elaine Herzberg, revient de ses courses : les sacs sont accrochés à son vélo, qu'elle pousse à la main pour traverser, loin du passage piéton. Des phares arrivent. La voiture roule à plus de 60 km/h et ne freine pas à temps. La femme meurt peu après à l'hôpital. On pense d'abord à un accident de plus : ne conduisez pas le téléphone à la main ! Puis on apprend le détail étrange : la voiture se conduisait seule. Uber y testait son intelligence artificielle ; une employée était assise au volant pour intervenir en cas de problème, mais elle n'a pas réagi à temps. Les enregistrements montrent que la voiture savait que quelque chose traversait devant elle. Alors pourquoi ? Dès le lendemain, Uber suspend tous ses essais : il faut d'abord comprendre. Faisons comme Uber. Conseil : ne donnez pas la réponse. Demandez seulement : « Si la voiture l'a vue, pourquoi ne s'est-elle pas arrêtée ? » Gardez les hypothèses au tableau jusqu'à la diapositive « Retour à Tempe ». Source : épisode 3 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; NTSB, rapport HAR-19/03 (2019)."
+    },
+    {
+      "type": "texte",
+      "titre": "Copier la nature",
+      "illus": "oiseau",
+      "points": [
+        "Pour voler, on a observé les oiseaux ; pour bâtir une intelligence, on observe le cerveau",
+        "Le cerveau humain compte environ 86 milliards de neurones, reliés entre eux",
+        "Comprendre comment ils travaillent, c'est peut-être s'approcher de l'IA générale",
+        "De cette idée naît le réseau de neurones artificiels : une copie très simplifiée"
+      ],
+      "notes": "Comment arriver un jour à une IA générale ? L'épisode 3 répond : en faisant ce que l'humanité a toujours fait, imiter la nature. Pour voler, on a regardé les oiseaux. En 1900, Wilbur Wright raconte avoir observé des vautours : pour garder l'équilibre, ils tordent le bout de leurs ailes. Les frères Wright en tirent le « gauchissement » des ailes de leurs premiers appareils. Mais un avion ne bat pas des ailes : on copie le principe, pas les plumes. Pour l'intelligence, le modèle est le cerveau humain : environ 86 milliards de neurones, selon un comptage publié en 2009 (le chiffre rond de « 100 milliards », souvent répété, n'avait jamais été compté). Un neurone artificiel est une copie très simplifiée d'un neurone : il reçoit des signaux, leur donne plus ou moins d'importance, et décide s'il transmet. Nous l'avons déjà croisé avec le perceptron de Rosenblatt. Conseil : demandez aux étudiants de citer d'autres inventions inspirées de la nature, puis posez la question : copier la forme du cerveau, est-ce copier la pensée ? Source : épisode 3 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; Azevedo et al., *Journal of Comparative Neurology* (2009) ; Wilbur Wright, lettre à Octave Chanute (1900)."
+    },
+    {
+      "type": "schema",
+      "titre": "Le jeu des devinettes : quel est son métier ?",
+      "illus": "devinette",
+      "indices": [
+        "casque : 90 %",
+        "gilet : 70 %",
+        "bottes : 60 %"
+      ],
+      "resultat": "ingénieur",
+      "points": [
+        "Blouse blanche, stéthoscope autour du cou : c'est un médecin. Facile !",
+        "Puis une équipe qui ignore nos métiers : chacun ne voit qu'un bout de la photo",
+        "L'un voit la tête (casque ? casquette ?), l'autre les habits, le dernier les chaussures",
+        "Casque 90 %, gilet 70 %, bottes de sécurité 60 % : l'équipe conclut « ingénieur »"
+      ],
+      "notes": "Jouons, comme dans l'épisode 3. Première photo : un homme tout en blanc, un stéthoscope autour du cou. Médecin, facile. Maintenant, imaginez une équipe venue de la forêt amazonienne : des gens qui n'ont jamais vu nos métiers modernes. Et personne ne voit la photo entière : je la découpe. Le premier ne regarde que la tête : casque, casquette ou béret ? Le deuxième, les vêtements : blouse, bleu de travail, combinaison ? Le troisième, les chaussures : bottes de sécurité, rangers, baskets ? Chacun fait son rapport. Tête : « Quelque chose de rond, blanc, pas très haut : à 90 %, un casque. » Vêtements : « Un petit habit sans manches, par-dessus les autres, couleur fluo : à 70 %, un gilet. » Chaussures : « De grosses chaussures : 60 % bottes de sécurité, 40 % rangers. » Je rassemble les rapports et je compare avec ma liste de métiers : c'est un ingénieur. Personne n'a rien « compris » : on a combiné des indices. Gardez en tête ces 40 % de rangers. Conseil : faites jouer la scène par trois volontaires, chacun ne voyant qu'un tiers d'une photo imprimée. Source : épisode 3 de *La dernière invention* (Ahmed El-Ghandour, 2026)."
+    },
+    {
+      "type": "schema",
+      "titre": "Anatomie d'une décision : poids, biais, activation",
+      "illus": "decision",
+      "etapes": [
+        "entrées × poids",
+        "somme + biais",
+        "activation"
+      ],
+      "points": [
+        "Poids = importance : casque 100, gilet 70, bottes 50 (l'indice le plus douteux)",
+        "(0,9 × 100 + 0,7 × 70 + 0,6 × 50) ÷ 220 = 169 ÷ 220 ≈ 77 % « ingénieur »",
+        "Biais : un nombre ajouté à la somme, qui corrige un penchant (bottes surestimées)",
+        "Activation : pas « ingénieur ou non », mais « 60 % ingénieur, 30 % soldat… »"
+      ],
+      "notes": "Toutes les informations ne se valent pas : c'est le poids, déjà vu avec le perceptron. Le casque dit beaucoup : poids 100. Le gilet un peu moins, car d'autres métiers en portent : 70. Les bottes nous laissaient hésitants : 50. La formule du cours : on multiplie chaque probabilité par son poids, on additionne, puis on divise par la somme des poids. 90 + 49 + 30 = 169, et 169 ÷ 220 ≈ 77 % : ingénieur. (La vidéo dit 76 % ; le calcul exact donne 76,8 %.) Mais cette formule est linéaire : elle ne sépare les cas que par une ligne droite, comme le perceptron devant le mur du XOR. Le cours la complète par deux réglages. Le biais : un nombre ajouté à la somme, qui déplace le seuil de décision et corrige une tendance, par exemple une équipe qui donne aux bottes plus d'importance qu'elles n'en méritent. La fonction d'activation : elle casse la ligne droite et donne une réponse nuancée (60 % ingénieur, 30 % soldat, 10 % autre chose) au lieu d'un simple oui ou non. Chaque concepteur choisit ses fonctions selon ce qu'il veut obtenir. Conseil : faites le calcul au tableau avec la classe, calculatrice en main. Source : épisode 3 de *La dernière invention* (Ahmed El-Ghandour, 2026)."
+    },
+    {
+      "type": "schema",
+      "titre": "Niveau 2 : le soldat en tenue camouflée",
+      "illus": "devinette",
+      "indices": [
+        "casque : 90 %",
+        "gilet : 70 %",
+        "bottes : 60 %"
+      ],
+      "resultat": "ingénieur ✗",
+      "points": [
+        "Même casque, même gilet, mêmes bottes… mais une tenue camouflée : un soldat en service",
+        "L'équipe a répondu « ingénieur » : la couleur des vêtements n'avait aucun poids",
+        "On lui signale l'erreur, elle ajuste : désormais, la couleur compte. C'est cela, apprendre",
+        "Plus d'équipes (objet tenu, véhicule, décor) = plus de paramètres = de meilleures réponses"
+      ],
+      "notes": "Passons au niveau 2. Je montre à mes équipes une nouvelle photo : casque, gilet, grosses bottes. Elles refont exactement le même travail et répondent, sûres d'elles : « Ingénieur ! » Faux : c'est un soldat en service, en tenue camouflée. Où est l'erreur ? Personne n'avait donné de poids à la couleur des vêtements. Alors je retourne voir les équipes : « La prochaine fois, donnez du poids à la couleur. » Et ainsi de suite, photo après photo : si la réponse est juste, bravo ; si elle est fausse, on cherche ce qui a manqué et on change les poids. L'équipe s'améliore à chaque erreur. Pour aller plus loin, j'agrandis l'équipe : l'un regarde ce que l'homme tient à la main, un autre ce qu'il conduit (moto, tracteur, voiture), un autre le décor. Un tas de sable et de gravier derrière un ingénieur ? Notre certitude peut passer de 70 % à 80 %. Plus d'indices, c'est plus de paramètres, et des réponses plus justes. Conseil : montrez une autre photo et demandez à la classe quel nouvel indice il faudrait ajouter. Source : épisode 3 de *La dernière invention* (Ahmed El-Ghandour, 2026)."
+    },
+    {
+      "type": "texte",
+      "titre": "Un réseau de neurones, en une phrase",
+      "illus": "reseau",
+      "points": [
+        "Chaque neurone artificiel reçoit des indices et leur donne une probabilité et un poids",
+        "Il transmet sa conclusion à la couche suivante, jusqu'à la réponse finale",
+        "Apprendre = ajuster les poids après chaque erreur : des millions, puis des milliards",
+        "Tout cela sans rien comprendre : c'est l'idée fondatrice de l'IA d'aujourd'hui"
+      ],
+      "notes": "Voici, en résumé, ce qu'est un réseau de neurones artificiels : nos équipes de devinettes. Chaque neurone regarde une petite partie du problème. Il donne à ce qu'il voit une probabilité (suis-je sûr que c'est un casque ?) et un poids (cet indice compte-t-il beaucoup ?), puis il passe sa conclusion à l'étage au-dessus. Exemple du cours : un stéthoscope autour du cou pèse très lourd pour dire « médecin » ; mais est-ce vraiment un stéthoscope ? Ça, c'est la probabilité. Empilez des couches de ces équipes : vous obtenez un réseau profond. Le nombre de ces réglages a explosé : souvenez-vous des 175 milliards de paramètres pour GPT-3 en 2020, 671 milliards pour le modèle chinois DeepSeek-V3 fin 2024. Mais apprendre reste la même chose : se tromper, puis ajuster les poids. Et aucun de ces neurones ne « comprend » ce qu'il fait. Conseil : demandez à trois étudiants de redire l'idée avec leurs propres mots, sans employer le mot « neurone ». Source : épisode 3 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; Brown et al., « Language Models are Few-Shot Learners » (2020) ; DeepSeek-AI, rapport technique de DeepSeek-V3 (2024)."
+    },
+    {
+      "type": "schema",
+      "titre": "Trois façons d'apprendre",
+      "illus": "apprendre",
+      "types": [
+        "supervisé",
+        "non supervisé",
+        "renforcement"
+      ],
+      "points": [
+        "Supervisé : le maître donne la bonne réponse, même après une erreur (LeNet et les chèques)",
+        "Non supervisé : « trouve seul ce qui se répète » (le chat de Google, 2012)",
+        "Par renforcement : seulement « faux » ou « juste », jamais la réponse (AlphaGo Zero, 2017)",
+        "ChatGPT mêle les trois : lire seul, imiter des dialogues, puis être noté par des humains"
+      ],
+      "notes": "Tout notre jeu de devinettes illustrait une seule façon d'apprendre : l'apprentissage supervisé. Le maître connaît la réponse et la donne, même quand l'équipe s'est trompée : « Non, c'est un soldat. » C'est ainsi que LeNet a appris à lire les chiffres des chèques, sur des milliers d'exemples étiquetés. Deuxième façon, non supervisée : on donne aux équipes des millions d'images, de vidéos, de textes, et on leur dit : « Débrouillez-vous, trouvez ce qui se répète. » En 2012, un réseau de Google a ainsi dégagé tout seul l'idée de « chat » dans 10 millions d'images tirées de YouTube. Troisième façon, par renforcement : proche du supervisé, mais le maître ne donne jamais la solution. Il dit seulement « faux, cherche encore », puis « juste ! ». AlphaGo Zero (2017) a appris le go ainsi, en jouant contre lui-même, jusqu'à battre 100 à 0 la version victorieuse de Lee Sedol. ChatGPT, lui, a lu d'énormes quantités de textes, puis imité des dialogues écrits par des formateurs, puis des humains ont classé ses réponses. Conseil : demandez aux étudiants comment ils ont appris à nager, à lire, à cuisiner. Source : épisode 3 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; Le et al. (2012) ; Silver et al., *Nature* (2017) ; OpenAI (2022)."
+    },
+    {
+      "type": "schema",
+      "titre": "Trop apprendre, pas assez apprendre",
+      "illus": "ajustement",
+      "cas": [
+        "pas assez",
+        "équilibre",
+        "par cœur"
+      ],
+      "points": [
+        "Surapprentissage : sur les photos d'entraînement, tous les médecins portaient des lunettes",
+        "Le modèle donne aux lunettes un poids de 100 : un médecin sans lunettes ? « Pas médecin »",
+        "Sous-apprentissage : l'élève qui survole le livre et laisse de côté des détails importants",
+        "Même remède : plus de données, plus variées : jour et nuit, lieux, couleurs, vêtements"
+      ],
+      "notes": "Comme un humain, un réseau se trompe, et de deux façons opposées. Reprenons notre jeu. Imaginez que tous les médecins des photos d'entraînement portaient des lunettes. Le modèle se dit : « Le médecin a besoin de lunettes pour travailler, comme le soudeur de son masque. » Il donne aux lunettes un poids de 100. Arrive un médecin avec son stéthoscope, mais sans lunettes : « Pas médecin ! » C'est le surapprentissage : le modèle a appris par cœur ses exemples, avec leurs détails accidentels, au lieu de la règle. Ce n'est pas qu'une fable : en 2016, des chercheurs ont entraîné exprès un modèle sur des photos où tous les loups étaient dans la neige ; il est devenu… un détecteur de neige. À l'opposé, le sous-apprentissage : l'élève qui survole le livre et néglige des détails importants. Le remède est le même : plus de données, et plus variées : de jour et de nuit, anciennes et récentes, d'autres lieux, d'autres couleurs, d'autres vêtements. Que la machine « voie le monde ». Conseil : demandez quel détail accidentel pourrait tromper une IA chargée de reconnaître les étudiants de votre faculté. Source : épisode 3 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; Ribeiro, Singh et Guestrin, « Why Should I Trust You? » (2016)."
+    },
+    {
+      "type": "texte",
+      "titre": "Retour à Tempe : ce qui s'est passé",
+      "annee": "2018",
+      "illus": "uber",
+      "points": [
+        "Détectée 5,6 s avant le choc, mais classée tour à tour véhicule, vélo, « autre »",
+        "Rien de prévu pour les piétons hors des passages (NTSB, 2019) : une vision trop étroite",
+        "Freinage d'urgence désactivé en mode autonome ; la conductrice regardait son téléphone",
+        "La leçon d'Uber, et la nôtre : comprendre la machine avant de lui faire confiance"
+      ],
+      "notes": "Revenons à la rue sombre de Tempe : nous avons maintenant les mots pour comprendre. L'enquête du NTSB, l'agence fédérale américaine de sécurité des transports, a établi en 2019 que les capteurs avaient détecté la piétonne 5,6 secondes avant le choc. Mais le système n'a jamais su ce qu'il voyait : véhicule, vélo, « autre objet » ? À chaque nouvelle étiquette, il recalculait sa trajectoire, et il n'a pas prévu qu'elle allait croiser sa route. Surtout, sa conception ne tenait pas compte des piétons qui traversent hors des passages. Pour cette voiture, un être humain marchait sur les bandes blanches : le cours y voit un surapprentissage, une définition trop étroite de l'humain. À un peu plus d'une seconde du choc, le système a compris qu'il fallait freiner d'urgence, mais ce freinage était désactivé en mode autonome : on comptait sur la conductrice de sécurité, qui regardait son téléphone. En 2023, elle a plaidé coupable de mise en danger. Conseil : relisez les hypothèses du tableau, puis ouvrez le débat : chaque année, environ 1,19 million de personnes meurent sur des routes où conduisent des humains ; pourquoi exige-t-on davantage d'une machine ? Source : épisode 3 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; NTSB, rapport HAR-19/03 (2019) ; OMS (2023)."
+    },
+    {
+      "type": "section",
+      "numero": "9",
+      "titre": "Comment une machine lit-elle un texte ?",
+      "periode": "Des mots aux nombres",
+      "texte": "Nous avons vu comment un modèle « voit » ; il comprend le langage de façon assez semblable. Comment transforme-t-il des mots en nombres ?",
+      "illus": "attention",
+      "notes": "L'épisode 3 se termine sur une promesse. Souvenez-vous de l'équipe venue d'Amazonie : chacun regardait un morceau de la photo (la tête, les vêtements, les chaussures), donnait une probabilité, et le réseau pesait tous ces indices. Nous avons ainsi compris comment une machine peut « voir ». Ahmed El-Ghandour ajoute alors : la façon dont le modèle comprend la parole n'est pas si différente. Une phrase, elle aussi, se découpe en morceaux ; chaque morceau devient des nombres ; ces nombres sont pesés, comparés, reliés entre eux. Cette partie suit ce chemin : du texte aux nombres (les tokens), la carte des sens, le contexte qui donne le sens (l'attention des Transformers, 2017), puis la machine qui « écrit » en devinant le mot suivant. Pour des étudiants en lettres, c'est le cœur du sujet : la machine travaille notre matière première, la langue. Conseil : faites lever la main : qui pense que la machine lit les lettres, comme nous ? Reposez la question à la fin de la partie. Source : épisode 3 de *La dernière invention* (Ahmed El-Ghandour, 2026), qui annonce l'épisode suivant, consacré aux grands modèles de langue."
+    },
+    {
+      "type": "schema",
+      "titre": "Du texte aux nombres",
+      "illus": "tokens",
+      "phrase": "Le chat boit du lait",
+      "ids": "412 8093 5871 88 2310",
+      "points": [
+        "Un ordinateur ne connaît que des nombres",
+        "Le texte est découpé en morceaux : les **tokens**",
+        "Chaque token reçoit un numéro, puis une longue liste de nombres : un **vecteur**",
+        "Le modèle ne voit jamais les lettres, seulement ces nombres"
+      ],
+      "notes": "Les numéros de l'image sont inventés pour l'exemple. Un vrai vocabulaire compte des dizaines de milliers de tokens (un peu plus de 50 000 pour GPT-2) ; un mot courant reste entier, un mot rare ou long est coupé en plusieurs morceaux. Les colonnes colorées représentent les vecteurs : des centaines de nombres par token, appris pendant l'entraînement. Renvoyez à la leçon « Comment une IA comprend un texte » du chapitre 1."
+    },
+    {
+      "type": "schema",
+      "titre": "La carte des sens",
+      "illus": "sens",
+      "mots": [
+        "chat",
+        "chien",
+        "cheval",
+        "livre",
+        "roman",
+        "lecteur",
+        "homme",
+        "femme",
+        "roi",
+        "reine"
+      ],
+      "points": [
+        "Chaque vecteur est une adresse sur une immense carte des sens",
+        "Les mots qui ont les mêmes voisins se rapprochent : « chat », « chien »",
+        "Le modèle l'apprend seul, en devinant des mots cachés dans des milliards de phrases",
+        "La carte garde des relations : de « homme » à « femme » comme de « roi » à « reine »"
+      ],
+      "notes": "Jeu à faire avec la classe : « Le ___ boit du lait et dort sur le canapé. » Tout le monde devine « chat » grâce aux voisins : c'est ce que fait le modèle, à très grande échelle. Le linguiste J. R. Firth le disait en 1957 : « You shall know a word by the company it keeps ». Les vraies cartes ont des centaines de dimensions ; on les projette ici sur deux. Ces cartes reproduisent aussi les stéréotypes des textes d'entraînement."
+    },
+    {
+      "type": "schema",
+      "titre": "Le contexte donne le sens",
+      "illus": "contexte",
+      "phrase1": "la souris mange le fromage",
+      "phrase2": "je clique avec la souris",
+      "liens": [
+        [
+          1,
+          4
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "points": [
+        "Un même mot peut avoir plusieurs sens : « souris »",
+        "L'**attention** relie chaque mot à ses voisins",
+        "Avec « fromage », la souris est l'animal ; avec « clique », c'est l'objet",
+        "Le vecteur du mot est recalculé selon son contexte"
+      ],
+      "notes": "C'est ce qui distingue les Transformers (2017) des méthodes plus anciennes, qui donnaient un seul vecteur à chaque mot, quel que soit son sens. Autres exemples : « avocat » (le métier, le fruit), « glace » (l'eau gelée, le miroir). Demandez aux étudiants un exemple dans une autre langue : en arabe, « عين » (l'œil, la source)."
+    },
+    {
+      "type": "schema",
+      "titre": "Comment « écrit » un modèle de langue",
+      "illus": "motsuivant",
+      "points": [
+        "Il découpe le texte en morceaux, les tokens",
+        "Il calcule la probabilité de chaque token suivant",
+        "Il en choisit un, l'ajoute au texte, et recommence",
+        "Des humains notent ensuite ses réponses pour l'affiner"
+      ],
+      "notes": "C'est le modèle de bigrammes du carnet 08, en immensément plus grand. Le réglage par des humains s'appelle en anglais RLHF : apprentissage par renforcement à partir de retours humains. Insistez : le modèle prédit du texte plausible, pas du texte vrai.",
+      "debut": "Le chat boit du",
+      "suites": [
+        "lait",
+        "café",
+        "thé",
+        "jus"
+      ]
+    },
+    {
+      "type": "chat",
+      "titre": "Un dialogue avec un modèle de langue",
+      "annee": "2022",
+      "legende": "Exemple fictif, écrit pour la classe",
+      "echanges": [
+        {
+          "qui": "h",
+          "texte": "Explique le chaînage avant à un étudiant de littérature."
+        },
+        {
+          "qui": "m",
+          "texte": "Imaginez un détective : il part des indices qu'il connaît et applique ses règles une à une, jusqu'à trouver le coupable."
+        },
+        {
+          "qui": "h",
+          "texte": "Donne-moi une référence pour citer ça dans mon mémoire."
+        },
+        {
+          "qui": "m",
+          "texte": "Attention : vérifiez toujours une référence dans une bibliothèque. Je peux me tromper ou en inventer."
+        }
+      ],
+      "notes": "Comparez avec ELIZA : cette fois, la réponse est pertinente, reformulée, adaptée au public. Mais le risque demeure : un modèle peut inventer une référence, une citation, une date. C'est l'objet de l'activité « l'épreuve des références » du guide."
+    },
+    {
+      "type": "section",
+      "numero": "10",
+      "titre": "L'ère des agents",
+      "periode": "2023–2026",
+      "texte": "Le modèle de langue ne se contente plus de répondre : il planifie, utilise des outils et agit.",
+      "illus": "agent",
+      "notes": "Dernière étape : c'est le sujet de l'actualité. Rappelez Shakey (1966) : percevoir, planifier, agir. L'idée d'agent est ancienne ; ce qui change, c'est qu'un modèle de langue sert maintenant de « cerveau »."
+    },
+    {
+      "type": "texte",
+      "titre": "Qu'est-ce qu'un agent ?",
+      "points": [
+        "Un agent perçoit son environnement et agit sur lui pour atteindre un but",
+        "Un thermostat est un agent très simple : il mesure, puis chauffe ou non",
+        "Russell et Norvig (1995) définissent toute l'IA comme l'étude des agents",
+        "Un agent d'IA moderne reçoit un objectif, pas seulement une question"
+      ],
+      "illus": "thermostat",
+      "notes": "Définition à faire noter. La différence avec un agent conversationnel classique : on ne demande plus « réponds », on demande « fais ». Exemple : « Trouve trois articles sur Kateb Yacine, lis-les et fais-moi une fiche. »"
+    },
+    {
+      "type": "schema",
+      "titre": "La boucle d'un agent",
+      "illus": "boucle",
+      "points": [
+        "Objectif : ce que l'utilisateur demande",
+        "Réfléchir : le modèle planifie l'étape suivante",
+        "Agir : il utilise un outil (recherche, calcul, fichier, navigateur)",
+        "Observer : il lit le résultat, puis recommence jusqu'au but"
+      ],
+      "notes": "Faites suivre la boucle animée. Chaque tour peut réussir ou échouer ; l'agent corrige son plan. C'est pourquoi il faut limiter les outils auxquels il a accès et vérifier ses actions importantes."
+    },
+    {
+      "type": "frise",
+      "titre": "Des agents conversationnels aux agents",
+      "evenements": [
+        {
+          "annee": "2022",
+          "titre": "ReAct",
+          "texte": "Des chercheurs font alterner raisonnement et actions dans un même modèle"
+        },
+        {
+          "annee": "2023",
+          "titre": "Outils",
+          "texte": "GPT-4 ; les modèles apprennent à appeler des outils et des programmes"
+        },
+        {
+          "annee": "2024",
+          "titre": "Raisonner, agir",
+          "texte": "Modèles qui réfléchissent avant de répondre ; un modèle pilote un ordinateur ; protocole MCP pour brancher des outils"
+        },
+        {
+          "annee": "2025",
+          "titre": "Agents au travail",
+          "texte": "Agents qui naviguent sur le Web, écrivent et corrigent des programmes"
+        },
+        {
+          "annee": "2026",
+          "titre": "Au quotidien",
+          "texte": "Les agents s'installent dans les logiciels de bureau, de recherche et d'enseignement"
+        }
+      ],
+      "notes": "Les dates de 2025 et 2026 décrivent des tendances générales plutôt que des produits précis, qui changent vite. Invitez les étudiants à chercher un exemple récent et à le présenter en deux minutes."
+    },
+    {
+      "type": "deux",
+      "titre": "Agent conversationnel ou agent ?",
+      "gauche": {
+        "titre": "Agent conversationnel",
+        "points": [
+          "Répond à une question",
+          "Produit du texte",
+          "Un seul tour",
+          "L'humain fait le reste"
+        ]
+      },
+      "droite": {
+        "titre": "Agent",
+        "points": [
+          "Poursuit un objectif",
+          "Utilise des outils et agit",
+          "Plusieurs étapes, il corrige son plan",
+          "L'humain supervise et valide"
+        ]
+      },
+      "notes": "La frontière est mouvante : beaucoup d'agents conversationnels savent déjà chercher sur le Web. Retenez le critère : un agent enchaîne des actions sur le monde pour atteindre un but."
+    },
+    {
+      "type": "texte",
+      "titre": "Les risques, et les bonnes pratiques",
+      "points": [
+        "Hallucinations : un agent peut agir sur une information fausse",
+        "Actions irréversibles : effacer, envoyer, payer ; il faut valider",
+        "Consignes cachées dans une page Web peuvent détourner un agent",
+        "Données personnelles : la loi algérienne 18-07 s'applique",
+        "2024 : l'Union européenne adopte le règlement sur l'IA (AI Act)"
+      ],
+      "illus": "bouclier",
+      "notes": "Règle simple pour les étudiants : on garde la main sur toute action importante, on vérifie les sources, et on déclare l'usage de l'IA dans ses travaux. Renvoyez à la charte d'usage de l'IA du guide."
+    },
+    {
+      "type": "texte",
+      "titre": "Et en Algérie ?",
+      "points": [
+        "2021 : ouverture de l'École nationale supérieure d'intelligence artificielle (ENSIA)",
+        "L'arabe, la darja et le tamazight restent moins bien servis par les modèles",
+        "Des corpus locaux, construits en SHS, sont une vraie contribution",
+        "Vos mémoires peuvent y participer : textes, enquêtes, entretiens"
+      ],
+      "illus": "carte",
+      "notes": "Point d'ancrage local. Les langues moins présentes sur le Web sont moins bien traitées par les modèles : c'est une question de données, donc aussi de sciences humaines. Encouragez les étudiants à imaginer un corpus qu'ils pourraient constituer."
+    },
+    {
+      "type": "section",
+      "numero": "11",
+      "titre": "Synthèse",
+      "periode": "De 1206 à 2026",
+      "texte": "Huit siècles de rêves, soixante-dix ans de science, quelques années d'agents.",
+      "illus": "frise",
+      "notes": "Dernière partie. Au début de l'épisode 2, Ahmed El-Ghandour résume toute l'histoire en une phrase : l'IA commence petite, presque dérisoire, puis elle grandit, s'étend et devient immense. Vérifiez-le avec la classe : l'horloge-éléphant décrite par al-Jazari en 1206 ; le perceptron de Rosenblatt (1958), qui apprend à distinguer des cartes marquées à gauche ou à droite ; un réseau qui lit les chiffres des chèques dans les années 1990 ; un programme qui bat l'un des meilleurs joueurs de go du monde (2016) ; puis des modèles qui écrivent et des agents qui agissent. Huit siècles de rêves, soixante-dix ans de science depuis Dartmouth (1956), quelques années d'agents. Cette partie rassemble les dates, les familles d'IA et les leçons, propose deux vidéos, puis vérifie par des quiz ce qui a été compris. Conseil : confiez à chaque binôme une des dix parties précédentes ; il la résume en une phrase, puis la classe remet toutes les phrases dans l'ordre au tableau. Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; al-Jazari, *Livre de la connaissance des procédés mécaniques ingénieux* (1206)."
+    },
+    {
+      "type": "frise",
+      "titre": "Les huit dates à retenir",
+      "evenements": [
+        {
+          "annee": "1843",
+          "titre": "Lovelace",
+          "texte": "Premier programme, pour une machine jamais achevée"
+        },
+        {
+          "annee": "1950",
+          "titre": "Turing",
+          "texte": "Les machines peuvent-elles penser ?"
+        },
+        {
+          "annee": "1956",
+          "titre": "Dartmouth",
+          "texte": "L'IA reçoit son nom"
+        },
+        {
+          "annee": "1974",
+          "titre": "Hiver",
+          "texte": "Premier hiver de l'IA"
+        },
+        {
+          "annee": "1997",
+          "titre": "Deep Blue",
+          "texte": "L'ordinateur bat le champion d'échecs"
+        },
+        {
+          "annee": "2012",
+          "titre": "AlexNet",
+          "texte": "L'apprentissage profond l'emporte"
+        },
+        {
+          "annee": "2017",
+          "titre": "Transformer",
+          "texte": "L'attention au cœur des modèles de langue"
+        },
+        {
+          "annee": "2022",
+          "titre": "ChatGPT",
+          "texte": "L'IA générative pour tous ; puis viennent les agents"
+        }
+      ],
+      "notes": "Faites réciter la frise à l'envers, de 2022 à 1843. Ces huit dates suffisent pour raconter toute l'histoire à l'examen."
+    },
+    {
+      "type": "deux",
+      "titre": "Les familles d'IA, sur une seule diapositive",
+      "gauche": {
+        "titre": "Selon la méthode",
+        "points": [
+          "Symbolique : des règles écrites",
+          "Apprentissage automatique : des exemples",
+          "Apprentissage profond : des réseaux à nombreuses couches",
+          "Renforcement : des essais et des récompenses"
+        ]
+      },
+      "droite": {
+        "titre": "Selon l'ambition",
+        "points": [
+          "IA faible (étroite) : une tâche précise",
+          "IA forte (générale) : toutes les tâches, hypothétique",
+          "Les agents actuels restent des IA faibles",
+          "… mais de plus en plus polyvalentes"
+        ]
+      },
+      "notes": "Ce tableau relie la leçon au chapitre 1 du cours (IA faible et forte, types d'apprentissage) et au chapitre 3 (types d'IA). Un agent moderne combine plusieurs familles : un modèle profond, des règles de sécurité, parfois du renforcement."
+    },
+    {
+      "type": "texte",
+      "titre": "Quatre leçons de 90 ans d'IA",
+      "illus": "saisons",
+      "courbes": [
+        "attentes",
+        "puissance de calcul"
+      ],
+      "points": [
+        "Le danger n'est pas l'échec, mais les attentes démesurées : c'est ce qui a causé les deux hivers",
+        "Les vieilles idées reviennent avec les données et le calcul : le perceptron de 1958 vit dans ChatGPT",
+        "Réussir un test n'est pas comprendre : généraliser au monde réel reste le plus difficile",
+        "Printemps éternel, ou nouvel hiver ? Jugez sur les résultats, pas sur les promesses"
+      ],
+      "notes": "Synthèse du cours et des supports « Anatomie de l'intelligence machine ». Les hivers : les promesses de la traduction automatique (rapport ALPAC, 1966), le rapport Lighthill (1973), puis l'effondrement des systèmes experts (fin des années 1980). Le cours termine sur une question ouverte : nos attentes dépassent-elles déjà ce que l'IA sait faire ? Faites voter la classe, puis demandez un argument pour chaque camp. Source : cours *La dernière invention* d'Ahmed El-Ghandour (2026) et supports NotebookLM de l'enseignant."
+    },
+    {
+      "type": "video",
+      "titre": "Vidéo : l'histoire complète de l'IA (1950–2026)",
+      "youtube": "Xl-G6Mv-N0A",
+      "legende": "« The Complete History of AI (1950–2026) - The Rise of Artificial Intelligence », documentaire en anglais, sur YouTube",
+      "notes": "Montrez un passage choisi à l'avance plutôt que la vidéo entière. Demandez aux étudiants de repérer trois dates de la frise dans la vidéo. La vidéo demande une connexion Internet."
+    },
+    {
+      "type": "video",
+      "titre": "Vidéo : cent ans d'intelligence artificielle",
+      "youtube": "mSd9nmPM7Vg",
+      "legende": "« The Entire History of Artificial Intelligence (Last 100 Years) », documentaire en anglais, sur YouTube",
+      "notes": "Pour les groupes d'anglais, faites résumer oralement la vidéo en anglais : c'est aussi un exercice de langue. Pour les autres, sous-titres automatiques dans la langue choisie."
+    },
+    {
+      "type": "quiz",
+      "question": "En quelle année l'expression « intelligence artificielle » s'impose-t-elle, avec l'atelier de Dartmouth ?",
+      "choix": [
+        "1943",
+        "1956",
+        "1997",
+        "2012"
+      ],
+      "reponse": 1,
+      "explication": "L'expression apparaît dans la proposition de 1955 et s'impose avec l'atelier de l'été 1956.",
+      "notes": "Faites voter avant de dévoiler la réponse (touche R ou bouton)."
+    },
+    {
+      "type": "quiz",
+      "question": "Pourquoi parle-t-on d'« hivers » de l'IA ?",
+      "choix": [
+        "Les ordinateurs chauffaient trop",
+        "La déception a fait chuter les crédits et l'intérêt",
+        "Les recherches se faisaient l'hiver",
+        "Les machines ont été interdites"
+      ],
+      "reponse": 1,
+      "explication": "Après des promesses démesurées, les résultats ont déçu : les financements ont été coupés (1974–1980, puis 1987–1993).",
+      "notes": "Demandez un exemple de promesse démesurée vu dans la leçon : la citation de Herbert Simon (1965)."
+    },
+    {
+      "type": "quiz",
+      "question": "Qu'est-ce qui distingue un agent d'un simple agent conversationnel ?",
+      "choix": [
+        "Il écrit plus vite",
+        "Il poursuit un objectif en agissant avec des outils",
+        "Il ne fait jamais d'erreur",
+        "Il fonctionne sans électricité"
+      ],
+      "reponse": 1,
+      "explication": "Un agent enchaîne des actions (chercher, calculer, écrire un fichier…) et observe les résultats pour atteindre un but.",
+      "notes": "Revenez à la boucle : objectif, réfléchir, agir, observer."
+    },
+    {
+      "type": "quiz",
+      "question": "ELIZA (1966) comprenait-elle ce qu'on lui disait ?",
+      "choix": [
+        "Oui, comme un psychologue",
+        "Non : elle transformait les phrases avec des règles",
+        "Oui, grâce à l'apprentissage profond",
+        "On ne le sait pas"
+      ],
+      "reponse": 1,
+      "explication": "ELIZA repérait des mots-clés et renvoyait des phrases types. Croire qu'elle comprenait, c'est l'« effet ELIZA ».",
+      "notes": "Question de transition vers le débat : et les modèles d'aujourd'hui comprennent-ils ?"
+    },
+    {
+      "type": "quiz",
+      "question": "Pourquoi le perceptron simple ne peut-il pas apprendre la « porte à deux clés » (le XOR) ?",
+      "choix": [
+        "Il n'a pas assez de mémoire",
+        "Une seule ligne droite ne sépare pas les deux groupes",
+        "Le XOR n'existe pas en mathématiques",
+        "Il lui faut une caméra plus précise"
+      ],
+      "reponse": 1,
+      "explication": "Le perceptron trace une seule frontière droite ; le XOR demande deux règles l'une sur l'autre, donc au moins deux couches, entraînées par rétropropagation.",
+      "notes": "Revenez à l'image de la porte : ouverte avec une clé, fermée avec zéro ou deux clés."
+    },
+    {
+      "type": "quiz",
+      "question": "Un modèle n'a vu que des médecins portant des lunettes ; face à un médecin sans lunettes, il répond « pas médecin ». Quel est ce défaut ?",
+      "choix": [
+        "Le sous-apprentissage",
+        "Le surapprentissage",
+        "L'hallucination",
+        "Le biais d'activation"
+      ],
+      "reponse": 1,
+      "explication": "Il a appris par cœur un détail de ses exemples au lieu de la règle générale : c'est le surapprentissage. Remède : des exemples plus nombreux et plus variés.",
+      "notes": "Liez la question à l'accident de Tempe (2018) : un piéton hors du passage ne ressemblait pas aux exemples appris."
+    },
+    {
+      "type": "quiz",
+      "question": "Google Traduction est un exemple de quel type d'IA ?",
+      "choix": [
+        "Une IA étroite",
+        "Une IA générale",
+        "Une super-intelligence",
+        "Un agent autonome"
+      ],
+      "reponse": 0,
+      "explication": "Génial en traduction, il ne sait ni jouer aux échecs ni programmer : il excelle dans une seule tâche. C'est une IA étroite.",
+      "notes": "Rappelez l'image de l'épisode 3. Google Traduction vous a tiré d'affaire plus d'une fois : c'est un génie de la traduction. Mais ce génie ne sait pas jouer aux échecs, ni écrire un programme, ni faire bien des choses que vous faites sans effort. C'est une IA étroite, comme Google Maps ou l'adversaire de vos jeux vidéo : excellente dans son domaine, perdue en dehors. L'IA générale, qui passerait d'une tâche à l'autre comme un humain, reste théorique ; la super-intelligence reste une inconnue. Quant à l'agent, il ne se définit pas par l'étendue de ses talents, mais par sa façon d'agir : il poursuit un objectif avec des outils. Conseil : faites voter à main levée avant de dévoiler la réponse (touche R), puis demandez à chacun un autre exemple d'IA étroite dans sa vie quotidienne (le clavier qui propose le mot suivant, le filtre anti-spam, le déverrouillage du téléphone par le visage). Source : épisode 3 de *La dernière invention* (Ahmed El-Ghandour, 2026)."
+    },
+    {
+      "type": "quiz",
+      "question": "En 2012, qu'est-ce qui a rendu possible la victoire d'AlexNet ?",
+      "choix": [
+        "Un algorithme entièrement nouveau, à lui seul",
+        "Des millions d'images, à elles seules",
+        "Des cartes graphiques, à elles seules",
+        "Réseau profond, images d'ImageNet et cartes graphiques réunis"
+      ],
+      "reponse": 3,
+      "explication": "Les idées dataient des années 1980 ; il fallait aussi les images d'ImageNet et la puissance des GPU. Les trois engrenages se sont enfin rencontrés.",
+      "notes": "Racontez la scène de l'épisode 2. En 2012, trois chercheurs de Toronto, Alex Krizhevsky, Ilya Sutskever et leur professeur Geoffrey Hinton, présentent au concours ImageNet un réseau entraîné non sur le processeur (CPU), mais sur deux cartes graphiques de jeux vidéo (GPU). « Une lettre de différence, des années d'écart », dit Ahmed El-Ghandour. Ils ne se contentent pas de gagner : ils écrasent le concours, avec 15,3 % d'erreur contre 26,2 % pour le deuxième. Aucune cause ne suffit seule. La rétropropagation était connue depuis 1986 ; sans les 1,2 million d'images d'entraînement d'ImageNet, le réseau n'aurait rien eu à apprendre ; sans les GPU, que CUDA (NVIDIA, 2007) a rendus faciles à programmer pour le calcul, un réseau de 60 millions de paramètres était trop lourd à entraîner : avec deux cartes, il a fallu cinq à six jours. C'est la rencontre des trois engrenages : algorithmes, données, calcul. Conseil : après le vote, demandez : « Si l'on retire un seul engrenage, que se passe-t-il ? » Source : épisode 2 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; Krizhevsky, Sutskever et Hinton, *ImageNet Classification with Deep Convolutional Neural Networks*, NIPS, 2012."
+    },
+    {
+      "type": "quiz",
+      "question": "Tempe, 2018 : pourquoi la voiture d'essai d'Uber n'a-t-elle pas réagi à temps ?",
+      "choix": [
+        "Elle n'avait aucun capteur capable de voir la nuit",
+        "Elle roulait bien trop vite pour pouvoir freiner à temps",
+        "Elle n'avait pas appris qu'on traverse hors des passages et hésitait sur ce qu'elle voyait",
+        "La passante était invisible pour ses caméras comme pour ses radars"
+      ],
+      "reponse": 2,
+      "explication": "Repérée 5,6 s avant le choc, elle n'a jamais été reconnue comme piétonne : le système ne prévoyait pas qu'on traverse hors d'un passage (NTSB, 2019).",
+      "notes": "Revenez à la nuit du 18 mars 2018, à Tempe (Arizona), qui ouvre l'épisode 3. Les trois mauvaises réponses sont des idées reçues. La voiture avait des caméras, des radars et un lidar ; elle ne dépassait pas la limite de vitesse ; et elle a bien « vu » Elaine Herzberg, 49 ans, 5,6 secondes avant le choc. Mais le système ne l'a jamais classée comme piétonne : véhicule, vélo, « autre » ? Selon l'enquête du NTSB, il n'avait pas été conçu pour des piétons traversant hors d'un passage. Pour la voiture, un humain marchait sur les bandes blanches : Ahmed El-Ghandour y voit un cas de surapprentissage. Deux choix humains ont aggravé les choses : le freinage d'urgence automatique était désactivé en mode autonome, et la conductrice de sécurité regardait une vidéo sur son téléphone. Conseil : demandez qui est responsable : la machine, l'entreprise ou la conductrice ? Reliez la réponse à la question de la partie 1 : qui a donné le pouvoir à la machine ? Source : épisode 3 de *La dernière invention* (Ahmed El-Ghandour, 2026) ; NTSB, rapport HAR-19/03 (2019)."
+    },
+    {
+      "type": "fin",
+      "titre": "À retenir",
+      "points": [
+        "L'IA se répand plus vite que le PC, le mobile et Internet : un enjeu d'États et d'emplois",
+        "L'IA imite l'intelligence : elle paraît comprendre ; l'IA générale n'existe pas encore",
+        "Règles et neurones alternent ; les hivers naissent d'attentes démesurées",
+        "2012 : données, cartes graphiques et réseaux profonds se rencontrent",
+        "Un réseau pèse des indices, corrige ses erreurs ; il échoue s'il apprend trop ou trop peu",
+        "Qui donne le pouvoir à la machine ? Vérifier, garder la main, déclarer son usage"
+      ],
+      "texte": "Travail personnel : choisissez une date de la frise et écrivez dix lignes sur ce qu'elle a changé, en citant une source vérifiée.",
+      "notes": "Au début de cette leçon, nous avions promis de dévoiler le tour du magicien. Le voici : la machine ne « comprend » pas comme nous ; elle découpe, compte, pèse des indices et corrige ses erreurs, des milliards de fois. Qu'elle lise un texte ou serve de « cerveau » à un agent, le principe est le même. Cela ne la rend pas moins impressionnante : on mesure mieux son habileté, et l'on sait où elle peut se tromper, comme à Tempe. Les six points suivent l'ordre de la leçon : pourquoi maintenant, ce qu'est l'IA, son histoire et ses hivers, le déclic de 2012, la façon dont un réseau apprend, et la question qui compte désormais : qui a donné le pouvoir à la machine, qui l'a testée, qui répond quand elle se trompe ? Conseil : ressortez les questions que les étudiants ont écrites après « le tour du magicien » : lesquelles ont trouvé une réponse ? Celles qui restent ouvertes nourriront la table ronde sur la genèse de l'IA, que prépare le travail personnel. Source : épisodes 1 à 3 de *La dernière invention* (Ahmed El-Ghandour, 2026)."
+    }
+  ]
+}
