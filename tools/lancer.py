@@ -11,6 +11,8 @@
 Hébergement : sur Render (variable RENDER définie) ou avec --public, le serveur écoute sur toutes les
 interfaces, au port donné par la variable PORT (10000 par défaut), sans ouvrir de navigateur. L'API de la
 base « Mes groupes » y est désactivée : chaque visiteur garde ses propres données dans son navigateur.
+Si la variable QUESTIONS_DATABASE_URL est définie, la base des « Questions » (Supabase) est créée ou mise à
+jour au démarrage (tools/questions_db.py).
 
 La page « Mes groupes » (classe.html) enregistre ses données dans une base SQLite sur cet
 ordinateur : donnees/classe.sqlite, avec une copie de sauvegarde par jour dans donnees/sauvegardes/.
@@ -253,6 +255,11 @@ def main():
 
     if public:
         Gestionnaire.api_active = False
+        if os.environ.get("QUESTIONS_DATABASE_URL"):
+            # Base des « Questions » (Supabase) mise à jour à chaque déploiement, sans retarder le site.
+            sys.path.insert(0, str(Path(__file__).resolve().parent))
+            import questions_db
+            threading.Thread(target=questions_db.appliquer, daemon=True).start()
         serveur, port = ouvrir_serveur(int(os.environ.get("PORT", "10000")), essais=1, hote="0.0.0.0")
         print(f"  Cours d'IA du Master LGC : hébergement sur le port {port} (API « Mes groupes » désactivée)")
         sys.stdout.flush()

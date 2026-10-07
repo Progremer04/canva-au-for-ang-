@@ -10,3 +10,4 @@ rapport*.pdf
 # Base de la page « Mes groupes » : données personnelles des étudiants, jamais dans git
 donnees/
 /public/
+/.questions-pg/

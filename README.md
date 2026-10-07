@@ -98,7 +98,7 @@ The teacher opens **Student questions** (`messages.html`, tile “For the teache
 
 **Where the messages are:** in the Supabase project `xvzqtrijpsbxejfjrcpo`. The site only holds the project address and its *publishable* key (`docs/assets/js/questions-config.js`), which are meant to be public: the tables are closed (row-level security with no rule), and the page can only call the `qr_*` functions of `supabase/questions.sql`. A student only reads their own conversation (a secret token kept in their browser); the teacher functions check the teacher code (stored hashed with bcrypt; after 30 wrong codes in 10 minutes, tries are refused for 10 minutes). The database password is never in the site or in git.
 
-**Setting it up (once):** in Supabase, *SQL Editor → New query*, paste the whole of `supabase/questions.sql`, *Run*. Running it again is safe. To change the teacher code of the chat, run in the SQL Editor:
+**Setting it up:** automatic on Render. The Render service has a private environment variable `QUESTIONS_DATABASE_URL` (the Supabase connection string, with its password; never in git), and at each start `tools/lancer.py` runs `tools/questions_db.py`, which applies `supabase/questions.sql` (it can run any number of times). Its log line starts with `[questions]` in the Render logs. Without Render, do it once by hand: in Supabase, *SQL Editor → New query*, paste the whole of `supabase/questions.sql`, *Run*; or run `QUESTIONS_DATABASE_URL=… python3 tools/questions_db.py`. To change the teacher code of the chat, run in the SQL Editor:
 `update public.qr_reglage set valeur = extensions.crypt('NEW_CODE', extensions.gen_salt('bf', 10)) where cle = 'code_prof';`
 
 ## Hosting
