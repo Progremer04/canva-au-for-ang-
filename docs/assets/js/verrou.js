@@ -5,8 +5,10 @@
    diaporamas sont publiés chiffrés par tools/verrou.py : sans le code, le fichier ne contient
    que des octets illisibles. Clé tirée du code par PBKDF2-HMAC-SHA256 (même sel et même nombre
    d'itérations que les notes), flux SHA-256 en mode compteur, contrôle HMAC-SHA256 — le calcul
-   de chiffrer() dans tools/lecon1.py. La clé (jamais le code) reste dans sessionStorage le temps
-   de l'onglet : un seul déverrouillage ouvre tout l'espace de l'enseignant et les notes.
+   de chiffrer() dans tools/lecon1.py. Chaque page de l'enseignant demande le code à chaque ouverture.
+   La clé (jamais le code) est posée dans sessionStorage juste avant d'afficher la page : les fichiers
+   chiffrés qu'elle charge (diaporamas) la lisent, et la fenêtre « présentateur » des diaporamas,
+   ouverte depuis une page déjà déverrouillée, s'ouvre sans redemander le code.
    Aucune dépendance ; marche aussi en file://.
    ========================================================================== */
 (function () {
@@ -110,8 +112,10 @@
   // p : { sel, iterations, iv, donnees } ; la page déchiffrée remplace la porte, scripts compris.
   function porte(p) {
     function remplacer(html) { document.open(); document.write(html); document.close(); }
+    // Seule exception au code demandé : la fenêtre présentateur ouverte par une page déjà déverrouillée.
+    var presentateur = /[?&]presentateur\b/.test(location.search) && !!window.opener && !window.opener.closed;
     function suite() {
-      var dejaLa = ouvrir(p.iv, p.donnees);
+      var dejaLa = presentateur ? ouvrir(p.iv, p.donnees) : null;
       if (dejaLa !== null) remplacer(dejaLa); else monter();
     }
     function monter() {
