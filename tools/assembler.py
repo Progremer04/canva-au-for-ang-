@@ -164,6 +164,35 @@ PRISM_CDN = [
 ]
 
 
+# Affiche de la leçon 1 (code QR vers le site) : dans le chapitre 1 et sur chaque page de l'enseignant.
+AFFICHE = "assets/img/affiche-lecon1.webp"
+TEXTES_AFFICHE = {
+    "fr": {"titre": "Affiche de la leçon 1", "grand": "Voir en grand", "telecharger": "Télécharger",
+           "eleve": "Scannez le code QR avec votre téléphone pour ouvrir la leçon 1 : l'histoire de l'IA, de l'automate à l'agent.",
+           "prof": "À projeter ou à imprimer : les étudiants scannent le code QR pour ouvrir la leçon 1 sur leur téléphone.",
+           "alt": "Affiche « Histoire de l'intelligence artificielle : de l'automate à l'agent », chapitre 1, leçon 1, avec un code QR vers canva-au-for-ang.vercel.app"},
+    "en": {"titre": "Lesson 1 poster", "grand": "View full size", "telecharger": "Download",
+           "eleve": "Scan the QR code with your phone to open lesson 1: the history of AI, from automaton to agent.",
+           "prof": "To project or print: students scan the QR code to open lesson 1 on their phone.",
+           "alt": "Poster “History of artificial intelligence: from automaton to agent”, chapter 1, lesson 1, with a QR code to canva-au-for-ang.vercel.app"},
+    "ar": {"titre": "ملصق الدرس 1", "grand": "عرض بالحجم الكامل", "telecharger": "تنزيل",
+           "eleve": "امسح رمز QR بهاتفك لفتح الدرس 1: تاريخ الذكاء الاصطناعي من الآلة الذاتية الحركة إلى الوكيل الذكي.",
+           "prof": "للعرض على الشاشة أو للطباعة: يمسح الطلبة رمز QR لفتح الدرس 1 على هواتفهم.",
+           "alt": "ملصق «تاريخ الذكاء الاصطناعي: من الآلة الذاتية الحركة إلى الوكيل»، الفصل الأول، الدرس الأول، مع رمز QR يؤدي إلى canva-au-for-ang.vercel.app"},
+}
+
+
+def affiche(langue, base, pour="prof"):
+    t, src = TEXTES_AFFICHE[langue], f"{base}{AFFICHE}"
+    return (f'<aside class="affiche-lecon" aria-label="{t["titre"]}">'
+            f'<a class="affiche-lecon__image" href="{src}" target="_blank" rel="noopener">'
+            f'<img src="{src}" alt="{t["alt"]}" width="853" height="1280" loading="lazy" decoding="async"></a>'
+            f'<div class="affiche-lecon__texte"><p class="affiche-lecon__titre">{t["titre"]}</p><p>{t[pour]}</p>'
+            f'<p class="affiche-lecon__actions"><a class="bouton bouton--petit" href="{src}" target="_blank" rel="noopener">{t["grand"]}</a>'
+            f'<a class="bouton bouton--petit" href="{src}" download="affiche-lecon1.webp">'
+            f'<svg class="icone" aria-hidden="true"><use href="#i-telecharger"/></svg>{t["telecharger"]}</a></p></div></aside>')
+
+
 def nav(etiquette, langue, entrees=None):
     items = []
     for cible, marque, textes in (entrees or NAV):
@@ -193,6 +222,7 @@ def assembler(langue, lien_systeme):
     fragments = "\n\n".join(lire(conf["sources"], n) for n in FRAGMENTS)
     page = page.replace("{{FRAGMENTS}}", fragments)
     page = page.replace("{{GLOSSAIRE}}", lire(conf["sources"], "glossaire"))
+    page = re.sub(r'(<p class="chapitre-tete__lecon">.*?</p>)', lambda m: m.group(1) + "\n    " + affiche(langue, "{{BASE}}", "eleve"), page, count=1, flags=re.S)
     # Le tiroir et le rail reçoivent chacun leur propre nav.
     page = page.replace("{{NAV}}", nav(conf["nav"][0], langue), 1)
     page = page.replace("{{NAV}}", nav(conf["nav"][1], langue), 1)
@@ -246,6 +276,7 @@ def guide(langue, lien_systeme):
         <a class="bouton" href="diaporamas.html"><svg class="icone" aria-hidden="true"><use href="#i-ecran"/></svg>{t['b3']}</a>
         <a class="bouton" href="classe.html"><svg class="icone" aria-hidden="true"><use href="#i-groupe"/></svg>{t['b4']}</a>
       </div>
+      {affiche(langue, "{{BASE}}")}
     </div>
   </section>
 
@@ -276,6 +307,7 @@ def page_outil(langue, cle, lien_systeme):
     <p class="surtitre">{t['surtitre']}</p>
     <h1 class="outil-tete__titre" id="titre-outil">{t['h1']}</h1>
     <p class="outil-tete__chapeau">{t['chapeau']}</p>
+    {affiche(langue, "{{BASE}}") if cle != "questions" else ""}
   </section>
   <div class="outil" id="outil-{cle}" data-outil="{cle}" data-base="{{{{BASE}}}}" data-langue="{langue}">
     <noscript><p class="outil-message">{t['noscript']}</p></noscript>
@@ -423,6 +455,7 @@ def programme(langue, lien_systeme):
              f'    <p class="surtitre">{t["surtitre"]}</p>\n'
              f'    <h1 class="outil-tete__titre" id="titre-outil">{t["h1"]}</h1>\n'
              f'    <p class="outil-tete__chapeau">{t["chapeau"]}</p>\n'
+             f'    {affiche(langue, "{{BASE}}")}\n'
              f'  </section>\n'
              f'  <div class="page-document"><div class="page__contenu">\n{lire(conf["sources"], "programme")}\n  </div></div>\n'
              f'</main>')

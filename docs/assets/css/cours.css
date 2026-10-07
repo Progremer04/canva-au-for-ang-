@@ -431,3 +431,19 @@ section[id^="guide-"] .sommaire-chapitre::before { content: "Dans cette partie";
 /* Listes lettrées (a, b, c) : lettres arabes dans la version arabe */
 @counter-style lx-lettres-arabes { system: alphabetic; symbols: "أ" "ب" "ج" "د" "هـ" "و" "ز" "ح" "ط" "ي"; suffix: ". "; }
 [dir="rtl"] ol[type="a"] { list-style-type: lx-lettres-arabes; }
+
+/* Affiche de la leçon 1 (code QR) : chapitre 1 et pages de l'enseignant (tools/assembler.py, affiche()). */
+.affiche-lecon { display: flex; align-items: center; gap: var(--espace-4); max-inline-size: 640px; margin-block-start: var(--espace-5); padding: var(--espace-3);
+  border: var(--trait-fin) solid var(--ligne); border-radius: var(--rayon-l); background: var(--surface); }
+.affiche-lecon__image { flex: none; display: block; inline-size: 128px; border-radius: var(--rayon-s); overflow: hidden; line-height: 0; }
+.affiche-lecon__image img { inline-size: 100%; block-size: auto; }
+.affiche-lecon__image:focus-visible { outline: var(--trait-anneau) solid var(--focus); outline-offset: 2px; }
+.affiche-lecon__texte p { margin: 0 0 var(--espace-2); }
+.affiche-lecon__titre { font-family: var(--font-signal); font-weight: 700; }
+.affiche-lecon__actions { display: flex; flex-wrap: wrap; gap: var(--espace-2); }
+@media (max-width: 520px) {
+  .affiche-lecon { flex-direction: column; align-items: stretch; text-align: center; }
+  .affiche-lecon__image { inline-size: min(260px, 100%); margin-inline: auto; }
+  .affiche-lecon__actions { justify-content: center; }
+}
+@media print { .affiche-lecon { break-inside: avoid; } }
