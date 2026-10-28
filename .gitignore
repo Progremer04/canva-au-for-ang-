@@ -11,3 +11,7 @@ rapport*.pdf
 donnees/
 /public/
 /.questions-pg/
+# Secrets Supabase/Postgres : jamais dans git (voir .env.example)
+.env
+.env.*
+!.env.example
