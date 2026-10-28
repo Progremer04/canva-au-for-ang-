@@ -1,0 +1,340 @@
+{
+  "id": "seance-2",
+  "numero": 2,
+  "titre": "Histoire de l'IA, IA faible et IA forte",
+  "resume": "Ranger une dizaine d'étapes de l'histoire de l'IA en y plaçant les deux hivers, distinguer IA étroite et générale, IA faible et forte, et résumer en trois phrases la chambre chinoise.",
+  "duree": "1 h 30",
+  "lien": "index.html#c1-histoire",
+  "fiche": "enseignant.html#guide-seance-2",
+  "diapos": [
+    {
+      "type": "titre",
+      "surtitre": "Intelligence artificielle · Séance 2",
+      "titre": "Histoire de l'IA, IA faible et IA forte",
+      "sousTitre": "Chapitre 1 · Survol historique, IA étroite et générale, la chambre chinoise",
+      "notes": "Avant la séance : préparez une carte par étape de la chronologie du chapitre 1 (l'événement au recto, la date au verso), des aimants et des feutres de deux couleurs. Tracez au tableau une frise vide, de 1940 à aujourd'hui. Relisez les tickets de sortie de la séance 1 pour choisir les trois questions du rappel."
+    },
+    {
+      "type": "points",
+      "titre": "Objectifs de la séance",
+      "points": [
+        "**Ranger** une dizaine d'étapes de l'histoire de l'IA et y placer les deux hivers",
+        "**Distinguer** IA étroite et IA générale, IA faible et IA forte",
+        "**Résumer** en trois phrases l'argument de la chambre chinoise"
+      ],
+      "notes": "Annoncez le déroulé : un rappel, une frise construite par la classe, deux couples de notions à ne pas confondre, puis un débat court sur la traduction automatique."
+    },
+    {
+      "type": "points",
+      "titre": "Rappel : trois questions, de mémoire",
+      "progressif": true,
+      "points": [
+        "En quelle année, et où, l'expression « intelligence artificielle » s'impose-t-elle ?",
+        "Qui a proposé le « jeu de l'imitation », et en quelle année ?",
+        "Qu'appelle-t-on l'« effet ELIZA » ?"
+      ],
+      "notes": "5 min. Remplacez ces questions par trois questions tirées des tickets de sortie de la séance 1 si vous en avez de meilleures. Les étudiants répondent de mémoire, sans notes. Réponses attendues : en 1956, à l'atelier de Dartmouth ; Alan Turing, en 1950 ; la tendance à prêter une compréhension réelle à un programme qui parle, comme les utilisateurs d'ELIZA (1966)."
+    },
+    {
+      "type": "section",
+      "numero": 1,
+      "titre": "Une frise collective",
+      "sousTitre": "De 1943 à aujourd'hui : dater, placer, colorer",
+      "notes": "30 min, correction comprise. La correction s'appuie sur les deux diapositives de chronologie qui suivent l'activité."
+    },
+    {
+      "type": "activite",
+      "titre": "Dater et placer les cartes",
+      "duree": 30,
+      "consignes": [
+        "Chaque groupe reçoit quelques cartes : l'événement au recto, la date au verso",
+        "Datez vos cartes sans regarder le verso",
+        "Placez-les sur la frise du tableau",
+        "Correction : retournez les cartes et déplacez celles qui sont mal placées",
+        "Coloriez : une couleur pour le symbolique, une autre pour le connexionnisme",
+        "Marquez les deux « hivers de l'IA »"
+      ],
+      "materiel": "Une carte par étape de la chronologie du chapitre 1, des aimants, des feutres de deux couleurs",
+      "notes": "Répartissez les cartes pour que chaque groupe en ait trois ou quatre. Pendant la pose, ne corrigez pas : demandez à chaque groupe de justifier une de ses dates. Avant de colorier, rappelez les deux familles d'idées : l'approche symbolique programme des règles et des raisonnements explicites ; l'approche connexionniste fait apprendre des réseaux de neurones artificiels."
+    },
+    {
+      "type": "chronologie",
+      "titre": "Correction : des pionniers au premier hiver",
+      "evenements": [
+        {
+          "date": "1943",
+          "texte": "McCulloch et Pitts : le neurone formel, ancêtre des réseaux de neurones"
+        },
+        {
+          "date": "1950",
+          "texte": "Turing propose le jeu de l'imitation, le futur « test de Turing »"
+        },
+        {
+          "date": "1956",
+          "texte": "Atelier de Dartmouth ; le Logic Theorist de Newell et Simon"
+        },
+        {
+          "date": "1958",
+          "texte": "Le perceptron de Rosenblatt ; ses limites sont montrées en 1969"
+        },
+        {
+          "date": "1966",
+          "texte": "ELIZA (Weizenbaum, MIT) imite un psychothérapeute"
+        },
+        {
+          "date": "1973",
+          "texte": "Rapport Lighthill : premier hiver de l'IA, jusque vers 1980"
+        },
+        {
+          "date": "1970–1980",
+          "texte": "L'âge des systèmes experts, comme MYCIN à Stanford"
+        }
+      ],
+      "notes": "Corrigez carte par carte en demandant la couleur de chacune. Connexionnisme : 1943 et 1958. Symbolique : le Logic Theorist, qui démontre des théorèmes de logique ; ELIZA, qui reformule par des règles simples ; les systèmes experts, qui raisonnent avec quelques centaines de règles « si… alors… ». Le jeu de l'imitation est une épreuve, pas une technique : pas de couleur. Les limites du perceptron sont montrées par Minsky et Papert dans *Perceptrons* (1969). Premier hiver : les financements reculent, au Royaume-Uni puis aux États-Unis."
+    },
+    {
+      "type": "chronologie",
+      "titre": "Correction : du second hiver aux grands modèles",
+      "evenements": [
+        {
+          "date": "1987",
+          "texte": "Second hiver : le marché des machines Lisp s'effondre"
+        },
+        {
+          "date": "1997",
+          "texte": "Deep Blue (IBM) bat Garry Kasparov, champion du monde d'échecs"
+        },
+        {
+          "date": "2012",
+          "texte": "Le réseau AlexNet devance nettement les autres méthodes au concours ImageNet"
+        },
+        {
+          "date": "2016",
+          "texte": "AlphaGo (DeepMind) bat Lee Sedol au go, quatre victoires à une"
+        },
+        {
+          "date": "2017",
+          "texte": "« Attention Is All You Need » : l'architecture Transformer"
+        },
+        {
+          "date": "2022",
+          "texte": "30 novembre : OpenAI ouvre ChatGPT au public"
+        },
+        {
+          "date": "2024",
+          "texte": "Règlement européen sur l'IA (AI Act) : des systèmes classés par niveau de risque"
+        }
+      ],
+      "notes": "Second hiver : coûteux à entretenir et fragiles hors de leur domaine, les systèmes experts déçoivent ; les budgets reculent jusqu'au début des années 1990. Couleurs : AlexNet et le Transformer sont connexionnistes ; AlphaGo combine réseaux de neurones, apprentissage par renforcement et exploration d'un arbre de coups. Piège : Deep Blue n'apprenait pas, il explorait très vite des millions de positions. Carte 2018 si vous l'avez faite : BERT (Google), modèle pré-entraîné, et le premier GPT d'OpenAI."
+    },
+    {
+      "type": "deux",
+      "titre": "Deux familles d'idées, deux couleurs",
+      "colonnes": [
+        {
+          "titre": "L'approche symbolique",
+          "points": [
+            "Programmer des règles et des raisonnements explicites",
+            "1956 : le Logic Theorist · 1966 : ELIZA",
+            "Années 1970–1980 : les systèmes experts"
+          ]
+        },
+        {
+          "titre": "L'approche connexionniste",
+          "points": [
+            "Faire apprendre des réseaux de neurones artificiels",
+            "1943 : le neurone formel · 1958 : le perceptron",
+            "2012 : AlexNet · 2017 : le Transformer"
+          ]
+        }
+      ],
+      "notes": "Faites recopier ce tableau : il résume la frise. Demandez où placer AlphaGo (2016). Attendu : des deux côtés, puisqu'il associe réseaux de neurones et recherche dans un arbre de coups ; on parle d'approche hybride. Deep Blue, lui, relève de la recherche dans un espace d'états."
+    },
+    {
+      "type": "chiffre",
+      "valeur": "1958 → 1997",
+      "legende": "Simon et Newell annoncent un ordinateur champion du monde d'échecs dans les dix ans. Il en faudra près de quarante.",
+      "notes": "10 min pour ce que l'histoire enseigne. Demandez d'abord : combien de temps a-t-il fallu, en réalité ? De la prédiction d'Herbert Simon et Allen Newell (1958) à la victoire de Deep Blue (1997), près de quarante ans. Chaque vague technique s'accompagne de prédictions trop optimistes."
+    },
+    {
+      "type": "points",
+      "titre": "Des cycles d'espoir et de déception",
+      "points": [
+        {
+          "texte": "Deux **hivers de l'IA**",
+          "sous": [
+            "1973 : rapport Lighthill, jusque vers 1980",
+            "1987 : effondrement des machines Lisp, jusqu'au début des années 1990"
+          ]
+        },
+        {
+          "texte": "Les idées abandonnées reviennent",
+          "sous": [
+            "Réseaux de neurones jugés sans avenir en 1969",
+            "De retour en 1986 avec la rétropropagation, dominants après 2012"
+          ]
+        },
+        "**Leçon de méthode** : juger un système sur ce qu'il fait, mesuré par des tests, pas sur ce qu'on en promet"
+      ],
+      "notes": "La rétropropagation du gradient est due à David Rumelhart, Geoffrey Hinton et Ronald Williams (1986). Faites appliquer la leçon de méthode à un agent conversationnel actuel : comment le juger ? Attendu : sur des tests, par exemple en vérifiant dans un catalogue les références qu'il propose."
+    },
+    {
+      "type": "section",
+      "numero": 2,
+      "titre": "Deux couples de notions",
+      "sousTitre": "IA étroite ou générale · IA faible ou forte",
+      "notes": "20 min : les deux distinctions, le tableau comparatif, puis la chambre chinoise, racontée puis résumée par les étudiants."
+    },
+    {
+      "type": "deux",
+      "titre": "Deux distinctions à ne pas confondre",
+      "colonnes": [
+        {
+          "titre": "Étroite ou générale : l'étendue",
+          "points": [
+            "Une tâche précise, ou toutes les tâches intellectuelles humaines ?",
+            "Une distinction **technique**"
+          ]
+        },
+        {
+          "titre": "Faible ou forte : l'esprit",
+          "points": [
+            "Simuler l'intelligence, ou posséder réellement un esprit ?",
+            "Une distinction **philosophique** (John Searle, 1980)"
+          ]
+        }
+      ],
+      "notes": "Le programme associe les deux couples : « IA étroite (ou faible) », « IA générale (ou forte) », et l'usage courant les confond. Insistez : la première question est « que sait faire le système ? », la seconde « a-t-il un esprit ? ». Exemple du cours : le programme qui bat les champions d'échecs ne sait pas lire un poème ; c'est une IA étroite."
+    },
+    {
+      "type": "tableau",
+      "titre": "IA étroite et IA générale : comparaison",
+      "entetes": [
+        "Critère",
+        "IA étroite (faible)",
+        "IA générale (forte)"
+      ],
+      "lignes": [
+        [
+          "Définition",
+          "Conçue et entraînée pour une tâche précise",
+          "Hypothétique, aussi polyvalente qu'un humain"
+        ],
+        [
+          "Exemples",
+          "Deep Blue, AlphaGo, traduction automatique",
+          "Aucun exemple réel reconnu ; HAL 9000 en science-fiction"
+        ],
+        [
+          "État en 2026",
+          "Omniprésente : moteurs de recherche, téléphones, SHS",
+          "Objectif affiché ; aucun consensus pour dire qu'elle est atteinte"
+        ],
+        [
+          "Question",
+          "Réussir une tâche, est-ce la comprendre ?",
+          "Une machine peut-elle penser, avoir des intentions ?"
+        ]
+      ],
+      "legende": "D'après le tableau comparatif du chapitre 1",
+      "notes": "Faites lire le tableau ligne par ligne, puis masquez-le et demandez de le refaire de mémoire : c'est exactement ce qu'on demande à l'examen et en table ronde. Ce qu'on attendrait d'une IA générale : transférer ses connaissances d'un domaine à un autre, apprendre une tâche nouvelle avec très peu d'exemples et, au sens de Searle, comprendre réellement ce qu'elle traite. HAL 9000 est l'ordinateur de *2001, l'Odyssée de l'espace*."
+    },
+    {
+      "type": "etapes",
+      "titre": "La chambre chinoise (Searle, 1980)",
+      "progressif": true,
+      "etapes": [
+        {
+          "titre": "Une pièce fermée",
+          "texte": "Une personne qui ignore le chinois, avec un manuel rédigé dans sa langue"
+        },
+        {
+          "titre": "Des messages en chinois",
+          "texte": "On lui glisse des caractères chinois par une fente"
+        },
+        {
+          "titre": "Le manuel",
+          "texte": "Il lui indique quels caractères renvoyer en réponse"
+        },
+        {
+          "titre": "Vu de l'extérieur",
+          "texte": "La pièce semble répondre parfaitement en chinois"
+        },
+        {
+          "titre": "Et pourtant",
+          "texte": "La personne ne comprend rien : la syntaxe, sans la sémantique"
+        }
+      ],
+      "notes": "Racontez l'expérience de pensée étape par étape ; elle vient de l'article « Minds, Brains, and Programs » (1980). Conclusion de Searle : un programme manipule de même des symboles selon leur forme (la syntaxe) sans accéder à leur sens (la sémantique) ; réussir le test de Turing ne prouverait donc pas la compréhension. Donnez aussi la réponse de ses contradicteurs : c'est le système entier qui comprendrait. Le débat reste ouvert."
+    },
+    {
+      "type": "question",
+      "titre": "À vous",
+      "question": "Résumez l'argument de la chambre chinoise en trois phrases.",
+      "reponse": "Une personne qui ignore le chinois répond à des messages en chinois grâce à un manuel de règles. Vues de l'extérieur, ses réponses sont parfaites, mais elle ne comprend rien. De même, un programme manipule des symboles sans en saisir le sens : réussir le test de Turing ne prouve pas la compréhension.",
+      "explication": "Trois temps : la situation, le constat, la conclusion sur les programmes.",
+      "notes": "5 min en silence, puis faites lire deux ou trois résumés avant d'afficher la réponse. Vérifiez que la troisième phrase généralise aux programmes : c'est elle qui fait de l'histoire un argument."
+    },
+    {
+      "type": "activite",
+      "titre": "Débat : le traducteur automatique comprend-il ?",
+      "duree": 20,
+      "consignes": [
+        "La question : « Un traducteur automatique comprend-il ce qu'il traduit ? »",
+        "Deux camps désignés : oui ou non",
+        "Deux orateurs par camp",
+        "Puis questions de la salle"
+      ],
+      "notes": "Désignez les camps vous-même, sans tenir compte des opinions : défendre une position qu'on ne partage pas oblige à écouter l'autre. Pistes du cours à glisser si le débat s'essouffle : la chambre chinoise ; les traducteurs qui ont longtemps rendu une phrase turque neutre par « il est médecin » mais « elle est infirmière » ; Emily Bender et ses coautrices (2021), pour qui les grands modèles de langage sont des « perroquets stochastiques » qui recombinent des formes apprises."
+    },
+    {
+      "type": "deux",
+      "titre": "Conclure : deux questions distinctes",
+      "colonnes": [
+        {
+          "titre": "L'observable",
+          "points": [
+            "La traduction est-elle juste ?",
+            "Elle se vérifie : on compare, on teste",
+            "Question de l'IA **étroite** : une tâche délimitée"
+          ]
+        },
+        {
+          "titre": "Le philosophique",
+          "points": [
+            "Y a-t-il compréhension ?",
+            "Le résultat seul ne suffit pas à le dire : la chambre chinoise",
+            "Question de l'IA **faible ou forte** : le débat reste ouvert"
+          ]
+        }
+      ],
+      "notes": "Concluez sans désigner de vainqueur, en séparant les deux questions. Élargissez aux grands modèles de langage : ils rédigent, résument et traduisent sur presque tous les sujets, mais ils sont entraînés d'abord à prédire la suite d'une séquence de mots et commettent des erreurs qu'un humain ne ferait pas. Aucun consensus n'en fait une IA générale : ce sont des outils puissants mais spécialisés, dont chaque production doit être vérifiée."
+    },
+    {
+      "type": "points",
+      "titre": "Erreurs fréquentes à corriger",
+      "points": [
+        "« IA faible » ne veut pas dire « peu performante » : Deep Blue a battu le champion du monde",
+        "Deep Blue n'apprenait pas : il explorait des millions de positions",
+        "Les grands modèles de langage ne sont pas une IA générale"
+      ],
+      "notes": "Pour chaque erreur, demandez à un étudiant de la corriger avec un élément de la frise ou du tableau. « Faible » s'oppose à « forte », c'est-à-dire à la question de l'esprit, et non à « performante ». Pour les modèles de langage : aucun consensus scientifique ne dit qu'une IA générale est atteinte."
+    },
+    {
+      "type": "fin",
+      "titre": "Bilan et travail personnel",
+      "points": [
+        "**Bilan** (5 min) : écrivez trois dates que vous retenez, et pourquoi",
+        {
+          "texte": "**Travail personnel**",
+          "sous": [
+            "Construire une frise personnelle de dix dates",
+            "Groupe concerné : préparer la table ronde « Genèse et apparition de l'IA »"
+          ]
+        }
+      ],
+      "texte": "Séance 3 : TD, supervisé ou non supervisé ?",
+      "notes": "Ramassez les trois dates : si une date clé manque souvent, revenez-y au début de la séance suivante. La méthode de la frise est décrite dans « Comment aborder chaque partie » : dix dates suffisent. Pensez au prérequis de la séance 3 : faites lire la leçon « Apprentissage supervisé et non supervisé » du chapitre 1."
+    }
+  ]
+}

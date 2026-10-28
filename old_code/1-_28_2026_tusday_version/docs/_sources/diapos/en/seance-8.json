@@ -1,0 +1,242 @@
+{
+  "id": "seance-8",
+  "numero": 8,
+  "titre": "Transformers and generative AI",
+  "resume": "Explain token, embedding and attention, describe text generation as the repeated prediction of the next token, and check a reference produced by a chatbot.",
+  "duree": "1 h 30 min",
+  "lien": "index.html#c3-deep",
+  "fiche": "enseignant.html#guide-seance-8",
+  "diapos": [
+    {
+      "type": "titre",
+      "surtitre": "Chapter 3 · Session 8",
+      "titre": "Transformers and generative AI",
+      "sousTitre": "How a machine writes, and why it must be checked",
+      "notes": "Outline: guessing the next word (15 min), tokens, embeddings, attention (20), demonstration (20), the reference test (15), ethics (15), wrap-up (5). The day before: install `transformers` and `torch` and download the models (or prepare Colab), take screenshots of the outputs as a backup, and ask a chatbot for five references on a specific topic. Prerequisites: session 7 and the lesson “Deep learning” read through."
+    },
+    {
+      "type": "points",
+      "titre": "Session objectives",
+      "points": [
+        "Explain **token**, **embedding** and **attention**",
+        "Describe generation as the **repeated prediction of the next token**",
+        "**Check** a reference produced by a chatbot"
+      ],
+      "notes": "Announce the thread of the session: first the class plays the role of a language model, then we open the box, run real models, and finally put them to the test."
+    },
+    {
+      "type": "section",
+      "numero": 1,
+      "titre": "Guessing the next word",
+      "sousTitre": "15 min, without a computer",
+      "notes": "No theory for now: the students will do themselves what a generative model does."
+    },
+    {
+      "type": "question",
+      "titre": "Complete it out loud",
+      "question": "“Il pleure dans mon…”",
+      "reponse": "“cœur”: Verlaine, *Romances sans paroles* (1874).",
+      "explication": "Everyone gives the same word: in this context, only one continuation is very likely.",
+      "notes": "Ask for a collective answer. Expected: “cœur”, unanimously. This is the poem whose words were counted in Python in the chapter 2 tutorial (TD) (exercise 3). Question to ask: how do you know? Because you have already read this sequence. In the same way, a language model estimates the probability of a sequence of words, based on a very large number of texts."
+    },
+    {
+      "type": "activite",
+      "titre": "“The student opened the book and…”",
+      "duree": 7,
+      "consignes": [
+        "Everyone secretly writes down the next word, then reads it out loud.",
+        "On the board: each suggestion and the number of students who gave it.",
+        "This table is a **probability distribution** over the next word."
+      ],
+      "materiel": "Half a sheet of paper per student; the board",
+      "notes": "Write down each suggestion with its count. This time, the answers differ: several continuations are plausible. Have the students say that the most frequent one is not the only possible one. Leave the table visible for the next slide."
+    },
+    {
+      "type": "deux",
+      "titre": "Choosing the next word: temperature",
+      "colonnes": [
+        {
+          "titre": "Low temperature",
+          "points": [
+            "Always take the most frequent suggestion",
+            "Predictable text",
+            "T < 1: the differences between probabilities grow"
+          ]
+        },
+        {
+          "titre": "High temperature",
+          "points": [
+            "Draw at random among the suggestions",
+            "Surprising, then incoherent text",
+            "T > 1: the differences flatten out"
+          ]
+        }
+      ],
+      "notes": "Do both draws with the class’s table: once by taking the most frequent word, once at random (slips of paper drawn from a box, for example). A model does exactly this, token after token. The lesson’s formula, p(tokenᵢ) = exp(zᵢ / T) / Σⱼ exp(zⱼ / T), is not required."
+    },
+    {
+      "type": "section",
+      "numero": 2,
+      "titre": "Tokens, embeddings, attention",
+      "sousTitre": "20 min",
+      "notes": "Follow the lesson “Deep learning”, part “Text generation with Transformers”. Some context: in 2017, the paper “Attention Is All You Need” (Ashish Vaswani and his co-authors, Google) introduced the Transformer, which processes all the words of a passage at the same time and computes the relations between them with an attention mechanism."
+    },
+    {
+      "type": "definition",
+      "terme": "Token",
+      "traduction": "token (jeton)",
+      "definition": "The unit of text that the model processes: a word, part of a word or a punctuation mark. A rare word is cut into several pieces.",
+      "exemple": "The GPT-2 vocabulary has a little over 50,000 tokens.",
+      "notes": "Insist on this: the model sees neither letters nor ideas, but a sequence of tokens. It always predicts the next token, not a whole sentence or a ready-made answer."
+    },
+    {
+      "type": "definition",
+      "terme": "Embedding",
+      "traduction": "plongement",
+      "definition": "Each token becomes a vector of several hundred numbers. Words used in similar contexts get vectors that are close to each other.",
+      "exemple": "The distributional hypothesis, summed up by J. R. Firth in 1957: “*You shall know a word by the company it keeps*”.",
+      "notes": "Explain the quotation in plain words: we recognize a word by the company it keeps. Link this to literary reading: the meaning of a word is also built in its contexts. The vector understands nothing; it summarizes neighborhoods."
+    },
+    {
+      "type": "question",
+      "titre": "Attention",
+      "question": "“The student handed her thesis to the professor because she had finished.” Which word should the token “she” look at most?",
+      "choix": [
+        "“thesis”",
+        "“professor”",
+        "“student”"
+      ],
+      "reponse": "“student”",
+      "explication": "**Attention**: each token computes how much it should “look at” each of the others, whatever the distance between them. It is the heart of the Transformer.",
+      "notes": "Have the students vote, then ask how they know: the meaning of the sentence (in French, the feminine agreement as well). The model learns these links from examples. The formula Attention(Q, K, V) = softmax(Q · Kᵀ / √d) · V is in the lesson: no need to go into detail. This mechanism also makes it possible to process all the words in parallel, whereas a recurrent network (RNN) read one word after another."
+    },
+    {
+      "type": "deux",
+      "titre": "Two families of Transformers",
+      "colonnes": [
+        {
+          "titre": "Encoders: BERT (Google, 2018)",
+          "points": [
+            "Read the sentence in both directions",
+            "Used to **understand**: classification, sentiment, named entities",
+            "For French: CamemBERT; for Arabic: AraBERT"
+          ]
+        },
+        {
+          "titre": "Decoders: GPT (OpenAI, since 2018)",
+          "points": [
+            "Read from left to right",
+            "Predict the next token",
+            "Used to **generate** text"
+          ]
+        }
+      ],
+      "notes": "Common mistake: confusing BERT, which understands and classifies, with GPT, which generates. Link this to the mini-project: sentiment analysis (subject 1) and the named entities of a political speech (subject 3) are tasks for encoders."
+    },
+    {
+      "type": "etapes",
+      "titre": "Generating means looping",
+      "etapes": [
+        {
+          "titre": "Compute",
+          "texte": "The model gives a probability to each token in the vocabulary."
+        },
+        {
+          "titre": "Draw",
+          "texte": "A token is drawn at random according to these probabilities, adjusted by the temperature."
+        },
+        {
+          "titre": "Append",
+          "texte": "The drawn token is added to the end of the text."
+        },
+        {
+          "titre": "Repeat",
+          "texte": "The lengthened text becomes the new starting point."
+        }
+      ],
+      "progressif": true,
+      "notes": "This is the central objective of the session. Have a student rephrase it using the opening game: the class went through these four steps with “The student opened the book and…”. The consequence to draw out: the model does not look for information; it continues a text in a plausible way."
+    },
+    {
+      "type": "section",
+      "numero": 3,
+      "titre": "Use, check, declare",
+      "sousTitre": "Demonstration (20 min) · references (15 min) · ethics (15 min)",
+      "notes": "Now we run real models, then put them to the test. If the connection or the installation fails, show the screenshots prepared the day before."
+    },
+    {
+      "type": "code",
+      "titre": "Demonstration: generating with GPT-2",
+      "code": "from transformers import pipeline, set_seed\n\n# GPT-2 (2019): small generative model, English texts\ngenerateur = pipeline(\"text-generation\", model=\"gpt2\")\nset_seed(42)  # reproducible sampling on the same installation\n\ndebut = \"The old librarian opened the forbidden book and\"\nsorties = generateur(debut, max_new_tokens=40, do_sample=True,\n                     temperature=0.3, num_return_sequences=2)\nfor s in sorties:\n    print(s[\"generated_text\"], end=\"\\n\\n\")",
+      "legende": "`generation_texte.py` (lesson), with `temperature=0.3`, then `1.5`. The continuation depends on the seed, the temperature and the installed versions: there is no fixed output.",
+      "notes": "Have the students predict before running it: at 0.3, a fairly predictable text; at 1.5, a surprising, then incoherent text. Read the outputs out loud and have the students pick out sentences that are plausible but absurd or false. GPT-2 is an English model released in 2019; for French or Arabic, you need to choose another model on the Hugging Face Hub. About 10 minutes."
+    },
+    {
+      "type": "code",
+      "titre": "Demonstration: an English model that classifies",
+      "code": "from transformers import pipeline\n\n# English model fine-tuned on film reviews (SST-2)\nmodele = (\"distilbert/distilbert-base-uncased-\"\n          \"finetuned-sst-2-english\")\nanalyseur = pipeline(\"sentiment-analysis\", model=modele)\navis = [\n    \"I loved this novel, the characters are unforgettable.\",\n    \"The ending was a real disappointment.\",\n]\nfor texte, resultat in zip(avis, analyseur(avis)):\n    print(resultat[\"label\"], \"|\", texte)",
+      "sortie": "POSITIVE | I loved this novel, the characters are unforgettable.\nNEGATIVE | The ending was a real disappointment.",
+      "legende": "`sentiment_transformers.py` (lesson). Then add a sentence in French to the `avis` list: what does this model, trained on English, answer?",
+      "notes": "First run it as it is: the two English reviews are correctly classified. Add a French sentence of your choice and run it again in front of the class without announcing the result. Whatever the result, ask the question: can a model fine-tuned on English film reviews judge a French text? Link this to subjects 1 (sentiment) and 3 (political speeches) of the mini-project. About 10 minutes."
+    },
+    {
+      "type": "activite",
+      "titre": "The reference test",
+      "duree": 15,
+      "consignes": [
+        "Here are five references suggested by a chatbot on a specific topic.",
+        "Each group takes one and looks for it in a library catalog.",
+        "Does it exist? Are the author, title, publisher and year correct?",
+        "Each group announces its verdict in one sentence."
+      ],
+      "materiel": "The five references, requested the day before, printed or projected; access to a library catalog",
+      "notes": "Choose a specific topic from your discipline. You can check the references before class, but do not announce the result. If some of them do not exist, show that the tool invented them with confidence; if everything exists, the lesson is about checking itself. A common mistake to name: trusting a reference because it is well presented."
+    },
+    {
+      "type": "definition",
+      "terme": "Hallucination",
+      "traduction": "hallucination",
+      "definition": "A generative model produces the most plausible continuation, not the most truthful one: it can confidently invent a quotation, a date or a complete reference that does not exist.",
+      "exemple": "Rule for your thesis: never cite a source that you have not found and read yourself.",
+      "notes": "Draw the lesson from the test: a reference that does not exist, in a thesis, is a scholarly fault, whatever its origin. Every quotation is checked in the original edition."
+    },
+    {
+      "type": "activite",
+      "titre": "Ethics: three rules for the class",
+      "duree": 15,
+      "consignes": [
+        "Declaring the use of AI in a thesis: what must be stated?",
+        "Uploading texts online: which ones must never be uploaded?",
+        "Darja, Tamazight: what can be done when a language is handled less well?",
+        "Write three rules together, one sentence each."
+      ],
+      "materiel": "The lessons “Outlook: opportunities, limits and ethics” and “Learning with an AI assistant, without cheating”",
+      "notes": "Expected answers, based on the lessons. Declaring: the name of the tool, its version, the date, the precise use and the prompts given; presenting a generated text as your own is plagiarism. Never upload personal data, or unpublished or protected texts, to a service that reuses content. Languages that are poorly represented on the Web, such as Darja or Tamazight, are handled less well than English: check the results on a sample. Write the three rules on the board."
+    },
+    {
+      "type": "points",
+      "titre": "Common mistakes",
+      "points": [
+        "Believing that the model knows or searches: it continues a text in a plausible way",
+        "Trusting a reference because it is well presented",
+        "Confusing BERT, which understands and classifies, with GPT, which generates"
+      ],
+      "notes": "Have the students link each mistake to a moment of the session: the next-word game, the reference test, the two families of Transformers."
+    },
+    {
+      "type": "fin",
+      "titre": "Wrap-up · 5 min",
+      "texte": "Complete on half a sheet of paper: “For a model, generating text means…”",
+      "points": [
+        {
+          "texte": "**Homework**",
+          "sous": [
+            "Reread the “Hallucinations and sources” box, then write your own rule for using an AI assistant in five lines",
+            "For the group concerned: prepare the round table “AI as a source of new issues”"
+          ]
+        }
+      ],
+      "notes": "Collect the completed sentences. Expected: predicting, token after token, a plausible continuation; computing probabilities, drawing a token, adding it, starting again. Open the next session with the most frequent answers."
+    }
+  ]
+}

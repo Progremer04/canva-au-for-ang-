@@ -1,0 +1,596 @@
+<section class="chapitre" id="chapitre-3" aria-labelledby="chapitre-3-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">الفصل 3 · 6 أسابيع</p>
+    <h2 class="titre-section" id="chapitre-3-titre">أنواع الذكاء الاصطناعي ومقارباته</h2>
+    <p class="chapeau">العائلات الأربع الكبرى للذكاء الاصطناعي: الأنظمة الخبيرة، والتعلم الآلي، والتعلم العميق، والتعلم المعزَّز. في نهاية هذا الفصل، ستكونون قادرين على شرح مبدأ كل واحدة منها، وقراءة صيغها الأساسية، وتنفيذ مثال أول بلغة Python.</p>
+    <ul class="puces"><li class="puce">محاضرة</li><li class="puce">الأعمال الموجَّهة (TD)</li><li class="puce">الأعمال التطبيقية (TP)</li><li class="puce puce--outil">scikit-learn</li><li class="puce puce--outil">transformers</li></ul>
+  </header>
+
+  <nav class="sommaire-chapitre" aria-label="فهرس الفصل 3">
+    <ol>
+      <li><a href="#c3-symbolique">الذكاء الاصطناعي الرمزي: الأنظمة الخبيرة</a></li>
+      <li><a href="#c3-ml">التعلم الآلي</a></li>
+      <li><a href="#c3-algorithmes">بعض خوارزميات التعلم الآلي</a></li>
+      <li><a href="#c3-deep">التعلم العميق</a></li>
+      <li><a href="#c3-renforcement">التعلم المعزَّز</a></li>
+      <li><a href="#c3-synthese">خلاصة</a></li>
+    </ol>
+  </nav>
+
+  <article class="lecon" id="c3-symbolique">
+    <h3>الذكاء الاصطناعي الرمزي: الأنظمة الخبيرة</h3>
+    <p>يمثّل <dfn>الذكاء الاصطناعي الرمزي</dfn> المعرفةَ برموز يستطيع الإنسان قراءتها، أي بوقائع وقواعد، بدلًا من أعداد تُتعلَّم من البيانات. وأشهر ما أنتجه <dfn>النظام الخبير</dfn> (<span class="terme-en" lang="fr">système expert</span>)، وهو برنامج يحاكي استدلال مختصّ في مجال ضيّق. وهذا المسلك مألوف لدى دارسي الأدب: فكتابٌ في علم العروض ينصّ على أن «السوناتة تتألف من أربعة عشر بيتًا موزّعة على رباعيتين وثلاثيتين» يصوغ قاعدةً بالفعل.</p>
+
+    <h4>المكوّنات الثلاثة</h4>
+    <dl class="definitions">
+      <div><dt>قاعدة الوقائع (<span class="terme-en" lang="fr">base de faits</span>)</dt><dd>ما نعرفه عن الحالة المدروسة («القصيدة من 14 بيتًا»). وتتّسع كلما تقدّم الاستدلال.</dd></div>
+      <div><dt>قاعدة القواعد (<span class="terme-en" lang="fr">base de règles</span>)</dt><dd>معارف المجال، في صيغة «إذا مقدّمات فإنّ نتيجة»؛ وتُربط المقدّمات بأداة «و» (ET)، ويُرمز إليها أيضًا بـ ∩.</dd></div>
+      <div><dt>محرك الاستدلال (<span class="terme-en" lang="fr">moteur d'inférence</span>)</dt><dd>البرنامج الذي يتعرّف على القواعد القابلة للتطبيق، ويفعّلها، ويضيف نتائجها إلى قاعدة الوقائع. وهو مستقلّ عن المجال: إذ ننتقل من الطب إلى الشعر بتغيير القواعد وحدها.</dd></div>
+    </dl>
+
+    <h4>التسلسل الأمامي والتسلسل الخلفي</h4>
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>التسلسل الأمامي</h4>
+        <p><dfn>التسلسل الأمامي</dfn> (<span class="terme-en" lang="fr">chaînage avant</span>) توجّهه البيانات. ننطلق من الوقائع، فنفعّل قاعدةً كلُّ مقدّماتها معروفة، ونضيف نتيجتها، ثم نعيد الكرّة إلى أن نبلغ الهدف أو إلى أن تكفّ القواعد عن إنتاج أي واقعة جديدة.</p>
+        <ul>
+          <li>من الوقائع إلى الهدف: «ماذا يمكنني أن أستنتج؟»</li>
+          <li>عيبه: قد يستنتج كثيرًا من الوقائع غير المفيدة.</li>
+        </ul>
+      </div>
+      <div class="comparaison-col">
+        <h4>التسلسل الخلفي</h4>
+        <p><dfn>التسلسل الخلفي</dfn> (<span class="terme-en" lang="fr">chaînage arrière</span>) يوجّهه الهدف. ننطلق من الفرضية المراد إثباتها، ونبحث عن القواعد التي تنتهي إليها، فتصير مقدّماتها أهدافًا فرعية، إلى أن نصل إلى وقائع معروفة. وهو يلائم التشخيص.</p>
+        <ul>
+          <li>من الهدف إلى الوقائع: «ماذا أحتاج لإثبات هذا؟»</li>
+          <li>ميزته: لا تُفحص إلا القواعد المفيدة لبلوغ الهدف.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h4>حلّ التعارض والوقائع غير القابلة للاستنتاج</h4>
+    <p>عندما تكون عدة قواعد قابلة للتطبيق في الوقت نفسه، على المحرك أن يختار واحدة منها: هذا هو <dfn>حلّ التعارض</dfn> (<span class="terme-en" lang="fr">résolution de conflit</span>). وتتبع الاستراتيجية المعتمدة في الأعمال الموجَّهة <strong>ترتيبًا للقواعد</strong> محدَّدًا سلفًا: في كل دورة، نفعّل أول قاعدة قابلة للتطبيق وفق هذا الترتيب، ثم نعود إلى بداية القائمة. والقاعدة التي فُعِّلت مرةً لا تُفعَّل مرة ثانية. أما <dfn>الوقائع غير القابلة للاستنتاج</dfn> (<span class="terme-en" lang="fr">faits non déductibles</span>) فلا تظهر في نتيجة أي قاعدة: لا يمكن أن يوفّرها سوى الملاحظة أو المستخدم (H وG وK في تمرين الأعمال الموجَّهة). وفي التسلسل الخلفي، إذا كان هدف فرعي غير قابل للاستنتاج وغائبًا عن قاعدة الوقائع، فشل هذا المسار، أو دفع النظامَ إلى سؤال المستخدم.</p>
+
+    <h4>مثال: التعرّف على شكل شعري</h4>
+    <p>تتألف السوناتة الإيطالية أو الفرنسية (بترارك، رونسار، بودلير) من رباعيتين وثلاثيتين؛ أما السوناتة الإنجليزية، المسمّاة الشكسبيرية، فمن ثلاث رباعيات وثنائية واحدة. لنترجم هذه التعريفات إلى قواعد. الملاحظات («14 بيتًا»، «ثلاثيتان»…) هي الوقائع غير القابلة للاستنتاج.</p>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>قاعدة القواعد في النظام الخبير المصغَّر، حسب ترتيب الأولوية</caption>
+      <thead><tr><th scope="col">القاعدة</th><th scope="col">إذا (المقدّمات)</th><th scope="col">فإنّ (النتيجة)</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">R1</th><td>3 أبيات ومقاطع 5-7-5</td><td>هايكو</td></tr>
+        <tr><th scope="row">R2</th><td>14 بيتًا ورباعيتان وثلاثيتان</td><td>سوناتة</td></tr>
+        <tr><th scope="row">R3</th><td>14 بيتًا و3 رباعيات وثنائية واحدة</td><td>سوناتة</td></tr>
+        <tr><th scope="row">R4</th><td>سوناتة وثلاثيتان</td><td>سوناتة إيطالية أو فرنسية</td></tr>
+        <tr><th scope="row">R5</th><td>سوناتة وثنائية واحدة</td><td>سوناتة إنجليزية</td></tr>
+        <tr><th scope="row">R6</th><td>سوناتة</td><td>شكل ثابت</td></tr>
+        <tr><th scope="row">R7</th><td>هايكو</td><td>شكل ثابت</td></tr>
+      </tbody>
+    </table></div>
+    <p>لنطبّق التسلسل الأمامي خطوةً خطوة على سوناتة جواكيم دو بيليه «Heureux qui, comme Ulysse, a fait un beau voyage» (<em>Les Regrets</em>، 1558).</p>
+    <ol class="etapes">
+      <li><p class="etape-titre">قاعدة الوقائع الأولية</p><p>{14 بيتًا، رباعيتان، ثلاثيتان، أبيات إسكندرية}. لا تستعمل أي قاعدة واقعة «أبيات إسكندرية»: ستظل هذه الواقعة خاملة.</p></li>
+      <li><p class="etape-titre">الدورة 1</p><p>تفشل R1 (لا وجود لواقعة «3 أبيات»)؛ وR2 قابلة للتطبيق: نضيف «سوناتة».</p></li>
+      <li><p class="etape-titre">الدورة 2</p><p>نعود إلى R1. تفشل R1 وR3، وقد سبق تفعيل R2؛ وتنطبق R4: نضيف «سوناتة إيطالية أو فرنسية».</p></li>
+      <li><p class="etape-titre">الدورة 3</p><p>تفشل R5 (لا وجود لواقعة «ثنائية واحدة»)؛ وتنطبق R6: نضيف «شكل ثابت».</p></li>
+      <li><p class="etape-titre">الدورة 4: التوقّف</p><p>لم تعد أي قاعدة تُنتج واقعة جديدة. لقد استُنتجت ثلاث وقائع.</p></li>
+    </ol>
+    <p>أما في التسلسل الخلفي، فإن الفرضية «سوناتة إنجليزية؟» تقتضي، بموجب R5، واقعتَي «سوناتة» و«ثنائية واحدة». والواقعة الأخيرة غير قابلة للاستنتاج وغائبة عن قاعدة الوقائع: فتُرفض الفرضية فورًا.</p>
+    <p>في Python، كل قاعدة زوجٌ (المقدّمات، النتيجة). يختبر التعبير <code>premisses &lt;= faits</code> ما إذا كانت كل المقدّمات موجودة في قاعدة الوقائع؛ واشتراط أن تكون النتيجة جديدة يمنع تفعيل القاعدة مرتين؛ أما <code>else</code> الخاصة بالحلقة <code>for</code> فتُنفَّذ عندما لا تُفعَّل أي قاعدة.</p>
+    <figure class="code">
+      <figcaption class="code-legende">chainage_avant.py</figcaption>
+      <pre><code class="language-python"># Chaînage avant générique : une règle = (ensemble de prémisses, conclusion)
+regles = [
+    ({"3 vers", "syllabes 5-7-5"}, "haïku"),                     # R1
+    ({"14 vers", "2 quatrains", "2 tercets"}, "sonnet"),         # R2
+    ({"14 vers", "3 quatrains", "1 distique"}, "sonnet"),        # R3
+    ({"sonnet", "2 tercets"}, "sonnet italien ou français"),     # R4
+    ({"sonnet", "1 distique"}, "sonnet anglais"),                # R5
+    ({"sonnet"}, "forme fixe"),                                  # R6
+    ({"haïku"}, "forme fixe"),                                   # R7
+]
+
+def chainage_avant(faits, regles):
+    faits = set(faits)  # copie : on ne modifie pas la base d'origine
+    while True:
+        for i, (premisses, conclusion) in enumerate(regles, start=1):
+            # règle applicable : prémisses toutes connues, conclusion nouvelle
+            if premisses &lt;= faits and conclusion not in faits:
+                faits.add(conclusion)
+                print(f"R{i} déclenchée → {conclusion}")
+                break  # résolution de conflit : on repart de R1
+        else:
+            return faits  # aucune règle ne produit de fait nouveau : arrêt
+
+# Du Bellay, « Heureux qui, comme Ulysse… » (Les Regrets, 1558)
+base = {"14 vers", "2 quatrains", "2 tercets", "alexandrins"}
+resultat = chainage_avant(base, regles)
+print(sorted(resultat - base))</code></pre>
+      <pre class="sortie"><samp>R2 déclenchée → sonnet
+R4 déclenchée → sonnet italien ou français
+R6 déclenchée → forme fixe
+['forme fixe', 'sonnet', 'sonnet italien ou français']</samp></pre>
+    </figure>
+    <p>يمكنكم هنا إنجاز التمرين 1 من الأعمال الموجَّهة (الترتيب R3 R7 R1 R4 R5 R2 R6، والوقائع غير القابلة للاستنتاج H وG وK، وقاعدة الوقائع الأولية {H, K}، والهدف C) خطوةً خطوة، دورةً دورة.</p>
+    <div class="demo" data-demo="chainage-avant"></div>
+
+    <h4>ثلاثة أنظمة خبيرة تاريخية</h4>
+    <div class="grille-cartes">
+      <article class="carte">
+        <h4>DENDRAL</h4>
+        <p>ستانفورد، ابتداءً من 1965 (Edward Feigenbaum وJoshua Lederberg وBruce Buchanan): استنتاج بنية الجزيئات العضوية انطلاقًا من أطياف الكتلة. وكثيرًا ما يُعدّ أول نظام خبير.</p>
+      </article>
+      <article class="carte">
+        <h4>MYCIN</h4>
+        <p>ستانفورد، سبعينيات القرن العشرين (Edward Shortliffe): تشخيص الالتهابات البكتيرية في الدم واقتراح مضادّ حيوي. تسلسل خلفي، و«معاملات يقين»، وتفسير للأسئلة التي يطرحها. ولم يُستعمل قطّ استعمالًا روتينيًا في المستشفى.</p>
+      </article>
+      <article class="carte">
+        <h4>XCON (R1)</h4>
+        <p>John McDermott (كارنيغي ميلون) لصالح شركة Digital Equipment Corporation (DEC)، مطلع ثمانينيات القرن العشرين: تهيئة طلبيات حواسيب VAX. تسلسل أمامي، وعدة آلاف من القواعد.</p>
+      </article>
+    </div>
+
+    <h4>نقاط القوة والحدود</h4>
+    <p>تكمن قوة الذكاء الاصطناعي الرمزي في <strong>قابلية التفسير</strong>: فكل نتيجة تُسوَّغ بالسلسلة الدقيقة للقواعد المفعَّلة، مما يجعل الاستدلال قابلًا للتتبّع والتصحيح، من دون حاجة إلى كميات كبيرة من البيانات. غير أن حدّين تسبّبا في أفول الأنظمة الخبيرة في أواخر ثمانينيات القرن العشرين. أولهما <dfn>عنق الزجاجة في اكتساب المعارف</dfn>: فالخبراء يُحسنون الفعل أكثر مما يُحسنون القول، وتحويل معرفتهم إلى قواعد يتطلّب أشهرًا من المقابلات. وثانيهما <dfn>الهشاشة</dfn>: فخارج الحالات المتوقَّعة، يفشل النظام. إن سوناتة مطبوعة في كتلة واحدة، أو مقلوبة المقاطع كما كتبها بعض شعراء القرن التاسع عشر، لا تفعّل أي قاعدة، في حين يتعرّف القارئ على شكلها فورًا.</p>
+  </article>
+
+  <article class="lecon" id="c3-ml">
+    <h3>التعلم الآلي (Machine Learning)</h3>
+    <p>كثير من المعارف يستعصي على الصياغة في قواعد: فأنتم تتعرّفون على نثر كاتب ياسين من بضعة أسطر، من دون أن تقدروا على تعداد القواعد التي يقوم عليها هذا الحكم. أما <dfn>التعلم الآلي</dfn> (<span class="terme-en" lang="fr">apprentissage automatique</span>، ML) فيقلب المسار: نزوّد البرنامج بأمثلة، فيستخرج منها بنفسه الانتظامات. وبحسب تعريف Tom Mitchell (1997)، الذي نورده هنا بتصرّف، يتعلّم البرنامج حين يتحسّن أداؤه في مهمّة ما، مقيسًا بطريقة معيّنة، بفعل التجربة. وعمليًا، يعني التعلّم ضبطَ <dfn>معاملات</dfn> (<span class="terme-en" lang="fr">paramètres</span>) النموذج، أي أعداد، إلى أن يعيد إنتاج الأمثلة المعروفة على أفضل وجه.</p>
+    <dl class="definitions">
+      <div><dt>السمات</dt><dd>خصائص كل مثال، معبَّرًا عنها بأعداد (<span class="terme-en" lang="fr">attributs</span>): عدد الكلمات، ووجود كلمة «مجاني».</dd></div>
+      <div><dt>الوسم</dt><dd>الإجابة الصحيحة المعروفة لمثال ما (<span class="terme-en" lang="fr">étiquette</span>): «مزعج» أو «غير مزعج». ولا يوجد إلا في التعلم الخاضع للإشراف.</dd></div>
+      <div><dt>النموذج</dt><dd>الصيغة التي تحوّل السمات إلى تنبّؤ.</dd></div>
+      <div><dt>التدريب</dt><dd>ضبط المعاملات على أمثلة (<span class="terme-en" lang="fr">entraînement</span>).</dd></div>
+      <div><dt>التنبّؤ</dt><dd>تطبيق النموذج المدرَّب على مثال جديد.</dd></div>
+      <div><dt>التقييم</dt><dd>قياس جودة التنبّؤات على أمثلة لم يرها النموذج قطّ.</dd></div>
+    </dl>
+
+    <h4>تقييم نموذج</h4>
+    <p>لا يُقيَّم نموذج أبدًا على الأمثلة التي استُعملت في تدريبه، كما لا يُمتحن طالب في أسئلة يحفظ أجوبتها عن ظهر قلب. تُقسَّم المدوّنة إلى <dfn>مجموعة تدريب</dfn> (<span class="terme-en" lang="fr">jeu d'entraînement</span>، وتضمّ غالبًا من 70 إلى 80% من الأمثلة) و<dfn>مجموعة اختبار</dfn> (<span class="terme-en" lang="fr">jeu de test</span>)، بواسطة الدالة <code>train_test_split</code> من scikit-learn. لنفترض مرشِّحًا للرسائل المزعجة (spam) اختُبر على 100 رسالة بريد إلكتروني، منها 40 رسالة مزعجة. تُقاطع <dfn>مصفوفة الالتباس</dfn> (<span class="terme-en" lang="fr">matrice de confusion</span>) بين الفئة الحقيقية والتنبّؤ؛ وتُسمّى الفئة المبحوث عنها، «مزعج»، فئةً موجبة.</p>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>مصفوفة الالتباس لمرشِّح الرسائل المزعجة على 100 رسالة (أرقام افتراضية)</caption>
+      <thead><tr><th scope="col">الفئة الحقيقية</th><th scope="col">المتوقَّع «مزعج»</th><th scope="col">المتوقَّع «غير مزعج»</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">مزعج (40)</th><td>موجب صحيح (VP): 30</td><td>سالب خاطئ (FN): 10</td></tr>
+        <tr><th scope="row">غير مزعج (60)</th><td>موجب خاطئ (FP): 2</td><td>سالب صحيح (VN): 58</td></tr>
+      </tbody>
+    </table></div>
+    <p class="formule">exactitude = (VP + VN) / total = (30 + 58) / 100 = 0,88</p>
+    <p class="formule">précision = VP / (VP + FP) = 30 / 32 ≈ 0,94</p>
+    <p class="formule">rappel = VP / (VP + FN) = 30 / 40 = 0,75</p>
+    <p><dfn>الدقة الإجمالية</dfn> (<span class="terme-en" lang="fr">exactitude</span>) هي نسبة الرسائل المصنَّفة تصنيفًا صحيحًا. و<dfn>الضبط</dfn> (<span class="terme-en" lang="fr">précision</span>) يبيّن هل يصيب المرشِّح حين يُنبّه إلى رسالة مزعجة: إنه يصيب في 94% من الحالات، فلا يكاد يرمي أبدًا في سلة المهملات رسالةَ المشرف على مذكّرتكم. أما <dfn>الاستدعاء</dfn> (<span class="terme-en" lang="fr">rappel</span>) فيبيّن نسبة الرسائل المزعجة التي يلتقطها: 75%، أي إن رسالة مزعجة من كل أربع ما زالت تمرّ. وكثيرًا ما يتجاذب المقياسان في اتجاهين متعاكسين. واحذروا الفئات غير المتوازنة: إذا كانت 5% من الرسائل مزعجة، فإن تصنيف كل الرسائل «غير مزعجة» يعطي دقة إجمالية قدرها 95% مع استدعاء منعدم.</p>
+
+    <h4>الإفراط في التعلم</h4>
+    <p>يحدث <dfn>الإفراط في التعلم</dfn> (<span class="terme-en" lang="fr">surapprentissage</span>) عندما يتعلّم النموذج أيضًا مصادفاتِ أمثلته: فلو احتوت كل الرسائل المزعجة في التدريب، بمحض الصدفة، على كلمة «الخميس»، لانتهى إعلان ندوتكم المقرَّرة يوم الخميس في سلة المهملات. العَرَض: نتائج ممتازة على مجموعة التدريب، وأسوأ منها بكثير على مجموعة الاختبار. العلاج: مزيد من البيانات، ونموذج أبسط، وسمات أقلّ.</p>
+
+    <h4>تصنيف الرسائل الإلكترونية: «مزعج» أو «غير مزعج»</h4>
+    <p>ينبغي أولًا تحويل النصوص إلى أعداد. يصف <dfn>كيس الكلمات</dfn> (<span class="terme-en" lang="fr">sac de mots</span>) كل رسالة بعدد مرات ورود كل كلمة من المفردات فيها، من دون مراعاة الترتيب: فتصبح «انقر هنا، انقر بسرعة» {انقر: 2، هنا: 1، بسرعة: 1}. ويتعلّم <dfn>المصنِّف البايزي الساذج</dfn> (<span class="terme-en" lang="fr">classifieur bayésien naïf</span>) تواتر كل كلمة في الرسائل المزعجة وفي الرسائل الأخرى، ثم يجمع قرائن كل كلمات الرسالة الجديدة ليختار الفئة الأرجح. وهو «ساذج» لأنه يعامل الكلمات على أنها مستقلّ بعضها عن بعض، وهذا خطأ، لكنه يعمل جيدًا.</p>
+    <p class="formule">P(spam | message) ∝ P(spam) × P(mot₁ | spam) × … × P(motₙ | spam)</p>
+    <p>الرمز ∝ يعني «يتناسب مع»؛ ونُجري الحساب نفسه لفئة «غير مزعج» (non-spam) ثم نقارن.</p>
+    <figure class="code">
+      <figcaption class="code-legende">spam_bayes.py</figcaption>
+      <pre><code class="language-python">from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+
+# Corpus d'entraînement : 8 messages étiquetés à la main
+messages = [
+    "Gagnez un téléphone gratuit, cliquez vite sur ce lien",
+    "Offre exceptionnelle : crédit gratuit, cliquez ici",
+    "Vous avez gagné un prix, envoyez vos coordonnées bancaires",
+    "Promotion gratuite : gagnez de l'argent vite",
+    "Le séminaire de littérature comparée est reporté à jeudi",
+    "Voici le chapitre corrigé de mon mémoire",
+    "Pouvez-vous m'envoyer la bibliographie du cours ?",
+    "Réunion du laboratoire lundi à dix heures",
+]
+etiquettes = ["spam"] * 4 + ["non-spam"] * 4
+
+# 1. Sac de mots : chaque message devient un vecteur de comptes de mots
+vectoriseur = CountVectorizer()
+X = vectoriseur.fit_transform(messages)
+
+# 2. Entraînement du classifieur bayésien naïf
+modele = MultinomialNB()
+modele.fit(X, etiquettes)
+
+# 3. Prédiction sur deux messages jamais vus
+nouveaux = [
+    "Cliquez ici pour gagner un voyage gratuit",
+    "Le cours de jeudi porte sur la bibliographie du mémoire",
+]
+predictions = modele.predict(vectoriseur.transform(nouveaux))
+for message, etiquette in zip(nouveaux, predictions):
+    print(f"{etiquette:&gt;8} | {message}")</code></pre>
+      <pre class="sortie"><samp>    spam | Cliquez ici pour gagner un voyage gratuit
+non-spam | Le cours de jeudi porte sur la bibliographie du mémoire</samp></pre>
+    </figure>
+    <p>الفعل «gagner» غائب عن مدوّنة التدريب، التي لا تحوي إلا «gagnez» و«gagné»: فالكلمات «cliquez» و«ici» و«gratuit» و«un» هي التي تحسم القرار. ومن شأن ردّ الكلمات إلى صيغها المعجمية (<span class="terme-en" lang="fr">lemmatisation</span>) باستخدام spaCy أن يجمع هذه الصيغ.</p>
+
+    <h4>التوصيات</h4>
+    <p>تُوصي <dfn>التصفية القائمة على المحتوى</dfn> بكتب تشبه، في خصائصها (المؤلف، والنوع، والكلمات المفتاحية)، الكتبَ التي سبق أن استعارها القارئ: فبعد <em>Nedjma</em> (نجمة)، تقترح <em>Le Polygone étoilé</em> (المضلّع النجمي) لكاتب ياسين نفسه. أما <dfn>التصفية التعاونية</dfn> (<span class="terme-en" lang="fr">filtrage collaboratif</span>) فتُهمل المحتوى وتعتمد على القرّاء الآخرين: «الذين استعاروا الكتب نفسها التي استعرتموها استعاروا أيضًا…». ولمقارنة قارئين، نمثّل كلًّا منهما بقائمة من القيم 0 و1، قيمة واحدة لكل كتاب، ثم نحسب <dfn>تشابه جيب التمام</dfn> (<span class="terme-en" lang="fr">similarité cosinus</span>) بينهما: 1 إذا كانت الاستعارات متطابقة، و0 إذا لم يكن بينهما أي كتاب مشترك.</p>
+    <p class="formule">cos(A, B) = (A · B) / (‖A‖ × ‖B‖)</p>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>استعارات ثلاثة قرّاء في مكتبة جامعية (1 = مُستعار، مثال افتراضي)</caption>
+      <thead><tr><th scope="col">القارئ</th><th scope="col"><em>Nedjma</em></th><th scope="col"><em>Le Fils du pauvre</em></th><th scope="col"><em>La Grande Maison</em></th><th scope="col"><em>L'Amour, la fantasia</em></th></tr></thead>
+      <tbody>
+        <tr><th scope="row">أمينة</th><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+        <tr><th scope="row">كريم</th><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><th scope="row">صوفيا</th><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+      </tbody>
+    </table></div>
+    <p>يَعُدّ A · B الكتب المشتركة، و‖A‖ هو الجذر التربيعي لعدد الكتب التي استعارها A. أمينة وكريم: cos = 2 / (√3 × √2) ≈ 0,82؛ كريم وصوفيا: cos = 0. ولمّا كانت أمينة الأقربَ إلى كريم، نوصيه بالكتاب الذي قرأته هي ولم يقرأه هو، <em>La Grande Maison</em> (الدار الكبيرة) لمحمد ديب (الدالة <code>cosine_similarity</code> من scikit-learn). وعيب هذه الأنظمة أنها تحبس القرّاء بسهولة في عاداتهم وتُحابي العناوين الرائجة أصلًا.</p>
+
+    <h4>التعرّف على الصور (الوجوه مثلًا)</h4>
+    <p>الصورة بالنسبة إلى الحاسوب جدول من الأعداد: 28 × 28 بكسلًا بتدرّجات الرمادي تعطي 784 قيمة بين 0 (أسود) و255 (أبيض)؛ وفي الصور الملوّنة، لكل بكسل ثلاث قيم (أحمر، أخضر، أزرق). وظلّت السمات (الحواف، والتباينات، والمسافة بين العينين) زمنًا طويلًا تُصمَّم يدويًا؛ وبهذه الطريقة كانت طريقة Paul Viola وMichael Jones (2001) تكشف الوجوه في الزمن الحقيقي. ومنذ 2012، صار التعلم العميق هو المهيمن، لأن الشبكات تتعلّم سماتها بنفسها من ملايين الصور. ونميّز بين <dfn>الكشف</dfn> (أين الوجه؟)، و<dfn>التحقّق</dfn> (هل هو الشخص نفسه؟)، و<dfn>تحديد الهوية</dfn> (من هذا؟).</p>
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">التعرّف على الوجوه: رهان أخلاقي</p>
+      <p>يتيح التعرّف على الوجوه على نطاق واسع مراقبةً دائمة للفضاء العام، من دون موافقة، وهو ما يهدّد الحياة الخاصة وقد يُثني الناس عن التظاهر. ويطرح أيضًا مشكلة التحيّز. ففي 2018، قيّمت دراسة «Gender Shades» التي أنجزتها Joy Buolamwini وTimnit Gebru ثلاثة أنظمة تجارية لتصنيف الجنس على صور لبرلمانيين أفارقة وأوروبيين: فبلغت نسبة الأخطاء 34,7% لدى النساء ذوات البشرة الداكنة، مقابل 0,8% على الأكثر لدى الرجال ذوي البشرة الفاتحة، ويعود ذلك خصوصًا إلى بيانات تدريب غير متوازنة. أما اللائحة الأوروبية بشأن الذكاء الاصطناعي (<abbr title="قانون الذكاء الاصطناعي (Artificial Intelligence Act)">AI Act</abbr>)، المعتمدة في 2024، فتحظر مبدئيًا التعرّف البيومتري عن بُعد «في الزمن الحقيقي» في الفضاء العام لأغراض إنفاذ القانون، إلا في حالات استثنائية مؤطَّرة.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="c3-algorithmes">
+    <h3>بعض خوارزميات التعلم الآلي</h3>
+    <p>بيانات الأمثلة افتراضية وصغيرة جدًا، حتى تتمكّنوا من إعادة الحسابات يدويًا.</p>
+
+    <h4>أ. الانحدار الخطي</h4>
+    <p>يتنبّأ <dfn>الانحدار الخطي</dfn> (<span class="terme-en" lang="fr">régression linéaire</span>) بعدد، برسم المستقيم الذي يمرّ بأقرب ما يمكن من سحابة من النقاط: مثلًا، زمن قراءة رواية بدلالة عدد صفحاتها.</p>
+    <p class="formule">ŷ = w · x + b</p>
+    <p>يمثّل x عدد الصفحات، وŷ (تُقرأ «y chapeau») الزمنَ المتوقَّع، وw الميلَ (بالساعات لكل صفحة)، وb زمنًا ثابتًا. وتختار طريقة <dfn>المربعات الصغرى</dfn> (<span class="terme-en" lang="fr">moindres carrés</span>) قيمتَي w وb اللتين تجعلان متوسط مربعات الفروق بين الأزمنة الحقيقية yᵢ والأزمنة المتوقَّعة ŷᵢ أصغر ما يمكن؛ فالتربيع يمنع الفروق من أن يعوّض بعضها بعضًا، ويعاقب الأخطاء الكبيرة.</p>
+    <p class="formule">J(w, b) = (1/n) × Σ (yᵢ − ŷᵢ)²</p>
+    <figure class="code">
+      <figcaption class="code-legende">regression_lecture.py</figcaption>
+      <pre><code class="language-python">from sklearn.linear_model import LinearRegression
+
+# Données fictives : nombre de pages (x) et heures de lecture relevées (y)
+pages = [[100], [150], [220], [300], [380], [450]]
+heures = [2.4, 3.6, 4.8, 6.7, 8.0, 9.6]
+
+modele = LinearRegression()
+modele.fit(pages, heures)  # moindres carrés : cherche w et b
+
+w, b = modele.coef_[0], modele.intercept_
+print(f"w = {w:.4f} heure par page, b = {b:.2f} heure")
+print(f"Prévision pour 250 pages : {modele.predict([[250]])[0]:.1f} h")</code></pre>
+      <pre class="sortie"><samp>w = 0.0203 heure par page, b = 0.45 heure
+Prévision pour 250 pages : 5.5 h</samp></pre>
+    </figure>
+    <p>تتطلّب الصفحة الواحدة نحو 0,020 ساعة، أي أكثر من دقيقة بقليل: وبالنسبة إلى 250 صفحة، &#x200E;0,0203 × 250 + 0,45 ≈ 5,5 ساعة. ولا يصحّ المستقيم إلا داخل المجال الملاحَظ. ومع عدة متغيّرات، ŷ = w₁ · x₁ + w₂ · x₂ + … + b، نتحدّث عن الانحدار المتعدّد (المشروع المصغَّر 4).</p>
+
+    <h4>ب. الانحدار التدرّجي</h4>
+    <p>لا تُحلّ معظم النماذج دفعة واحدة: بل نبحث عن معاملاتها بخطوات صغيرة بواسطة <dfn>الانحدار التدرّجي</dfn> (<span class="terme-en" lang="fr">descente de gradient</span>). تخيّلوا متنزّهًا في الضباب: لا يرى الوادي، لكنه يحسّ بالمنحدر تحت قدميه، فيخطو في كل مرة خطوة نحو الأسفل. الوادي هو <dfn>دالة الكلفة</dfn> J(w)، التي تقيس الخطأ لكل قيمة من قيم المعامل w؛ والمنحدر هو <dfn>تدرّجها</dfn> (<span class="terme-en" lang="fr">gradient</span>).</p>
+    <p class="formule">w ← w − η · ∂J/∂w</p>
+    <p>يعني السهم «استبدِل بـ». إذا كان الميل ∂J/∂w موجبًا، تتناقص w؛ وإذا كان سالبًا، تتزايد w. والعدد η (إيتا) هو <dfn>معدل التعلم</dfn> (<span class="terme-en" lang="fr">taux d'apprentissage</span>)، أي طول الخطوة. لنأخذ J(w) = (w − 3)²، التي تبلغ حدّها الأدنى عند w = 3، وميلها &#x200E;2 · (w − 3). انطلاقًا من w = 0 مع η = 0,1، يساوي الميل &#x200E;−6، فتصير قيمة w هي &#x200E;0 − 0,1 × (−6) = 0,6، ثم 1,08، وهكذا دواليك نحو 3.</p>
+    <figure class="code">
+      <figcaption class="code-legende">descente_gradient.py</figcaption>
+      <pre><code class="language-python"># Descente de gradient sur J(w) = (w - 3)², dont le minimum est en w = 3
+w = 0.0     # point de départ
+eta = 0.1   # taux d'apprentissage η
+for etape in range(1, 6):
+    gradient = 2 * (w - 3)   # dérivée de J au point w
+    w = w - eta * gradient   # un pas dans le sens de la descente
+    print(f"étape {etape} : w = {w:.3f}   J(w) = {(w - 3) ** 2:.3f}")</code></pre>
+      <pre class="sortie"><samp>étape 1 : w = 0.600   J(w) = 5.760
+étape 2 : w = 1.080   J(w) = 3.686
+étape 3 : w = 1.464   J(w) = 2.359
+étape 4 : w = 1.771   J(w) = 1.510
+étape 5 : w = 2.017   J(w) = 0.966</samp></pre>
+    </figure>
+    <p>مع خطوة كبيرة جدًا (η = 1,1)، تقفز w فوق الحدّ الأدنى (6,6، ثم &#x200E;−1,32، ثم 8,18) وتبتعد عنه: فتتباعد الخوارزمية. ومع خطوة صغيرة جدًا (η = 0,01)، لا تبلغ w سوى 0,29 بعد خمس خطوات. ويضمّ النموذج الحقيقي آلاف المعاملات أو مليارات منها، لكن المبدأ يبقى هو نفسه.</p>
+    <div class="demo" data-demo="descente-gradient"></div>
+
+    <h4>ج. التصنيف حسب السمات</h4>
+    <p>يقيس <dfn>القياس الأسلوبي</dfn> (<span class="terme-en" lang="fr">stylométrie</span>) الأسلوبَ بالإحصاء، لا سيما من أجل <dfn>نسبة النص إلى مؤلّفه</dfn> (<span class="terme-en" lang="fr">attribution d'auteur</span>). والكلمات الوظيفية (أدوات التعريف، وحروف الجرّ، وحروف العطف) ثمينة في هذا المجال، لأن كل كاتب يستعملها بطريقة منتظمة وقليلة الوعي، أيًّا كان الموضوع. وهذا المجال حقيقي تمامًا: فقد نسب Frederick Mosteller وDavid Wallace في 1964 إلى جيمس ماديسون المقالاتِ الاثنتي عشرة المتنازع عليها من <em>Federalist Papers</em>؛ وخلص Florian Cafiero وJean-Baptiste Camps في 2019 إلى أن موليير هو فعلًا مؤلف مسرحياته. لنصف كل مقتطف بمتوسط طول جمله ونسبة كلماته الوظيفية.</p>
+    <p>تبحث خوارزمية <dfn>أقرب k جيران</dfn> (k-NN، <span class="terme-en" lang="fr">k plus proches voisins</span>) عن أقرب k مقتطفات معروفة المؤلف إلى المقتطف المجهول، ثم تجعلها تصوّت. والقرب هنا هو المسافة المعتادة:</p>
+    <p class="formule">d(x, y) = √((x₁ − y₁)² + (x₂ − y₂)²)</p>
+    <p>يبعد المقتطف المجهول &#x200E;(27 ; 46) بمسافة &#x200E;√8 ≈ 2,8 عن &#x200E;(29 ; 44)، وبمسافة 3 عن &#x200E;(30 ; 46)، وبمسافة &#x200E;√29 ≈ 5,4 عن &#x200E;(32 ; 48)، وهي ثلاثة مقتطفات للمؤلف A: فيُرجِّح التصويت A. وإذا اختلفت سلالم السمات، وجب توحيدها أولًا. أما <dfn>شجرة القرار</dfn> (<span class="terme-en" lang="fr">arbre de décision</span>) فتتعلّم سلسلة من الأسئلة من نوع «السمة ≤ العتبة؟»: إنها قاعدة قواعد «إذا … فإنّ»، لكنها متعلَّمة من البيانات.</p>
+    <figure class="code">
+      <figcaption class="code-legende">attribution_auteur.py</figcaption>
+      <pre><code class="language-python">from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier, export_text
+
+# Données fictives : [longueur moyenne des phrases (mots), part des mots-outils (%)]
+extraits = [[32, 48], [29, 44], [35, 50], [30, 46],   # auteur A
+            [14, 41], [12, 45], [16, 40], [13, 43]]   # auteur B
+auteurs = ["A"] * 4 + ["B"] * 4
+anonyme = [[27, 46]]  # extrait dont on cherche l'auteur
+
+# k plus proches voisins : vote des 3 extraits les plus ressemblants
+knn = KNeighborsClassifier(n_neighbors=3).fit(extraits, auteurs)
+print("k-NN  :", knn.predict(anonyme)[0])
+
+# Arbre de décision : une suite de questions « attribut &lt;= seuil ? »
+arbre = DecisionTreeClassifier(max_depth=2, random_state=0).fit(extraits, auteurs)
+print("Arbre :", arbre.predict(anonyme)[0])
+print(export_text(arbre, feature_names=["long_phrases", "mots_outils"]))</code></pre>
+      <pre class="sortie"><samp>k-NN  : A
+Arbre : A
+|--- long_phrases &lt;= 22.50
+|   |--- class: B
+|--- long_phrases &gt;  22.50
+|   |--- class: A</samp></pre>
+    </figure>
+    <p>يكفي الشجرةَ سؤالٌ واحد: جمل B قصيرة، وجمل A طويلة؛ أما نسبة الكلمات الوظيفية، التي تتداخل قيمها بين المؤلفَين، فلا تُعتمد.</p>
+
+    <h4>د. العنقدة (k-means)</h4>
+    <p>تُكوّن <dfn>العنقدة</dfn> أو التجميع (<span class="terme-en" lang="fr">regroupement</span>) مجموعاتٍ من الأشياء المتشابهة من دون أي وسم: إنها تعلّم غير خاضع للإشراف، وهي أداة المشروع المصغَّر 2 حول الاستبيانات. وتعمل خوارزمية <dfn>k-means</dfn>، أي خوارزمية k-المتوسطات (<span class="terme-en" lang="fr">k-moyennes</span>)، على هذا النحو:</p>
+    <ol class="etapes">
+      <li><p class="etape-titre">اختيار k</p><p>نحدّد عدد المجموعات المطلوبة، مثلًا k = 3.</p></li>
+      <li><p class="etape-titre">وضع k مراكز</p><p>نختار k نقاط انطلاق، هي <dfn>المراكز</dfn> (<span class="terme-en" lang="fr">centroïdes</span>)، غالبًا بصورة عشوائية من بين البيانات.</p></li>
+      <li><p class="etape-titre">التوزيع</p><p>ينضمّ كل فرد إلى مجموعة المركز الأقرب إليه.</p></li>
+      <li><p class="etape-titre">إعادة حساب المراكز</p><p>يوضع كل مركز في متوسط أفراد مجموعته.</p></li>
+      <li><p class="etape-titre">التكرار</p><p>نعيد الخطوتين 3 و4 إلى أن لا يغيّر أي فرد مجموعته.</p></li>
+    </ol>
+    <div class="demo" data-demo="kmeans"></div>
+    <p>لاختيار k، نحسب <dfn>العطالة</dfn> (<span class="terme-en" lang="fr">inertie</span>)، وهي مجموع مربعات المسافات بين كل فرد ومركز مجموعته. وهي تنخفض دائمًا كلما زادت k؛ أما <dfn>طريقة المرفق</dfn> (<span class="terme-en" lang="fr">méthode du coude</span>) فتعتمد قيمة k التي لا تكاد العطالة تنخفض بعدها.</p>
+    <p class="formule">inertie = Σ distance(individu, centre de son groupe)²</p>
+    <figure class="code">
+      <figcaption class="code-legende">kmeans_enquete.py</figcaption>
+      <pre><code class="language-python">from sklearn.cluster import KMeans
+
+# Enquête fictive : [heures de lecture par semaine, heures d'écrans par jour]
+reponses = [[10, 1], [12, 2], [9, 1],     # grands lecteurs
+            [2, 6], [1, 7], [3, 6],       # grands utilisateurs d'écrans
+            [5, 3], [6, 4], [5, 4]]       # profils intermédiaires
+
+# Méthode du coude : inertie (dispersion interne) selon le nombre k de groupes
+for k in range(1, 6):
+    km = KMeans(n_clusters=k, n_init=10, random_state=0).fit(reponses)
+    print(f"k = {k} : inertie = {km.inertia_:.1f}")
+
+# Modèle retenu : k = 3
+km = KMeans(n_clusters=3, n_init=10, random_state=0).fit(reponses)
+print("Groupes :", km.labels_)
+print("Centres :", km.cluster_centers_.round(1).tolist())</code></pre>
+      <pre class="sortie"><samp>k = 1 : inertie = 152.4
+k = 2 : inertie = 36.7
+k = 3 : inertie = 9.3
+k = 4 : inertie = 4.5
+k = 5 : inertie = 2.3
+Groupes : [1 1 1 0 0 0 2 2 2]
+Centres : [[2.0, 6.3], [10.3, 1.3], [5.3, 3.7]]</samp></pre>
+    </figure>
+    <p>يقع المرفق عند k = 3. وأرقام المجموعات اعتباطية: فعلى الباحث أن يؤوّل كل مركز (قرّاء نهمون، ومستعملون مكثّفون للشاشات، وملامح وسطى) وأن يسمّي المجموعات.</p>
+
+    <h4>هـ. خوارزميات أخرى</h4>
+    <div class="grille-cartes">
+      <article class="carte">
+        <h4>SVM</h4>
+        <p>تبحث آلات متّجهات الدعم (<code>SVC</code>) عن الحدّ الفاصل بين فئتين بأوسع هامش ممكن، وقد ظلّت زمنًا طويلًا من أفضل مصنِّفات النصوص.</p>
+      </article>
+      <article class="carte">
+        <h4>الغابات العشوائية</h4>
+        <p>تجعل الغابة العشوائية (<code>RandomForestClassifier</code>) مئاتٍ من أشجار القرار تصوّت، وقد دُرِّبت كل شجرة منها على جزء مسحوب عشوائيًا من الأمثلة والسمات.</p>
+      </article>
+      <article class="carte">
+        <h4>تقليص الأبعاد (ACP)</h4>
+        <p>يلخّص تحليل المكوّنات الرئيسية (<code>PCA</code>) عشرات المتغيّرات في محورين أو ثلاثة تحتفظ بجوهر تشتّتها، من أجل تمثيل استبيان أو مدوّنة في مستوٍ.</p>
+      </article>
+    </div>
+  </article>
+
+  <article class="lecon" id="c3-deep">
+    <h3>التعلم العميق (Deep Learning)</h3>
+    <p><dfn>التعلم العميق</dfn> (<span class="terme-en" lang="fr">apprentissage profond</span>) هو فرع التعلم الآلي الذي يستخدم <dfn>شبكات عصبية اصطناعية</dfn> (<span class="terme-en" lang="fr">réseaux de neurones artificiels</span>) ذات طبقات عديدة. وإليه يرجع الفضل في التقدّم الحديث في التعرّف على الصور والكلام، وفي الترجمة، وفي توليد النصوص. غير أن التشبيه بالدماغ يظلّ بعيدًا: فالعصبون الاصطناعي ليس سوى عملية حسابية صغيرة.</p>
+
+    <h4>العصبون الاصطناعي</h4>
+    <p>يضرب العصبون كل مُدخل من مدخلاته في <dfn>وزن</dfn> (<span class="terme-en" lang="fr">poids</span>)، ويجمع الكل، ويضيف <dfn>انحيازًا</dfn> (<span class="terme-en" lang="fr">biais</span>)، ثم يطبّق <dfn>دالة تفعيل</dfn> (<span class="terme-en" lang="fr">fonction d'activation</span>).</p>
+    <p class="formule">z = w₁ · x₁ + w₂ · x₂ + w₃ · x₃ + b</p>
+    <p class="formule">sortie = f(z)</p>
+    <p>دالة التفعيل الأكثر شيوعًا، ReLU، تساوي f(z) = max(0, z). مع x = (2 ; 1 ; 0)، وw = (0,5 ; −1 ; 2)، وb = 0,5: يكون z = 1 − 1 + 0 + 0,5 = 0,5، وتكون قيمة المُخرَج 0,5. وكان البيرسبترون (perceptron) الذي وضعه Frank Rosenblatt (1958) عصبونًا من هذا النوع.</p>
+
+    <h4>الطبقات والعمق</h4>
+    <p>تُشكّل العصبونات <dfn>طبقات</dfn>: طبقة الإدخال، و<dfn>الطبقات المخفية</dfn> (<span class="terme-en" lang="fr">couches cachées</span>)، وطبقة الإخراج. وتكون الشبكة <dfn>عميقة</dfn> حين تُراكم طبقات مخفية عديدة، تبني كلٌّ منها تمثيلًا أكثر تجريدًا من سابقتها: ففي الصورة، تظهر الحواف أولًا، ثم الأشكال، ثم أجزاء الأشياء. ولا أحد يبرمج هذه المراحل؛ بل تنبثق من التدريب.</p>
+    <figure class="schema">
+      <svg viewBox="0 0 640 320" role="img" aria-labelledby="c3-reseau-t">
+        <title id="c3-reseau-t">شبكة عصبية بثلاثة مدخلات وطبقة مخفية من أربعة عصبونات ومُخرجين اثنين</title>
+        <line class="svg-trait" x1="189.5" y1="105.5" x2="300.5" y2="79.5"/>
+        <line class="svg-trait" x1="186.4" y1="121.5" x2="303.6" y2="203.5"/>
+        <line class="svg-trait" x1="183.0" y1="125.2" x2="307.0" y2="269.8"/>
+        <line class="svg-trait" x1="186.4" y1="168.5" x2="303.6" y2="86.5"/>
+        <line class="svg-trait" x1="189.5" y1="184.5" x2="300.5" y2="210.5"/>
+        <line class="svg-trait" x1="186.4" y1="191.5" x2="303.6" y2="273.5"/>
+        <line class="svg-trait" x1="183.0" y1="234.8" x2="307.0" y2="90.2"/>
+        <line class="svg-trait" x1="189.5" y1="245.5" x2="300.5" y2="219.5"/>
+        <line class="svg-trait" x1="189.5" y1="254.5" x2="300.5" y2="280.5"/>
+        <line class="svg-trait" x1="338.1" y1="83.5" x2="451.9" y2="136.5"/>
+        <line class="svg-trait" x1="334.6" y1="88.6" x2="455.4" y2="201.4"/>
+        <line class="svg-trait" x1="340.0" y1="145.0" x2="450.0" y2="145.0"/>
+        <line class="svg-trait" x1="338.1" y1="153.5" x2="451.9" y2="206.5"/>
+        <line class="svg-trait" x1="338.1" y1="206.5" x2="451.9" y2="153.5"/>
+        <line class="svg-trait" x1="340.0" y1="215.0" x2="450.0" y2="215.0"/>
+        <line class="svg-trait" x1="334.6" y1="271.4" x2="455.4" y2="158.6"/>
+        <line class="svg-trait" x1="338.1" y1="276.5" x2="451.9" y2="223.5"/>
+        <line class="svg-trait-accent" x1="189.5" y1="114.5" x2="300.5" y2="140.5"/>
+        <line class="svg-trait-accent" x1="189.5" y1="175.5" x2="300.5" y2="149.5"/>
+        <line class="svg-trait-accent" x1="186.4" y1="238.5" x2="303.6" y2="156.5"/>
+        <circle class="svg-noeud" cx="170" cy="110" r="20"/>
+        <circle class="svg-noeud" cx="170" cy="180" r="20"/>
+        <circle class="svg-noeud" cx="170" cy="250" r="20"/>
+        <circle class="svg-noeud" cx="320" cy="75" r="20"/>
+        <circle class="svg-noeud-accent" cx="320" cy="145" r="20"/>
+        <circle class="svg-noeud" cx="320" cy="215" r="20"/>
+        <circle class="svg-noeud" cx="320" cy="285" r="20"/>
+        <circle class="svg-noeud" cx="470" cy="145" r="20"/>
+        <circle class="svg-noeud" cx="470" cy="215" r="20"/>
+        <text class="svg-texte" x="136" y="115" text-anchor="end">الجمل</text>
+        <text class="svg-texte" x="136" y="185" text-anchor="end">الكلمات الوظيفية</text>
+        <text class="svg-texte" x="136" y="255" text-anchor="end">الترقيم</text>
+        <text class="svg-texte" x="504" y="150" text-anchor="start">&#x202B;المؤلف A&#x202C;</text>
+        <text class="svg-texte" x="504" y="220" text-anchor="start">&#x202B;المؤلف B&#x202C;</text>
+        <text class="svg-texte-doux" x="170" y="30" text-anchor="middle">المدخلات</text>
+        <text class="svg-texte-doux" x="320" y="30" text-anchor="middle">الطبقة المخفية</text>
+        <text class="svg-texte-doux" x="470" y="30" text-anchor="middle">المخرجات</text>
+      </svg>
+      <figcaption>ثلاث سمات أسلوبية في الإدخال، وأربعة عصبونات مخفية، ونتيجتان في الإخراج (واحدة لكل مؤلف). يحسب العصبون المُبرَز المجموعَ الموزون لمدخلاته الثلاثة. ولهذه الشبكة الصغيرة &#x200E;3 × 4 + 4 × 2 = 20 وزنًا و6 انحيازات.</figcaption>
+    </figure>
+
+    <h4>التعلّم: الانتشار العكسي، والبيانات، ووحدات GPU</h4>
+    <p>تنطلق الأوزان من قيم عشوائية. ولكل مثال، تحسب الشبكة إجابتها؛ فنقيس الخطأ مقارنةً بالإجابة المنتظرة؛ ثم نصعد من المُخرَج نحو المُدخَل لنُسند إلى كل وزن نصيبه من المسؤولية. هذا هو <dfn>الانتشار العكسي</dfn> (<span class="terme-en" lang="fr">rétropropagation</span>)، الذي عمّمه في 1986 David Rumelhart وGeoffrey Hinton وRonald Williams. ثم يُصحَّح كل وزن بالانحدار التدرّجي، ونعيد الكرّة على ملايين الأمثلة.</p>
+    <p>لم تصبح هذه الأفكار القديمة فعّالة إلا في مطلع العقد الثاني من القرن الحادي والعشرين، بفضل بيانات ضخمة (ملايين الصور الموسومة، ونصوص الويب) وبفضل وحدات <dfn>GPU</dfn>، وهي معالجات رسومية تُنجز على التوازي كميات هائلة من عمليات الضرب. وفي 2012، فازت شبكة AlexNet التي طوّرها Alex Krizhevsky وIlya Sutskever وGeoffrey Hinton بمسابقة التعرّف على الصور ImageNet بفارق واضح. وأصغر نسخة من GPT-2 (2019) تضمّ بالفعل أكثر من مئة مليون معامل، ويستهلك تدريب النماذج الكبيرة قدرًا كبيرًا من الطاقة.</p>
+
+    <h4>بنيتان كلاسيكيتان: CNN وRNN</h4>
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>الشبكات الالتفافية (CNN)</h4>
+        <p>صُمّمت للصور، انطلاقًا من أعمال Yann LeCun على الأرقام المكتوبة بخط اليد (أواخر ثمانينيات القرن العشرين)، وهي تُمرِّر على الصورة <dfn>مرشِّحات</dfn> (<span class="terme-en" lang="fr">filtres</span>) صغيرة، أي مصفوفات من الأوزان بحجم 3 × 3 مثلًا. وفي كل موضع، يحسب المرشِّح مجموعًا موزونًا للبكسلات: فتكون الاستجابة قوية حيث يوجد النمط الذي يرمّزه.</p>
+        <ul>
+          <li>ما «يراه» المرشِّح: الحواف والتباينات أولًا، ثم، في مواضع أبعد من الشبكة، الأنسجة، والحروف، والعيون.</li>
+          <li>استعمالاتها في العلوم الإنسانية والاجتماعية: نسخ المخطوطات، وتحليل الصور الفوتوغرافية.</li>
+        </ul>
+      </div>
+      <div class="comparaison-col">
+        <h4>الشبكات التكرارية (RNN، LSTM)</h4>
+        <p>تقرأ متتاليةً عنصرًا بعد عنصر، كلمةً تلو الأخرى، وهي تُحدِّث <dfn>حالة مخفية</dfn>، هي نوع من الذاكرة لما سبق. وتضيف شبكات <dfn>LSTM</dfn> (Sepp Hochreiter وJürgen Schmidhuber، 1997) «بوّابات» تقرّر ما يُحتفظ به وما يُنسى.</p>
+        <ul>
+          <li>استعمالاتها: الترجمة، والكلام، وتوليد النصوص قبل 2017.</li>
+          <li>حدودها: قراءة تسلسلية، ومن ثَمّ بطيئة؛ وذاكرة تتلاشى في النصوص الطويلة.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h4>توليد النصوص بالمحوِّلات (Transformers)</h4>
+    <p>في 2017، اقترح المقال «<em lang="en">Attention Is All You Need</em>» (Ashish Vaswani وشركاؤه في التأليف، Google) <dfn>المحوِّل</dfn> (<span class="terme-en" lang="fr">Transformer</span>)، الذي يعالج كل كلمات المقطع في آنٍ واحد، ويحسب العلاقات بينها بواسطة آلية انتباه. وثلاثة مفاهيم تتيح فهمه.</p>
+    <dl class="definitions">
+      <div><dt>الرموز</dt><dd>يُقطَّع النص إلى <dfn>رموز</dfn> (<span class="terme-en" lang="fr">tokens</span> أو «jetons»): كلمات، وأجزاء كلمات، وعلامات ترقيم. فالكلمة النادرة تُقسَّم إلى عدة أجزاء؛ ويضمّ معجم GPT-2 ما يزيد قليلًا على 50 ألف رمز.</dd></div>
+      <div><dt>التضمينات</dt><dd>يصبح كل رمز متّجهًا من عدة مئات من الأعداد، هو <dfn>تضمينه</dfn> (<span class="terme-en" lang="fr">plongement</span>). والكلمات المستعملة في سياقات متشابهة تحصل على متّجهات متقاربة: تلك هي الفرضية التوزيعية، التي لخّصها اللساني J. R. Firth في 1957 بعبارة «<em lang="en">You shall know a word by the company it keeps</em>».</dd></div>
+      <div><dt>الانتباه</dt><dd>يحسب كل رمز إلى أي حدّ عليه أن «ينظر» إلى كل رمز من الرموز الأخرى. ففي جملة «سلّمت الطالبة البحث إلى الأستاذ لأنها أنهته»، يجب أن ينظر الرمز «ها» في «لأنها» أساسًا إلى «الطالبة».</dd></div>
+    </dl>
+    <p class="formule">Attention(Q, K, V) = softmax(Q · Kᵀ / √d) · V</p>
+    <p>يُصدر كل رمز سؤالًا (Q)، ويقدّم مفتاحًا (K)، ويحمل قيمة (V)؛ ويقيس الجداء Q · Kᵀ التوافق بين الأسئلة والمفاتيح، ويُقسَم على &#x200E;√d كي يبقى معتدلًا، ثم تحوّله softmax إلى نِسَب مجموعها 1.</p>
+    <p>أما <dfn>المرمِّزات</dfn> (<span class="terme-en" lang="fr">encodeurs</span>)، مثل BERT (Google، 2018)، فتقرأ الجملة في الاتجاهين، وتُستعمل لفهم النص: التصنيف، وتحليل المشاعر، والكيانات المسمّاة في خطاب سياسي (المشروع المصغَّر 3). ومنها ما هو مخصّص للفرنسية (CamemBERT) وللعربية (AraBERT). وأما <dfn>فاكّات الترميز</dfn> (<span class="terme-en" lang="fr">décodeurs</span>)، مثل سلسلة GPT (OpenAI، منذ 2018)، فتقرأ من اليسار إلى اليمين، أي من بداية النص إلى نهايته، وتتنبّأ بالرمز التالي: وهي التي تولّد النصوص.</p>
+    <p>التوليد تكرارٌ في حلقة: يحسب النموذج احتمالًا لكل رمز من المعجم، فنسحب أحدها بالقرعة وفق هذه الاحتمالات، ونضيفه إلى النص، ثم نعيد الكرّة. وتضبط <dfn>درجة الحرارة</dfn> (<span class="terme-en" lang="fr">température</span>) T هذا السحب انطلاقًا من الدرجات الخام zᵢ التي يعطيها النموذج:</p>
+    <p class="formule">p(tokenᵢ) = exp(zᵢ / T) / Σⱼ exp(zⱼ / T)</p>
+    <p>مع T &lt; 1، تتعمّق الفروق ويصبح النص متوقَّعًا؛ ومع T &gt; 1، تتسطّح الفروق ويصبح النص مفاجئًا، ثم مفكَّكًا. ولتنفيذ الأمثلة: <code>pip install transformers torch</code>؛ ويُنزَّل النموذج عند التشغيل الأول.</p>
+    <figure class="code">
+      <figcaption class="code-legende">generation_texte.py</figcaption>
+      <pre><code class="language-python">from transformers import pipeline, set_seed
+
+# GPT-2 : petit modèle génératif publié en 2019, entraîné sur des textes anglais
+generateur = pipeline("text-generation", model="gpt2")
+set_seed(42)  # rend le tirage reproductible sur une même installation
+
+debut = "The old librarian opened the forbidden book and"
+sorties = generateur(debut, max_new_tokens=40, do_sample=True,
+                     temperature=0.8, num_return_sequences=2)
+for s in sorties:
+    print(s["generated_text"], end="\n\n")</code></pre>
+    </figure>
+    <p>يتوقّف النص المولَّد على البذرة، ودرجة الحرارة، والإصدارات المثبَّتة: لذلك لا نورده هنا. قارنوا بين <code>temperature=0.3</code> و<code>temperature=1.5</code>. إن GPT-2 نموذج إنجليزي؛ فبالنسبة إلى الفرنسية أو العربية، اختاروا من منصّة Hub التابعة لـ Hugging Face نموذجًا متعدّد اللغات أو خاصًا باللغة المستهدفة، واستبدلوا الاسم المُمرَّر إلى <code>model=</code>. ويمرّ تحليل المشاعر (المشروع المصغَّر 1) عبر الآلية نفسها:</p>
+    <figure class="code">
+      <figcaption class="code-legende">sentiment_transformers.py</figcaption>
+      <pre><code class="language-python">from transformers import pipeline
+
+# Modèle anglais affiné sur des phrases de critiques de films (corpus SST-2)
+analyseur = pipeline("sentiment-analysis",
+                     model="distilbert/distilbert-base-uncased-finetuned-sst-2-english")
+avis = ["I loved this novel, the characters are unforgettable.",
+        "The ending was a real disappointment."]
+for texte, resultat in zip(avis, analyseur(avis)):
+    print(resultat["label"], "|", texte)</code></pre>
+      <pre class="sortie"><samp>POSITIVE | I loved this novel, the characters are unforgettable.
+NEGATIVE | The ending was a real disappointment.</samp></pre>
+    </figure>
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">الهلوسة والمصادر</p>
+      <p>يُنتج النموذج التوليدي التتمّة الأكثر معقولية، لا الأكثر صدقًا. وقد يختلق بثقة تامّة استشهادًا، أو تاريخًا، أو مرجعًا ببليوغرافيًا كاملًا لا وجود له: وهذا ما يُسمّى <dfn>الهلوسة</dfn> (<span class="terme-en" lang="fr">hallucination</span>). وفي المذكّرة، لا تستشهدوا أبدًا بمصدر لم تعثروا عليه وتقرؤوه بأنفسكم، وتحقّقوا من كل استشهاد في الطبعة الأصلية، وصرّحوا باستعمال هذه الأدوات وفق قواعد مؤسّستكم.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="c3-renforcement">
+    <h3>التعلم المعزَّز (Reinforcement Learning)</h3>
+    <p>يستغني <dfn>التعلم المعزَّز</dfn> (<span class="terme-en" lang="fr">apprentissage par renforcement</span>، RL) عن الأمثلة الموسومة: فالوكيل يتصرّف، ويلاحظ العواقب، ويتلقّى مكافآت أو عقوبات. إنه يتعلّم بالمحاولة والخطأ، كما نتعلّم ركوب الدرّاجة.</p>
+    <dl class="definitions">
+      <div><dt>الوكيل</dt><dd>من يتّخذ القرار: برنامج لعب، أو روبوت، أو وكيل محادثة.</dd></div>
+      <div><dt>البيئة</dt><dd>العالم الذي يتفاعل معه: رقعة اللعب، أو الغرفة، أو المستخدم.</dd></div>
+      <div><dt>الحالة (s)</dt><dd>الوضع في لحظة معيّنة.</dd></div>
+      <div><dt>الفعل (a)</dt><dd>ما يستطيع الوكيل فعله في هذه الحالة.</dd></div>
+      <div><dt>المكافأة (r)</dt><dd>العدد الذي يُعاد بعد الفعل، موجبًا كان أو سالبًا.</dd></div>
+      <div><dt>السياسة (π)</dt><dd>الاستراتيجية التي تحدّد الفعل الواجب اختياره في كل حالة: وهي ما نتعلّمه.</dd></div>
+    </dl>
+    <figure class="schema">
+      <svg viewBox="0 0 640 280" role="img" aria-labelledby="c3-boucle-t">
+        <title id="c3-boucle-t">حلقة التفاعل بين الوكيل وبيئته</title>
+        <defs><marker id="c3-fleche" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="svg-pointe" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+        <rect class="svg-noeud-accent" x="50" y="110" width="200" height="72" rx="12"/>
+        <text class="svg-texte" x="150" y="141" text-anchor="middle">الوكيل</text>
+        <text class="svg-texte-doux" x="150" y="163" text-anchor="middle">&#x202B;السياسة π&#x202C;</text>
+        <rect class="svg-noeud" x="390" y="110" width="200" height="72" rx="12"/>
+        <text class="svg-texte" x="490" y="141" text-anchor="middle">البيئة</text>
+        <text class="svg-texte-doux" x="490" y="163" text-anchor="middle">لعبة، روبوت، حوار</text>
+        <line class="svg-trait" x1="150" y1="110" x2="150" y2="60"/>
+        <line class="svg-trait" x1="150" y1="60" x2="490" y2="60"/>
+        <line class="svg-trait" x1="490" y1="60" x2="490" y2="108" marker-end="url(#c3-fleche)"/>
+        <text class="svg-texte" x="320" y="46" text-anchor="middle">&#x202B;الفعل a&#x202C;</text>
+        <line class="svg-trait" x1="490" y1="182" x2="490" y2="232"/>
+        <line class="svg-trait" x1="490" y1="232" x2="150" y2="232"/>
+        <line class="svg-trait" x1="150" y1="232" x2="150" y2="184" marker-end="url(#c3-fleche)"/>
+        <text class="svg-texte" x="320" y="258" text-anchor="middle">&#x202B;حالة جديدة s′&#x200E; ومكافأة r&#x202C;</text>
+      </svg>
+      <figcaption>في كل خطوة، يختار الوكيل فعلًا وفق سياسته؛ فتُعيد إليه البيئة حالة جديدة ومكافأة، تُستعملان لتحسين السياسة.</figcaption>
+    </figure>
+
+    <h4>الاستكشاف أم الاستغلال؟</h4>
+    <p>يقوم <dfn>الاستغلال</dfn> (<span class="terme-en" lang="fr">exploitation</span>) على اختيار الفعل الذي حقّق أفضل نجاح حتى الآن، و<dfn>الاستكشاف</dfn> (<span class="terme-en" lang="fr">exploration</span>) على تجربة فعل أقلّ معرفة. إن إعادة قراءة مؤلف نحبّه رهان مضمون؛ لكننا إن لم نفتح كتبًا أخرى أبدًا، فلن نكتشف مؤلفينا المفضّلين القادمين. أما الاستراتيجية المسمّاة ε-الجشعة فتختار أفضل فعل معروف، إلا في نسبة صغيرة ε من الحالات (10% مثلًا)، حيث تسحب فعلًا بالقرعة.</p>
+
+    <h4>خوارزمية Q-learning</h4>
+    <p>في <dfn>Q-learning</dfn> (Christopher Watkins، 1989)، يحتفظ الوكيل بجدول Q(s, a) يقدّر، لكل حالة ولكل فعل، مجموع المكافآت الذي يمكنه أن يأمله. وبعد كل فعل، يصحّح الخانة المعنية:</p>
+    <p class="formule">Q(s, a) ← Q(s, a) + α · [r + γ · max Q(s′, a′) − Q(s, a)]</p>
+    <dl class="definitions">
+      <div><dt>Q(s, a)</dt><dd>التقدير الحالي لقيمة الفعل a في الحالة s.</dd></div>
+      <div><dt>α (ألفا)</dt><dd>معدل التعلم، بين 0 و1: حصّة التجربة الجديدة التي ندمجها.</dd></div>
+      <div><dt>r</dt><dd>المكافأة الفورية.</dd></div>
+      <div><dt>γ (غاما)</dt><dd>معامل الخصم، بين 0 و1: إذا اقترب من 0، لا يفكّر الوكيل إلا في المكسب الفوري؛ وإذا اقترب من 1، استهدف المدى البعيد.</dd></div>
+      <div><dt>max Q(s′, a′)</dt><dd>أفضل قيمة مأمولة انطلاقًا من الحالة الجديدة s′&#x200E;، من بين كل الأفعال الممكنة a′&#x200E;.</dd></div>
+      <div><dt>الأقواس المعقوفة</dt><dd>القيمة المستهدفة r + γ · max Q(s′, a′)، ناقص التقدير القديم: إنها «المفاجأة»، التي نصحّح جزءًا α منها.</dd></div>
+    </dl>
+    <p>وكيلٌ يستكشف متاهة. عند مفترق الطرق s، يتّجه يمينًا، فيتلقّى r = 1 ويصل إلى s′&#x200E;، حيث تساوي قيمة أفضل فعل معروف 4. قبل هذه الخطوة، كانت &#x202A;Q(s, يمين&#x200E;) = 2&#x202C;؛ ونأخذ α = 0,5 وγ = 0,9.</p>
+    <ol class="etapes">
+      <li><p class="etape-titre">القيمة المستهدفة</p><p>r + γ · max Q(s′, a′) = 1 + 0,9 × 4 = 4,6.</p></li>
+      <li><p class="etape-titre">المفاجأة</p><p>&#x200E;4,6 − 2 = 2,6.</p></li>
+      <li><p class="etape-titre">التصحيح</p><p>α × 2,6 = 0,5 × 2,6 = 1,3.</p></li>
+      <li><p class="etape-titre">القيمة الجديدة</p><p>&#x202A;Q(s, يمين&#x200E;) = 2 + 1,3 = 3,3&#x202C;.</p></li>
+    </ol>
+    <p>لقد تبيّن أن الفعل أفضل مما كان متوقَّعًا: فترتفع قيمته، لكن إلى منتصف الطريق نحو القيمة المستهدفة فقط، حتى لا نبالغ في ردّ الفعل على تجربة واحدة.</p>
+
+    <h4>التطبيقات</h4>
+    <ul>
+      <li><strong>الألعاب.</strong> في مارس 2016، هزم AlphaGo (DeepMind) لاعبَ الغو الكوري الجنوبي لي سيدول بأربعة انتصارات مقابل واحد، بالجمع بين الشبكات العميقة، والبحث الشجري، والتعلّم المعزَّز القائم على مباريات لعبها ضد نفسه.</li>
+      <li><strong>الروبوتيات.</strong> يتعلّم الروبوت المشي أو الإمساك بالأشياء بالمحاولة والخطأ، وغالبًا ما يكون ذلك في المحاكاة أولًا، لأن التجارب الحقيقية بطيئة ومكلفة.</li>
+      <li><strong>وكلاء المحادثة.</strong> استُعمل <dfn>RLHF</dfn>، أي التعلّم المعزَّز انطلاقًا من التقييمات البشرية (<span class="terme-en" lang="fr">apprentissage par renforcement à partir de retours humains</span>)، لضبط InstructGPT (OpenAI، 2022) ثم ChatGPT: يقارن مُوسِّمون بشريون عدة إجابات، ويتعلّم «نموذجُ مكافأة» تفضيلاتِهم، ثم يُضبط النموذج اللغوي بالتعلّم المعزَّز لتعظيم هذه المكافأة. سؤال للعلوم الإنسانية والاجتماعية: أيّ قيم، وأيّ ثقافة، وأيّ لغة تنقلها هذه التفضيلات؟</li>
+    </ul>
+  </article>
+
+  <article class="lecon" id="c3-synthese">
+    <h3>خلاصة</h3>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>مقارنة بين العائلات الأربع للذكاء الاصطناعي</caption>
+      <thead><tr><th scope="col">العائلة</th><th scope="col">المبدأ</th><th scope="col">البيانات اللازمة</th><th scope="col">قابلية التفسير</th><th scope="col">مثال في العلوم الإنسانية والاجتماعية</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">الذكاء الاصطناعي الرمزي</th><td>قواعد «إذا … فإنّ» يكتبها خبراء</td><td>لا بيانات تدريب، بل معارف مصوغة صوريًا</td><td>عالية: سلسلة قواعد قابلة للتتبّع</td><td>التعرّف على شكل شعري</td></tr>
+        <tr><th scope="row">التعلم الآلي</th><td>معاملات تُضبط على أمثلة موصوفة بسمات</td><td>مئات الأمثلة أو آلافها</td><td>متفاوتة: جيدة في الشجرة، ضعيفة في الغابة</td><td>نسبة نص مجهول إلى مؤلفه؛ استخلاص ملامح من استبيان</td></tr>
+        <tr><th scope="row">التعلم العميق</th><td>شبكات عصبية ذات طبقات عديدة</td><td>ملايين الأمثلة ووحدات GPU، أو نموذج مُدرَّب مسبقًا</td><td>ضعيفة: ملايين المعاملات</td><td>نسخ المخطوطات؛ تحليل المشاعر في الرسائل</td></tr>
+        <tr><th scope="row">التعلم المعزَّز</th><td>محاولة وخطأ توجّههما المكافآت</td><td>بيئة، حقيقية أو محاكاة، ومكافأة</td><td>ضعيفة إلى متوسطة</td><td>محاكاة فاعلين اجتماعيين؛ ضبط وكيل محادثة</td></tr>
+      </tbody>
+    </table></div>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">ما يجب تذكّره</p>
+      <ul>
+        <li>يجمع النظام الخبير بين قاعدة الوقائع وقاعدة القواعد ومحرك الاستدلال؛ ويسير التسلسل الأمامي من الوقائع إلى الهدف، والتسلسل الخلفي من الهدف إلى الوقائع.</li>
+        <li>يُدرَّب نموذج التعلم الآلي على مجموعة التدريب ويُقيَّم على مجموعة الاختبار (الدقة الإجمالية، والضبط، والاستدعاء)؛ واحذروا الإفراط في التعلم.</li>
+        <li>يتنبّأ الانحدار بعدد، والتصنيف بفئة، وتُكوّن العنقدة مجموعات من دون أوسام؛ ويضبط الانحدار التدرّجي المعاملات.</li>
+        <li>يُراكم التعلم العميق طبقاتٍ تُدرَّب بالانتشار العكسي: CNN للصور، وRNN للمتتاليات، والمحوِّلات (Transformers) للغة. والتوليد هو التنبّؤ بالرمز التالي: فتحقّقوا دائمًا.</li>
+        <li>يتعلّم التعلم المعزَّز سياسةً انطلاقًا من المكافآت؛ وتتكامل العائلات فيما بينها، كما في AlphaGo أو RLHF.</li>
+      </ul>
+    </aside>
+    <div class="quiz">
+      <p class="quiz-question">لديكم 2000 إجابة عن استبيان حول ممارسات القراءة، من دون فئات محدَّدة سلفًا، وتريدون إبراز ملامح القرّاء. أيّ مقاربة تختارون؟</p>
+      <ul class="quiz-options">
+        <li><button type="button" class="quiz-option">نظام خبير بالتسلسل الخلفي</button></li>
+        <li><button type="button" class="quiz-option">انحدار خطي</button></li>
+        <li><button type="button" class="quiz-option" data-correct>عنقدة بخوارزمية k-means</button></li>
+        <li><button type="button" class="quiz-option">خوارزمية Q-learning</button></li>
+      </ul>
+      <p class="quiz-explication" hidden>في غياب الأوسام، ولتكوين مجموعات من الأفراد المتشابهين، نحتاج إلى خوارزمية غير خاضعة للإشراف: k-means، مع طريقة المرفق لاختيار عدد المجموعات. فالنظام الخبير يفترض قواعد معروفة مسبقًا، والانحدار يتنبّأ بعدد، وQ-learning يفترض وكيلًا يتصرّف ويتلقّى مكافآت.</p>
+    </div>
+  </article>
+</section>
