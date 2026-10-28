@@ -1,0 +1,559 @@
+<section class="chapitre" id="guide-evaluation" aria-labelledby="guide-evaluation-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">Guide de l'enseignant · Évaluation</p>
+    <h2 class="titre-section" id="guide-evaluation-titre">Évaluer les étudiants</h2>
+    <p class="chapeau">Trois principes, un sujet d'examen complet avec son corrigé et son barème, deux grilles d'évaluation et des idées de contrôle rapide : de quoi évaluer ce cours sans tout inventer.</p>
+    <ul class="puces"><li class="puce">Examen final</li><li class="puce">Grilles</li><li class="puce">Contrôle continu</li></ul>
+  </header>
+
+  <nav class="sommaire-chapitre" aria-label="Sommaire : évaluer les étudiants">
+    <ol>
+      <li><a href="#guide-evaluation-principes">Principes d'évaluation</a></li>
+      <li><a href="#guide-evaluation-examen">Un sujet d'examen type et son corrigé</a></li>
+      <li><a href="#guide-evaluation-grilles">Grilles pour le mini-projet et les tables rondes</a></li>
+      <li><a href="#guide-evaluation-controle">Le contrôle continu en quelques minutes</a></li>
+    </ol>
+  </nav>
+
+  <article class="lecon" id="guide-evaluation-principes">
+    <h3>Principes d'évaluation</h3>
+    <p>Le programme dit seulement : « Evaluation (identique aux textes en vigueur) ». La répartition entre contrôle continu et examen, une éventuelle note éliminatoire et le calendrier des épreuves relèvent donc des textes de votre faculté : renseignez-vous auprès de votre chef de département avant la première séance, puis annoncez ces modalités par écrit. Les outils de cette page s'adaptent à toute répartition.</p>
+    <div class="grille-cartes">
+      <article class="carte">
+        <h4>Évaluer ce que le programme vise</h4>
+        <p>Comprendre les approches de l'IA, utiliser Python, traiter un corpus, mesurer les enjeux éthiques : chaque épreuve vise l'un de ces objectifs, et rien de ce qui n'a pas été travaillé en séance. Le sujet ci-dessous donne donc la dérivée à l'exercice 3 : on évalue l'algorithme, pas le calcul différentiel.</p>
+      </article>
+      <article class="carte">
+        <h4>Combiner contrôle continu et examen</h4>
+        <p>L'examen écrit mesure bien les notions et les calculs, mal la conduite d'un projet ou le débat. Le mini-projet, les tables rondes et les vérifications en TD couvrent le reste. Leur poids relève des textes en vigueur : n'inventez pas de pourcentages.</p>
+      </article>
+      <article class="carte">
+        <h4>Évaluer la compréhension, pas le code appris par cœur</h4>
+        <p>Ne faites pas écrire un programme de mémoire sur papier : une parenthèse oubliée n'est pas une erreur de raisonnement. Faites lire un code, prédire sa sortie, changer une ligne, refaire un algorithme à la main, interpréter un résultat.</p>
+      </article>
+    </div>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Ce qu'on évalue, comment et quand (calendrier indicatif)</caption>
+      <thead><tr><th scope="col">Ce qu'on évalue</th><th scope="col">Comment</th><th scope="col">Quand</th></tr></thead>
+      <tbody>
+        <tr><td>Les notions du chapitre 1 : définitions, IA faible et forte, apprentissage supervisé et non supervisé</td><td>Questions de cours courtes, situations à classer, quiz de cinq minutes</td><td>Quiz à la séance qui suit le chapitre 1 ; examen final</td></tr>
+        <tr><td>La lecture de code Python (chapitre 2)</td><td>Prédire la sortie d'un programme court, corriger une erreur, modifier une ligne</td><td>Mini-exercices à chaque TP du chapitre 2 ; examen final</td></tr>
+        <tr><td>Les algorithmes du chapitre 3</td><td>Calcul à la main sur un très petit exemple : chaînage avant, descente de gradient, plus proches voisins, k-moyennes</td><td>Fiche de sortie après chaque TD ; examen final</td></tr>
+        <tr><td>Le traitement d'un corpus</td><td>Mini-projet : notebook, rapport, soutenance orale</td><td>Distribué à la fin du chapitre 2, rendu trois semaines plus tard ; soutenance à la date que vous fixez</td></tr>
+        <tr><td>L'esprit critique et l'éthique</td><td>Question de réflexion à l'examen ; tables rondes</td><td>Tables rondes réparties dans le semestre ; examen final</td></tr>
+        <tr><td>L'argumentation orale</td><td>Table ronde observée avec une grille</td><td>Pendant chaque table ronde</td></tr>
+      </tbody>
+    </table></div>
+  </article>
+
+  <article class="lecon" id="guide-evaluation-examen">
+    <h3>Un sujet d'examen type et son corrigé</h3>
+    <p>Ce sujet couvre les trois chapitres. Il reprend les types d'exercices du <a href="index.html#td-tp">TD</a> avec des données nouvelles : qui a compris réussit sans avoir mémorisé les corrigés. Chaque calcul a été refait deux fois et le programme de l'exercice 5 a été exécuté. Le barème est indicatif.</p>
+    <dl class="definitions">
+      <div><dt>Durée</dt><dd>1 h 30</dd></div>
+      <div><dt>Barème</dt><dd>Indicatif, sur 20 points : 4 + 4 + 3 + 3 + 3 + 3</dd></div>
+      <div><dt>Conditions suggérées</dt><dd>Documents non autorisés ; calculatrice simple autorisée ; téléphones et outils d'IA interdits</dd></div>
+      <div><dt>Temps conseillé par exercice</dt><dd>15, 20, 12, 13, 12 et 18 minutes</dd></div>
+    </dl>
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Avant de photocopier</p>
+      <p>Les corrigés sont repliés sous chaque exercice. Pour la version étudiante, copiez seulement les énoncés. Si vous changez une donnée, refaites tout le calcul : un k-moyennes modifié peut produire une égalité de distances qui rend l'exercice ambigu.</p>
+    </aside>
+
+    <div class="exercice" id="guide-examen-ex1">
+      <p class="exercice-num">Exercice 1 · Questions de cours (4 points)</p>
+      <div class="exercice-enonce">
+        <ol>
+          <li>Donnez une définition de l'intelligence artificielle en deux ou trois phrases. (1 point)</li>
+          <li>Qu'est-ce qui distingue l'IA faible (ou étroite) de l'IA forte (ou générale) ? Donnez deux exemples réels d'IA faible. Une IA forte existe-t-elle aujourd'hui ? (1,5 point)</li>
+          <li>Pour chaque situation, dites s'il s'agit d'apprentissage supervisé ou non supervisé, et justifiez en une phrase. (1,5 point)
+            <ul>
+              <li>a) On dispose de 400 poèmes dont des spécialistes ont indiqué la période (romantisme, Parnasse, symbolisme) ; on veut attribuer une période à 2 000 poèmes non datés.</li>
+              <li>b) On veut répartir en groupes les 300 réponses d'une enquête sur les pratiques de lecture, sans catégories fixées à l'avance.</li>
+              <li>c) À partir de 1 000 articles de presse dont on connaît l'année de parution, on veut estimer l'année d'articles non datés.</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé et le barème</summary>
+        <div class="corrige-corps">
+          <p><strong>1. Définition (1 point).</strong> Des méthodes informatiques qui permettent à une machine d'accomplir des tâches associées à l'intelligence humaine : reconnaître, classer, prédire, raisonner, produire du langage. 0,5 pour les tâches « intelligentes », 0,5 pour l'idée de méthodes. Acceptez la définition par les agents (percevoir un environnement et agir pour atteindre un but).</p>
+          <p><strong>2. IA faible et IA forte (1,5 point).</strong> 0,5 : l'IA faible ou étroite accomplit une tâche délimitée sans pouvoir transférer sa compétence ; l'IA forte ou générale serait capable de toute tâche intellectuelle humaine, voire, au sens de Searle, posséderait réellement un esprit. 0,5 : deux exemples réels, 0,25 chacun (traduction automatique, filtre anti-spam, reconnaissance de caractères, Deep Blue, AlphaGo, recommandation de livres). 0,5 : non, aucune IA forte n'est reconnue ; évoquer le débat sur les grands modèles de langage en concluant à l'absence de consensus vaut tous les points. Valorisez sans l'exiger la distinction du cours entre faible/forte (philosophique) et étroite/générale (technique), que le programme confond.</p>
+          <p><strong>3. Situations (1,5 point : 0,25 pour le type et 0,25 pour la justification, par situation).</strong> a) Supervisé : les 400 poèmes datés sont des exemples étiquetés ; c'est une classification. b) Non supervisé : aucune catégorie n'est donnée, l'algorithme forme lui-même les groupes (partitionnement). c) Supervisé : l'année connue des 1 000 articles sert d'étiquette ; la réponse étant un nombre, c'est une régression. Piège fréquent en c) : répondre « non supervisé » parce que les articles à dater n'ont pas d'étiquette, alors que c'est justement ce que le modèle prédit.</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="guide-examen-ex2">
+      <p class="exercice-num">Exercice 2 · Système expert en chaînage avant (4 points)</p>
+      <div class="exercice-enonce">
+        <p>Soit la base de règles suivante, où ∧ signifie « ET » :</p>
+        <ul>
+          <li>R1 : A → C</li>
+          <li>R2 : B ∧ C → E</li>
+          <li>R3 : C ∧ D → F</li>
+          <li>R4 : E → F</li>
+          <li>R5 : E ∧ F → G</li>
+          <li>R6 : D → G</li>
+        </ul>
+        <dl class="definitions">
+          <div><dt>Ordre des règles</dt><dd>R6 R5 R3 R4 R2 R1</dd></div>
+          <div><dt>Faits non déductibles</dt><dd>A, B, D</dd></div>
+          <div><dt>Base de faits initiale</dt><dd>A, B</dd></div>
+          <div><dt>But</dt><dd>G</dd></div>
+        </dl>
+        <p>Stratégie : à chaque cycle, on parcourt les règles dans l'ordre indiqué et l'on déclenche la première règle applicable qui ne l'a pas encore été ; on ajoute sa conclusion à la base de faits, puis on reprend au début de la liste. On s'arrête dès que le but est dans la base, ou quand aucune règle n'est applicable.</p>
+        <ol>
+          <li>Dessinez le graphe correspondant aux règles. (1 point)</li>
+          <li>Déroulez le système en chaînage avant : pour chaque cycle, indiquez les règles examinées, la règle déclenchée et la base de faits obtenue. Le but est-il atteint ? (2 points)</li>
+          <li>Pourquoi R3 et R6 ne se déclenchent-elles jamais ? Que se passerait-il si D était ajouté à la base initiale ? (1 point)</li>
+        </ol>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé et le barème</summary>
+        <div class="corrige-corps">
+          <p><strong>1. Le graphe (1 point).</strong> Chaque fait est un rectangle, chaque règle un cercle ; une flèche va de chaque prémisse vers la règle, puis de la règle vers sa conclusion. 0,5 si les six règles sont correctement reliées ; 0,5 si l'on voit que les prémisses d'une même règle sont liées par ET et que A, B et D ne reçoivent aucune flèche (faits non déductibles). Acceptez toute représentation claire.</p>
+          <figure class="schema">
+            <svg viewBox="0 0 820 365" role="img" aria-labelledby="guide-eval-graphe-t guide-eval-graphe-d">
+              <title id="guide-eval-graphe-t">Graphe des règles R1 à R6 de l'exercice 2</title>
+              <desc id="guide-eval-graphe-d">Faits en rectangles, règles en cercles. Chemin suivi : A vers R1, R1 vers C ; B et C vers R2, R2 vers E ; E vers R4, R4 vers F ; E et F vers R5, R5 vers G. Règles jamais déclenchées : C et D vers R3, R3 vers F ; D vers R6, R6 vers G.</desc>
+              <defs><marker id="guide-eval-fleche" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path class="svg-pointe" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+              <!-- chemin suivi -->
+              <line class="svg-trait-accent" x1="70" y1="150" x2="121" y2="150" marker-end="url(#guide-eval-fleche)"/>
+              <line class="svg-trait-accent" x1="158" y1="150" x2="209" y2="150" marker-end="url(#guide-eval-fleche)"/>
+              <line class="svg-trait-accent" x1="250" y1="150" x2="301" y2="150" marker-end="url(#guide-eval-fleche)"/>
+              <line class="svg-trait-accent" x1="320" y1="67" x2="320" y2="131" marker-end="url(#guide-eval-fleche)"/>
+              <line class="svg-trait-accent" x1="338" y1="150" x2="389" y2="150" marker-end="url(#guide-eval-fleche)"/>
+              <line class="svg-trait-accent" x1="430" y1="150" x2="481" y2="150" marker-end="url(#guide-eval-fleche)"/>
+              <line class="svg-trait-accent" x1="518" y1="150" x2="569" y2="150" marker-end="url(#guide-eval-fleche)"/>
+              <line class="svg-trait-accent" x1="610" y1="150" x2="661" y2="150" marker-end="url(#guide-eval-fleche)"/>
+              <line class="svg-trait-accent" x1="698" y1="150" x2="749" y2="150" marker-end="url(#guide-eval-fleche)"/>
+              <path class="svg-trait-accent" d="M410,133 V100 H680 V131" marker-end="url(#guide-eval-fleche)"/>
+              <!-- règles qui dépendent de D -->
+              <path class="svg-trait" d="M230,167 V250 H391" marker-end="url(#guide-eval-fleche)"/>
+              <line class="svg-trait" x1="410" y1="313" x2="410" y2="269" marker-end="url(#guide-eval-fleche)"/>
+              <path class="svg-trait" d="M428,250 H590 V168" marker-end="url(#guide-eval-fleche)"/>
+              <path class="svg-trait" d="M430,330 H770 V269" marker-end="url(#guide-eval-fleche)"/>
+              <line class="svg-trait" x1="770" y1="232" x2="770" y2="168" marker-end="url(#guide-eval-fleche)"/>
+              <!-- faits -->
+              <rect class="svg-noeud" x="30" y="133" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="50" y="155" text-anchor="middle">A</text>
+              <rect class="svg-noeud" x="300" y="33" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="320" y="55" text-anchor="middle">B</text>
+              <rect class="svg-noeud" x="210" y="133" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="230" y="155" text-anchor="middle">C</text>
+              <rect class="svg-noeud" x="390" y="313" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="410" y="335" text-anchor="middle">D</text>
+              <rect class="svg-noeud" x="390" y="133" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="410" y="155" text-anchor="middle">E</text>
+              <rect class="svg-noeud" x="570" y="133" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="590" y="155" text-anchor="middle">F</text>
+              <rect class="svg-noeud" x="750" y="133" width="40" height="34" rx="8"/>
+              <text class="svg-texte" x="770" y="155" text-anchor="middle">G</text>
+              <!-- règles -->
+              <circle class="svg-noeud-accent" cx="140" cy="150" r="18"/>
+              <text class="svg-texte" x="140" y="155" text-anchor="middle">R1</text>
+              <circle class="svg-noeud-accent" cx="320" cy="150" r="18"/>
+              <text class="svg-texte" x="320" y="155" text-anchor="middle">R2</text>
+              <circle class="svg-noeud" cx="410" cy="250" r="18"/>
+              <text class="svg-texte" x="410" y="255" text-anchor="middle">R3</text>
+              <circle class="svg-noeud-accent" cx="500" cy="150" r="18"/>
+              <text class="svg-texte" x="500" y="155" text-anchor="middle">R4</text>
+              <circle class="svg-noeud-accent" cx="680" cy="150" r="18"/>
+              <text class="svg-texte" x="680" y="155" text-anchor="middle">R5</text>
+              <circle class="svg-noeud" cx="770" cy="250" r="18"/>
+              <text class="svg-texte" x="770" y="255" text-anchor="middle">R6</text>
+              <!-- annotations -->
+              <text class="svg-texte-doux" x="30" y="190">fait initial</text>
+              <text class="svg-texte-doux" x="350" y="55">fait initial</text>
+              <text class="svg-texte-doux" x="440" y="316">non déductible, absent</text>
+              <text class="svg-texte-doux" x="770" y="122" text-anchor="middle">but</text>
+              <text class="svg-texte-doux" x="30" y="290">Rectangle : fait · cercle : règle</text>
+              <text class="svg-texte-doux" x="30" y="312">Trait en couleur : chemin suivi</text>
+              <text class="svg-texte-doux" x="30" y="334">Cercle en couleur : règle déclenchée</text>
+            </svg>
+            <figcaption>Graphe attendu. Deux flèches entrent dans R2 (B et C) et dans R5 (E et F) : ces prémisses sont liées par ET. Deux règles mènent à F (R3 et R4) et deux à G (R5 et R6) : une seule suffit.</figcaption>
+          </figure>
+          <p><strong>2. Le déroulement (2 points, 0,5 par cycle correct).</strong></p>
+          <div class="tableau-defilant"><table class="tableau">
+            <caption>Chaînage avant à partir de la base {A, B}, but G</caption>
+            <thead><tr><th scope="col">Cycle</th><th scope="col">Règles examinées</th><th scope="col">Règle déclenchée</th><th scope="col">Base de faits après</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>R6 (D absent), R5 (E et F absents), R3 (C et D absents), R4 (E absent), R2 (C absent), R1 (A présent)</td><td>R1</td><td>A, B, C</td></tr>
+              <tr><td>2</td><td>R6, R5 (E absent), R3 (D absent), R4 (E absent), R2 (B et C présents)</td><td>R2</td><td>A, B, C, E</td></tr>
+              <tr><td>3</td><td>R6, R5 (F absent), R3 (D absent), R4 (E présent)</td><td>R4</td><td>A, B, C, E, F</td></tr>
+              <tr><td>4</td><td>R6, R5 (E et F présents)</td><td>R5</td><td>A, B, C, E, F, G : but atteint</td></tr>
+            </tbody>
+          </table></div>
+          <p>Le but G est atteint au quatrième cycle ; les règles déclenchées sont, dans l'ordre, R1, R2, R4, R5. Acceptez aussi la stratégie du TD, qui parcourt toute la liste avant de recommencer : elle donne ici les mêmes déclenchements, dans le même ordre.</p>
+          <p><strong>3. Interprétation (1 point).</strong> R3 et R6 exigent D, fait non déductible (aucune règle ne le conclut) et absent de la base initiale : elles ne peuvent jamais se déclencher (0,5). Si D est ajouté, R6, première dans l'ordre, est applicable dès le premier cycle : G est établi immédiatement, par une seule règle (0,5). L'ordre des règles décide du chemin suivi.</p>
+          <p>Note pour vous : l'ordre choisi place en tête les règles qui concluent en dernier, ce qui oblige à revenir quatre fois au début de la liste. On voit ainsi si l'étudiant a compris la boucle du moteur d'inférence (<a href="index.html#c3-symbolique">chapitre 3</a>).</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="guide-examen-ex3">
+      <p class="exercice-num">Exercice 3 · Descente de gradient (3 points)</p>
+      <div class="exercice-enonce">
+        <p>On cherche le minimum de la fonction d'erreur J(w) = (w − 2)² + 1. On admet que sa dérivée est J′(w) = 2(w − 2). La descente de gradient applique à chaque étape :</p>
+        <p class="formule">wₖ₊₁ = wₖ − η · J′(wₖ)</p>
+        <ol>
+          <li>Avec w₀ = 6 et η = 0,25, calculez w₁ et w₂, ainsi que J(w₀), J(w₁) et J(w₂). (1,5 point)</li>
+          <li>Pour quelle valeur de w l'erreur est-elle minimale, et que vaut alors J ? Que vaut la dérivée en ce point ? (0,5 point)</li>
+          <li>Refaites deux pas depuis w₀ = 6 avec η = 1. Que constatez-vous ? Quel est le rôle de η ? (1 point)</li>
+        </ol>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé et le barème</summary>
+        <div class="corrige-corps">
+          <div class="tableau-defilant"><table class="tableau">
+            <caption>Deux pas de descente de gradient avec η = 0,25</caption>
+            <thead><tr><th scope="col">k</th><th scope="col">wₖ</th><th scope="col">J(wₖ)</th><th scope="col">J′(wₖ)</th><th scope="col">wₖ₊₁ = wₖ − 0,25 × J′(wₖ)</th></tr></thead>
+            <tbody>
+              <tr><td>0</td><td>6</td><td>(6 − 2)² + 1 = 17</td><td>2 × 4 = 8</td><td>6 − 2 = 4</td></tr>
+              <tr><td>1</td><td>4</td><td>(4 − 2)² + 1 = 5</td><td>2 × 2 = 4</td><td>4 − 1 = 3</td></tr>
+              <tr><td>2</td><td>3</td><td>(3 − 2)² + 1 = 2</td><td>2 × 1 = 2</td><td>non demandé (2,5)</td></tr>
+            </tbody>
+          </table></div>
+          <p><strong>1. (1,5 point)</strong> w₁ = 4 et w₂ = 3 (0,5 chacun) ; J(w₀) = 17, J(w₁) = 5, J(w₂) = 2 (0,5 pour les trois). La dérivée est positive, car on part à droite du minimum : w diminue et l'erreur baisse à chaque pas.</p>
+          <p><strong>2. (0,5 point)</strong> Le minimum est en w = 2, où J′(2) = 0 : la pente est nulle au fond de la vallée. J y vaut 1, et non 0 : le « + 1 » relève la courbe sans déplacer son minimum.</p>
+          <p><strong>3. (1 point)</strong> J′(6) = 8, donc w₁ = 6 − 8 = −2 ; J′(−2) = 2 × (−4) = −8, donc w₂ = −2 + 8 = 6 (0,5). On revient au point de départ : w oscille sans fin entre 6 et −2 et J reste à 17. Le taux d'apprentissage η règle la longueur du pas ; trop grand, le pas saute par-dessus le minimum (0,5). Remarque non exigée : wₖ₊₁ − 2 = (1 − 2η)(wₖ − 2), donc la distance au minimum est divisée par deux avec η = 0,25 (4, 2, 1) et change seulement de signe avec η = 1.</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="guide-examen-ex4">
+      <p class="exercice-num">Exercice 4 · Regroupement par k-moyennes (3 points)</p>
+      <div class="exercice-enonce">
+        <p>Les six nouvelles d'un recueil comptent respectivement 2, 4, 6, 11, 13 et 18 pages (données fictives). On veut les répartir en k = 2 groupes avec l'algorithme des k-moyennes, en partant des centres μ₁ = 4 et μ₂ = 6.</p>
+        <ol>
+          <li>Affectation : donnez, pour chaque nouvelle, sa distance à μ₁ et à μ₂, puis son groupe. (1 point)</li>
+          <li>Mise à jour : calculez les nouveaux centres. (1 point)</li>
+          <li>Refaites l'affectation avec ces nouveaux centres. Les groupes changent-ils ? L'algorithme est-il terminé ? (1 point)</li>
+        </ol>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé et le barème</summary>
+        <div class="corrige-corps">
+          <div class="tableau-defilant"><table class="tableau">
+            <caption>Première affectation, avec μ₁ = 4 et μ₂ = 6</caption>
+            <thead><tr><th scope="col">Pages</th><th scope="col">Distance à μ₁ = 4</th><th scope="col">Distance à μ₂ = 6</th><th scope="col">Groupe</th></tr></thead>
+            <tbody>
+              <tr><td>2</td><td>2</td><td>4</td><td>1</td></tr>
+              <tr><td>4</td><td>0</td><td>2</td><td>1</td></tr>
+              <tr><td>6</td><td>2</td><td>0</td><td>2</td></tr>
+              <tr><td>11</td><td>7</td><td>5</td><td>2</td></tr>
+              <tr><td>13</td><td>9</td><td>7</td><td>2</td></tr>
+              <tr><td>18</td><td>14</td><td>12</td><td>2</td></tr>
+            </tbody>
+          </table></div>
+          <p><strong>1. (1 point)</strong> Groupe 1 = {2, 4}, groupe 2 = {6, 11, 13, 18}. Retirez 0,25 par affectation fausse. Acceptez le raccourci qui compare chaque valeur au milieu des deux centres, ici 5.</p>
+          <p><strong>2. (1 point)</strong> μ₁ = (2 + 4) / 2 = 3 ; μ₂ = (6 + 11 + 13 + 18) / 4 = 48 / 4 = 12 (0,5 chacun).</p>
+          <p><strong>3. (1 point)</strong> Avec μ₁ = 3 et μ₂ = 12, les distances valent : 2 → 1 et 10 ; 4 → 1 et 8 ; 6 → 3 et 6 ; 11 → 8 et 1 ; 13 → 10 et 1 ; 18 → 15 et 6. La nouvelle de 6 pages passe dans le groupe 1 (0,5) : les groupes ont changé, l'algorithme n'est donc pas terminé (0,5).</p>
+          <p>Suite, que les meilleurs étudiants donneront : groupe 1 = {2, 4, 6}, μ₁ = 12 / 3 = 4 ; groupe 2 = {11, 13, 18}, μ₂ = 42 / 3 = 14. Avec 4 et 14 (milieu 9), plus rien ne change : l'algorithme s'arrête sur les nouvelles brèves et les longues. Les centres de départ, trop proches, avaient donné un premier partage déséquilibré : le résultat dépend du point de départ.</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="guide-examen-ex5">
+      <p class="exercice-num">Exercice 5 · Lire un programme Python (3 points)</p>
+      <div class="exercice-enonce">
+        <figure class="code">
+          <figcaption class="code-legende">enquete_lecture.py</figcaption>
+          <pre><code class="language-python">import pandas as pd
+
+# Enquête fictive : livres lus dans l'année par six étudiants
+df = pd.DataFrame({
+    "prenom": ["Amel", "Yacine", "Sara", "Karim", "Lina", "Omar"],
+    "langue": ["arabe", "français", "arabe", "anglais", "français", "arabe"],
+    "livres": [12, 5, 8, 3, 9, 4],
+})
+
+print(len(df), df["livres"].sum())
+lecteurs = df[df["livres"] &gt;= 8]
+print(lecteurs["prenom"].tolist())
+print(df["langue"].value_counts()["arabe"])
+
+moyennes = df.groupby("langue")["livres"].mean()
+for langue, moyenne in moyennes.items():
+    print(langue, moyenne)
+
+top = df.sort_values("livres", ascending=False).head(2)
+print(top["prenom"].tolist())</code></pre>
+        </figure>
+        <ol>
+          <li>Écrivez exactement ce qu'affiche ce programme. (2 points)</li>
+          <li>La variable <code>lecteurs</code> est-elle une liste, une Series ou un DataFrame ? Justifiez. (0,5 point)</li>
+          <li>Écrivez une ligne qui affiche la liste des prénoms des étudiants dont la langue est le français. (0,5 point)</li>
+        </ol>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé et le barème</summary>
+        <div class="corrige-corps">
+          <p><strong>1. (2 points)</strong> Sortie obtenue en exécutant le programme (Python 3.11, identique avec pandas 2.2 et 3.0) :</p>
+          <figure class="code">
+            <figcaption class="code-legende">Sortie attendue</figcaption>
+            <pre class="sortie"><samp>6 41
+['Amel', 'Sara', 'Lina']
+3
+anglais 3.0
+arabe 8.0
+français 7.0
+['Amel', 'Lina']</samp></pre>
+          </figure>
+          <ul>
+            <li>0,25 : six lignes ; 12 + 5 + 8 + 3 + 9 + 4 = 41.</li>
+            <li>0,5 : « ≥ 8 » inclut Sara (8) ; les prénoms gardent l'ordre du tableau.</li>
+            <li>0,25 : « arabe » apparaît trois fois (Amel, Sara, Omar).</li>
+            <li>0,5 : <code>groupby</code> range les langues par ordre alphabétique ; moyennes 3 / 1 = 3.0, (12 + 8 + 4) / 3 = 8.0, (5 + 9) / 2 = 7.0. Une moyenne s'affiche avec une décimale.</li>
+            <li>0,5 : tri décroissant, puis les deux premières lignes : Amel (12), Lina (9).</li>
+          </ul>
+          <p>Soyez indulgent sur la forme (guillemets, crochets, « 3 » au lieu de « 3.0 ») et exigeant sur le contenu : on vérifie que l'étudiant sait ce que fait chaque ligne.</p>
+          <p><strong>2. (0,5 point)</strong> Un DataFrame : filtrer un tableau par une condition garde des lignes entières, avec toutes leurs colonnes. <code>lecteurs["prenom"]</code> est une Series, et <code>tolist()</code> la transforme en liste.</p>
+          <p><strong>3. (0,5 point)</strong> <code>print(df[df["langue"] == "français"]["prenom"].tolist())</code>, qui affiche <code>['Yacine', 'Lina']</code>. Acceptez toute écriture équivalente, par exemple en passant par une variable intermédiaire ; ne retirez rien pour une faute de frappe sans conséquence sur le raisonnement.</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="guide-examen-ex6">
+      <p class="exercice-num">Exercice 6 · Question de réflexion (3 points)</p>
+      <div class="exercice-enonce">
+        <p>Traitez l'un des deux sujets en quinze à vingt lignes, en vous appuyant sur au moins deux notions du cours et sur un exemple précis.</p>
+        <ul>
+          <li><strong>Sujet A.</strong> « Puisqu'un outil d'IA peut analyser mille romans en une minute, le chercheur en littérature n'a plus besoin de les lire. » Discutez.</li>
+          <li><strong>Sujet B.</strong> Une étudiante de master a utilisé un agent conversationnel pour résumer ses sources et traduire des passages de son corpus, sans le signaler dans son mémoire. Quels problèmes cela pose-t-il ? Quelles règles aurait-elle dû suivre ?</li>
+        </ul>
+      </div>
+      <details class="corrige"><summary>Voir le corrigé et le barème</summary>
+        <div class="corrige-corps">
+          <p><strong>Éléments attendus, sujet A.</strong> Lecture distante et lecture rapprochée (Moretti) : la première révèle des tendances, la seconde reste nécessaire pour les interpréter. L'outil produit des indices, la question de recherche leur donne un sens ; des groupes formés sans étiquettes doivent être interprétés en relisant des textes. Limites : biais, langues peu dotées, opacité. Exemple possible : l'étude de Cafiero et Camps (2019) sur Molière et Corneille, qui nourrit un débat d'historiens de la littérature sans le trancher seule. Conclusion attendue : un complément, pas une substitution.</p>
+          <p><strong>Éléments attendus, sujet B.</strong> Transparence : tout usage se déclare (outil, version, date, usage, consignes) ; présenter comme sien un texte généré relève du plagiat. Vérification : résumés et traductions automatiques contiennent des erreurs et des inventions, à confronter aux originaux. Droit d'auteur et données : textes inédits ou protégés et données personnelles ne se déposent pas en ligne. Principes de l'UNESCO (2021) : transparence, responsabilité, contrôle humain. Voir la leçon <a href="index.html#c1-perspectives">Perspectives, limites et éthique</a>.</p>
+          <div class="tableau-defilant"><table class="tableau">
+            <caption>Barème indicatif de la question de réflexion</caption>
+            <thead><tr><th scope="col">Critère</th><th scope="col">Points</th></tr></thead>
+            <tbody>
+              <tr><td>Le sujet est compris et une position claire est formulée</td><td>0,5</td></tr>
+              <tr><td>Au moins deux notions du cours, correctement employées</td><td>1</td></tr>
+              <tr><td>Un exemple précis (corpus, étude, cas réel)</td><td>0,5</td></tr>
+              <tr><td>Nuance : une objection ou une limite est discutée</td><td>0,5</td></tr>
+              <tr><td>Expression claire et organisée</td><td>0,5</td></tr>
+            </tbody>
+          </table></div>
+        </div></details>
+    </div>
+
+    <h4>Conseils de correction</h4>
+    <ul>
+      <li>Corrigez exercice par exercice (toutes les copies pour l'exercice 1, puis pour le 2) : vous restez constant.</li>
+      <li>Une erreur de calcul ne se pénalise qu'une fois : si un étudiant se trompe sur μ₂ puis raisonne juste avec sa valeur, donnez les points de la suite.</li>
+      <li>Jugez le fond avant la forme, sauf dans le critère « expression » de l'exercice 6 : la maîtrise du français n'est pas l'objet de ce cours.</li>
+    </ul>
+  </article>
+
+  <article class="lecon" id="guide-evaluation-grilles">
+    <h3>Grilles pour le mini-projet et les tables rondes</h3>
+    <p>Une grille rend la note explicable, et deux correcteurs arrivent à des notes proches. Distribuez-la avec le sujet du travail, pas après. Les points sont indicatifs, sur 20 : ramenez-les à la part que les textes en vigueur donnent à chaque travail.</p>
+    <h4>Le mini-projet</h4>
+    <p>La grille reprend les critères de la <a href="index.html#mp-evaluation">grille d'auto-évaluation</a> que les étudiants ont sous les yeux, regroupés en six rubriques. Sur un critère noté sur 3 : insuffisant 0 à 0,5 ; passable 1 à 1,5 ; bien 2 à 2,5 ; très bien 3. Sur un critère noté sur 4 : 0 à 1 ; 1,5 à 2 ; 2,5 à 3 ; 3,5 à 4.</p>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Grille d'évaluation du mini-projet (points indicatifs sur 20)</caption>
+      <thead><tr><th scope="col">Critère</th><th scope="col">Insuffisant</th><th scope="col">Passable</th><th scope="col">Bien</th><th scope="col">Très bien</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Question de recherche (/3)</th><td>Absente, ou simple thème (« les sentiments sur Facebook »)</td><td>Formulée, mais trop large ou sans lien clair avec les données</td><td>Précise, liée aux SHS ou à la littérature, faisable en trois semaines</td><td>Précise, avec une hypothèse que les résultats permettent de discuter</td></tr>
+        <tr><th scope="row">Données et éthique (/3)</th><td>Source inconnue ; données personnelles non anonymisées</td><td>Source indiquée, mais collecte et nettoyage non décrits</td><td>Source, date et collecte indiquées ; anonymisation et nettoyage décrits</td><td>En plus : limites du corpus discutées, droit d'auteur et consentement traités, usage d'IA déclaré</td></tr>
+        <tr><th scope="row">Méthode et code (/4)</th><td>Le notebook ne s'exécute pas, ou l'étudiant ne sait pas expliquer son code</td><td>S'exécute avec des erreurs ou des cellules inutiles ; méthode non justifiée</td><td>S'exécute de bout en bout ; code commenté ; paramètres indiqués</td><td>En plus : choix justifié, résultats vérifiés sur un échantillon lu à la main</td></tr>
+        <tr><th scope="row">Résultats et interprétation (/4)</th><td>Chiffres ou graphiques sans commentaire ; conclusions non fondées</td><td>Graphiques peu lisibles ; l'interprétation répète les chiffres</td><td>Tableaux et graphiques titrés et commentés ; retour aux textes ou aux données</td><td>Interprétation nuancée, proportionnée au corpus, illustrée par des exemples lus</td></tr>
+        <tr><th scope="row">Rapport (/3)</th><td>Pas de plan ; références absentes</td><td>Plan déséquilibré ; références incomplètes</td><td>Plan conseillé suivi, 4 à 6 pages, références complètes</td><td>Écriture précise, figures numérotées, références toutes vérifiées</td></tr>
+        <tr><th scope="row">Soutenance orale (/3)</th><td>Lit ses notes ; ne peut pas expliquer une cellule de code</td><td>Présentation claire, réponses hésitantes sur la méthode</td><td>Tient son temps, explique une cellule de code et une limite</td><td>Répond avec précision sur ses propres résultats ; sait ce qu'il ferait autrement</td></tr>
+      </tbody>
+    </table></div>
+    <p>En cas de travail en groupe, notez le rapport et le code collectivement, la soutenance individuellement : chaque membre répond à une question sur une partie qu'il n'a pas présentée.</p>
+
+    <h4>La table ronde</h4>
+    <p>Chaque participant est noté individuellement, selon les <a href="index.html#tr-methode">règles de préparation</a> connues des étudiants. Pendant le débat, notez sur une grille par participant un fait observé par critère ; attribuez les points juste après. Par critère sur 4 : 0 à 1 ; 1,5 à 2 ; 2,5 à 3 ; 3,5 à 4.</p>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Grille d'observation d'une table ronde (points indicatifs sur 20)</caption>
+      <thead><tr><th scope="col">Critère</th><th scope="col">Insuffisant</th><th scope="col">Passable</th><th scope="col">Bien</th><th scope="col">Très bien</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Préparation (/4)</th><td>N'a pas lu les documents</td><td>Idées générales, sans exemple précis</td><td>Deux arguments et un exemple préparés</td><td>Fiche claire, objection anticipée avec sa réponse</td></tr>
+        <tr><th scope="row">Argumentation (/4)</th><td>Affirmations sans justification</td><td>Arguments juxtaposés</td><td>Arguments justifiés par des exemples</td><td>Arguments hiérarchisés, nuancés, reliés aux notions du cours</td></tr>
+        <tr><th scope="row">Écoute et réponse (/4)</th><td>Ignore les autres interventions</td><td>Répète sa position</td><td>Reprend et discute les arguments des autres</td><td>Reformule loyalement une position adverse avant d'y répondre</td></tr>
+        <tr><th scope="row">Sources (/4)</th><td>Aucune source, ou source non vérifiée, y compris fournie par une IA</td><td>Source vague (« j'ai lu sur Internet »)</td><td>Au moins une source identifiée : auteur, titre, date</td><td>Plusieurs sources vérifiées et confrontées</td></tr>
+        <tr><th scope="row">Expression (/4)</th><td>Lit un texte ; difficile à suivre</td><td>Compréhensible mais hésitant</td><td>Clair, respecte son temps de parole</td><td>Clair, précis, termes techniques justes</td></tr>
+      </tbody>
+    </table></div>
+    <p>Pour les rôles particuliers, le modérateur est jugé en « écoute et réponse » sur sa façon de distribuer la parole et de relancer ; le rapporteur, en « argumentation », sur une synthèse qui distingue accords, désaccords et questions ouvertes.</p>
+  </article>
+
+  <article class="lecon" id="guide-evaluation-controle">
+    <h3>Le contrôle continu en quelques minutes</h3>
+    <p>Ces vérifications montrent où en est la classe avant qu'il soit trop tard, presque sans correction. Si votre faculté prévoit une note de contrôle continu, elles peuvent y contribuer dans les conditions qu'elle fixe.</p>
+    <div class="grille-cartes">
+      <article class="carte">
+        <h4>Le quiz de cinq minutes</h4>
+        <p>En début de séance, trois questions sur la séance précédente, sur une demi-feuille. Les étudiants échangent leurs feuilles et corrigent pendant que vous donnez les réponses au tableau.</p>
+        <p>Exemple après le chapitre 1 : 1) Qui a proposé le « jeu de l'imitation » en 1950 ? 2) Un filtre anti-spam relève-t-il de l'IA étroite ou générale ? 3) Regrouper 200 réponses d'enquête sans catégories : supervisé ou non supervisé ?</p>
+      </article>
+      <article class="carte">
+        <h4>La fiche de sortie</h4>
+        <p>Trois minutes avant la fin, chaque étudiant écrit une chose comprise, une question qui reste, et répond à une question ciblée. Lisez les fiches en dix minutes ; ouvrez la séance suivante sur la difficulté la plus fréquente.</p>
+        <p>Exemple après la descente de gradient : « Si la dérivée est négative, w augmente-t-il ou diminue-t-il ? Pourquoi ? »</p>
+      </article>
+      <article class="carte">
+        <h4>Les mini-exercices en TP</h4>
+        <p>Trois formats rapides : prédire la sortie avant d'exécuter, réparer un code qui contient une erreur, modifier une ligne pour obtenir un autre résultat.</p>
+        <p>Exemple : <code>titres = ["Nedjma", "Al-Ayyam", "Bel-Ami"]</code>, puis <code>titres.append("Frankenstein")</code>, puis <code>print(len(titres), titres[-1])</code>. Réponse : <code>4 Frankenstein</code>. Pour réparer, écrivez <code>df["Livres"]</code> au lieu de <code>df["livres"]</code> et demandez de lire la dernière ligne du message <code>KeyError</code>.</p>
+      </article>
+      <article class="carte">
+        <h4>La relecture croisée</h4>
+        <p>Deux étudiants échangent le cadrage de leur mini-projet (question de recherche, données prévues) ou le brouillon du rapport. Chacun remplit la <a href="index.html#mp-evaluation">grille d'auto-évaluation</a> pour l'autre et note deux points forts et deux questions.</p>
+        <p>Si vous notez l'exercice, notez la qualité de la relecture, jamais le travail relu.</p>
+      </article>
+    </div>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">À retenir</p>
+      <ul>
+        <li>Les modalités de notation relèvent des textes en vigueur : renseignez-vous, puis annoncez-les par écrit.</li>
+        <li>On évalue la compréhension : lire, prédire, calculer à la main, interpréter.</li>
+        <li>Barèmes et grilles sont indicatifs ; distribuez les grilles en même temps que le travail.</li>
+        <li>Toute donnée modifiée dans un exercice oblige à refaire entièrement le corrigé.</li>
+      </ul>
+    </aside>
+  </article>
+</section>
+
+<section class="chapitre" id="guide-ia" aria-labelledby="guide-ia-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">Guide de l'enseignant · IA générative</p>
+    <h2 class="titre-section" id="guide-ia-titre">L'IA générative dans votre classe</h2>
+    <p class="chapeau">Vos étudiants utilisent des agents conversationnels comme ChatGPT. Voici une charte prête à distribuer, des travaux qui gardent leur sens malgré ces outils, et leur usage prudent pour préparer vos cours.</p>
+    <ul class="puces"><li class="puce">Charte</li><li class="puce">Conception des devoirs</li><li class="puce">Préparation des cours</li></ul>
+  </header>
+
+  <nav class="sommaire-chapitre" aria-label="Sommaire : l'IA générative dans votre classe">
+    <ol>
+      <li><a href="#guide-ia-charte">Une charte d'usage pour la classe</a></li>
+      <li><a href="#guide-ia-devoirs">Des travaux qui gardent leur sens</a></li>
+      <li><a href="#guide-ia-enseignant">Utiliser un assistant pour préparer vos cours</a></li>
+    </ol>
+  </nav>
+
+  <article class="lecon" id="guide-ia-charte">
+    <h3>Une charte d'usage pour la classe</h3>
+    <p>Tout interdire est incontrôlable ; tout autoriser vide les travaux de leur sens. Distribuez donc une charte dès la première séance. Celle-ci reprend les quatre règles de la leçon <a href="index.html#c1-perspectives">Perspectives, limites et éthique</a> (données personnelles, droit d'auteur, transparence, vérification) et les conseils de la page <a href="index.html#me-assistant">Méthode de travail</a> ; les règles propres à votre faculté, s'il en existe, priment. La table ronde <a href="index.html#tr-perspectives">Perspectives de l'IA</a>, qui s'achève sur une charte, permet de l'amender avec la classe.</p>
+    <h4>Préambule, à lire aux étudiants</h4>
+    <p>Dans ce cours, un outil d'IA peut vous aider à apprendre ; il ne peut pas apprendre à votre place. Les notes mesurent ce que vous avez compris. Tout ce que vous rendez doit pouvoir être expliqué par vous, à l'oral, sans l'outil.</p>
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>Ce qui est permis</h4>
+        <ul>
+          <li>Demander l'explication d'une notion du cours, un exemple de plus, une reformulation plus simple.</li>
+          <li>Se faire interroger par l'outil et lui faire corriger ses propres réponses.</li>
+          <li>Faire expliquer un message d'erreur ou un code, ligne par ligne.</li>
+          <li>Obtenir de l'aide pour corriger son propre code, à condition de savoir expliquer la correction.</li>
+          <li>Traduire, pour la comprendre, une documentation en anglais.</li>
+          <li>Faire corriger l'orthographe de son propre texte, en le déclarant.</li>
+        </ul>
+      </div>
+      <div class="comparaison-col">
+        <h4>Ce qui est interdit</h4>
+        <ul>
+          <li>Utiliser un outil d'IA pendant un examen, un quiz ou un travail sur table, sauf consigne contraire.</li>
+          <li>Rendre comme sien un texte, un code ou une analyse générés, même reformulés.</li>
+          <li>Citer une référence, une citation, une date ou un chiffre fournis par un outil sans les avoir vérifiés dans la source.</li>
+          <li>Déposer dans un service en ligne des données personnelles (réponses d'enquête, messages privés) ou des textes inédits ou protégés.</li>
+          <li>Lire, en table ronde ou en soutenance, un texte produit par un outil.</li>
+          <li>Omettre de déclarer un usage.</li>
+        </ul>
+      </div>
+    </div>
+    <h4>Comment déclarer l'usage</h4>
+    <p>Chaque travail rendu (rapport du mini-projet, synthèse de table ronde) se termine par une « déclaration d'usage des outils d'IA », même quand la réponse est « aucun ». Elle comporte :</p>
+    <dl class="definitions">
+      <div><dt>Outil</dt><dd>Nom et version, ou « version gratuite en ligne »</dd></div>
+      <div><dt>Date</dt><dd>Jour ou période d'utilisation</dd></div>
+      <div><dt>Usage</dt><dd>Ce qui a été demandé : explication, correction de code, traduction, reformulation</dd></div>
+      <div><dt>Consignes</dt><dd>Les principales demandes formulées, recopiées en annexe</dd></div>
+      <div><dt>Vérification</dt><dd>Comment le résultat a été contrôlé</dd></div>
+    </dl>
+    <aside class="encadre encadre--exemple">
+      <p class="encadre-titre">Modèle de déclaration</p>
+      <p>« J'ai utilisé un agent conversationnel (version gratuite en ligne, novembre 2025) pour comprendre un message d'erreur de pandas et pour traduire deux paragraphes de la documentation de scikit-learn. Mes demandes figurent en annexe. J'ai vérifié la correction en relançant tout le notebook. Le choix du corpus, l'analyse, l'interprétation et la rédaction sont de moi. »</p>
+    </aside>
+    <h4>En cas de manquement</h4>
+    <p>Commencez par une conversation : demandez à l'étudiant d'expliquer son travail. Une fraude avérée relève des règles de l'établissement ; en Algérie, l'arrêté n° 933 du 28 juillet 2016 fixe les règles de prévention et de lutte contre le plagiat. Vérifiez auprès de votre département les textes applicables avant d'annoncer une sanction.</p>
+  </article>
+
+  <article class="lecon" id="guide-ia-devoirs">
+    <h3>Des travaux qui gardent leur sens</h3>
+    <p>Partez de l'hypothèse que tout texte rédigé à la maison peut avoir été produit par un outil. Plutôt que de chercher à le détecter, déplacez la preuve de l'apprentissage vers ce que l'outil ne fait pas à la place de l'étudiant : expliquer à l'oral, montrer une démarche, travailler sur ses propres données, commenter ses propres résultats.</p>
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Les détecteurs ne sont pas fiables</p>
+      <p>Les logiciels qui prétendent repérer un texte généré se trompent souvent. OpenAI a retiré son propre détecteur en 2023 pour manque de précision, et une étude de Weixin Liang et ses coauteurs (<em>Patterns</em>, 2023) a montré que ces outils classent souvent à tort comme « générés » des textes rédigés en anglais par des personnes dont ce n'est pas la langue maternelle. Un score de détecteur ne prouve rien ; une conversation avec l'étudiant sur son travail en dit davantage.</p>
+    </aside>
+    <h4>Cinq leviers</h4>
+    <ul>
+      <li><strong>La soutenance orale du mini-projet</strong>, déjà prévue dans les <a href="index.html#mp-livrables">livrables</a>, est le levier le plus fort. Posez des questions que seul l'auteur peut traiter : « Montrez la cellule qui nettoie les données et expliquez chaque ligne. » « Passez de k = 3 à k = 4 devant moi : que change-t-il ? » « Lisez un texte du groupe 2 : pourquoi est-il là ? »</li>
+      <li><strong>Le journal de bord</strong> : une entrée datée par séance de travail, en trois lignes (ce que j'ai essayé, ce qui a échoué, ce que j'ai décidé et pourquoi). Exemple : « 14 novembre. VADER juge positifs des messages ironiques en darja latinisée. Je lis 30 messages à la main pour mesurer le problème. » Notez la régularité et la lucidité, pas le style.</li>
+      <li><strong>Le corpus personnel</strong> : chaque étudiant ou groupe travaille sur des données qu'il a réunies, par exemple les éditoriaux d'un quotidien algérien pendant une semaine, les poèmes d'un auteur étudié dans un autre cours du master, les réponses anonymes d'un questionnaire passé avec consentement dans sa promotion. Un outil peut aider à coder ; il ne connaît pas ce corpus, et l'interpréter exige de l'avoir lu.</li>
+      <li><strong>Le travail en classe</strong> : calculs à la main en TD, « prédire avant d'exécuter » en TP, quinze minutes d'écriture sur une question du cours. Le travail à la maison devient un entraînement, et l'intérêt de tricher baisse.</li>
+      <li><strong>Les questions sur leurs propres résultats</strong> : « Citez trois messages mal classés par votre modèle et expliquez chaque erreur. » « Votre groupe 3 réunit deux textes qui semblent sans rapport : que partagent-ils dans les données ? »</li>
+    </ul>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Transformer une consigne fragile en consigne robuste</caption>
+      <thead><tr><th scope="col">Consigne fragile</th><th scope="col">Consigne robuste</th></tr></thead>
+      <tbody>
+        <tr><td>Rédigez un exposé sur l'histoire de l'IA.</td><td>Construisez une frise de dix dates à partir du chapitre 1, puis défendez oralement en trois minutes la date qui compte le plus pour les études littéraires.</td></tr>
+        <tr><td>Écrivez un programme qui compte les mots d'un texte.</td><td>Voici un programme qui compte les mots : prédisez sa sortie, puis modifiez-le en séance pour ignorer les mots vides.</td></tr>
+        <tr><td>Analysez les sentiments de messages sur un sujet d'actualité.</td><td>Analysez 50 à 200 messages que vous avez collectés (source et dates indiquées) et commentez trois messages mal classés.</td></tr>
+        <tr><td>Expliquez l'algorithme des k-moyennes.</td><td>Faites une itération à la main sur ces six valeurs, puis expliquez avec vos mots pourquoi le résultat dépend des centres de départ.</td></tr>
+      </tbody>
+    </table></div>
+    <aside class="encadre encadre--shs">
+      <p class="encadre-titre">Un exercice qui utilise l'outil au lieu de le fuir</p>
+      <p>Demandez vous-même à un agent conversationnel d'expliquer une notion du cours, par exemple les faits non déductibles. En séance, les étudiants repèrent dans sa réponse les erreurs, imprécisions et affirmations invérifiables, puis les corrigent à l'aide du cours. Ils apprennent la notion et la lecture critique de ces outils. Relisez la réponse avant, pour savoir ce qu'il faut y trouver.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-ia-enseignant">
+    <h3>Utiliser un assistant pour préparer vos cours</h3>
+    <p>Un assistant d'IA fait gagner du temps, surtout quand la partie technique d'un cours ne vous est pas familière. La règle est celle de vos étudiants : il propose, vous vérifiez, et vous restez responsable de ce que vous distribuez.</p>
+    <div class="grille-cartes">
+      <article class="carte">
+        <h4>Des variantes d'exercices</h4>
+        <p>Pour un rattrapage ou des sujets différents d'un groupe à l'autre, demandez des variantes d'un exercice du TD. Refaites chaque corrigé vous-même : les erreurs de calcul sont fréquentes.</p>
+      </article>
+      <article class="carte">
+        <h4>Des questions de quiz</h4>
+        <p>Un assistant produit vite des questions à choix multiples avec des distracteurs plausibles. Vérifiez qu'une seule réponse est juste et que le vocabulaire est celui du cours.</p>
+      </article>
+      <article class="carte">
+        <h4>Des traductions</h4>
+        <p>Consignes, glossaire, résumés : un premier jet en arabe ou en anglais se relit plus vite qu'il ne s'écrit. Contrôlez les termes techniques avec le <a href="index.html#glossaire">glossaire</a> du cours et, pour l'arabe, avec un collègue : la terminologie varie d'un pays à l'autre.</p>
+      </article>
+      <article class="carte">
+        <h4>Des explications pour vous</h4>
+        <p>Avant une séance, faites-vous expliquer une notion ou un code, posez les questions que vos étudiants poseront, puis confrontez les réponses à la leçon du site.</p>
+      </article>
+    </div>
+    <aside class="encadre encadre--exemple">
+      <p class="encadre-titre">Exemple de demande</p>
+      <p>« Voici un exercice de k-moyennes de mon cours : [collez l'énoncé]. Propose trois variantes de même difficulté, avec six valeurs entières, k = 2 et deux centres de départ. Aucune valeur ne doit être à égale distance des deux centres, à aucune étape. Donne le corrigé détaillé de chaque variante, itération par itération. »</p>
+      <p>La demande précise la difficulté, la forme des données et le piège à éviter. L'assistant peut quand même se tromper : vérifiez.</p>
+    </aside>
+    <h4>Avant de distribuer un document préparé avec un assistant</h4>
+    <ol class="etapes">
+      <li><p class="etape-titre">Refaites les calculs</p><p>Sans regarder la solution proposée, puis comparez. Pour un k-moyennes, vérifiez chaque distance ; pour un chaînage, chaque cycle.</p></li>
+      <li><p class="etape-titre">Exécutez le code</p><p>Dans Jupyter ou Google Colab, et recopiez la sortie réellement obtenue, jamais celle que l'assistant annonce.</p></li>
+      <li><p class="etape-titre">Vérifiez les faits</p><p>Dates, noms, citations et références se contrôlent dans les leçons du site, un catalogue ou le document original : les assistants inventent des références plausibles.</p></li>
+      <li><p class="etape-titre">Harmonisez avec le cours</p><p>Mêmes notations (∧, η, μ₁), mêmes termes, même niveau que le TD : une notation inconnue déroute les étudiants le jour de l'examen.</p></li>
+    </ol>
+    <h4>Les précautions</h4>
+    <ul>
+      <li><strong>Aucune donnée personnelle d'étudiant, aucun texte inédit.</strong> Ne déposez jamais dans un service en ligne des noms, des notes, des copies, des courriels, des mémoires non publiés. En Algérie, la loi n° 18-07 du 10 juin 2018 encadre le traitement des données personnelles. Pour faire relire un sujet, n'envoyez que le sujet.</li>
+      <li><strong>Pas de correction déléguée.</strong> La note engage votre responsabilité ; le règlement européen sur l'IA classe d'ailleurs « à haut risque » les systèmes qui évaluent des étudiants.</li>
+      <li><strong>Les paramètres du service.</strong> Regardez si vos conversations peuvent servir à entraîner le modèle et si cette option peut être désactivée.</li>
+      <li><strong>La transparence.</strong> Dites à vos étudiants quand un document a été préparé avec un assistant, puis vérifié : vous montrez l'usage que la charte leur demande.</li>
+    </ul>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">À retenir</p>
+      <ul>
+        <li>Une charte claire, distribuée dès la première séance et discutée en table ronde, vaut mieux qu'une interdiction impossible à contrôler.</li>
+        <li>Déplacez la preuve de l'apprentissage vers l'oral, la démarche, le corpus personnel et le travail en classe ; les détecteurs ne prouvent rien.</li>
+        <li>Pour vos préparations : l'assistant propose, vous refaites les calculs, exécutez le code et vérifiez les faits.</li>
+        <li>Aucune donnée personnelle d'étudiant dans un service en ligne.</li>
+      </ul>
+    </aside>
+  </article>
+</section>

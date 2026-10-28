@@ -1,0 +1,135 @@
+<section class="chapitre" id="methode" aria-labelledby="methode-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">Méthode de travail</p>
+    <h2 class="titre-section" id="methode-titre">Comment apprendre ce cours</h2>
+    <p class="chapeau">Ce cours mélange trois apprentissages différents : des idées (chapitres 1 et 3), une compétence pratique (Python, chapitre 2) et un projet. Chacun demande sa propre méthode. Voici celles qui marchent, et comment les appliquer ici.</p>
+    <ul class="puces"><li class="puce">À lire en premier</li><li class="puce">10 minutes</li></ul>
+  </header>
+
+  <nav class="sommaire-chapitre" aria-label="Sommaire de la méthode">
+    <ol>
+      <li><a href="#me-principes">Quatre habitudes qui marchent</a></li>
+      <li><a href="#me-semaine">Une semaine type</a></li>
+      <li><a href="#me-parties">Comment aborder chaque partie</a></li>
+      <li><a href="#me-langues">Le vocabulaire en français et en anglais</a></li>
+      <li><a href="#me-assistant">Apprendre avec un assistant d'IA, sans tricher</a></li>
+      <li><a href="#me-examen">Préparer l'examen</a></li>
+    </ol>
+  </nav>
+
+  <article class="lecon" id="me-principes">
+    <h3>Quatre habitudes qui marchent</h3>
+    <p>Relire ses notes et surligner donnent une impression de maîtrise, mais retiennent peu. Une synthèse de la recherche en psychologie de l'apprentissage (Dunlosky et al., 2013) classe au contraire deux techniques parmi les plus utiles : <strong>se tester</strong> et <strong>espacer les révisions</strong>. Ajoutez-y l'explication à voix haute et l'essai avant la solution.</p>
+    <div class="grille-cartes">
+      <article class="carte">
+        <h4>Se tester plutôt que relire</h4>
+        <p>Fermez la page et écrivez ce dont vous vous souvenez : une définition, les étapes du k-moyennes, la différence entre chaînage avant et arrière. Puis vérifiez. Les quiz « Auto-évaluation » du site servent à cela.</p>
+      </article>
+      <article class="carte">
+        <h4>Espacer les révisions</h4>
+        <p>Revoyez une leçon le lendemain, trois jours après, une semaine après, puis trois semaines après. Quatre séances courtes valent mieux qu'une longue la veille de l'examen.</p>
+      </article>
+      <article class="carte">
+        <h4>Expliquer simplement</h4>
+        <p>Expliquez une notion en quelques phrases à quelqu'un qui ne suit pas le cours, ou par écrit. Là où vous bloquez, vous savez ce qu'il faut relire.</p>
+      </article>
+      <article class="carte">
+        <h4>Essayer avant le corrigé</h4>
+        <p>Cherchez chaque exercice du TD au moins vingt minutes avant d'ouvrir « Voir le corrigé ». Une erreur trouvée puis corrigée s'oublie beaucoup moins qu'une solution lue.</p>
+      </article>
+    </div>
+    <div class="quiz">
+      <p class="quiz-question">Vous avez une heure pour réviser le chapitre 1. Quelle méthode retiendra le plus ?</p>
+      <ul class="quiz-options">
+        <li><button type="button" class="quiz-option">Relire la leçon deux fois en surlignant</button></li>
+        <li><button type="button" class="quiz-option" data-correct>Lire une fois, puis réécrire de mémoire les idées principales et vérifier</button></li>
+        <li><button type="button" class="quiz-option">Recopier la leçon au propre</button></li>
+      </ul>
+      <p class="quiz-explication" hidden>Se tester oblige à retrouver l'information dans sa mémoire, et c'est cet effort qui la fixe. Relire et recopier se font presque sans effort de mémoire.</p>
+    </div>
+  </article>
+
+  <article class="lecon" id="me-semaine">
+    <h3>Une semaine type</h3>
+    <p>Environ trois heures de travail personnel par semaine suffisent si elles sont régulières. Adaptez les jours à votre emploi du temps ; gardez l'ordre.</p>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Trois heures par semaine, en cinq moments</caption>
+      <thead><tr><th scope="col">Quand</th><th scope="col">Quoi</th><th scope="col">Durée</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Avant le cours</th><td>Parcourir la leçon du site : titres, encadrés « À retenir », schémas. Noter deux questions.</td><td>20 min</td></tr>
+        <tr><th scope="row">Le soir du cours</th><td>Écrire de mémoire cinq questions et leurs réponses sur la leçon, puis faire le quiz du site.</td><td>30 min</td></tr>
+        <tr><th scope="row">Avant le TD</th><td>Chercher les exercices seul, sans le corrigé. Noter précisément où vous bloquez.</td><td>45 min</td></tr>
+        <tr><th scope="row">Deux jours après</th><td>Python : retaper les exemples du chapitre, puis modifier une ligne et prédire le résultat avant de l'exécuter.</td><td>45 min</td></tr>
+        <tr><th scope="row">En fin de semaine</th><td>Révision espacée : relire vos questions des semaines précédentes et y répondre ; apprendre dix termes du glossaire.</td><td>30 min</td></tr>
+      </tbody>
+    </table></div>
+  </article>
+
+  <article class="lecon" id="me-parties">
+    <h3>Comment aborder chaque partie</h3>
+    <dl class="definitions">
+      <div><dt>Chapitre 1</dt><dd><p>Des idées et des repères. Faites-vous une frise chronologique personnelle (dix dates suffisent) et, pour chaque paire de notions (IA faible et forte, supervisé et non supervisé), un tableau de différences écrit de mémoire. Ces tableaux sont exactement ce qu'on demande à l'examen et en table ronde.</p></dd></div>
+      <div><dt>Chapitre 2</dt><dd><p>Une compétence, qui s'apprend en faisant. Vingt à trente minutes de code presque chaque jour valent mieux qu'une longue séance. Ne copiez-collez pas : retapez. Avant d'exécuter, prédisez ce qui va s'afficher. Lisez les messages d'erreur jusqu'au bout : la dernière ligne dit presque toujours ce qui ne va pas. Pour pratiquer, <code>run.bat notebook</code> ouvre Jupyter, et Google Colab fonctionne sans installation.</p></dd></div>
+      <div><dt>Chapitre 3</dt><dd><p>Des algorithmes. Pour chacun, suivez le même ordre : le calcul à la main sur un tout petit exemple (les exercices du TD), puis la démonstration interactive du site, puis quelques lignes de scikit-learn. Si vous savez refaire le calcul à la main, vous avez compris l'algorithme.</p></dd></div>
+      <div><dt>Mini-projet</dt><dd><p>Choisissez votre sujet dès la fin du chapitre 2 et commencez petit : un corpus de cinquante textes qui marche vaut mieux que dix mille qui ne marchent pas. Tenez un journal de bord (ce que vous avez essayé, ce qui a échoué, pourquoi). Montrez votre avancement à l'enseignant chaque semaine.</p></dd></div>
+      <div><dt>Tables rondes</dt><dd><p>Préparez trois arguments, un exemple précis et une source vérifiée. Écoutez les autres pour répondre à leurs arguments, pas seulement pour placer les vôtres.</p></dd></div>
+    </dl>
+  </article>
+
+  <article class="lecon" id="me-langues">
+    <h3>Le vocabulaire en français et en anglais</h3>
+    <p>Le cours et l'examen sont en français, mais la plupart des documentations, tutoriels et articles sur l'IA sont en anglais. Apprenez donc chaque terme comme une paire.</p>
+    <ol class="etapes">
+      <li><p class="etape-titre">Des fiches dans les deux sens</p><p>Pour chaque terme du <a href="#glossaire">glossaire</a>, une fiche « français → anglais » et une fiche « anglais → français », avec la définition au dos. Une application de cartes mémoire gratuite comme Anki programme les révisions espacées pour vous.</p></li>
+      <li><p class="etape-titre">Lire la même leçon dans les deux langues</p><p>Le bouton FR / EN en haut de la page ouvre la même leçon en anglais. Lisez un paragraphe en français, puis le même en anglais : vous apprenez le vocabulaire en contexte, et vous vérifiez que vous avez compris.</p></li>
+      <li><p class="etape-titre">Des ressources de qualité dans chaque langue</p><p>Le <a href="https://docs.python.org/fr/3/tutorial/" target="_blank" rel="noopener">tutoriel officiel de Python</a> existe en français. Le <a href="https://course.spacy.io/fr/" target="_blank" rel="noopener">cours gratuit de spaCy</a> existe en français et en anglais. Le guide de scikit-learn et le cours de NLP de Hugging Face sont surtout en anglais : lisez-les avec le glossaire ouvert à côté.</p></li>
+      <li><p class="etape-titre">Un carnet personnel</p><p>Notez chaque nouveau terme avec sa traduction, une définition dans vos mots et un exemple tiré de la littérature. C'est ce carnet que vous relirez avant l'examen.</p></li>
+    </ol>
+  </article>
+
+  <article class="lecon" id="me-assistant">
+    <h3>Apprendre avec un assistant d'IA, sans tricher</h3>
+    <p>Un assistant conversationnel peut être un bon répétiteur, à condition de lui demander de vous faire travailler plutôt que de travailler à votre place.</p>
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>Usages qui aident</h4>
+        <ul>
+          <li>« Pose-moi cinq questions sur le chaînage avant et corrige mes réponses. »</li>
+          <li>« Explique la descente de gradient avec un exemple tiré de la lecture. »</li>
+          <li>« Voici mon raisonnement pour l'exercice 2 : où est l'erreur ? »</li>
+          <li>Faire expliquer, ligne par ligne, un code que vous n'avez pas compris.</li>
+        </ul>
+      </div>
+      <div class="comparaison-col">
+        <h4>Usages qui nuisent</h4>
+        <ul>
+          <li>Recopier un code que vous ne sauriez pas expliquer.</li>
+          <li>Demander le corrigé d'un exercice avant de l'avoir cherché.</li>
+          <li>Citer un chiffre, une date ou une référence sans l'avoir vérifié : les assistants en inventent.</li>
+          <li>Rendre un texte généré comme s'il était le vôtre.</li>
+        </ul>
+      </div>
+    </div>
+    <p>Pour le mini-projet, déclarez tout usage d'un outil d'IA, comme l'explique la leçon sur <a href="#c1-perspectives">l'éthique</a>.</p>
+  </article>
+
+  <article class="lecon" id="me-examen">
+    <h3>Préparer l'examen</h3>
+    <ol class="etapes">
+      <li><p class="etape-titre">Trois semaines avant</p><p>Faites la liste de tout le programme à partir de la <a href="#fiche">fiche de la matière</a>. Marquez chaque point : su, à revoir, pas compris. Commencez par le « pas compris ».</p></li>
+      <li><p class="etape-titre">Deux semaines avant</p><p>Refaites tous les exercices du TD sans regarder les corrigés, en temps limité. Comparez ensuite, et refaites ceux que vous avez ratés trois jours plus tard.</p></li>
+      <li><p class="etape-titre">Une semaine avant</p><p>Répondez de mémoire aux questions de vos fiches et aux quiz du site. Expliquez à voix haute les quatre familles d'IA et leurs différences.</p></li>
+      <li><p class="etape-titre">Les deux derniers jours</p><p>Seulement des révisions courtes de vos fiches et de votre carnet de vocabulaire. Dormez : le sommeil consolide ce que vous avez appris.</p></li>
+    </ol>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">À retenir</p>
+      <ul>
+        <li>Se tester et espacer les révisions : les deux techniques qui retiennent le plus.</li>
+        <li>Python s'apprend en tapant du code, un peu chaque jour.</li>
+        <li>Un algorithme est compris quand on sait le refaire à la main.</li>
+        <li>Chaque terme s'apprend en français et en anglais.</li>
+        <li>Un assistant d'IA doit vous faire travailler, pas travailler à votre place.</li>
+      </ul>
+    </aside>
+  </article>
+</section>
