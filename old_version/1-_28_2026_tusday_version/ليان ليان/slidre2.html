@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>DéveloppeurSite_dz</title>
+</head>
+
+<body class="body">
+    <style>
+        *{
+    padding: 0;
+    margin: 0;
+}
+.body{
+    height: 915px;
+    background: linear-gradient(180deg,
+    rgb(181, 172, 172),
+    black);
+}
+/* slider Auto*/
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 800px;
+}
+
+.slider{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    border: 12px solid white;
+    height: 360px;
+    width: 400px;
+    overflow: hidden;
+}
+.slid{
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    flex-direction: column;
+    background: black;
+    animation: 14s infinite slid;
+}
+
+
+.img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    width: 400px;
+}
+.h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-size: 25px;
+    height: 45px;
+    width: 300px;
+    border-radius: 20px;
+    box-shadow: inset 1.25px 1.25px 1.75em white;
+    color: black;
+}
+
+
+@keyframes slid{
+    0%{
+        transform: translateX(-800px);
+    }
+    20%{
+        transform: translateX(-400px);
+    }
+    40%{
+        transform: translateX(0);
+    }
+    60%{
+        transform: translateX(400px);
+    }
+    80%{
+        transform: translateX(800px);
+    }
+}
+
+
+/* footer */
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dev{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+}
+    </style>
+      <!-- slider auto -->
+      <div class="container">
+         <div class="slider">
+         <div class="slid"><img class="img" src="blog-1.jpg" alt="">
+            <h1 class="h1">Himalaya</h1></div>
+         <div class="slid"><img class="img" src="blog-3.jpg" alt="">
+            <h1 class="h1">Aurores Boréales</h1></div>
+         <div class="slid"><img class="img" src="gallery-4.jpg" alt="">
+            <h1 class="h1">Arctique</h1></div>
+         <div class="slid"><img class="img" src="menu-2.jpg" alt="">
+            <h1 class="h1">Amazon</h1></div>
+         <div class="slid"><img class="img" src="menu-5.jpg" alt="">
+            <h1 class="h1">Desert</h1></div>
+         </div>
+      </div>
+
+
+      <!-- footer -->
+     <footer class="footer">
+      <img class="dev" src="dev.png.PNG" alt="">
+     </footer>
+
+    <script src="code.js"></script>
+</body>
+</html>
