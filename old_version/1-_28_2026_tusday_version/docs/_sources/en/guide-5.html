@@ -1,0 +1,359 @@
+<section class="chapitre" id="guide-langues" aria-labelledby="guide-langues-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">Teacher's guide · Language students</p>
+    <h2 class="titre-section" id="guide-langues-titre">Teaching AI and code to language students</h2>
+    <p class="chapeau">Your six Master 2 groups (English, general and comparative literature, didactics) have never programmed. The ANG and LGC groups follow exactly the same syllabus, code included: they read, predict, run and modify each example, then write their own, step by step, in the same sessions and with the same notebooks; only the working language and the data change. The DID groups follow the same progression and may stick to reading and running the code. The official syllabus is still covered.</p>
+    <ul class="puces"><li class="puce">Six groups</li><li class="puce">ANG and LGC: same syllabus, code included</li><li class="puce">Ten ready-made notebooks</li></ul>
+  </header>
+
+  <nav class="sommaire-chapitre" aria-label="Contents: teaching AI to language students">
+    <ol>
+      <li><a href="#guide-langues-principe">The diagnosis and the response</a></li>
+      <li><a href="#guide-langues-outils">No-code tools for each part</a></li>
+      <li><a href="#guide-langues-parcours">One syllabus for ANG and LGC, an adaptation for DID</a></li>
+      <li><a href="#guide-langues-carnets">Ready-to-run notebooks</a></li>
+      <li><a href="#guide-langues-seance">A typical session in the computer room</a></li>
+      <li><a href="#guide-langues-evaluation">Assessing code and interpretation</a></li>
+    </ol>
+  </nav>
+
+  <article class="lecon" id="guide-langues-principe">
+    <h3>The diagnosis and the response</h3>
+    <p>In an hour and a half a week, language students will not become developers, but they can write short, useful programs. A student who reads ten lines of Python, predicts their output, runs them, changes a value, explains why the result changed, then rewrites these lines for their own text has understood what the machine does. The syllabus asks for the "ability to use the Python software": ANG and LGC work on it all the way to writing code, DID as far as running it. And the hardest step, saying what a number means for a text or for a class, is already part of their training.</p>
+
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>What they will not do</h4>
+        <ul>
+          <li>Start from a blank page: every program starts from an example that works.</li>
+          <li>Learn syntax by heart: the documentation and an AI assistant explain, and the students check.</li>
+          <li>Have an assistant write their code: they type it and explain it.</li>
+        </ul>
+      </div>
+      <div class="comparaison-col">
+        <h4>What they will do</h4>
+        <ul>
+          <li>Predict in writing what a cell will display, then run it.</li>
+          <li>Change a single value and observe the effect.</li>
+          <li>ANG and LGC: type the code of the tutorials (TD) and lab sessions (TP) themselves, then complete and write short programs.</li>
+          <li>Interpret the result in their discipline, and write down its limits.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>The syllabus, part by part: ANG and LGC together, DID adapted</caption>
+      <thead><tr><th scope="col">Part of the syllabus</th><th scope="col">How it is taught</th><th scope="col">Materials</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><a href="index.html#chapitre-1">Chapter 1</a></th><td>For everyone: concepts, history, AI agents, ethics, tutorials (TD) on paper</td><td>Home page demonstration, <a href="../chapitr1_first_lesson.html?lang=en">lesson 1 slideshow</a>, Teachable Machine</td></tr>
+        <tr><th scope="row"><a href="index.html#chapitre-2">Chapter 2</a> · Prompts and Python</th><td>For everyone: the <a href="index.html#td-ch2-prompts">prompt workshop</a>, then examples that are read, predicted, run and modified; students learn to read an error message. ANG and LGC also type the code of the TD 2 exercises; DID may stick to running it</td><td>Notebook 00, TD 2 exercises, spreadsheet</td></tr>
+        <tr><th scope="row"><a href="index.html#chapitre-3">Chapter 3</a></th><td>Hand calculations from <a href="index.html#td-ch3">TD 3</a>, the site's demonstrations, then the same algorithm in a notebook</td><td>Notebooks 06, 07, 08</td></tr>
+        <tr><th scope="row"><a href="index.html#mini-projet">Mini-project</a></th><td>One complete notebook per subject: the student chooses the data and the question, sets the fields, interprets and writes up. ANG and LGC add at least one cell of their own (a filter, a count, a chart) and explain it</td><td>Notebooks 01 to 05, and 09</td></tr>
+      </tbody>
+    </table></div>
+
+    <h4>Two tried and tested approaches</h4>
+    <p>The <dfn>PRIMM</dfn> approach (Predict, Run, Investigate, Modify, Make; <span class="terme-en" lang="fr">prédire, exécuter, examiner, modifier, créer</span>) was described by Sue Sentance, Jane Waite and Maria Kallia (<em lang="en">Computer Science Education</em>, 2019), based on work in English secondary schools. Pupils predict the output of a working program while discussing it with a classmate, run it to check, investigate it, modify it, and only write their own program at the end. The <dfn>Use–Modify–Create</dfn> progression of Irene Lee and her co-authors (<em lang="en">ACM Inroads</em>, 2011) follows the same logic.</p>
+    <p>Both approaches were designed for young pupils learning to program, not for master's students in languages: we borrow the order of their steps, without promising results. With ANG and LGC, we go as far as the last step: "create" means writing a short program, starting from a model, and producing the analysis it makes possible. With DID, "create" can remain producing an analysis (choosing data, asking a question, interpreting, writing).</p>
+
+    <h4>What changes in assessment</h4>
+    <p>You grade understanding and interpretation first: a reasoned prediction, even a wrong one, the explanation of a line, a comment on a result. For ANG and LGC, the code counts too: the code the student has written or completed runs, and they explain every line of it. In the <a href="#guide-evaluation-grilles">mini-project grid</a>, "Method and code" becomes: the notebook runs, the changed values are justified, the added cells work (ANG, LGC), and the student explains orally a cell that you choose (<a href="#guide-langues-evaluation">details</a>).</p>
+
+    <aside class="encadre encadre--retenir"><p class="encadre-titre">The ground rule</p>
+      <p>Never a blank page of code. Each cell is read, predicted and run; only one value changes at a time; in ANG and LGC, the student then rewrites the cell for their own text. Each session ends with a few lines of interpretation written in the student's discipline.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="guide-langues-outils">
+    <h3>No-code tools for each part</h3>
+    <p>A tool with buttons makes an idea visible in ten minutes; the notebook then shows the same calculations behind the buttons. You will find detailed presentations on the <a href="#guide-ressources-outils">Tools</a> shelf and in the <a href="#guide-activite-voyant">Voyant Tools</a> and <a href="#guide-activite-teachable">Teachable Machine</a> activities. Test each tool on the Labo 02 network before the session.</p>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>A tool with little or no code for each part of the course</caption>
+      <thead><tr><th scope="col">Tool</th><th scope="col">What students do</th><th scope="col">Chapter or subject</th><th scope="col">Link</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">The site's sentiment reader</th><td>Type a sentence (a review, a line of verse, a learner's answer), see the words that raise or lower the score, then look for a sentence that fools the tool</td><td>Chapter 1; subject 1</td><td><a href="index.html#accueil">Home</a></td></tr>
+        <tr><th scope="row">Chapter 3 demonstrations</th><td>Predict the rule fired by forward chaining; change the learning rate of gradient descent; run k-means step by step, then change the starting centres</td><td>Chapter 3; subject 2</td><td><a href="index.html#c3-symbolique">Chaining</a>, <a href="index.html#c3-algorithmes">algorithms</a></td></tr>
+        <tr><th scope="row">Teachable Machine</th><td>Train an image, sound or pose classifier by example, then trick it. For English: two spoken words (<span lang="en">ship</span>, <span lang="en">sheep</span>), tested with another voice</td><td>Chapters 1 and 3, supervised learning</td><td><a href="https://teachablemachine.withgoogle.com" target="_blank" rel="noopener">teachablemachine.withgoogle.com</a></td></tr>
+        <tr><th scope="row">Orange Data Mining, Text add-on</th><td>Connect blocks with the mouse: corpus, cleaning, word cloud, sentiment, k-means, decision tree, confusion matrix. The Text add-on is installed through Options › Add-ons</td><td>Subjects 1, 2 and 4</td><td><a href="https://orangedatamining.com" target="_blank" rel="noopener">orangedatamining.com</a></td></tr>
+        <tr><th scope="row">Voyant Tools</th><td>Paste a text: frequencies, word cloud, concordances, distribution of a word across the text</td><td>Chapter 2, text files; subject 3</td><td><a href="https://voyant-tools.org" target="_blank" rel="noopener">voyant-tools.org</a></td></tr>
+        <tr><th scope="row">AntConc</th><td>Laurence Anthony's free concordancer, widely used in corpus linguistics: concordances, word lists, collocations, keywords compared with a reference corpus. It is installed on the computers and works offline</td><td>Chapter 2; subject 3; learner corpora</td><td><a href="https://www.laurenceanthony.net/software/antconc/" target="_blank" rel="noopener">laurenceanthony.net</a></td></tr>
+        <tr><th scope="row">Gephi, or Gephi Lite in the browser</th><td>Import a table of links between characters, calculate degree, betweenness and communities, draw the network</td><td>Subject 5</td><td><a href="https://gephi.org" target="_blank" rel="noopener">gephi.org</a></td></tr>
+        <tr><th scope="row">Spreadsheet (LibreOffice Calc, Excel)</th><td>Sort, filter, count, make a pivot table (the equivalent of <code>groupby</code> in pandas). Put the five points of <a href="index.html#td-ch3-ex2a">exercise 2a of TD 3</a> in a scatter plot, with a linear trendline and its equation: you find 0.9 and 1.3 again</td><td>Chapter 2, tables; chapter 3, regression; subjects 2 and 4</td><td><a href="https://www.libreoffice.org" target="_blank" rel="noopener">libreoffice.org</a></td></tr>
+        <tr><th scope="row">Chatbots</th><td>Objects of study, not assistants: check references, list the errors in an explanation, compare the answers according to the language of the question</td><td>Chapter 3, Transformers; ethics</td><td><a href="#guide-ia">Generative AI in your classroom</a></td></tr>
+      </tbody>
+    </table></div>
+
+    <aside class="encadre encadre--attention"><p class="encadre-titre">Learner texts in an online service</p><p>Voyant Tools and chatbots send the text to a server: do not paste students' written work, questionnaire answers or copyrighted texts into them. For such data, use the tools installed on the computers instead (AntConc, Orange, spreadsheet, Jupyter).</p></aside>
+  </article>
+
+  <article class="lecon" id="guide-langues-parcours">
+    <h3>One syllabus for ANG and LGC, an adaptation for DID</h3>
+    <p>ANG and LGC follow the same syllabus: the same sessions, the same prompt workshop, the same tutorials (TD) and lab sessions (TP), the same code, the same notebooks (in English for ANG, in French for LGC), the same mini-project subjects. Neither group skips any part of the code. DID follows the same progression, with the option of sticking to reading and running the code. The five <a href="index.html#mini-projet">mini-project</a> subjects remain those of the syllabus; from one audience to another, only the data and the question change. Fictitious data must be declared as such in the report.</p>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>The five subjects, adapted to the three audiences (suggestions)</caption>
+      <thead><tr><th scope="col">Subject</th><th scope="col">ANG · English studies</th><th scope="col">LGC · comparative literature</th><th scope="col">DID · didactics</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><a href="index.html#mp-sujet-1">1 · Sentiment</a></th><td>VADER on reviews of novels or public posts, compared with the student's own judgement on 30 examples</td><td>The tone of a novel, chapter by chapter; a text compared with its English translation</td><td>Anonymous comments by learners on a course; the tone of teachers' comments on students' written work</td></tr>
+        <tr><th scope="row"><a href="index.html#mp-sujet-2">2 · Clustering</a></th><td>A questionnaire for learners of English: reading, motivation, speaking anxiety, use of AI</td><td>Poems or novels described by a few features (sentence length, share of dialogue), as in the <a href="#guide-activite-kmoyennes">novel card activity</a></td><td>Learner profiles taken from a questionnaire answered with consent; items inspired by published scales, such as foreign language anxiety (Horwitz, Horwitz and Cope, 1986)</td></tr>
+        <tr><th scope="row"><a href="index.html#mp-sujet-3">3 · Speeches</a></th><td>US presidential inaugural addresses, the <span lang="en">Gettysburg Address</span>, the <a href="#guide-ressources-donnees">UN General Debate Corpus</a>: keywords, named entities, concordances</td><td>Speeches by writers in the public domain: Hugo in the National Assembly, Jaurès and his "Discours à la jeunesse" (1903)</td><td>Institutional discourse and classroom discourse: textbook instructions, official curricula, anonymised transcripts</td></tr>
+        <tr><th scope="row"><a href="index.html#mp-sujet-4">4 · Prediction</a></th><td>Media consumption in English (series, podcasts, reading) and the score on a placement test, fictitious data</td><td>Reading and book-buying habits, to predict the preferred genre, fictitious data</td><td>Use of a course's resources (videos, exercises) and success, fictitious data; the ethics of predicting academic results</td></tr>
+        <tr><th scope="row"><a href="index.html#mp-sujet-5">5 · Networks</a></th><td>The characters of a Shakespeare play, linked when they share a scene</td><td><em>Les Misérables</em>, provided with NetworkX, then a play by Molière or Racine, recorded by hand</td><td>Who replies to whom in a class forum or in peer review, with coded names</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="grille-cartes">
+      <article class="carte">
+        <h4>ANG · working in English</h4>
+        <p>The LGC syllabus, code included, in English: notebooks and the <a href="cours.html">English version of the site</a>, VADER, spaCy's English model. Written answers are given in English: each notebook becomes practice in the language and its technical vocabulary.</p>
+        <p>For linguists: AntConc and learner corpora, preferably your own students' work, anonymised and with their consent; access to published corpora may require a licence.</p>
+      </article>
+      <article class="carte">
+        <h4>LGC · literary corpora</h4>
+        <p>The ANG syllabus, code included, in French: notebooks in French, public-domain texts (<a href="#guide-ressources-donnees">Gallica, Wikisource, Gutenberg</a>). The comparative approach fits well: the same analysis on a text and its translation, on two authors, on two periods.</p>
+        <p>The question to keep asking: what does calculation see that close reading does not, and the other way round?</p>
+      </article>
+      <article class="carte">
+        <h4>DID · the language classroom</h4>
+        <p>Notebooks in the language the students will teach, French or English. Notebook 09 is designed for them: readability, lexical profile, gap-fill text, a learner's answer compared with the expected answer.</p>
+        <p>A topic of their own: AI tutors in the language classroom. Have students test a chatbot as a corrector or as a conversation partner, then note its successes, its errors, the rules it invents and what happens to learners' data (<a href="#guide-ia-devoirs">assignments that keep their meaning</a>).</p>
+      </article>
+    </div>
+  </article>
+
+  <article class="lecon" id="guide-langues-carnets">
+    <h3>Ready-to-run notebooks</h3>
+    <p>Ten complete Jupyter notebooks, in French and in English: the same code, with texts and data in the language of the notebook. Each one follows PRIMM: a prediction question before each cell, the expected result after it, "TO CHANGE" fields ("À MODIFIER" in the French notebooks), then "Your turn", "For the mini-project", "To hand in", "Key points" and the link to the lesson. The data are included; only the cells marked "online" (spaCy, Transformers) need a connection, and no other cell depends on them.</p>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>The ten notebooks and their links</caption>
+      <thead><tr><th scope="col">Title</th><th scope="col">Part of the course</th><th scope="col">What students do</th><th scope="col">Open or download</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Getting started with a notebook: Python without fear<br><code>00-prise-en-main</code></th><td><a href="index.html#chapitre-2">Chapter 2</a></td><td>Run a cell, change a value, observe; the basics of chapter 2, with examples from literature</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/00-prise-en-main.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/00-prise-en-main.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="{{BASE}}notebooks/en/00-prise-en-main.ipynb" download>Download</a></td></tr>
+        <tr><th scope="row">Sentiment analysis: readers' reviews<br><code>01-sentiments</code></th><td><a href="index.html#mp-sujet-1">Subject 1</a></td><td>Score sentences: transparent word lists in French, VADER in English; an optional online cell with a multilingual model</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/01-sentiments.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/01-sentiments.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="{{BASE}}notebooks/en/01-sentiments.ipynb" download>Download</a></td></tr>
+        <tr><th scope="row">Learner profiles: clustering a questionnaire<br><code>02-questionnaire</code></th><td><a href="index.html#mp-sujet-2">Subject 2</a></td><td>Run k-means on answers (motivation, reading, anxiety, use of AI), change k, name the profiles</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/02-questionnaire.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/02-questionnaire.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="{{BASE}}notebooks/en/02-questionnaire.ipynb" download>Download</a></td></tr>
+        <tr><th scope="row">What speeches say<br><code>03-discours</code></th><td><a href="index.html#mp-sujet-3">Subject 3</a></td><td>Frequencies, keywords (TF-IDF), concordances; named entities with spaCy, online</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/03-discours.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/03-discours.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="{{BASE}}notebooks/en/03-discours.ipynb" download>Download</a></td></tr>
+        <tr><th scope="row">Predicting exam success<br><code>04-prediction</code></th><td><a href="index.html#mp-sujet-4">Subject 4</a></td><td>Decision tree and logistic regression, training and test sets, accuracy, confusion matrix, an ethical question</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/04-prediction.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/04-prediction.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="{{BASE}}notebooks/en/04-prediction.ipynb" download>Download</a></td></tr>
+        <tr><th scope="row">The character network of <em>Les Misérables</em><br><code>05-reseaux</code></th><td><a href="index.html#mp-sujet-5">Subject 5</a></td><td>The network of <em>Les Misérables</em>: degree, betweenness, drawing, communities</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/05-reseaux.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/05-reseaux.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="{{BASE}}notebooks/en/05-reseaux.ipynb" download>Download</a></td></tr>
+        <tr><th scope="row">Expert system and forward chaining<br><code>06-systeme-expert</code></th><td><a href="index.html#c3-symbolique">Chapter 3</a></td><td>The rules of poetic forms and exercise 1 of TD 3, worked through by the program</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/06-systeme-expert.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/06-systeme-expert.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="{{BASE}}notebooks/en/06-systeme-expert.ipynb" download>Download</a></td></tr>
+        <tr><th scope="row">Learning from data<br><code>07-apprentissage</code></th><td><a href="index.html#c3-algorithmes">Chapter 3</a></td><td>Redo the TD calculations with the program, then compare with scikit-learn</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/07-apprentissage.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/07-apprentissage.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="{{BASE}}notebooks/en/07-apprentissage.ipynb" download>Download</a></td></tr>
+        <tr><th scope="row">Predicting the next word: from bigrams to Transformers<br><code>08-ia-generative</code></th><td><a href="index.html#c3-deep">Chapter 3</a></td><td>A bigram model built on a small corpus, then Transformers online (masked word, generation)</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/08-ia-generative.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/08-ia-generative.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="{{BASE}}notebooks/en/08-ia-generative.ipynb" download>Download</a></td></tr>
+        <tr><th scope="row">The language classroom: readability, vocabulary, cloze tests<br><code>09-classe-de-langue</code></th><td>ANG, LGC and DID</td><td>Readability (Flesch for English, Kandel and Moles for French), lexical profile, automatic gap-fill text, a learner's answer compared with the expected answer</td><td><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/09-classe-de-langue.ipynb" target="_blank" rel="noopener">Colab (FR)</a><br><a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/09-classe-de-langue.ipynb" target="_blank" rel="noopener">Colab (EN)</a><br><a href="{{BASE}}notebooks/en/09-classe-de-langue.ipynb" download>Download</a></td></tr>
+      </tbody>
+    </table></div>
+    <p>To download the English version: same address, with <code>en</code> instead of <code>fr</code>. Suggested order, following the <a href="#guide-progression">week-by-week plan</a>: 00 in chapter 2; 06 in week 4; 07 in weeks 5 and 6; 08 in week 8; 01 to 05 during the mini-project; 09 after 00, for all groups.</p>
+
+    <h4>Running a notebook in Colab for the first time</h4>
+    <ol class="etapes">
+      <li><p class="etape-titre">A Google account</p><p>Each student uses their own. Have students create one before the session: in class, this takes time and often requires a phone.</p></li>
+      <li><p class="etape-titre">Open the link</p><p>"Colab (FR)" or "Colab (EN)" opens the notebook in the browser. The first time you run it, Colab warns that the notebook was not written by Google: choose "Run anyway".</p></li>
+      <li><p class="etape-titre">Run</p><p>Cell by cell, with the ▶ button or <kbd>Shift</kbd> + <kbd>Enter</kbd>, after reading the prediction question. To run everything again: "Runtime › Run all".</p></li>
+      <li><p class="etape-titre">Change only the "TO CHANGE" fields</p><p>These are boxes, sliders or lists on the right of the cell. After a change, run this cell and the following ones again. Do not touch the rest of the code.</p></li>
+      <li><p class="etape-titre">Save a copy</p><p>"File › Save a copy in Drive"; the copy goes into the "Colab Notebooks" folder. Without it, everything is lost when the notebook is closed.</p></li>
+      <li><p class="etape-titre">Hand in the work</p><p>"File › Download › Download .ipynb", or "File › Print" then "Save as PDF". The file keeps the outputs and the written answers.</p></li>
+    </ol>
+
+    <h4>Without Internet: Jupyter on the computers</h4>
+    <p>If Python is installed in Labo 02, <code>run.bat notebook</code> installs the course libraries if needed and opens Jupyter in the project folder (<a href="#guide-demarrer-etapes">step 2 of "Where to start"</a>). The notebooks are in <code>docs › notebooks › fr</code> (or <code>en</code>). There, the "TO CHANGE" fields are simple lines followed by the comment <code>#@param</code>: change only the value. Skip the "online" cells.</p>
+
+    <aside class="encadre encadre--attention"><p class="encadre-titre">If the GitHub repository is private</p><p>The Colab links read the notebooks on GitHub; for a private repository, Colab asks for a GitHub authorisation that students do not have. In that case, distribute the downloaded file (class space, USB stick) and have students open it with "File › Upload notebook".</p></aside>
+    <aside class="encadre encadre--attention"><p class="encadre-titre">Shared computers</p><p>In Labo 02, the groups follow one another without a break. Keep five minutes for saving and signing out of the Google account; otherwise the next student will find the previous student's Drive open.</p></aside>
+  </article>
+
+  <article class="lecon" id="guide-langues-seance">
+    <h3>A typical session in the computer room</h3>
+    <p>Each group has an hour and a half a week in Labo 02: the session combines the lecture, the tutorial (TD) and the lab session (TP). Students read the site's lesson beforehand, as planned in their <a href="index.html#me-semaine">typical week</a>.</p>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Your week in Labo 02</caption>
+      <thead><tr><th scope="col">Day</th><th scope="col">Time</th><th scope="col">Group</th><th scope="col">Notebooks</th></tr></thead>
+      <tbody>
+        <tr><td>Tuesday</td><td>09:30–11:00</td><td>IA M02 ANG, group 1</td><td>English</td></tr>
+        <tr><td>Tuesday</td><td>11:00–12:30</td><td>IA M02 ANG, group 2</td><td>English</td></tr>
+        <tr><td>Tuesday</td><td>12:30–14:00</td><td>IA M02 LGC</td><td>French</td></tr>
+        <tr><td>Thursday</td><td>08:00–09:30</td><td>IA M02 DID, group 1</td><td>Language taught</td></tr>
+        <tr><td>Thursday</td><td>09:30–11:00</td><td>IA M02 DID, group 2</td><td>Language taught</td></tr>
+        <tr><td>Thursday</td><td>12:30–14:00</td><td>IA M02 DID, group 3</td><td>Language taught</td></tr>
+      </tbody>
+    </table></div>
+
+    <h4>The 90-minute session, step by step</h4>
+    <ol class="etapes">
+      <li><p class="etape-titre">Opening question · 5 min</p><p>A question from their discipline: "Can a machine tell whether a review of a novel is positive?"</p><p><strong>You:</strong> write the answers on the board without correcting them; you will come back to them.</p></li>
+      <li><p class="etape-titre">Predict on paper · 15 min</p><p>A printed worksheet: the main cell of the notebook and three questions (what will it display? which word will count most? what if we change this number?). In pairs, in writing, with screens off.</p><p><strong>You:</strong> read the code aloud, saying what each line does; collect a few predictions.</p></li>
+      <li><p class="etape-titre">Run · 15 min</p><p>The notebook is run from top to bottom; at each cell, students compare the output with their prediction.</p><p><strong>You:</strong> walk around the room without taking the keyboard. When a student says "it doesn't work", first answer: "Read the last line of the message." Project your notebook for anyone who has lost track.</p></li>
+      <li><p class="etape-titre">Modify, then write · 20 min</p><p>One value at a time: the sentence, the number of groups, the text. A new prediction, then a new run. In ANG and LGC, each student then rewrites the main cell without looking at it, or completes two erased lines; in DID, students keep modifying.</p><p><strong>You:</strong> insist on a prediction before each attempt; spot two surprising results to show everyone.</p></li>
+      <li><p class="etape-titre">Interpret · 15 min</p><p>In pairs, then as a class: what does this result mean for a student of English, a comparatist, a future teacher? What does the method not see?</p><p><strong>You:</strong> go back to the answers from the start, link them to the lesson, and ask for an example from the output for each claim.</p></li>
+      <li><p class="etape-titre">Write, save, sign out · 20 min</p><p>In the last text cell, 100 to 150 words: what I predicted, what I got, what I conclude for my discipline, one limitation. In English for the ANG groups. Then a copy in Drive, submission, sign-out.</p><p><strong>You:</strong> read two or three paragraphs over students' shoulders; record the session in "My groups".</p></li>
+    </ol>
+
+    <h4>Six groups, one preparation</h4>
+    <ul>
+      <li><strong>Prepare once a week</strong>: the same notebook, the same prediction worksheet and the same code for all six groups. ANG and LGC do exactly the same session; only the working language and the data change.</li>
+      <li><strong>Vary the examples</strong>: half a page of values for the "TO CHANGE" fields, in three columns (ANG, LGC, DID), for example a review of a novel in English, a line by Baudelaire, a textbook instruction.</li>
+      <li><strong>Use Tuesday as a rehearsal</strong>: four and a half hours in a row show where students get stuck; arrive with the worksheets sorted by group. On Thursday, the free slot from 11:00 to 12:30 is for filling in the class log and correcting the worksheet before the last group.</li>
+      <li><strong>Plan for a breakdown</strong>: without a network, project your notebook or screenshots and keep the prediction on paper (<a href="#guide-demarrer-materiel">options without a computer</a>).</li>
+    </ul>
+
+    <h4>Following the six groups with "My groups"</h4>
+    <p>The <a href="classe.html">My groups</a> page keeps everything on your computer: in a file if you open it with <code>run.bat</code>, otherwise in the browser (in that case, download a copy from time to time).</p>
+    <ol class="etapes">
+      <li><p class="etape-titre">Create the six groups</p><p>"Add a group": name (IA M02 ANG 1, ANG 2, LGC, DID 1 to 3), timetable, room, mini-project subject, one colour per audience.</p></li>
+      <li><p class="etape-titre">Import the lists</p><p>"Paste a list": paste the column of names copied from the administrative list.</p></li>
+      <li><p class="etape-titre">Prepare the year</p><p>In the "Attendance" tab, "Prepare the year": one session a week for each group, on its day and at its time, over ten months, leaving out the holidays and public holidays. If a slot changes, "Change the schedule" moves the planned sessions from a given date.</p></li>
+      <li><p class="etape-titre">At each session</p><p>The "Today" banner opens the roll call ("Take the roll"): everyone is present by default; tap the absent and late students. Then "What was done", "Homework set", a note if needed. The register counts absences and flags students at risk; at the end of the semester: the grades, and the CSV export to Excel.</p></li>
+    </ol>
+  </article>
+
+  <article class="lecon" id="guide-langues-evaluation">
+    <h3>Assessing code and interpretation</h3>
+    <p>This grid is for grading a submitted notebook (the session paragraph or the "To hand in" section). Hand it out with the first notebook: students see that a wrong but reasoned prediction earns points. It applies to all six groups; for ANG and LGC, the "Running and code" criterion also covers the code written by the student. The points are only a guide; the weight of this work in the final grade depends on the regulations in force.</p>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Grid for grading a notebook (suggested points out of 20)</caption>
+      <thead><tr><th scope="col">Criterion</th><th scope="col">What is expected</th><th scope="col">Points</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Prediction</th><td>Predictions are written before running the code and justified; any gap with the output is explained. A wrong but well-reasoned prediction earns the points.</td><td>4</td></tr>
+        <tr><th scope="row">Running and code</th><td>The notebook runs from top to bottom; the required fields have been changed; the outputs are present. ANG and LGC: the cells written or completed by the student work, and the student explains every line of them.</td><td>4</td></tr>
+        <tr><th scope="row">Interpretation</th><td>The result is linked to the question of the discipline (text, learner, class), with examples taken from the output.</td><td>5</td></tr>
+        <tr><th scope="row">Critical distance</th><td>A limitation of the method or of the data (irony, negation, small sample); ethics if the question arises (consent, anonymity).</td><td>4</td></tr>
+        <tr><th scope="row">Written expression</th><td>Clarity, correct terms from the <a href="index.html#glossaire">glossary</a>; for the ANG groups, the English language is assessed here, and only here.</td><td>3</td></tr>
+      </tbody>
+    </table></div>
+
+    <h4>Three exam questions on printed code</h4>
+    <p>Each question gives a short program and its real output (Python 3.11, scikit-learn 1.9): students read, recover an erased line, explain and interpret. Suggested marking scheme: 6 + 7 + 7. For ANG and LGC, replace one explanation sub-question with writing or correcting three lines of code, as in the TD 2 exercises. For the ANG groups, translate the questions and the examples, then run the code again: the outputs change with the text.</p>
+
+    <div class="exercice" id="guide-langues-q1">
+      <p class="exercice-num">Question 1 · Counting words (6 points)</p>
+      <div class="exercice-enonce">
+        <figure class="code">
+          <figcaption class="code-legende">compter.py</figcaption>
+          <pre><code class="language-python">from collections import Counter
+
+# Count the words in a sentence
+texte = "The sea is calm, the sky is grey, and the sea is silent."
+mots = texte.lower().replace(",", "").replace(".", "").split()
+print(len(mots))
+print(mots[:4])
+compte = Counter(mots)
+print(len(compte))
+print(compte.most_common(3))</code></pre>
+          <pre class="sortie"><samp>13
+['the', 'sea', 'is', 'calm']
+8
+(last line erased)</samp></pre>
+        </figure>
+        <ol>
+          <li>What does the line that starts with <code>mots =</code> do? Describe its three operations in one sentence each. (1.5 points)</li>
+          <li>Why does the program display 13, then 8? Name the two concepts. (1.5 points)</li>
+          <li>Write the erased last line. (1.5 points)</li>
+          <li>Without <code>.lower()</code>, the third line displays 9: why? A student concludes that "the" is the most important word in the text: what do you answer? (1.5 points)</li>
+        </ol>
+      </div>
+      <details class="corrige"><summary>Show the solution and marking scheme</summary>
+        <div class="corrige-corps">
+          <p><strong>1.</strong> <code>lower()</code> converts the text to lower case; the two <code>replace</code> calls remove commas and full stops; <code>split()</code> cuts the text at the spaces and produces a list of words. 0.5 per operation.</p>
+          <p><strong>2.</strong> 13 words counted with their repetitions, 8 distinct forms: <em>the, sea, is, calm, sky, grey, and, silent</em>; in corpus linguistics, tokens (<span class="terme-en" lang="fr">occurrences</span>) and types (<span class="terme-en" lang="fr">formes</span>). Give credit for the ratio 8 / 13, about 0.62, which notebook 09 calculates.</p>
+          <p><strong>3.</strong> <code>[('the', 3), ('is', 3), ('sea', 2)]</code>. 1 point for the three words and their counts, 0.5 for the format. In case of a tie, <code>Counter</code> keeps the order of first appearance: accept <code>('is', 3)</code> before <code>('the', 3)</code>.</p>
+          <p><strong>4.</strong> Without lower case, "The" and "the" are two different strings, so two forms: 9 (0.5); the last line becomes <code>[('is', 3), ('sea', 2), ('the', 2)]</code>. "The" is a function word, the most frequent word in almost any English text: frequency is not importance. You remove stop words, compare with a reference corpus (TF-IDF) and go back to the text (1).</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="guide-langues-q2">
+      <p class="exercice-num">Question 2 · A sentiment score (7 points)</p>
+      <div class="exercice-enonce">
+        <figure class="code">
+          <figcaption class="code-legende">sentiment_listes.py</figcaption>
+          <pre><code class="language-python"># A sentiment score based on word lists
+positifs = ["beau", "magnifique", "émouvant", "réussi"]
+negatifs = ["ennuyeux", "décevant", "raté", "long"]
+
+def score(phrase):
+    mots = phrase.lower().replace(",", " ").replace(".", " ").split()
+    total = 0
+    for mot in mots:
+        if mot in positifs:
+            total = total + 1
+        if mot in negatifs:
+            total = total - 1
+    return total
+
+avis = ["Un roman magnifique et émouvant.",
+        "Ce n'est pas un livre ennuyeux.",
+        "Magnifique, vraiment : trois cents pages pour ne rien dire.",
+        "Le début est long, mais la fin est réussie."]
+for a in avis:
+    print(score(a), a)</code></pre>
+          <pre class="sortie"><samp>2 Un roman magnifique et émouvant.
+-1 Ce n'est pas un livre ennuyeux.
+1 Magnifique, vraiment : trois cents pages pour ne rien dire.
+-1 Le début est long, mais la fin est réussie.</samp></pre>
+        </figure>
+        <ol>
+          <li>Explain in two sentences what the <code>score</code> function does. (1 point)</li>
+          <li>The second sentence gets −1. Why? Is this the reader's opinion? (1.5 points)</li>
+          <li>In the fourth sentence, "long" is counted but "réussie" is not. Why? What would need to change, without writing any code? (1.5 points)</li>
+          <li>What knowledge does the program lack for the third sentence? (1 point)</li>
+          <li>Would you use this program to analyse 300 reader reviews or learner comments? What would you do before trusting the scores? (2 points)</li>
+        </ol>
+      </div>
+      <details class="corrige"><summary>Show the solution and marking scheme</summary>
+        <div class="corrige-corps">
+          <p><strong>1.</strong> It splits the sentence into words (in lower case, without punctuation), adds 1 for each positive word, subtracts 1 for each negative word, and returns the total.</p>
+          <p><strong>2.</strong> Only "ennuyeux" is recognised; the negation "n'est pas" is ignored, because each word is judged on its own (1). The opinion is rather favourable (0.5). The sentiment reader on the site's home page, inspired by VADER, handles negation.</p>
+          <p><strong>3.</strong> The program compares exact strings: "réussie" is not "réussi" (0.5). You would need to add the inflected forms, or reduce each word to its lemma with spaCy (0.5). And "long" is not always negative ("un long poème"): the list ignores context (0.5).</p>
+          <p><strong>4.</strong> Irony: "Magnifique, vraiment" followed by a criticism. The program would need to grasp tone and intention; it only sees one positive word.</p>
+          <p><strong>5.</strong> Not as it is. Annotate a sample by hand (50 reviews, for example), compare it with the scores, classify the errors (negation, irony, inflection, missing words), enrich the lists or change the method, and present the result with this margin of error. For learner comments: anonymity and consent. 1 point for checking on a sample, 1 for a justified limitation or precaution.</p>
+        </div></details>
+    </div>
+
+    <div class="exercice" id="guide-langues-q3">
+      <p class="exercice-num">Question 3 · Learner profiles (7 points)</p>
+      <div class="exercice-enonce">
+        <figure class="code">
+          <figcaption class="code-legende">profils.py</figcaption>
+          <pre><code class="language-python">from sklearn.cluster import KMeans
+
+# Fictitious questionnaire: eight learners of English
+# column 1: hours of reading in English per week
+# column 2: speaking anxiety, from 1 (low) to 5 (high)
+reponses = [[1, 5], [2, 4], [1, 4], [2, 5],
+            [6, 2], [7, 1], [5, 2], [8, 1]]
+
+modele = KMeans(n_clusters=2, n_init=10, random_state=0)
+groupes = modele.fit_predict(reponses)
+print(groupes)
+print(modele.cluster_centers_)</code></pre>
+          <pre class="sortie"><samp>[1 1 1 1 0 0 0 0]
+[[6.5 1.5]
+ [1.5 4.5]]</samp></pre>
+        </figure>
+        <ol>
+          <li>Supervised or unsupervised learning? Justify your answer from the code. (1.5 points)</li>
+          <li>What does <code>n_clusters=2</code> mean? Who chose this value? (1 point)</li>
+          <li>Using the last output, describe the two groups in words. Do the numbers 0 and 1 have a meaning? (2 points)</li>
+          <li>A colleague concludes that reading in English reduces speaking anxiety. What do you think? (1.5 points)</li>
+          <li>Give one ethical precaution for using such a classification in a real class. (1 point)</li>
+        </ol>
+      </div>
+      <details class="corrige"><summary>Show the solution and marking scheme</summary>
+        <div class="corrige-corps">
+          <p><strong>1.</strong> Unsupervised (0.5): there are no labels and no right answers; <code>fit_predict</code> receives only the answers and forms the groups itself, using k-means (1).</p>
+          <p><strong>2.</strong> The number of groups requested (0.5). The analyst set it, not the machine; the elbow method in <a href="index.html#mp-sujet-2">subject 2</a> helps to choose it (0.5).</p>
+          <p><strong>3.</strong> Each row of <code>cluster_centers_</code> is an average profile. Group 1, the first four learners: 1.5 hours of reading a week, anxiety 4.5, that is, "reads little, very anxious when speaking". Group 0, the last four: 6.5 hours, anxiety 1.5, that is, "reads a lot, not very anxious" (1.5). The numbers are arbitrary and may be swapped depending on the version of scikit-learn; naming the groups is the researcher's job (0.5).</p>
+          <p><strong>4.</strong> This is not supported: fictitious data, eight people, and clustering describes similarities without establishing a cause (0.75). The link could go the other way (less anxious learners read more) or come from a third factor, such as the level in English (0.75).</p>
+          <p><strong>5.</strong> One justified precaution is enough: an anonymous questionnaire answered with consent; no "anxious" label in a file or in front of the class; no decision about a learner based on two variables; profiles presented as hypotheses for discussion.</p>
+        </div></details>
+    </div>
+
+    <aside class="encadre encadre--retenir"><p class="encadre-titre">Key points</p>
+      <ul>
+        <li>Grade the reasoned prediction, the explanation and the interpretation, never the syntax.</li>
+        <li>An exam can show code and its output: students read it, complete an erased line, explain and criticise.</li>
+        <li>Every output printed in an exam paper must have been obtained by running the code.</li>
+      </ul>
+    </aside>
+  </article>
+</section>

@@ -1,0 +1,989 @@
+<section class="chapitre" id="chapitre-2" aria-labelledby="chapitre-2-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">Chapitre 2 · 2 semaines</p>
+    <h2 class="titre-section" id="chapitre-2-titre">Rappel et compléments sur le langage Python</h2>
+    <p class="chapeau">À la fin de ce chapitre, vous saurez formuler une demande précise à un assistant d'IA et en vérifier la réponse, écrire de courts programmes Python, explorer un tableau d'œuvres avec pandas, organiser votre code en classes, interroger un corpus de fichiers textes et livrer vos résultats sous forme de classeur Excel ou de PDF.</p>
+    <ul class="puces">
+      <li class="puce">Cours magistral</li>
+      <li class="puce">TD</li>
+      <li class="puce">TP</li>
+      <li class="puce puce--outil">Prompts</li>
+      <li class="puce puce--outil">Python 3</li>
+      <li class="puce puce--outil">NumPy</li>
+      <li class="puce puce--outil">pandas</li>
+      <li class="puce puce--outil">matplotlib</li>
+      <li class="puce puce--outil">openpyxl</li>
+      <li class="puce puce--outil">fpdf2</li>
+    </ul>
+  </header>
+
+  <nav class="sommaire-chapitre" aria-label="Sommaire du chapitre 2">
+    <ol>
+      <li><a href="#c2-prompts">Bien formuler une demande à un assistant d'IA</a></li>
+      <li><a href="#c2-installer">Mise en place de l'environnement</a></li>
+      <li><a href="#c2-fondamentaux">Les fondamentaux du langage</a></li>
+      <li><a href="#c2-numpy-pandas">Les bibliothèques NumPy et pandas</a></li>
+      <li><a href="#c2-objet">Introduction à la programmation objet</a></li>
+      <li><a href="#c2-fichiers">Lire et traiter des fichiers textes</a></li>
+      <li><a href="#c2-rapports">Rapports simples : Excel et PDF</a></li>
+    </ol>
+  </nav>
+
+  <aside class="encadre encadre--exemple">
+    <p class="encadre-titre">Jamais programmé ? Tout part de zéro</p>
+    <p>Vous étudiez les langues, pas l'informatique : la programmation commence ici, pas à pas, et le code du cours est pour tout le monde. Chaque exemple se lit, se prédit, s'exécute et se modifie avant que vous n'écriviez le vôtre, en TP comme au TD. Des carnets complets, prêts à exécuter dans Google Colab, accompagnent chaque partie : vous lancez les cellules une à une, vous changez une phrase ou un nombre dans les champs « À MODIFIER », puis vous réécrivez le code vous-même. Commencez par <a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/00-prise-en-main.ipynb" target="_blank" rel="noopener">Prendre en main un carnet</a> ; la liste complète est dans le <a href="enseignant.html#guide-langues-carnets">guide de l'enseignant</a>.</p>
+  </aside>
+
+  <!-- ============================================================ 0 -->
+  <article class="lecon" id="c2-prompts">
+    <h3>Bien formuler une demande à un assistant d'IA</h3>
+    <p>Un <dfn>assistant d'IA</dfn> (ChatGPT, Gemini, Claude, Copilot…) est un grand modèle de langage que l'on interroge en langue naturelle. Le texte qu'on lui donne s'appelle un <dfn>prompt</dfn> (<span class="terme-en" lang="en">prompt</span>, « consigne »), et l'art de l'écrire, l'<dfn>ingénierie de prompt</dfn> (<span class="terme-en" lang="en">prompt engineering</span>). Le modèle produit la suite la plus probable du texte reçu (<a href="#c3-deep">chapitre 3</a> ; voir aussi <a href="#c1-texte">comment une IA « comprend » un texte</a>) : plus la consigne est précise, plus cette suite ressemble à ce que vous attendez. Dans ce cours, l'assistant sert à deux choses : analyser des textes, et vous aider à lire et à écrire du code Python. Jamais à rendre un travail à votre place.</p>
+
+    <h4>Les six éléments d'une bonne consigne</h4>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Anatomie d'un prompt</caption>
+      <thead><tr><th scope="col">Élément</th><th scope="col">Question à se poser</th><th scope="col">Exemple</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Rôle</th><td>Quel point de vue l'assistant doit-il adopter ?</td><td>« Tu es un assistant de recherche en littérature comparée. »</td></tr>
+        <tr><th scope="row">Tâche</th><td>Que doit-il faire, avec quel verbe d'action ?</td><td>« Relève les passages où le narrateur exprime la nostalgie. »</td></tr>
+        <tr><th scope="row">Contexte</th><td>Que sait-il de moins que vous ?</td><td>« Le texte est un extrait de roman algérien des années 1950. »</td></tr>
+        <tr><th scope="row">Données</th><td>Sur quoi travaille-t-il, exactement ?</td><td>Le texte, placé entre deux repères : <code>"""…"""</code></td></tr>
+        <tr><th scope="row">Format</th><td>Sous quelle forme voulez-vous la réponse ?</td><td>« Un tableau : citation exacte, ligne, justification en une phrase. »</td></tr>
+        <tr><th scope="row">Contraintes</th><td>Que doit-il éviter, jusqu'où aller ?</td><td>« Cite mot pour mot ; si aucun passage ne convient, réponds “aucun”. »</td></tr>
+      </tbody>
+    </table></div>
+
+    <h4>D'une consigne vague à une consigne précise</h4>
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>Consigne vague</h4>
+        <figure class="code"><pre class="consigne"><code>Analyse ce poème.</code></pre></figure>
+        <p>L'assistant choisit seul l'angle, la longueur et le vocabulaire : la réponse est générale, et rien ne permet de la vérifier.</p>
+      </div>
+      <div class="comparaison-col">
+        <h4>Consigne précise</h4>
+        <figure class="code"><pre class="consigne"><code>Tu es professeur de littérature. Voici un poème entre triples guillemets.
+1. Donne son thème principal en une phrase.
+2. Relève trois images qui le soutiennent (citations exactes).
+3. Indique le ton dominant : positif, négatif ou mitigé, et justifie-le.
+Réponds par un tableau. N'invente aucune citation.
+"""[le poème]"""</code></pre></figure>
+        <p>Un rôle, une tâche découpée en étapes, un format, une contrainte de vérification : la réponse se compare à votre propre lecture.</p>
+      </div>
+    </div>
+
+    <h4>Quatre techniques utiles</h4>
+    <ul>
+      <li><strong>Donner des exemples</strong> (<span class="terme-en" lang="en">few-shot prompting</span>) : deux ou trois phrases déjà annotées montrent la catégorie attendue mieux qu'une définition. C'est, en miniature, l'apprentissage supervisé du chapitre 3.</li>
+      <li><strong>Découper la tâche</strong> : une étape par ligne numérotée, ou plusieurs demandes successives dont on vérifie chaque réponse.</li>
+      <li><strong>Demander des preuves</strong> : citations exactes, numéros de ligne, sources. Vous vérifiez ensuite chaque citation dans le texte.</li>
+      <li><strong>Itérer</strong> : si la réponse ne convient pas, précisez ce qui manque au lieu de tout réécrire, et gardez la version qui marche.</li>
+    </ul>
+
+    <h4>L'assistant et le code Python</h4>
+    <p>Un assistant écrit du code vite, et parfois faux. Traitez-le comme un camarade qui explique, pas comme l'auteur de votre travail :</p>
+    <figure class="code">
+      <figcaption class="code-legende">Trois prompts pour apprendre, pas pour recopier</figcaption>
+      <pre class="consigne"><code>Explique ligne par ligne ce que fait ce code, pour quelqu'un qui débute : [code]
+Mon code affiche cette erreur : [message]. Explique la cause sans me donner la solution.
+Écris une fonction qui compte les mots d'un texte, puis trois exemples pour la tester.</code></pre>
+    </figure>
+    <p>Pour le troisième, exécutez vous-même le code et ses tests : un code qui n'a pas tourné n'est pas vérifié. Puis <strong>réécrivez-le</strong> dans votre notebook sans regarder la réponse : c'est ainsi que la syntaxe s'apprend. Au TD comme à l'examen, vous expliquerez chaque ligne de ce que vous rendez.</p>
+    <p>Le programme ci-dessous prépare la même consigne pour plusieurs textes. Une chaîne, un dictionnaire, une boucle et une f-string : les notions de la leçon suivante servent déjà.</p>
+    <figure class="code">
+      <figcaption class="code-legende">prompts.py : la même consigne pour chaque texte</figcaption>
+      <pre><code class="language-python">consigne = ("Tu es un assistant en analyse de discours. "
+            "Donne le ton du texte (positif, négatif ou mitigé) "
+            "et cite la phrase qui le montre le mieux.")
+
+textes = {
+    "critique_1": "Un roman lumineux, porté par une écriture limpide.",
+    "critique_2": "Une intrigue confuse et des personnages sans relief.",
+}
+
+for nom, texte in textes.items():
+    prompt = f'{consigne}\n"""{texte}"""'
+    print(f"--- {nom} ---")
+    print(prompt)</code></pre>
+      <pre class="sortie"><samp>--- critique_1 ---
+Tu es un assistant en analyse de discours. Donne le ton du texte (positif, négatif ou mitigé) et cite la phrase qui le montre le mieux.
+"""Un roman lumineux, porté par une écriture limpide."""
+--- critique_2 ---
+Tu es un assistant en analyse de discours. Donne le ton du texte (positif, négatif ou mitigé) et cite la phrase qui le montre le mieux.
+"""Une intrigue confuse et des personnages sans relief."""</samp></pre>
+    </figure>
+    <p>Une même consigne appliquée à chaque texte rend les réponses comparables : c'est la condition de toute analyse de corpus, avec ou sans assistant.</p>
+
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Trois règles avant d'envoyer un texte</p>
+      <ul>
+        <li><strong>Vérifier</strong> : un assistant invente parfois, avec aplomb, des citations, des dates ou des références (on parle d'<dfn>hallucination</dfn>). Toute information reprise se vérifie dans une source.</li>
+        <li><strong>Protéger</strong> : le texte part sur un serveur. N'y collez ni données personnelles (réponses de questionnaire, copies), ni textes protégés (loi 18-07 sur la protection des données personnelles).</li>
+        <li><strong>Déclarer</strong> : indiquez dans votre travail quel assistant vous avez utilisé, pour quoi faire et avec quels prompts (<a href="enseignant.html#guide-ia-charte">charte d'usage de l'IA</a>).</li>
+      </ul>
+    </aside>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">À retenir</p>
+      <p>Un bon prompt dit quel rôle tenir, quoi faire, sur quoi, sous quelle forme et dans quelles limites. On découpe, on donne des exemples, on demande des preuves, on vérifie. L'assistant explique le code ; c'est vous qui l'écrivez et l'exécutez.</p>
+    </aside>
+  </article>
+
+  <!-- ============================================================ 1 -->
+  <article class="lecon" id="c2-installer">
+    <h3>Mise en place de l'environnement de travail</h3>
+    <p>Python est un <dfn>langage de programmation</dfn> : un vocabulaire et une grammaire pour donner des instructions précises à un ordinateur. Gratuit et lisible, il est très répandu en humanités numériques pour constituer des corpus, compter des mots, produire tableaux et graphiques. Le code est exécuté par un <dfn>interpréteur</dfn>, qui le lit ligne après ligne ; un fichier de code Python (extension <code>.py</code>) s'appelle un <dfn>script</dfn>. Utilisez Python 3, en version 3.11 ou plus récente : Python 2, présent dans d'anciens tutoriels, n'est plus maintenu depuis 2020.</p>
+
+    <h4>Trois façons de travailler</h4>
+    <div class="grille-cartes">
+      <article class="carte">
+        <h4>Google Colab</h4>
+        <p>Un <dfn>notebook</dfn> (<span class="terme-en" lang="en">notebook</span>) mêle cellules de code, résultats et texte. Colab en offre dans le navigateur : rien à installer, un compte Google suffit, pandas et NumPy sont déjà présents. Gardez vos fichiers dans Google Drive : ceux de la session sont effacés à sa fermeture.</p>
+      </article>
+      <article class="carte">
+        <h4>Anaconda</h4>
+        <p>Une <dfn>distribution</dfn> qui installe d'un coup Python, Jupyter Notebook et les principales bibliothèques scientifiques. Elle fonctionne hors connexion, mais occupe plusieurs gigaoctets.</p>
+      </article>
+      <article class="carte">
+        <h4>python.org et pip</h4>
+        <p>L'installateur officiel, léger. Vous ajoutez ensuite chaque bibliothèque avec <dfn>pip</dfn>, le gestionnaire de paquets de Python, depuis le terminal.</p>
+      </article>
+    </div>
+
+    <h4>Installer et lancer un premier programme</h4>
+    <ol class="etapes">
+      <li><p class="etape-titre">Choisir son environnement</p>
+        <p>Sur un ordinateur ancien ou partagé, commencez par Colab : ouvrez <a href="https://colab.research.google.com" target="_blank" rel="noopener">colab.research.google.com</a>, créez un notebook et passez à l'étape 4.</p></li>
+      <li><p class="etape-titre">Installer Python</p>
+        <p>Téléchargez l'installateur sur <a href="https://www.python.org" target="_blank" rel="noopener">python.org</a> (ou celui d'Anaconda). Sous Windows, cochez « Add python.exe to PATH » : sans cette case, le terminal ne reconnaîtra pas la commande <code>python</code>.</p></li>
+      <li><p class="etape-titre">Installer les bibliothèques</p>
+        <p>Ouvrez un <dfn>terminal</dfn>, la fenêtre où l'on tape des commandes (Invite de commandes sous Windows, Terminal sous macOS et Linux, Anaconda Prompt avec Anaconda), et tapez la commande ci-dessous. Dans un notebook, faites-la précéder de <code>%</code> : <code>%pip install fpdf2 pypdf</code>.</p>
+        <figure class="code">
+          <figcaption class="code-legende">Terminal</figcaption>
+          <pre><code>pip install numpy pandas matplotlib openpyxl fpdf2 pypdf notebook</code></pre>
+        </figure></li>
+      <li><p class="etape-titre">Ouvrir un notebook</p>
+        <p>Tapez <code>jupyter notebook</code> dans le terminal ou lancez Jupyter depuis Anaconda Navigator : un onglet s'ouvre dans le navigateur. Exécutez une cellule avec <kbd>Maj</kbd> + <kbd>Entrée</kbd> ; le résultat s'affiche dessous.</p></li>
+      <li><p class="etape-titre">Exécuter un script</p>
+        <p>Écrivez le code dans un éditeur (Thonny, Visual Studio Code), enregistrez-le sous <code>premier_script.py</code>, placez-vous dans son dossier depuis le terminal et tapez <code>python premier_script.py</code> (<code>python3</code> sous macOS et Linux).</p></li>
+    </ol>
+    <figure class="code">
+      <figcaption class="code-legende">premier_script.py</figcaption>
+      <pre><code class="language-python"># premier_script.py : afficher deux lignes à l'écran
+print("Bonjour, Médéa !")
+print("Kateb Yacine est né en", 1929)</code></pre>
+      <pre class="sortie"><samp>Bonjour, Médéa !
+Kateb Yacine est né en 1929</samp></pre>
+    </figure>
+    <p>Ce qui suit le signe <code>#</code> est un <dfn>commentaire</dfn>, ignoré par Python et destiné au lecteur humain. <code>print()</code> affiche les valeurs qu'on lui donne. Dans ce chapitre, les exemples d'une même leçon s'enchaînent : exécutez-les dans l'ordre, dans le même notebook.</p>
+
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">L'encodage UTF-8, condition de tout travail sur les textes</p>
+      <p>Un ordinateur ne stocke que des nombres. Un <dfn>encodage</dfn> est la table de correspondance entre ces nombres et les caractères. <dfn>UTF-8</dfn>, l'encodage universel, couvre les accents du français, l'alphabet arabe, le tifinagh et presque toutes les écritures du monde. Un fichier UTF-8 relu avec un autre encodage transforme « é » en « Ã© », rend l'arabe illisible ou arrête Python sur une erreur <code>UnicodeDecodeError</code>.</p>
+      <ul>
+        <li>Écrivez toujours <code>encoding="utf-8"</code> en ouvrant un fichier : sous Windows, Python 3.11 utilise sinon l'encodage régional, qui ignore l'arabe.</li>
+        <li>Enregistrez vos textes en UTF-8 (menu « Encodage » de la fenêtre « Enregistrer sous »).</li>
+        <li>Depuis Excel, choisissez le format « CSV UTF-8 ». Un Excel réglé en français sépare souvent les colonnes par des points-virgules : lisez alors le fichier avec <code>pd.read_csv("fichier.csv", sep=";")</code>.</li>
+      </ul>
+    </aside>
+  </article>
+
+  <!-- ============================================================ 2 -->
+  <article class="lecon" id="c2-fondamentaux">
+    <h3>Les fondamentaux du langage</h3>
+    <p>Ce rappel reprend les notions de base une à une. Tapez les exemples vous-même : les fautes de frappe, et les messages d'erreur qu'elles provoquent, font partie de l'apprentissage.</p>
+
+    <h4>Variables et types</h4>
+    <p>Une <dfn>variable</dfn> est un nom qui désigne une valeur en mémoire. Le signe <code>=</code> signifie « reçoit » et non « est égal à » : <code>annee = 1956</code> range 1956 sous le nom <code>annee</code>. Chaque valeur a un <dfn>type</dfn>, qui détermine ce que l'on peut en faire : nombre entier (<code>int</code>), nombre décimal (<code>float</code>, de <span class="terme-en" lang="en">floating point</span>), chaîne de caractères (<code>str</code>, de <span class="terme-en" lang="en">string</span>) ou <dfn>booléen</dfn> (<code>bool</code>), qui vaut <code>True</code> ou <code>False</code>.</p>
+    <figure class="code">
+      <figcaption class="code-legende">types.py</figcaption>
+      <pre><code class="language-python"># Une fiche de lecture décrite par cinq variables
+titre = "Nedjma"         # str : chaîne de caractères, entre guillemets
+annee = 1956             # int : nombre entier
+nb_mots = 95000          # int
+mots_par_page = 250.0    # float : nombre décimal (avec un point, pas une virgule)
+deja_lu = False          # bool : True (vrai) ou False (faux)
+
+print(type(titre), type(annee), type(mots_par_page), type(deja_lu))
+print("Pages estimées :", nb_mots / mots_par_page)
+print("Publié avant 1962 ?", annee &lt; 1962)   # 1962 : indépendance de l'Algérie</code></pre>
+      <pre class="sortie"><samp>&lt;class 'str'&gt; &lt;class 'int'&gt; &lt;class 'float'&gt; &lt;class 'bool'&gt;
+Pages estimées : 380.0
+Publié avant 1962 ? True</samp></pre>
+    </figure>
+    <p>La division <code>/</code> produit toujours un <code>float</code> (380.0) et une comparaison comme <code>annee &lt; 1962</code> un booléen. Un nom de variable ne contient ni espace ni, de préférence, d'accent : on relie les mots par un tiret bas (<code>mots_par_page</code>).</p>
+
+    <h4>Chaînes de caractères</h4>
+    <p>Chaque caractère d'une chaîne occupe une position, son <dfn>indice</dfn>, qui commence à 0 ; l'indice -1 désigne le dernier. Une <dfn>tranche</dfn> (<span class="terme-en" lang="en">slice</span>) comme <code>vers[:10]</code> extrait les positions 0 à 9. Les chaînes possèdent des <dfn>méthodes</dfn>, des fonctions attachées que l'on appelle avec un point : <code>lower()</code> met en minuscules, <code>replace(a, b)</code> remplace <code>a</code> par <code>b</code>, <code>split()</code> découpe aux espaces et renvoie une liste de mots.</p>
+    <figure class="code">
+      <figcaption class="code-legende">chaines.py : Baudelaire, « L'Invitation au voyage » (1857)</figcaption>
+      <pre><code class="language-python">vers = "Mon enfant, ma sœur, / Songe à la douceur / D'aller là-bas vivre ensemble !"
+
+print(len(vers))                  # nombre de caractères, espaces compris
+print(vers[:10])                  # tranche : les 10 premiers caractères
+print(vers.lower())               # tout en minuscules
+print(vers.replace(" / ", " "))   # remplacer une sous-chaîne par une autre
+
+# Nettoyer la ponctuation puis découper en mots
+mots = vers.replace(",", "").replace(" /", "").replace(" !", "").split()
+print(mots)
+print(f"{len(mots)} mots ; premier : {mots[0]} ; dernier : {mots[-1]}")</code></pre>
+      <pre class="sortie"><samp>75
+Mon enfant
+mon enfant, ma sœur, / songe à la douceur / d'aller là-bas vivre ensemble !
+Mon enfant, ma sœur, Songe à la douceur D'aller là-bas vivre ensemble !
+['Mon', 'enfant', 'ma', 'sœur', 'Songe', 'à', 'la', 'douceur', "D'aller", 'là-bas', 'vivre', 'ensemble']
+12 mots ; premier : Mon ; dernier : ensemble</samp></pre>
+    </figure>
+    <p>La dernière ligne est une <dfn>f-string</dfn> : dans une chaîne précédée de <code>f</code>, chaque expression entre accolades est remplacée par sa valeur. <code>replace()</code> ne modifie pas <code>vers</code> : elle renvoie une nouvelle chaîne.</p>
+
+    <h4>Listes</h4>
+    <p>Une <dfn>liste</dfn> est une suite ordonnée et modifiable de valeurs, écrite entre crochets. On y ajoute des éléments (<code>append</code>), on la trie (<code>sort</code>), on mesure sa longueur (<code>len</code>) et on lit ses éléments par indice ou par tranche.</p>
+    <figure class="code">
+      <figcaption class="code-legende">listes.py</figcaption>
+      <pre><code class="language-python">auteurs = ["Hugo", "Baudelaire", "Maupassant"]   # une liste de 3 chaînes
+auteurs.append("Kateb Yacine")                   # ajouter un élément à la fin
+print(auteurs[0], "|", auteurs[-1])              # premier et dernier élément
+print(len(auteurs), "auteurs")
+auteurs.sort()                                   # trier la liste sur place
+print(auteurs)
+print(auteurs[1:3])                              # tranche : positions 1 et 2</code></pre>
+      <pre class="sortie"><samp>Hugo | Kateb Yacine
+4 auteurs
+['Baudelaire', 'Hugo', 'Kateb Yacine', 'Maupassant']
+['Hugo', 'Kateb Yacine']</samp></pre>
+    </figure>
+
+    <h4>Tuples</h4>
+    <p>Un <dfn>tuple</dfn> s'écrit entre parenthèses et ne peut plus changer une fois créé : il est <dfn>immuable</dfn> (<span class="terme-en" lang="en">immutable</span>). Cette rigidité est voulue : une référence bibliographique (titre, auteur, année) forme un tout qu'aucune partie du programme ne doit modifier par erreur. Immuable, un tuple peut aussi servir de clé de dictionnaire, ce qu'une liste ne peut pas faire.</p>
+    <figure class="code">
+      <figcaption class="code-legende">tuples.py</figcaption>
+      <pre><code class="language-python">oeuvre = ("Nedjma", "Kateb Yacine", 1956)        # un tuple, entre parenthèses
+titre, auteur, annee = oeuvre                    # « déballage » en trois variables
+print(auteur, "publie", titre, "en", annee)
+# oeuvre[2] = 1957   provoquerait : TypeError: 'tuple' object does not support item assignment</code></pre>
+      <pre class="sortie"><samp>Kateb Yacine publie Nedjma en 1956</samp></pre>
+    </figure>
+    <p>La deuxième ligne pratique le <dfn>déballage</dfn> (<span class="terme-en" lang="en">unpacking</span>) : les trois valeurs sont rangées d'un coup dans trois variables. La dernière ligne, neutralisée par <code>#</code>, montre l'erreur que produirait une modification.</p>
+
+    <h4>Dictionnaires</h4>
+    <p>Un <dfn>dictionnaire</dfn> associe des <dfn>clés</dfn> à des <dfn>valeurs</dfn>, comme une fiche de lecture associe des rubriques à leur contenu. Il s'écrit entre accolades, avec des paires <code>clé: valeur</code>, et l'on y accède par la clé, non par une position. Les clés sont uniques.</p>
+    <figure class="code">
+      <figcaption class="code-legende">dictionnaires.py</figcaption>
+      <pre><code class="language-python">fiche = {
+    "titre": "Bayn al-Qasrayn",
+    "auteur": "Naguib Mahfouz",
+    "annee": 1956,
+    "langue": "arabe",
+}
+print(fiche["auteur"])                          # accès par la clé
+fiche["titre_fr"] = "Impasse des deux palais"   # ajout d'une nouvelle paire
+for cle, valeur in fiche.items():               # parcourir clés et valeurs
+    print(cle, ":", valeur)
+print("genre" in fiche)                         # la clé existe-t-elle ?
+print(fiche.get("genre", "non renseigné"))      # valeur par défaut si absente</code></pre>
+      <pre class="sortie"><samp>Naguib Mahfouz
+titre : Bayn al-Qasrayn
+auteur : Naguib Mahfouz
+annee : 1956
+langue : arabe
+titre_fr : Impasse des deux palais
+False
+non renseigné</samp></pre>
+    </figure>
+    <p><code>items()</code> fournit les paires clé-valeur. <code>get()</code> renvoie une valeur de secours là où <code>fiche["genre"]</code> provoquerait une erreur <code>KeyError</code>.</p>
+
+    <h4>Ensembles</h4>
+    <p>Un <dfn>ensemble</dfn> (<code>set</code>) est une collection sans ordre et sans doublon : il donne les valeurs distinctes d'une liste (le vocabulaire d'un texte, les langues d'un corpus) et teste très vite l'appartenance avec <code>in</code>. Son affichage pouvant varier d'une exécution à l'autre, triez-le avec <code>sorted()</code>. Attention : <code>{}</code> crée un dictionnaire vide ; un ensemble vide s'écrit <code>set()</code>.</p>
+    <figure class="code">
+      <figcaption class="code-legende">ensembles.py</figcaption>
+      <pre><code class="language-python">langues = ["français", "arabe", "français", "anglais", "arabe", "français"]
+distinctes = set(langues)                       # un ensemble supprime les doublons
+print(len(langues), "valeurs,", len(distinctes), "langues distinctes")
+print(sorted(distinctes))                       # un ensemble n'a pas d'ordre : on trie
+print("tamazight" in distinctes)</code></pre>
+      <pre class="sortie"><samp>6 valeurs, 3 langues distinctes
+['anglais', 'arabe', 'français']
+False</samp></pre>
+    </figure>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Les quatre structures de données de base</caption>
+      <thead><tr>
+        <th scope="col">Structure</th><th scope="col">Écriture</th><th scope="col">Ordonnée</th>
+        <th scope="col">Modifiable</th><th scope="col">Doublons</th><th scope="col">Usage typique sur un corpus</th>
+      </tr></thead>
+      <tbody>
+        <tr><th scope="row">Liste (<code>list</code>)</th><td><code>["Hugo", "Dib"]</code></td><td>Oui</td><td>Oui</td><td>Autorisés</td><td>Les mots d'un vers, dans l'ordre du texte</td></tr>
+        <tr><th scope="row">Tuple (<code>tuple</code>)</th><td><code>("Nedjma", 1956)</code></td><td>Oui</td><td>Non</td><td>Autorisés</td><td>Une référence bibliographique figée</td></tr>
+        <tr><th scope="row">Dictionnaire (<code>dict</code>)</th><td><code>{"titre": "Nedjma"}</code></td><td>Ordre d'insertion conservé</td><td>Oui</td><td>Clés uniques</td><td>La fiche d'une œuvre ; la fréquence de chaque mot</td></tr>
+        <tr><th scope="row">Ensemble (<code>set</code>)</th><td><code>{"arabe", "français"}</code></td><td>Non</td><td>Oui (ajout, retrait)</td><td>Impossibles</td><td>Le vocabulaire distinct d'un texte ; les langues du corpus</td></tr>
+      </tbody>
+    </table></div>
+
+    <h4>Conditions, boucles et fonctions</h4>
+    <p>Une <dfn>condition</dfn> (<code>if</code>, <code>elif</code>, <code>else</code>) n'exécute un bloc que si un test est vrai. Une <dfn>boucle</dfn> <code>for</code> répète un bloc pour chaque élément d'une séquence, une boucle <code>while</code> tant qu'un test reste vrai. Une <dfn>fonction</dfn>, définie avec <code>def</code>, regroupe des instructions sous un nom : elle reçoit des <dfn>paramètres</dfn> et renvoie un résultat avec <code>return</code>. Les blocs sont délimités par l'<dfn>indentation</dfn> : les lignes décalées de quatre espaces après les deux-points appartiennent au bloc.</p>
+    <figure class="code">
+      <figcaption class="code-legende">fonctions.py</figcaption>
+      <pre><code class="language-python">def categorie(nb_mots):
+    """Classe un texte selon sa longueur (seuils choisis pour l'exercice)."""
+    if nb_mots &lt; 20000:
+        return "court"
+    elif nb_mots &lt; 100000:
+        return "moyen"
+    else:
+        return "long"
+
+def siecle(annee):
+    """Renvoie le numéro du siècle : 1856 donne 19, 1901 donne 20."""
+    return (annee - 1) // 100 + 1
+
+oeuvres = [("Frankenstein", 1818, 75000), ("Les Misérables", 1862, 530000),
+           ("Awraq al-Zaytun", 1964, 12000)]
+for titre, annee, nb_mots in oeuvres:
+    print(f"{titre} : {siecle(annee)}e siècle, texte {categorie(nb_mots)}")
+
+mots = ["Mon", "enfant", "ma", "sœur", "Songe", "à", "la", "douceur"]
+i = 0
+while mots[i] != "douceur":      # on avance tant que le mot n'est pas trouvé
+    i = i + 1
+print("« douceur » est le mot n°", i + 1)</code></pre>
+      <pre class="sortie"><samp>Frankenstein : 19e siècle, texte moyen
+Les Misérables : 19e siècle, texte long
+Awraq al-Zaytun : 20e siècle, texte court
+« douceur » est le mot n° 8</samp></pre>
+    </figure>
+    <p>La chaîne entre triples guillemets sous <code>def</code> est une <dfn>docstring</dfn>, qui documente la fonction ; <code>//</code> est la division entière (1861 // 100 donne 18). Méfiez-vous de <code>while</code> : si le mot cherché était absent, l'indice dépasserait la fin de la liste et Python s'arrêterait sur une <code>IndexError</code>.</p>
+
+    <h4>Compréhensions de liste</h4>
+    <p>La <dfn>compréhension de liste</dfn> (<span class="terme-en" lang="en">list comprehension</span>) construit une liste à partir d'une autre en une ligne : <code>[expression for element in sequence if condition]</code>. Elle se lit comme une phrase : « la liste des m, pour chaque m de mots, si m a au moins six lettres ».</p>
+    <figure class="code">
+      <figcaption class="code-legende">comprehension.py : la suite de « L'Invitation au voyage »</figcaption>
+      <pre><code class="language-python">vers = "Aimer à loisir, Aimer et mourir Au pays qui te ressemble !"
+mots = vers.lower().replace(",", "").replace(" !", "").split()
+
+# Version avec une boucle classique
+longs = []
+for m in mots:
+    if len(m) &gt;= 6:
+        longs.append(m)
+print(longs)
+
+# Même résultat en une ligne : une compréhension de liste
+print([m for m in mots if len(m) &gt;= 6])
+print([len(m) for m in mots])</code></pre>
+      <pre class="sortie"><samp>['loisir', 'mourir', 'ressemble']
+['loisir', 'mourir', 'ressemble']
+[5, 1, 6, 5, 2, 6, 2, 4, 3, 2, 9]</samp></pre>
+    </figure>
+
+    <div class="quiz">
+      <p class="quiz-question">Avec <code>mots = "la mer la mer toujours recommencée".split()</code> (un vers de Paul Valéry, sans ponctuation), que vaut <code>len(set(mots))</code> ?</p>
+      <ul class="quiz-options">
+        <li><button type="button" class="quiz-option">6</button></li>
+        <li><button type="button" class="quiz-option" data-correct>4</button></li>
+        <li><button type="button" class="quiz-option">2</button></li>
+        <li><button type="button" class="quiz-option">Une erreur, car un ensemble n'a pas de longueur</button></li>
+      </ul>
+      <p class="quiz-explication" hidden>La liste contient six mots, dont « la » et « mer » deux fois. L'ensemble ne garde qu'un exemplaire de chaque valeur (la, mer, toujours, recommencée) : 4 formes distinctes. <code>len()</code> fonctionne sur un ensemble comme sur une liste.</p>
+    </div>
+  </article>
+
+  <!-- ============================================================ 3 -->
+  <article class="lecon" id="c2-numpy-pandas">
+    <h3>Les bibliothèques NumPy, pandas et matplotlib</h3>
+    <p>Une <dfn>bibliothèque</dfn> (<span class="terme-en" lang="en">library</span>) est un ensemble de fonctions écrites par d'autres, que l'on charge avec <code>import</code>. Trois d'entre elles forment le socle de l'analyse de données : NumPy pour le calcul, pandas pour les tableaux, matplotlib pour les graphiques. Par convention, on les importe sous un <dfn>alias</dfn> court : <code>import numpy as np</code>, <code>import pandas as pd</code>.</p>
+
+    <h4>NumPy : calculer sur une série de nombres</h4>
+    <p>NumPy fournit le <dfn>tableau</dfn> (<code>array</code>), une suite de nombres sur laquelle une opération s'applique à tous les éléments d'un coup. On parle d'opération <dfn>vectorisée</dfn> : <code>nb_mots / 250</code> divise les dix nombres sans boucle.</p>
+    <figure class="code">
+      <figcaption class="code-legende">numpy_mots.py</figcaption>
+      <pre><code class="language-python">import numpy as np
+
+# Nombre de mots de dix œuvres (valeurs fictives, arrondies pour l'exercice)
+nb_mots = np.array([530000, 28000, 125000, 62000, 95000,
+                    48000, 160000, 12000, 75000, 45000])
+
+print(nb_mots.mean())             # moyenne
+print(np.median(nb_mots))         # médiane
+print(nb_mots.std().round(1))     # écart-type, arrondi à une décimale
+print(nb_mots.min(), nb_mots.max())
+print(nb_mots / 250)              # opération vectorisée : pages estimées</code></pre>
+      <pre class="sortie"><samp>118000.0
+68500.0
+143748.4
+12000 530000
+[2120.  112.  500.  248.  380.  192.  640.   48.  300.  180.]</samp></pre>
+    </figure>
+    <p>La moyenne (118 000 mots) dépasse de loin la <dfn>médiane</dfn> (68 500), qui partage la série en deux moitiés : un seul très long roman, <em>Les Misérables</em>, tire la moyenne vers le haut. L'<dfn>écart-type</dfn>, qui mesure la dispersion autour de la moyenne, est élevé pour la même raison. Devant des textes de longueurs inégales, regardez toujours la médiane.</p>
+
+    <h4>pandas : Series et DataFrame</h4>
+    <p>Une <dfn>Series</dfn> est une colonne de valeurs munie d'un <dfn>index</dfn>, les étiquettes des lignes (0, 1, 2… par défaut). Un <dfn>DataFrame</dfn> est un tableau fait de plusieurs Series partageant le même index : l'équivalent d'une feuille de calcul, où chaque ligne est une observation (une œuvre) et chaque colonne une variable.</p>
+    <p>Pour que l'exemple fonctionne sans fichier, nous construisons le DataFrame à partir d'un dictionnaire : chaque clé devient un nom de colonne. Le corpus réunit des œuvres en français, en arabe et en anglais ; les titres arabes sont transcrits en lettres latines (<em>Al-Ayyam</em> est traduit en français sous le titre <em>Le Livre des jours</em>). Les nombres de mots sont des valeurs arrondies inventées pour l'exercice, non des comptages réels.</p>
+    <figure class="code">
+      <figcaption class="code-legende">corpus_pandas.py</figcaption>
+      <pre><code class="language-python">import pandas as pd
+
+donnees = {
+    "titre": ["Les Misérables", "Les Fleurs du mal", "Bel-Ami", "La Grande Maison",
+              "Nedjma", "Al-Ayyam", "Bayn al-Qasrayn", "Awraq al-Zaytun",
+              "Frankenstein", "Leaves of Grass"],
+    "auteur": ["Victor Hugo", "Charles Baudelaire", "Guy de Maupassant", "Mohammed Dib",
+               "Kateb Yacine", "Taha Hussein", "Naguib Mahfouz", "Mahmoud Darwich",
+               "Mary Shelley", "Walt Whitman"],
+    "annee": [1862, 1857, 1885, 1952, 1956, 1929, 1956, 1964, 1818, 1855],
+    "genre": ["roman", "poésie", "roman", "roman", "roman",
+              "récit", "roman", "poésie", "roman", "poésie"],
+    "langue": ["français", "français", "français", "français", "français",
+               "arabe", "arabe", "arabe", "anglais", "anglais"],
+    "nb_mots": [530000, 28000, 125000, 62000, 95000,
+                48000, 160000, 12000, 75000, 45000],   # valeurs fictives
+}
+df = pd.DataFrame(donnees)       # un tableau : une clé = une colonne
+print(df.head())                 # les 5 premières lignes</code></pre>
+      <pre class="sortie"><samp>               titre              auteur  annee   genre    langue  nb_mots
+0     Les Misérables         Victor Hugo   1862   roman  français   530000
+1  Les Fleurs du mal  Charles Baudelaire   1857  poésie  français    28000
+2            Bel-Ami   Guy de Maupassant   1885   roman  français   125000
+3   La Grande Maison        Mohammed Dib   1952   roman  français    62000
+4             Nedjma        Kateb Yacine   1956   roman  français    95000</samp></pre>
+    </figure>
+
+    <h4>Lire un fichier CSV</h4>
+    <p>Dans un vrai travail, le tableau vient d'un fichier <dfn>CSV</dfn> (<span class="terme-en" lang="en">comma-separated values</span>) : un fichier texte où chaque ligne est un enregistrement et où les colonnes sont séparées par des virgules. Enregistrons notre tableau, puis relisons-le avec <code>pd.read_csv()</code>.</p>
+    <figure class="code">
+      <figcaption class="code-legende">oeuvres.csv (4 premières lignes)</figcaption>
+      <pre><code>titre,auteur,annee,genre,langue,nb_mots
+Les Misérables,Victor Hugo,1862,roman,français,530000
+Les Fleurs du mal,Charles Baudelaire,1857,poésie,français,28000
+Bel-Ami,Guy de Maupassant,1885,roman,français,125000</code></pre>
+    </figure>
+    <figure class="code">
+      <figcaption class="code-legende">lire_csv.py</figcaption>
+      <pre><code class="language-python">df.to_csv("oeuvres.csv", index=False, encoding="utf-8")   # enregistrer en CSV
+df = pd.read_csv("oeuvres.csv", encoding="utf-8")         # relire le fichier
+print(df.shape)                                           # (lignes, colonnes)</code></pre>
+      <pre class="sortie"><samp>(10, 6)</samp></pre>
+    </figure>
+
+    <h4>Explorer : head, info, describe</h4>
+    <p><code>head()</code> affiche les premières lignes, <code>tail()</code> les dernières, <code>shape</code> les dimensions. <code>info()</code> liste les colonnes, leur type et le nombre de valeurs non vides, ce qui révèle les données manquantes ; <code>describe()</code> résume les colonnes numériques.</p>
+    <figure class="code">
+      <figcaption class="code-legende">info() : sortie obtenue avec pandas 3</figcaption>
+      <pre><code class="language-python">df.info()</code></pre>
+      <pre class="sortie"><samp>&lt;class 'pandas.DataFrame'&gt;
+RangeIndex: 10 entries, 0 to 9
+Data columns (total 6 columns):
+ #   Column   Non-Null Count  Dtype
+---  ------   --------------  -----
+ 0   titre    10 non-null     str  
+ 1   auteur   10 non-null     str  
+ 2   annee    10 non-null     int64
+ 3   genre    10 non-null     str  
+ 4   langue   10 non-null     str  
+ 5   nb_mots  10 non-null     int64
+dtypes: int64(2), str(4)
+memory usage: 612.0 bytes</samp></pre>
+    </figure>
+    <p>Avec pandas 2, les colonnes de texte apparaissent comme <code>object</code> au lieu de <code>str</code> et la première ligne diffère légèrement ; le contenu est le même.</p>
+    <figure class="code">
+      <figcaption class="code-legende">describe()</figcaption>
+      <pre><code class="language-python">print(df.describe())</code></pre>
+      <pre class="sortie"><samp>             annee        nb_mots
+count    10.000000      10.000000
+mean   1903.400000  118000.000000
+std      53.814909  151524.108826
+min    1818.000000   12000.000000
+25%    1858.250000   45750.000000
+50%    1907.000000   68500.000000
+75%    1955.000000  117500.000000
+max    1964.000000  530000.000000</samp></pre>
+    </figure>
+    <p><code>count</code> est le nombre de valeurs, <code>mean</code> la moyenne, <code>std</code> l'écart-type, <code>25%</code>, <code>50%</code> et <code>75%</code> les <dfn>quartiles</dfn> (50 % est la médiane). L'écart-type de pandas (151 524) diffère de celui de NumPy (143 748) : pandas divise par n − 1, NumPy par n, sauf si l'on écrit <code>nb_mots.std(ddof=1)</code>.</p>
+
+    <h4>Sélectionner, filtrer, trier</h4>
+    <p>Un nom de colonne entre crochets renvoie une Series ; une liste de noms, d'où les doubles crochets, renvoie un DataFrame.</p>
+    <figure class="code">
+      <figcaption class="code-legende">selection.py</figcaption>
+      <pre><code class="language-python">print(df["nb_mots"].tail(3))              # une colonne : une Series
+print(df[["titre", "annee"]].tail(3))     # plusieurs colonnes : un DataFrame</code></pre>
+      <pre class="sortie"><samp>7    12000
+8    75000
+9    45000
+Name: nb_mots, dtype: int64
+             titre  annee
+7  Awraq al-Zaytun   1964
+8     Frankenstein   1818
+9  Leaves of Grass   1855</samp></pre>
+    </figure>
+    <p>Pour <dfn>filtrer</dfn>, on écrit une condition sur une colonne : elle produit une Series de <code>True</code> et <code>False</code>, et <code>df[condition]</code> garde les lignes vraies. Les conditions se combinent avec <code>&amp;</code> (et) ou <code>|</code> (ou), chacune entre parenthèses. L'index d'origine (5, 6, 7) est conservé ; <code>tolist()</code> convertit une Series en liste.</p>
+    <figure class="code">
+      <figcaption class="code-legende">filtres.py</figcaption>
+      <pre><code class="language-python">en_arabe = df[df["langue"] == "arabe"]                    # filtrer les lignes
+print(en_arabe[["titre", "auteur", "annee"]])
+
+romans_xix = df[(df["genre"] == "roman") &amp; (df["annee"] &lt; 1900)]
+print(romans_xix["titre"].tolist())</code></pre>
+      <pre class="sortie"><samp>             titre           auteur  annee
+5         Al-Ayyam     Taha Hussein   1929
+6  Bayn al-Qasrayn   Naguib Mahfouz   1956
+7  Awraq al-Zaytun  Mahmoud Darwich   1964
+['Les Misérables', 'Bel-Ami', 'Frankenstein']</samp></pre>
+    </figure>
+    <p><code>sort_values()</code> trie les lignes selon une colonne ; <code>ascending=False</code> inverse l'ordre.</p>
+    <figure class="code">
+      <figcaption class="code-legende">tri.py</figcaption>
+      <pre><code class="language-python">plus_longs = df.sort_values("nb_mots", ascending=False)   # tri décroissant
+print(plus_longs[["titre", "nb_mots"]].head(3))</code></pre>
+      <pre class="sortie"><samp>             titre  nb_mots
+0   Les Misérables   530000
+6  Bayn al-Qasrayn   160000
+2          Bel-Ami   125000</samp></pre>
+    </figure>
+
+    <h4>Regrouper et compter</h4>
+    <p><code>groupby()</code> répartit les lignes en groupes selon une colonne, puis calcule sur chaque groupe : « combien de mots en moyenne pour chaque genre ? ». <code>value_counts()</code> compte les occurrences de chaque valeur, de la plus fréquente à la plus rare.</p>
+    <figure class="code">
+      <figcaption class="code-legende">groupes.py</figcaption>
+      <pre><code class="language-python">print(df.groupby("genre")["nb_mots"].mean().round())      # moyenne par genre
+print(df["langue"].value_counts())                        # effectifs par langue</code></pre>
+      <pre class="sortie"><samp>genre
+poésie     28333.0
+roman     174500.0
+récit      48000.0
+Name: nb_mots, dtype: float64
+langue
+français    5
+arabe       3
+anglais     2
+Name: count, dtype: int64</samp></pre>
+    </figure>
+    <p>Le genre « récit » est rangé après « roman » : Python classe les chaînes selon le numéro Unicode des caractères, et « é » vient après toutes les lettres sans accent (la leçon 5 corrige ce piège). Avec un seul récit dans le corpus, la « moyenne » de ce genre ne signifie d'ailleurs pas grand-chose : un calcul exact ne fait pas une conclusion solide.</p>
+
+    <h4>Ajouter une colonne</h4>
+    <p>On crée une colonne en affectant un calcul à un nouveau nom ; le calcul porte sur toute la colonne. <code>round()</code> arrondit, <code>astype(int)</code> convertit en entiers.</p>
+    <figure class="code">
+      <figcaption class="code-legende">nouvelles_colonnes.py</figcaption>
+      <pre><code class="language-python">df["siecle"] = (df["annee"] - 1) // 100 + 1               # calcul sur toute la colonne
+df["pages"] = (df["nb_mots"] / 250).round().astype(int)
+print(df[["titre", "siecle", "pages"]].head(4))</code></pre>
+      <pre class="sortie"><samp>               titre  siecle  pages
+0     Les Misérables      19   2120
+1  Les Fleurs du mal      19    112
+2            Bel-Ami      19    500
+3   La Grande Maison      20    248</samp></pre>
+    </figure>
+
+    <h4>Un mot sur matplotlib</h4>
+    <p>matplotlib dessine des graphiques, et pandas s'en sert directement : appliquée à une Series, <code>plot(kind="bar")</code> trace un diagramme en barres.</p>
+    <figure class="code">
+      <figcaption class="code-legende">graphique.py</figcaption>
+      <pre><code class="language-python">import matplotlib.pyplot as plt
+
+moyennes = df.groupby("genre")["nb_mots"].mean()
+moyennes.plot(kind="bar")                     # un diagramme en barres
+plt.title("Longueur moyenne des œuvres par genre")
+plt.xlabel("Genre")
+plt.ylabel("Nombre de mots (valeurs fictives)")
+plt.tight_layout()
+plt.savefig("mots_par_genre.png")             # enregistrer l'image
+plt.show()                                    # l'afficher</code></pre>
+    </figure>
+    <p>Ce code dessine trois barres verticales, une par genre (poésie, roman, récit), dont la hauteur est le nombre moyen de mots ; celle du roman domine nettement. Titre et noms d'axes ne sont pas décoratifs : sans eux, le graphique est ininterprétable. <code>savefig()</code> enregistre une image PNG à insérer dans un mémoire.</p>
+  </article>
+
+  <!-- ============================================================ 4 -->
+  <article class="lecon" id="c2-objet">
+    <h3>Introduction à la programmation orientée objet</h3>
+    <p>Jusqu'ici, données et traitements étaient séparés. La <dfn>programmation orientée objet</dfn> (<span class="terme-en" lang="en">object-oriented programming</span>) les réunit : un <dfn>objet</dfn> regroupe des données, ses <dfn>attributs</dfn>, et les actions qui s'y appliquent, ses <dfn>méthodes</dfn>. Vous en utilisez déjà : un DataFrame possède l'attribut <code>shape</code> et la méthode <code>head()</code>.</p>
+
+    <h4>Classe, instance, attributs, méthodes</h4>
+    <p>Une <dfn>classe</dfn> est un moule ; chaque objet fabriqué avec ce moule est une <dfn>instance</dfn> de la classe. La classe <code>Texte</code> décrit ce qu'est un texte pour notre programme : un titre, un auteur, un contenu, et trois actions.</p>
+    <figure class="code">
+      <figcaption class="code-legende">texte.py</figcaption>
+      <pre><code class="language-python">from collections import Counter
+
+class Texte:
+    """Un texte littéraire : un titre, un auteur, un contenu."""
+
+    def __init__(self, titre, auteur, contenu):
+        self.titre = titre            # attributs : les données de l'objet
+        self.auteur = auteur
+        self.contenu = contenu
+
+    def mots(self):
+        """Liste des mots, en minuscules et sans ponctuation."""
+        propre = self.contenu.lower()
+        for signe in ".,;:!?'-":
+            propre = propre.replace(signe, " ")
+        return propre.split()
+
+    def nb_mots(self):
+        return len(self.mots())
+
+    def mots_frequents(self, n=3):
+        """Les n mots les plus fréquents, avec leur nombre d'occurrences."""
+        return Counter(self.mots()).most_common(n)</code></pre>
+    </figure>
+    <ul>
+      <li><code>__init__</code> est le <dfn>constructeur</dfn> : Python l'appelle automatiquement à la création de chaque instance pour remplir ses attributs.</li>
+      <li><code>self</code> désigne l'instance elle-même : <code>self.titre</code> signifie « le titre de ce texte-ci ». Il figure en premier paramètre de chaque méthode, mais vous ne le transmettez jamais : Python s'en charge.</li>
+      <li><code>Counter</code>, du module <code>collections</code>, compte les éléments d'une liste ; <code>most_common(n)</code> renvoie les n plus fréquents (voir la leçon 5).</li>
+    </ul>
+    <figure class="code">
+      <figcaption class="code-legende">instance.py : Victor Hugo, « Demain, dès l'aube… », <em>Les Contemplations</em> (1856)</figcaption>
+      <pre><code class="language-python">strophe = ("Demain, dès l'aube, à l'heure où blanchit la campagne,\n"
+           "Je partirai. Vois-tu, je sais que tu m'attends.\n"
+           "J'irai par la forêt, j'irai par la montagne.\n"
+           "Je ne puis demeurer loin de toi plus longtemps.")
+
+demain = Texte("Demain, dès l'aube", "Victor Hugo", strophe)   # une instance
+print(demain.auteur)             # lire un attribut
+print(demain.nb_mots(), "mots")  # appeler une méthode
+print(demain.mots_frequents(3))</code></pre>
+      <pre class="sortie"><samp>Victor Hugo
+40 mots
+[('la', 3), ('je', 3), ('l', 2)]</samp></pre>
+    </figure>
+    <p>On crée une instance en appelant la classe comme une fonction. Les mots les plus fréquents sont des <dfn>mots outils</dfn> (<em>la</em>, <em>je</em>) et un « l » isolé, issu du découpage naïf de <em>l'aube</em> et <em>l'heure</em> : l'élision est une difficulté classique du traitement automatique du français.</p>
+
+    <h4>Composition : un corpus fait de textes</h4>
+    <p>Un objet peut contenir d'autres objets : un <code>Corpus</code> possède une liste d'instances de <code>Texte</code>. C'est la <dfn>composition</dfn>. Le texte sait compter ses mots ; le corpus additionne ceux de ses textes.</p>
+    <figure class="code">
+      <figcaption class="code-legende">corpus.py</figcaption>
+      <pre><code class="language-python">class Corpus:
+    """Une collection de textes : un Corpus contient des objets Texte."""
+
+    def __init__(self, nom):
+        self.nom = nom
+        self.textes = []                     # liste vide au départ
+
+    def ajouter(self, texte):
+        self.textes.append(texte)
+
+    def total_mots(self):
+        return sum(t.nb_mots() for t in self.textes)
+
+    def resume(self):
+        print(f"{self.nom} : {len(self.textes)} textes, {self.total_mots()} mots")
+        for t in self.textes:
+            print(f"- {t.titre} ({t.auteur}) : {t.nb_mots()} mots")
+
+invitation = Texte("L'Invitation au voyage", "Charles Baudelaire",
+                   "Mon enfant, ma sœur, Songe à la douceur D'aller là-bas vivre ensemble !")
+captain = Texte("O Captain! My Captain!", "Walt Whitman",
+                "O Captain! my Captain! our fearful trip is done,")
+
+poesie = Corpus("Poèmes du XIXe siècle")
+for t in [demain, invitation, captain]:
+    poesie.ajouter(t)
+poesie.resume()</code></pre>
+      <pre class="sortie"><samp>Poèmes du XIXe siècle : 3 textes, 63 mots
+- Demain, dès l'aube (Victor Hugo) : 40 mots
+- L'Invitation au voyage (Charles Baudelaire) : 14 mots
+- O Captain! My Captain! (Walt Whitman) : 9 mots</samp></pre>
+    </figure>
+    <p><code>total_mots()</code> délègue le comptage à la méthode <code>nb_mots()</code> de chaque texte. Le poème anglais de Walt Whitman (1865) est traité comme les poèmes français.</p>
+
+    <h4>Héritage : un poème est un texte</h4>
+    <p>L'<dfn>héritage</dfn> définit une classe à partir d'une autre. <code>class Poeme(Texte)</code> signifie qu'un poème est un texte particulier : il reçoit les attributs et méthodes de <code>Texte</code>, sa classe <dfn>mère</dfn>, et ajoute ce qui lui est propre, ici le comptage des vers.</p>
+    <figure class="code">
+      <figcaption class="code-legende">heritage.py</figcaption>
+      <pre><code class="language-python">class Poeme(Texte):                  # Poeme hérite de Texte
+    """Un texte en vers : chaque vers occupe une ligne."""
+
+    def nb_vers(self):
+        return len([v for v in self.contenu.split("\n") if v.strip()])
+
+demain_p = Poeme("Demain, dès l'aube", "Victor Hugo", strophe)
+print(demain_p.nb_vers(), "vers,", demain_p.nb_mots(), "mots")   # méthode héritée
+print(isinstance(demain_p, Texte))</code></pre>
+      <pre class="sortie"><samp>4 vers, 40 mots
+True</samp></pre>
+    </figure>
+    <p><code>Poeme</code> ne définit ni <code>__init__</code> ni <code>nb_mots()</code> : il utilise ceux de <code>Texte</code>. <code>isinstance()</code> confirme qu'un poème est aussi un texte.</p>
+
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>Programmation procédurale</h4>
+        <p>Une suite d'instructions et de fonctions qui reçoivent les données en paramètres.</p>
+        <ul>
+          <li>Les données circulent de fonction en fonction : <code>compter_mots(texte)</code>.</li>
+          <li>Simple et directe pour un script court.</li>
+          <li>Difficile à organiser quand le projet grandit.</li>
+        </ul>
+      </div>
+      <div class="comparaison-col">
+        <h4>Programmation orientée objet</h4>
+        <p>Des objets qui portent leurs données et leurs méthodes.</p>
+        <ul>
+          <li>L'objet agit sur ses propres données : <code>texte.nb_mots()</code>.</li>
+          <li>Adaptée aux projets durables et aux outils réutilisables.</li>
+          <li>Plus d'écriture au départ ; c'est ainsi que sont construits pandas ou scikit-learn.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- ============================================================ 5 -->
+  <article class="lecon" id="c2-fichiers">
+    <h3>Lire et traiter des fichiers textes</h3>
+    <p>Un corpus se présente le plus souvent sous forme de fichiers en <dfn>texte brut</dfn> (<code>.txt</code>), sans mise en forme, lisibles par n'importe quel programme. Nous travaillerons sur « Le Dormeur du val » d'Arthur Rimbaud (1870), sonnet dont le dernier vers révèle que le soldat endormi est mort.</p>
+
+    <h4>Écrire et lire un fichier</h4>
+    <p><code>open()</code> ouvre un fichier dans un <dfn>mode</dfn> : <code>"r"</code> pour lire (par défaut), <code>"w"</code> pour écrire (le contenu existant est effacé), <code>"a"</code> pour ajouter à la fin. Le bloc <code>with</code> referme le fichier automatiquement, même en cas d'erreur. Les triples guillemets permettent une chaîne sur plusieurs lignes.</p>
+    <figure class="code">
+      <figcaption class="code-legende">ecrire.py : Arthur Rimbaud, « Le Dormeur du val » (1870)</figcaption>
+      <pre><code class="language-python">poeme = """C'est un trou de verdure où chante une rivière,
+Accrochant follement aux herbes des haillons
+D'argent ; où le soleil, de la montagne fière,
+Luit : c'est un petit val qui mousse de rayons.
+
+Un soldat jeune, bouche ouverte, tête nue,
+Et la nuque baignant dans le frais cresson bleu,
+Dort ; il est étendu dans l'herbe, sous la nue,
+Pâle dans son lit vert où la lumière pleut.
+
+Les pieds dans les glaïeuls, il dort. Souriant comme
+Sourirait un enfant malade, il fait un somme :
+Nature, berce-le chaudement : il a froid.
+
+Les parfums ne font pas frissonner sa narine ;
+Il dort dans le soleil, la main sur sa poitrine
+Tranquille. Il a deux trous rouges au côté droit.
+"""
+with open("dormeur.txt", "w", encoding="utf-8") as f:   # "w" : écriture
+    f.write(poeme)</code></pre>
+    </figure>
+    <figure class="code">
+      <figcaption class="code-legende">lire.py</figcaption>
+      <pre><code class="language-python">with open("dormeur.txt", encoding="utf-8") as f:
+    texte = f.read()                  # tout le fichier en une seule chaîne
+print(len(texte), "caractères")
+
+with open("dormeur.txt", encoding="utf-8") as f:
+    lignes = f.readlines()            # une liste : une chaîne par ligne
+vers = [l.strip() for l in lignes if l.strip()]   # on ignore les lignes vides
+print(len(lignes), "lignes,", len(vers), "vers")
+print(vers[-1])</code></pre>
+      <pre class="sortie"><samp>662 caractères
+17 lignes, 14 vers
+Tranquille. Il a deux trous rouges au côté droit.</samp></pre>
+    </figure>
+    <p><code>read()</code> renvoie tout le contenu en une chaîne ; <code>readlines()</code> une liste de lignes, chacune terminée par le caractère de fin de ligne <code>\n</code>, que <code>strip()</code> supprime. Les 17 lignes comptent 14 vers et 3 lignes vides entre les strophes.</p>
+
+    <h4>Parcourir un dossier</h4>
+    <p>Le module <code>pathlib</code> représente les chemins par des objets <code>Path</code> : <code>/</code> assemble un chemin, <code>glob("*.txt")</code> trouve les fichiers .txt, <code>read_text()</code> et <code>write_text()</code> lisent et écrivent en une ligne. Ce programme range dans un dossier <code>corpus</code> le poème de Rimbaud et un vers célèbre d'al-Mutanabbi (Xe siècle), puis compte grossièrement leurs mots.</p>
+    <figure class="code">
+      <figcaption class="code-legende">dossier.py</figcaption>
+      <pre><code class="language-python">from pathlib import Path
+
+dossier = Path("corpus")
+dossier.mkdir(exist_ok=True)                    # crée le dossier s'il n'existe pas
+(dossier / "rimbaud_dormeur.txt").write_text(poeme, encoding="utf-8")
+(dossier / "mutanabbi.txt").write_text(
+    "الخيل والليل والبيداء تعرفني\nوالسيف والرمح والقرطاس والقلم", encoding="utf-8")
+
+for chemin in sorted(dossier.glob("*.txt")):    # tous les .txt, triés par nom
+    contenu = chemin.read_text(encoding="utf-8")
+    print(chemin.name, ":", len(contenu.split()), "mots")</code></pre>
+      <pre class="sortie"><samp>mutanabbi.txt : 8 mots
+rimbaud_dormeur.txt : 122 mots</samp></pre>
+    </figure>
+    <p>Ce comptage par espaces est approximatif, et différemment selon la langue. En français, la typographie place une espace avant « ; » et « : », que <code>split()</code> compte comme des mots. En arabe, la conjonction <em>wa</em> (« et ») et l'article <em>al-</em> s'attachent au mot suivant : والليل (« et la nuit ») compte pour un seul mot. Comparer des corpus multilingues oblige à définir ce qu'est un « mot » avant de compter.</p>
+
+    <h4>Rechercher</h4>
+    <p><code>in</code> répond par vrai ou faux, <code>find()</code> donne la position de la première occurrence (-1 si absente), <code>count()</code> compte les occurrences. Tous trois sont sensibles à la <dfn>casse</dfn> (majuscules et minuscules) : « Dort », en tête de vers, n'est trouvé qu'après passage en minuscules.</p>
+    <p>Une <dfn>expression régulière</dfn> (<span class="terme-en" lang="en">regular expression</span>, ou regex), traitée par le module <code>re</code>, est un motif qui décrit toute une famille de chaînes. Dans <code>r"\w+ment\b"</code>, <code>\w</code> désigne une lettre ou un chiffre, <code>+</code> « une ou plusieurs fois », <code>\b</code> une frontière de mot ; <code>|</code> signifie « ou ». Le <code>r</code> devant les guillemets crée une <dfn>chaîne brute</dfn>, qui transmet les barres obliques inverses telles quelles.</p>
+    <figure class="code">
+      <figcaption class="code-legende">rechercher.py</figcaption>
+      <pre><code class="language-python">import re
+
+print("montagne" in texte)            # True ou False
+print(texte.find("soleil"))           # position de la 1re occurrence (-1 si absent)
+print(texte.count("dort"))            # sensible à la casse : « Dort » est ignoré
+print(texte.lower().count("dort"))
+
+print(re.findall(r"\w+ment\b", texte))                      # mots terminés par « ment »
+print(re.findall(r"\b[Dd]ort\b|\bsomme\b|\blit\b", texte))  # le champ lexical du sommeil</code></pre>
+      <pre class="sortie"><samp>True
+110
+2
+3
+['follement', 'chaudement']
+['Dort', 'lit', 'dort', 'somme', 'dort']</samp></pre>
+    </figure>
+    <p>Le motif en « ment » trouve les deux adverbes du poème, mais attraperait aussi un nom comme <em>moment</em>. La seconde expression relève le champ lexical du sommeil : cinq occurrences en quatorze vers, qui préparent la chute.</p>
+
+    <h4>Compter les fréquences</h4>
+    <p><code>Counter</code> construit, à partir d'une liste, une sorte de dictionnaire qui associe chaque mot à son nombre d'apparitions. On distingue les <dfn>occurrences</dfn> (<span class="terme-en" lang="en">tokens</span>), chaque apparition d'un mot, et les <dfn>formes</dfn> (<span class="terme-en" lang="en">types</span>), les mots différents.</p>
+    <figure class="code">
+      <figcaption class="code-legende">frequences.py</figcaption>
+      <pre><code class="language-python">from collections import Counter
+
+mots = re.findall(r"\w+", texte.lower())      # découpage en mots
+freq = Counter(mots)
+print(len(mots), "mots,", len(freq), "formes différentes")
+print(freq.most_common(3))
+
+mots_vides = {"il", "dans", "le", "la", "les", "un", "une", "de", "des", "l", "d",
+              "c", "est", "a", "sa", "son", "où", "au", "aux", "sur", "qui", "et"}
+pleins = [m for m in mots if m not in mots_vides]
+print(Counter(pleins).most_common(3))</code></pre>
+      <pre class="sortie"><samp>121 mots, 86 formes différentes
+[('il', 6), ('un', 5), ('la', 5)]
+[('dort', 3), ('soleil', 2), ('nue', 2)]</samp></pre>
+    </figure>
+    <p>Sans filtre, les premières places reviennent aux <dfn>mots vides</dfn> (<span class="terme-en" lang="en">stop words</span>), articles et pronoms présents dans tous les textes. Une fois ceux-ci écartés, <em>dort</em> arrive en tête. Le comptage a ses limites : <em>nue</em> (« tête nue ») et <em>nue</em> (« sous la nue », sous les nuages) sont additionnés, alors que <em>trou</em> (premier vers) et <em>trous</em> (dernier vers), qui encadrent le sonnet, sont séparés. Regrouper les formes d'un même mot est le rôle de la <dfn>lemmatisation</dfn>, que réalisent des outils comme spaCy.</p>
+
+    <h4>Trier</h4>
+    <p><code>sorted()</code> renvoie une nouvelle liste triée. Son paramètre <code>key</code> reçoit une fonction qui calcule, pour chaque élément, la valeur servant au tri ; <code>reverse=True</code> inverse l'ordre. <code>lambda</code> crée une petite fonction sans nom : <code>lambda paire: paire[1]</code> reçoit une paire (mot, fréquence) et renvoie la fréquence.</p>
+    <figure class="code">
+      <figcaption class="code-legende">trier.py</figcaption>
+      <pre><code class="language-python"># Trier les formes par longueur (key=len), de la plus longue à la plus courte
+print(sorted(freq, key=len, reverse=True)[:4])
+
+# Trier les paires (mot, fréquence) selon la fréquence : key reçoit une fonction
+paires = sorted(freq.items(), key=lambda paire: paire[1], reverse=True)
+print(paires[:3])
+
+titres = ["Nedjma", "Émaux et Camées", "Bel-Ami", "La Soif"]
+print(sorted(titres))                                     # « É » est rangé après « Z »
+print(sorted(titres, key=lambda t: t.replace("É", "E")))  # correction simple</code></pre>
+      <pre class="sortie"><samp>['accrochant', 'chaudement', 'frissonner', 'tranquille']
+[('il', 6), ('un', 5), ('la', 5)]
+['Bel-Ami', 'La Soif', 'Nedjma', 'Émaux et Camées']
+['Bel-Ami', 'Émaux et Camées', 'La Soif', 'Nedjma']</samp></pre>
+    </figure>
+    <p>Le tri par fréquence retrouve le résultat de <code>most_common()</code>. Le dernier exemple corrige le piège vu avec pandas : <em>Émaux et Camées</em> de Théophile Gautier était rangé après <em>Nedjma</em>. Pour un catalogue complet, on retire tous les accents dans la clé à l'aide du module <code>unicodedata</code>.</p>
+
+    <h4>Une concordance KWIC</h4>
+    <p>Une <dfn>concordance</dfn> présente chaque occurrence d'un mot entourée de son contexte gauche et droit, toutes alignées sur le mot recherché. Ce format s'appelle <dfn>KWIC</dfn> (<span class="terme-en" lang="en">keyword in context</span>, « mot-clé en contexte ») : la lecture verticale fait apparaître des régularités qu'une lecture linéaire laisse échapper.</p>
+    <figure class="code">
+      <figcaption class="code-legende">concordance.py</figcaption>
+      <pre><code class="language-python">def kwic(texte, mot, largeur=30):
+    """Concordance : chaque occurrence de mot, avec son contexte gauche et droit."""
+    # Mettre tout le poème sur une ligne, en marquant la fin des vers par « / »
+    plat = " / ".join(l.strip() for l in texte.splitlines() if l.strip())
+    for m in re.finditer(rf"\b{mot}\b", plat, flags=re.IGNORECASE):
+        gauche = plat[max(0, m.start() - largeur):m.start()]
+        droite = plat[m.end():m.end() + largeur]
+        print(f"{gauche:&gt;{largeur}}[{m.group()}]{droite}")
+
+kwic(texte, "dort")</code></pre>
+      <pre class="sortie"><samp>dans le frais cresson bleu, / [Dort] ; il est étendu dans l'herbe,
+s pieds dans les glaïeuls, il [dort]. Souriant comme / Sourirait u
+s frissonner sa narine ; / Il [dort] dans le soleil, la main sur s</samp></pre>
+    </figure>
+    <p>Les vers sont réunis sur une ligne et séparés par « / », la convention pour citer des vers à la suite. <code>re.finditer()</code> donne la position de chaque correspondance (<code>start()</code>, <code>end()</code>), autour de laquelle on découpe trente caractères. Le préfixe <code>rf</code> combine chaîne brute et f-string ; dans <code>{gauche:&gt;{largeur}}</code>, <code>&gt;</code> aligne le contexte gauche à droite, ce qui place les mots-clés en colonne. On voit ainsi <em>dort</em> revenir dans chacune des trois dernières strophes, comme un refrain qui prépare la révélation finale.</p>
+
+    <aside class="encadre encadre--shs">
+      <p class="encadre-titre">Les concordances, de la Bible aux humanités numériques</p>
+      <p>La concordance précède de loin l'informatique : dès le XIIIe siècle, des concordances manuscrites de la Bible latine recensaient tous les passages où figure un mot. En 1949, le jésuite italien Roberto Busa entreprend avec IBM l'<em>Index Thomisticus</em>, concordance informatisée de l'œuvre de Thomas d'Aquin, souvent présentée comme l'acte de naissance des humanités numériques. Le format KWIC a été popularisé vers 1960 par Hans Peter Luhn, ingénieur chez IBM.</p>
+      <p>Des logiciels gratuits comme AntConc, TXM ou Voyant Tools produisent des concordances en quelques clics. Savoir en programmer une vous permet d'adapter le motif et le corpus à votre question : comparer les emplois d'un mot chez Kateb Yacine et chez Mohammed Dib, suivre un terme dans un roman et sa traduction, relever les formules récurrentes d'un discours politique.</p>
+    </aside>
+  </article>
+
+  <!-- ============================================================ 6 -->
+  <article class="lecon" id="c2-rapports">
+    <h3>Gérer des rapports simples : Excel et PDF</h3>
+    <p>Une analyse doit pouvoir être communiquée à un directeur de mémoire ou à un jury. Deux formats dominent : le classeur Excel, que chacun peut ouvrir, trier et compléter, et le PDF, figé et prêt à imprimer. Les exemples reprennent le DataFrame <code>df</code> de la leçon 3.</p>
+
+    <h4>Exporter vers Excel</h4>
+    <p><code>to_excel()</code> écrit un fichier <code>.xlsx</code>, à condition que la bibliothèque <dfn>openpyxl</dfn> soit installée ; <code>index=False</code> omet les numéros de ligne. Pour plusieurs feuilles dans un même classeur, on ouvre un <code>pd.ExcelWriter</code> dans un bloc <code>with</code> : chaque <code>to_excel()</code> crée une feuille nommée par <code>sheet_name</code>. <code>read_excel()</code> relit une feuille.</p>
+    <figure class="code">
+      <figcaption class="code-legende">rapport_excel.py</figcaption>
+      <pre><code class="language-python">df.to_excel("oeuvres.xlsx", index=False)       # un fichier, une feuille
+
+par_genre = df.groupby("genre")["nb_mots"].agg(["count", "mean"]).round()
+with pd.ExcelWriter("rapport_corpus.xlsx") as writer:     # plusieurs feuilles
+    df.to_excel(writer, sheet_name="Oeuvres", index=False)
+    par_genre.to_excel(writer, sheet_name="Par genre")
+
+relu = pd.read_excel("rapport_corpus.xlsx", sheet_name="Par genre")
+print(relu)</code></pre>
+      <pre class="sortie"><samp>    genre  count    mean
+0  poésie      3   28333
+1   roman      6  174500
+2   récit      1   48000</samp></pre>
+    </figure>
+    <p><code>agg(["count", "mean"])</code> calcule plusieurs statistiques par groupe. L'index <code>genre</code>, écrit dans la feuille « Par genre », redevient une colonne ordinaire à la relecture.</p>
+
+    <h4>Créer un PDF avec fpdf2</h4>
+    <p>La bibliothèque <dfn>fpdf2</dfn> construit un document page par page. Installez-la avec <code>pip install fpdf2</code>, et non <code>fpdf</code>, ancienne version abandonnée ; l'import s'écrit <code>from fpdf import FPDF</code>. <code>cell()</code> écrit une ligne dans un rectangle (largeur 0 : jusqu'à la marge droite ; puis la hauteur), <code>multi_cell()</code> un paragraphe qui passe automatiquement à la ligne. <code>new_x="LMARGIN", new_y="NEXT"</code> ramène le curseur au début de la ligne suivante.</p>
+    <figure class="code">
+      <figcaption class="code-legende">rapport_pdf.py</figcaption>
+      <pre><code class="language-python">from fpdf import FPDF
+
+pdf = FPDF()
+pdf.add_page()
+pdf.set_font("Helvetica", style="B", size=16)
+pdf.cell(0, 10, "Rapport sur le corpus", new_x="LMARGIN", new_y="NEXT")
+pdf.set_font("Helvetica", size=11)
+for ligne in df.itertuples():                  # une ligne du DataFrame à la fois
+    pdf.cell(0, 7, f"{ligne.titre} ({ligne.auteur}, {ligne.annee})",
+             new_x="LMARGIN", new_y="NEXT")
+pdf.multi_cell(0, 7, "Remarque : les nombres de mots sont des valeurs fictives, "
+                     "choisies pour l'exercice. Le texte long passe à la ligne "
+                     "automatiquement grâce à multi_cell.")
+pdf.output("rapport_corpus.pdf")</code></pre>
+    </figure>
+    <p><code>itertuples()</code> parcourt le DataFrame ligne par ligne ; chaque ligne expose ses colonnes comme attributs (<code>ligne.titre</code>). Le PDF obtenu contient un titre en gras, la liste des dix œuvres et la remarque finale.</p>
+
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Helvetica ne connaît ni l'arabe ni « œ »</p>
+      <p>Les polices intégrées à fpdf2 (Helvetica, Times, Courier) se limitent au jeu de caractères Latin-1 : les accents du français y figurent, mais pas la ligature « œ », l'apostrophe typographique « ’ » ni l'alphabet arabe. <code>pdf.cell(0, 10, "Les œuvres")</code> déclenche une erreur <code>FPDFUnicodeEncodingException</code>. Il faut alors charger une police Unicode au format TTF avec <code>pdf.add_font()</code>.</p>
+    </aside>
+    <p>Pour l'arabe, prenez une police qui contient cet alphabet, comme Amiri ou Noto Naskh Arabic (gratuites sur Google Fonts), et placez le fichier <code>.ttf</code> à côté du script. Activez aussi la <dfn>mise en forme du texte</dfn> (<span class="terme-en" lang="en">text shaping</span>), qui lie les lettres selon leur position dans le mot et écrit de droite à gauche ; elle requiert le paquet <code>uharfbuzz</code>.</p>
+    <figure class="code">
+      <figcaption class="code-legende">rapport_arabe.py</figcaption>
+      <pre><code class="language-python">from fpdf import FPDF
+
+pdf = FPDF()
+pdf.add_page()
+pdf.add_font("Amiri", fname="Amiri-Regular.ttf")   # fichier .ttf placé à côté du script
+pdf.set_font("Amiri", size=16)
+pdf.set_text_shaping(True)        # lettres liées, écriture de droite à gauche (uharfbuzz)
+pdf.cell(0, 12, "بين القصرين", new_x="LMARGIN", new_y="NEXT")
+pdf.cell(0, 12, "نجيب محفوظ", new_x="LMARGIN", new_y="NEXT")
+pdf.output("rapport_arabe.pdf")</code></pre>
+    </figure>
+
+    <h4>Lire un PDF avec pypdf</h4>
+    <p>Pour extraire le texte d'un PDF, la bibliothèque <dfn>pypdf</dfn> fournit <code>PdfReader</code> : son attribut <code>pages</code> est une liste de pages, et <code>extract_text()</code> renvoie le texte d'une page.</p>
+    <figure class="code">
+      <figcaption class="code-legende">lire_pdf.py</figcaption>
+      <pre><code class="language-python">from pypdf import PdfReader
+
+lecteur = PdfReader("rapport_corpus.pdf")
+print(len(lecteur.pages), "page(s)")
+texte_pdf = lecteur.pages[0].extract_text()
+print(texte_pdf.splitlines()[:3])</code></pre>
+      <pre class="sortie"><samp>1 page(s)
+['Rapport sur le corpus', 'Les Misérables (Victor Hugo, 1862)', 'Les Fleurs du mal (Charles Baudelaire, 1857)']</samp></pre>
+    </figure>
+    <p>L'extraction suppose une couche de texte. Un livre numérisé n'est qu'une suite d'images : il faut alors une <dfn>reconnaissance optique de caractères</dfn> (<abbr title="optical character recognition">OCR</abbr>, <span class="terme-en" lang="en">optical character recognition</span>). Vérifiez toujours le résultat : colonnes et notes de bas de page peuvent ressortir dans le désordre.</p>
+
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">À retenir</p>
+      <ul>
+        <li>Travaillez dans un notebook (Colab ou Jupyter) et ouvrez vos fichiers avec <code>encoding="utf-8"</code>.</li>
+        <li>Choisissez la structure selon l'ordre, la modifiabilité et les doublons : liste, tuple, dictionnaire ou ensemble.</li>
+        <li>pandas lit un CSV, l'explore (<code>head</code>, <code>info</code>, <code>describe</code>), le filtre, le trie et le résume (<code>groupby</code>, <code>value_counts</code>). Regardez la médiane à côté de la moyenne.</li>
+        <li>Une classe réunit données et méthodes ; composition (un corpus contient des textes) et héritage (un poème est un texte) structurent les projets.</li>
+        <li>Rechercher (<code>in</code>, <code>find</code>, <code>re</code>), compter (<code>Counter</code>), trier (<code>sorted</code>) et produire une concordance KWIC sont les gestes de base de la lecture outillée.</li>
+        <li><code>to_excel()</code> et fpdf2 transforment vos résultats en documents partageables ; pour l'arabe ou « œ » dans un PDF, chargez une police Unicode.</li>
+      </ul>
+    </aside>
+
+    <div class="quiz">
+      <p class="quiz-question">Avec fpdf2 et la police Helvetica, pourquoi <code>pdf.cell(0, 10, "Les œuvres de Taha Hussein")</code> provoque-t-il une erreur ?</p>
+      <ul class="quiz-options">
+        <li><button type="button" class="quiz-option">Parce que fpdf2 refuse les noms d'auteurs qui ne sont pas français</button></li>
+        <li><button type="button" class="quiz-option" data-correct>Parce que la ligature « œ » ne fait pas partie des caractères de la police intégrée Helvetica</button></li>
+        <li><button type="button" class="quiz-option">Parce qu'il faut d'abord exporter le DataFrame avec <code>to_excel()</code></button></li>
+        <li><button type="button" class="quiz-option">Parce que le fichier Python n'est pas enregistré en UTF-8</button></li>
+      </ul>
+      <p class="quiz-explication" hidden>Les polices intégrées de fpdf2 se limitent au jeu Latin-1, qui contient « é » ou « à » mais pas « œ ». Le nom de Taha Hussein, transcrit en lettres latines, ne pose aucun problème. Pour écrire « œ » ou de l'arabe, il faut charger une police Unicode avec <code>pdf.add_font()</code>.</p>
+    </div>
+  </article>
+</section>
