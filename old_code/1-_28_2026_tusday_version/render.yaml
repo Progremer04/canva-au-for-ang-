@@ -1,0 +1,13 @@
+# Hosting on Render (https://render.com): the site is already built in docs/, it only has to be served.
+# Existing web service: in Settings, use the same Build Command and Start Command as here.
+# New service: New > Blueprint, then pick this repository.
+services:
+  - type: web
+    name: cours-ia-master-lgc
+    runtime: python
+    plan: free
+    branch: main
+    buildCommand: python --version
+    startCommand: python tools/lancer.py --public
+    healthCheckPath: /
+    autoDeploy: true
