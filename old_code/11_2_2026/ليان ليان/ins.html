@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body class="body">
+    <style>
+        *{
+    padding: 0;
+    margin: 0;
+}
+.body{
+    height: 915px;
+    background: black;
+}
+/* container */
+  /* menu humberger */
+
+  .sidenav{
+    height: 0;
+    width: 165px;
+    position: absolute;
+    z-index: 1;
+    top: 70px;
+    left: 0;
+    background: none;
+    overflow-x: hidden;
+    transition: 0.5s;}
+ .sidenav .closebtn{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     position: absolute;
+     border-radius: 50%;
+     top: 27px;
+     right: 25px;
+     font-size: 36px;
+     margin-left: 50px;}
+
+
+ @media screen and (max-heigth: 450px){
+     .sidenav{padding-top: 15px;;}
+     .sidenav a {font-size: 18px;}
+ }
+ .chevronht{
+     display: flex;
+     justify-content: center; 
+     align-items: center;
+     width: 100px;
+     cursor: default;}
+ .chevronbs{
+     display: flex;
+     justify-content: center;
+     border-radius: 50%;
+     align-items: center;
+     background-color: rgba(255, 255, 255, 0.3);
+     box-shadow: 0.5px 0.5px 1em white;
+     border: 1px solid white;
+     height: 90px;
+     width: 100px;
+     cursor: default;}
+
+
+ .chevronbs:hover{opacity: 0; }
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 697px;}
+.menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 500px;
+    width: 150px;
+    background-image: url(1.png);
+    background-position-x: start;
+    background-position-y: center;
+    border-radius: 70px;
+    border: 4px solid white;
+}
+
+
+.item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: 80px;
+    width: 100px;
+}
+.icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    height: 80px;
+    width: 80px;
+}
+
+
+.icon:hover{
+   transform: scale(1.2, 1.2);
+   transition: 0.7s all;
+   box-shadow: inset 2.5px 2.5px 4em black,
+    2.5px 2.5px 4em white;
+   height: 100px;
+   width: 100px;
+   border-radius: 50%;
+}
+
+    </style>
+        <!--  -->
+             <!-- menu burger-->
+                 <!-- accueil  burger-->
+
+                    <div class="accueil">
+                      <span class="burger" style="font-size: 40px; cursor: pointer"; onclick = "openNav()">
+                          <img class="chevronbs" src="https://img.icons8.com/ios-filled/64/ffffff/menu-2.png"/>
+                        </span></div>
+                   <div id="mySidenav" class="sidenav">
+                    <a href="javascript:void(0)" class="closebtn"  onclick="closeNav()"> 
+                      <div class="chevronht"><img src="https://img.icons8.com/ios/64/ffffff/cancel.png"/></div>
+                    </a>
+                        
+<div class="container">
+<div class="menu">
+ <div class="item">
+     <button class="icon"><img src="https://img.icons8.com/material-sharp/74/ffffff/home.png"/>
+    </button></div>
+ <div class="item"><button class="icon">
+    <img src="https://img.icons8.com/fluency-systems-filled/74/ffffff/contrast--v1.png"/>
+</button></div>
+ <div class="item"><button class="icon">
+     <img src="https://img.icons8.com/fluency-systems-filled/74/ffffff/service.png"/>
+    </button></div>
+ <div class="item"><button class="icon">
+     <img src="https://img.icons8.com/ios-filled/74/ffffff/user.png"/>
+    </button></div>
+ <div class="item"><button class="icon">
+     <img src="https://img.icons8.com/external-sbts2018-solid-sbts2018/74/ffffff/external-exclamation-basic-ui-elements-2.2-sbts2018-solid-sbts2018.png"/>
+    </button></div>
+</div>
+</div>
+</div>
+<script>
+    
+function openNav() {
+    document.getElementById("mySidenav").style.height = "600px";
+  }
+  
+  function closeNav() {
+    document.getElementById("mySidenav").style.height = "0";
+  }
+</script>
+
+
+
+    <script src="code.js"></script>
+</body>
+</html>
