@@ -1,0 +1,17 @@
+# Environnement Python cree par run.bat
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+# Fichiers produits par les exercices
+rapport*.xlsx
+rapport*.pdf
+*.gexf
+# Base de la page « Mes groupes » : données personnelles des étudiants, jamais dans git
+donnees/
+/public/
+/.questions-pg/
+# Secrets Supabase/Postgres : jamais dans git (voir .env.example)
+.env
+.env.*
+!.env.example

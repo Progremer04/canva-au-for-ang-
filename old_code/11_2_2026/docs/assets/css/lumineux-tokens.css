@@ -1,0 +1,148 @@
+/* Lumineux — jetons de design.
+   FICHIER GÉNÉRÉ par tools/build_tokens.py depuis design-system/tokens.json.
+   Ne pas modifier à la main. */
+
+:root {
+  color-scheme: dark;
+  --fond: #07070a;
+  --surface: #151515;
+  --surface-2: #1f1f25;
+  --ligne: #2e2e35;
+  --ligne-forte: #6a6a78;
+  --texte: #f5f5f5;
+  --texte-doux: #a9a9b6;
+  --soleil: #ffff00;
+  --ciel: #87ceeb;
+  --braise: #ff512f;
+  --fuchsia: #dd2476;
+  --cobalt: #1c64ff;
+  --grenat: #8b0000;
+  --lien: #87ceeb;
+  --focus: #ffff00;
+  --ciel-texte: #87ceeb;
+  --soleil-texte: #ffe94d;
+  --braise-texte: #ff8466;
+  --fuchsia-texte: #f472a8;
+  --cobalt-texte: #86a8ff;
+  --ciel-voile: #87ceeb1a;
+  --soleil-voile: #ffff0014;
+  --braise-voile: #ff512f1a;
+  --fuchsia-voile: #dd24761a;
+  --cobalt-voile: #1c64ff1f;
+  --juste: #6fdcaa;
+  --juste-voile: #6fdcaa1a;
+  --voile: #141414b3;
+  --sur-voile: #ffffff;
+  --verre-blanc: #ffffff4d;
+  --verre-noir: #1414144d;
+  --halo: 0.5px 0.5px 1em #ffffff;
+  --lueur-interne: inset 1.25px 1.25px 1.75em #ffffff;
+  --halo-survol: inset 2.5px 2.5px 4em #000000, 2.5px 2.5px 4em #ffffff;
+  --ombre-carte: 0 1px 0 #ffffff0d inset, 0 12px 32px -12px #000000cc;
+  --anneau-focus: 0 0 0 2px #07070a, 0 0 0 4px #ffff00;
+  --espace-1: 4px;
+  --espace-2: 8px;
+  --espace-3: 12px;
+  --espace-4: 16px;
+  --espace-5: 24px;
+  --espace-6: 32px;
+  --espace-7: 48px;
+  --espace-8: 64px;
+  --espace-9: 96px;
+  --rayon-s: 6px;
+  --rayon-m: 14px;
+  --rayon-l: 20px;
+  --rayon-pilule: 27px;
+  --rayon-capsule: 70px;
+  --rayon-rond: 50%;
+  --trait-fin: 1px;
+  --trait-controle: 2px;
+  --trait-cadre: 4px;
+  --trait-prisme: 6px;
+  --trait-anneau: 12px;
+  --trait-affiche: 27px;
+  --font-affiche: "IM Fell DW Pica SC", "IM Fell English SC", Georgia, serif;
+  --font-texte: Literata, "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --font-signal: Rajdhani, "Arial Narrow", "Segoe UI", system-ui, sans-serif;
+  --font-code: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --font-arabe: "El Messiri", "Noto Naskh Arabic", Tahoma, sans-serif;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+    --fond: #f4f4f6;
+    --surface: #ffffff;
+    --surface-2: #e9e9ee;
+    --ligne: #d7d7de;
+    --ligne-forte: #7c7c88;
+    --texte: #121216;
+    --texte-doux: #55555f;
+    --lien: #1a52d6;
+    --focus: #1c64ff;
+    --ciel-texte: #0b6687;
+    --soleil-texte: #6b5c00;
+    --braise-texte: #b8300d;
+    --fuchsia-texte: #ad1a5a;
+    --cobalt-texte: #1a52d6;
+    --ciel-voile: #87ceeb2e;
+    --soleil-voile: #ffff0038;
+    --braise-voile: #ff512f1f;
+    --fuchsia-voile: #dd24761a;
+    --cobalt-voile: #1c64ff17;
+    --juste: #0a7350;
+    --juste-voile: #0a73501a;
+    --voile: #141414b3;
+    --halo: 0 0 0 1px #7c7c88;
+    --lueur-interne: inset 1.25px 1.25px 1.75em #1c64ff40;
+    --halo-survol: inset 2.5px 2.5px 4em #ffffff, 2.5px 2.5px 2em #1c64ff66;
+    --ombre-carte: 0 1px 2px #1212160f, 0 10px 28px -14px #12121633;
+    --anneau-focus: 0 0 0 2px #f4f4f6, 0 0 0 4px #1c64ff;
+  }
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --fond: #f4f4f6;
+  --surface: #ffffff;
+  --surface-2: #e9e9ee;
+  --ligne: #d7d7de;
+  --ligne-forte: #7c7c88;
+  --texte: #121216;
+  --texte-doux: #55555f;
+  --lien: #1a52d6;
+  --focus: #1c64ff;
+  --ciel-texte: #0b6687;
+  --soleil-texte: #6b5c00;
+  --braise-texte: #b8300d;
+  --fuchsia-texte: #ad1a5a;
+  --cobalt-texte: #1a52d6;
+  --ciel-voile: #87ceeb2e;
+  --soleil-voile: #ffff0038;
+  --braise-voile: #ff512f1f;
+  --fuchsia-voile: #dd24761a;
+  --cobalt-voile: #1c64ff17;
+  --juste: #0a7350;
+  --juste-voile: #0a73501a;
+  --voile: #141414b3;
+  --halo: 0 0 0 1px #7c7c88;
+  --lueur-interne: inset 1.25px 1.25px 1.75em #1c64ff40;
+  --halo-survol: inset 2.5px 2.5px 4em #ffffff, 2.5px 2.5px 2em #1c64ff66;
+  --ombre-carte: 0 1px 2px #1212160f, 0 10px 28px -14px #12121633;
+  --anneau-focus: 0 0 0 2px #f4f4f6, 0 0 0 4px #1c64ff;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* Styles typographiques */
+.affiche-xl { font-family: var(--font-affiche); font-size: 60px; line-height: 60px; font-weight: 400; letter-spacing: 0.01em; }
+.affiche-l { font-family: var(--font-affiche); font-size: 40px; line-height: 44px; font-weight: 400; }
+.affiche-m { font-family: var(--font-affiche); font-size: 28px; line-height: 34px; font-weight: 400; }
+.titre-s { font-family: var(--font-texte); font-size: 21px; line-height: 28px; font-weight: 600; }
+.corps { font-family: var(--font-texte); font-size: 17px; line-height: 28px; font-weight: 400; }
+.corps-s { font-family: var(--font-texte); font-size: 15px; line-height: 24px; font-weight: 400; }
+.signal { font-family: var(--font-signal); font-size: 13px; line-height: 16px; font-weight: 600; letter-spacing: 0.08em; }
+.signal-l { font-family: var(--font-signal); font-size: 17px; line-height: 20px; font-weight: 600; letter-spacing: 0.02em; }
+.code-bloc { font-family: var(--font-code); font-size: 14px; line-height: 22px; font-weight: 400; }
