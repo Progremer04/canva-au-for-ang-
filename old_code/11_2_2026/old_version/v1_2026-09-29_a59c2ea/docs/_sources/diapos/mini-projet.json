@@ -1,0 +1,432 @@
+{
+  "id": "mini-projet",
+  "titre": "Lancer le mini-projet",
+  "resume": "Choisir en groupe un sujet de mini-projet en connaissant la démarche, les données possibles, les livrables, le calendrier, la soutenance et l'évaluation.",
+  "duree": "3 semaines",
+  "lien": "index.html#mini-projet",
+  "diapos": [
+    {
+      "type": "titre",
+      "surtitre": "Mini-projet · travail personnel encadré",
+      "titre": "Le mini-projet",
+      "sousTitre": "Cinq sujets, six groupes, trois semaines pour une petite recherche complète",
+      "notes": "À projeter à la fin du chapitre 2 : c'est le moment où le programme prévoit de distribuer le mini-projet, pour trois semaines de travail personnel encadré. Avant la séance, fixez la règle du nombre de sujets, la date de remise, le format d'envoi et la durée de l'oral, et vérifiez pour chaque sujet qu'une source de données est accessible. Tout ce qui est dit « indicatif » vient du guide et reste à adapter."
+    },
+    {
+      "type": "points",
+      "titre": "Une petite recherche complète",
+      "points": [
+        "Poser une question de recherche",
+        "Réunir des données",
+        "Les traiter en Python",
+        "Interpréter les résultats avec le regard critique de votre discipline",
+        "Trois productions : un **notebook**, un **rapport**, un **oral**"
+      ],
+      "progressif": true,
+      "notes": "Présentez le mini-projet comme une recherche en miniature, pas comme un exercice de programmation. La dernière étape, l'interprétation, est celle où des étudiants de lettres ont un avantage : l'outil produit des indices, c'est la question de recherche qui leur donne un sens."
+    },
+    {
+      "type": "deux",
+      "titre": "Un sujet ou trois ? Le programme dit les deux",
+      "colonnes": [
+        {
+          "titre": "Présentation du mini-projet",
+          "points": [
+            "« Traitez 1 sujet au choix parmi » les cinq sujets"
+          ]
+        },
+        {
+          "titre": "Méthode pédagogique",
+          "points": [
+            "« Mini-projet (réaliser au moins 3 sujets parmi les 5 proposés) »"
+          ]
+        }
+      ],
+      "notes": "Le programme officiel donne deux indications différentes : ne laissez pas les étudiants dans le doute. Annoncez ici la règle que vous avez retenue, si besoin avec votre chef de département, écrivez-la au tableau et gardez-la tout le semestre. Si vous retenez trois sujets, le guide propose de les étaler de la semaine 4 à la semaine 9, un sujet toutes les deux semaines. Si la règle est d'un sujet, vous pouvez autoriser les groupes les plus rapides à en traiter un deuxième."
+    },
+    {
+      "type": "section",
+      "numero": 1,
+      "titre": "Les cinq sujets",
+      "sousTitre": "Méthodes, outils, données",
+      "notes": "Chaque sujet a sa page sur le site : objectif, question de recherche possible, données, livrables, outils du programme, démarche pas à pas et code de départ."
+    },
+    {
+      "type": "tableau",
+      "titre": "Cinq sujets au choix",
+      "entetes": [
+        "Sujet",
+        "Méthode",
+        "Outils du programme"
+      ],
+      "lignes": [
+        [
+          "1. Sentiments sur les réseaux sociaux",
+          "Polarité des textes : positive, négative ou neutre",
+          "TextBlob, VADER, pandas, matplotlib"
+        ],
+        [
+          "2. Clustering d'enquêtes",
+          "k-moyennes : des groupes formés sans étiquettes",
+          "pandas, scikit-learn, seaborn"
+        ],
+        [
+          "3. Discours politiques",
+          "Entités nommées et thèmes (LDA)",
+          "spaCy, BERT, gensim, WordCloud"
+        ],
+        [
+          "4. Modélisation prédictive",
+          "Régression logistique : estimer une issue (oui ou non)",
+          "scikit-learn, pandas, seaborn"
+        ],
+        [
+          "5. Analyse de réseaux",
+          "Graphe des relations, mesures de centralité",
+          "NetworkX, Gephi, pandas"
+        ]
+      ],
+      "legende": "Détail de chaque sujet sur la page « Mini-projet » du site.",
+      "notes": "Rassurez : les méthodes seront vues au chapitre 3, pendant le mini-projet, et chaque page de sujet fournit un code de départ. Le programme cite sklearn et scikit-learn : c'est la même bibliothèque. Pour le sujet 1, Tweepy est peu utilisable (l'API de X est payante depuis 2023) et GeoPandas ne sert que si les textes sont associés à un lieu."
+    },
+    {
+      "type": "question",
+      "titre": "Une question, quel sujet ?",
+      "question": "« La structure éclatée de *Nedjma* se lit-elle dans le réseau de ses personnages ? » À quel sujet correspond cette question de recherche ?",
+      "choix": [
+        "Sujet 1 · Sentiments",
+        "Sujet 2 · Clustering",
+        "Sujet 3 · Discours politiques",
+        "Sujet 4 · Prédiction",
+        "Sujet 5 · Réseaux"
+      ],
+      "reponse": "Sujet 5 · Réseaux",
+      "explication": "Les personnages sont les nœuds, leurs présences communes les liens ; les mesures de centralité disent qui relie les groupes et qui reste en marge.",
+      "notes": "Lisez ensuite les autres questions proposées sur le site. Sujet 1 : comment les internautes ont-ils reçu l'adaptation d'un roman au cinéma ou à la télévision ? Sujet 2 : existe-t-il des profils de lecteurs distincts parmi les étudiants de Master ? Sujet 3 : quels thèmes et quels lieux dominent dans les discours du débat général de l'ONU ? Sujet 4 : quels facteurs sont associés à la participation des étudiants aux événements culturels ? Chaque groupe peut s'en inspirer, mais formule sa propre question."
+    },
+    {
+      "type": "tableau",
+      "titre": "Où trouver les données",
+      "entetes": [
+        "Sujet",
+        "Données possibles"
+      ],
+      "lignes": [
+        [
+          "1. Sentiments",
+          "Sentiment140, Allociné, LABR ; commentaires publics relevés à la main"
+        ],
+        [
+          "2. Clustering",
+          "Votre questionnaire anonyme ; World Values Survey, Arab Barometer"
+        ],
+        [
+          "3. Discours",
+          "Sites officiels, vie-publique.fr, UN General Debate Corpus"
+        ],
+        [
+          "4. Prédiction",
+          "Votre questionnaire (question oui/non) ; jeux publics de l'UCI"
+        ],
+        [
+          "5. Réseaux",
+          "Tableau de liens relevé à la lecture ; réseaux d'exemple de NetworkX"
+        ]
+      ],
+      "legende": "Pour chaque jeu de données : qui l'a produit, où, quand, comment il a été collecté.",
+      "notes": "Un questionnaire (sujets 2 et 4) exige le consentement des répondants et l'anonymat, et il faut du temps pour le remplir : il doit partir dès la première semaine. Avec quelques dizaines de réponses seulement, les conclusions restent très prudentes. Pour le sujet 5, *Nedjma* est protégé par le droit d'auteur : on partage les tableaux de liens, pas le texte numérisé. Si une source vous paraît incertaine, prévoyez un petit jeu de données à fournir."
+    },
+    {
+      "type": "activite",
+      "titre": "Répartir les sujets entre les six groupes",
+      "duree": 20,
+      "consignes": [
+        "Chaque groupe relit les cinq sujets sur le site et en retient trois, par ordre de préférence.",
+        "Critères : l'intérêt de la question, des données accessibles, l'équipement du groupe.",
+        "Le porte-parole annonce les trois choix ; l'enseignant arbitre au tableau.",
+        "Chaque groupe note son sujet et une première idée de question de recherche."
+      ],
+      "materiel": "La page « Mini-projet » du site (téléphone ou salle informatique) ; la grille de la diapositive suivante",
+      "notes": "Procédure proposée, pas une règle du programme : adaptez-la. Six groupes pour cinq sujets : avec la règle d'un sujet, un sujet sera pris par deux groupes, qui peuvent choisir des corpus différents et comparer leurs résultats à l'oral. Avec la règle de trois sujets, chaque groupe en retient trois et vous veillez à l'équilibre. Équipement : les sujets 1 et 3 demandent des bibliothèques lourdes (transformers, torch, spaCy) et une bonne connexion ; le sujet 5 demande d'installer Gephi à part. Un groupe sans ordinateur peut travailler dans Colab ou en salle informatique."
+    },
+    {
+      "type": "tableau",
+      "titre": "Répartition des sujets",
+      "entetes": [
+        "Groupe",
+        "Sujet(s)",
+        "Première idée de question",
+        "Données envisagées"
+      ],
+      "lignes": [
+        [
+          "Groupe 1",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Groupe 2",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Groupe 3",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Groupe 4",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Groupe 5",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Groupe 6",
+          "",
+          "",
+          ""
+        ]
+      ],
+      "legende": "Grille à recopier au tableau ou à imprimer ; chaque ligne est validée par l'enseignant pendant la première semaine.",
+      "notes": "Remplissez la grille au tableau pendant l'arbitrage, puis déposez-la dans l'espace de la classe (Moodle ou groupe de messagerie) : elle devient la référence commune. L'export PDF du diaporama permet aussi de l'imprimer vierge."
+    },
+    {
+      "type": "points",
+      "titre": "Travailler en groupe",
+      "points": [
+        "Des rôles qui tournent : secrétaire, porte-parole, gardien du temps",
+        "Au clavier, le moins à l'aise ; l'autre guide, et l'on échange régulièrement",
+        "Un **journal de bord** daté : ce qu'on a essayé, ce qui a échoué, ce qu'on a décidé et pourquoi",
+        "Chaque membre sait expliquer n'importe quelle cellule du notebook",
+        "L'avancement est montré à l'enseignant chaque semaine"
+      ],
+      "notes": "Ces conseils viennent du guide et de la page « Méthode de travail ». Pour un travail en groupe, le guide propose de noter le code et le rapport collectivement, et la soutenance individuellement : chaque membre répond à une question sur une partie qu'il n'a pas présentée. Si vous retenez ce principe, annoncez-le dès aujourd'hui : il empêche qu'un seul étudiant fasse tout le code."
+    },
+    {
+      "type": "section",
+      "numero": 2,
+      "titre": "Méthode et calendrier",
+      "sousTitre": "Trois semaines, six étapes",
+      "notes": "La démarche est la même pour tous les sujets ; chaque page de sujet la décline ensuite pas à pas."
+    },
+    {
+      "type": "etapes",
+      "titre": "Six étapes en trois semaines",
+      "etapes": [
+        {
+          "titre": "S1 · Choisir et cadrer",
+          "texte": "Une question de recherche précise, une ou deux hypothèses, validées par l'enseignant."
+        },
+        {
+          "titre": "S1 · Réunir les données",
+          "texte": "Collecter, rédiger une fiche de source, anonymiser, charger dans un tableau pandas."
+        },
+        {
+          "titre": "S2 · Explorer et nettoyer",
+          "texte": "Compter, trier, repérer doublons et valeurs manquantes ; noter chaque décision."
+        },
+        {
+          "titre": "S2 · Appliquer la méthode",
+          "texte": "L'outil ou l'algorithme du sujet, vérifié sur un petit échantillon lu soi-même."
+        },
+        {
+          "titre": "S3 · Interpréter et discuter",
+          "texte": "Revenir aux textes ou aux données ; identifier biais et limites."
+        },
+        {
+          "titre": "S3 · Rédiger et présenter",
+          "texte": "Rédiger le rapport, relancer le notebook en entier, préparer l'oral."
+        }
+      ],
+      "progressif": true,
+      "notes": "S1, S2 et S3 sont les trois semaines du mini-projet. Conseil de la page « Méthode de travail » : commencer petit ; un corpus de cinquante textes qui marche vaut mieux que dix mille qui ne marchent pas. L'étape la plus souvent oubliée est la vérification sur un échantillon lu à la main : insistez."
+    },
+    {
+      "type": "points",
+      "titre": "Règles communes à tous les sujets",
+      "points": [
+        "**Sources** : qui a produit les données, où, quand, comment elles ont été collectées",
+        "**Vie privée** : retirer noms, pseudonymes et identifiants ; consentement des répondants",
+        "**Droits** : conditions d'utilisation et droit d'auteur ; analyser n'est pas rediffuser",
+        "**Reproductibilité** : une autre personne peut relancer le notebook et retrouver les résultats",
+        "**Transparence** : tout usage d'un assistant d'IA est déclaré, et tout ce qu'il produit est vérifié"
+      ],
+      "notes": "Ces cinq règles figurent sur la page du mini-projet et valent pour tous les sujets. Vie privée : en Algérie, la loi n° 18-07 du 10 juin 2018 encadre le traitement des données à caractère personnel. Droits : un roman récent peut être analysé, mais pas rediffusé en ligne. Transparence : le guide propose de terminer chaque rapport par une déclaration d'usage des outils d'IA (outil, date, usage, consignes, vérification), même si la réponse est « aucun »."
+    },
+    {
+      "type": "chronologie",
+      "titre": "Calendrier indicatif (à adapter)",
+      "evenements": [
+        {
+          "date": "Semaine 3",
+          "texte": "Fin du chapitre 2 : distribution du mini-projet"
+        },
+        {
+          "date": "Semaine 4",
+          "texte": "Cadrer, réunir les données ; questions de recherche validées"
+        },
+        {
+          "date": "Semaine 5",
+          "texte": "Explorer, nettoyer, appliquer la méthode ; point d'étape"
+        },
+        {
+          "date": "Semaine 6",
+          "texte": "Interpréter, rédiger ; remise du notebook et du rapport"
+        },
+        {
+          "date": "Semaine 7",
+          "texte": "Retours individuels sur les mini-projets"
+        },
+        {
+          "date": "Semaine 8",
+          "texte": "Préparation des soutenances"
+        },
+        {
+          "date": "Semaine 10",
+          "texte": "Soutenances"
+        }
+      ],
+      "notes": "Ce calendrier est celui que le guide propose sur treize semaines, pour la règle d'un sujet. Seules la distribution à la fin du chapitre 2 et la durée de trois semaines viennent du programme. Remplacez les numéros de semaine par les dates du calendrier de votre faculté et annoncez la date de remise, le format d'envoi et la durée de l'oral. Avec trois sujets, étalez-les de la semaine 4 à la semaine 9."
+    },
+    {
+      "type": "section",
+      "numero": 3,
+      "titre": "Livrables, oral, évaluation",
+      "sousTitre": "Ce que vous rendez, et comment ce sera regardé",
+      "notes": "Distribuez la grille d'évaluation dès aujourd'hui, avec le sujet : les étudiants savent ainsi ce qui compte."
+    },
+    {
+      "type": "tableau",
+      "titre": "Ce que vous rendez",
+      "entetes": [
+        "Livrable",
+        "Ce qui est attendu"
+      ],
+      "lignes": [
+        [
+          "Notebook Jupyter",
+          "S'exécute sans erreur du début à la fin après redémarrage du noyau"
+        ],
+        [
+          "Données",
+          "Jointes au notebook, ou mode d'obtention expliqué précisément"
+        ],
+        [
+          "Rapport (4 à 6 pages)",
+          "Question, données, méthode, résultats, interprétation, limites"
+        ],
+        [
+          "Graphiques",
+          "Numérotés, titrés et commentés dans le texte du rapport"
+        ],
+        [
+          "Oral",
+          "Votre question, votre résultat principal, une limite de la démarche"
+        ]
+      ],
+      "legende": "Date de remise, durée de l'oral et format d'envoi : fixés par l'enseignant.",
+      "notes": "Un notebook Jupyter mêle cellules de code, résultats et texte explicatif. Plan conseillé du rapport : question de recherche, données, méthode, résultats, interprétation, limites et questions éthiques, références. Chaque sujet ajoute ses livrables propres, précisés sur sa page : échantillon annoté à la main (sujet 1), dictionnaire des variables (sujet 2), tableau des entités (sujet 3), comparaison avec un modèle naïf (sujet 4), fichier GEXF (sujet 5)."
+    },
+    {
+      "type": "points",
+      "titre": "La soutenance orale",
+      "points": [
+        "Présentez votre question, votre résultat principal et une limite de votre démarche",
+        "« Montrez la cellule qui nettoie les données et expliquez chaque ligne. »",
+        "« Passez de k = 3 à k = 4 devant moi : que change-t-il ? »",
+        "« Citez trois messages mal classés par votre modèle et expliquez chaque erreur. »"
+      ],
+      "progressif": true,
+      "notes": "Les trois dernières lignes sont des exemples de questions que le guide propose pour l'oral : seul l'auteur d'un travail peut y répondre, ce qui rend l'oral plus probant qu'un détecteur de texte généré. Prévenez les étudiants dès aujourd'hui : c'est la meilleure incitation à comprendre chaque ligne de leur notebook. La durée de l'oral est à fixer par vous."
+    },
+    {
+      "type": "tableau",
+      "titre": "Grille d'évaluation (points indicatifs sur 20)",
+      "entetes": [
+        "Critère",
+        "Points",
+        "Niveau « bien »"
+      ],
+      "lignes": [
+        [
+          "Question de recherche",
+          "3",
+          "Précise, liée aux SHS ou à la littérature, faisable en trois semaines"
+        ],
+        [
+          "Données et éthique",
+          "3",
+          "Source, date, collecte indiquées ; anonymisation et nettoyage décrits"
+        ],
+        [
+          "Méthode et code",
+          "4",
+          "S'exécute de bout en bout ; code commenté ; paramètres indiqués"
+        ],
+        [
+          "Résultats et interprétation",
+          "4",
+          "Graphiques titrés et commentés ; retour aux textes ou aux données"
+        ],
+        [
+          "Rapport",
+          "3",
+          "Plan conseillé suivi, 4 à 6 pages, références complètes"
+        ],
+        [
+          "Soutenance orale",
+          "3",
+          "Tient son temps, explique une cellule de code et une limite"
+        ]
+      ],
+      "legende": "Barème indicatif du guide ; la notation officielle suit les textes en vigueur. Avant de rendre, relisez-vous avec la grille d'auto-évaluation du site.",
+      "notes": "Le programme dit seulement « Evaluation (identique aux textes en vigueur) » : n'annoncez aucun pourcentage que votre faculté n'a pas fixé, et ramenez ces points à la part que les textes donnent au mini-projet. Les autres niveaux (insuffisant, passable, très bien) sont dans le guide, rubrique « Évaluer les étudiants »."
+    },
+    {
+      "type": "deux",
+      "titre": "Pièges à éviter",
+      "colonnes": [
+        {
+          "titre": "À éviter",
+          "points": [
+            "Un simple thème : « les sentiments sur Facebook »",
+            "Des données sans source, ou non anonymisées",
+            "Un notebook qui ne s'exécute pas d'un bout à l'autre",
+            "Des chiffres et des graphiques sans commentaire"
+          ]
+        },
+        {
+          "titre": "À faire",
+          "points": [
+            "Une question précise, avec une hypothèse à discuter",
+            "Une fiche de source ; des données anonymisées",
+            "Relancer tout le notebook avant de le rendre",
+            "Revenir aux textes pour interpréter les chiffres"
+          ]
+        }
+      ],
+      "notes": "La colonne de gauche reprend le niveau « insuffisant » de la grille, celle de droite les niveaux « bien » et « très bien ». Demandez à chaque groupe lequel de ces pièges le menace le plus, compte tenu de son sujet."
+    },
+    {
+      "type": "fin",
+      "titre": "Pour la semaine prochaine",
+      "points": [
+        "Lire en entier la page de votre sujet",
+        "Formuler une question de recherche et une ou deux hypothèses",
+        "Repérer une source de données accessible et commencer la fiche de source",
+        "Ouvrir le journal de bord"
+      ],
+      "texte": "Le cadrage de chaque groupe est validé par l'enseignant pendant la première semaine.",
+      "notes": "Fixez le moment de la validation du cadrage (séance de TP ou rendez-vous) et rappelez le canal unique de la classe pour les questions. Si un groupe prépare un questionnaire, demandez à le voir avant sa diffusion : le consentement et l'anonymat doivent y figurer."
+    }
+  ]
+}

@@ -1,0 +1,388 @@
+{
+  "id": "seance-6",
+  "numero": 6,
+  "titre": "Tutorial (TD): expert system and forward chaining",
+  "resume": "Name the three components of an expert system, draw the graph of the tutorial’s rules and work through forward chaining, explaining why R4 and R7 do not fire.",
+  "duree": "1 h 30 min",
+  "lien": "index.html#c3-symbolique",
+  "fiche": "enseignant.html#guide-seance-6",
+  "diapos": [
+    {
+      "type": "titre",
+      "surtitre": "Chapter 3 · Session 6 · Tutorial (TD)",
+      "titre": "Expert system and forward chaining",
+      "sousTitre": "From the rules of versification to tutorial exercise 1",
+      "notes": "Materials: the seven A5 rule cards for the role play, the text of tutorial exercise 1, the projector for the demonstration. Divide the board into two columns: “fact base” and “fired rules”. Prerequisite: the lesson “Symbolic AI: expert systems”."
+    },
+    {
+      "type": "points",
+      "titre": "Session objectives",
+      "points": [
+        "Name the **three components** of an expert system",
+        "Draw the **rule graph** of tutorial exercise 1",
+        "Work through **forward chaining**, step by step",
+        "Explain why **R4** and **R7** do not fire"
+      ],
+      "notes": "Announce the path: first we act out the reasoning with rules about poetry, then we formalize it on the tutorial exercise, where the facts are simple letters."
+    },
+    {
+      "type": "question",
+      "titre": "Hook",
+      "question": "How do you recognize a sonnet?",
+      "reponse": "IF the poem has 14 lines AND 2 quatrains AND 2 tercets, THEN it is a sonnet.",
+      "explication": "Each answer written in the form IF … THEN … is a **rule**: together, they form a **rule base**.",
+      "notes": "10 min. Write the answers on the board, then rewrite them with the class in the form IF … THEN. Also expected: 14 lines, 3 quatrains AND 1 couplet for the English sonnet, also called the Shakespearean sonnet. A treatise on versification that states “a sonnet has fourteen lines, divided into two quatrains and two tercets” is already stating a rule."
+    },
+    {
+      "type": "definition",
+      "terme": "Expert system",
+      "traduction": "système expert",
+      "definition": "A symbolic AI program that reproduces the reasoning of a specialist in a narrow field, using facts and rules that a human can read.",
+      "exemple": "MYCIN (Stanford, 1970s) diagnosed bacterial blood infections and proposed an antibiotic.",
+      "notes": "Symbolic AI represents knowledge with symbols that a human can read, facts and rules, rather than with numbers learned from data. DENDRAL (Stanford, from 1965) is often regarded as the first expert system; MYCIN was never used routinely in hospitals. The strength of the approach: explainability, since each conclusion is justified by the exact chain of rules that fired."
+    },
+    {
+      "type": "tableau",
+      "titre": "The three components",
+      "entetes": [
+        "Component",
+        "Role",
+        "Example"
+      ],
+      "lignes": [
+        [
+          "**Fact base**",
+          "What we know; it grows as the reasoning goes on",
+          "“the poem has 14 lines”"
+        ],
+        [
+          "**Rule base**",
+          "The knowledge: IF premises THEN conclusion",
+          "IF 14 lines AND 2 quatrains AND 2 tercets THEN sonnet"
+        ],
+        [
+          "**Inference engine**",
+          "Finds the applicable rules, fires them, adds their conclusions",
+          "The same for medicine or poetry"
+        ]
+      ],
+      "notes": "The inference engine does not depend on the field: you move from medicine to poetry by changing only the rules. The premises of a rule are joined by AND, also written ∩ in the text of the tutorial; we will write ∧."
+    },
+    {
+      "type": "tableau",
+      "titre": "The rules for poetic forms",
+      "entetes": [
+        "Rule",
+        "IF (premises)",
+        "THEN (conclusion)"
+      ],
+      "lignes": [
+        [
+          "R1",
+          "3 lines AND 5-7-5 syllables",
+          "haiku"
+        ],
+        [
+          "R2",
+          "14 lines AND 2 quatrains AND 2 tercets",
+          "sonnet"
+        ],
+        [
+          "R3",
+          "14 lines AND 3 quatrains AND 1 couplet",
+          "sonnet"
+        ],
+        [
+          "R4",
+          "sonnet AND 2 tercets",
+          "Italian or French sonnet"
+        ],
+        [
+          "R5",
+          "sonnet AND 1 couplet",
+          "English sonnet"
+        ],
+        [
+          "R6",
+          "sonnet",
+          "fixed form"
+        ],
+        [
+          "R7",
+          "haiku",
+          "fixed form"
+        ]
+      ],
+      "legende": "In order of priority. The observations (“14 lines”, “2 tercets”…) are non-deducible facts.",
+      "notes": "Hand out the seven rule cards. The Italian or French sonnet (Petrarch, Ronsard, Baudelaire) has two quatrains and two tercets; the English sonnet, also called the Shakespearean sonnet, has three quatrains and a couplet. Point out that R4 to R7 use facts that other rules must first deduce."
+    },
+    {
+      "type": "activite",
+      "titre": "Role play: the inference engine",
+      "duree": 20,
+      "consignes": [
+        "Seven students are the rules R1 to R7; another plays the engine, another the secretary",
+        "On the board, the initial base: 14 lines, 2 quatrains, 2 tercets, alexandrines",
+        "The engine calls the rules in order, starting from R1",
+        "A rule fires if all its premises are on the board and its conclusion is new",
+        "The secretary writes the conclusion, the rule sits down, and we start again from R1",
+        "A complete pass with no rule firing ends the game"
+      ],
+      "materiel": "One A5 card per rule; the board divided into “fact base” and “fired rules”",
+      "notes": "Timing: roles 3 min, facts 2 min, cycles 10 min, then 5 min for two other cases: a haiku (R1 then R7) and a sonnet printed as a single block, which fires nothing. The initial base is that of Du Bellay’s sonnet “Heureux qui, comme Ulysse, a fait un beau voyage” (Les Regrets, 1558). Debriefing: “Who knew it was a sonnet?” Nobody: each rule only looked at the board."
+    },
+    {
+      "type": "etapes",
+      "titre": "Expected: Du Bellay’s sonnet",
+      "progressif": true,
+      "etapes": [
+        {
+          "titre": "Initial base",
+          "texte": "14 lines, 2 quatrains, 2 tercets, alexandrines"
+        },
+        {
+          "titre": "Cycle 1",
+          "texte": "R1 fails (no “3 lines”); R2 applies: we add “sonnet”"
+        },
+        {
+          "titre": "Cycle 2",
+          "texte": "We start again from R1; R4 applies: “Italian or French sonnet”"
+        },
+        {
+          "titre": "Cycle 3",
+          "texte": "R5 fails (no “1 couplet”); R6 adds “fixed form”"
+        },
+        {
+          "titre": "Cycle 4: stop",
+          "texte": "No rule produces a new fact any more"
+        }
+      ],
+      "notes": "Rules fired: R2, R4, R6; three facts deduced. No rule uses “alexandrines”: this fact stays inactive. What to take away: the engine compares symbols without understanding them; the order of the rules changes the path; outside the cases it was designed for, the system fails."
+    },
+    {
+      "type": "deux",
+      "titre": "Forward or backward chaining?",
+      "colonnes": [
+        {
+          "titre": "Forward chaining",
+          "points": [
+            "**Data**-driven: from the facts to the goal",
+            "“What can I deduce?”",
+            "Drawback: it can deduce many useless facts"
+          ]
+        },
+        {
+          "titre": "Backward chaining",
+          "points": [
+            "**Goal**-driven: from the goal to the facts",
+            "“What do I need to prove this?”",
+            "Advantage: only the rules useful for the goal are examined; well suited to diagnosis"
+          ]
+        }
+      ],
+      "notes": "Mini-lecture: 10 min with the next slide. An example of backward chaining: the hypothesis “English sonnet?” requires, by R5, “sonnet” and “1 couplet”. This last fact is non-deducible and missing from the base: the hypothesis is rejected at once. French terms: chaînage avant, chaînage arrière."
+    },
+    {
+      "type": "points",
+      "titre": "Rule order and non-deducible facts",
+      "points": [
+        "**Conflict resolution**: several rules are applicable, the engine must choose one",
+        "The tutorial’s strategy: a **rule order** fixed in advance",
+        "A rule that has already fired does not fire a second time",
+        "**Non-deducible fact**: it is not the conclusion of any rule",
+        "Only observation or the user can provide it: H, G and K in the tutorial"
+      ],
+      "notes": "In the lesson, the engine fires the first applicable rule in order, then starts again from the top of the list, as in the role play. The tutorial’s solution goes through the rules in the required order without going back to the top: the result is the same. In backward chaining, a non-deducible sub-goal that is missing from the base makes that path fail, or leads the system to ask the user."
+    },
+    {
+      "type": "section",
+      "titre": "Tutorial exercise 1",
+      "sousTitre": "Seven rules, initial base {H, K}, goal C",
+      "notes": "35 min: question a (15 min), then question b (20 min)."
+    },
+    {
+      "type": "tableau",
+      "titre": "The exercise: seven rules",
+      "entetes": [
+        "Rule",
+        "IF",
+        "THEN"
+      ],
+      "lignes": [
+        [
+          "R1",
+          "A",
+          "E"
+        ],
+        [
+          "R2",
+          "B",
+          "D"
+        ],
+        [
+          "R3",
+          "H",
+          "A ∧ F"
+        ],
+        [
+          "R4",
+          "E ∧ G",
+          "C"
+        ],
+        [
+          "R5",
+          "E ∧ K",
+          "B"
+        ],
+        [
+          "R6",
+          "D ∧ E ∧ K",
+          "C"
+        ],
+        [
+          "R7",
+          "G ∧ K ∧ F",
+          "A"
+        ]
+      ],
+      "legende": "Order: R3 R7 R1 R4 R5 R2 R6 · Non-deducible: H, G, K · Initial base: {H, K} · Goal: C",
+      "notes": "In the text of the syllabus, conjunction is written ∩: here this symbol means “AND”, which we write ∧. “E ∧ G → C” reads: if E and G are established, then C is established. Have students read the order aloud: it does not follow the numbering."
+    },
+    {
+      "type": "activite",
+      "titre": "Question a: drawing the graph",
+      "duree": 15,
+      "consignes": [
+        "One **rectangle** per fact, one **circle** per rule",
+        "An arrow from each condition to the rule, then from the rule to each conclusion",
+        "Arrows that enter the same rule: conditions joined by AND",
+        "Two rules that lead to the same fact (R3 and R7 for A, R4 and R6 for C): OR",
+        "Find the facts that no arrow points to"
+      ],
+      "notes": "This is called an AND/OR graph. Individual or pair work, then correction on the board. A layout tip taken from the solution: place H below R3 so that no arrow crosses another. The corrected graph is in the online tutorial."
+    },
+    {
+      "type": "question",
+      "titre": "Question a: a first diagnosis",
+      "question": "Which facts does no arrow point to? What can you conclude?",
+      "reponse": "G, H and K: these are the non-deducible facts. G is not in the initial base: R4 and R7 can never fire.",
+      "explication": "The only possible path to C therefore goes through R6.",
+      "notes": "Let the students formulate the conclusion themselves. H and K are provided by the initial base; G is missing, and no rule can produce it. This is the key to the whole exercise."
+    },
+    {
+      "type": "activite",
+      "titre": "Question b: working through forward chaining",
+      "duree": 20,
+      "consignes": [
+        "Examine the rules in the required order: R3, R7, R1, R4, R5, R2, R6",
+        "A rule fires if **all** its conditions are in the base",
+        "Add **all** its conclusions to the fact base",
+        "A rule that has already fired is not run again",
+        "Stop as soon as C is in the base, or when a pass adds nothing new"
+      ],
+      "materiel": "One grid per student: step, rule examined, condition, fires?, fact base afterwards",
+      "notes": "Each student fills in their grid alone, step by step; the correction is then done on the board. Walk round and watch for: R7 fired although G is missing, F forgotten after R3, a rule run again, the numbering order followed instead of the required order."
+    },
+    {
+      "type": "tableau",
+      "titre": "Question b: the solution",
+      "entetes": [
+        "Step",
+        "Rule",
+        "Condition",
+        "Fires?",
+        "Fact base afterwards"
+      ],
+      "lignes": [
+        [
+          "1",
+          "R3",
+          "H",
+          "Yes: H is in the base",
+          "H, K, A, F"
+        ],
+        [
+          "2",
+          "R7",
+          "G ∧ K ∧ F",
+          "No: G is absent",
+          "H, K, A, F"
+        ],
+        [
+          "3",
+          "R1",
+          "A",
+          "Yes",
+          "H, K, A, F, E"
+        ],
+        [
+          "4",
+          "R4",
+          "E ∧ G",
+          "No: G is absent",
+          "H, K, A, F, E"
+        ],
+        [
+          "5",
+          "R5",
+          "E ∧ K",
+          "Yes",
+          "H, K, A, F, E, B"
+        ],
+        [
+          "6",
+          "R2",
+          "B",
+          "Yes",
+          "H, K, A, F, E, B, D"
+        ],
+        [
+          "7",
+          "R6",
+          "D ∧ E ∧ K",
+          "Yes",
+          "H, K, A, F, E, B, D, C: goal reached"
+        ]
+      ],
+      "legende": "Rules fired: R3, R1, R5, R2, R6. Final base: {H, K, A, F, E, B, D, C}.",
+      "notes": "Goal C is established during the first pass over the rules. R4 and R7 never fire, since G is neither in the initial base nor deducible. Variant: if the engine goes back to the first rule after each firing, as in the role play, you get the same firings and the same final base; only the number of rules examined increases."
+    },
+    {
+      "type": "question",
+      "titre": "Demonstration: what if G were known?",
+      "question": "We add G to the initial base: {H, K, G}. What happens?",
+      "reponse": "Goal C is reached earlier, through **R4**: R3, then R1, then R4, since E and G are known.",
+      "explication": "R7 becomes applicable, but adds nothing new: A is already in the base.",
+      "notes": "10 min. Open the interactive demonstration in the lesson “Symbolic AI: expert systems”: H and K are ticked; move forward with “Examine the next rule” and have students comment on each step. Then have them predict the effect of G before ticking its box. The demonstration then marks R7 as “useless”; the tutorial’s Python program, on the other hand, counts it as fired (R3, R7, R1, R4). In both cases, C comes through R4."
+    },
+    {
+      "type": "points",
+      "titre": "Common mistakes",
+      "points": [
+        "Firing a rule when only some of its premises are known",
+        "Forgetting one of the conclusions of R3: A **and** F",
+        "Firing a rule a second time, or ignoring the required order",
+        "Trying to deduce G: it is a non-deducible fact"
+      ],
+      "notes": "Go back over these mistakes using the grids observed during question b. For each one, ask the class which instruction of the engine was forgotten."
+    },
+    {
+      "type": "question",
+      "titre": "Wrap-up",
+      "question": "In one sentence: what is the difference between forward and backward chaining?",
+      "reponse": "Forward chaining starts from the known facts and applies the rules until it reaches the goal; backward chaining starts from the goal and works back to the facts needed to establish it.",
+      "notes": "5 min. Everyone writes their sentence on a piece of paper before the answer is revealed; collect them as exit tickets: they will tell you whether the concept has been grasped."
+    },
+    {
+      "type": "fin",
+      "titre": "Homework",
+      "points": [
+        "Redo exercise 1 without the solution, three days from now",
+        "Write five rules that distinguish the fable, the tale and the short story",
+        "Work them through with forward chaining on two well-known texts"
+      ],
+      "texte": "Next session: machine learning.",
+      "notes": "For the five rules, remind students of the session’s model: observable premises (length, presence of a moral, characters, supernatural elements…) and a conclusion. Faced with real texts, students will see how fragile rules are outside the cases they were designed for: this is the limit of expert systems highlighted in the lesson."
+    }
+  ]
+}

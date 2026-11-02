@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>De l'automate à l'agent · Chapitre 1, première leçon</title>
+<meta name="description" content="Présentation animée en trois langues : l'histoire complète de l'intelligence artificielle, des automates aux agents (Chapitre 1, première leçon).">
+<meta name="theme-color" content="#07070a">
+<link rel="preload" href="assets/fonts/im-fell-dw-pica-sc-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/polices.css">
+<style>
+/* ==========================================================================
+   « De l'automate à l'agent » : une présentation autonome (un seul fichier).
+   Chaque diapositive est dessinée à 1280 × 720 puis mise à l'échelle de l'écran.
+   ========================================================================== */
+:root {
+  --fond: #07070a; --surface: #151515; --surface-2: #1f1f25; --ligne: #2e2e35; --texte: #f5f5f5; --doux: #a9a9b6;
+  --c1: #ffff00; --c2: #87ceeb; --c3: #ff512f; --c4: #dd2476; --c5: #1c64ff; --juste: #6fdcaa;
+  --t1: #ffe94d; --t2: #87ceeb; --t3: #ff8466; --t4: #f472a8; --t5: #86a8ff;
+  --prisme: linear-gradient(90deg, var(--c1), var(--c2), var(--c3), var(--c4), var(--c5));
+  --prisme-conique: conic-gradient(var(--c1), var(--c2), var(--c3), var(--c4), var(--c5), var(--c1));
+  --f-titre: "IM Fell DW Pica SC", Georgia, "Times New Roman", serif;
+  --f-texte: Literata, Georgia, "Times New Roman", serif;
+  --f-ui: Rajdhani, "Segoe UI", system-ui, sans-serif;
+  --f-code: "JetBrains Mono", Consolas, monospace;
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  --fond: #f4f4f6; --surface: #ffffff; --surface-2: #ececf1; --ligne: #d6d6de; --texte: #121216; --doux: #55555f;
+  --t1: #8a7400; --t2: #1f6f96; --t3: #c2371b; --t4: #b0195b; --t5: #1c4fd1;
+  color-scheme: light;
+}
+:root[lang="ar"] {
+  --f-titre: "El Messiri", "Noto Naskh Arabic", Tahoma, serif;
+  --f-texte: "Noto Naskh Arabic", "El Messiri", Tahoma, serif;
+  --f-ui: "El Messiri", Tahoma, system-ui, sans-serif;
+  --f-code: "JetBrains Mono", "Noto Naskh Arabic", monospace;
+}
+:root[lang="ar"] .bulle--m { font-family: var(--f-texte); font-size: 23px; }
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--fond); color: var(--texte); font-family: var(--f-texte); overflow: hidden; }
+:root[lang="ar"] body * { letter-spacing: 0 !important; }
+button { font: inherit; color: inherit; }
+a { color: var(--t2); }
+.visuellement-cache { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- Barre du haut ---------- */
+.barre {
+  position: fixed; inset: 0 0 auto; z-index: 20; height: 56px; display: flex; align-items: center; gap: 12px;
+  padding: 0 16px; border-bottom: 1px solid var(--ligne); background: color-mix(in srgb, var(--fond) 88%, transparent);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); font-family: var(--f-ui);
+}
+.barre::after { content: ""; position: absolute; inset: auto 0 -1px 0; height: 3px; background: var(--prisme); transform-origin: left; transform: scaleX(var(--avance, 0)); transition: transform .4s; }
+[dir="rtl"] .barre::after { transform-origin: right; }
+.marque { display: flex; align-items: center; gap: 10px; color: var(--texte); text-decoration: none; font-weight: 700; white-space: nowrap; }
+.marque__anneau { width: 18px; height: 18px; border-radius: 50%; background: var(--prisme-conique); -webkit-mask: radial-gradient(closest-side, transparent 55%, #000 58%); mask: radial-gradient(closest-side, transparent 55%, #000 58%); }
+.barre__titre { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: var(--doux); font-size: 15px; font-weight: 600; }
+.langues { display: flex; padding: 3px; border: 1px solid var(--ligne); border-radius: 30px; }
+.langues button { min-width: 44px; height: 32px; padding: 0 10px; border: 0; border-radius: 30px; background: none; color: var(--doux); font-weight: 700; cursor: pointer; }
+.langues button[aria-pressed="true"] { background: var(--texte); color: var(--fond); }
+.outils { display: flex; gap: 4px; }
+.outil {
+  display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid var(--ligne); border-radius: 50%;
+  background: var(--surface); cursor: pointer; transition: border-color .2s, transform .2s;
+}
+.outil:hover { border-color: var(--texte); transform: scale(1.06); }
+.outil[hidden] { display: none; }
+.outil[aria-pressed="true"] { border-color: var(--t2); color: var(--t2); }
+.outil--projecteur { border-color: var(--t2); color: var(--t2); box-shadow: 0 0 0 3px color-mix(in srgb, var(--t2) 30%, transparent); }
+.outil svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+:focus-visible { outline: 2px solid var(--c1); outline-offset: 2px; }
+
+/* ---------- Scène et diapositives ---------- */
+.scene { position: fixed; inset: 56px 0 52px 0; overflow: hidden; }
+.scene__cadre { position: absolute; left: 50%; top: 50%; width: 1280px; height: 720px; transform: translate(-50%, -50%) scale(var(--k, 1)); }
+.diapo {
+  position: absolute; inset: 0; overflow: hidden; border-radius: 22px; padding: 64px 80px 56px;
+  background:
+    radial-gradient(110% 90% at 100% 0%, color-mix(in srgb, var(--c5) 14%, transparent), transparent 55%),
+    radial-gradient(90% 80% at 0% 100%, color-mix(in srgb, var(--c4) 12%, transparent), transparent 60%),
+    var(--surface);
+  box-shadow: 0 30px 80px -30px #000, inset 0 0 0 1px var(--ligne);
+  opacity: 0; visibility: hidden; transform: translateX(6%) scale(.98);
+  transition: opacity .55s cubic-bezier(.2,.7,.2,1), transform .55s cubic-bezier(.2,.7,.2,1), visibility .55s;
+  font-size: 28px; line-height: 1.42;
+}
+.diapo::before { content: ""; position: absolute; inset: 0 0 auto; height: 8px; background: var(--prisme); }
+.diapo.passee { transform: translateX(-6%) scale(.98); }
+[dir="rtl"] .diapo { transform: translateX(-6%) scale(.98); }
+[dir="rtl"] .diapo.passee { transform: translateX(6%) scale(.98); }
+.diapo.active { opacity: 1; visibility: visible; transform: none; }
+.diapo--section.active .grand-numero { animation: zoom 1s cubic-bezier(.2,.7,.2,1) both; }
+.diapo__num { position: absolute; bottom: 20px; inset-inline-end: 34px; color: var(--doux); font: 700 16px var(--f-ui); }
+.diapo__marque { position: absolute; bottom: 20px; inset-inline-start: 34px; color: var(--doux); font: 600 16px var(--f-ui); letter-spacing: .04em; }
+
+/* Ajustement : une diapositive trop chargée est réduite (zoom) pour tenir dans le cadre */
+.diapo > :not(.diapo__marque):not(.diapo__num):not(.anneau-decor):not(.guillemet):not(.grand-numero) { zoom: var(--z, 1); }
+.mesure .diapo, .mesure .a, .mesure .bulle { transform: none !important; }
+
+/* Apparition progressive des éléments d'une diapositive active */
+.a { opacity: 0; transform: translateY(18px); }
+.active .a { animation: monte .7s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--i, 0) * 110ms + 150ms); }
+.active .a--gauche { animation-name: glisse; }
+@keyframes monte { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes glisse { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: none; } }
+[dir="rtl"] .active .a--gauche { animation-name: glisse-rtl; }
+@keyframes glisse-rtl { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: none; } }
+@keyframes zoom { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
+
+/* Typographie commune */
+.surtitre { color: var(--t2); font: 700 22px var(--f-ui); letter-spacing: .12em; text-transform: uppercase; margin: 0 0 12px; }
+.titre { margin: 0 0 26px; font-family: var(--f-titre); font-size: 52px; font-weight: 400; line-height: 1.1; text-wrap: balance; }
+.titre::after { content: ""; display: block; width: 130px; height: 6px; margin-top: 16px; border-radius: 6px; background: var(--prisme); }
+.annee { display: inline-block; margin-bottom: 14px; padding: 4px 16px; border-radius: 30px; background: color-mix(in srgb, var(--c1) 16%, transparent); color: var(--t1); font: 700 22px var(--f-ui); letter-spacing: .06em; }
+.points { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.points li { position: relative; padding-inline-start: 40px; }
+.points li::before { content: ""; position: absolute; inset-inline-start: 4px; top: .52em; width: 16px; height: 16px; border-radius: 50%; background: var(--prisme-conique); }
+em { font-style: italic; } strong { font-weight: 700; } .insecable { white-space: nowrap; }
+.colonnes { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 50px; align-items: center; height: calc(100% - 20px); }
+.colonnes--schema { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.illus { width: 100%; max-height: 440px; }
+.illus svg { width: 100%; height: auto; max-height: 440px; display: block; overflow: visible; }
+
+/* Couverture */
+.diapo--couverture { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 40px; align-items: center; padding: 80px 90px; }
+.diapo--couverture .titre { font-size: 84px; }
+:root[lang="ar"] .diapo--couverture .titre { font-size: 64px; line-height: 1.25; }
+.diapo--couverture .titre::after { width: 220px; }
+.sous-titre { margin: 0; color: var(--doux); font-size: 30px; line-height: 1.4; }
+.anneau-decor { position: absolute; width: 420px; height: 420px; inset-inline-end: -170px; bottom: -250px; border-radius: 50%; background: var(--prisme-conique); -webkit-mask: radial-gradient(closest-side, transparent 74%, #000 75%); mask: radial-gradient(closest-side, transparent 74%, #000 75%); opacity: .8; }
+.active .anneau-decor { animation: tourne 22s linear infinite; }
+@keyframes tourne { to { transform: rotate(1turn); } }
+
+/* Plan */
+.plan { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 20px 40px; counter-reset: etape; }
+.plan li { display: flex; gap: 18px; align-items: center; padding: 18px 22px; border: 1px solid var(--ligne); border-radius: 18px; background: var(--surface-2); counter-increment: etape; font-size: 25px; line-height: 1.3; }
+.plan li::before { content: counter(etape); flex: none; display: grid; place-items: center; width: 50px; height: 50px; border-radius: 50%; background: var(--prisme-conique); color: #111; font: 700 24px var(--f-ui); }
+.plan--dense { gap: 12px 32px; } .plan--dense li { gap: 14px; padding: 9px 18px; font-size: 21px; } .plan--dense li::before { width: 38px; height: 38px; font-size: 19px; }
+
+/* Section */
+.diapo--section { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 40px; align-items: center; }
+.grand-numero { font-family: var(--f-titre); font-size: 200px; line-height: .9; background: var(--prisme); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.periode { display: inline-block; margin: 10px 0 18px; padding: 6px 18px; border: 2px solid var(--t2); border-radius: 30px; color: var(--t2); font: 700 24px var(--f-ui); }
+.diapo--section .titre { font-size: 64px; }
+.diapo--section .texte { color: var(--doux); font-size: 28px; margin: 0; }
+
+/* Portrait */
+.portrait { display: grid; grid-template-columns: 360px minmax(0, 1fr); gap: 56px; align-items: center; height: 100%; }
+.photo { position: relative; width: 340px; height: 420px; border-radius: 28px; padding: 6px; background: var(--prisme-conique); }
+.photo__cadre { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 23px; background: var(--surface-2); }
+.photo img[hidden] { display: none; }
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(.15) contrast(1.05); }
+.photo__repli { position: absolute; inset: 0; display: grid; place-items: center; }
+.photo__repli svg { width: 88%; height: auto; }
+.photo__initiales { position: absolute; inset: auto 0 18px; text-align: center; font: 700 44px var(--f-titre); color: var(--texte); }
+.photo__credit { position: absolute; inset-block-end: 10px; inset-inline-start: 10px; max-width: calc(100% - 20px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 2px 8px; border-radius: 8px; background: #000b; color: #fff; font: 600 12px/1.5 var(--f-ui); text-decoration: none; }
+[dir="rtl"] .photo__credit { direction: ltr; }
+.photo--largeur { width: 440px; height: 310px; }
+.portrait .photo--largeur { width: 340px; height: 250px; }
+/* Encart : une seconde photo posée sur le coin de la première, ou sur un schéma */
+.illus { position: relative; }
+.photo--encart { position: absolute; z-index: 2; display: none; width: 160px; height: 200px; padding: 5px; inset-inline-end: -46px; bottom: -34px; border-radius: 18px; rotate: 4deg; box-shadow: 0 18px 40px -12px #000; }
+.photo--encart.charge { display: block; }
+.active .photo--encart.charge { animation: encart .7s .9s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes encart { from { opacity: 0; transform: translateY(24px) scale(.9); } to { opacity: 1; transform: none; } }
+[dir="rtl"] .photo--encart { rotate: -4deg; }
+.photo--encart.photo--largeur { width: 240px; height: 165px; }
+.photo--encart .photo__cadre { border-radius: 14px; }
+.photo--encart .photo__credit { inset: auto 5px 5px 5px; max-width: none; padding: 1px 5px; white-space: normal; font-size: 9px; line-height: 1.25; text-align: center; }
+/* Sur un schéma : la photo se range à côté du dessin, qui se resserre */
+.illus--photo { display: flex; align-items: center; gap: 22px; }
+.illus--photo > svg { flex: 1 1 0; min-width: 0; }
+.illus--photo > .photo--encart { position: relative; inset: auto; flex: none; width: 184px; height: 226px; }
+.nom { margin: 0; font-family: var(--f-titre); font-size: 56px; line-height: 1.05; }
+.dates { margin: 6px 0 4px; color: var(--t1); font: 700 24px var(--f-ui); letter-spacing: .05em; }
+.role { margin: 0 0 22px; color: var(--doux); font-size: 26px; font-style: italic; }
+.citation-courte { margin: 22px 0 0; padding: 16px 22px; border-inline-start: 6px solid var(--c4); border-radius: 12px; background: color-mix(in srgb, var(--c4) 10%, transparent); font-family: var(--f-titre); font-size: 26px; }
+.citation-courte small { display: block; margin-top: 6px; color: var(--doux); font: italic 18px var(--f-texte); }
+
+/* Citation */
+.diapo--citation { display: grid; align-content: center; padding: 80px 120px; }
+.guillemet { position: absolute; top: 40px; inset-inline-start: 60px; font-family: var(--f-titre); font-size: 260px; line-height: 1; color: var(--c4); opacity: .5; }
+.citation__texte { margin: 0; font-family: var(--f-titre); font-size: 46px; line-height: 1.3; text-wrap: balance; }
+.citation__auteur { margin: 30px 0 0; color: var(--t2); font: 700 26px var(--f-ui); }
+.citation__source { margin: 4px 0 0; color: var(--doux); font-size: 22px; font-style: italic; }
+
+/* Deux colonnes */
+.deux { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+.carte { padding: 28px 32px; border: 1px solid var(--ligne); border-radius: 22px; background: color-mix(in srgb, var(--surface-2) 85%, transparent); }
+.carte:first-child { border-top: 6px solid var(--c2); }
+.carte:last-child { border-top: 6px solid var(--c4); }
+.carte h3 { margin: 0 0 18px; font-size: 32px; }
+.carte .points { gap: 12px; font-size: 25px; }
+
+/* Frise */
+.frise { position: relative; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 14px; margin-top: 30px; padding-top: 150px; }
+.frise__ligne { position: absolute; left: 0; right: 0; top: 118px; height: 6px; border-radius: 6px; background: var(--prisme); transform-origin: left; transform: scaleX(0); }
+[dir="rtl"] .frise__ligne { transform-origin: right; }
+.active .frise__ligne { animation: trace-ligne 1.2s .2s cubic-bezier(.2,.7,.2,1) forwards; }
+@keyframes trace-ligne { to { transform: scaleX(1); } }
+.evenement { position: relative; text-align: center; }
+.evenement::before { content: ""; position: absolute; top: -41px; left: calc(50% - 12px); width: 24px; height: 24px; border: 5px solid var(--surface); border-radius: 50%; background: var(--texte); }
+.evenement__annee { position: absolute; top: -118px; left: 0; right: 0; font-family: var(--f-titre); font-size: 40px; color: var(--t1); }
+.evenement__titre { margin: 0 0 6px; font: 700 23px var(--f-ui); }
+.evenement__texte { margin: 0; color: var(--doux); font-size: 19px; line-height: 1.35; }
+.frise--dense .evenement__texte { font-size: 17px; }
+.frise--dense .evenement__annee { font-size: 32px; }
+
+/* Dialogue */
+.chat { position: relative; display: grid; gap: 14px; max-width: 900px; margin: 0 auto; padding: 24px; border: 1px solid var(--ligne); border-radius: 22px; background: var(--fond); }
+.bulle { max-width: 80%; margin: 0; padding: 14px 20px; border-radius: 20px; font-size: 24px; line-height: 1.35; opacity: 0; transform: translateY(10px); }
+.bulle--h { justify-self: start; border-end-start-radius: 4px; background: var(--surface-2); }
+.bulle--m { justify-self: end; border-end-end-radius: 4px; background: color-mix(in srgb, var(--c5) 22%, var(--surface)); font-family: var(--f-code); font-size: 21px; }
+.bulle.vue { animation: monte .5s both; }
+.frappe { position: absolute; inset-inline-end: 24px; display: none; gap: 6px; padding: 14px 18px; border-radius: 20px; background: color-mix(in srgb, var(--c5) 22%, var(--surface)); }
+.frappe.vue { display: flex; }
+.frappe i { width: 10px; height: 10px; border-radius: 50%; background: var(--texte); animation: point 1s infinite; }
+.frappe i:nth-child(2) { animation-delay: .15s; } .frappe i:nth-child(3) { animation-delay: .3s; }
+@keyframes point { 0%, 60%, 100% { opacity: .25; } 30% { opacity: 1; } }
+.legende { margin: 14px 0 0; color: var(--doux); font-size: 19px; font-style: italic; text-align: center; }
+
+/* Vidéo */
+.video { position: relative; width: 100%; aspect-ratio: 16 / 9; max-height: 470px; margin: 0 auto; border-radius: 18px; overflow: hidden; background: #000; }
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video__vignette { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .5; }
+.video__repli { position: absolute; inset: 0; z-index: 1; text-shadow: 0 2px 8px #000; display: grid; place-content: center; gap: 16px; padding: 30px; color: #fff; text-align: center; font-size: 24px; }
+.video__repli a { color: #9fd3ff; font-weight: 700; }
+.video__jouer { width: 110px; height: 110px; margin: 0 auto; border-radius: 50%; background: var(--prisme-conique); display: grid; place-items: center; }
+.video__jouer::after { content: ""; border-left: 34px solid #111; border-top: 22px solid transparent; border-bottom: 22px solid transparent; margin-left: 8px; }
+
+/* Quiz */
+.question { margin: 0 0 26px; font-size: 36px; font-weight: 700; line-height: 1.3; }
+.choix { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.choix button { display: flex; align-items: center; gap: 16px; width: 100%; padding: 18px 20px; border: 2px solid var(--ligne); border-radius: 18px; background: var(--surface-2); text-align: start; font-size: 25px; line-height: 1.3; cursor: pointer; transition: border-color .2s, background .2s, transform .2s; }
+.choix button:hover { border-color: var(--t2); transform: translateY(-2px); }
+.lettre { flex: none; display: grid; place-items: center; width: 44px; height: 44px; border: 2px solid var(--t2); border-radius: 50%; color: var(--t2); font: 700 22px var(--f-ui); }
+.choix button[aria-pressed="true"] { border-color: var(--t2); }
+.quiz--revele .choix button.juste { border-color: var(--juste); background: color-mix(in srgb, var(--juste) 16%, var(--surface-2)); }
+.quiz--revele .choix button.faux[aria-pressed="true"] { border-color: var(--c3); background: color-mix(in srgb, var(--c3) 14%, var(--surface-2)); }
+.explication { margin: 22px 0 0; padding: 16px 22px; border-radius: 16px; background: color-mix(in srgb, var(--juste) 14%, transparent); font-size: 24px; visibility: hidden; opacity: 0; transition: opacity .4s; }
+.quiz--revele .explication { visibility: visible; opacity: 1; }
+.reveler { margin-top: 18px; padding: 10px 22px; border: 2px solid var(--texte); border-radius: 30px; background: none; font: 700 20px var(--f-ui); cursor: pointer; }
+
+/* Fin */
+.fin .points li::before { content: "✓"; display: grid; place-items: center; width: 26px; height: 26px; top: .25em; background: var(--juste); color: #111; font: 700 16px var(--f-ui); }
+.devoir { margin-top: 26px; padding: 18px 24px; border: 2px dashed var(--t1); border-radius: 18px; font-size: 24px; }
+
+/* ---------- Illustrations : couleurs et animations ---------- */
+.i-t { stroke: var(--texte); } .i-d { stroke: var(--doux); } .i-l { stroke: var(--ligne); }
+.i-c1 { stroke: var(--c1); } .i-c2 { stroke: var(--c2); } .i-c3 { stroke: var(--c3); } .i-c4 { stroke: var(--c4); } .i-c5 { stroke: var(--c5); } .i-j { stroke: var(--juste); }
+.f-t { fill: var(--texte); } .f-d { fill: var(--doux); } .f-s { fill: var(--surface-2); } .f-f { fill: var(--fond); }
+.f-c1 { fill: var(--c1); } .f-c2 { fill: var(--c2); } .f-c3 { fill: var(--c3); } .f-c4 { fill: var(--c4); } .f-c5 { fill: var(--c5); } .f-j { fill: var(--juste); }
+svg .trait { fill: none; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+svg .fin { stroke-width: 2.5; }
+svg text { font-family: var(--f-ui); font-weight: 700; }
+.active .anim-tourne { animation: tourne 8s linear infinite; transform-box: fill-box; transform-origin: center; }
+.active .anim-tourne-inverse { animation: tourne 8s linear infinite reverse; transform-box: fill-box; transform-origin: center; }
+.active .anim-tourne-lent { animation: tourne 30s linear infinite; transform-box: fill-box; transform-origin: center; }
+.active .anim-pulse { animation: pulse 1.8s ease-in-out infinite; animation-delay: calc(var(--d, 0) * 1s); }
+.active .anim-flotte { animation: flotte 3s ease-in-out infinite; }
+.active .anim-trace { stroke-dasharray: var(--l, 800); stroke-dashoffset: var(--l, 800); animation: trace 1.8s .3s ease-out forwards; }
+.active .anim-apparait { opacity: 0; animation: apparait .6s both; animation-delay: calc(var(--d, 0) * 1s + .3s); }
+.active .anim-signal { animation: signal 2.4s linear infinite; animation-delay: calc(var(--d, 0) * 1s); }
+.active .anim-tete { animation: tete 6s steps(1) infinite; }
+.active .anim-clignote { animation: clignote 1.2s steps(2) infinite; }
+@keyframes pulse { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+@keyframes flotte { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes trace { to { stroke-dashoffset: 0; } }
+@keyframes apparait { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
+@keyframes signal { from { offset-distance: 0%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } to { offset-distance: 100%; opacity: 0; } }
+@keyframes tete { 0% { transform: translateX(0); } 16% { transform: translateX(48px); } 33% { transform: translateX(96px); } 50% { transform: translateX(144px); } 66% { transform: translateX(96px); } 83% { transform: translateX(48px); } }
+@keyframes clignote { 50% { opacity: 0; } }
+svg [class*="anim-apparait"] { transform-box: fill-box; transform-origin: center; }
+
+/* ---------- Pied : navigation ---------- */
+.pied { position: fixed; inset: auto 0 0 0; z-index: 20; height: 52px; display: flex; align-items: center; justify-content: center; gap: 14px; font-family: var(--f-ui); }
+.pied__compteur { min-width: 90px; text-align: center; color: var(--doux); font-weight: 700; font-variant-numeric: tabular-nums; }
+/* ---------- Mode présentateur : une seconde fenêtre, vue du seul enseignant ----------
+   La fenêtre projetée n'affiche jamais les notes. Celle-ci montre la diapositive en cours,
+   la suivante, les notes, le chronomètre et l'heure ; les deux fenêtres avancent ensemble. */
+.console { display: none; }
+.mode-presentateur .scene { inset-block: 56px 52px; inset-inline: 0 40%; }
+.mode-presentateur .pied { inset-inline: 0 40%; }
+.mode-presentateur .console {
+  position: fixed; inset-block: 56px 0; inset-inline-end: 0; z-index: 19; width: 40%; display: flex; flex-direction: column; gap: 14px;
+  padding: 14px 18px; border-inline-start: 1px solid var(--ligne); background: var(--surface); font-family: var(--f-ui);
+}
+.console h2 { margin: 0; color: var(--doux); font: 700 12px var(--f-ui); letter-spacing: .1em; text-transform: uppercase; }
+.console__horloges { display: flex; gap: 12px; align-items: center; }
+.console__horloge { display: flex; flex-direction: column; margin: 0; padding: 8px 14px; border: 1px solid var(--ligne); border-radius: 14px; background: var(--fond); }
+.console__horloge span { color: var(--doux); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.console__horloge strong { font: 700 30px/1.1 var(--f-code); font-variant-numeric: tabular-nums; }
+.console__horloges .outil { margin-inline-start: auto; }
+.console__suivante .miniature { display: block; width: min(100%, 360px); margin-top: 6px; cursor: default; }
+.console__suivante .miniature * { animation: none !important; transition: none !important; }
+.console__suivante .miniature .a, .console__suivante .miniature .bulle { opacity: 1; transform: none; }
+.console__fin { margin: 6px 0 0; color: var(--doux); font-weight: 700; }
+.notes { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; }
+.notes__tete { display: flex; align-items: center; justify-content: space-between; }
+.notes__tete .outil { width: 32px; height: 32px; font: 700 13px var(--f-ui); }
+.notes__tete span { display: flex; gap: 6px; align-items: center; }
+.console__projetee { display: flex; align-items: center; justify-content: space-between; gap: 10px; color: var(--doux); font: 700 12px var(--f-ui); letter-spacing: .08em; text-transform: uppercase; }
+.choix-langue { height: 32px; max-width: 170px; padding: 0 10px; border: 1px solid var(--ligne); border-radius: 999px; background: var(--surface); color: var(--texte); font: 700 13px var(--f-ui); cursor: pointer; }
+/* Les notes peuvent être dans une autre langue que les diapositives : chacune garde sa police et son sens de lecture. */
+.notes__texte[lang="fr"], .notes__texte[lang="en"] { font-family: Literata, Georgia, "Times New Roman", serif; }
+.notes__texte[lang="ar"] { font-family: "Noto Naskh Arabic", "El Messiri", Tahoma, serif; }
+.mode-presentateur [data-action="presentateur"] { display: none; }
+.notes__texte { flex: 1; overflow-y: auto; padding: 14px 16px; border: 1px solid var(--ligne); border-radius: 14px; background: var(--fond); font-family: var(--f-texte); font-size: var(--taille-notes, 22px); line-height: 1.55; }
+.notes__texte p { margin: 0 0 .6em; }
+.notes__reponse { padding: 8px 12px; border-radius: 10px; background: color-mix(in srgb, var(--juste) 18%, transparent); font-weight: 700; }
+.console__aide { margin: 0; color: var(--doux); font-size: 13px; line-height: 1.45; }
+
+/* ---------- Diaporama : plein écran, sans barre ni boutons, comme PowerPoint ---------- */
+.mode-diaporama, .mode-diaporama body { background: #000; }
+.mode-diaporama .barre, .mode-diaporama .pied { display: none; }
+.mode-diaporama .scene { inset: 0; }
+.mode-diaporama .diapo { border-radius: 0; box-shadow: none; }
+.mode-diaporama .apercu { inset: 0; }
+.curseur-cache, .curseur-cache * { cursor: none !important; }
+.commandes { position: fixed; inset-block-end: 16px; inset-inline-start: 16px; z-index: 36; display: none; align-items: center; gap: 2px; padding: 4px; border-radius: 30px; background: #000b; color: #fff; opacity: 0; transition: opacity .35s; font-family: var(--f-ui); }
+.mode-diaporama .commandes { display: flex; }
+.commandes.visible, .commandes:hover, .commandes:focus-within { opacity: 1; }
+.commandes button { display: grid; place-items: center; width: 36px; height: 36px; border: 0; border-radius: 50%; background: none; color: #fff; cursor: pointer; }
+.commandes button:hover { background: #ffffff30; }
+.commandes svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.commandes span { min-width: 64px; text-align: center; font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.ecran-noir { position: fixed; inset: 0; z-index: 35; display: none; place-items: center; background: #000; color: #9a9a9a; font: 600 20px var(--f-ui); cursor: pointer; }
+.ecran-noir[data-etat="noir"], .ecran-noir[data-etat="blanc"], .ecran-noir[data-etat="fin"] { display: grid; }
+.ecran-noir[data-etat="blanc"] { background: #fff; }
+.ecran-noir[data-etat="fin"] { place-items: start center; padding-top: 24px; }
+.astuce { position: fixed; inset-block-start: 20px; inset-inline: 16px; z-index: 37; width: max-content; max-width: calc(100% - 32px); margin: 0 auto; padding: 10px 18px; border-radius: 30px; background: #000d; color: #fff; font: 600 15px var(--f-ui); pointer-events: none; }
+.astuce[hidden] { display: none; }
+.outil--diaporama { display: flex; width: auto; gap: 6px; padding: 0 16px 0 12px; border-color: var(--texte); border-radius: 30px; background: var(--texte); color: var(--fond); font: 700 14px var(--f-ui); }
+.outil--diaporama svg { width: 16px; height: 16px; fill: currentColor; stroke: none; }
+.mode-presentateur .outil--diaporama { display: none; }
+@media (max-width: 720px) { .outil--diaporama span { display: none; } .outil--diaporama { padding: 0 12px; } }
+
+/* Notes protégées par mot de passe */
+.verrou { display: grid; gap: 10px; align-content: start; padding: 16px; border: 1px dashed var(--ligne); border-radius: 14px; background: var(--fond); font-family: var(--f-ui); }
+.verrou[hidden] { display: none; }
+.verrou__titre { display: flex; align-items: center; gap: 8px; margin: 0; font-weight: 700; }
+.verrou__titre svg, .notes__tete svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.verrou label { display: grid; gap: 4px; color: var(--doux); font-size: 13px; font-weight: 700; }
+.verrou input { height: 44px; padding: 0 12px; border: 1px solid var(--ligne); border-radius: 10px; background: var(--surface); color: var(--texte); font: 600 18px var(--f-code); letter-spacing: .12em; }
+.verrou button { justify-self: start; height: 40px; padding: 0 20px; border: 0; border-radius: 30px; background: var(--texte); color: var(--fond); font-weight: 700; cursor: pointer; }
+.verrou__message { margin: 0; color: var(--doux); font-size: 14px; }
+.verrou__message.erreur { color: var(--c3); font-weight: 700; }
+.notes__texte[hidden] { display: none; }
+
+/* Vue d'ensemble */
+.apercu { position: fixed; inset: 56px 0 0 0; z-index: 30; overflow-y: auto; padding: 24px; background: var(--fond); }
+.apercu[hidden] { display: none; }
+.apercu__grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; }
+.miniature { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border: 2px solid var(--ligne); border-radius: 12px; background: var(--surface); cursor: pointer; padding: 0; }
+.miniature[aria-current="true"] { border-color: var(--c1); }
+.miniature .diapo { opacity: 1; visibility: visible; transform: scale(var(--km, .18)); transform-origin: 0 0; width: 1280px; height: 720px; transition: none; border-radius: 0; }
+[dir="rtl"] .miniature .diapo { transform-origin: 100% 0; right: 0; left: auto; }
+.miniature .a { opacity: 1; transform: none; }
+.miniature__num { position: absolute; top: 6px; inset-inline-start: 6px; z-index: 2; padding: 0 7px; border-radius: 6px; background: #000b; color: #fff; font: 700 13px/20px var(--f-ui); }
+
+/* Mouvement réduit */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; }
+}
+
+/* Petits écrans : la barre se simplifie */
+@media (max-width: 720px) {
+  .barre__titre, .outil--secondaire { display: none; }
+  .barre { gap: 6px; padding: 0 8px; }
+  .langues button { min-width: 36px; padding: 0 6px; }
+}
+
+/* Impression : une diapositive par page 16:9 */
+@page { size: 1280px 720px; margin: 0; }
+@media print {
+  html, body { height: auto; overflow: visible; background: #fff; }
+  .barre, .pied, .console, .apercu, .scene, .commandes, .ecran-noir, .astuce { display: none !important; }
+  .impression { display: block !important; }
+  .impression .diapo { position: relative; opacity: 1; visibility: visible; transform: none; width: 1280px; height: 720px; border-radius: 0; box-shadow: none; break-after: page; page-break-after: always; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .impression .a, .impression .bulle { opacity: 1 !important; transform: none !important; animation: none !important; }
+  .impression .frise__ligne { transform: none !important; }
+  .impression .explication { visibility: visible; opacity: 1; }
+}
+.impression { display: none; }
+</style>
+</head>
+<body>
+<header class="barre">
+  <a class="marque" href="index.html"><span class="marque__anneau" aria-hidden="true"></span><span data-t="marque">IA · Chapitre 1</span></a>
+  <p class="barre__titre" id="titre-courant"></p>
+  <div class="langues" role="group" aria-label="Langue / Language / اللغة">
+    <button type="button" data-langue="fr" lang="fr">FR</button><button type="button" data-langue="en" lang="en">EN</button><button type="button" data-langue="ar" lang="ar">عربي</button>
+  </div>
+  <div class="outils">
+    <button type="button" class="outil outil--secondaire" data-action="apercu" data-titre="apercu"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></svg></button>
+    <button type="button" class="outil outil--secondaire" data-action="presentateur" data-titre="presentateur"><svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="11" height="8" rx="1.2"/><rect x="10.5" y="11" width="11" height="8" rx="1.2"/><path d="M5 15.5h3M5 18.5h3"/></svg></button>
+    <button type="button" class="outil outil--secondaire" data-action="imprimer" data-titre="imprimer"><svg viewBox="0 0 24 24"><path d="M7 9V3.5h10V9"/><rect x="3.5" y="9" width="17" height="8" rx="1.5"/><path d="M7 14h10v6.5H7z"/></svg></button>
+    <button type="button" class="outil" data-action="theme" data-titre="theme"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></svg></button>
+    <button type="button" class="outil outil--diaporama" data-action="diaporama" data-titre="diaporama_titre"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z"/></svg><span data-t="diaporama"></span></button>
+  </div>
+</header>
+<main class="scene" id="scene" aria-live="polite"><div class="scene__cadre" id="cadre"></div></main>
+<aside class="console" id="console" aria-label="Console">
+  <div class="console__horloges">
+    <p class="console__horloge"><span data-t="chrono"></span><strong id="chrono" dir="ltr">00:00</strong></p>
+    <p class="console__horloge"><span data-t="heure"></span><strong id="heure" dir="ltr">--:--</strong></p>
+    <button type="button" class="outil" data-action="zero" data-titre="zero"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4h4"/></svg></button>
+    <button type="button" class="outil" data-action="noir" data-titre="noir" aria-pressed="false"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="12" rx="1.5" fill="currentColor"/><path d="M9 20h6"/></svg></button>
+  </div>
+  <label class="console__projetee"><span data-t="projetee"></span><select id="langue-projetee" class="choix-langue"></select></label>
+  <div class="console__suivante"><h2 data-t="suivante"></h2><div id="suivante"></div></div>
+  <section class="notes" aria-labelledby="notes-titre">
+    <div class="notes__tete"><h2 id="notes-titre" data-t="notes"></h2>
+      <span><select id="langue-notes" class="choix-langue" data-titre="langue_notes"></select>
+        <button type="button" class="outil" data-action="verrouiller" data-titre="verrouiller" hidden><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>
+        <button type="button" class="outil" data-action="moins" data-titre="moins">A−</button> <button type="button" class="outil" data-action="plus" data-titre="plus">A+</button></span></div>
+    <form class="verrou" id="verrou" hidden>
+      <p class="verrou__titre"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span data-t="verrouille"></span></p>
+      <label><span data-t="mdp"></span><input type="password" id="mdp" autocomplete="current-password" dir="ltr" required></label>
+      <button type="submit" data-t="ouvrir"></button>
+      <p class="verrou__message" id="mdp-message" role="status" hidden></p>
+    </form>
+    <div class="notes__texte" id="notes-texte"></div>
+  </section>
+  <p class="console__aide" data-t="aide"></p>
+</aside>
+<nav class="pied" aria-label="Navigation">
+  <button type="button" class="outil" data-action="precedent" data-titre="precedent"><svg viewBox="0 0 24 24"><path class="fleche" d="M15 5l-7 7 7 7"/></svg></button>
+  <span class="pied__compteur" id="compteur"></span>
+  <button type="button" class="outil" data-action="suivant" data-titre="suivant"><svg viewBox="0 0 24 24"><path class="fleche" d="M9 5l7 7-7 7"/></svg></button>
+</nav>
+<div class="commandes" id="commandes">
+  <button type="button" data-action="precedent" data-titre="precedent"><svg viewBox="0 0 24 24"><path class="fleche" d="M15 5l-7 7 7 7"/></svg></button>
+  <span id="compteur-diaporama" dir="ltr"></span>
+  <button type="button" data-action="suivant" data-titre="suivant"><svg viewBox="0 0 24 24"><path class="fleche" d="M9 5l7 7-7 7"/></svg></button>
+  <button type="button" data-action="apercu" data-titre="toutes"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></svg></button>
+  <button type="button" data-action="noir" data-titre="noir"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="12" rx="1.5" fill="currentColor"/><path d="M9 20h6"/></svg></button>
+  <button type="button" data-action="sortir" data-titre="sortir"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+</div>
+<div class="ecran-noir" id="ecran-noir" data-etat=""><p id="ecran-noir-texte"></p></div>
+<p class="astuce" id="astuce" data-t="projeter" hidden></p>
+<div class="apercu" id="apercu" hidden><div class="apercu__grille" id="apercu-grille"></div></div>
+<div class="impression" id="impression"></div>
+
+<script>
+/*@@DONNEES@@*/
+</script>
+<script>
+(function () {
+  "use strict";
+
+  var L = window.LECON, PHOTOS = window.PHOTOS || {};
+  var UI = {
+    fr: { presentateur: "Mode présentateur : vos notes dans une seconde fenêtre, vue de vous seul (S)", projecteur: "Vidéoprojecteur détecté : S met les diapositives en plein écran dessus et ouvre vos notes sur cet écran", projetee: "Langue projetée", chrono: "Chronomètre", heure: "Heure", zero: "Remettre le chronomètre à zéro",
+          suivante: "Diapositive suivante", fin: "Fin de la présentation", reponse: "Réponse :", plus: "Agrandir les notes", moins: "Réduire les notes", ecran: "Présentateur",
+          aide: "Cette fenêtre n'est vue que par vous. Placez l'autre fenêtre sur le vidéoprojecteur (écran étendu : touches Windows + P, puis « Étendre ») et appuyez sur F pour le diaporama en plein écran. Les deux fenêtres avancent ensemble ; B : écran noir. Les boutons FR / EN / عربي ne changent que cette fenêtre : diapositives et notes pour vous seul ; « Langue projetée » choisit ce que voit la classe.",
+          popup: "Le navigateur a bloqué la fenêtre du présentateur : autorisez les fenêtres surgissantes (pop-ups) pour cette page.",
+          marque: "IA · Chapitre 1", notes: "Notes de l'enseignant", apercu: "Vue d'ensemble (O)", imprimer: "Imprimer / PDF (P)", theme: "Thème Nuit ou Jour (T)",
+          diaporama: "Diaporama", diaporama_titre: "Lancer le diaporama en plein écran (F5 : depuis le début, Maj+F5 ou F : depuis cette diapositive)",
+          fin_diaporama: "Fin du diaporama. Cliquez pour quitter.", toutes: "Toutes les diapositives (G)", noir: "Écran noir (B)", sortir: "Quitter le diaporama (Échap)",
+          projeter: "Placez cette fenêtre sur le vidéoprojecteur, puis appuyez sur F pour le plein écran.",
+          verrouille: "Notes protégées par un mot de passe", mdp: "Mot de passe", ouvrir: "Afficher les notes", mdp_faux: "Mot de passe incorrect.",
+          calcul: "Vérification…", verrouiller: "Verrouiller les notes", langue_notes: "Langue des notes", notes_auto: "Comme les diapositives", precedent: "Précédente (←)", suivant: "Suivante (→)", reveler: "Afficher la réponse", video_hors: "La vidéo demande une connexion Internet.",
+          video_ouvrir: "Ouvrir sur YouTube", video_lancer: "Lancer la vidéo", domaine: "domaine public", diapo: "Diapositive {n} sur {t}" },
+    en: { presentateur: "Presenter view: your notes in a second window that only you see (S)", projecteur: "Projector detected: S puts the slides full screen on it and opens your notes on this screen", projetee: "Projected language", chrono: "Timer", heure: "Time", zero: "Reset the timer",
+          suivante: "Next slide", fin: "End of the presentation", reponse: "Answer:", plus: "Larger notes", moins: "Smaller notes", ecran: "Presenter",
+          aide: "Only you see this window. Put the other window on the projector (extended display: Windows + P, then “Extend”) and press F for the full-screen slide show. Both windows move together; B: black screen. The FR / EN / عربي buttons only change this window: slides and notes for you alone; “Projected language” picks what the class sees.",
+          popup: "The browser blocked the presenter window: allow pop-ups for this page.",
+          marque: "AI · Chapter 1", notes: "Teacher's notes", apercu: "Overview (O)", imprimer: "Print / PDF (P)", theme: "Night or Day theme (T)",
+          diaporama: "Slide show", diaporama_titre: "Start the full-screen slide show (F5: from the beginning, Shift+F5 or F: from this slide)",
+          fin_diaporama: "End of slide show. Click to exit.", toutes: "All slides (G)", noir: "Black screen (B)", sortir: "End the show (Esc)",
+          projeter: "Put this window on the projector, then press F for full screen.",
+          verrouille: "Notes protected by a password", mdp: "Password", ouvrir: "Show the notes", mdp_faux: "Wrong password.",
+          calcul: "Checking…", verrouiller: "Lock the notes", langue_notes: "Language of the notes", notes_auto: "Same as the slides", precedent: "Previous (←)", suivant: "Next (→)", reveler: "Show the answer", video_hors: "The video needs an Internet connection.",
+          video_ouvrir: "Open on YouTube", video_lancer: "Play the video", domaine: "public domain", diapo: "Slide {n} of {t}" },
+    ar: { presentateur: "وضع المقدِّم: ملاحظاتكم في نافذة ثانية لا يراها غيركم (S)", projecteur: "تمّ اكتشاف جهاز العرض: يعرض S الشرائح عليه بملء الشاشة ويفتح ملاحظاتكم على هذه الشاشة", projetee: "لغة الشاشة المعروضة", chrono: "الميقاتية", heure: "الساعة", zero: "إعادة ضبط الميقاتية",
+          suivante: "الشريحة التالية", fin: "نهاية العرض", reponse: "الجواب:", plus: "تكبير خط الملاحظات", moins: "تصغير خط الملاحظات", ecran: "المقدِّم",
+          aide: "لا يرى هذه النافذة أحدٌ غيركم. ضعوا النافذة الأخرى على جهاز العرض (الشاشة الممتدّة: مفتاحا Windows + P، ثم «توسيع») واضغطوا F لعرض الشرائح بملء الشاشة. تتقدّم النافذتان معًا؛ B: شاشة سوداء. لا تغيّر أزرار FR / EN / عربي إلا هذه النافذة: الشرائح والملاحظات لكم وحدكم؛ و«لغة الشاشة المعروضة» تحدّد ما يراه الطلبة.",
+          popup: "منع المتصفّح نافذة المقدِّم: اسمحوا بالنوافذ المنبثقة لهذه الصفحة.",
+          marque: "الذكاء الاصطناعي · الفصل 1", notes: "ملاحظات الأستاذ", apercu: "نظرة شاملة (O)", imprimer: "طباعة / PDF ‏(P)", theme: "المظهر الليلي أو النهاري (T)",
+          diaporama: "عرض الشرائح", diaporama_titre: "بدء عرض الشرائح بملء الشاشة (F5: من البداية، Shift+F5 أو F: من هذه الشريحة)",
+          fin_diaporama: "نهاية عرض الشرائح. انقروا للخروج.", toutes: "كل الشرائح (G)", noir: "شاشة سوداء (B)", sortir: "إنهاء العرض (Esc)",
+          projeter: "ضعوا هذه النافذة على جهاز العرض، ثم اضغطوا F لملء الشاشة.",
+          verrouille: "الملاحظات محميّة بكلمة سرّ", mdp: "كلمة السرّ", ouvrir: "إظهار الملاحظات", mdp_faux: "كلمة السرّ غير صحيحة.",
+          calcul: "جارٍ التحقّق…", verrouiller: "قفل الملاحظات", langue_notes: "لغة الملاحظات", notes_auto: "مثل الشرائح", precedent: "السابقة", suivant: "التالية", reveler: "إظهار الجواب", video_hors: "يحتاج الفيديو إلى اتصال بالإنترنت.",
+          video_ouvrir: "فتح على YouTube", video_lancer: "تشغيل الفيديو", domaine: "ملكية عامة", diapo: "الشريحة {n} من {t}" }
+  };
+  var LETTRES = { fr: ["A", "B", "C", "D"], en: ["A", "B", "C", "D"], ar: ["أ", "ب", "ج", "د"] };
+
+  /* ---------- Petits outils ---------- */
+  function esc(t) { return String(t == null ? "" : t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+  // *italique* et **gras**, après échappement
+  // **gras**, *italique* ; une période « 1956–1980 » ne se coupe jamais en fin de ligne.
+  function riche(t) { return esc(t).replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>").replace(/\*([^*\s][^*]*)\*/g, "<em>$1</em>").replace(/\(?\d{3,4}\s?[–-]\s?\d{2,4}\)?/g, '<span class="insecable">$&</span>'); }
+  function lire(cle) { try { return localStorage.getItem(cle); } catch (e) { return null; } }
+  function ecrire(cle, v) { try { localStorage.setItem(cle, v); } catch (e) { /* stockage indisponible */ } }
+  function tpl(t, v) { return t.replace(/\{(\w+)\}/g, function (m, k) { return v[k] != null ? v[k] : m; }); }
+
+  /* ---------- Illustrations (SVG dessinés ici : aucun fichier externe) ---------- */
+  function engrenage(cx, cy, r, dents, classe) {
+    var d = "", n = dents * 2;
+    for (var i = 0; i < n; i++) {
+      var a0 = (i / n) * 2 * Math.PI, a1 = ((i + 1) / n) * 2 * Math.PI, rr = i % 2 ? r * .82 : r;
+      d += (i ? "L" : "M") + (cx + rr * Math.cos(a0)).toFixed(1) + "," + (cy + rr * Math.sin(a0)).toFixed(1) + "A" + rr + "," + rr + " 0 0 1 " + (cx + rr * Math.cos(a1)).toFixed(1) + "," + (cy + rr * Math.sin(a1)).toFixed(1);
+    }
+    return '<g class="' + classe + '"><path class="trait f-s i-t" d="' + d + 'Z"/><circle class="trait f-f i-t" cx="' + cx + '" cy="' + cy + '" r="' + (r * .3) + '"/></g>';
+  }
+  function svg(contenu, vb) { return '<svg viewBox="' + (vb || "0 0 400 300") + '" role="img" aria-hidden="true">' + contenu + '</svg>'; }
+  function noeuds(xs, ys, r, classe) { var s = ""; xs.forEach(function (x, i) { s += '<circle class="trait ' + (classe || "f-s i-t") + '" cx="' + x + '" cy="' + ys[i] + '" r="' + r + '"/>'; }); return s; }
+
+  // Une rangée de mots dans des cases, centrée entre x0 et x1 ; de droite à gauche en arabe. Renvoie le dessin et les centres.
+  function rangee(mots, y, x0, x1, taille, couleur) {
+    var ecart = 8, larg = mots.map(function (m) { return Math.max(30, m.length * taille * .6 + 18); });
+    var somme = function (l) { return l.reduce(function (a, b) { return a + b; }, 0) + ecart * (l.length - 1); };
+    if (somme(larg) > x1 - x0) { var k = (x1 - x0 - ecart * (mots.length - 1)) / (somme(larg) - ecart * (mots.length - 1)); larg = larg.map(function (w) { return w * k; }); }
+    var x = x0 + (x1 - x0 - somme(larg)) / 2, centres = [], s = "";
+    mots.forEach(function (m, i) {
+      var cx = x + larg[i] / 2;
+      if (langue === "ar") cx = x0 + x1 - cx;
+      centres.push(cx);
+      s += '<rect class="trait f-s ' + (couleur ? couleur(i) : "i-t") + '" x="' + (cx - larg[i] / 2).toFixed(1) + '" y="' + (y - 18) + '" width="' + larg[i].toFixed(1) + '" height="36" rx="8"/>' +
+        '<text class="f-t" x="' + cx.toFixed(1) + '" y="' + (y + 6) + '" text-anchor="middle" font-size="' + taille + '">' + esc(m) + '</text>';
+      x += larg[i] + ecart;
+    });
+    return { s: s, c: centres, l: larg };
+  }
+  // Une flèche de (x1, y1) à (x2, y2), pointe comprise.
+  function fleche(x1, y1, x2, y2, classe, style) {
+    var a = Math.atan2(y2 - y1, x2 - x1), p = function (d, t) { return (x2 + d * Math.cos(a + t)).toFixed(1) + " " + (y2 + d * Math.sin(a + t)).toFixed(1); };
+    return '<g class="anim-apparait" style="' + (style || "") + '"><path class="trait ' + classe + '" d="M' + x1 + ' ' + y1 + ' L' + x2 + ' ' + y2 + '"/>' +
+      '<path class="' + classe.replace(/i-/g, "f-") + '" d="M' + x2 + ' ' + y2 + ' L' + p(14, Math.PI - .45) + ' L' + p(14, Math.PI + .45) + ' z"/></g>';
+  }
+  // Un arc d'attention au-dessus d'une rangée, entre deux mots.
+  function arc(x1, x2, y, classe, style) {
+    var h = 22 + Math.abs(x1 - x2) * .28;
+    return '<path class="trait ' + classe + ' anim-apparait" style="' + (style || "") + '" d="M' + x1.toFixed(1) + ' ' + y + ' C' + x1.toFixed(1) + ' ' + (y - h) + ' ' + x2.toFixed(1) + ' ' + (y - h) + ' ' + x2.toFixed(1) + ' ' + y + '"/>';
+  }
+
+  var ILLUS = {
+    engrenages: function () { return svg(engrenage(140, 150, 80, 12, "anim-tourne") + engrenage(262, 104, 52, 8, "anim-tourne-inverse") + engrenage(270, 222, 40, 6, "anim-tourne-inverse")); },
+    elephant: function () {
+      return svg('<g class="anim-flotte"><ellipse class="trait f-s i-t" cx="180" cy="210" rx="110" ry="55"/><circle class="trait f-s i-t" cx="300" cy="180" r="42"/>' +
+        '<path class="trait i-t" d="M330 200 Q360 250 330 280"/><path class="trait f-s i-t" d="M285 150 q-40 10 -30 50 q20 10 35 -10"/>' +
+        '<rect class="trait f-s i-t" x="100" y="250" width="24" height="40" rx="6"/><rect class="trait f-s i-t" x="230" y="250" width="24" height="40" rx="6"/>' +
+        '<rect class="trait f-s i-c1" x="120" y="70" width="110" height="90" rx="8"/><path class="trait f-s i-c1" d="M110 70 Q175 10 240 70 Z"/>' +
+        '<circle class="trait f-f i-c2" cx="175" cy="115" r="30"/><line class="trait i-c3 anim-tourne" x1="175" y1="115" x2="175" y2="92" style="transform-origin:175px 115px;transform-box:view-box"/>' +
+        '<circle class="f-c4 anim-pulse" cx="175" cy="115" r="5"/></g>');
+    },
+    ordinateur: function () {
+      var s = "";
+      for (var c = 0; c < 4; c++) {
+        s += '<rect class="trait f-s i-t" x="' + (40 + c * 84) + '" y="50" width="70" height="200" rx="8"/>';
+        for (var r = 0; r < 8; r++) s += '<circle class="f-c' + ((c + r) % 5 + 1) + ' anim-pulse" style="--d:' + ((c * 8 + r) % 7 / 7).toFixed(2) + '" cx="' + (60 + c * 84 + (r % 2) * 30) + '" cy="' + (80 + Math.floor(r / 2) * 50) + '" r="8"/>';
+      }
+      return svg(s + '<line class="trait i-d fin" x1="30" y1="270" x2="370" y2="270"/>');
+    },
+    profil: function () {
+      var s = '<circle class="trait i-l" cx="200" cy="120" r="92"/><g class="anim-tourne-lent" style="transform-origin:200px 120px;transform-box:view-box">' +
+        '<circle class="f-c1" cx="200" cy="28" r="7"/><circle class="f-c3" cx="292" cy="120" r="7"/><circle class="f-c5" cx="108" cy="120" r="7"/></g>';
+      s += '<circle class="trait f-s i-t" cx="200" cy="112" r="50"/><path class="trait f-s i-t" d="M96 292 q0 -104 104 -104 q104 0 104 104"/>';
+      return svg(s);
+    },
+    calculatrice: function () {
+      var s = '<rect class="trait f-s i-t" x="40" y="80" width="320" height="150" rx="18"/>';
+      for (var i = 0; i < 5; i++) s += '<g class="' + (i % 2 ? "anim-tourne" : "anim-tourne-inverse") + '"><circle class="trait f-f i-c' + (i + 1) + '" cx="' + (80 + i * 60) + '" cy="155" r="24"/><line class="trait i-t fin" x1="' + (80 + i * 60) + '" y1="155" x2="' + (80 + i * 60) + '" y2="135"/></g>';
+      s += '<rect class="trait f-f i-t" x="120" y="40" width="160" height="34" rx="8"/><text class="f-c1" x="200" y="64" text-anchor="middle" font-size="22">1 6 4 2</text>';
+      return svg(s);
+    },
+    turing: function () {
+      var s = "", syms = ["1", "0", "1", "1", "0", "1", "0"];
+      for (var i = 0; i < 7; i++) s += '<rect class="trait f-s i-t" x="' + (32 + i * 48) + '" y="150" width="48" height="56"/><text class="f-t" x="' + (56 + i * 48) + '" y="188" text-anchor="middle" font-size="28">' + syms[i] + '</text>';
+      s += '<g class="anim-tete"><path class="trait f-c1 i-c1" d="M104 110 l24 30 l24 -30 z"/><rect class="trait f-s i-c1" x="92" y="60" width="72" height="44" rx="10"/><text class="f-c1" x="128" y="90" text-anchor="middle" font-size="22">q1</text></g>';
+      s += '<path class="trait i-d fin" d="M20 178 H32 M368 178 H380" stroke-dasharray="6 6"/>';
+      return svg(s);
+    },
+    neurone: function () {
+      var s = "", ys = [70, 150, 230];
+      ys.forEach(function (y, i) {
+        s += '<path id="n-' + i + '" class="trait i-c' + (i + 2) + '" d="M60 ' + y + ' L200 150"/><circle class="trait f-s i-c' + (i + 2) + '" cx="50" cy="' + y + '" r="18"/>';
+        s += '<circle class="f-c1 anim-signal" r="7" style="offset-path:path(\'M60 ' + y + ' L200 150\');--d:' + (i * .5) + '"/>';
+      });
+      s += '<circle class="trait f-s i-t" cx="220" cy="150" r="42"/><text class="f-t" x="220" y="162" text-anchor="middle" font-size="36">Σ</text>';
+      s += '<path class="trait i-t" d="M262 150 H300"/><path class="trait i-c1" d="M300 180 H325 V120 H350"/><path class="trait i-t" d="M350 150 H390"/>';
+      return svg(s);
+    },
+    ampoule: function () {
+      var s = '<path class="trait f-s i-c1" d="M200 60 a70 70 0 0 0 -42 126 c10 10 12 20 12 34 h60 c0 -14 2 -24 12 -34 A70 70 0 0 0 200 60z"/><path class="trait i-t" d="M175 240 h50 M180 262 h40"/>';
+      for (var i = 0; i < 8; i++) { var a = i * Math.PI / 4; s += '<line class="trait i-c1 anim-pulse" style="--d:' + (i * .15) + '" x1="' + (200 + 95 * Math.cos(a)) + '" y1="' + (130 + 95 * Math.sin(a)) + '" x2="' + (200 + 120 * Math.cos(a)) + '" y2="' + (130 + 120 * Math.sin(a)) + '"/>'; }
+      return svg(s + '<path class="trait i-c3" d="M185 150 l10 -20 l10 20 l10 -20"/>');
+    },
+    imitation: function () {
+      function personne(x, cl) { return '<circle class="trait f-s ' + cl + '" cx="' + x + '" cy="118" r="22"/><path class="trait f-s ' + cl + '" d="M' + (x - 34) + ' 190 q34 -50 68 0 z"/>'; }
+      var s = '<rect class="trait i-d fin" x="10" y="60" width="120" height="160" rx="12"/><rect class="trait i-d fin" x="270" y="20" width="120" height="120" rx="12"/><rect class="trait i-d fin" x="270" y="160" width="120" height="120" rx="12"/>';
+      s += personne(70, "i-c1") + '<text class="f-c1" x="70" y="250" text-anchor="middle" font-size="34">?</text>';
+      s += '<circle class="trait f-s i-c2" cx="330" cy="70" r="20"/><path class="trait f-s i-c2" d="M300 128 q30 -44 60 0 z"/>';
+      s += '<rect class="trait f-s i-c4" x="300" y="190" width="60" height="44" rx="6"/><path class="trait i-c4" d="M318 250 h24 M330 234 v16"/>';
+      s += '<path class="trait i-t fin anim-pulse" d="M135 120 C200 120 210 80 265 80" stroke-dasharray="8 8"/><path class="trait i-t fin anim-pulse" style="--d:.9" d="M135 160 C200 160 210 220 265 220" stroke-dasharray="8 8"/>';
+      return svg(s);
+    },
+    arbre: function () {
+      var s = "", p = [[200, 40], [110, 120], [290, 120], [60, 200], [160, 200], [240, 200], [340, 200], [130, 275], [190, 275]];
+      var a = [[0, 1], [0, 2], [1, 3], [1, 4], [2, 5], [2, 6], [4, 7], [4, 8]], chemin = [0, 1, 4, 8];
+      a.forEach(function (e) { s += '<line class="trait i-l" x1="' + p[e[0]][0] + '" y1="' + p[e[0]][1] + '" x2="' + p[e[1]][0] + '" y2="' + p[e[1]][1] + '"/>'; });
+      for (var i = 0; i < chemin.length - 1; i++) s += '<line class="trait i-c1 anim-apparait" style="--d:' + (i * .5) + '" x1="' + p[chemin[i]][0] + '" y1="' + p[chemin[i]][1] + '" x2="' + p[chemin[i + 1]][0] + '" y2="' + p[chemin[i + 1]][1] + '"/>';
+      p.forEach(function (q, i) { s += '<circle class="trait ' + (chemin.indexOf(i) >= 0 ? "f-c1 i-c1" : "f-s i-t") + '" cx="' + q[0] + '" cy="' + q[1] + '" r="15"/>'; });
+      return svg(s);
+    },
+    courbe: function () {
+      var s = '<path class="trait i-d fin" d="M30 260 H385 M30 260 V20"/>';
+      s += '<path class="trait i-c1 anim-trace" style="--l:900" d="M30 240 C70 230 80 70 110 70 C140 70 150 220 175 225 C200 228 205 110 230 110 C255 110 262 210 285 215 C320 222 330 60 385 25"/>';
+      s += '<rect class="f-c2" x="140" y="232" width="50" height="10" rx="5" opacity=".7"/><rect class="f-c2" x="250" y="232" width="45" height="10" rx="5" opacity=".7"/>';
+      s += '<text class="f-d" x="30" y="285" font-size="16">1956</text><text class="f-d" x="150" y="285" font-size="16">1974</text><text class="f-d" x="252" y="285" font-size="16">1987</text><text class="f-d" x="350" y="285" font-size="16">2020</text>';
+      s += '<text class="f-c2 anim-pulse" x="165" y="215" text-anchor="middle" font-size="30">❄</text><text class="f-c2 anim-pulse" style="--d:.6" x="272" y="200" text-anchor="middle" font-size="30">❄</text>';
+      return svg(s);
+    },
+    perceptron: function () {
+      var s = "";
+      for (var r = 0; r < 4; r++) for (var c = 0; c < 4; c++) s += '<rect class="' + ((r + c) % 3 ? "f-s" : "f-c2") + '" x="' + (30 + c * 26) + '" y="' + (90 + r * 26) + '" width="22" height="22" rx="3"/>';
+      [110, 150, 190].forEach(function (y, i) { s += '<path class="trait i-c' + (i + 3) + ' anim-pulse" style="--d:' + (i * .3) + '" d="M140 ' + y + ' C190 ' + y + ' 200 150 240 150" stroke-width="' + (3 + i * 2) + '"/>'; });
+      s += '<circle class="trait f-s i-t" cx="270" cy="150" r="32"/><text class="f-t" x="270" y="161" text-anchor="middle" font-size="30">Σ</text><path class="trait i-t" d="M302 150 H340"/>';
+      s += '<circle class="trait f-j i-j anim-pulse" cx="362" cy="150" r="18"/>';
+      return svg(s);
+    },
+    dames: function () {
+      var s = "";
+      for (var r = 0; r < 6; r++) for (var c = 0; c < 6; c++) s += '<rect class="' + ((r + c) % 2 ? "f-t" : "f-s") + '" x="' + (80 + c * 40) + '" y="' + (30 + r * 40) + '" width="40" height="40" opacity="' + ((r + c) % 2 ? .25 : 1) + '"/>';
+      s += '<circle class="trait f-c3 i-t" cx="140" cy="210" r="15"/><circle class="trait f-c3 i-t" cx="220" cy="210" r="15"/><circle class="trait f-c5 i-t" cx="180" cy="90" r="15"/>';
+      s += '<g class="anim-flotte"><circle class="trait f-c5 i-c1" cx="260" cy="130" r="15"/></g>';
+      return svg(s);
+    },
+    robot: function () {
+      return svg('<g class="anim-flotte"><rect class="trait f-s i-t" x="150" y="150" width="100" height="90" rx="10"/><rect class="trait i-t" x="195" y="80" width="10" height="70"/>' +
+        '<rect class="trait f-s i-c2" x="170" y="50" width="60" height="38" rx="8"/><circle class="trait f-f i-c1" cx="200" cy="69" r="11"/><circle class="f-c1 anim-clignote" cx="200" cy="69" r="4"/>' +
+        '<line class="trait i-t" x1="230" y1="55" x2="262" y2="20"/><circle class="f-c4 anim-pulse" cx="262" cy="20" r="6"/></g>' +
+        '<circle class="trait f-f i-t" cx="170" cy="252" r="16"/><circle class="trait f-f i-t" cx="230" cy="252" r="16"/>' +
+        '<rect class="trait f-s i-c3" x="300" y="200" width="60" height="60" rx="4"/><path class="trait i-d fin anim-pulse" d="M252 195 L300 210" stroke-dasharray="6 6"/>');
+    },
+    regles: function () {
+      var s = "";
+      for (var i = 0; i < 3; i++) s += '<g class="anim-apparait" style="--d:' + (i * .3) + '"><rect class="trait f-s i-c' + (i + 2) + '" x="20" y="' + (40 + i * 75) + '" width="130" height="55" rx="10"/><path class="trait i-t fin" d="M38 ' + (60 + i * 75) + ' h60 M38 ' + (78 + i * 75) + ' h90"/></g>';
+      s += '<path class="trait i-d" d="M155 110 L200 140 M155 150 H200 M155 190 L200 160"/>' + engrenage(250, 150, 50, 9, "anim-tourne");
+      s += '<path class="trait i-t" d="M300 150 H325"/><rect class="trait f-s i-j anim-pulse" x="325" y="120" width="60" height="60" rx="10"/><path class="trait i-j" d="M340 150 l10 12 l22 -24"/>';
+      return svg(s);
+    },
+    reseau: function () {
+      var couches = [[4, 60], [6, 160], [6, 250], [3, 345]], s = "", pos = [];
+      couches.forEach(function (c) { var l = []; for (var i = 0; i < c[0]; i++) l.push([c[1], 150 + (i - (c[0] - 1) / 2) * 42]); pos.push(l); });
+      for (var k = 0; k < pos.length - 1; k++) pos[k].forEach(function (a) { pos[k + 1].forEach(function (b) { s += '<line class="i-l" stroke-width="1.5" x1="' + a[0] + '" y1="' + a[1] + '" x2="' + b[0] + '" y2="' + b[1] + '"/>'; }); });
+      for (var m = 0; m < 6; m++) { var a = pos[0][m % 4], b = pos[1][(m * 2) % 6], c = pos[2][(m * 3 + 1) % 6], d = pos[3][m % 3];
+        s += '<circle class="f-c1 anim-signal" r="6" style="offset-path:path(\'M' + a[0] + ' ' + a[1] + ' L' + b[0] + ' ' + b[1] + ' L' + c[0] + ' ' + c[1] + ' L' + d[0] + ' ' + d[1] + '\');--d:' + (m * .4) + '"/>'; }
+      pos.forEach(function (l, k) { l.forEach(function (p) { s += '<circle class="trait f-s i-c' + (k + 2) + '" cx="' + p[0] + '" cy="' + p[1] + '" r="13"/>'; }); });
+      return svg(s);
+    },
+    flocon: function () {
+      var s = '<g class="anim-tourne-lent" style="transform-origin:170px 150px;transform-box:view-box">';
+      for (var i = 0; i < 6; i++) { var a = i * Math.PI / 3, x = 170 + 100 * Math.cos(a), y = 150 + 100 * Math.sin(a);
+        s += '<line class="trait i-c2" x1="170" y1="150" x2="' + x.toFixed(1) + '" y2="' + y.toFixed(1) + '"/>';
+        var mx = 170 + 60 * Math.cos(a), my = 150 + 60 * Math.sin(a);
+        s += '<path class="trait i-c2 fin" d="M' + (mx + 22 * Math.cos(a + .8)).toFixed(1) + ' ' + (my + 22 * Math.sin(a + .8)).toFixed(1) + ' L' + mx.toFixed(1) + ' ' + my.toFixed(1) + ' L' + (mx + 22 * Math.cos(a - .8)).toFixed(1) + ' ' + (my + 22 * Math.sin(a - .8)).toFixed(1) + '"/>'; }
+      s += '</g><rect class="trait f-s i-t" x="320" y="40" width="30" height="190" rx="15"/><circle class="trait f-c2 i-t" cx="335" cy="250" r="26"/><rect class="f-c2" x="328" y="170" width="14" height="70" rx="7"/>';
+      return svg(s);
+    },
+    donnees: function () {
+      function cyl(x, y, cl) { return '<path class="trait f-s ' + cl + '" d="M' + x + ' ' + y + ' v60 a45 14 0 0 0 90 0 v-60"/><ellipse class="trait f-s ' + cl + '" cx="' + (x + 45) + '" cy="' + y + '" rx="45" ry="14"/><path class="trait fin ' + cl + '" d="M' + x + ' ' + (y + 30) + ' a45 14 0 0 0 90 0"/>'; }
+      var s = cyl(30, 90, "i-c2") + cyl(30, 180, "i-c5");
+      for (var i = 0; i < 8; i++) s += '<rect class="f-c' + (i % 5 + 1) + ' anim-signal" width="16" height="20" rx="3" style="offset-path:path(\'M130 ' + (110 + (i % 3) * 50) + ' C220 ' + (60 + i * 25) + ' 260 150 360 150\');--d:' + (i * .3) + '"/>';
+      s += '<circle class="trait f-s i-c1" cx="340" cy="150" r="40"/><path class="trait i-c1" d="M322 150 l12 14 l24 -28"/>';
+      return svg(s);
+    },
+    echecs: function () {
+      var s = "";
+      for (var r = 0; r < 6; r++) for (var c = 0; c < 6; c++) s += '<rect class="' + ((r + c) % 2 ? "f-c5" : "f-s") + '" x="' + (80 + c * 40) + '" y="' + (30 + r * 40) + '" width="40" height="40" opacity="' + ((r + c) % 2 ? .45 : 1) + '"/>';
+      s += '<text class="f-t" x="140" y="175" text-anchor="middle" font-size="36">♚</text><text class="f-c1 anim-flotte" x="260" y="95" text-anchor="middle" font-size="36">♛</text><text class="f-t" x="180" y="255" text-anchor="middle" font-size="36">♜</text>';
+      s += '<path class="trait i-c1 fin anim-pulse" d="M260 105 L150 160" stroke-dasharray="6 8"/>';
+      return svg(s);
+    },
+    imagenet: function () {
+      var s = "", cl = ["f-c1", "f-c2", "f-c3", "f-c4", "f-c5", "f-j", "f-c2", "f-c4", "f-c1"];
+      for (var i = 0; i < 9; i++) s += '<rect class="' + cl[i] + ' anim-apparait" style="--d:' + (i * .1) + '" x="' + (20 + (i % 3) * 62) + '" y="' + (50 + Math.floor(i / 3) * 62) + '" width="56" height="56" rx="8" opacity=".85"/>';
+      s += '<path class="trait i-t" d="M215 150 H255 M245 140 l10 10 l-10 10"/>';
+      [["92%", 90, "f-j"], ["5%", 150, "f-d"], ["3%", 210, "f-d"]].forEach(function (b, i) { s += '<rect class="' + b[2] + ' anim-apparait" style="--d:' + (1 + i * .2) + '" x="270" y="' + (b[1] - 18) + '" width="' + (i ? 20 + i * 6 : 110) + '" height="34" rx="6"/><text class="f-t" x="' + (i ? 310 + i * 6 : 390) + '" y="' + (b[1] + 8) + '" text-anchor="end" font-size="18">' + b[0] + '</text>'; });
+      return svg(s);
+    },
+    go: function () {
+      var s = '<rect class="f-c1" x="60" y="20" width="280" height="260" rx="10" opacity=".25"/>';
+      for (var i = 0; i < 9; i++) s += '<line class="i-t" stroke-width="1.5" x1="' + (80 + i * 30) + '" y1="40" x2="' + (80 + i * 30) + '" y2="260"/><line class="i-t" stroke-width="1.5" x1="80" y1="' + (40 + i * 27.5) + '" x2="320" y2="' + (40 + i * 27.5) + '"/>';
+      var pierres = [[2, 2, 1], [3, 3, 0], [5, 2, 1], [6, 6, 0], [2, 6, 1], [4, 4, 0], [5, 5, 1], [3, 6, 0]];
+      pierres.forEach(function (p) { s += '<circle class="trait ' + (p[2] ? "f-t i-t" : "f-f i-t") + '" cx="' + (80 + p[0] * 30) + '" cy="' + (40 + p[1] * 27.5) + '" r="12"/>'; });
+      s += '<circle class="trait f-t i-c1 anim-apparait" style="--d:.8" cx="' + (80 + 6 * 30) + '" cy="' + (40 + 3 * 27.5) + '" r="12"/><circle class="trait i-c1 anim-pulse" cx="' + (80 + 6 * 30) + '" cy="' + (40 + 3 * 27.5) + '" r="22"/>';
+      return svg(s);
+    },
+    attention: function () {
+      var s = "", x = [40, 95, 150, 205, 260, 315, 365];
+      x.forEach(function (v, i) { s += '<rect class="trait ' + (i === 5 ? "f-s i-c1" : i === 1 ? "f-s i-c2" : "f-s i-t") + '" x="' + (v - 24) + '" y="200" width="48" height="36" rx="8"/>'; });
+      [[5, 1, 9], [5, 3, 3], [5, 4, 2], [5, 0, 1.5], [5, 2, 1.5]].forEach(function (a, i) {
+        var x1 = x[a[0]], x2 = x[a[1]], h = 40 + Math.abs(x1 - x2) * .45;
+        s += '<path class="trait i-c' + (i ? 5 : 1) + ' anim-apparait" style="--d:' + (i * .25) + '" stroke-width="' + a[2] + '" d="M' + x1 + ' 196 C' + x1 + ' ' + (196 - h) + ' ' + x2 + ' ' + (196 - h) + ' ' + x2 + ' 196"/>';
+      });
+      return svg(s);
+    },
+    motsuivant: function (d) {
+      var s = "";
+      if (d && d.debut && d.suites) {
+        var r = rangee(String(d.debut).split(/\s+/).concat("?"), 60, 10, 390, 18, function (i, n) { return "i-t"; });
+        s = r.s.replace(/<text class="f-t"([^>]*)>\?<\/text>/, '<text class="f-c1"$1>?</text>');
+        var dernier = r.c[r.c.length - 1];
+        s += '<rect class="trait i-c1 anim-clignote" x="' + (dernier - r.l[r.l.length - 1] / 2 - 4).toFixed(1) + '" y="38" width="' + (r.l[r.l.length - 1] + 8).toFixed(1) + '" height="44" rx="10"/>';
+        [[0.82, "f-c1"], [0.08, "f-c2"], [0.05, "f-c4"], [0.03, "f-c5"]].forEach(function (b, i) {
+          var y = 124 + i * 42, w = b[0] * 220 + 6, x = langue === "ar" ? 340 - w : 60;
+          s += '<g class="anim-apparait" style="--d:' + (.4 + i * .2) + '"><rect class="' + b[1] + '" x="' + x + '" y="' + y + '" width="' + w + '" height="28" rx="6"/>' +
+            '<text class="f-t" x="' + (langue === "ar" ? 350 : 50) + '" y="' + (y + 20) + '" text-anchor="' + (langue === "ar" ? "start" : "end") + '" font-size="15" direction="ltr">' + Math.round(b[0] * 100) + '%</text>' +
+            '<text class="f-t" x="' + (langue === "ar" ? x - 8 : x + w + 8) + '" y="' + (y + 20) + '" text-anchor="' + (langue === "ar" ? "end" : "start") + '" font-size="17" direction="ltr">' + esc(d.suites[i] || "") + '</text></g>';
+        });
+        return svg(s);
+      }
+      for (var i = 0; i < 4; i++) s += '<rect class="trait f-s i-t" x="' + (20 + i * 62) + '" y="40" width="54" height="40" rx="8"/>';
+      s += '<rect class="trait f-f i-c1 anim-clignote" x="268" y="40" width="54" height="40" rx="8"/><text class="f-c1" x="295" y="68" text-anchor="middle" font-size="24">?</text>';
+      [[0.82, "f-c1"], [0.08, "f-c2"], [0.05, "f-c4"], [0.03, "f-c5"]].forEach(function (b, i) {
+        s += '<rect class="' + b[1] + ' anim-apparait" style="--d:' + (.4 + i * .2) + '" x="60" y="' + (120 + i * 40) + '" width="' + (b[0] * 300 + 6) + '" height="28" rx="6"/><text class="f-t" x="50" y="' + (140 + i * 40) + '" text-anchor="end" font-size="16">' + Math.round(b[0] * 100) + '%</text>';
+      });
+      return svg(s);
+    },
+    // Du texte aux nombres : les mots deviennent des tokens, des numéros, puis des vecteurs (colonnes de nombres).
+    tokens: function (d) {
+      var mots = String((d && d.phrase) || "").split(/\s+/), ids = String((d && d.ids) || "").split(/\s+/);
+      var r = rangee(mots, 48, 10, 390, 19, function (i) { return "i-c" + (i % 5 + 1); }), s = r.s;
+      r.c.forEach(function (cx, i) {
+        var w = Math.min(r.l[i], 64), c = i % 5 + 1;
+        s += fleche(cx, 72, cx, 102, "i-d fin", "--d:" + (.2 + i * .12));
+        s += '<g class="anim-apparait" style="--d:' + (.4 + i * .12) + '"><rect class="trait f-f i-c' + c + '" x="' + (cx - w / 2).toFixed(1) + '" y="108" width="' + w.toFixed(1) + '" height="34" rx="8"/>' +
+          '<text class="f-t" x="' + cx.toFixed(1) + '" y="131" text-anchor="middle" font-size="16" direction="ltr">' + esc(ids[i] || "") + '</text></g>';
+        s += fleche(cx, 148, cx, 176, "i-d fin", "--d:" + (1 + i * .12));
+        var g = '<g class="anim-apparait" style="--d:' + (1.2 + i * .12) + '">';
+        for (var k = 0; k < 6; k++) g += '<rect class="f-c' + c + '" x="' + (cx - 13).toFixed(1) + '" y="' + (184 + k * 17) + '" width="26" height="14" rx="3" opacity="' + (.2 + ((i * 5 + k * 3) % 8) / 10).toFixed(2) + '"/>';
+        s += g + '<rect class="trait i-d fin" x="' + (cx - 17).toFixed(1) + '" y="180" width="34" height="108" rx="6"/></g>';
+      });
+      return svg(s);
+    },
+    // La carte des sens : les mots aux voisins semblables se regroupent ; homme → femme comme roi → reine.
+    sens: function (d) {
+      var m = (d && d.mots) || [], s = "";
+      var P = [[52, 64, 2], [120, 94, 2], [66, 126, 2], [44, 222, 3], [112, 202, 3], [92, 262, 3], [236, 244, 1], [280, 116, 1], [334, 244, 1], [378, 116, 1]];
+      s += '<ellipse class="trait i-c2 fin anim-apparait" cx="92" cy="96" rx="82" ry="62" stroke-dasharray="4 7"/>';
+      s += '<ellipse class="trait i-c3 fin anim-apparait" style="--d:.2" cx="100" cy="234" rx="88" ry="54" stroke-dasharray="4 7"/>';
+      s += '<path class="trait i-d fin anim-apparait" style="--d:.6" stroke-dasharray="6 6" d="M236 244 H334 M280 116 H378"/>';
+      s += fleche(239, 235, 276, 128, "i-c1", "--d:.9") + fleche(337, 235, 374, 128, "i-c1", "--d:1.1");
+      P.forEach(function (p, i) {
+        var droite = i >= 6, haut = i === 7 || i === 9;
+        s += '<g class="anim-apparait" style="--d:' + (.1 + i * .08) + '"><circle class="trait f-f i-c' + p[2] + '" cx="' + p[0] + '" cy="' + p[1] + '" r="8"/>' +
+          '<text class="f-t" direction="ltr" x="' + (droite ? p[0] : p[0] + 14) + '" y="' + (droite ? (haut ? p[1] - 16 : p[1] + 30) : p[1] + 6) + '" text-anchor="' + (droite ? "middle" : "start") + '" font-size="17">' + esc(m[i] || "") + '</text></g>';
+      });
+      return svg(s);
+    },
+    // Le contexte donne le sens : l'attention relie « souris » à « fromage » (l'animal) ou à « clique » (l'objet).
+    contexte: function (d) {
+      var s = "", ar = langue === "ar", phrases = [(d && d.phrase1) || "", (d && d.phrase2) || ""], liens = (d && d.liens) || [[0, 0], [0, 0]];
+      phrases.forEach(function (ph, j) {
+        var y = j ? 236 : 104, r = rangee(String(ph).split(/\s+/), y, ar ? 92 : 10, ar ? 390 : 308, 16, function (i) { return i === liens[j][0] ? "i-c1" : "i-t"; });
+        s += arc(r.c[liens[j][0]], r.c[liens[j][1]], y - 20, j ? "i-c4" : "i-c2", "--d:" + (.5 + j * .9)) + r.s;
+        var ix = ar ? 46 : 354;
+        s += '<g class="anim-apparait" style="--d:' + (.8 + j * .9) + '">' + (j ?
+          '<rect class="trait f-s i-c4" x="' + (ix - 20) + '" y="' + (y - 34) + '" width="40" height="60" rx="20"/><path class="trait i-c4" d="M' + ix + ' ' + (y - 34) + ' v20 M' + (ix - 20) + ' ' + (y - 12) + ' h40 M' + ix + ' ' + (y - 34) + ' q0 -18 18 -24"/>' :
+          '<path class="trait i-c2" d="M' + (ix - 20) + ' ' + (y + 8) + ' q-16 2 -14 -18"/>' +
+          '<path class="trait f-s i-c2" d="M' + (ix - 22) + ' ' + (y + 8) + ' q0 -24 28 -24 q16 0 28 22 q-10 4 -28 4 q-28 0 -28 -2 z"/>' +
+          '<circle class="trait f-s i-c2" cx="' + (ix + 8) + '" cy="' + (y - 16) + '" r="8"/><circle class="f-c2" cx="' + (ix + 18) + '" cy="' + (y - 2) + '" r="2.5"/>') + '</g>';
+      });
+      return svg(s);
+    },
+    // Courbes d'adoption : ordinateur, téléphone, Internet en S ; l'IA générative presque verticale.
+    adoption: function (d) {
+      var n = (d && d.courbes) || ["", "", "", ""], s = '<path class="trait i-l fin" d="M30 270 H380 M30 270 V30"/>';
+      [40, 80, 120].forEach(function (x, i) {
+        var y = 100 + i * 40;
+        s += '<path class="trait i-d anim-apparait" style="--d:' + (i * .3) + '" d="M' + x + ' 265 C' + (x + 50) + ' 262 ' + (x + 70) + ' ' + (y + 10) + ' ' + (x + 105) + ' ' + (y + 2) + ' S' + (x + 140) + ' ' + y + ' ' + (x + 150) + ' ' + y + '"/>' +
+          '<text class="f-d anim-apparait" style="--d:' + (i * .3) + '" x="' + (x + 156) + '" y="' + (y + 5) + '" font-size="13" direction="ltr">' + esc(n[i]) + '</text>';
+      });
+      s += fleche(345, 266, 368, 62, "i-c1", "--d:1.2") + '<text class="f-c1 anim-apparait" style="--d:1.4" x="390" y="42" text-anchor="end" font-size="15" direction="ltr">' + esc(n[3]) + '</text>';
+      return svg(s);
+    },
+    // Trois niveaux d'IA : étroite (atteinte), générale (théorique), super (inconnue).
+    niveaux: function (d) {
+      var n = (d && d.niveaux) || ["", "", ""], s = "";
+      [[80, "i-c2", ""], [200, "i-c5", ' stroke-dasharray="8 7"'], [320, "i-d", ' stroke-dasharray="3 7"']].forEach(function (c, i) {
+        s += '<g class="anim-apparait" style="--d:' + (i * .35) + '"><circle class="trait f-s ' + c[1] + '" cx="' + c[0] + '" cy="140" r="' + (26 + i * 14) + '"' + c[2] + '/>';
+        if (i === 0) s += '<circle class="f-c2" cx="80" cy="140" r="8"/>';
+        if (i === 1) for (var k = 0; k < 6; k++) s += '<circle class="f-c5" cx="' + (200 + 26 * Math.cos(k)).toFixed(1) + '" cy="' + (140 + 26 * Math.sin(k)).toFixed(1) + '" r="5"/>';
+        if (i === 2) s += '<text class="f-d" x="320" y="152" text-anchor="middle" font-size="34">?</text>';
+        s += '<text class="f-t" x="' + c[0] + '" y="240" text-anchor="middle" font-size="16">' + esc(n[i]) + '</text></g>';
+      });
+      return svg(s);
+    },
+    // Trois couches : données (carburant), calcul (puces), algorithmes (moteur).
+    couches: function (d) {
+      var n = (d && d.couches) || ["", "", ""], s = "", cl = ["i-c1", "i-c4", "i-c2"];
+      for (var i = 0; i < 3; i++) {
+        var y = 70 + i * 70;
+        s += '<g class="anim-apparait" style="--d:' + ((2 - i) * .35) + '"><path class="trait f-s ' + cl[i] + '" d="M200 ' + (y - 28) + ' L350 ' + y + ' L200 ' + (y + 28) + ' L50 ' + y + ' Z"/>' +
+          '<text class="f-t" x="200" y="' + (y + 6) + '" text-anchor="middle" font-size="16">' + esc(n[i]) + '</text></g>';
+      }
+      return svg(s);
+    },
+    // Le XOR : aucune ligne droite ne sépare les deux couleurs.
+    xor: function () {
+      var s = '<path class="trait i-l fin" d="M60 250 H350 M60 250 V40"/>';
+      [[110, 200, "f-c1"], [300, 90, "f-c1"], [110, 90, "f-c5"], [300, 200, "f-c5"]].forEach(function (p, i) {
+        s += '<circle class="' + p[2] + ' anim-apparait" style="--d:' + (i * .15) + '" cx="' + p[0] + '" cy="' + p[1] + '" r="18"/>';
+      });
+      s += '<path class="trait i-d anim-apparait" style="--d:.8" stroke-dasharray="8 8" d="M70 60 L340 240"/><path class="trait i-d anim-apparait" style="--d:1.1" stroke-dasharray="8 8" d="M205 30 L205 260"/>';
+      s += '<text class="f-c4 anim-clignote" x="205" y="160" text-anchor="middle" font-size="40">✗</text>';
+      return svg(s);
+    },
+    // Des couches empilées ; l'erreur remonte de la sortie vers l'entrée pour corriger les poids.
+    retro: function () {
+      var s = "", xs = [70, 170, 270, 350];
+      xs.forEach(function (x, j) { for (var k = 0; k < (j === 3 ? 1 : 3); k++) s += '<circle class="trait f-s i-t" cx="' + x + '" cy="' + (j === 3 ? 150 : 80 + k * 70) + '" r="16"/>'; });
+      for (var j = 0; j < 3; j++) for (var a = 0; a < 3; a++) for (var b = 0; b < (j === 2 ? 1 : 3); b++)
+        s += '<line class="trait i-l fin" x1="' + (xs[j] + 16) + '" y1="' + (80 + a * 70) + '" x2="' + (xs[j + 1] - 16) + '" y2="' + (j === 2 ? 150 : 80 + b * 70) + '"/>';
+      s += '<circle class="f-c4 anim-pulse" cx="350" cy="150" r="7"/>';
+      s += '<path class="trait i-c4 anim-apparait" style="--d:.6" d="M340 190 C300 280 120 280 80 245" marker-end=""/>' + fleche(110, 262, 78, 248, "i-c4", "--d:1");
+      return svg(s);
+    },
+    // Le jeu des devinettes : trois indices pondérés, une conclusion.
+    devinette: function (d) {
+      var n = (d && d.indices) || ["", "", ""], s = "", ys = [70, 150, 230], w = [9, 6, 4];
+      ys.forEach(function (y, i) {
+        s += '<g class="anim-apparait" style="--d:' + (i * .3) + '"><rect class="trait f-s i-c' + (i + 1) + '" x="14" y="' + (y - 24) + '" width="150" height="48" rx="12"/>' +
+          '<text class="f-t" x="89" y="' + (y + 6) + '" text-anchor="middle" font-size="15">' + esc(n[i]) + '</text></g>' +
+          '<path class="trait i-c' + (i + 1) + ' anim-apparait" style="--d:' + (.9 + i * .2) + '" stroke-width="' + w[i] + '" d="M168 ' + y + ' C230 ' + y + ' 230 150 280 150"/>';
+      });
+      s += '<g class="anim-apparait" style="--d:1.6"><rect class="trait f-f i-c1" x="282" y="118" width="110" height="64" rx="14"/><text class="f-c1" x="337" y="146" text-anchor="middle" font-size="15">' + esc((d && d.resultat) || "") + '</text>' +
+        '<text class="f-t" x="337" y="170" text-anchor="middle" font-size="18" direction="ltr">≈ 77 %</text></g>';
+      return svg(s);
+    },
+    // Anatomie d'une décision : entrées × poids, somme + biais, activation, sortie.
+    decision: function (d) {
+      var n = (d && d.etapes) || ["", "", ""], s = "";
+      [70, 130, 190].forEach(function (y, i) {
+        s += '<circle class="trait f-s i-t" cx="40" cy="' + y + '" r="14"/><path class="trait i-c' + (i + 2) + '" stroke-width="' + (6 - i * 2) + '" d="M54 ' + y + ' L150 130"/>';
+      });
+      s += '<circle class="trait f-s i-c1 anim-pulse" cx="175" cy="130" r="28"/><text class="f-t" x="175" y="140" text-anchor="middle" font-size="26">Σ</text>' +
+        '<text class="f-c4" x="175" y="84" text-anchor="middle" font-size="18" direction="ltr">+ b</text><path class="trait i-c4" d="M175 90 V100"/>';
+      s += '<path class="trait i-t" d="M203 130 H240"/><rect class="trait f-s i-c5" x="240" y="100" width="70" height="60" rx="10"/><path class="trait i-c5" d="M252 148 C270 148 272 112 298 112"/>';
+      s += fleche(312, 130, 350, 130, "i-t", "") + '<text class="f-t" x="378" y="136" text-anchor="middle" font-size="16" direction="ltr">77 %</text>';
+      [[60, 250], [175, 250], [275, 250]].forEach(function (p, i) { s += '<text class="f-d" x="' + p[0] + '" y="' + p[1] + '" text-anchor="middle" font-size="13">' + esc(n[i]) + '</text>'; });
+      return svg(s);
+    },
+    // Trois façons d'apprendre : le maître corrige, la machine regroupe seule, l'essai et la récompense.
+    apprendre: function (d) {
+      var n = (d && d.types) || ["", "", ""], s = "";
+      // supervisé : ✓ et ✗
+      s += '<g class="anim-apparait"><rect class="trait f-s i-c2" x="14" y="60" width="116" height="120" rx="14"/><text class="f-j" x="50" y="130" text-anchor="middle" font-size="40">✓</text><text class="f-c4" x="95" y="130" text-anchor="middle" font-size="40">✗</text></g>';
+      // non supervisé : deux groupes
+      s += '<g class="anim-apparait" style="--d:.3"><rect class="trait f-s i-c3" x="142" y="60" width="116" height="120" rx="14"/>';
+      [[165, 90], [180, 110], [160, 125], [230, 140], [215, 155], [235, 120]].forEach(function (p, i) { s += (i < 3 ? '<circle class="f-c1"' : '<rect class="f-c5"') + (i < 3 ? ' cx="' + p[0] + '" cy="' + p[1] + '" r="8"/>' : ' x="' + (p[0] - 8) + '" y="' + (p[1] - 8) + '" width="16" height="16" rx="3"/>'); });
+      s += '</g>';
+      // renforcement : labyrinthe et étoile
+      s += '<g class="anim-apparait" style="--d:.6"><rect class="trait f-s i-c1" x="270" y="60" width="116" height="120" rx="14"/><path class="trait i-d fin" d="M285 80 H370 V110 H300 V140 H370 V165"/><text class="f-c1" x="370" y="104" text-anchor="middle" font-size="22">★</text></g>';
+      [72, 200, 328].forEach(function (x, i) { s += '<text class="f-t" x="' + x + '" y="215" text-anchor="middle" font-size="15">' + esc(n[i]) + '</text>'; });
+      return svg(s);
+    },
+    // La nuit de Tempe : la voiture « voit » quelqu'un, mais ne sait pas le classer.
+    uber: function () {
+      var s = '<path class="trait i-l fin" d="M120 20 V280 M280 20 V280"/><path class="trait i-d fin" stroke-dasharray="14 12" d="M200 20 V280"/>';
+      s += '<g opacity=".2"><path class="f-c1 anim-pulse" d="M200 210 L140 90 L260 90 Z"/></g>';
+      s += '<rect class="trait f-s i-t" x="178" y="200" width="44" height="72" rx="12"/><rect class="trait i-t fin" x="186" y="212" width="28" height="18" rx="4"/>';
+      s += '<circle class="trait i-c5" cx="222" cy="112" r="14"/><circle class="trait i-c5" cx="262" cy="112" r="14"/><path class="trait i-c5" d="M222 112 L240 90 L262 112 M240 90 L246 80"/>';
+      s += '<circle class="trait f-s i-t" cx="236" cy="52" r="8"/><path class="trait i-t" d="M236 60 V84 L228 102 M236 84 L244 102 M236 70 L250 78"/>';
+      s += '<text class="f-c4 anim-clignote" x="300" y="70" font-size="36">?</text>';
+      return svg(s);
+    },
+    // Sous-apprentissage, juste équilibre, surapprentissage.
+    ajustement: function (d) {
+      var n = (d && d.cas) || ["", "", ""], s = "", pts = [[0, 80], [12, 60], [24, 40], [36, 38], [48, 55], [60, 70], [72, 60], [84, 35], [96, 20]];
+      [14, 142, 270].forEach(function (x0, i) {
+        s += '<g class="anim-apparait" style="--d:' + (i * .3) + '"><rect class="trait f-s i-l" x="' + x0 + '" y="60" width="116" height="120" rx="12"/>';
+        pts.forEach(function (p) { s += '<circle class="f-d" cx="' + (x0 + 10 + p[0]) + '" cy="' + (70 + p[1]) + '" r="4"/>'; });
+        if (i === 0) s += '<path class="trait i-c2" d="M' + (x0 + 8) + ' 150 L' + (x0 + 110) + ' 105"/>';
+        if (i === 1) s += '<path class="trait i-c1" d="M' + (x0 + 8) + ' 150 C' + (x0 + 34) + ' 90 ' + (x0 + 52) + ' 100 ' + (x0 + 64) + ' 130 S' + (x0 + 96) + ' 100 ' + (x0 + 110) + ' 88"/>';
+        if (i === 2) s += '<path class="trait i-c4" d="' + pts.map(function (p, k) { return (k ? "L" : "M") + (x0 + 10 + p[0]) + " " + (70 + p[1] + (k % 2 ? -8 : 8)); }).join(" ") + '"/>';
+        s += '<text class="f-t" x="' + (x0 + 58) + '" y="210" text-anchor="middle" font-size="14">' + esc(n[i]) + '</text></g>';
+      });
+      return svg(s);
+    },
+    // Deux échelles : celle d'hier, et celle dont l'IA casse les premiers barreaux.
+    echelle: function () {
+      function echelle(x, casse) {
+        var s = '<path class="trait i-t" d="M' + x + ' 40 L' + (x + 10) + ' 270 M' + (x + 70) + ' 40 L' + (x + 80) + ' 270"/>';
+        for (var k = 0; k < 7; k++) {
+          var y = 60 + k * 32, cl = casse && k > 4 ? "i-c4 anim-clignote" : "i-t";
+          s += '<path class="trait ' + cl + '"' + (casse && k > 4 ? ' stroke-dasharray="10 8"' : "") + ' d="M' + (x + 1 + k * 1.3) + ' ' + y + ' H' + (x + 71 + k * 1.3) + '"/>';
+        }
+        return s;
+      }
+      return svg('<g class="anim-apparait">' + echelle(70) + '</g><g class="anim-apparait" style="--d:.5">' + echelle(250, true) + '</g>');
+    },
+    // La balance : qui donne l'autorité à la machine, qui en répond ?
+    balance: function () {
+      var s = '<path class="trait i-t" d="M200 50 V250 M140 250 H260"/><path class="trait i-t anim-balance" d="M80 90 L320 70"/>';
+      s += '<path class="trait i-c2" d="M80 90 L55 150 H105 Z"/><path class="trait i-c1" d="M320 70 L295 130 H345 Z"/>';
+      s += '<circle class="trait f-s i-c2" cx="80" cy="140" r="12"/><rect class="trait f-s i-c1" x="308" y="112" width="24" height="18" rx="3"/>';
+      s += '<circle class="f-c1 anim-pulse" cx="200" cy="50" r="8"/>';
+      return svg(s);
+    },
+    // Les saisons de l'IA : les attentes montent et retombent, la puissance de calcul monte toujours.
+    saisons: function (d) {
+      var n = (d && d.courbes) || ["", ""];
+      var s = '<path class="trait i-l fin" d="M20 270 H385 M20 270 V30"/>';
+      s += '<path class="trait i-c2 anim-apparait" d="M20 210 C40 120 60 70 85 70 S120 200 150 205 S185 80 210 80 S250 215 275 200 S340 60 380 45"/>';
+      s += '<path class="trait i-c1 anim-apparait" style="--d:.6" d="M20 262 C140 258 250 230 380 70"/>';
+      s += '<path class="trait i-c2" d="M30 287 H52"/><text class="f-c2" x="58" y="292" font-size="14" direction="ltr">' + esc(n[0]) + '</text>' +
+        '<path class="trait i-c1" d="M200 287 H222"/><text class="f-c1" x="228" y="292" font-size="14" direction="ltr">' + esc(n[1]) + '</text>';
+      return svg(s);
+    },
+    // L'escalier des capacités : à chaque marche, la machine sait faire une chose de plus.
+    capacites: function (d) {
+      var n = (d && d.etapes) || ["", "", "", "", "", ""], s = '<path class="trait i-l fin" d="M10 270 H392"/>';
+      for (var i = 0; i < 6; i++) {
+        var x = 14 + i * 62, y = 250 - i * 34;
+        s += '<g class="anim-apparait" style="--d:' + (i * .25) + '"><rect class="trait f-s i-c' + (i % 5 + 1) + '" x="' + x + '" y="' + y + '" width="58" height="' + (20 + i * 34) + '" rx="6"/>' +
+          '<text class="f-t" x="' + (x + 29) + '" y="' + (y - 8) + '" text-anchor="middle" font-size="12">' + esc(n[i] || "") + '</text></g>';
+      }
+      return svg(s + '<text class="f-c1 anim-clignote" x="354" y="46" text-anchor="middle" font-size="34">?</text>');
+    },
+    // Le chapeau du magicien : on va ouvrir la boîte et comprendre le tour.
+    chapeau: function () {
+      var s = '<text class="f-c1 anim-flotte" x="200" y="92" text-anchor="middle" font-size="64">?</text>';
+      s += '<path class="trait f-s i-t" d="M152 205 V118 H248 V205"/><ellipse class="trait f-s i-t" cx="200" cy="118" rx="48" ry="11"/>';
+      s += '<rect class="f-c4" x="154" y="176" width="92" height="18"/><ellipse class="trait f-s i-t" cx="200" cy="208" rx="88" ry="17"/>';
+      s += '<path class="trait i-t" d="M262 250 L338 168"/><path class="trait i-c1" d="M328 179 L338 168"/>';
+      [[352, 150, 0], [318, 132, .5], [368, 196, 1]].forEach(function (e) {
+        s += '<path class="f-c1 anim-pulse" style="--d:' + e[2] + '" d="M' + e[0] + ' ' + (e[1] - 12) + ' L' + (e[0] + 4) + ' ' + (e[1] - 4) + ' L' + (e[0] + 12) + ' ' + e[1] + ' L' + (e[0] + 4) + ' ' + (e[1] + 4) + ' L' + e[0] + ' ' + (e[1] + 12) + ' L' + (e[0] - 4) + ' ' + (e[1] + 4) + ' L' + (e[0] - 12) + ' ' + e[1] + ' L' + (e[0] - 4) + ' ' + (e[1] - 4) + ' Z"/>';
+      });
+      return svg(s);
+    },
+    // Copier la nature : l'oiseau a donné l'avion, le neurone a donné le réseau.
+    oiseau: function () {
+      var s = '<path class="trait i-c2 anim-flotte" d="M40 88 q22 -30 44 0 q22 -30 44 0"/>';
+      s += fleche(150, 80, 228, 80, "i-d", "--d:.4");
+      s += '<g class="anim-apparait" style="--d:.8"><path class="trait i-c5" d="M262 80 H352 M312 80 L290 42 M312 80 L290 118 M266 80 L256 64 M266 80 L256 96"/><circle class="f-c5" cx="354" cy="80" r="5"/></g>';
+      s += '<g><circle class="trait f-s i-c1" cx="92" cy="215" r="20"/><path class="trait i-c1 fin" d="M73 207 L44 190 M72 218 L40 218 M74 228 L46 246 M112 215 H138 M138 215 L150 202 M138 215 L150 228"/></g>';
+      s += fleche(160, 215, 228, 215, "i-d", "--d:1.2");
+      var c = [[262, [195, 235]], [306, [180, 215, 250]], [350, [195, 235]]];
+      for (var k = 0; k < 2; k++) c[k][1].forEach(function (a) { c[k + 1][1].forEach(function (b) { s += '<line class="i-l anim-apparait" style="--d:1.6" stroke-width="1.5" x1="' + c[k][0] + '" y1="' + a + '" x2="' + c[k + 1][0] + '" y2="' + b + '"/>'; }); });
+      c.forEach(function (col, k) { col[1].forEach(function (y) { s += '<circle class="trait f-s i-c' + (k + 2) + ' anim-apparait" style="--d:1.6" cx="' + col[0] + '" cy="' + y + '" r="11"/>'; }); });
+      return svg(s);
+    },
+    // Processeur et carte graphique : quelques grands cœurs, ou des milliers de petits qui calculent en même temps.
+    gpu: function (d) {
+      var n = (d && d.puces) || ["", ""], s = "";
+      function puce(x, y, l, h) {
+        var p = '<rect class="trait f-s i-t" x="' + x + '" y="' + y + '" width="' + l + '" height="' + h + '" rx="10"/>';
+        for (var k = 1; k < 6; k++) p += '<path class="trait i-d fin" d="M' + (x + k * l / 6) + ' ' + (y - 12) + ' v12 M' + (x + k * l / 6) + ' ' + (y + h) + ' v12"/>';
+        return p;
+      }
+      s += puce(28, 72, 140, 140) + puce(222, 72, 150, 140);
+      [[48, 92], [102, 92], [48, 146], [102, 146]].forEach(function (c, i) { s += '<rect class="f-c2 anim-pulse" style="--d:' + (i * .45) + '" x="' + c[0] + '" y="' + c[1] + '" width="46" height="46" rx="6"/>'; });
+      for (var r = 0; r < 11; r++) for (var c = 0; c < 12; c++) s += '<rect class="f-c1 anim-pulse" style="--d:' + ((r + c) * .08).toFixed(2) + '" x="' + (234 + c * 11.2) + '" y="' + (84 + r * 11.2) + '" width="8" height="8" rx="1.5"/>';
+      s += '<text class="f-t" x="98" y="258" text-anchor="middle" font-size="15">' + esc(n[0]) + '</text><text class="f-t" x="297" y="258" text-anchor="middle" font-size="15">' + esc(n[1]) + '</text>';
+      return svg(s);
+    },
+    // Le chat de Google (2012) : des millions de vignettes vidéo, et un « chat » qui se dessine tout seul.
+    chat: function () {
+      var s = "", cl = ["f-c1", "f-c2", "f-c3", "f-c4", "f-c5"];
+      for (var i = 0; i < 20; i++) {
+        var x = 18 + (i % 4) * 44, y = 42 + Math.floor(i / 4) * 44;
+        s += '<g class="anim-pulse" style="--d:' + ((i * 7 % 20) * .09).toFixed(2) + '"><rect class="' + cl[i % 5] + '" x="' + x + '" y="' + y + '" width="38" height="36" rx="6" opacity=".55"/><path class="f-f" d="M' + (x + 15) + ' ' + (y + 11) + ' l11 7 l-11 7 z"/></g>';
+      }
+      s += fleche(196, 150, 238, 150, "i-d", "--d:.6");
+      s += '<g class="anim-apparait" style="--d:1"><path class="trait f-s i-c1" d="M262 118 L268 70 L296 100 Q310 94 324 100 L352 70 L358 118 Q372 150 352 184 Q310 212 268 184 Q248 150 262 118 Z"/>';
+      s += '<circle class="f-c1" cx="290" cy="138" r="7"/><circle class="f-c1" cx="330" cy="138" r="7"/><path class="trait i-c1 fin" d="M304 160 l6 6 l6 -6 M310 166 v8 M298 176 q12 8 24 0 M280 160 L246 154 M280 168 L248 172 M340 160 L374 154 M340 168 L372 172"/></g>';
+      return svg(s);
+    },
+    // Les GAN (2014) : un faussaire fabrique des images, un détective les démasque ; chacun progresse grâce à l'autre.
+    gan: function (d) {
+      var n = (d && d.roles) || ["", ""], s = "";
+      s += '<path class="trait i-d" d="M70 214 L92 170 M128 170 L150 214 M110 170 V214"/><rect class="trait f-s i-t" x="52" y="66" width="116" height="104" rx="6"/>';
+      s += '<circle class="trait i-c1" cx="110" cy="112" r="26"/><circle class="f-c1" cx="101" cy="106" r="3.5"/><circle class="f-c1" cx="119" cy="106" r="3.5"/><path class="trait i-c1 fin" d="M99 121 q11 9 22 0"/>';
+      s += fleche(182, 96, 246, 96, "i-c1", "--d:.3") + fleche(246, 150, 182, 150, "i-c4", "--d:.9");
+      s += '<circle class="trait f-s i-c2" cx="296" cy="112" r="40"/><path class="trait i-c2" d="M324 142 L360 182"/><text class="f-c4 anim-clignote" x="296" y="126" text-anchor="middle" font-size="38">✗</text>';
+      s += '<text class="f-t" x="110" y="252" text-anchor="middle" font-size="16">' + esc(n[0]) + '</text><text class="f-t" x="306" y="252" text-anchor="middle" font-size="16">' + esc(n[1]) + '</text>';
+      return svg(s);
+    },
+    // Des nombres astronomiques : les parties d'échecs, les atomes de l'univers, les positions du go (exposants lus dans les étiquettes).
+    go10: function (d) {
+      var n = (d && d.echelle) || ["", "", ""], sup = "⁰¹²³⁴⁵⁶⁷⁸⁹", defaut = [120, 80, 170], s = "";
+      var barres = n.map(function (e, i) {
+        var m = /10([⁰¹²³⁴⁵⁶⁷⁸⁹]+)/.exec(e || ""), x = m ? parseInt(m[1].split("").map(function (c) { return sup.indexOf(c); }).join(""), 10) : defaut[i];
+        return { t: e, x: x, cl: ["i-c2", "i-d", "i-c1"][i] };
+      }).sort(function (a, b) { return a.x - b.x; });
+      barres.forEach(function (b, i) {
+        var y = 78 + i * 80, l = Math.round(b.x * 1.9);
+        s += '<text class="f-t" x="' + (24 + l / 2) + '" y="' + (y - 18) + '" text-anchor="middle" font-size="16">' + esc(b.t) + '</text>' +
+          '<path class="trait ' + b.cl + ' anim-trace" style="--l:' + l + ';stroke-width:22px" d="M24 ' + y + ' H' + (24 + l) + '"/>';
+      });
+      return svg(s + '<circle class="f-t anim-apparait" style="--d:1.8" cx="' + (24 + Math.round(barres[2].x * 1.9) + 30) + '" cy="238" r="11"/>');
+    },
+    boucle: function () {
+      var c = [[200, 55], [330, 150], [200, 245], [70, 150]], cl = ["i-c1", "i-c2", "i-c4", "i-c5"], s = "";
+      s += '<circle class="trait i-l" cx="200" cy="150" r="95"/><path class="trait i-c1 anim-tourne" style="transform-origin:200px 150px;transform-box:view-box" d="M200 55 A95 95 0 0 1 295 150"/>';
+      c.forEach(function (p, i) { s += '<circle class="trait f-s ' + cl[i] + '" cx="' + p[0] + '" cy="' + p[1] + '" r="38"/>'; });
+      s += '<circle class="trait i-c1" cx="200" cy="55" r="18"/><circle class="f-c1" cx="200" cy="55" r="6"/>';
+      s += '<path class="trait i-c2" d="M315 138 q15 -18 30 0 q-6 20 -22 22 l-8 10 z"/>';
+      s += '<path class="trait i-c4" d="M188 258 l26 -26 m-6 -6 a12 12 0 1 0 14 14"/>';
+      s += '<path class="trait i-c5" d="M50 150 q20 -22 40 0 q-20 22 -40 0 z"/><circle class="f-c5" cx="70" cy="150" r="6"/>';
+      s += '<circle class="trait f-s i-t anim-pulse" cx="200" cy="150" r="30"/><circle class="f-t" cx="200" cy="150" r="8"/>';
+      return svg(s);
+    },
+    thermostat: function () {
+      return svg('<rect class="trait f-s i-t" x="60" y="40" width="40" height="190" rx="20"/><circle class="trait f-c3 i-t" cx="80" cy="245" r="32"/><rect class="f-c3" x="72" y="120" width="16" height="120" rx="8"/>' +
+        '<path class="trait i-c2 anim-pulse" d="M120 120 q20 -20 0 -40 M140 130 q30 -30 0 -60"/><rect class="trait f-s i-t" x="200" y="90" width="150" height="110" rx="14"/>' +
+        '<path class="trait f-c1 i-c1 anim-flotte" d="M275 180 c-30 -10 -25 -45 0 -70 c0 25 25 30 20 50 c-3 12 -10 18 -20 20z"/>');
+    },
+    bouclier: function () {
+      return svg('<path class="trait f-s i-c2" d="M200 30 L310 70 V150 C310 215 260 255 200 275 C140 255 90 215 90 150 V70 Z"/>' +
+        '<path class="trait i-j anim-trace" style="--l:200" d="M150 150 l35 38 l70 -80" stroke-width="10"/>');
+    },
+    carte: function () {
+      return svg('<path class="trait f-s i-c4 anim-flotte" d="M200 30 a60 60 0 0 1 60 60 c0 45 -60 110 -60 110 s-60 -65 -60 -110 a60 60 0 0 1 60 -60z"/><circle class="trait f-f i-c4" cx="200" cy="90" r="22"/>' +
+        '<path class="trait f-s i-t" d="M110 250 h180 v-40 l-90 -30 l-90 30z"/><path class="trait i-t fin" d="M130 250 v-30 M170 250 v-30 M230 250 v-30 M270 250 v-30"/>' +
+        '<rect class="trait f-s i-c2 anim-apparait" x="290" y="120" width="80" height="50" rx="14"/><rect class="trait f-s i-c1 anim-apparait" style="--d:.4" x="30" y="130" width="80" height="50" rx="14"/>');
+    },
+    frise: function () {
+      var s = '<path class="trait i-c1 anim-trace" style="--l:360" d="M20 150 H380"/>';
+      for (var i = 0; i < 6; i++) s += '<circle class="trait f-s i-c' + (i % 5 + 1) + ' anim-apparait" style="--d:' + (i * .2) + '" cx="' + (40 + i * 64) + '" cy="150" r="16"/>';
+      return svg(s);
+    },
+    cerveau: function () {
+      var s = '<path class="trait f-s i-c4" d="M200 60 C150 30 80 60 90 120 C50 140 60 210 120 220 C140 260 190 255 200 230 C210 255 260 260 280 220 C340 210 350 140 310 120 C320 60 250 30 200 60Z"/><path class="trait i-c4 fin" d="M200 60 V230"/>';
+      [[140, 110], [170, 170], [120, 180], [250, 100], [280, 160], [230, 190]].forEach(function (p, i) { s += '<circle class="f-c1 anim-pulse" style="--d:' + (i * .25) + '" cx="' + p[0] + '" cy="' + p[1] + '" r="7"/>'; });
+      return svg(s + '<path class="trait i-c1 fin" d="M140 110 L170 170 L120 180 M250 100 L280 160 L230 190"/>');
+    },
+    agent: function () {
+      var s = '<circle class="trait i-l" cx="200" cy="150" r="105"/><g class="anim-tourne-lent" style="transform-origin:200px 150px;transform-box:view-box">';
+      [[200, 45, "i-c1"], [305, 150, "i-c2"], [200, 255, "i-c4"], [95, 150, "i-c5"]].forEach(function (p) { s += '<circle class="trait f-s ' + p[2] + '" cx="' + p[0] + '" cy="' + p[1] + '" r="26"/>'; });
+      s += '</g><circle class="trait f-s i-t" cx="200" cy="150" r="54"/><circle class="f-c1 anim-pulse" cx="200" cy="150" r="14"/>';
+      return svg(s + '<path class="trait i-t fin" d="M170 132 q30 -30 60 0 M170 168 q30 30 60 0"/>');
+    }
+  };
+  ILLUS.frise = ILLUS.frise;
+
+  // Initiales affichées sur la carte de repli : celles du nom en caractères latins, pour les seuls portraits.
+  var INITIALES = {};
+  L.fr.diapos.forEach(function (d) {
+    if (d.type === "portrait" && d.personne && (PHOTOS[d.personne] || {}).illus === "profil") INITIALES[d.personne] = d.nom.split(/\s+/).filter(function (m) { return /^[A-Z]/.test(m); }).slice(0, 2).map(function (m) { return m[0]; }).join("");
+  });
+
+  /* ---------- Photos : copie intégrée, dossier local, puis Wikimedia Commons ; sinon une carte dessinée ---------- */
+  // encart : une seconde photo, plus petite, posée sur le coin de la première ; petit : c'est cette seconde photo.
+  function photo(cle, nom, encart, petit) {
+    var p = PHOTOS[cle] || {}, h = '<div class="photo' + (p.format === "l" ? " photo--largeur" : "") + (petit ? ' photo--encart"' : ' a" style="--i:0"') + '><div class="photo__cadre">';
+    if (!petit) h += '<div class="photo__repli">' + (ILLUS[p.illus || "cerveau"] || ILLUS.cerveau)() + '<span class="photo__initiales">' + esc(INITIALES[cle] || "") + '</span></div>';
+    if ((p.sources || []).length) h += '<img alt="' + esc((nom || "").replace(/\*/g, "")) + '" data-photo="' + esc(cle) + '" hidden>';
+    h += '</div>';
+    if (encart && PHOTOS[encart]) h += photo(encart, "", null, true);
+    return h + '</div>';
+  }
+  function credit(p) {
+    var licence = p.licence === "PD" ? UI[langue].domaine : p.licence;
+    return (p.auteur || "") + (licence ? " · " + licence : "");
+  }
+  /* Dernier recours, en ligne : l'API de Wikimedia retrouve le fichier même renommé, sinon l'image principale de
+     l'article de Wikipédia, avec son auteur et sa licence. origin=* : requête anonyme permise depuis toute page. */
+  var RECHERCHES = {};
+  function apiWiki(hote, params) {
+    var q = Object.keys(params).map(function (k) { return k + "=" + encodeURIComponent(params[k]); }).join("&");
+    return fetch("https://" + hote + "/w/api.php?action=query&format=json&formatversion=2&redirects=1&origin=*&" + q)
+      .then(function (r) { return r.json(); }).then(function (j) { return ((j.query || {}).pages || [])[0] || {}; });
+  }
+  function texteSeul(html) { return new DOMParser().parseFromString(html || "", "text/html").body.textContent.replace(/\s+/g, " ").trim(); }
+  function infoFichier(nom, hote) {
+    return apiWiki(hote || "commons.wikimedia.org", { prop: "imageinfo", iiprop: "url|extmetadata", iiurlwidth: 500, titles: "File:" + nom }).then(function (page) {
+      var ii = (page.imageinfo || [])[0], m;
+      if (!ii) return null;
+      m = ii.extmetadata || {};
+      var licence = texteSeul((m.LicenseShortName || {}).value);
+      return { url: ii.thumburl || ii.url, page: ii.descriptionurl || "", auteur: texteSeul((m.Artist || {}).value).slice(0, 80) || "Wikimedia Commons",
+               licence: /^(public domain|pd)$/i.test(licence) ? "PD" : licence };
+    });
+  }
+  function chercherPhoto(cle) {
+    var p = PHOTOS[cle] || {};
+    if (!RECHERCHES[cle]) RECHERCHES[cle] = !window.fetch || !window.DOMParser ? Promise.resolve(null) :
+      (p.fichier ? infoFichier(p.fichier) : Promise.resolve(null)).then(function (info) {
+        if (info || !p.article) return info;
+        return apiWiki("en.wikipedia.org", { prop: "pageimages", piprop: "name", titles: p.article }).then(function (page) {
+          return page.pageimage ? infoFichier(page.pageimage).then(function (i) { return i || infoFichier(page.pageimage, "en.wikipedia.org"); }) : null;
+        });
+      }).catch(function () { return null; });
+    return RECHERCHES[cle];
+  }
+  function chargerPhotos(racine) {
+    Array.prototype.forEach.call(racine.querySelectorAll("img[data-photo]"), function (img) {
+      if (img.dataset.pret) return;
+      img.dataset.pret = "1";
+      var p = PHOTOS[img.dataset.photo] || {}, sources = p.sources || [], n = 0, cherche = false;
+      function essayer() {
+        if (n < sources.length) { img.src = sources[n++]; return; }
+        if (cherche) return;
+        cherche = true;
+        chercherPhoto(img.dataset.photo).then(function (info) {
+          if (!info) return;
+          p = { page: info.page, auteur: info.auteur, licence: info.licence };
+          img.src = info.url;
+        });
+      }
+      img.onload = function () {
+        var cadre = img.parentNode, repli = cadre.querySelector(".photo__repli");
+        img.hidden = false;
+        cadre.parentNode.classList.add("charge");
+        if (repli) repli.style.display = "none";
+        if (cadre.querySelector(".photo__credit")) return;
+        var a = document.createElement(p.page ? "a" : "span");
+        a.className = "photo__credit"; a.textContent = credit(p);
+        if (p.page) { a.href = p.page; a.target = "_blank"; a.rel = "noopener"; a.title = p.page; }
+        cadre.appendChild(a);
+      };
+      img.onerror = essayer;
+      essayer();
+    });
+  }
+  // Copies (vue d'ensemble, impression) : les photos déjà affichées restent, les autres sont chargées.
+  function rechargerCopies(racine) {
+    Array.prototype.forEach.call(racine.querySelectorAll("img[data-photo]"), function (img) { if (img.hidden) img.removeAttribute("data-pret"); });
+    chargerPhotos(racine);
+  }
+
+  /* ---------- Rendu d'une diapositive ---------- */
+  var langue = "fr", index = 0, diapos = [], cadre = document.getElementById("cadre");
+
+  function points(liste, debut) {
+    return '<ul class="points">' + (liste || []).map(function (p, i) { return '<li class="a" style="--i:' + (debut + i) + '">' + riche(p) + '</li>'; }).join("") + '</ul>';
+  }
+  function illustration(d, i) {
+    if (d.personne && PHOTOS[d.personne] && d.type !== "schema") return photo(d.personne, d.nom || d.titre, d.encart);
+    if (d.illus && ILLUS[d.illus]) return '<div class="illus a" style="--i:' + (i || 1) + '">' + ILLUS[d.illus](d) + '</div>';
+    return "";
+  }
+  function rendre(d, n, total) {
+    var h = "", t = d.type;
+    if (t === "couverture") {
+      h = '<div><p class="surtitre a" style="--i:0">' + riche(d.surtitre) + '</p><h1 class="titre a" style="--i:1">' + riche(d.titre) + '</h1><p class="sous-titre a" style="--i:2">' + riche(d.sousTitre) + '</p></div>' +
+        '<div class="illus a" style="--i:3">' + ILLUS[d.illus || "agent"](d) + '</div><span class="anneau-decor" aria-hidden="true"></span>';
+    } else if (t === "plan") {
+      h = '<h2 class="titre a" style="--i:0">' + riche(d.titre) + '</h2><ol class="plan' + (d.points.length > 8 ? " plan--dense" : "") + '">' + d.points.map(function (p, i) { return '<li class="a" style="--i:' + (i + 1) + '"><span>' + riche(p) + '</span></li>'; }).join("") + '</ol>';
+    } else if (t === "section") {
+      h = '<div><div class="grand-numero">' + esc(d.numero) + '</div><h2 class="titre a" style="--i:1">' + riche(d.titre) + '</h2><p class="periode a" style="--i:2">' + riche(d.periode) + '</p><p class="texte a" style="--i:3">' + riche(d.texte) + '</p></div>' + illustration(d, 3);
+    } else if (t === "texte") {
+      var cote = illustration(d, 1);
+      h = '<div class="' + (cote ? "colonnes" : "") + '"><div>' + (d.annee ? '<span class="annee a" style="--i:0">' + esc(d.annee) + '</span>' : "") +
+        '<h2 class="titre a" style="--i:0">' + riche(d.titre) + '</h2>' + points(d.points, 1) + '</div>' + cote + '</div>';
+    } else if (t === "schema") {
+      h = '<div class="colonnes colonnes--schema"><div class="illus a a--gauche' + (d.personne && PHOTOS[d.personne] ? " illus--photo" : "") + '" style="--i:0">' + (ILLUS[d.illus] ? ILLUS[d.illus](d) : "") +
+        (d.personne && PHOTOS[d.personne] ? photo(d.personne, d.titre, null, true) : "") + '</div><div>' +
+        (d.annee ? '<span class="annee a" style="--i:0">' + esc(d.annee) + '</span>' : "") + '<h2 class="titre a" style="--i:1">' + riche(d.titre) + '</h2>' + points(d.points, 2) + '</div></div>';
+    } else if (t === "portrait") {
+      h = '<div class="portrait">' + photo(d.personne, d.nom, d.encart) + '<div><h2 class="nom a" style="--i:1">' + riche(d.nom) + '</h2><p class="dates a" style="--i:2">' + riche(d.dates) + '</p><p class="role a" style="--i:3">' + riche(d.role) + '</p>' +
+        points(d.points, 4) + (d.citation ? '<p class="citation-courte a" style="--i:8">« ' + riche(d.citation) + ' »<small>' + riche(d.source || "") + '</small></p>' : "") + '</div></div>';
+    } else if (t === "citation") {
+      h = '<span class="guillemet" aria-hidden="true">“</span><blockquote class="citation__texte a" style="--i:0">' + riche(d.texte) + '</blockquote><p class="citation__auteur a" style="--i:1">' + riche(d.auteur) + '</p><p class="citation__source a" style="--i:2">' + riche(d.source) + '</p>';
+    } else if (t === "deux") {
+      h = '<h2 class="titre a" style="--i:0">' + riche(d.titre) + '</h2><div class="deux">' + [d.gauche, d.droite].map(function (c, k) {
+        return '<div class="carte a" style="--i:' + (1 + k * 2) + '"><h3>' + riche(c.titre) + '</h3>' + points(c.points, 2 + k * 2) + '</div>'; }).join("") + '</div>';
+    } else if (t === "frise") {
+      h = '<h2 class="titre a" style="--i:0">' + riche(d.titre) + '</h2><div class="frise' + (d.evenements.length > 6 ? " frise--dense" : "") + '"><span class="frise__ligne"></span>' +
+        d.evenements.map(function (e, k) { return '<div class="evenement a" style="--i:' + (k + 3) + '"><span class="evenement__annee">' + esc(e.annee) + '</span><p class="evenement__titre">' + riche(e.titre) + '</p><p class="evenement__texte">' + riche(e.texte) + '</p></div>'; }).join("") + '</div>';
+    } else if (t === "chat") {
+      h = (d.annee ? '<span class="annee a" style="--i:0">' + esc(d.annee) + '</span>' : "") + '<h2 class="titre a" style="--i:0">' + riche(d.titre) + '</h2><div class="chat">' +
+        d.echanges.map(function (e) { return '<p class="bulle bulle--' + e.qui + '">' + riche(e.texte) + '</p>'; }).join("") + '<span class="frappe" aria-hidden="true"><i></i><i></i><i></i></span></div><p class="legende">' + riche(d.legende) + '</p>';
+    } else if (t === "video") {
+      h = '<h2 class="titre a" style="--i:0">' + riche(d.titre) + '</h2><div class="video a" style="--i:1" data-youtube="' + esc(d.youtube) + '"><div class="video__repli"><span class="video__jouer"></span><span>' + esc(UI[langue].video_lancer) + '</span>' +
+        '<a href="https://www.youtube.com/watch?v=' + esc(d.youtube) + '" target="_blank" rel="noopener">' + esc(UI[langue].video_ouvrir) + '</a></div></div><p class="legende a" style="--i:2">' + riche(d.legende) + '</p>';
+    } else if (t === "quiz") {
+      h = '<div class="quiz" data-reponse="' + d.reponse + '"><h2 class="question a" style="--i:0">' + riche(d.question) + '</h2><ol class="choix">' +
+        d.choix.map(function (c, k) { return '<li class="a" style="--i:' + (k + 1) + '"><button type="button" class="' + (k === d.reponse ? "juste" : "faux") + '" aria-pressed="false"><span class="lettre">' + LETTRES[langue][k] + '</span><span>' + riche(c) + '</span></button></li>'; }).join("") +
+        '</ol><button type="button" class="reveler a" style="--i:6">' + esc(UI[langue].reveler) + '</button><p class="explication">' + riche(d.explication) + '</p></div>';
+    } else if (t === "fin") {
+      h = '<div class="fin"><h2 class="titre a" style="--i:0">' + riche(d.titre) + '</h2>' + points(d.points, 1) + (d.texte ? '<p class="devoir a" style="--i:7">' + riche(d.texte) + '</p>' : "") + '</div>';
+    }
+    return '<section class="diapo diapo--' + t + '" data-n="' + n + '" aria-roledescription="slide" aria-label="' + esc(tpl(UI[langue].diapo, { n: n + 1, t: total })) + '">' + h +
+      '<span class="diapo__marque">' + esc(L[langue].titre) + '</span><span class="diapo__num">' + (n + 1) + ' / ' + total + '</span></section>';
+  }
+
+  /* ---------- Construction, navigation ---------- */
+  function construire() {
+    var deck = L[langue];
+    document.documentElement.lang = langue;
+    document.documentElement.dir = langue === "ar" ? "rtl" : "ltr";
+    document.title = (PRESENTATEUR ? UI[langue].ecran + " · " : "") + deck.titre + " · " + UI[langue].marque;
+    document.querySelector(".marque").setAttribute("href", langue === "fr" ? "index.html" : langue + "/index.html");
+    // La langue choisie remplace celle de l'adresse : un rechargement la garde.
+    if (/[?&]lang=/.test(location.search)) history.replaceState(null, "", location.search.replace(/([?&])lang=[^&#]*/, "$1lang=" + langue) + location.hash);
+    cadre.innerHTML = deck.diapos.map(function (d, n) { return rendre(d, n, deck.diapos.length); }).join("");
+    diapos = Array.prototype.slice.call(cadre.children);
+    Array.prototype.forEach.call(document.querySelectorAll("[data-t]"), function (el) { el.textContent = UI[langue][el.dataset.t]; });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-titre]"), function (el) { el.title = UI[langue][el.dataset.titre]; el.setAttribute("aria-label", UI[langue][el.dataset.titre]); });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-langue]"), function (b) { b.setAttribute("aria-pressed", b.dataset.langue === langue ? "true" : "false"); });
+    remplirLangueNotes();
+    remplirLangueProjetee();
+    signalerProjecteur();
+    Array.prototype.forEach.call(document.querySelectorAll(".fleche"), function (p) { p.style.transform = langue === "ar" ? "scaleX(-1)" : ""; p.style.transformOrigin = "12px 12px"; });
+    cadre.querySelectorAll(".quiz").forEach(initQuiz);
+    aller(Math.min(index, diapos.length - 1), true);
+    echelle();
+    ajusterTout();
+  }
+  // Réduit pas à pas les diapositives dont le contenu déborde sur le pied (textes plus longs selon la langue).
+  var ZOOMS = [1, .94, .88, .82, .76, .7];
+  function deborde(d) {
+    var R = d.getBoundingClientRect(), r = R.height / 720 || 1, trop = false;
+    Array.prototype.forEach.call(d.querySelectorAll("*"), function (el) {
+      if (trop || (el instanceof SVGElement && !(el instanceof SVGSVGElement))) return;
+      if (el.closest(".diapo__marque, .diapo__num, .anneau-decor, .guillemet, .photo__repli, .photo--encart, .frappe")) return;
+      var e = el.getBoundingClientRect();
+      if (!e.width || !e.height) return;
+      trop = e.bottom > R.bottom - 46 * r || e.right > R.right - 24 * r || e.left < R.left + 24 * r || e.top < R.top + 12 * r;
+    });
+    return trop;
+  }
+  function ajuster(d) {
+    var k = 0;
+    d.style.removeProperty("--z");
+    while (deborde(d) && ++k < ZOOMS.length) d.style.setProperty("--z", ZOOMS[k]);
+    if (k >= ZOOMS.length) console.warn("Diapositive trop chargée : " + (+d.dataset.n + 1));
+  }
+  function ajusterTout() {
+    var racine = document.documentElement;
+    racine.classList.add("mesure");
+    diapos.forEach(ajuster);
+    racine.classList.remove("mesure");
+  }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (diapos.length) ajusterTout(); });
+  var minuteursChat = [];
+  function aller(n, force) {
+    if (!diapos.length) return;
+    n = Math.max(0, Math.min(diapos.length - 1, n));
+    if (n === index && !force) return;
+    if (noir) ecranNoir("", true);
+    index = n;
+    diapos.forEach(function (d, k) {
+      var etait = d.classList.contains("active");
+      d.classList.toggle("active", k === n);
+      d.classList.toggle("passee", k < n);
+      if (k === n && (!etait || force)) { void d.offsetWidth; }
+    });
+    var d = diapos[n], donnees = L[langue].diapos[n];
+    chargerPhotos(d);
+    animerChat(d);
+    if (!PRESENTATEUR) preparerVideo(d);
+    document.getElementById("compteur").textContent = document.getElementById("compteur-diaporama").textContent = (n + 1) + " / " + diapos.length;
+    document.getElementById("titre-courant").textContent = (donnees.titre || donnees.nom || donnees.question || L[langue].titre).replace(/\*/g, "");
+    if (PRESENTATEUR) majConsole(n, donnees);
+    document.documentElement.style.setProperty("--avance", ((n + 1) / diapos.length).toFixed(4));
+    document.querySelector(".barre").style.setProperty("--avance", ((n + 1) / diapos.length).toFixed(4));
+    if (location.hash !== "#" + (n + 1)) history.replaceState(null, "", "#" + (n + 1));
+    if (!PRESENTATEUR) ecrire("lx-lecon1", JSON.stringify({ langue: langue, index: n }));
+    // Précharge les photos de la diapositive suivante.
+    if (diapos[n + 1]) chargerPhotos(diapos[n + 1]);
+    envoyer({ type: "etat", n: n, langue: PRESENTATEUR ? (langueProjection || langue) : langue });
+  }
+
+  /* ---------- Mode présentateur ---------- */
+  var PRESENTATEUR = /[?&]presentateur\b/.test(location.search);
+  var moi = Math.random().toString(36).slice(2), role = PRESENTATEUR ? "presentateur" : "projection", distant = false, fenetre = null, canal = null;
+  // Fenêtre du présentateur : sa langue (diapositives, notes) est à l'enseignant seul ; la classe voit langueProjection.
+  var langueProjection = null;
+  try { canal = new BroadcastChannel("lx-lecon1"); } catch (e) { canal = null; }
+  // Les messages passent par la fenêtre ouvreuse (fonctionne aussi en file://) et par un canal (si l'une des fenêtres est rechargée).
+  function envoyer(m) {
+    if (distant) return;
+    m.lecon1 = 1; m.de = moi; m.role = role;
+    var cible = PRESENTATEUR ? window.opener : fenetre;
+    try { if (cible && !cible.closed) cible.postMessage(m, "*"); } catch (e) { /* fenêtre fermée */ }
+    if (canal) try { canal.postMessage(m); } catch (e) { /* canal fermé */ }
+  }
+  function recevoir(m, source) {
+    if (!m || m.lecon1 !== 1 || m.de === moi || m.role === role) return;
+    if (!PRESENTATEUR && source) fenetre = source;
+    if (m.type === "bonjour") { envoyer({ type: "etat", n: index, langue: langue }); return; }
+    distant = true;
+    try {
+      if (m.type === "etat" && L[m.langue] && PRESENTATEUR) {
+        langueProjection = m.langue; remplirLangueProjetee();
+        if (m.n !== index) aller(m.n);
+      } else if (m.type === "etat" && L[m.langue]) {
+        if (m.langue !== langue) { langue = m.langue; index = m.n; construire(); } else aller(m.n);
+      } else if (m.type === "noir") {
+        ecranNoir(m.valeur, true);
+      } else if (m.type === "quiz") {
+        var q = diapos[m.n] && diapos[m.n].querySelector(".quiz");
+        if (q) q.classList.toggle("quiz--revele", !!m.revele);
+      }
+    } finally { distant = false; }
+  }
+  window.addEventListener("message", function (e) { if (e.data && e.data.lecon1 === 1 && e.data.type !== "presence") recevoir(e.data, e.source); else if (e.data && e.data.type === "presence" && !PRESENTATEUR) fenetre = e.source; });
+  if (canal) canal.onmessage = function (e) { recevoir(e.data, null); };
+  function ouvrirPresentateur() {
+    if (PRESENTATEUR) return;
+    var adresse = location.href.split(/[?#]/)[0] + "?presentateur&lang=" + langue + "#" + (index + 1);
+    // Un vidéoprojecteur branché (écran étendu) ? Chrome et Edge le trouvent : cette fenêtre passe en plein écran
+    // sur le projecteur, la fenêtre du présentateur s'ouvre sur l'écran de l'ordinateur. Sinon : comme avant.
+    if (window.screen && window.screen.isExtended && window.getScreenDetails) {
+      window.getScreenDetails().then(function (d) {
+        var ici = d.currentScreen, loin = d.screens.filter(function (s) { return s !== ici && !s.isPrimary; })[0] || d.screens.filter(function (s) { return s !== ici; })[0];
+        if (!loin) throw new Error("un seul écran");
+        return document.documentElement.requestFullscreen({ screen: loin }).then(function () {
+          pleinEcranDemande = true;
+          ouvrirFenetre(adresse, "left=" + ici.availLeft + ",top=" + ici.availTop + ",width=" + ici.availWidth + ",height=" + ici.availHeight);
+        });
+      }).catch(function () { ouvrirFenetre(adresse, "width=1200,height=760"); });
+      return;
+    }
+    ouvrirFenetre(adresse, "width=1200,height=760");
+  }
+  function ouvrirFenetre(adresse, dimensions) {
+    fenetre = window.open(adresse, "lx-lecon1-presentateur", dimensions);
+    if (!fenetre) { window.alert(UI[langue].popup); return; }
+    // Cette fenêtre-ci devient l'écran projeté : plus de barre ni de boutons, comme le diaporama de PowerPoint.
+    if (!diaporamaActif) {
+      diaporamaActif = true;
+      document.documentElement.classList.add("mode-diaporama");
+      echelle();
+      var a = document.getElementById("astuce");
+      a.hidden = false;
+      setTimeout(function () { a.hidden = true; }, 8000);
+    }
+  }
+  // Langue des notes : celle des diapositives (« auto »), ou une autre, gardée d'une séance à l'autre.
+  function langueNotesChoisie() { var v = lire("lx-lecon1-langue-notes"); return L[v] ? v : "auto"; }
+  function langueDesNotes() { var v = langueNotesChoisie(); return v === "auto" ? langue : v; }
+  // Un second écran branché : le bouton du présentateur s'allume et dit ce que fera S.
+  function signalerProjecteur() {
+    var bouton = document.querySelector('[data-action="presentateur"]'), etendu = !!(window.screen && window.screen.isExtended);
+    if (!bouton) return;
+    bouton.classList.toggle("outil--projecteur", etendu);
+    bouton.title = etendu ? UI[langue].projecteur : UI[langue][bouton.dataset.titre];
+  }
+  if (window.screen && "onchange" in window.screen) window.screen.addEventListener("change", signalerProjecteur);
+  function remplirLangueProjetee() {
+    var s = document.getElementById("langue-projetee"), v = langueProjection || langue;
+    s.innerHTML = [["fr", "Français"], ["en", "English"], ["ar", "العربية"]].map(function (o) {
+      return '<option value="' + o[0] + '" lang="' + o[0] + '"' + (o[0] === v ? " selected" : "") + '>' + o[1] + '</option>';
+    }).join("");
+  }
+  function remplirLangueNotes() {
+    var v = langueNotesChoisie();
+    document.getElementById("langue-notes").innerHTML = [["auto", UI[langue].notes_auto], ["fr", "Français"], ["en", "English"], ["ar", "العربية"]]
+      .map(function (o) { return '<option value="' + o[0] + '"' + (o[0] === v ? " selected" : "") + (o[0] === "auto" ? "" : ' lang="' + o[0] + '"') + '>' + esc(o[1]) + '</option>'; }).join("");
+  }
+  function majConsole(n, donnees) {
+    var ln = langueDesNotes(), d = (L[ln] && L[ln].diapos[n]) || donnees, h = "", boite = document.getElementById("notes-texte");
+    if (notesOuvertes && d.type === "quiz") h += '<p class="notes__reponse">' + esc(UI[ln].reponse) + " " + LETTRES[ln][d.reponse] + " · " + riche(d.choix[d.reponse]) + '</p>';
+    h += (d.notes ? '<p>' + riche(d.notes) + '</p>' : "");
+    if (d.explication && notesOuvertes) h += '<p><em>' + riche(d.explication) + '</em></p>';
+    boite.innerHTML = h;
+    boite.lang = ln;
+    boite.dir = ln === "ar" ? "rtl" : "ltr";
+    boite.scrollTop = 0;
+    var boite = document.getElementById("suivante");
+    boite.innerHTML = "";
+    if (diapos[n + 1]) {
+      var m = document.createElement("div"), c = diapos[n + 1].cloneNode(true);
+      m.className = "miniature";
+      c.classList.add("active"); c.classList.remove("passee");
+      c.querySelectorAll(".bulle").forEach(function (b) { b.classList.add("vue"); });
+      m.appendChild(c); boite.appendChild(m);
+      c.style.setProperty("--km", (m.clientWidth / 1280).toFixed(4));
+      rechargerCopies(m);
+    } else boite.innerHTML = '<p class="console__fin">' + esc(UI[langue].fin) + '</p>';
+  }
+  var debut = Date.now();
+  function horloges() {
+    var s = Math.floor((Date.now() - debut) / 1000), d = new Date();
+    document.getElementById("chrono").textContent = (s >= 3600 ? Math.floor(s / 3600) + ":" : "") + ("0" + Math.floor(s / 60) % 60).slice(-2) + ":" + ("0" + s % 60).slice(-2);
+    document.getElementById("heure").textContent = ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
+  }
+  function tailleNotes(pas) {
+    var t = Math.max(14, Math.min(40, (parseInt(lire("lx-lecon1-notes"), 10) || 22) + pas));
+    ecrire("lx-lecon1-notes", String(t));
+    document.documentElement.style.setProperty("--taille-notes", t + "px");
+  }
+  function basculerQuiz(q) {
+    q.classList.toggle("quiz--revele");
+    envoyer({ type: "quiz", n: index, revele: q.classList.contains("quiz--revele") });
+  }
+  function animerChat(d) {
+    minuteursChat.forEach(clearTimeout); minuteursChat = [];
+    var bulles = d.querySelectorAll(".bulle"), frappe = d.querySelector(".frappe");
+    if (!bulles.length) return;
+    Array.prototype.forEach.call(bulles, function (b) { b.classList.remove("vue"); });
+    var t = 500;
+    Array.prototype.forEach.call(bulles, function (b) {
+      var machine = b.classList.contains("bulle--m");
+      if (machine && frappe) {
+        minuteursChat.push(setTimeout(function () { frappe.style.top = b.offsetTop + "px"; frappe.classList.add("vue"); }, t));
+        t += 1100;
+      }
+      minuteursChat.push(setTimeout(function () { if (frappe) frappe.classList.remove("vue"); b.classList.add("vue"); }, t));
+      t += machine ? 900 : 1300;
+    });
+  }
+  function preparerVideo(d) {
+    var v = d.querySelector(".video[data-youtube]");
+    if (!v || v.dataset.pret) return;
+    v.dataset.pret = "1";
+    var repli = v.querySelector(".video__repli");
+    if (!navigator.onLine) { repli.insertAdjacentHTML("afterbegin", "<p>" + esc(UI[langue].video_hors) + "</p>"); return; }
+    // Image de la vidéo en fond, si YouTube répond.
+    var vignette = new Image();
+    vignette.className = "video__vignette"; vignette.alt = "";
+    vignette.onerror = function () { vignette.remove(); };
+    vignette.src = "https://i.ytimg.com/vi/" + encodeURIComponent(v.dataset.youtube) + "/hqdefault.jpg";
+    v.insertBefore(vignette, repli);
+    // Le lecteur n'est chargé qu'au clic : la présentation reste légère et rien ne part sans le vouloir.
+    v.querySelector(".video__jouer").parentNode.addEventListener("click", function (e) {
+      if (e.target.closest("a")) return;
+      v.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(v.dataset.youtube) + '?autoplay=1&rel=0" title="YouTube" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+    });
+    repli.style.cursor = "pointer";
+  }
+  function initQuiz(q) {
+    q.querySelectorAll(".choix button").forEach(function (b) {
+      b.addEventListener("click", function (e) {
+        e.stopPropagation();
+        q.querySelectorAll(".choix button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      });
+    });
+    q.querySelector(".reveler").addEventListener("click", function (e) { e.stopPropagation(); basculerQuiz(q); });
+  }
+  // Comme PowerPoint : sur un écran noir ou blanc, la touche suivante rallume ; après la dernière diapositive, un écran de fin.
+  function suivant() {
+    if (noir === "fin") { if (diaporamaActif && !PRESENTATEUR) quitterDiaporama(); else ecranNoir(""); return; }
+    if (noir) { ecranNoir(""); return; }
+    if (index >= diapos.length - 1) { if (diaporamaActif || PRESENTATEUR) ecranNoir("fin"); return; }
+    aller(index + 1);
+  }
+  function precedent() {
+    if (noir) { ecranNoir(""); return; }
+    aller(index - 1);
+  }
+
+  /* ---------- Diaporama plein écran ---------- */
+  var diaporamaActif = false, pleinEcranDemande = false, noir = "", minuteurCommandes = null;
+  function diaporama(depuisDebut) {
+    if (PRESENTATEUR) return;
+    apercu(false);
+    if (depuisDebut) aller(0);
+    diaporamaActif = true;
+    document.documentElement.classList.add("mode-diaporama");
+    document.getElementById("astuce").hidden = true;
+    if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
+      pleinEcranDemande = true;
+      document.documentElement.requestFullscreen().catch(function () { pleinEcranDemande = false; });
+    }
+    echelle();
+    montrerCommandes();
+  }
+  function quitterDiaporama() {
+    diaporamaActif = false; pleinEcranDemande = false;
+    document.documentElement.classList.remove("mode-diaporama", "curseur-cache");
+    if (noir) ecranNoir("");
+    if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(function () {});
+    echelle();
+  }
+  // Échap en plein écran : le navigateur sort du plein écran, le diaporama s'arrête avec lui.
+  document.addEventListener("fullscreenchange", function () {
+    if (!document.fullscreenElement && diaporamaActif && pleinEcranDemande) quitterDiaporama();
+    echelle();
+  });
+  function ecranNoir(valeur, local) {
+    noir = valeur || "";
+    var e = document.getElementById("ecran-noir");
+    e.dataset.etat = PRESENTATEUR ? "" : noir; // le présentateur garde ses diapositives sous les yeux
+    document.getElementById("ecran-noir-texte").textContent = noir === "fin" ? UI[langue].fin_diaporama : "";
+    Array.prototype.forEach.call(document.querySelectorAll('[data-action="noir"]'), function (b) { b.setAttribute("aria-pressed", noir === "noir" || noir === "blanc" ? "true" : "false"); });
+    if (!local) envoyer({ type: "noir", valeur: noir });
+  }
+  // Les commandes discrètes (en bas, comme PowerPoint) et le pointeur n'apparaissent que quand la souris bouge.
+  function montrerCommandes() {
+    if (!diaporamaActif) return;
+    var c = document.getElementById("commandes"), r = document.documentElement;
+    c.classList.add("visible"); r.classList.remove("curseur-cache");
+    clearTimeout(minuteurCommandes);
+    minuteurCommandes = setTimeout(function () { if (!c.matches(":hover")) { c.classList.remove("visible"); r.classList.add("curseur-cache"); } }, 2500);
+  }
+  document.addEventListener("mousemove", montrerCommandes);
+  var derniereMolette = 0;
+  document.addEventListener("wheel", function (e) {
+    if (!diaporamaActif || !document.getElementById("apercu").hidden || Math.abs(e.deltaY) < 4) return;
+    var t = Date.now();
+    if (t - derniereMolette < 450) return;
+    derniereMolette = t;
+    if (e.deltaY > 0) suivant(); else precedent();
+  }, { passive: true });
+
+  /* ---------- Notes chiffrées : SHA-256, HMAC et PBKDF2, sans dépendance (fonctionne aussi en file://) ---------- */
+  var NOTES = window.NOTES || null, notesOuvertes = !NOTES;
+  var K256 = new Uint32Array([0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2]), H0 = [0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19], W = new Uint32Array(64);
+  function compresser(h, b, o) {
+    var i, x, y;
+    for (i = 0; i < 16; i++) W[i] = (b[o + 4 * i] << 24) | (b[o + 4 * i + 1] << 16) | (b[o + 4 * i + 2] << 8) | b[o + 4 * i + 3];
+    for (i = 16; i < 64; i++) {
+      x = W[i - 15]; y = W[i - 2];
+      W[i] = (W[i - 16] + (((x >>> 7) | (x << 25)) ^ ((x >>> 18) | (x << 14)) ^ (x >>> 3)) + W[i - 7] + (((y >>> 17) | (y << 15)) ^ ((y >>> 19) | (y << 13)) ^ (y >>> 10))) | 0;
+    }
+    var a = h[0], bb = h[1], c = h[2], d = h[3], e = h[4], f = h[5], g = h[6], hh = h[7], t1, t2;
+    for (i = 0; i < 64; i++) {
+      t1 = (hh + (((e >>> 6) | (e << 26)) ^ ((e >>> 11) | (e << 21)) ^ ((e >>> 25) | (e << 7))) + ((e & f) ^ (~e & g)) + K256[i] + W[i]) | 0;
+      t2 = ((((a >>> 2) | (a << 30)) ^ ((a >>> 13) | (a << 19)) ^ ((a >>> 22) | (a << 10))) + ((a & bb) ^ (a & c) ^ (bb & c))) | 0;
+      hh = g; g = f; f = e; e = (d + t1) | 0; d = c; c = bb; bb = a; a = (t1 + t2) | 0;
+    }
+    h[0] = (h[0] + a) | 0; h[1] = (h[1] + bb) | 0; h[2] = (h[2] + c) | 0; h[3] = (h[3] + d) | 0;
+    h[4] = (h[4] + e) | 0; h[5] = (h[5] + f) | 0; h[6] = (h[6] + g) | 0; h[7] = (h[7] + hh) | 0;
+  }
+  // etat : { h, n } après un premier bloc de 64 octets (clés HMAC préparées une fois pour toutes).
+  function sha256(m, etat) {
+    var h = new Uint32Array(etat ? etat.h : H0), n = m.length, total = (etat ? etat.n : 0) + n;
+    var taille = ((n + 72) >> 6) << 6, b = new Uint8Array(taille), bits = total * 8, i;
+    b.set(m); b[n] = 0x80;
+    b[taille - 5] = Math.floor(bits / 4294967296);
+    b[taille - 4] = bits >>> 24; b[taille - 3] = (bits >>> 16) & 255; b[taille - 2] = (bits >>> 8) & 255; b[taille - 1] = bits & 255;
+    for (i = 0; i < taille; i += 64) compresser(h, b, i);
+    var sortie = new Uint8Array(32);
+    for (i = 0; i < 8; i++) { sortie[4 * i] = h[i] >>> 24; sortie[4 * i + 1] = (h[i] >>> 16) & 255; sortie[4 * i + 2] = (h[i] >>> 8) & 255; sortie[4 * i + 3] = h[i] & 255; }
+    return sortie;
+  }
+  function preparerHmac(cle) {
+    if (cle.length > 64) cle = sha256(cle);
+    var ip = new Uint8Array(64), op = new Uint8Array(64), hi = new Uint32Array(H0), ho = new Uint32Array(H0);
+    for (var i = 0; i < 64; i++) { ip[i] = (cle[i] || 0) ^ 0x36; op[i] = (cle[i] || 0) ^ 0x5c; }
+    compresser(hi, ip, 0); compresser(ho, op, 0);
+    return { i: { h: hi, n: 64 }, o: { h: ho, n: 64 } };
+  }
+  function hmac(p, m) { return sha256(sha256(m, p.i), p.o); }
+  function pbkdf2(mdp, sel, iterations) {
+    var p = preparerHmac(mdp), s = new Uint8Array(sel.length + 4);
+    s.set(sel); s[sel.length + 3] = 1;
+    var u = hmac(p, s), t = u.slice();
+    for (var k = 1; k < iterations; k++) { u = hmac(p, u); for (var j = 0; j < 32; j++) t[j] ^= u[j]; }
+    return t;
+  }
+  function joindre(a, b) { var r = new Uint8Array(a.length + b.length); r.set(a); r.set(b, a.length); return r; }
+  function octets(texte) { return new TextEncoder().encode(texte); }
+  function depuisHex(h) { var r = new Uint8Array(h.length / 2); for (var i = 0; i < r.length; i++) r[i] = parseInt(h.substr(2 * i, 2), 16); return r; }
+  function versHex(o) { return Array.prototype.map.call(o, function (x) { return ("0" + x.toString(16)).slice(-2); }).join(""); }
+  function depuisBase64(t) { var s = atob(t), r = new Uint8Array(s.length); for (var i = 0; i < s.length; i++) r[i] = s.charCodeAt(i); return r; }
+  // Même calcul que chiffrer() dans tools/lecon1.py ; renvoie null si la clé est fausse.
+  function dechiffrer(cle, iv, donnees) {
+    var kc = sha256(joindre(cle, octets("lx-chiffre"))), km = sha256(joindre(cle, octets("lx-controle")));
+    var sortie = new Uint8Array(donnees.length), bloc = new Uint8Array(52), i, j, flux;
+    bloc.set(kc); bloc.set(iv, 32);
+    for (i = 0; i * 32 < donnees.length; i++) {
+      bloc[48] = i >>> 24; bloc[49] = (i >>> 16) & 255; bloc[50] = (i >>> 8) & 255; bloc[51] = i & 255;
+      flux = sha256(bloc);
+      for (j = 0; j < 32 && i * 32 + j < donnees.length; j++) sortie[i * 32 + j] = donnees[i * 32 + j] ^ flux[j];
+    }
+    var controle = hmac(preparerHmac(km), sortie);
+    for (j = 0; j < 16; j++) if (controle[j] !== iv[j]) return null;
+    return new TextDecoder().decode(sortie);
+  }
+  function ouvrirNotes(cle) {
+    var texte = dechiffrer(cle, depuisBase64(NOTES.iv), depuisBase64(NOTES.donnees)), n;
+    if (texte === null) return false;
+    try { n = JSON.parse(texte); } catch (e) { return false; }
+    Object.keys(L).forEach(function (l) { L[l].diapos.forEach(function (d, i) { d.notes = (n[l] || [])[i] || ""; }); });
+    notesOuvertes = true;
+    try { sessionStorage.setItem("lx-cle-enseignant", versHex(cle)); } catch (e) { /* stockage indisponible */ }
+    afficherVerrou();
+    return true;
+  }
+  function verrouillerNotes() {
+    if (!NOTES) return;
+    Object.keys(L).forEach(function (l) { L[l].diapos.forEach(function (d) { delete d.notes; }); });
+    notesOuvertes = false;
+    try { sessionStorage.removeItem("lx-cle-enseignant"); sessionStorage.removeItem("lx-lecon1-cle"); } catch (e) { /* stockage indisponible */ }
+    afficherVerrou();
+  }
+  function afficherVerrou() {
+    document.getElementById("verrou").hidden = notesOuvertes;
+    document.getElementById("notes-texte").hidden = !notesOuvertes;
+    document.querySelector('[data-action="verrouiller"]').hidden = !notesOuvertes || !NOTES;
+    if (PRESENTATEUR && diapos.length) majConsole(index, L[langue].diapos[index]);
+    if (!notesOuvertes) setTimeout(function () { document.getElementById("mdp").focus(); }, 50);
+  }
+  document.getElementById("langue-projetee").addEventListener("change", function (e) {
+    langueProjection = e.target.value;
+    envoyer({ type: "etat", n: index, langue: langueProjection });
+  });
+  document.getElementById("langue-notes").addEventListener("change", function (e) {
+    ecrire("lx-lecon1-langue-notes", e.target.value);
+    if (diapos.length) majConsole(index, L[langue].diapos[index]);
+  });
+  document.getElementById("verrou").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var champ = document.getElementById("mdp"), message = document.getElementById("mdp-message");
+    message.hidden = false; message.classList.remove("erreur"); message.textContent = UI[langue].calcul;
+    setTimeout(function () {
+      var cle = pbkdf2(octets(champ.value.trim()), depuisHex(NOTES.sel), NOTES.iterations);
+      if (ouvrirNotes(cle)) { champ.value = ""; message.hidden = true; }
+      else { message.classList.add("erreur"); message.textContent = UI[langue].mdp_faux; champ.select(); }
+    }, 30);
+  });
+
+  // Mise à l'échelle 16:9
+  function echelle() {
+    var s = document.getElementById("scene"), marge = diaporamaActif ? 0 : 24, w = s.clientWidth - marge, h = s.clientHeight - marge;
+    document.getElementById("cadre").style.setProperty("--k", Math.max(.1, Math.min(w / 1280, h / 720)).toFixed(4));
+    var m = document.querySelector("#suivante .miniature");
+    if (m) m.firstChild.style.setProperty("--km", (m.clientWidth / 1280).toFixed(4));
+  }
+  window.addEventListener("resize", echelle);
+
+  /* ---------- Vue d'ensemble, notes, thème, plein écran, impression ---------- */
+  function apercu(ouvrir) {
+    var a = document.getElementById("apercu"), g = document.getElementById("apercu-grille");
+    if (ouvrir === undefined) ouvrir = a.hidden;
+    a.hidden = !ouvrir;
+    if (!ouvrir) return;
+    g.innerHTML = "";
+    diapos.forEach(function (d, k) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "miniature"; b.setAttribute("aria-label", tpl(UI[langue].diapo, { n: k + 1, t: diapos.length }));
+      if (k === index) b.setAttribute("aria-current", "true");
+      var c = d.cloneNode(true); c.classList.add("active"); c.classList.remove("passee");
+      c.querySelectorAll("iframe").forEach(function (f) { f.remove(); });
+      b.innerHTML = '<span class="miniature__num">' + (k + 1) + '</span>';
+      b.appendChild(c);
+      b.addEventListener("click", function () { apercu(false); aller(k); });
+      g.appendChild(b);
+      requestAnimationFrame(function () { b.style.setProperty("--km", (b.clientWidth / 1280).toFixed(4)); c.style.setProperty("--km", (b.clientWidth / 1280).toFixed(4)); });
+    });
+    rechargerCopies(g);
+    var courant = g.children[index]; if (courant) courant.scrollIntoView({ block: "center" });
+  }
+  function theme() {
+    var r = document.documentElement, t = r.dataset.theme === "light" ? "dark" : "light";
+    r.dataset.theme = t; ecrire("lx-theme", t);
+  }
+  function imprimer() {
+    var zone = document.getElementById("impression");
+    zone.innerHTML = cadre.innerHTML;
+    zone.querySelectorAll(".diapo").forEach(function (d) { d.classList.add("active"); d.classList.remove("passee"); d.querySelectorAll(".bulle").forEach(function (b) { b.classList.add("vue"); }); });
+    zone.querySelectorAll(".quiz").forEach(function (q) { q.classList.add("quiz--revele"); });
+    rechargerCopies(zone);
+    setTimeout(function () { window.print(); }, 300);
+  }
+
+  /* ---------- Commandes ---------- */
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-action]");
+    if (b) {
+      var a = b.dataset.action;
+      if (a === "suivant") suivant(); else if (a === "precedent") precedent(); else if (a === "apercu") apercu();
+      else if (a === "presentateur") ouvrirPresentateur(); else if (a === "theme") theme(); else if (a === "diaporama") diaporama(false); else if (a === "imprimer") imprimer();
+      else if (a === "sortir") quitterDiaporama(); else if (a === "noir") ecranNoir(noir === "noir" ? "" : "noir"); else if (a === "verrouiller") verrouillerNotes();
+      else if (a === "zero") { debut = Date.now(); horloges(); } else if (a === "plus") tailleNotes(2); else if (a === "moins") tailleNotes(-2);
+      return;
+    }
+    var l = e.target.closest("[data-langue]");
+    if (l) { langue = l.dataset.langue; construire(); return; }
+    if (e.target.closest("#ecran-noir")) { suivant(); return; }
+    // Un clic dans la scène fait avancer (hors diaporama, le premier quart fait reculer).
+    if (e.target.closest(".scene") && !e.target.closest("a, button, iframe, .video")) {
+      if (diaporamaActif) { suivant(); return; }
+      var x = e.clientX / window.innerWidth, rtl = langue === "ar";
+      if (rtl ? x > .75 : x < .25) precedent(); else suivant();
+    }
+  });
+  // Clavier : les raccourcis de PowerPoint pendant le diaporama (N/P, B/W, numéro + Entrée, Échap, F5, Maj+F5, Alt+F5).
+  var chiffres = "", minuteurChiffres = null;
+  document.addEventListener("keydown", function (e) {
+    var k = e.key, rtl = langue === "ar", ppt = diaporamaActif || PRESENTATEUR;
+    // Dans le champ du mot de passe, seules les touches des télécommandes de présentation (Page préc./suiv.) font défiler.
+    if (e.target.closest && e.target.closest("input, textarea, select") && k !== "PageDown" && k !== "PageUp") return;
+    if (k === "F5") { e.preventDefault(); if (e.altKey) ouvrirPresentateur(); else diaporama(!e.shiftKey); return; }
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    if ((k === " " || k === "Enter") && !chiffres && e.target.closest && e.target.closest("button, a")) return; // le bouton reçoit sa propre action
+    if (!document.getElementById("apercu").hidden && k === "Escape") { apercu(false); return; }
+    if (ppt && /^[0-9]$/.test(k)) {
+      chiffres += k; clearTimeout(minuteurChiffres);
+      minuteurChiffres = setTimeout(function () { chiffres = ""; }, 2000);
+      return;
+    }
+    if (k === "Enter" && chiffres) { e.preventDefault(); var c = parseInt(chiffres, 10); chiffres = ""; if (c) { if (noir) ecranNoir(""); aller(c - 1); } return; }
+    if (k === (rtl ? "ArrowLeft" : "ArrowRight") || k === "ArrowDown" || k === "PageDown" || k === " " || k === "Enter" || (ppt && (k === "n" || k === "N"))) { e.preventDefault(); suivant(); }
+    else if (k === (rtl ? "ArrowRight" : "ArrowLeft") || k === "ArrowUp" || k === "PageUp" || k === "Backspace" || (ppt && (k === "p" || k === "P"))) { e.preventDefault(); precedent(); }
+    else if (k === "Home") { if (noir) ecranNoir(""); aller(0); } else if (k === "End") { if (noir) ecranNoir(""); aller(diapos.length - 1); }
+    else if (k === "Escape" && diaporamaActif) quitterDiaporama();
+    else if (ppt && (k === "b" || k === "B" || k === ".")) ecranNoir(noir === "noir" ? "" : "noir");
+    else if (ppt && (k === "w" || k === "W" || k === ",")) ecranNoir(noir === "blanc" ? "" : "blanc");
+    else if (k === "o" || k === "O" || k === "g" || k === "G") apercu();
+    else if (k === "s" || k === "S" || k === "n" || k === "N") ouvrirPresentateur();
+    else if (k === "t" || k === "T") theme();
+    else if (k === "f" || k === "F") diaporama(false);
+    else if (k === "p" || k === "P") imprimer();
+    else if (k === "r" || k === "R") { var q = diapos[index].querySelector(".quiz"); if (q) basculerQuiz(q); }
+    else if (k === "l" || k === "L") { langue = { fr: "en", en: "ar", ar: "fr" }[langue]; construire(); }
+  });
+  var depart = null;
+  document.getElementById("scene").addEventListener("touchstart", function (e) { depart = e.touches[0].clientX; }, { passive: true });
+  document.getElementById("scene").addEventListener("touchend", function (e) {
+    if (depart == null) return;
+    var dx = e.changedTouches[0].clientX - depart; depart = null;
+    if (Math.abs(dx) < 50) return;
+    if ((dx < 0) !== (langue === "ar")) suivant(); else precedent();
+  });
+  window.addEventListener("hashchange", function () { var n = parseInt(location.hash.slice(1), 10); if (n) aller(n - 1); });
+
+  /* ---------- Démarrage : langue de l'adresse, sinon la dernière utilisée ---------- */
+  var memo = null; try { memo = JSON.parse(lire("lx-lecon1") || "null"); } catch (e) { memo = null; }
+  var parametre = (location.search.match(/[?&]lang=(fr|en|ar)\b/) || [])[1];
+  langue = parametre || (memo && memo.langue) || (/^ar/.test(navigator.language) ? "ar" : /^en/.test(navigator.language) ? "en" : "fr");
+  if (!L[langue]) langue = "fr";
+  var h = parseInt(location.hash.slice(1), 10);
+  index = h ? h - 1 : (memo && memo.langue === langue ? memo.index || 0 : 0);
+  var th = lire("lx-theme"); if (th === "light" || th === "dark") document.documentElement.dataset.theme = th;
+  if (PRESENTATEUR) {
+    document.documentElement.classList.add("mode-presentateur");
+    tailleNotes(0); horloges(); setInterval(horloges, 1000);
+    // Signale sa présence à la fenêtre projetée, même si celle-ci a été rechargée.
+    setInterval(function () { try { if (window.opener && !window.opener.closed) window.opener.postMessage({ type: "presence" }, "*"); } catch (e) { /* fermée */ } }, 3000);
+  }
+  construire();
+  if (PRESENTATEUR) {
+    langueProjection = langue;
+    remplirLangueProjetee();
+    // Notes : déjà ouvertes dans cet onglet ? Sinon, le mot de passe est demandé.
+    var memoCle = null; try { memoCle = sessionStorage.getItem("lx-cle-enseignant") || sessionStorage.getItem("lx-lecon1-cle"); } catch (e) { memoCle = null; }
+    if (!(NOTES && memoCle && /^[0-9a-f]{64}$/.test(memoCle) && ouvrirNotes(depuisHex(memoCle)))) afficherVerrou();
+    envoyer({ type: "bonjour" });
+  }
+})();
+</script>
+</body>
+</html>
