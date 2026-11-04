@@ -80,7 +80,7 @@ main { max-width: 1240px; margin: 0 auto; padding: 18px 16px 48px; }
 :root[lang="ar"] .sommaire h2 { text-transform: none; letter-spacing: 0; font-size: 17px; }
 .vignettes { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; list-style: none; margin: 0; padding: 0; }
 .vignette { display: block; width: 100%; padding: 0; border: 1px solid var(--ligne); border-radius: 10px; overflow: hidden; background: var(--surface); cursor: pointer; text-align: start; }
-.vignette img { display: block; width: 100%; aspect-ratio: 1920 / 1072; object-fit: cover; }
+.vignette img { display: block; width: 100%; height: auto; aspect-ratio: 1920 / 1072; object-fit: contain; background: #22252b; }
 .vignette span { display: block; padding: 6px 9px 8px; font-size: 14px; line-height: 1.3; color: var(--doux); }
 .vignette b { color: var(--texte); font-family: var(--f-code); font-weight: 500; margin-inline-end: 6px; }
 .vignette[aria-current="true"] { border-color: var(--c2); box-shadow: 0 0 0 1px var(--c2); }
