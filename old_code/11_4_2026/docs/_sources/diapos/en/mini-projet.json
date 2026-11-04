@@ -1,0 +1,432 @@
+{
+  "id": "mini-projet",
+  "titre": "Launching the mini-project",
+  "resume": "Choose a mini-project subject as a group, knowing the approach, the possible data, the deliverables, the schedule, the oral presentation and the assessment.",
+  "duree": "3 weeks",
+  "lien": "index.html#mini-projet",
+  "diapos": [
+    {
+      "type": "titre",
+      "surtitre": "Mini-project · supervised independent work",
+      "titre": "The mini-project",
+      "sousTitre": "Five subjects, six groups, three weeks for a small but complete piece of research",
+      "notes": "To be shown at the end of chapter 2: this is when the syllabus plans to hand out the mini-project, for three weeks of supervised independent work. Before the session, set the rule on the number of subjects, the due date, how the work is submitted and the length of the oral presentation, and check that a data source is accessible for each subject. Everything labeled “suggested” comes from the guide and should be adapted."
+    },
+    {
+      "type": "points",
+      "titre": "A small but complete piece of research",
+      "points": [
+        "Ask a research question",
+        "Gather data",
+        "Process them in Python",
+        "Interpret the results with the critical eye of your discipline",
+        "Three outputs: a **notebook**, a **report**, an **oral presentation**"
+      ],
+      "progressif": true,
+      "notes": "Present the mini-project as research in miniature, not as a programming exercise. The last step, interpretation, is where literature students have an advantage: the tool produces clues, and it is the research question that gives them meaning."
+    },
+    {
+      "type": "deux",
+      "titre": "One subject or three? The syllabus says both",
+      "colonnes": [
+        {
+          "titre": "Presentation of the mini-project",
+          "points": [
+            "“Work on 1 subject of your choice from” the five subjects"
+          ]
+        },
+        {
+          "titre": "Teaching method",
+          "points": [
+            "“Mini-project (complete at least 3 of the 5 proposed subjects)”"
+          ]
+        }
+      ],
+      "notes": "The official syllabus gives two different instructions: do not leave the students in doubt. Announce here the rule you have chosen, with your head of department if necessary, write it on the board and keep it all semester. If you choose three subjects, the guide suggests spreading them from week 4 to week 9, one subject every two weeks. If the rule is one subject, you can allow the fastest groups to work on a second one."
+    },
+    {
+      "type": "section",
+      "numero": 1,
+      "titre": "The five subjects",
+      "sousTitre": "Methods, tools, data",
+      "notes": "Each subject has its own page on the site: objective, possible research question, data, deliverables, tools listed in the syllabus, step-by-step approach and starter code."
+    },
+    {
+      "type": "tableau",
+      "titre": "Five subjects to choose from",
+      "entetes": [
+        "Subject",
+        "Method",
+        "Tools listed in the syllabus"
+      ],
+      "lignes": [
+        [
+          "1. Sentiment analysis on social media",
+          "Polarity of texts: positive, negative or neutral",
+          "TextBlob, VADER, pandas, matplotlib"
+        ],
+        [
+          "2. Survey clustering",
+          "k-means: groups formed without labels",
+          "pandas, scikit-learn, seaborn"
+        ],
+        [
+          "3. Political speeches",
+          "Named entities and topics (LDA)",
+          "spaCy, BERT, gensim, WordCloud"
+        ],
+        [
+          "4. Predictive modeling",
+          "Logistic regression: estimating an outcome (yes or no)",
+          "scikit-learn, pandas, seaborn"
+        ],
+        [
+          "5. Network analysis",
+          "Graph of relationships, centrality measures",
+          "NetworkX, Gephi, pandas"
+        ]
+      ],
+      "legende": "Details of each subject on the site’s “Mini-project” page.",
+      "notes": "Reassure the students: the methods will be covered in chapter 3, during the mini-project, and each subject page provides starter code. The syllabus lists both sklearn and scikit-learn: they are the same library. For subject 1, Tweepy is hardly usable (the X API has been paid since 2023), and GeoPandas is only useful if the texts are linked to a place."
+    },
+    {
+      "type": "question",
+      "titre": "One question: which subject?",
+      "question": "“Can we see the fragmented structure of *Nedjma* in the network of its characters?” Which subject does this research question belong to?",
+      "choix": [
+        "Subject 1 · Sentiment",
+        "Subject 2 · Clustering",
+        "Subject 3 · Political speeches",
+        "Subject 4 · Prediction",
+        "Subject 5 · Networks"
+      ],
+      "reponse": "Subject 5 · Networks",
+      "explication": "The characters are the nodes and their shared appearances the links; centrality measures show who connects the groups and who stays on the margins.",
+      "notes": "Then read the other questions suggested on the site. Subject 1: how did internet users receive the film or TV adaptation of a novel? Subject 2: are there distinct reader profiles among Master’s students? Subject 3: which themes and which places dominate the speeches of the UN general debate? Subject 4: which factors are associated with students’ attendance at cultural events? Each group can draw on them, but must formulate its own question."
+    },
+    {
+      "type": "tableau",
+      "titre": "Where to find the data",
+      "entetes": [
+        "Subject",
+        "Possible data"
+      ],
+      "lignes": [
+        [
+          "1. Sentiment",
+          "Sentiment140, Allociné, LABR; public comments collected by hand"
+        ],
+        [
+          "2. Clustering",
+          "Your anonymous questionnaire; World Values Survey, Arab Barometer"
+        ],
+        [
+          "3. Speeches",
+          "Official websites, vie-publique.fr, UN General Debate Corpus"
+        ],
+        [
+          "4. Prediction",
+          "Your questionnaire (a yes/no question); UCI public datasets"
+        ],
+        [
+          "5. Networks",
+          "A link table noted while reading; NetworkX sample networks"
+        ]
+      ],
+      "legende": "For each dataset: who produced it, where, when, and how it was collected.",
+      "notes": "A questionnaire (subjects 2 and 4) requires the respondents’ consent and anonymity, and it takes time for people to fill it in: it must go out in the first week. With only a few dozen answers, conclusions remain very cautious. For subject 5, *Nedjma* is protected by copyright: share the link tables, not the digitized text. If a source seems uncertain to you, plan a small dataset to provide."
+    },
+    {
+      "type": "activite",
+      "titre": "Assigning the subjects to the six groups",
+      "duree": 20,
+      "consignes": [
+        "Each group rereads the five subjects on the site and picks three, in order of preference.",
+        "Criteria: an interesting question, accessible data, the group’s equipment.",
+        "The spokesperson announces the three choices; the teacher arbitrates on the board.",
+        "Each group writes down its subject and a first idea for a research question."
+      ],
+      "materiel": "The site’s “Mini-project” page (phone or computer room); the grid on the next slide",
+      "notes": "A suggested procedure, not a rule of the syllabus: adapt it. Six groups for five subjects: with the one-subject rule, one subject will be taken by two groups, who can choose different corpora and compare their results in the oral presentation. With the three-subject rule, each group picks three and you make sure they are balanced. Equipment: subjects 1 and 3 require heavy libraries (transformers, torch, spaCy) and a good connection; subject 5 requires installing Gephi separately. A group without a computer can work in Colab or in the computer room."
+    },
+    {
+      "type": "tableau",
+      "titre": "Subject assignment",
+      "entetes": [
+        "Group",
+        "Subject(s)",
+        "First idea for a question",
+        "Planned data"
+      ],
+      "lignes": [
+        [
+          "Group 1",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Group 2",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Group 3",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Group 4",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Group 5",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Group 6",
+          "",
+          "",
+          ""
+        ]
+      ],
+      "legende": "A grid to copy onto the board or to print; each row is approved by the teacher during the first week.",
+      "notes": "Fill in the grid on the board during the arbitration, then post it in the class space (Moodle or messaging group): it becomes the shared reference. The PDF export of the slideshow also lets you print it blank."
+    },
+    {
+      "type": "points",
+      "titre": "Working in a group",
+      "points": [
+        "Rotating roles: secretary, spokesperson, timekeeper",
+        "The less confident student at the keyboard; the other guides, and you swap regularly",
+        "A dated **logbook**: what you tried, what failed, what you decided and why",
+        "Every member can explain any cell of the notebook",
+        "Progress is shown to the teacher every week"
+      ],
+      "notes": "These tips come from the guide and from the “Study method” page. For group work, the guide suggests marking the code and the report collectively, and the oral presentation individually: each member answers a question on a part they did not present. If you adopt this principle, announce it today: it prevents a single student from writing all the code."
+    },
+    {
+      "type": "section",
+      "numero": 2,
+      "titre": "Method and schedule",
+      "sousTitre": "Three weeks, six steps",
+      "notes": "The approach is the same for all subjects; each subject page then details it step by step."
+    },
+    {
+      "type": "etapes",
+      "titre": "Six steps in three weeks",
+      "etapes": [
+        {
+          "titre": "W1 · Choose and define the scope",
+          "texte": "A precise research question, one or two hypotheses, approved by the teacher."
+        },
+        {
+          "titre": "W1 · Gather the data",
+          "texte": "Collect, write a source sheet, anonymize, load into a pandas table."
+        },
+        {
+          "titre": "W2 · Explore and clean",
+          "texte": "Count, sort, find duplicates and missing values; write down each decision."
+        },
+        {
+          "titre": "W2 · Apply the method",
+          "texte": "The subject’s tool or algorithm, checked on a small sample that you read yourself."
+        },
+        {
+          "titre": "W3 · Interpret and discuss",
+          "texte": "Go back to the texts or the data; identify biases and limitations."
+        },
+        {
+          "titre": "W3 · Write and present",
+          "texte": "Write the report, rerun the whole notebook, prepare the oral presentation."
+        }
+      ],
+      "progressif": true,
+      "notes": "W1, W2 and W3 are the three weeks of the mini-project. Advice from the “Study method” page: start small; a corpus of fifty texts that works is better than ten thousand that do not. The step most often forgotten is checking on a sample read by hand: insist on it."
+    },
+    {
+      "type": "points",
+      "titre": "Rules for all subjects",
+      "points": [
+        "**Sources**: who produced the data, where, when, how it was collected",
+        "**Privacy**: remove names, usernames and identifiers; respondents’ consent",
+        "**Rights**: terms of use and copyright; analyzing is not republishing",
+        "**Reproducibility**: another person can rerun the notebook and get the same results",
+        "**Transparency**: any use of an AI assistant is declared, and everything it produces is checked"
+      ],
+      "notes": "These five rules appear on the mini-project page and apply to all subjects. Privacy: in Algeria, Law No. 18-07 of 10 June 2018 governs the processing of personal data. Rights: a recent novel may be analyzed, but not republished online. Transparency: the guide suggests ending each report with a declaration of use of AI tools (tool, date, use, prompts, checking), even if the answer is “none”."
+    },
+    {
+      "type": "chronologie",
+      "titre": "Suggested schedule (to adapt)",
+      "evenements": [
+        {
+          "date": "Week 3",
+          "texte": "End of chapter 2: the mini-project is handed out"
+        },
+        {
+          "date": "Week 4",
+          "texte": "Define the scope, gather the data; research questions approved"
+        },
+        {
+          "date": "Week 5",
+          "texte": "Explore, clean, apply the method; progress check"
+        },
+        {
+          "date": "Week 6",
+          "texte": "Interpret, write up; submit the notebook and the report"
+        },
+        {
+          "date": "Week 7",
+          "texte": "Individual feedback on the mini-projects"
+        },
+        {
+          "date": "Week 8",
+          "texte": "Preparing the oral presentations"
+        },
+        {
+          "date": "Week 10",
+          "texte": "Oral presentations"
+        }
+      ],
+      "notes": "This is the schedule that the guide suggests over thirteen weeks, for the one-subject rule. Only the handing out at the end of chapter 2 and the three-week duration come from the syllabus. Replace the week numbers with the dates of your faculty’s calendar, and announce the due date, how the work is submitted and the length of the oral presentation. With three subjects, spread them from week 4 to week 9."
+    },
+    {
+      "type": "section",
+      "numero": 3,
+      "titre": "Deliverables, oral presentation, assessment",
+      "sousTitre": "What you hand in, and how it will be assessed",
+      "notes": "Hand out the assessment grid today, together with the assignment: that way, the students know what counts."
+    },
+    {
+      "type": "tableau",
+      "titre": "What you hand in",
+      "entetes": [
+        "Deliverable",
+        "What is expected"
+      ],
+      "lignes": [
+        [
+          "Jupyter notebook",
+          "Runs without errors from start to finish after a kernel restart"
+        ],
+        [
+          "Data",
+          "Attached to the notebook, or how to obtain them explained precisely"
+        ],
+        [
+          "Report (4 to 6 pages)",
+          "Question, data, method, results, interpretation, limitations"
+        ],
+        [
+          "Charts",
+          "Numbered, given a title and discussed in the text of the report"
+        ],
+        [
+          "Oral presentation",
+          "Your question, your main result, one limitation of your approach"
+        ]
+      ],
+      "legende": "Due date, length of the oral presentation and how to submit: set by the teacher.",
+      "notes": "A Jupyter notebook mixes code cells, results and explanatory text. Suggested outline for the report: research question, data, method, results, interpretation, limitations and ethical issues, references. Each subject adds its own deliverables, specified on its page: a hand-annotated sample (subject 1), a variable dictionary (subject 2), a table of entities (subject 3), a comparison with a naive model (subject 4), a GEXF file (subject 5)."
+    },
+    {
+      "type": "points",
+      "titre": "The oral presentation",
+      "points": [
+        "Present your question, your main result and one limitation of your approach",
+        "“Show the cell that cleans the data and explain each line.”",
+        "“Change k = 3 to k = 4 in front of me: what changes?”",
+        "“Name three messages that your model misclassified and explain each error.”"
+      ],
+      "progressif": true,
+      "notes": "The last three lines are examples of questions that the guide suggests for the oral presentation: only the author of a piece of work can answer them, which makes the oral presentation more convincing than a detector of generated text. Warn the students today: it is the best incentive to understand every line of their notebook. The length of the oral presentation is for you to set."
+    },
+    {
+      "type": "tableau",
+      "titre": "Assessment grid (suggested points out of 20)",
+      "entetes": [
+        "Criterion",
+        "Points",
+        "“Good” level"
+      ],
+      "lignes": [
+        [
+          "Research question",
+          "3",
+          "Precise, linked to SHS or to literature, feasible in three weeks"
+        ],
+        [
+          "Data and ethics",
+          "3",
+          "Source, date, collection given; anonymization and cleaning described"
+        ],
+        [
+          "Method and code",
+          "4",
+          "Runs from start to finish; code commented; parameters given"
+        ],
+        [
+          "Results and interpretation",
+          "4",
+          "Charts with titles and comments; return to the texts or the data"
+        ],
+        [
+          "Report",
+          "3",
+          "Recommended outline followed, 4 to 6 pages, complete references"
+        ],
+        [
+          "Oral presentation",
+          "3",
+          "Keeps to time, explains a code cell and a limitation"
+        ]
+      ],
+      "legende": "A suggested marking scheme from the guide; official grading follows the regulations in force. Before handing in your work, review it with the site’s self-assessment grid.",
+      "notes": "The syllabus only says “Evaluation (identical to the regulations in force)”: do not announce any percentage that your faculty has not set, and scale these points to the share that the regulations give the mini-project. The other levels (insufficient, fair, very good) are in the guide, under “Assessing students”."
+    },
+    {
+      "type": "deux",
+      "titre": "Pitfalls to avoid",
+      "colonnes": [
+        {
+          "titre": "Avoid",
+          "points": [
+            "A mere topic: “feelings on Facebook”",
+            "Data without a source, or not anonymized",
+            "A notebook that does not run from start to finish",
+            "Figures and charts without comment"
+          ]
+        },
+        {
+          "titre": "Do",
+          "points": [
+            "A precise question, with a hypothesis to discuss",
+            "A source sheet; anonymized data",
+            "Rerun the whole notebook before handing it in",
+            "Go back to the texts to interpret the figures"
+          ]
+        }
+      ],
+      "notes": "The left column reflects the “insufficient” level of the grid, the right column the “good” and “very good” levels. Ask each group which of these pitfalls threatens it most, given its subject."
+    },
+    {
+      "type": "fin",
+      "titre": "For next week",
+      "points": [
+        "Read the whole page of your subject",
+        "Formulate a research question and one or two hypotheses",
+        "Find an accessible data source and start the source sheet",
+        "Start the logbook"
+      ],
+      "texte": "The scope of each group’s project is approved by the teacher during the first week.",
+      "notes": "Set the time for approving the scope (lab session (TP) or appointment) and remind the students of the class’s single channel for questions. If a group is preparing a questionnaire, ask to see it before it is sent out: consent and anonymity must be included."
+    }
+  ]
+}

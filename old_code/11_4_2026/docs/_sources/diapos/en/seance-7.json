@@ -1,0 +1,354 @@
+{
+  "id": "seance-7",
+  "numero": 7,
+  "titre": "Machine learning: k-means, regression, gradient descent",
+  "resume": "Define the vocabulary of machine learning, run k-means by hand until it stops, and calculate two steps of gradient descent while explaining the role of the learning rate.",
+  "duree": "1 h 30 min",
+  "lien": "index.html#c3-algorithmes",
+  "fiche": "enseignant.html#guide-seance-7",
+  "diapos": [
+    {
+      "type": "titre",
+      "surtitre": "Chapter 3 · Session 7",
+      "titre": "Machine learning",
+      "sousTitre": "k-means, linear regression, gradient descent",
+      "notes": "A 1 h 30 min session in six phases: from rules to examples (10 min), k-means by hand (20), demonstration (10), regression (15), gradient descent (25), wrap-up (10). Prerequisites: sessions 3 and 6, being able to calculate a mean. Before class, check that everyone has a calculator and that the demonstrations in the lesson “Some machine learning algorithms” open on the classroom computer."
+    },
+    {
+      "type": "points",
+      "titre": "Session objectives",
+      "points": [
+        "Define **features**, **label**, **model**, **training** and **test**",
+        "Run **k-means** by hand until it stops",
+        "Calculate two steps of **gradient descent**",
+        "Explain the role of the **learning rate** η"
+      ],
+      "notes": "Read the objectives aloud: they are action verbs, and they can be checked before the end of the session. Announce the method: each algorithm is first done by hand, on very small numbers, then with the site’s demonstration. “If you can redo the calculation by hand, you have understood the algorithm.”"
+    },
+    {
+      "type": "question",
+      "titre": "From rules to examples · 10 min",
+      "question": "Could you write down the rules that make you recognize Kateb Yacine’s prose?",
+      "reponse": "Hardly: you recognize it within a few lines, but you cannot list the rules behind that judgment.",
+      "explication": "The expert system of session 6 required rules written by hand. Machine learning reverses the approach: you give the program examples, and it finds regularities in them by itself.",
+      "notes": "Allow two or three minutes. Write the “rules” suggested by the students on the board and have them notice that these rules remain vague or incomplete. Then reveal the answer. Transition: much knowledge resists being turned into rules; this is the starting point of machine learning."
+    },
+    {
+      "type": "definition",
+      "terme": "Machine learning (ML)",
+      "traduction": "apprentissage automatique",
+      "definition": "You give the program examples, and it finds regularities in them by itself. Learning means adjusting the **parameters** of a model, that is, numbers, until it reproduces the known examples as well as possible.",
+      "exemple": "Tom Mitchell (1997), paraphrased: a program learns when its performance on a task improves with experience.",
+      "notes": "Stress the word “parameters”: they are numbers, not rules. The whole session shows ways of finding numbers: group centers for k-means, a slope and an intercept for regression, successive steps for gradient descent."
+    },
+    {
+      "type": "tableau",
+      "titre": "Vocabulary, using the example of a spam filter",
+      "entetes": [
+        "Term",
+        "In French",
+        "In a spam filter"
+      ],
+      "lignes": [
+        [
+          "Features",
+          "attributs",
+          "number of words, presence of the word “free”"
+        ],
+        [
+          "Label",
+          "étiquette",
+          "“spam” or “non-spam” (supervised only)"
+        ],
+        [
+          "Model",
+          "modèle",
+          "the formula that turns the features into a prediction"
+        ],
+        [
+          "Training",
+          "entraînement",
+          "adjusting the parameters on examples"
+        ],
+        [
+          "Test set",
+          "jeu de test",
+          "emails never seen before, to evaluate the predictions"
+        ]
+      ],
+      "legende": "The corpus is split: often 70 to 80% of the examples for training, the rest for the test.",
+      "notes": "Have the students find the example for each row before you show it. Key point: a model is never evaluated on the examples used to train it, just as a student is not judged on questions whose answers they know by heart. Point out that labels exist only in supervised learning: k-means, which comes next, has none."
+    },
+    {
+      "type": "section",
+      "numero": 1,
+      "titre": "k-means by hand",
+      "sousTitre": "Exercise 2 d · 20 min",
+      "notes": "Recall the principle: forming groups of similar objects without any labels. This is unsupervised learning, and the tool for mini-project subject 2 on surveys."
+    },
+    {
+      "type": "activite",
+      "titre": "Exercise 2 d: six characters, two groups",
+      "duree": 15,
+      "consignes": [
+        "Six characters in a play: 1, 3, 4, 9, 10 and 14 lines (fictitious data).",
+        "Place them on a number line; k = 2 groups, starting centers μ₁ = 1 and μ₂ = 4.",
+        "**Assign**: each point joins the nearest center.",
+        "**Recompute**: each center becomes the mean of the points in its group.",
+        "Repeat until no point changes group any more."
+      ],
+      "materiel": "Calculator; a number line from 0 to 15 on the board",
+      "notes": "Draw the line and have a student place the six points. Walk around during the calculation: the most common mistake is stopping after one iteration, or forgetting to recompute the centers. Keep 5 minutes for the correction."
+    },
+    {
+      "type": "tableau",
+      "titre": "Solution: three iterations",
+      "entetes": [
+        "Iteration",
+        "Centers",
+        "Group 1",
+        "Group 2",
+        "New centers"
+      ],
+      "lignes": [
+        [
+          "1",
+          "μ₁ = 1; μ₂ = 4",
+          "{1}",
+          "{3, 4, 9, 10, 14}",
+          "1 and 40 / 5 = 8"
+        ],
+        [
+          "2",
+          "μ₁ = 1; μ₂ = 8",
+          "{1, 3, 4}",
+          "{9, 10, 14}",
+          "8/3 ≈ 2.67 and 33 / 3 = 11"
+        ],
+        [
+          "3",
+          "μ₁ ≈ 2.67; μ₂ = 11",
+          "{1, 3, 4}",
+          "{9, 10, 14}",
+          "groups unchanged: stop"
+        ]
+      ],
+      "legende": "Result: {1, 3, 4}, the minor roles, and {9, 10, 14}, the main roles.",
+      "notes": "Correct row by row, having the students dictate the distances. Iteration 2: 3 goes to group 1 (distances 2 and 5), and so does 4 (3 and 4); 9, 10 and 14 stay in group 2 (distances to 8: 1, 2 and 6). Iteration 3: distances to 8/3 of about 1.67, 0.33 and 1.33, distances to 11 of 2, 1 and 3: nothing moves, and the algorithm stops. Point out that one iteration was not enough: after the first one, group 2 still mixed very different roles."
+    },
+    {
+      "type": "question",
+      "titre": "Demonstration · 10 min",
+      "question": "Run the demonstration again from other starting centers: do you always get the same groups?",
+      "reponse": "Not always: the result depends on the starting point, as well as on the choice of k.",
+      "explication": "The algorithm measures distances and calculates means without understanding anything about the data. This is why scikit-learn runs it again from several starting points (`n_init`) and keeps the best solution. Naming the groups remains the researcher’s job.",
+      "notes": "Open the k-means demonstration in the lesson “Some machine learning algorithms”. Before each click on “Next step”, have the students predict the assignments; then draw new centers and compare. Possible long version (40 min): the novel cards activity in the guide, where starting from E, H and I leads to a poor solution."
+    },
+    {
+      "type": "section",
+      "numero": 2,
+      "titre": "Linear regression",
+      "sousTitre": "Exercise 2 a · 15 min",
+      "notes": "A change of family: we go back to supervised learning. The aim is no longer to form groups, but to predict a number from examples whose answer is known."
+    },
+    {
+      "type": "activite",
+      "titre": "A line drawn by eye",
+      "duree": 5,
+      "consignes": [
+        "Five students (fictitious data): x = hours of reading per week, y = books read in the semester.",
+        "Points: (1, 2), (2, 3), (3, 5), (4, 4), (5, 6).",
+        "Plot them on a pair of axes and draw by eye the line that comes closest to them.",
+        "Compare with your neighbor: which line is the best, and by what criterion?"
+      ],
+      "materiel": "A sheet of paper, a ruler",
+      "notes": "Let them draw without a formula. The lines differ from one student to another: this is the moment to ask for an objective criterion. Expected: the line whose differences from the points are the smallest. This leads into least squares."
+    },
+    {
+      "type": "definition",
+      "terme": "Linear regression",
+      "traduction": "régression linéaire",
+      "definition": "Predicting a number with the line ŷ = w · x + b. The **least squares** method chooses w and b so that the mean of the squared differences (yᵢ − ŷᵢ)² is as small as possible.",
+      "exemple": "In exercise 2 a, the slope is written a: ŷ = a · x + b.",
+      "notes": "Read ŷ as “y hat”: it is the predicted value. w is the slope, b the starting value. Squaring stops positive and negative differences from canceling each other out, and penalizes large errors. There is no need to do the whole calculation in class: give the result (next slide); the full calculation is part of the homework."
+    },
+    {
+      "type": "chiffre",
+      "valeur": "6.7 books",
+      "legende": "predicted for 6 hours of reading per week: ŷ = 0.9 × 6 + 1.3, with a = 0.9 and b = 1.3",
+      "source": "Exercise 2 a · fictitious data",
+      "notes": "The calculation, if you are asked: x̄ = 3 and ȳ = 4; Σ(x − x̄)(y − ȳ) = 9 and Σ(x − x̄)² = 10, so a = 9 / 10 = 0.9 and b = 4 − 0.9 × 3 = 1.3. Reading: each extra weekly hour is associated with 0.9 more books over the semester, in these fictitious data. Warning: x = 6 lies outside the observed range (1 to 5); it is an extrapolation. Common mistake: extending the line far beyond the observed data."
+    },
+    {
+      "type": "section",
+      "numero": 3,
+      "titre": "Gradient descent",
+      "sousTitre": "Exercise 2 b · 25 min",
+      "notes": "Opening question: most models cannot be solved in one go; how do we find their parameters? Answer: step by step, with gradient descent."
+    },
+    {
+      "type": "deux",
+      "titre": "The hiker in the fog",
+      "colonnes": [
+        {
+          "titre": "The hiker",
+          "points": [
+            "Cannot see the valley",
+            "Feels the slope under their feet",
+            "Takes one step downhill each time",
+            "Adjusts the length of their step"
+          ]
+        },
+        {
+          "titre": "The algorithm",
+          "points": [
+            "The valley: the cost function J(w), which measures the error",
+            "The slope: the gradient, the derivative of J",
+            "The step: w ← w − η · slope",
+            "η (eta): the **learning rate** (*taux d’apprentissage*)"
+          ]
+        }
+      ],
+      "progressif": true,
+      "notes": "Tell the metaphor, then reveal the lines one by one. The arrow means “replace with”. The tricky point is the sign: if the slope is positive, w decreases; if it is negative, w increases. Either way, you go downhill. Possible long version: the activity with eleven sheets laid on the floor (guide, 25 min)."
+    },
+    {
+      "type": "activite",
+      "titre": "Exercise 2 b in pairs",
+      "duree": 10,
+      "consignes": [
+        "J(w) = (w − 3)², smallest at w = 3; its derivative is J′(w) = 2(w − 3).",
+        "Start at w₀ = 0; learning rate η = 0.1.",
+        "Calculate w₁ and w₂ with wₖ₊₁ = wₖ − η · J′(wₖ).",
+        "Calculate J(w₀), J(w₁) and J(w₂). Toward which value does the sequence move?"
+      ],
+      "materiel": "Calculator",
+      "notes": "The derivative is given: we assess the algorithm, not differential calculus. Walk around and watch the sign: 0 − 0.1 × (−6) does give +0.6. Pairs who finish early calculate w₃."
+    },
+    {
+      "type": "tableau",
+      "titre": "Solution to exercise 2 b",
+      "entetes": [
+        "Step k",
+        "wₖ",
+        "J(wₖ)",
+        "Slope J′(wₖ)",
+        "wₖ₊₁ = wₖ − 0.1 × J′(wₖ)"
+      ],
+      "lignes": [
+        [
+          "0",
+          "0",
+          "9",
+          "2 × (0 − 3) = −6",
+          "0 + 0.6 = 0.6"
+        ],
+        [
+          "1",
+          "0.6",
+          "5.76",
+          "2 × (0.6 − 3) = −4.8",
+          "0.6 + 0.48 = 1.08"
+        ],
+        [
+          "2",
+          "1.08",
+          "3.6864 ≈ 3.69",
+          "2 × (1.08 − 3) = −3.84",
+          "1.08 + 0.384 = 1.464"
+        ]
+      ],
+      "legende": "The error decreases at each step. The distance to the minimum is multiplied by 0.8 (3, 2.4, 1.92…): the sequence tends toward w = 3.",
+      "notes": "Have the students read the J column: 9, then 5.76, then about 3.69; the error decreases. The factor 0.8 comes from rewriting the rule: wₖ₊₁ − 3 = (1 − 2η)(wₖ − 3) = 0.8 (wₖ − 3). The last row goes one step further than the exercise: w₃ = 1.464, as in the solution."
+    },
+    {
+      "type": "tableau",
+      "titre": "Demonstration: changing the step η",
+      "entetes": [
+        "η",
+        "Values of w from 0",
+        "What happens"
+      ],
+      "lignes": [
+        [
+          "0.1",
+          "0.6, 1.08, 1.464…",
+          "w gets closer to 3: the algorithm converges"
+        ],
+        [
+          "1.1",
+          "6.6, −1.32, 8.18…",
+          "w jumps over the minimum and moves away from it: it diverges"
+        ],
+        [
+          "0.01",
+          "0.29 after five steps",
+          "w barely moves: it is too slow"
+        ]
+      ],
+      "legende": "A larger step does not always go faster.",
+      "notes": "Open the gradient descent demonstration (lesson “Some machine learning algorithms”) and have the students predict before each try: η = 0.1, then 1.1, then 0.01. Have them state the moral: when it is too large, the step jumps over the minimum; when it is too small, learning is very slow. The solution to exercise 2 b adds a borderline case: with η = 1, w oscillates endlessly between 0 and 6."
+    },
+    {
+      "type": "question",
+      "titre": "Checking the sign",
+      "question": "If the slope is negative, what happens to w at the next step?",
+      "choix": [
+        "It increases",
+        "It decreases",
+        "It does not change"
+      ],
+      "reponse": "It increases",
+      "explication": "w ← w − η · slope: subtracting a negative number amounts to adding. In exercise 2 b, the slope is −6 and w goes from 0 to 0.6.",
+      "notes": "Take a vote by show of hands before revealing the answer. This is the exit ticket question that the guide suggests for this notion; if many students get it wrong, go back over the first row of the solution table."
+    },
+    {
+      "type": "tableau",
+      "titre": "Wrap-up · 10 min: three algorithms",
+      "entetes": [
+        "Algorithm",
+        "Supervised or not?",
+        "What it produces"
+      ],
+      "lignes": [
+        [
+          "k-means",
+          "Unsupervised",
+          "groups, which the researcher interprets and names"
+        ],
+        [
+          "Linear regression",
+          "Supervised",
+          "a number predicted by the line ŷ = w · x + b"
+        ],
+        [
+          "Gradient descent",
+          "Neither: it is a method",
+          "the parameter values that reduce the error"
+        ]
+      ],
+      "notes": "Build the table with the class before displaying it: one student per row comes to the board. Expected for gradient descent: it is not a model, but a way of finding the parameters of a model, step by step. It is also used to correct the weights of neural networks, which are on the agenda for the next session."
+    },
+    {
+      "type": "points",
+      "titre": "Common mistakes",
+      "points": [
+        "Stopping k-means after one iteration, or forgetting to recompute the centers",
+        "Extending a regression line far beyond the observed data",
+        "Getting the sign wrong in w ← w − η · slope",
+        "Believing that a larger step always goes faster"
+      ],
+      "notes": "Go over them again with the class: each one came up during the session (iteration 1 of exercise 2 d, x = 6 in exercise 2 a, the slope −6 and η = 1.1 in exercise 2 b)."
+    },
+    {
+      "type": "fin",
+      "titre": "Homework",
+      "points": [
+        "Finish exercises 2 a, 2 b and 2 d, then do exercise 2 c (k-nearest neighbors)",
+        "Mini-project subject 2: read `kmeans_enquete.py` and the elbow method"
+      ],
+      "texte": "Next session: Transformers and generative AI. Before then, read through the lesson “Deep learning”.",
+      "notes": "Remind the students of the tutorial (TD) instruction: work on each exercise for at least twenty minutes before opening the solution. For subject 2: the elbow method keeps the value of k after which the inertia hardly decreases any more (k = 3 in the lesson’s example)."
+    }
+  ]
+}
