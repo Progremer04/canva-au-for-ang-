@@ -1,0 +1,1303 @@
+{
+  "langue": "en",
+  "titre": "From Automaton to Agent",
+  "sousTitre": "The complete history of artificial intelligence, from the first machines to today's agents",
+  "diapos": [
+    {
+      "type": "couverture",
+      "surtitre": "Artificial intelligence · Chapter 1 · First lesson",
+      "titre": "From Automaton to Agent",
+      "sousTitre": "The complete history of artificial intelligence, from the first machines to today's agents",
+      "illus": "agent",
+      "notes": "Welcome the class with a question on the board: “Can a machine think?” Do not answer it: the whole lesson keeps coming back to it. Announce the common thread: the dream of intelligent machines is very old, but AI as a science is seventy years old, and its agents only a few years."
+    },
+    {
+      "type": "plan",
+      "titre": "This lesson's journey",
+      "points": [
+        "The dream of machines (from Antiquity to 1945)",
+        "The birth of AI (1950–1956)",
+        "The golden age, then the first winter (1956–1980)",
+        "Expert systems (1980–1993)",
+        "Learning from data (1990–2016)",
+        "The deep learning revolution (2006–2016)",
+        "Transformers and generative AI (2017–2022)",
+        "The age of agents (2023–2026)"
+      ],
+      "notes": "Eight stages, each with a key date to remember. Suggest that students write down one date per stage: they will rebuild the timeline at the end."
+    },
+    {
+      "type": "texte",
+      "titre": "And you, what do you call “intelligence”?",
+      "points": [
+        "Understanding a sentence, translating a poem",
+        "Recognizing one face among a thousand",
+        "Winning at chess, solving a problem",
+        "Learning from one's mistakes",
+        "Acting alone to reach a goal"
+      ],
+      "illus": "cerveau",
+      "notes": "Two minutes of voting by show of hands: which of these abilities does a machine already have? The answer at the end of the lesson: all of them, to varying degrees, but no machine combines them as a human does. The last line, acting alone to reach a goal, defines the agent: it is where the lesson is heading."
+    },
+    {
+      "type": "texte",
+      "titre": "“The last invention”: why now?",
+      "illus": "adoption",
+      "courbes": [
+        "computer",
+        "phone",
+        "Internet",
+        "generative AI"
+      ],
+      "points": [
+        "4 billion generative AI users expected by 2026: half of humanity, in three years",
+        "Faster than the personal computer, the mobile phone and the Internet",
+        "88% of the organizations surveyed say they already use it",
+        "About 300 billion dollars invested in 2025, perhaps 1 trillion soon"
+      ],
+      "notes": "The hook of Ahmed El-Ghandour's course: AI is no longer a fun app, it is an economic bet comparable to electricity or the Internet. Present these figures as orders of magnitude quoted by the course (projections for 2026), not as exact measurements. Question: why does this technology spread so fast? (It arrives on phones already in every pocket.) Source: Ahmed El-Ghandour's course “The Last Invention” (2026) and the teacher's NotebookLM decks."
+    },
+    {
+      "type": "citation",
+      "texte": "The first ultraintelligent machine is the last invention that man need ever make, provided that the machine is docile enough to tell us how to keep it under control.",
+      "auteur": "Irving John Good",
+      "source": "“Speculations Concerning the First Ultraintelligent Machine”, 1965",
+      "notes": "I. J. Good, a statistician, had worked with Alan Turing at Bletchley Park during the war. The idea of the “last invention” comes from him: a machine able to improve itself would invent everything else. Note the condition, often forgotten: “provided it stays under control”. Two-minute debate: is this science or science fiction?"
+    },
+    {
+      "type": "schema",
+      "titre": "Artificial: it seems intelligent",
+      "illus": "niveaux",
+      "niveaux": [
+        "narrow",
+        "general",
+        "super"
+      ],
+      "points": [
+        "“Artificial”: an imitated intelligence, not a manufactured one; the machine appears to understand",
+        "Narrow AI: excellent at one task, like Google Translate, Google Maps or a chess program; it exists",
+        "General AI: as flexible as a human, from one task to another; still theoretical",
+        "Superintelligence: stronger than us, perhaps self-aware; unknown"
+      ],
+      "notes": "The course's simple definition: AI is a machine that simulates intelligence; it appears to understand, and we do not know whether it does. Google Translate is a genius at translation, but it cannot play chess. Question for the class: is ChatGPT a narrow or a general AI? It answers on a thousand topics, but only from what it learned: the debate is open, and saying so is a good exam answer."
+    },
+    {
+      "type": "texte",
+      "titre": "A new infrastructure… and a new geopolitics",
+      "illus": "couches",
+      "couches": [
+        "algorithms: the engine",
+        "compute: the chips",
+        "data: the fuel"
+      ],
+      "points": [
+        "Data is the fuel, chips the compute, algorithms the engine",
+        "Large data centers are counted in gigawatts: as much as a whole region",
+        "The United States limits exports of NVIDIA chips; China answers with rare metals",
+        "Data sovereignty: Saudi Arabia keeps banking and hospital data at home"
+      ],
+      "notes": "The course compares the AI race to a new atomic bomb, one that would build instead of destroy. Countries fear depending on foreign models and servers: hence data sovereignty laws. The course compares the largest data center projects to the peak consumption of New York State (about 30 GW). Link with Algeria: law 18-07 on personal data (see the slide “And in Algeria?”). Source: Ahmed El-Ghandour's course “The Last Invention” (2026) and the teacher's NotebookLM decks."
+    },
+    {
+      "type": "section",
+      "numero": "1",
+      "titre": "The dream of machines",
+      "periode": "From Antiquity to 1945",
+      "texte": "Long before computers, humans imagined and built machines that imitate life, then machines that calculate.",
+      "illus": "engrenages",
+      "notes": "First stage: AI did not come from nowhere. Two lines meet here: automata, which imitate movement, and calculating machines, which imitate reasoning."
+    },
+    {
+      "type": "texte",
+      "titre": "Automata in myths and workshops",
+      "points": [
+        "Greek myth: Talos, a bronze giant who guards Crete",
+        "1st century: Hero of Alexandria describes theater automata",
+        "1739: Vaucanson's duck flaps its wings and “digests”",
+        "Around 1770: the Jaquet-Droz Writer traces letters with a quill"
+      ],
+      "illus": "engrenages",
+      "notes": "An automaton reproduces a movement set in advance by its gears or cams. It decides nothing: that is the difference from an AI. Ask: does the Jaquet-Droz Writer really “write”?"
+    },
+    {
+      "type": "texte",
+      "titre": "Al-Jazari, the engineer of ingenious machines",
+      "annee": "1206",
+      "points": [
+        "Engineer at the Artuqid court, in Upper Mesopotamia",
+        "In 1206, writes *The Book of Knowledge of Ingenious Mechanical Devices*",
+        "Describes some fifty machines: clocks, pumps, automata",
+        "His elephant clock marks the hours with automata"
+      ],
+      "illus": "elephant",
+      "notes": "Al-Jazari shows that the tradition of automata runs through the medieval Arab and Muslim world. His detailed drawings still make it possible to rebuild his machines today. Be careful: these are automata programmed in advance, not machines that learn.",
+      "personne": "jazari"
+    },
+    {
+      "type": "texte",
+      "titre": "Machines that calculate",
+      "points": [
+        "1642: Blaise Pascal builds the Pascaline, which adds",
+        "1673: Leibniz presents a machine that multiplies",
+        "1837: Charles Babbage designs the Analytical Engine, programmable with punched cards",
+        "The Analytical Engine would never be completed in his lifetime"
+      ],
+      "illus": "calculatrice",
+      "personne": "pascaline",
+      "notes": "A key transition: a machine that calculates takes over part of the work of the mind. Babbage's Analytical Engine already has a memory and a calculating unit, like our computers.",
+      "encart": "babbage"
+    },
+    {
+      "type": "portrait",
+      "personne": "lovelace",
+      "nom": "Ada Lovelace",
+      "dates": "1815–1852",
+      "role": "Mathematician, the first programmer",
+      "points": [
+        "1843: her notes on Babbage's Analytical Engine",
+        "In them, she writes an algorithm to compute Bernoulli numbers",
+        "She imagines that the machine could compose music"
+      ],
+      "citation": "The Analytical Engine has no pretensions whatever to originate anything.",
+      "source": "Ada Lovelace, notes of 1843",
+      "notes": "Her sentence, “Lady Lovelace's objection”, would be discussed by Turing a century later: does a machine only do what it is told? A question for the class: does a model that writes a poem create something?"
+    },
+    {
+      "type": "texte",
+      "titre": "When thought becomes calculation",
+      "points": [
+        "1854: George Boole reduces reasoning to calculations on true and false",
+        "1936: Alan Turing describes an abstract machine capable of any calculation",
+        "A tape, a read head, a table of rules: the “Turing machine”",
+        "Every computer today is, in principle, a Turing machine"
+      ],
+      "illus": "turing",
+      "notes": "Boole provides the alphabet (true, false, and, or, not); Turing provides the universal machine. Show the animation: the head reads a cell, writes, moves, changes state. With rules this simple, anything can be calculated."
+    },
+    {
+      "type": "portrait",
+      "personne": "turing",
+      "nom": "Alan Turing",
+      "dates": "1912–1954",
+      "role": "Mathematician, father of theoretical computer science",
+      "points": [
+        "1936: the universal machine",
+        "1939–1945: helps break the Enigma code at Bletchley Park",
+        "1950: “Computing Machinery and Intelligence”, the founding paper"
+      ],
+      "citation": "I propose to consider the question, ‘Can machines think?’",
+      "source": "Alan Turing, Mind, 1950",
+      "notes": "Turing replaces an impossible question (“think”) with an observable test, the imitation game. This is the founding move of AI. The quoted sentence opens his 1950 paper."
+    },
+    {
+      "type": "schema",
+      "titre": "The formal neuron",
+      "annee": "1943",
+      "illus": "neurone",
+      "points": [
+        "Warren McCulloch and Walter Pitts model a neuron as a calculation",
+        "It adds up input signals and “fires” above a threshold",
+        "It is the ancestor of all today's neural networks"
+      ],
+      "notes": "The first bridge between biology and calculation. Draw on the board: three inputs, weights, a sum, a threshold. We will find exactly this diagram again with the perceptron in 1958, then in deep learning."
+    },
+    {
+      "type": "texte",
+      "titre": "The first computers",
+      "points": [
+        "1945: ENIAC, 30 tonnes, calculates ballistic trajectories",
+        "1948: Claude Shannon founds information theory",
+        "The bit becomes the unit of all information: text, image, sound",
+        "The machines finally exist; now they must be made “intelligent”"
+      ],
+      "personne": "eniac",
+      "notes": "ENIAC fills an entire room and is programmed by plugging in cables. Shannon, for his part, would be one of the four signatories of the Dartmouth proposal. End of the first stage: everything is ready for the birth of AI.",
+      "encart": "shannon"
+    },
+    {
+      "type": "section",
+      "numero": "2",
+      "titre": "The birth of AI",
+      "periode": "1950–1956",
+      "texte": "In six years, a question becomes a research program, then a discipline with a name.",
+      "illus": "ampoule",
+      "notes": "Second stage: three moments to remember: 1950 (Turing), 1956 (Dartmouth) and the first “intelligent” program."
+    },
+    {
+      "type": "schema",
+      "titre": "The imitation game",
+      "annee": "1950",
+      "illus": "imitation",
+      "points": [
+        "A judge converses in writing with two hidden interlocutors",
+        "One is a human, the other a machine",
+        "If the judge cannot tell them apart, the machine “passes”"
+      ],
+      "notes": "Act out the scene: two hidden volunteers, a judge, five minutes of written questions. Discussion: does the test measure intelligence, or the art of creating an illusion? Today's chatbots have revived this debate."
+    },
+    {
+      "type": "citation",
+      "texte": "Every aspect of learning or any other feature of intelligence can in principle be so precisely described that a machine can be made to simulate it.",
+      "auteur": "J. McCarthy, M. Minsky, N. Rochester, C. Shannon",
+      "source": "Proposal for the Dartmouth workshop, August 31, 1955",
+      "notes": "This is the text in which the expression “artificial intelligence” appears. The hypothesis is very ambitious: everything intelligence does could be described precisely. Ask: is that true of humor? Of poetic intuition?"
+    },
+    {
+      "type": "portrait",
+      "personne": "mccarthy",
+      "nom": "John McCarthy",
+      "dates": "1927–2011",
+      "role": "Computer scientist who gave AI its name",
+      "points": [
+        "Summer 1956: organizes the Dartmouth workshop, the birth certificate of AI",
+        "1958: creates the Lisp language, long the language of AI",
+        "With him: Marvin Minsky, Claude Shannon, Nathaniel Rochester"
+      ],
+      "notes": "The Dartmouth workshop brought together about ten researchers during the summer of 1956. It produced no major discovery, but it gave the discipline a name, a community and a program.",
+      "encart": "dartmouth"
+    },
+    {
+      "type": "texte",
+      "titre": "The first “intelligent” program",
+      "annee": "1956",
+      "points": [
+        "The Logic Theorist by Allen Newell, Herbert Simon and Cliff Shaw",
+        "It proves 38 of the first 52 theorems of *Principia Mathematica*",
+        "For one of them, a more elegant proof than the authors' own",
+        "A key idea: searching among possibilities with rules"
+      ],
+      "illus": "arbre",
+      "notes": "The Logic Theorist embodies symbolic AI: symbols, rules, a search through a tree of possibilities. It is the same logic as forward chaining in the chapter 3 tutorial (TD)."
+    },
+    {
+      "type": "section",
+      "numero": "3",
+      "titre": "The golden age, then the first winter",
+      "periode": "1956–1980",
+      "texte": "Spectacular successes, excessive promises, then disappointment and the end of funding.",
+      "illus": "courbe",
+      "notes": "Third stage: this is the first cycle of enthusiasm and disillusion. It will repeat itself, which helps us judge today's promises."
+    },
+    {
+      "type": "schema",
+      "titre": "Rosenblatt's perceptron",
+      "annee": "1958",
+      "illus": "perceptron",
+      "points": [
+        "Frank Rosenblatt builds a machine that learns to recognize shapes",
+        "It adjusts its own weights after each error",
+        "The press announces machines that “think”: enthusiasm runs wild"
+      ],
+      "personne": "perceptron",
+      "notes": "The perceptron is the first neural network that learns. Link it to the “human neuron” activity in the guide: weights, a threshold, a correction after each error."
+    },
+    {
+      "type": "schema",
+      "titre": "1969: the XOR wall",
+      "annee": "1969",
+      "illus": "xor",
+      "points": [
+        "The perceptron draws a single straight line: “yes” on one side, “no” on the other",
+        "The two-key door: it opens with your key, or with your spouse's, but not with both at the same time",
+        "No straight line separates these cases: this is the “exclusive OR” (XOR) problem",
+        "Minsky and Papert show it in *Perceptrons*: the enthusiasm falls, and so does the funding"
+      ],
+      "notes": "The image from Ahmed El-Ghandour's course: a door that opens if one OR the other turns the key, but stays shut if nobody does, or if both do at the same time. You need two rules on top of each other, so at least two layers of neurons. Minsky and Papert (1969) did not say it was impossible for a multi-layer network; but nobody knew yet how to train one. Hence fifteen years of doubt. Source: Ahmed El-Ghandour's course “The Last Invention” (2026) and the teacher's NotebookLM decks."
+    },
+    {
+      "type": "texte",
+      "titre": "Learning without being programmed",
+      "annee": "1959",
+      "points": [
+        "Arthur Samuel writes a checkers program that improves by playing",
+        "He coins the term “machine learning”",
+        "The program ends up beating its own creator",
+        "Two paths emerge: writing the rules, or having them learned"
+      ],
+      "illus": "dames",
+      "notes": "Here is the opposition that structures the whole history: symbolic AI (we write the rules) versus connectionist or statistical AI (the machine learns them from examples)."
+    },
+    {
+      "type": "chat",
+      "titre": "ELIZA, the first artificial psychotherapist",
+      "annee": "1966",
+      "legende": "From Joseph Weizenbaum's 1966 paper",
+      "echanges": [
+        {
+          "qui": "h",
+          "texte": "Men are all alike."
+        },
+        {
+          "qui": "m",
+          "texte": "IN WHAT WAY"
+        },
+        {
+          "qui": "h",
+          "texte": "They're always bugging us about something or other."
+        },
+        {
+          "qui": "m",
+          "texte": "CAN YOU THINK OF A SPECIFIC EXAMPLE"
+        },
+        {
+          "qui": "h",
+          "texte": "Well, my boyfriend made me come here."
+        },
+        {
+          "qui": "m",
+          "texte": "YOUR BOYFRIEND MADE YOU COME HERE"
+        }
+      ],
+      "notes": "ELIZA understands nothing: it spots keywords and sends the sentence back using transformation rules. Yet users confided their secrets to it. Weizenbaum was troubled by this all his life. This is the “ELIZA effect”: attributing understanding to a machine that answers well."
+    },
+    {
+      "type": "texte",
+      "titre": "Shakey, the first robot that reasons",
+      "annee": "1966–1972",
+      "points": [
+        "Built at the Stanford Research Institute (SRI)",
+        "It perceives its environment with a camera",
+        "It plans a sequence of actions to reach a goal",
+        "The A* algorithm, still used to compute routes, was created for it"
+      ],
+      "personne": "shakey",
+      "illus": "robot",
+      "notes": "Shakey is a direct ancestor of agents: it perceives, plans, acts. But it takes minutes to decide to push a box. Remember the pattern perceive, plan, act: it comes back at the end of the lesson."
+    },
+    {
+      "type": "citation",
+      "texte": "Machines will be capable, within twenty years, of doing any work a man can do.",
+      "auteur": "Herbert Simon",
+      "source": "1965",
+      "notes": "The promises of the time were excessive. Twenty years later, in 1985, the field was very far from them. Ask students to find a current promise about AI and to consider how it will be judged in twenty years."
+    },
+    {
+      "type": "schema",
+      "titre": "The first AI winter",
+      "annee": "1974–1980",
+      "illus": "courbe",
+      "points": [
+        "1969: Minsky and Papert show the limits of the single-layer perceptron",
+        "1973: the Lighthill report, in the United Kingdom, finds the results disappointing",
+        "Computations explode as soon as problems grow",
+        "Public funding is cut: this is the “winter”"
+      ],
+      "notes": "An AI winter is a period when disappointment drives away funding and researchers. The curve shows both winters: 1974–1980 and 1987–1993. A point of method: judge a technique on its results, not on its promises."
+    },
+    {
+      "type": "section",
+      "numero": "4",
+      "titre": "Expert systems",
+      "periode": "1980–1993",
+      "texte": "AI comes back by turning experts' knowledge into rules. It enters companies, then falls back.",
+      "illus": "regles",
+      "notes": "Fourth stage: the triumph of symbolic AI, the AI of chapter 3 and its tutorial (TD) on forward chaining."
+    },
+    {
+      "type": "schema",
+      "titre": "Turning knowledge into rules",
+      "illus": "regles",
+      "points": [
+        "A fact base, a base of IF … THEN … rules, an inference engine",
+        "1970s: MYCIN, at Stanford, diagnoses blood infections",
+        "1980: XCON configures computers for the company DEC",
+        "Companies invest: AI becomes an industry"
+      ],
+      "notes": "Link this to session 6: the role play on poetic forms is a small expert system. MYCIN had about 600 rules written with doctors."
+    },
+    {
+      "type": "texte",
+      "titre": "The return of neural networks",
+      "annee": "1986",
+      "points": [
+        "1982: Japan launches the Fifth Generation Computer project",
+        "1986: Rumelhart, Hinton and Williams popularize backpropagation",
+        "Networks with several layers can finally be trained",
+        "But computers and data are still lacking"
+      ],
+      "illus": "reseau",
+      "notes": "Backpropagation calculates how to correct each weight of a network from the final error. It is the gradient descent of chapter 3, applied to millions of weights. The idea was ready twenty-five years before its triumph."
+    },
+    {
+      "type": "schema",
+      "titre": "Stack the layers, send the error back",
+      "annee": "1986",
+      "illus": "retro",
+      "points": [
+        "Several layers of perceptrons on top of each other, like the sheets of a lasagna",
+        "Each layer checks one condition, then passes on to the next",
+        "When the answer is wrong, the error is sent back layer by layer: which weight contributed most?",
+        "Those weights are corrected, and it starts again: this is backpropagation"
+      ],
+      "notes": "The course tells the machine's story like a child's: “What is this digit?” “Five.” The teacher says right or wrong; if wrong, the machine looks for the weights that misled it and adjusts them a little. Repeated millions of times, that is enough. The lasagna image (the course says “the béchamel dish”): the harder the problem, the more layers you add. Source: Ahmed El-Ghandour's course “The Last Invention” (2026) and the teacher's NotebookLM decks."
+    },
+    {
+      "type": "texte",
+      "titre": "The second winter",
+      "annee": "1987–1993",
+      "points": [
+        "1987: the market for specialized Lisp machines collapses",
+        "Expert systems are expensive and fail outside their domain",
+        "Each new rule contradicts others: they become unmanageable",
+        "The word “AI” falls out of favor: people say “advanced computing” instead"
+      ],
+      "illus": "flocon",
+      "notes": "Expert systems are brittle: they know only what has been written into them, and do not know what they do not know. This weakness explains the next turn: learning from data."
+    },
+    {
+      "type": "section",
+      "numero": "5",
+      "titre": "Learning from data",
+      "periode": "1990–2016",
+      "texte": "Instead of writing the rules, we give examples. With the Internet, the examples run into the billions.",
+      "illus": "donnees",
+      "notes": "Fifth stage: this is the great reversal. It rests on three ingredients: algorithms, data and computing power."
+    },
+    {
+      "type": "deux",
+      "titre": "Two ways to build an AI",
+      "gauche": {
+        "titre": "Symbolic AI",
+        "points": [
+          "An expert writes the rules",
+          "Explainable: the reasoning can be followed",
+          "Brittle outside its domain",
+          "Example: an expert system"
+        ]
+      },
+      "droite": {
+        "titre": "Machine learning",
+        "points": [
+          "The machine draws patterns from examples",
+          "Often hard to explain",
+          "Robust, if there is plenty of data",
+          "Example: a spam filter"
+        ]
+      },
+      "notes": "Have students classify three objects: a spellchecker, a machine translator, a GPS. Today, the best systems often combine both approaches."
+    },
+    {
+      "type": "portrait",
+      "personne": "deepblue",
+      "nom": "Deep Blue versus Kasparov",
+      "dates": "May 1997",
+      "role": "IBM's computer beats the world chess champion",
+      "points": [
+        "Wins 3½ to 2½ over six games, in New York",
+        "About 200 million positions evaluated per second",
+        "Computing power, not learning: this is still search-based AI"
+      ],
+      "illus": "echecs",
+      "notes": "The event made headlines around the world. But Deep Blue does not understand chess: it calculates moves and evaluates them with rules written by experts. Compare with AlphaGo, which would learn by playing, twenty years later.",
+      "encart": "kasparov"
+    },
+    {
+      "type": "frise",
+      "titre": "Learning spreads everywhere",
+      "evenements": [
+        {
+          "annee": "1989",
+          "titre": "Reading digits",
+          "texte": "Yann LeCun trains a convolutional network to read postal codes"
+        },
+        {
+          "annee": "1992",
+          "titre": "TD-Gammon",
+          "texte": "A program learns backgammon by playing against itself"
+        },
+        {
+          "annee": "1998",
+          "titre": "Checks",
+          "texte": "LeCun's networks read bank checks in the United States"
+        },
+        {
+          "annee": "2002",
+          "titre": "Roomba",
+          "texte": "A robot vacuum cleaner enters people's homes"
+        },
+        {
+          "annee": "2005",
+          "titre": "Stanley",
+          "texte": "A driverless car wins the DARPA desert race"
+        },
+        {
+          "annee": "2011",
+          "titre": "Watson, Siri",
+          "texte": "Watson wins the TV quiz show Jeopardy!; Siri arrives on phones"
+        }
+      ],
+      "notes": "Notice that AI becomes invisible: it sorts mail, reads checks, filters spam, without being called AI. This is sometimes called the “AI effect”: as soon as a technique works, people stop considering it intelligence."
+    },
+    {
+      "type": "section",
+      "numero": "6",
+      "titre": "The deep learning revolution",
+      "periode": "2006–2016",
+      "texte": "Neural networks with very many layers, trained on huge amounts of data with graphics processors.",
+      "illus": "reseau",
+      "notes": "Sixth stage. The word “deep” refers to the number of layers in the network, not to depth of thought."
+    },
+    {
+      "type": "schema",
+      "titre": "2012: why now? Three gears",
+      "annee": "2006–2012",
+      "illus": "engrenages",
+      "points": [
+        "Algorithms: backpropagation (1986) and, in 2006, Hinton trains networks layer by layer",
+        "Data: the Internet and ImageNet, millions of labeled images, AI's “gym”",
+        "Compute: video game graphics cards (NVIDIA CUDA, 2007), then Google's TPUs (2016)",
+        "2012: AlexNet, trained on two graphics cards, crushes the ImageNet contest"
+      ],
+      "notes": "The message of the NotebookLM decks: today's AI is not a magic trick born in 2022, but the meeting of three threads that progressed separately. The ideas were ready in the 1980s; data and computing power were missing. A graphics card does thousands of small calculations at the same time: exactly what a neural network needs. Source: Ahmed El-Ghandour's course “The Last Invention” (2026) and the teacher's NotebookLM decks."
+    },
+    {
+      "type": "schema",
+      "titre": "A deep network, layer by layer",
+      "illus": "reseau",
+      "points": [
+        "The first layers detect simple features: edges, blobs",
+        "The next layers combine them: shapes, textures, parts",
+        "The last ones recognize whole objects: “cat”, “car”",
+        "Each layer learns by itself what to detect"
+      ],
+      "notes": "Show the animation: the signal crosses the layers from left to right. It is the same with a text: letters, words, phrases, meaning. Nobody writes down what each neuron should detect: it learns it."
+    },
+    {
+      "type": "schema",
+      "titre": "The guessing game: what is their job?",
+      "illus": "devinette",
+      "indices": [
+        "helmet: 90%",
+        "vest: 70%",
+        "boots: 60%"
+      ],
+      "resultat": "engineer",
+      "points": [
+        "One team looks at the head, another at the clothes, a third at the shoes",
+        "Each gives a probability: helmet 90%, vest 70%, safety boots 60%",
+        "Each clue has a weight: the helmet counts more than the boots",
+        "Weighted average: (0.9 × 100 + 0.7 × 70 + 0.6 × 50) ÷ 220 ≈ 77% “engineer”"
+      ],
+      "notes": "This is the students' favorite explanation in Ahmed El-Ghandour's course. Act it out: three groups, each sees only part of the photo. Then show a soldier in camouflage wearing a helmet: the teams get it wrong (“engineer!”). A new clue must get some weight, the color of the clothes: that is learning. The more teams (parameters), the better the guess. The course rounds to 76%; the exact calculation gives 76.8%. Source: Ahmed El-Ghandour's course “The Last Invention” (2026) and the teacher's NotebookLM decks."
+    },
+    {
+      "type": "schema",
+      "titre": "Anatomy of a decision: weights, bias, activation",
+      "illus": "decision",
+      "etapes": [
+        "inputs × weights",
+        "sum + bias",
+        "activation"
+      ],
+      "points": [
+        "Each piece of information is multiplied by its weight: its importance for the decision",
+        "Add them up, then add a bias: a setting that stops one clue from deciding everything",
+        "The activation turns the total into a nuanced percentage, not a plain yes/no",
+        "A large model lines up billions of these small calculations"
+      ],
+      "notes": "This is the formal neuron of 1943 and the perceptron of 1958, with two additions. The bias corrects a team that would give too much importance to one clue. The activation breaks the straight line: thanks to it, the network can answer “60% engineer, 30% soldier” instead of yes or no. The course's formula: f(Σ(probability × weight) ÷ Σ weights + bias). Source: Ahmed El-Ghandour's course “The Last Invention” (2026) and the teacher's NotebookLM decks."
+    },
+    {
+      "type": "schema",
+      "titre": "Three ways to learn",
+      "illus": "apprendre",
+      "types": [
+        "supervised",
+        "unsupervised",
+        "reinforcement"
+      ],
+      "points": [
+        "Supervised: a teacher gives the right answer after each mistake; that is how LeNet reads checks (1989)",
+        "Unsupervised: the machine explores mountains of data on its own; in 2012, Google Brain discovers the “cat” in 10 million YouTube images",
+        "Reinforcement: it is only told “won” or “lost”; AlphaGo invents its own strategies",
+        "Today's large models often combine all three"
+      ],
+      "notes": "The difference, according to the course: in supervised learning, I tell my team the right answer; in reinforcement learning, I only tell it that it was wrong, without giving the solution. Google Brain's experiment (Andrew Ng, Jeff Dean and colleagues, 2012): nobody had said what a cat is, and one neuron of the network started reacting to cat faces. Source: Ahmed El-Ghandour's course “The Last Invention” (2026) and the teacher's NotebookLM decks."
+    },
+    {
+      "type": "portrait",
+      "personne": "feifei",
+      "nom": "Fei-Fei Li and ImageNet",
+      "dates": "2009–2012",
+      "role": "An image database that changes everything",
+      "points": [
+        "2009: ImageNet, over 14 million images labeled by hand",
+        "2012: the AlexNet network crushes the image recognition competition",
+        "Its error rate falls to 15%, against 26% for the runner-up"
+      ],
+      "illus": "imagenet",
+      "notes": "Three ingredients came together in 2012: data (ImageNet), graphics cards to compute fast, and deep networks. It is the start of the current wave. The images were labeled by thousands of workers paid per task: an ethical point to discuss."
+    },
+    {
+      "type": "portrait",
+      "personne": "hinton",
+      "nom": "Geoffrey Hinton",
+      "dates": "Born in 1947",
+      "role": "Pioneer of neural networks",
+      "points": [
+        "Defends neural networks through both winters",
+        "2018: Turing Award with Yoshua Bengio and Yann LeCun",
+        "2024: Nobel Prize in Physics with John Hopfield"
+      ],
+      "notes": "Hinton is an example of a researcher who was right too early: his ideas from the 1980s only really worked in 2012. In 2023, he left Google to warn about the risks of AI.",
+      "encart": "lecun"
+    },
+    {
+      "type": "texte",
+      "titre": "When the machine learns badly: Tempe, 2018",
+      "annee": "2018",
+      "illus": "uber",
+      "points": [
+        "18 March 2018, Arizona, at night: an Uber self-driving test car hits Elaine Herzberg, who is crossing while pushing her bicycle",
+        "The sensors saw her seconds before; the system hesitated: vehicle, bicycle, “other”?",
+        "It had not planned for pedestrians crossing outside a crosswalk; the safety driver was not watching the road",
+        "Uber stops its tests: a life-or-death decision is not given to a machine we do not understand"
+      ],
+      "notes": "The course opens its episode with this true story, to be told with gravity. The NTSB investigation (2019) concluded that the system's design did not take into account pedestrians crossing outside crosswalks, and that human supervision had failed. The course's lesson: the car did not understand what it saw; it had learned too narrow a definition of a human being. Humans cause far more accidents, yet we demand more from a machine: why? Source: Ahmed El-Ghandour's course “The Last Invention” (2026) and the teacher's NotebookLM decks."
+    },
+    {
+      "type": "schema",
+      "titre": "Learning too much, learning too little",
+      "illus": "ajustement",
+      "cas": [
+        "underfitting",
+        "right balance",
+        "overfitting"
+      ],
+      "points": [
+        "Overfitting: learning by heart; every doctor it saw wore glasses, so no glasses, “not a doctor”",
+        "Underfitting: the pupil skims the book and misses the important details",
+        "Same remedy: more data, more varied: day, night, places, angles",
+        "Tempe, 2018: a pedestrian off the crosswalk matched none of the examples"
+      ],
+      "notes": "The two errors are opposites, but the remedy is the same according to the course: enrich and diversify the examples, so that the machine “sees the world”. Ask the students to guess what Uber's car was missing: examples of pedestrians crossing anywhere, at night, with a bicycle. Source: Ahmed El-Ghandour's course “The Last Invention” (2026) and the teacher's NotebookLM decks."
+    },
+    {
+      "type": "frise",
+      "titre": "Machines also learn language and games",
+      "evenements": [
+        {
+          "annee": "2013",
+          "titre": "Word2vec",
+          "texte": "Words become vectors: “king” − “man” + “woman” ≈ “queen”"
+        },
+        {
+          "annee": "2014",
+          "titre": "GAN",
+          "texte": "Two networks compete to produce realistic images"
+        },
+        {
+          "annee": "2015",
+          "titre": "Atari games",
+          "texte": "A DeepMind agent learns 49 video games from the pixels and the score"
+        },
+        {
+          "annee": "2016",
+          "titre": "AlphaGo",
+          "texte": "DeepMind's program beats Lee Sedol at Go, 4 games to 1"
+        }
+      ],
+      "notes": "Go was thought to be too complex for computers: it has more possible positions than there are atoms in the universe. AlphaGo combines deep learning and reinforcement learning, the third type of learning in chapter 1."
+    },
+    {
+      "type": "portrait",
+      "personne": "hassabis",
+      "nom": "AlphaGo and Move 37",
+      "dates": "March 2016, Seoul",
+      "role": "DeepMind, co-founded by Demis Hassabis",
+      "points": [
+        "Game two: AlphaGo plays a move no human would have played",
+        "Commentators think it is a mistake; it is a winning move",
+        "The machine no longer imitates humans: it finds its own strategies"
+      ],
+      "illus": "go",
+      "notes": "“Move 37” has become the symbol of machine creativity. Go back to Lovelace's objection: did AlphaGo “create” something? In 2024, Demis Hassabis and John Jumper received the Nobel Prize in Chemistry for AlphaFold, which predicts the shape of proteins.",
+      "encart": "leesedol"
+    },
+    {
+      "type": "frise",
+      "titre": "Three victories, three ways to beat humans",
+      "evenements": [
+        {
+          "annee": "1997",
+          "titre": "Deep Blue",
+          "texte": "The power of calculation: 200 million positions per second, rules written by experts"
+        },
+        {
+          "annee": "2011",
+          "titre": "Watson",
+          "texte": "Understanding context: it wins Jeopardy!, a quiz full of wordplay, and a million dollars"
+        },
+        {
+          "annee": "2016",
+          "titre": "AlphaGo",
+          "texte": "Creativity: 10¹⁷⁰ positions in go, more than atoms in the universe; move 37 surprises its own makers"
+        },
+        {
+          "annee": "2017",
+          "titre": "AlphaGo Zero",
+          "texte": "No more need for human games: it learns by playing against itself, in a few days"
+        },
+        {
+          "annee": "2024",
+          "titre": "AlphaFold",
+          "texte": "From games to science: the shape of proteins, and the Nobel Prize in Chemistry"
+        }
+      ],
+      "notes": "Framing of the NotebookLM decks: calculation (1997), understanding context (2011), creativity (2016). Historical detail: the famous move 37 was played in the second game (the course places it in the third); Lee Sedol only won the fourth. In chess, Claude Shannon estimated the number of possible games at 10¹²⁰; go has about 10¹⁷⁰ positions, the universe about 10⁸⁰ atoms. Source: Ahmed El-Ghandour's course “The Last Invention” (2026) and the teacher's NotebookLM decks."
+    },
+    {
+      "type": "section",
+      "numero": "7",
+      "titre": "Transformers and generative AI",
+      "periode": "2017–2022",
+      "texte": "A new architecture learns to read whole texts. Machines start to write, draw and translate.",
+      "illus": "attention",
+      "notes": "Seventh stage: the one that leads to the chatbots your students already use."
+    },
+    {
+      "type": "deux",
+      "titre": "From sorting to creating",
+      "gauche": {
+        "titre": "AI that sorts (yesterday)",
+        "points": [
+          "It filters, judges, files the existing world",
+          "Question: “Is this image a cat?”",
+          "Convolutional networks, spam filters, check reading",
+          "It answers with a label"
+        ]
+      },
+      "droite": {
+        "titre": "AI that generates (today)",
+        "points": [
+          "It learns the patterns of the data to produce something new",
+          "Request: “Draw a cat in the style of Picasso”",
+          "2014: GANs, a forger and a detective who train each other",
+          "It imitates styles; inventing a truly new one is still debated"
+        ]
+      },
+      "notes": "Ian Goodfellow's GANs (2014): one network makes fake images, the other tries to unmask them; each improves thanks to the other, up to almost real images, and, on the flip side, “deepfakes”. The course insists: the machine does not create from nothing; it has learned the shape of faces, the order of words, the harmony of sounds. Remember the “Ghibli style” trend: the style is imitated, the picture is not stolen pixel by pixel. Source: Ahmed El-Ghandour's course “The Last Invention” (2026) and the teacher's NotebookLM decks."
+    },
+    {
+      "type": "schema",
+      "titre": "“Attention Is All You Need”",
+      "annee": "2017",
+      "illus": "attention",
+      "points": [
+        "Eight Google researchers propose the Transformer",
+        "The attention mechanism links each word to all the others",
+        "In “The student opened the book because she…”, “she” looks at “student”",
+        "All of today's large language models descend from it"
+      ],
+      "notes": "The paper's title has become famous. The animation shows the attention links: thickness indicates importance. The Transformer reads all the words at once, which makes it possible to train huge models."
+    },
+    {
+      "type": "frise",
+      "titre": "From BERT to ChatGPT",
+      "evenements": [
+        {
+          "annee": "2018",
+          "titre": "BERT",
+          "texte": "Google: a model that understands a word's context"
+        },
+        {
+          "annee": "2019",
+          "titre": "GPT-2",
+          "texte": "OpenAI: text so fluent that the company hesitates to release it"
+        },
+        {
+          "annee": "2020",
+          "titre": "GPT-3",
+          "texte": "175 billion parameters; AlphaFold 2 solves the shape of proteins"
+        },
+        {
+          "annee": "2021",
+          "titre": "DALL·E",
+          "texte": "An image drawn from a sentence"
+        },
+        {
+          "annee": "2022",
+          "titre": "ChatGPT",
+          "texte": "November 30: generative AI reaches the general public"
+        }
+      ],
+      "notes": "In five years, we go from a laboratory tool to a service used by hundreds of millions of people. Ask who in the class has already used a chatbot, and for what."
+    },
+    {
+      "type": "frise",
+      "titre": "Toward multimodal AI: seeing, reading, speaking",
+      "evenements": [
+        {
+          "annee": "2014",
+          "titre": "Captions",
+          "texte": "A network that sees and a network that writes, stuck together, describe a photo"
+        },
+        {
+          "annee": "2021",
+          "titre": "CLIP",
+          "texte": "400 million image-text pairs: pictures and words in the same space"
+        },
+        {
+          "annee": "2022",
+          "titre": "Diffusion",
+          "texte": "DALL·E 2, Stable Diffusion: an image is born from noise being removed"
+        },
+        {
+          "annee": "2023",
+          "titre": "Bridges",
+          "texte": "A large vision model is linked to a large language model"
+        },
+        {
+          "annee": "2024",
+          "titre": "Native",
+          "texte": "A single network for text, image and voice: about a third of a second to answer"
+        }
+      ],
+      "notes": "The word “multimodal” suggests a magic power; the NotebookLM decks show instead a chain of parts assembled step by step: first two separate systems, then a shared space (CLIP), then bridges between frozen models, finally models trained from the start on everything at once (GPT-4o, Gemini). Source: Ahmed El-Ghandour's course “The Last Invention” (2026) and the teacher's NotebookLM decks."
+    },
+    {
+      "type": "schema",
+      "titre": "From text to numbers",
+      "illus": "tokens",
+      "phrase": "The cat drinks warm milk",
+      "ids": "412 8093 5871 88 2310",
+      "points": [
+        "A computer only knows numbers",
+        "The text is cut into pieces: **tokens**",
+        "Each token gets a number, then a long list of numbers: a **vector**",
+        "The model never sees letters, only these numbers"
+      ],
+      "notes": "The numbers in the picture are made up for the example. A real vocabulary has tens of thousands of tokens (just over 50,000 for GPT-2); a common word stays whole, a rare or long word is cut into several pieces. The colored columns stand for the vectors: hundreds of numbers per token, learned during training. Refer to the chapter 1 lesson “How an AI ‘understands’ a text”."
+    },
+    {
+      "type": "schema",
+      "titre": "The map of meanings",
+      "illus": "sens",
+      "mots": [
+        "cat",
+        "dog",
+        "horse",
+        "book",
+        "novel",
+        "reader",
+        "man",
+        "woman",
+        "king",
+        "queen"
+      ],
+      "points": [
+        "Each vector is an address on a huge map of meanings",
+        "Words with the same neighbors end up close: “cat”, “dog”",
+        "The model learns this by itself, guessing hidden words in billions of sentences",
+        "The map keeps relations: from “man” to “woman” as from “king” to “queen”"
+      ],
+      "notes": "A game to play with the class: “The ___ drinks milk and sleeps on the sofa.” Everyone guesses “cat” thanks to the neighbors: that is what the model does, on a huge scale. The linguist J. R. Firth put it this way in 1957: “You shall know a word by the company it keeps”. Real maps have hundreds of dimensions; here they are projected onto two. These maps also reproduce the stereotypes of their training texts."
+    },
+    {
+      "type": "schema",
+      "titre": "Context gives meaning",
+      "illus": "contexte",
+      "phrase1": "the mouse eats the cheese",
+      "phrase2": "I click with the mouse",
+      "liens": [
+        [
+          1,
+          4
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "points": [
+        "The same word can have several meanings: “mouse”",
+        "**Attention** links each word to its neighbors",
+        "With “cheese”, the mouse is the animal; with “click”, it is the device",
+        "The word's vector is recalculated from its context"
+      ],
+      "notes": "This is what sets Transformers (2017) apart from older methods, which gave each word a single vector whatever its meaning. Other examples: “bank” (of a river, for money), “bat” (the animal, the stick). Ask the students for an example in another language: in Arabic, “عين” (the eye, a spring)."
+    },
+    {
+      "type": "schema",
+      "titre": "How a language model “writes”",
+      "illus": "motsuivant",
+      "points": [
+        "It splits the text into pieces, the tokens",
+        "It calculates the probability of each possible next token",
+        "It picks one, adds it to the text, and starts again",
+        "Humans then rate its answers to refine it"
+      ],
+      "notes": "It is the bigram model of notebook 08, on an immensely larger scale. Tuning by humans is called RLHF: reinforcement learning from human feedback. Stress this: the model predicts plausible text, not true text.",
+      "debut": "The cat drinks some",
+      "suites": [
+        "milk",
+        "water",
+        "tea",
+        "juice"
+      ]
+    },
+    {
+      "type": "chat",
+      "titre": "A dialogue with a language model",
+      "annee": "2022",
+      "legende": "Fictional example, written for the class",
+      "echanges": [
+        {
+          "qui": "h",
+          "texte": "Explain forward chaining to a literature student."
+        },
+        {
+          "qui": "m",
+          "texte": "Imagine a detective: he starts from the clues he knows and applies his rules one by one, until he finds the culprit."
+        },
+        {
+          "qui": "h",
+          "texte": "Give me a reference so I can cite this in my thesis."
+        },
+        {
+          "qui": "m",
+          "texte": "Careful: always check a reference in a library. I can make mistakes or invent references."
+        }
+      ],
+      "notes": "Compare with ELIZA: this time, the answer is relevant, rephrased and adapted to its audience. But the risk remains: a model can invent a reference, a quotation, a date. This is the subject of the “reference test” activity in the guide."
+    },
+    {
+      "type": "section",
+      "numero": "8",
+      "titre": "The age of agents",
+      "periode": "2023–2026",
+      "texte": "The language model no longer just answers: it plans, uses tools and acts.",
+      "illus": "agent",
+      "notes": "Final stage: this is what is in the news. Recall Shakey (1966): perceive, plan, act. The idea of an agent is old; what has changed is that a language model now serves as its “brain”."
+    },
+    {
+      "type": "texte",
+      "titre": "What is an agent?",
+      "points": [
+        "An agent perceives its environment and acts on it to reach a goal",
+        "A thermostat is a very simple agent: it measures, then heats or not",
+        "Russell and Norvig (1995) define all of AI as the study of agents",
+        "A modern AI agent receives a goal, not just a question"
+      ],
+      "illus": "thermostat",
+      "notes": "A definition for students to write down. The difference from a classic chatbot: we no longer ask it to “answer”, we ask it to “do”. Example: “Find three articles on Kateb Yacine, read them and write me a summary sheet.”"
+    },
+    {
+      "type": "schema",
+      "titre": "The agent loop",
+      "illus": "boucle",
+      "points": [
+        "Goal: what the user asks for",
+        "Think: the model plans the next step",
+        "Act: it uses a tool (search, calculation, file, browser)",
+        "Observe: it reads the result, then starts again until the goal is reached"
+      ],
+      "notes": "Have students follow the animated loop. Each round can succeed or fail; the agent corrects its plan. That is why the tools it can access must be limited and its important actions checked."
+    },
+    {
+      "type": "frise",
+      "titre": "From chatbots to agents",
+      "evenements": [
+        {
+          "annee": "2022",
+          "titre": "ReAct",
+          "texte": "Researchers make a single model alternate between reasoning and actions"
+        },
+        {
+          "annee": "2023",
+          "titre": "Tools",
+          "texte": "GPT-4; models learn to call tools and programs"
+        },
+        {
+          "annee": "2024",
+          "titre": "Reason, act",
+          "texte": "Models that think before answering; a model operates a computer; the MCP protocol for connecting tools"
+        },
+        {
+          "annee": "2025",
+          "titre": "Agents at work",
+          "texte": "Agents that browse the Web, write and fix programs"
+        },
+        {
+          "annee": "2026",
+          "titre": "Everyday use",
+          "texte": "Agents settle into office, research and teaching software"
+        }
+      ],
+      "notes": "The 2025 and 2026 entries describe general trends rather than specific products, which change quickly. Invite students to find a recent example and present it in two minutes."
+    },
+    {
+      "type": "deux",
+      "titre": "Chatbot or agent?",
+      "gauche": {
+        "titre": "Chatbot",
+        "points": [
+          "Answers a question",
+          "Produces text",
+          "A single turn",
+          "The human does the rest"
+        ]
+      },
+      "droite": {
+        "titre": "Agent",
+        "points": [
+          "Pursues a goal",
+          "Uses tools and acts",
+          "Several steps; it corrects its plan",
+          "The human supervises and approves"
+        ]
+      },
+      "notes": "The boundary keeps shifting: many chatbots can already search the Web. Remember the criterion: an agent chains actions in the world to reach a goal."
+    },
+    {
+      "type": "texte",
+      "titre": "The risks, and good practice",
+      "points": [
+        "Hallucinations: an agent may act on false information",
+        "Irreversible actions: deleting, sending, paying; they must be approved",
+        "Instructions hidden in a Web page can hijack an agent",
+        "Personal data: Algerian Law 18-07 applies",
+        "2024: the European Union adopts the AI Act"
+      ],
+      "illus": "bouclier",
+      "notes": "A simple rule for students: stay in control of every important action, check sources, and declare AI use in your work. Refer them to the AI use charter in the guide."
+    },
+    {
+      "type": "texte",
+      "titre": "The beginners' broken ladder",
+      "illus": "echelle",
+      "points": [
+        "People become experts by starting with simple tasks: the workshop apprentice",
+        "AI does these tasks almost for free: the first rungs of the ladder disappear",
+        "United States: employment of developers aged 22 to 25 has fallen by nearly 20% since late 2022",
+        "The industrial revolution took one to two centuries; this one, three or four years"
+      ],
+      "notes": "The course's image: “if there is no apprentice in the workshop, who will become the master?” AI does not yet take the expert's job, but it takes the tasks that trained beginners. Question for your language students: which tasks of a beginning translator does AI already do? How can they keep learning anyway? (Figure: Stanford University study, 2025.) Source: Ahmed El-Ghandour's course “The Last Invention” (2026) and the teacher's NotebookLM decks."
+    },
+    {
+      "type": "texte",
+      "titre": "The real question: who gives the machine power?",
+      "illus": "balance",
+      "points": [
+        "The kind of model that does your math homework also decides a loan, a stock purchase, a target in war",
+        "The question is no longer “is the machine intelligent?”",
+        "Who gave it that authority? Who tested it? Who answers when it gets it wrong?",
+        "Knowing the trick takes nothing from the magician: it keeps us from being fooled"
+      ],
+      "notes": "The shared conclusion of the course and the NotebookLM decks. The course presents itself as a journey to “reveal the magician's trick”: we remain impressed, but we know when to be afraid and when to marvel. End-of-class debate: in your future job, which decision would you refuse to entrust to an AI? Source: Ahmed El-Ghandour's course “The Last Invention” (2026) and the teacher's NotebookLM decks."
+    },
+    {
+      "type": "texte",
+      "titre": "And in Algeria?",
+      "points": [
+        "2021: the National Higher School of Artificial Intelligence (ENSIA) opens",
+        "Arabic, Darja and Tamazight remain less well served by models",
+        "Local corpora, built in the humanities and social sciences, are a real contribution",
+        "Your theses can contribute: texts, surveys, interviews"
+      ],
+      "illus": "carte",
+      "notes": "A local anchor point. Languages that are less present on the Web are handled less well by models: it is a question of data, and therefore also of the humanities. Encourage students to imagine a corpus they could build."
+    },
+    {
+      "type": "section",
+      "numero": "9",
+      "titre": "Summary",
+      "periode": "From 1206 to 2026",
+      "texte": "Eight centuries of dreams, seventy years of science, a few years of agents.",
+      "illus": "frise",
+      "notes": "Final part: recap, watch the videos, check what has been understood."
+    },
+    {
+      "type": "frise",
+      "titre": "The eight dates to remember",
+      "evenements": [
+        {
+          "annee": "1843",
+          "titre": "Lovelace",
+          "texte": "The first program, for a machine never completed"
+        },
+        {
+          "annee": "1950",
+          "titre": "Turing",
+          "texte": "Can machines think?"
+        },
+        {
+          "annee": "1956",
+          "titre": "Dartmouth",
+          "texte": "AI gets its name"
+        },
+        {
+          "annee": "1974",
+          "titre": "Winter",
+          "texte": "The first AI winter"
+        },
+        {
+          "annee": "1997",
+          "titre": "Deep Blue",
+          "texte": "A computer beats the chess champion"
+        },
+        {
+          "annee": "2012",
+          "titre": "AlexNet",
+          "texte": "Deep learning wins out"
+        },
+        {
+          "annee": "2017",
+          "titre": "Transformer",
+          "texte": "Attention at the heart of language models"
+        },
+        {
+          "annee": "2022",
+          "titre": "ChatGPT",
+          "texte": "Generative AI for everyone; then come the agents"
+        }
+      ],
+      "notes": "Have students recite the timeline backwards, from 2022 to 1843. These eight dates are enough to tell the whole story in the exam."
+    },
+    {
+      "type": "deux",
+      "titre": "The families of AI, on a single slide",
+      "gauche": {
+        "titre": "By method",
+        "points": [
+          "Symbolic: written rules",
+          "Machine learning: examples",
+          "Deep learning: networks with many layers",
+          "Reinforcement: trials and rewards"
+        ]
+      },
+      "droite": {
+        "titre": "By ambition",
+        "points": [
+          "Weak (narrow) AI: one specific task",
+          "Strong (general) AI: every task, hypothetical",
+          "Today's agents are still weak AI",
+          "… but increasingly versatile"
+        ]
+      },
+      "notes": "This table links the lesson to chapter 1 of the course (weak and strong AI, types of learning) and to chapter 3 (types of AI). A modern agent combines several families: a deep model, safety rules, sometimes reinforcement."
+    },
+    {
+      "type": "texte",
+      "titre": "Four lessons from 90 years of AI",
+      "illus": "saisons",
+      "courbes": [
+        "expectations",
+        "computing power"
+      ],
+      "points": [
+        "The danger is not failure but inflated expectations: they caused the two winters",
+        "Old ideas return when data and compute arrive: the 1958 perceptron lives on in ChatGPT",
+        "Passing a test is not understanding: the real world is the hard part",
+        "Eternal spring, or a new winter? Judge by results, not by promises"
+      ],
+      "notes": "Summary of the course and of the “Anatomy of Machine Intelligence” decks. The winters: the promises of machine translation (ALPAC report, 1966), the Lighthill report (1973), then the collapse of expert systems (late 1980s). The course ends on an open question: do our expectations already exceed what AI can do? Have the class vote, then ask for one argument for each side. Source: Ahmed El-Ghandour's course “The Last Invention” (2026) and the teacher's NotebookLM decks."
+    },
+    {
+      "type": "video",
+      "titre": "Video: the complete history of AI (1950–2026)",
+      "youtube": "Xl-G6Mv-N0A",
+      "legende": "“The Complete History of AI (1950–2026) - The Rise of Artificial Intelligence”, a documentary in English, on YouTube",
+      "notes": "Show a passage chosen in advance rather than the whole video. Ask students to spot three dates from the timeline in the video. The video requires an Internet connection."
+    },
+    {
+      "type": "video",
+      "titre": "Video: a hundred years of artificial intelligence",
+      "youtube": "mSd9nmPM7Vg",
+      "legende": "“The Entire History of Artificial Intelligence (Last 100 Years)”, a documentary in English, on YouTube",
+      "notes": "For English groups, have students summarize the video orally in English: it is also a language exercise. For the others, use automatic subtitles in the chosen language."
+    },
+    {
+      "type": "quiz",
+      "question": "In what year did the term “artificial intelligence” take hold, with the Dartmouth workshop?",
+      "choix": [
+        "1943",
+        "1956",
+        "1997",
+        "2012"
+      ],
+      "reponse": 1,
+      "explication": "The term appears in the 1955 proposal and took hold with the workshop in the summer of 1956.",
+      "notes": "Have the class vote before revealing the answer (R key or button)."
+    },
+    {
+      "type": "quiz",
+      "question": "Why do we speak of AI “winters”?",
+      "choix": [
+        "Computers overheated",
+        "Disappointment made funding and interest fall",
+        "Research was done in winter",
+        "Machines were banned"
+      ],
+      "reponse": 1,
+      "explication": "After excessive promises, the results were disappointing: funding was cut (1974–1980, then 1987–1993).",
+      "notes": "Ask for an example of an excessive promise seen in the lesson: Herbert Simon's quotation (1965)."
+    },
+    {
+      "type": "quiz",
+      "question": "What distinguishes an agent from a simple chatbot?",
+      "choix": [
+        "It writes faster",
+        "It pursues a goal by acting with tools",
+        "It never makes mistakes",
+        "It works without electricity"
+      ],
+      "reponse": 1,
+      "explication": "An agent chains actions (searching, calculating, writing a file…) and observes the results to reach a goal.",
+      "notes": "Go back to the loop: goal, think, act, observe."
+    },
+    {
+      "type": "quiz",
+      "question": "Did ELIZA (1966) understand what was said to it?",
+      "choix": [
+        "Yes, like a psychologist",
+        "No: it transformed sentences with rules",
+        "Yes, thanks to deep learning",
+        "We do not know"
+      ],
+      "reponse": 1,
+      "explication": "ELIZA spotted keywords and sent back stock sentences. Believing that it understood is the “ELIZA effect”.",
+      "notes": "A transition question to the debate: and do today's models understand?"
+    },
+    {
+      "type": "quiz",
+      "question": "Why can't the simple perceptron learn the “two-key door” (XOR)?",
+      "choix": [
+        "It does not have enough memory",
+        "A single straight line does not separate the two groups",
+        "XOR does not exist in mathematics",
+        "It needs a more precise camera"
+      ],
+      "reponse": 1,
+      "explication": "The perceptron draws a single straight border; XOR needs two rules on top of each other, so at least two layers, trained by backpropagation.",
+      "notes": "Go back to the door image: open with one key, shut with zero or two keys."
+    },
+    {
+      "type": "quiz",
+      "question": "A model has only seen doctors wearing glasses; faced with a doctor without glasses, it answers “not a doctor”. What is this flaw?",
+      "choix": [
+        "Underfitting",
+        "Overfitting",
+        "Hallucination",
+        "Activation bias"
+      ],
+      "reponse": 1,
+      "explication": "It learned a detail of its examples by heart instead of the general rule: that is overfitting. Remedy: more numerous and more varied examples.",
+      "notes": "Link the question to the Tempe accident (2018): a pedestrian outside the crosswalk did not look like the examples it had learned."
+    },
+    {
+      "type": "fin",
+      "titre": "Key takeaways",
+      "points": [
+        "The dream is old; AI as a science was born between 1950 and 1956",
+        "Two paths alternate: writing the rules or learning from data",
+        "A network learns by weighting clues; learning too much or too little leads to error",
+        "The winters remind us to judge by results, not by promises",
+        "An agent perceives, plans and acts: from Shakey (1966) to the agents of 2025",
+        "Check, stay in control, declare your use: the three golden rules"
+      ],
+      "texte": "Homework: choose a date from the timeline and write ten lines on what it changed, citing a verified source.",
+      "notes": "End with the opening question: can a machine think? Collect three reasoned answers. The homework prepares the round table on the origins of AI."
+    }
+  ]
+}

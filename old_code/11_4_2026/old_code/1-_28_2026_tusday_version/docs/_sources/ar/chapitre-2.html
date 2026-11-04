@@ -1,0 +1,989 @@
+<section class="chapitre" id="chapitre-2" aria-labelledby="chapitre-2-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">الفصل 2 · أسبوعان</p>
+    <h2 class="titre-section" id="chapitre-2-titre">تذكير واستكمالات حول لغة Python</h2>
+    <p class="chapeau">في نهاية هذا الفصل، ستتمكّنون من صياغة طلب دقيق لمساعد الذكاء الاصطناعي والتحقّق من إجابته، وكتابة برامج Python قصيرة، واستكشاف جدول أعمال أدبية بواسطة pandas، وتنظيم شيفرتكم في أصناف، واستعلام مدوّنة نصية مكوَّنة من ملفات نصية، وتقديم نتائجكم في شكل مصنّف Excel أو ملف PDF.</p>
+    <ul class="puces">
+      <li class="puce">محاضرة</li>
+      <li class="puce">الأعمال الموجَّهة (TD)</li>
+      <li class="puce">الأعمال التطبيقية (TP)</li>
+      <li class="puce puce--outil">الأوامر (prompts)</li>
+      <li class="puce puce--outil">Python 3</li>
+      <li class="puce puce--outil">NumPy</li>
+      <li class="puce puce--outil">pandas</li>
+      <li class="puce puce--outil">matplotlib</li>
+      <li class="puce puce--outil">openpyxl</li>
+      <li class="puce puce--outil">fpdf2</li>
+    </ul>
+  </header>
+
+  <nav class="sommaire-chapitre" aria-label="فهرس الفصل 2">
+    <ol>
+      <li><a href="#c2-prompts">صياغة طلب جيد لمساعد الذكاء الاصطناعي</a></li>
+      <li><a href="#c2-installer">تهيئة بيئة العمل</a></li>
+      <li><a href="#c2-fondamentaux">أساسيات اللغة</a></li>
+      <li><a href="#c2-numpy-pandas">مكتبتا NumPy و pandas</a></li>
+      <li><a href="#c2-objet">مدخل إلى البرمجة الكائنية</a></li>
+      <li><a href="#c2-fichiers">قراءة الملفات النصية ومعالجتها</a></li>
+      <li><a href="#c2-rapports">تقارير بسيطة: Excel و PDF</a></li>
+    </ol>
+  </nav>
+
+  <aside class="encadre encadre--exemple">
+    <p class="encadre-titre">لم تبرمجوا من قبل؟ كل شيء يبدأ من الصفر</p>
+    <p>أنتم تدرسون اللغات لا الإعلام الآلي: تبدأ البرمجة هنا، خطوة خطوة، وشيفرة المقياس للجميع. فكل مثال يُقرأ، ويُتوقَّع مُخرَجه، ويُنفَّذ، ويُعدَّل قبل أن تكتبوا برنامجكم الخاص، في الأعمال التطبيقية كما في الأعمال الموجَّهة. ترافق كلَّ جزء دفاترُ كاملة جاهزة للتشغيل في Google Colab: تشغّلون الخلايا واحدة واحدة، وتغيّرون جملة أو عددًا في الحقول المعنونة «À MODIFIER»، ثم تعيدون كتابة الشيفرة بأنفسكم. ابدؤوا بدفتر <a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/fr/00-prise-en-main.ipynb" target="_blank" rel="noopener" lang="fr">Prendre en main un carnet</a> (بالفرنسية) أو <a href="https://colab.research.google.com/github/Progremer04/canva-au-for-ang-/blob/main/docs/notebooks/en/00-prise-en-main.ipynb" target="_blank" rel="noopener" lang="en">Getting started</a> (بالإنجليزية)؛ والقائمة الكاملة في <a href="enseignant.html#guide-langues-carnets">دليل الأستاذ</a>.</p>
+  </aside>
+
+  <!-- ============================================================ 0 -->
+  <article class="lecon" id="c2-prompts">
+    <h3>صياغة طلب جيد لمساعد الذكاء الاصطناعي</h3>
+    <p><dfn>مساعد الذكاء الاصطناعي</dfn> (ChatGPT، وGemini، وClaude، وCopilot…) نموذج لغوي كبير نخاطبه باللغة الطبيعية. ويُسمّى النص الذي نعطيه إياه <dfn>الأمر</dfn> أو <dfn>الموجِّه</dfn> (<span class="terme-en" lang="en">prompt</span>)، أي «التعليمة»، ويُسمّى فنّ كتابته <dfn>هندسة الأوامر</dfn> (<span class="terme-en" lang="en">prompt engineering</span>). يُنتج النموذج التتمّة الأكثر احتمالًا للنص الذي يتلقّاه (<a href="#c3-deep">الفصل 3</a>؛ وانظر أيضًا <a href="#c1-texte">كيف «يفهم» الذكاء الاصطناعي النص</a>): فكلما كانت التعليمة أدقّ، اقتربت هذه التتمّة ممّا تنتظرونه. وفي هذا المقياس، يُستعمل المساعد لغرضين: تحليل النصوص، ومساعدتكم على قراءة شيفرة Python وكتابتها. ولا يُستعمل أبدًا لإنجاز عمل بدلًا منكم.</p>
+
+    <h4>العناصر الستة للتعليمة الجيدة</h4>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>تشريح الأمر</caption>
+      <thead><tr><th scope="col">العنصر</th><th scope="col">السؤال الذي نطرحه على أنفسنا</th><th scope="col">مثال</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">الدور</th><td>ما وجهة النظر التي ينبغي أن يتبنّاها المساعد؟</td><td>«أنت مساعد بحث في الأدب المقارن.»</td></tr>
+        <tr><th scope="row">المهمة</th><td>ماذا عليه أن يفعل، وبأيّ فعل إجرائي؟</td><td>«استخرج المقاطع التي يعبّر فيها الراوي عن الحنين.»</td></tr>
+        <tr><th scope="row">السياق</th><td>ما الذي تعرفونه ولا يعرفه هو؟</td><td>«النص مقتطف من رواية جزائرية من خمسينيات القرن العشرين.»</td></tr>
+        <tr><th scope="row">البيانات</th><td>على ماذا يشتغل بالضبط؟</td><td>النص، موضوعًا بين علامتين فاصلتين: <code>"""…"""</code></td></tr>
+        <tr><th scope="row">الشكل</th><td>في أيّ شكل تريدون الإجابة؟</td><td>«جدول: الاقتباس الحرفي، ورقم السطر، والتعليل في جملة واحدة.»</td></tr>
+        <tr><th scope="row">القيود</th><td>ما الذي عليه أن يتجنّبه، وإلى أيّ حدّ يذهب؟</td><td>«انقل الاقتباسات حرفيًا؛ وإذا لم يناسب أيُّ مقطع، فأجب بكلمة "لا شيء".»</td></tr>
+      </tbody>
+    </table></div>
+
+    <h4>من تعليمة مبهمة إلى تعليمة دقيقة</h4>
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>تعليمة مبهمة</h4>
+        <figure class="code"><pre class="consigne"><code>حلّل هذه القصيدة.</code></pre></figure>
+        <p>يختار المساعد وحده الزاوية والطول والمفردات: فتأتي الإجابة عامة، ولا شيء يسمح بالتحقّق منها.</p>
+      </div>
+      <div class="comparaison-col">
+        <h4>تعليمة دقيقة</h4>
+        <figure class="code"><pre class="consigne"><code>أنت أستاذ أدب. إليك قصيدة بين علامات تنصيص ثلاثية.
+1. اذكر موضوعها الرئيسي في جملة واحدة.
+2. استخرج ثلاث صور شعرية تدعمه (اقتباسات حرفية).
+3. حدّد النبرة الغالبة: إيجابية أو سلبية أو مختلطة، وعلّل ذلك.
+أجب بجدول. لا تختلق أيّ اقتباس.
+"""[القصيدة]"""</code></pre></figure>
+        <p>دور، ومهمة مقسَّمة إلى مراحل، وشكل، وقيد يتيح التحقّق: فتصبح الإجابة قابلة للمقارنة بقراءتكم الخاصة.</p>
+      </div>
+    </div>
+
+    <h4>أربع تقنيات مفيدة</h4>
+    <ul>
+      <li><strong>إعطاء أمثلة</strong> (<span class="terme-en" lang="en">few-shot prompting</span>): جملتان أو ثلاث جمل موسومة مسبقًا تُبيّن الفئة المنتظرة أفضل من أيّ تعريف. وهذا، في صورة مصغَّرة، هو التعلم الخاضع للإشراف الذي يتناوله الفصل 3.</li>
+      <li><strong>تقسيم المهمة</strong>: مرحلة واحدة في كل سطر مرقَّم، أو عدّة طلبات متتالية نتحقّق من إجابة كلٍّ منها.</li>
+      <li><strong>طلب الأدلة</strong>: اقتباسات حرفية، وأرقام الأسطر، والمصادر. ثم تتحقّقون من كل اقتباس في النص.</li>
+      <li><strong>التحسين التدريجي</strong>: إذا لم تناسبكم الإجابة، فحدّدوا ما ينقصها بدل إعادة كتابة كل شيء، واحتفظوا بالصيغة التي تنجح.</li>
+    </ul>
+
+    <h4>المساعد وشيفرة Python</h4>
+    <p>يكتب المساعد الشيفرة بسرعة، وقد تكون خاطئة أحيانًا. فتعاملوا معه كزميل يشرح، لا كمؤلِّف لعملكم:</p>
+    <figure class="code">
+      <figcaption class="code-legende">ثلاثة أوامر للتعلّم، لا للنسخ</figcaption>
+      <pre class="consigne"><code>اشرح سطرًا سطرًا ما تفعله هذه الشيفرة، لشخص مبتدئ: [الشيفرة]
+تعرض شيفرتي هذا الخطأ: [الرسالة]. اشرح السبب دون أن تعطيني الحل.
+اكتب دالّة تعدّ كلمات نص ما، ثم ثلاثة أمثلة لاختبارها.</code></pre>
+    </figure>
+    <p>أما الأمر الثالث، فنفّذوا بأنفسكم الشيفرة واختباراتها: فالشيفرة التي لم تُشغَّل لم يُتحقَّق منها. ثم <strong>أعيدوا كتابتها</strong> في دفتركم دون النظر إلى الإجابة: هكذا تُكتسب قواعد كتابة اللغة. وفي الأعمال الموجَّهة كما في الامتحان، ستشرحون كل سطر ممّا تسلّمونه.</p>
+    <p>يُحضّر البرنامج أدناه التعليمة نفسها لعدّة نصوص. سلسلة نصية، وقاموس، وحلقة، وf-string: مفاهيم الدرس الموالي تُستعمل منذ الآن.</p>
+    <figure class="code">
+      <figcaption class="code-legende">prompts.py: التعليمة نفسها لكل نص</figcaption>
+      <pre><code class="language-python">consigne = ("أنت مساعد متخصّص في تحليل الخطاب. "
+            "حدّد نبرة النص (إيجابية أو سلبية أو مختلطة) "
+            "واقتبس الجملة التي تُظهرها بأوضح صورة.")
+
+textes = {
+    "critique_1": "رواية مشرقة، بأسلوب صافٍ.",
+    "critique_2": "حبكة مشوَّشة وشخصيات باهتة.",
+}
+
+for nom, texte in textes.items():
+    prompt = f'{consigne}\n"""{texte}"""'
+    print(f"--- {nom} ---")
+    print(prompt)</code></pre>
+      <pre class="sortie"><samp>--- critique_1 ---
+أنت مساعد متخصّص في تحليل الخطاب. حدّد نبرة النص (إيجابية أو سلبية أو مختلطة) واقتبس الجملة التي تُظهرها بأوضح صورة.
+"""رواية مشرقة، بأسلوب صافٍ."""
+--- critique_2 ---
+أنت مساعد متخصّص في تحليل الخطاب. حدّد نبرة النص (إيجابية أو سلبية أو مختلطة) واقتبس الجملة التي تُظهرها بأوضح صورة.
+"""حبكة مشوَّشة وشخصيات باهتة."""</samp></pre>
+    </figure>
+    <p>إن تطبيق التعليمة نفسها على كل نص يجعل الإجابات قابلة للمقارنة: وهذا شرط كل تحليل لمدوّنة، بمساعد أو من دونه.</p>
+
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">ثلاث قواعد قبل إرسال نص</p>
+      <ul>
+        <li><strong>التحقّق</strong>: يختلق المساعد أحيانًا، بثقة تامّة، اقتباسات أو تواريخ أو مراجع (وهذا ما يُسمّى <dfn>الهلوسة</dfn>، <span class="terme-en" lang="fr">hallucination</span>). فكل معلومة تُؤخذ منه يُتحقَّق منها في مصدر.</li>
+        <li><strong>الحماية</strong>: يُرسَل النص إلى خادم. فلا تلصقوا في المساعد بيانات شخصية (إجابات استبيان، أوراق إجابة)، ولا نصوصًا محمية (القانون 18-07 المتعلق بحماية المعطيات الشخصية).</li>
+        <li><strong>التصريح</strong>: اذكروا في عملكم المساعد الذي استعملتموه، والغرض من استعماله، والأوامر التي صغتموها (<a href="enseignant.html#guide-ia-charte">ميثاق استعمال الذكاء الاصطناعي</a>).</li>
+      </ul>
+    </aside>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">ما ينبغي تذكّره</p>
+      <p>يحدّد الأمر الجيد الدورَ المطلوب، وما يجب فعله، وعلى ماذا، وفي أيّ شكل، وضمن أيّ حدود. نقسّم المهمة، ونعطي أمثلة، ونطلب الأدلة، ونتحقّق. المساعد يشرح الشيفرة؛ وأنتم من يكتبها وينفّذها.</p>
+    </aside>
+  </article>
+
+  <!-- ============================================================ 1 -->
+  <article class="lecon" id="c2-installer">
+    <h3>تهيئة بيئة العمل</h3>
+    <p>Python <dfn>لغة برمجة</dfn> (<span class="terme-en" lang="fr">langage de programmation</span>): مفردات وقواعد لإعطاء الحاسوب تعليمات دقيقة. وهي لغة مجانية وسهلة القراءة، واسعة الانتشار في الإنسانيات الرقمية لبناء المدوّنات النصية وعدّ الكلمات وإنتاج الجداول والرسوم البيانية. يُنفِّذ الشيفرةَ <dfn>مفسِّرٌ</dfn> (<span class="terme-en" lang="fr">interpréteur</span>) يقرؤها سطرًا بعد سطر؛ ويُسمّى ملف شيفرة Python (امتداده <code>.py</code>) <dfn>سكربتًا</dfn> (<span class="terme-en" lang="fr">script</span>). استعملوا Python 3، في الإصدار 3.11 أو أحدث: فـ Python 2، الذي تجدونه في بعض الدروس القديمة، لم تعد تتمّ صيانته منذ 2020.</p>
+
+    <h4>ثلاث طرق للعمل</h4>
+    <div class="grille-cartes">
+      <article class="carte">
+        <h4>Google Colab</h4>
+        <p><dfn>الدفتر التفاعلي</dfn> (<span class="terme-en" lang="fr">notebook</span>) يمزج خلايا الشيفرة ونتائجها والنص. ويوفّره Colab داخل المتصفح: لا شيء يحتاج إلى تثبيت، ويكفي حساب Google، وpandas وNumPy موجودتان مسبقًا. احفظوا ملفاتكم في Google Drive: فملفات الجلسة تُمحى عند إغلاقها.</p>
+      </article>
+      <article class="carte">
+        <h4>Anaconda</h4>
+        <p><dfn>توزيعة</dfn> (<span class="terme-en" lang="fr">distribution</span>) تثبّت دفعة واحدة Python وJupyter Notebook وأهم المكتبات العلمية. تعمل دون اتصال بالإنترنت، لكنها تشغل عدة غيغابايتات.</p>
+      </article>
+      <article class="carte">
+        <h4>python.org و pip</h4>
+        <p>المثبِّت الرسمي، وهو خفيف. ثم تضيفون كل مكتبة بواسطة <dfn>pip</dfn>، مدير الحزم في Python، انطلاقًا من الطرفية.</p>
+      </article>
+    </div>
+
+    <h4>التثبيت وتشغيل أول برنامج</h4>
+    <ol class="etapes">
+      <li><p class="etape-titre">اختيار البيئة</p>
+        <p>على حاسوب قديم أو مشترك، ابدؤوا بـ Colab: افتحوا <a href="https://colab.research.google.com" target="_blank" rel="noopener">colab.research.google.com</a>، وأنشئوا دفترًا تفاعليًا، ثم انتقلوا إلى الخطوة 4.</p></li>
+      <li><p class="etape-titre">تثبيت Python</p>
+        <p>نزّلوا المثبِّت من <a href="https://www.python.org" target="_blank" rel="noopener">python.org</a> (أو مثبِّت Anaconda). في Windows، فعّلوا خانة «Add python.exe to PATH»: فمن دون هذه الخانة لن تتعرّف الطرفية على الأمر <code>python</code>.</p></li>
+      <li><p class="etape-titre">تثبيت المكتبات</p>
+        <p>افتحوا <dfn>طرفية</dfn> (<span class="terme-en" lang="fr">terminal</span>)، وهي النافذة التي تُكتب فيها الأوامر (موجّه الأوامر في Windows، وTerminal في macOS وLinux، وAnaconda Prompt مع Anaconda)، واكتبوا الأمر الوارد أدناه. وفي الدفتر التفاعلي، اسبقوه بالرمز <code>%</code>: <code>%pip install fpdf2 pypdf</code>.</p>
+        <figure class="code">
+          <figcaption class="code-legende">الطرفية</figcaption>
+          <pre><code>pip install numpy pandas matplotlib openpyxl fpdf2 pypdf notebook</code></pre>
+        </figure></li>
+      <li><p class="etape-titre">فتح دفتر تفاعلي</p>
+        <p>اكتبوا <code>jupyter notebook</code> في الطرفية أو شغّلوا Jupyter من Anaconda Navigator: فيُفتح تبويب في المتصفح. نفّذوا الخلية بالضغط على <kbd>Shift</kbd> + <kbd>Enter</kbd>؛ فتظهر النتيجة تحتها.</p></li>
+      <li><p class="etape-titre">تنفيذ سكربت</p>
+        <p>اكتبوا الشيفرة في محرّر (Thonny، Visual Studio Code)، واحفظوها باسم <code>premier_script.py</code>، ثم انتقلوا إلى مجلدها من الطرفية واكتبوا <code>python premier_script.py</code> (<code>python3</code> في macOS وLinux).</p></li>
+    </ol>
+    <figure class="code">
+      <figcaption class="code-legende">premier_script.py</figcaption>
+      <pre><code class="language-python"># premier_script.py : afficher deux lignes à l'écran
+print("Bonjour, Médéa !")
+print("Kateb Yacine est né en", 1929)</code></pre>
+      <pre class="sortie"><samp>Bonjour, Médéa !
+Kateb Yacine est né en 1929</samp></pre>
+    </figure>
+    <p>ما يلي الرمز <code>#</code> <dfn>تعليق</dfn> (<span class="terme-en" lang="fr">commentaire</span>)، يتجاهله Python وهو موجَّه إلى القارئ البشري. وتعرض <code>print()</code> القيم التي تُعطى لها. في هذا الفصل، تتسلسل أمثلة الدرس الواحد: نفّذوها بالترتيب، في الدفتر التفاعلي نفسه.</p>
+
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">ترميز UTF-8، شرط كل عمل على النصوص</p>
+      <p>لا يخزّن الحاسوب إلا أعدادًا. و<dfn>الترميز</dfn> (<span class="terme-en" lang="fr">encodage</span>) هو جدول المطابقة بين هذه الأعداد والمحارف. ويغطّي <dfn>UTF-8</dfn>، الترميز العالمي، الحروف الفرنسية ذات العلامات، والأبجدية العربية، والتيفيناغ، وجُلّ أنظمة الكتابة في العالم. وإذا أُعيدت قراءة ملف UTF-8 بترميز آخر، تحوّلت «é» إلى «Ã©»، أو صارت العربية غير مقروءة، أو توقّف Python عند خطأ <code>UnicodeDecodeError</code>.</p>
+      <ul>
+        <li>اكتبوا دائمًا <code>encoding="utf-8"</code> عند فتح ملف: ففي Windows، يستعمل Python 3.11 خلاف ذلك الترميزَ الإقليمي، الذي لا يعرف العربية.</li>
+        <li>احفظوا نصوصكم بترميز UTF-8 (من قائمة «الترميز» في نافذة «حفظ باسم»).</li>
+        <li>من Excel، اختاروا صيغة «CSV UTF-8». وكثيرًا ما يفصل Excel المضبوط على اللغة الفرنسية بين الأعمدة بفواصل منقوطة: اقرؤوا الملف حينئذ بـ <code>pd.read_csv("fichier.csv", sep=";")</code>.</li>
+      </ul>
+    </aside>
+  </article>
+
+  <!-- ============================================================ 2 -->
+  <article class="lecon" id="c2-fondamentaux">
+    <h3>أساسيات اللغة</h3>
+    <p>يستعيد هذا التذكير المفاهيم الأساسية واحدًا تلو الآخر. اكتبوا الأمثلة بأنفسكم: فالأخطاء المطبعية، ورسائل الخطأ التي تنجم عنها، جزء من التعلّم.</p>
+
+    <h4>المتغيّرات والأنواع</h4>
+    <p><dfn>المتغيّر</dfn> (<span class="terme-en" lang="fr">variable</span>) اسمٌ يدلّ على قيمة في الذاكرة. والعلامة <code>=</code> تعني «يأخذ» لا «يساوي»: فـ <code>annee = 1956</code> تخزّن 1956 تحت الاسم <code>annee</code>. ولكل قيمة <dfn>نوع</dfn> (<span class="terme-en" lang="fr">type</span>) يحدّد ما يمكن فعله بها: عدد صحيح (<code>int</code>)، أو عدد عشري (<code>float</code>، من الإنجليزية floating point أي «الفاصلة العائمة»: <span class="terme-en" lang="fr">virgule flottante</span>)، أو سلسلة محارف (<code>str</code>، من الإنجليزية string: <span class="terme-en" lang="fr">chaîne de caractères</span>)، أو <dfn>قيمة منطقية</dfn> (<code>bool</code>) تساوي <code>True</code> أو <code>False</code>.</p>
+    <figure class="code">
+      <figcaption class="code-legende">types.py</figcaption>
+      <pre><code class="language-python"># Une fiche de lecture décrite par cinq variables
+titre = "Nedjma"         # str : chaîne de caractères, entre guillemets
+annee = 1956             # int : nombre entier
+nb_mots = 95000          # int
+mots_par_page = 250.0    # float : nombre décimal (avec un point, pas une virgule)
+deja_lu = False          # bool : True (vrai) ou False (faux)
+
+print(type(titre), type(annee), type(mots_par_page), type(deja_lu))
+print("Pages estimées :", nb_mots / mots_par_page)
+print("Publié avant 1962 ?", annee &lt; 1962)   # 1962 : indépendance de l'Algérie</code></pre>
+      <pre class="sortie"><samp>&lt;class 'str'&gt; &lt;class 'int'&gt; &lt;class 'float'&gt; &lt;class 'bool'&gt;
+Pages estimées : 380.0
+Publié avant 1962 ? True</samp></pre>
+    </figure>
+    <p>القسمة <code>/</code> تُنتج دائمًا قيمة من نوع <code>float</code> (380.0)، والمقارنة مثل <code>annee &lt; 1962</code> تُنتج قيمة منطقية. ولا يحتوي اسم المتغيّر على مسافات، ويُفضَّل ألّا يحتوي على حروف ذات علامات (مثل é): نصل بين الكلمات بشرطة سفلية (<code>mots_par_page</code>).</p>
+
+    <h4>سلاسل المحارف</h4>
+    <p>يشغل كل محرف في السلسلة موضعًا هو <dfn>فهرسه</dfn> (<span class="terme-en" lang="fr">indice</span>)، ويبدأ الترقيم من 0؛ والفهرس &lrm;-1 يدلّ على المحرف الأخير. و<dfn>الشريحة</dfn> (<span class="terme-en" lang="fr">tranche</span>) مثل <code>vers[:10]</code> تستخرج المواضع من 0 إلى 9. وللسلاسل <dfn>طرائق</dfn> (<span class="terme-en" lang="fr">méthodes</span>)، وهي دوالّ مرتبطة بها تُستدعى بنقطة: <code>lower()</code> تحوّل الأحرف إلى صغيرة، و<code>replace(a, b)</code> تضع في مكان <code>a</code> السلسلةَ <code>b</code>، و<code>split()</code> تقطّع السلسلة عند المسافات وتُرجع قائمة كلمات.</p>
+    <figure class="code">
+      <figcaption class="code-legende">chaines.py: بودلير، «L'Invitation au voyage» (1857)</figcaption>
+      <pre><code class="language-python">vers = "Mon enfant, ma sœur, / Songe à la douceur / D'aller là-bas vivre ensemble !"
+
+print(len(vers))                  # nombre de caractères, espaces compris
+print(vers[:10])                  # tranche : les 10 premiers caractères
+print(vers.lower())               # tout en minuscules
+print(vers.replace(" / ", " "))   # remplacer une sous-chaîne par une autre
+
+# Nettoyer la ponctuation puis découper en mots
+mots = vers.replace(",", "").replace(" /", "").replace(" !", "").split()
+print(mots)
+print(f"{len(mots)} mots ; premier : {mots[0]} ; dernier : {mots[-1]}")</code></pre>
+      <pre class="sortie"><samp>75
+Mon enfant
+mon enfant, ma sœur, / songe à la douceur / d'aller là-bas vivre ensemble !
+Mon enfant, ma sœur, Songe à la douceur D'aller là-bas vivre ensemble !
+['Mon', 'enfant', 'ma', 'sœur', 'Songe', 'à', 'la', 'douceur', "D'aller", 'là-bas', 'vivre', 'ensemble']
+12 mots ; premier : Mon ; dernier : ensemble</samp></pre>
+    </figure>
+    <p>في السطر الأخير سلسلة من نوع <dfn>f-string</dfn>: في السلسلة المسبوقة بالحرف <code>f</code>، يُستبدل كلُّ تعبير بين قوسين معقوفين بقيمته. ولا تعدّل <code>replace()</code> المتغيّرَ <code>vers</code>: بل تُرجع سلسلة جديدة.</p>
+
+    <h4>القوائم</h4>
+    <p><dfn>القائمة</dfn> (<span class="terme-en" lang="fr">liste</span>) متتالية مرتّبة وقابلة للتعديل من القيم، تُكتب بين قوسين مربّعين. نضيف إليها عناصر (<code>append</code>)، ونفرزها (<code>sort</code>)، ونقيس طولها (<code>len</code>)، ونقرأ عناصرها بالفهرس أو بالشريحة.</p>
+    <figure class="code">
+      <figcaption class="code-legende">listes.py</figcaption>
+      <pre><code class="language-python">auteurs = ["Hugo", "Baudelaire", "Maupassant"]   # une liste de 3 chaînes
+auteurs.append("Kateb Yacine")                   # ajouter un élément à la fin
+print(auteurs[0], "|", auteurs[-1])              # premier et dernier élément
+print(len(auteurs), "auteurs")
+auteurs.sort()                                   # trier la liste sur place
+print(auteurs)
+print(auteurs[1:3])                              # tranche : positions 1 et 2</code></pre>
+      <pre class="sortie"><samp>Hugo | Kateb Yacine
+4 auteurs
+['Baudelaire', 'Hugo', 'Kateb Yacine', 'Maupassant']
+['Hugo', 'Kateb Yacine']</samp></pre>
+    </figure>
+
+    <h4>الصفوف (tuples)</h4>
+    <p>يُكتب <dfn>الصفّ</dfn> (<span class="terme-en" lang="fr">tuple</span>) بين قوسين، ولا يمكن تغييره بعد إنشائه: فهو <dfn>ثابت</dfn> (<span class="terme-en" lang="fr">immuable</span>). وهذا الجمود مقصود: فالمرجع البيبليوغرافي (العنوان، المؤلف، السنة) كلٌّ متكامل لا ينبغي لأي جزء من البرنامج أن يعدّله خطأً. ولأن الصفّ ثابت، يمكن أيضًا أن يُستعمل مفتاحًا في قاموس، وهو ما لا تستطيعه القائمة.</p>
+    <figure class="code">
+      <figcaption class="code-legende">tuples.py</figcaption>
+      <pre><code class="language-python">oeuvre = ("Nedjma", "Kateb Yacine", 1956)        # un tuple, entre parenthèses
+titre, auteur, annee = oeuvre                    # « déballage » en trois variables
+print(auteur, "publie", titre, "en", annee)
+# oeuvre[2] = 1957   provoquerait : TypeError: 'tuple' object does not support item assignment</code></pre>
+      <pre class="sortie"><samp>Kateb Yacine publie Nedjma en 1956</samp></pre>
+    </figure>
+    <p>يطبّق السطر الثاني <dfn>التفكيك</dfn> (<span class="terme-en" lang="fr">déballage</span>): تُخزَّن القيم الثلاث دفعة واحدة في ثلاثة متغيّرات. أما السطر الأخير، المعطَّل بالرمز <code>#</code>، فيبيّن الخطأ الذي سيُحدثه أي تعديل.</p>
+
+    <h4>القواميس</h4>
+    <p><dfn>القاموس</dfn> (<span class="terme-en" lang="fr">dictionnaire</span>) يربط <dfn>مفاتيح</dfn> بـ<dfn>قيم</dfn>، كما تربط بطاقة القراءة عناوين خاناتها بمحتواها. ويُكتب بين قوسين معقوفين، في أزواج <code>clé: valeur</code>، ويُوصَل إلى القيمة بالمفتاح لا بالموضع. والمفاتيح فريدة.</p>
+    <figure class="code">
+      <figcaption class="code-legende">dictionnaires.py</figcaption>
+      <pre><code class="language-python">fiche = {
+    "titre": "Bayn al-Qasrayn",
+    "auteur": "Naguib Mahfouz",
+    "annee": 1956,
+    "langue": "arabe",
+}
+print(fiche["auteur"])                          # accès par la clé
+fiche["titre_fr"] = "Impasse des deux palais"   # ajout d'une nouvelle paire
+for cle, valeur in fiche.items():               # parcourir clés et valeurs
+    print(cle, ":", valeur)
+print("genre" in fiche)                         # la clé existe-t-elle ?
+print(fiche.get("genre", "non renseigné"))      # valeur par défaut si absente</code></pre>
+      <pre class="sortie"><samp>Naguib Mahfouz
+titre : Bayn al-Qasrayn
+auteur : Naguib Mahfouz
+annee : 1956
+langue : arabe
+titre_fr : Impasse des deux palais
+False
+non renseigné</samp></pre>
+    </figure>
+    <p>تقدّم <code>items()</code> أزواج المفتاح والقيمة. وتُرجع <code>get()</code> قيمة احتياطية حيث كان <code>fiche["genre"]</code> سيُحدث خطأ <code>KeyError</code>.</p>
+
+    <h4>المجموعات</h4>
+    <p><dfn>المجموعة</dfn> (<code>set</code>، <span class="terme-en" lang="fr">ensemble</span>) تشكيلة بلا ترتيب ولا تكرار: تعطي القيم المتمايزة في قائمة (مفردات نص، لغات مدوّنة نصية) وتختبر الانتماء بسرعة كبيرة بواسطة <code>in</code>. ولأن طريقة عرضها قد تختلف من تنفيذ إلى آخر، افرزوها بـ <code>sorted()</code>. تنبيه: <code>{}</code> تُنشئ قاموسًا فارغًا؛ أما المجموعة الفارغة فتُكتب <code>set()</code>.</p>
+    <figure class="code">
+      <figcaption class="code-legende">ensembles.py</figcaption>
+      <pre><code class="language-python">langues = ["français", "arabe", "français", "anglais", "arabe", "français"]
+distinctes = set(langues)                       # un ensemble supprime les doublons
+print(len(langues), "valeurs,", len(distinctes), "langues distinctes")
+print(sorted(distinctes))                       # un ensemble n'a pas d'ordre : on trie
+print("tamazight" in distinctes)</code></pre>
+      <pre class="sortie"><samp>6 valeurs, 3 langues distinctes
+['anglais', 'arabe', 'français']
+False</samp></pre>
+    </figure>
+
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>بنى البيانات الأساسية الأربع</caption>
+      <thead><tr>
+        <th scope="col">البنية</th><th scope="col">طريقة الكتابة</th><th scope="col">مرتّبة</th>
+        <th scope="col">قابلة للتعديل</th><th scope="col">التكرار</th><th scope="col">استعمال نموذجي على مدوّنة نصية</th>
+      </tr></thead>
+      <tbody>
+        <tr><th scope="row">القائمة (<code>list</code>)</th><td><code>["Hugo", "Dib"]</code></td><td>نعم</td><td>نعم</td><td>مسموح</td><td>كلمات بيت شعري، بترتيب النص</td></tr>
+        <tr><th scope="row">الصفّ (<code>tuple</code>)</th><td><code>("Nedjma", 1956)</code></td><td>نعم</td><td>لا</td><td>مسموح</td><td>مرجع بيبليوغرافي ثابت</td></tr>
+        <tr><th scope="row">القاموس (<code>dict</code>)</th><td><code>{"titre": "Nedjma"}</code></td><td>يحفظ ترتيب الإدراج</td><td>نعم</td><td>المفاتيح فريدة</td><td>بطاقة عمل أدبي؛ تواتر كل كلمة</td></tr>
+        <tr><th scope="row">المجموعة (<code>set</code>)</th><td><code>{"arabe", "français"}</code></td><td>لا</td><td>نعم (إضافة، حذف)</td><td>غير ممكن</td><td>المفردات المتمايزة في نص؛ لغات المدوّنة</td></tr>
+      </tbody>
+    </table></div>
+
+    <h4>الشروط والحلقات والدوالّ</h4>
+    <p>لا يُنفِّذ <dfn>الشرط</dfn> (<code>if</code>، <code>elif</code>، <code>else</code>) كتلةً إلا إذا كان اختبارٌ ما صحيحًا. وتكرّر <dfn>الحلقة</dfn> <code>for</code> كتلةً لكل عنصر من متتالية، وتكرّرها الحلقة <code>while</code> ما دام اختبارٌ ما صحيحًا. أما <dfn>الدالّة</dfn> (<span class="terme-en" lang="fr">fonction</span>)، المعرَّفة بـ <code>def</code>، فتجمع تعليمات تحت اسم واحد: تتلقى <dfn>معاملات</dfn> (<span class="terme-en" lang="fr">paramètres</span>) وتُرجع نتيجة بواسطة <code>return</code>. وتُحدَّد الكتل بـ<dfn>الإزاحة</dfn> (<span class="terme-en" lang="fr">indentation</span>): الأسطر المُزاحة بأربع مسافات بعد النقطتين تنتمي إلى الكتلة.</p>
+    <figure class="code">
+      <figcaption class="code-legende">fonctions.py</figcaption>
+      <pre><code class="language-python">def categorie(nb_mots):
+    """Classe un texte selon sa longueur (seuils choisis pour l'exercice)."""
+    if nb_mots &lt; 20000:
+        return "court"
+    elif nb_mots &lt; 100000:
+        return "moyen"
+    else:
+        return "long"
+
+def siecle(annee):
+    """Renvoie le numéro du siècle : 1856 donne 19, 1901 donne 20."""
+    return (annee - 1) // 100 + 1
+
+oeuvres = [("Frankenstein", 1818, 75000), ("Les Misérables", 1862, 530000),
+           ("Awraq al-Zaytun", 1964, 12000)]
+for titre, annee, nb_mots in oeuvres:
+    print(f"{titre} : {siecle(annee)}e siècle, texte {categorie(nb_mots)}")
+
+mots = ["Mon", "enfant", "ma", "sœur", "Songe", "à", "la", "douceur"]
+i = 0
+while mots[i] != "douceur":      # on avance tant que le mot n'est pas trouvé
+    i = i + 1
+print("« douceur » est le mot n°", i + 1)</code></pre>
+      <pre class="sortie"><samp>Frankenstein : 19e siècle, texte moyen
+Les Misérables : 19e siècle, texte long
+Awraq al-Zaytun : 20e siècle, texte court
+« douceur » est le mot n° 8</samp></pre>
+    </figure>
+    <p>السلسلة المحصورة بين علامات تنصيص ثلاثية تحت <code>def</code> هي <dfn>سلسلة التوثيق</dfn> (<span class="terme-en" lang="fr">docstring</span>)، التي توثّق الدالّة؛ و<code>//</code> هي القسمة الصحيحة (&lrm;1861 // 100 تعطي 18). واحذروا <code>while</code>: فلو كانت الكلمة المبحوث عنها غائبة، لتجاوز الفهرسُ نهاية القائمة ولتوقّف Python عند خطأ <code>IndexError</code>.</p>
+
+    <h4>بناء القوائم المختصر</h4>
+    <p><dfn>بناء القائمة المختصر</dfn> (<span class="terme-en" lang="fr">compréhension de liste</span>) يُنشئ قائمة انطلاقًا من قائمة أخرى في سطر واحد: <code>[expression for element in sequence if condition]</code>. ويُقرأ كجملة: «قائمة العناصر m، لكل m من mots، إذا كان m يتكوّن من ستة أحرف على الأقل».</p>
+    <figure class="code">
+      <figcaption class="code-legende">comprehension.py: تتمة «L'Invitation au voyage»</figcaption>
+      <pre><code class="language-python">vers = "Aimer à loisir, Aimer et mourir Au pays qui te ressemble !"
+mots = vers.lower().replace(",", "").replace(" !", "").split()
+
+# Version avec une boucle classique
+longs = []
+for m in mots:
+    if len(m) &gt;= 6:
+        longs.append(m)
+print(longs)
+
+# Même résultat en une ligne : une compréhension de liste
+print([m for m in mots if len(m) &gt;= 6])
+print([len(m) for m in mots])</code></pre>
+      <pre class="sortie"><samp>['loisir', 'mourir', 'ressemble']
+['loisir', 'mourir', 'ressemble']
+[5, 1, 6, 5, 2, 6, 2, 4, 3, 2, 9]</samp></pre>
+    </figure>
+
+    <div class="quiz">
+      <p class="quiz-question">إذا كان <code>mots = "la mer la mer toujours recommencée".split()</code> (بيت لبول فاليري، دون علامات ترقيم)، فما قيمة <code>len(set(mots))</code>؟</p>
+      <ul class="quiz-options">
+        <li><button type="button" class="quiz-option">6</button></li>
+        <li><button type="button" class="quiz-option" data-correct>4</button></li>
+        <li><button type="button" class="quiz-option">2</button></li>
+        <li><button type="button" class="quiz-option">خطأ، لأن المجموعة ليس لها طول</button></li>
+      </ul>
+      <p class="quiz-explication" hidden>تحتوي القائمة على ست كلمات، منها «la» و«mer» مرتين. ولا تحتفظ المجموعة إلا بنسخة واحدة من كل قيمة (la، mer، toujours، recommencée): أي 4 صيغ متمايزة. وتعمل <code>len()</code> على المجموعة كما تعمل على القائمة.</p>
+    </div>
+  </article>
+
+  <!-- ============================================================ 3 -->
+  <article class="lecon" id="c2-numpy-pandas">
+    <h3>مكتبات NumPy و pandas و matplotlib</h3>
+    <p><dfn>المكتبة</dfn> (<span class="terme-en" lang="fr">bibliothèque</span>) مجموعة من الدوالّ كتبها آخرون، نحمّلها بواسطة <code>import</code>. وثلاث منها تشكّل أساس تحليل البيانات: NumPy للحساب، وpandas للجداول، وmatplotlib للرسوم البيانية. وقد جرى العرف على استيرادها تحت <dfn>اسم مستعار</dfn> (<span class="terme-en" lang="fr">alias</span>) قصير: <code>import numpy as np</code>، <code>import pandas as pd</code>.</p>
+
+    <h4>NumPy: الحساب على سلسلة من الأعداد</h4>
+    <p>توفّر NumPy <dfn>المصفوفة</dfn> (<code>array</code>)، وهي متتالية من الأعداد تُطبَّق عليها العملية على جميع العناصر دفعة واحدة. ونتحدث حينئذ عن عملية <dfn>متّجهية</dfn> (<span class="terme-en" lang="fr">vectorisée</span>): فـ <code>nb_mots / 250</code> تقسم الأعداد العشرة دون حلقة.</p>
+    <figure class="code">
+      <figcaption class="code-legende">numpy_mots.py</figcaption>
+      <pre><code class="language-python">import numpy as np
+
+# Nombre de mots de dix œuvres (valeurs fictives, arrondies pour l'exercice)
+nb_mots = np.array([530000, 28000, 125000, 62000, 95000,
+                    48000, 160000, 12000, 75000, 45000])
+
+print(nb_mots.mean())             # moyenne
+print(np.median(nb_mots))         # médiane
+print(nb_mots.std().round(1))     # écart-type, arrondi à une décimale
+print(nb_mots.min(), nb_mots.max())
+print(nb_mots / 250)              # opération vectorisée : pages estimées</code></pre>
+      <pre class="sortie"><samp>118000.0
+68500.0
+143748.4
+12000 530000
+[2120.  112.  500.  248.  380.  192.  640.   48.  300.  180.]</samp></pre>
+    </figure>
+    <p>يتجاوز المتوسطُ (118000 كلمة) بكثير <dfn>الوسيطَ</dfn> (<span class="terme-en" lang="fr">médiane</span>)، البالغ 68500، الذي يقسم السلسلة إلى نصفين: فرواية واحدة طويلة جدًا، <em>Les Misérables</em> (البؤساء)، ترفع المتوسط. و<dfn>الانحراف المعياري</dfn> (<span class="terme-en" lang="fr">écart-type</span>)، الذي يقيس التشتّت حول المتوسط، مرتفع للسبب نفسه. أمام نصوص متفاوتة الطول، انظروا دائمًا إلى الوسيط.</p>
+
+    <h4>pandas: Series و DataFrame</h4>
+    <p><dfn>Series</dfn> عمود من القيم مزوَّد بـ<dfn>فهرس</dfn> (<span class="terme-en" lang="fr">index</span>)، أي تسميات الصفوف (0، 1، 2… افتراضيًا). و<dfn>DataFrame</dfn> جدول مكوَّن من عدة Series تتقاسم الفهرس نفسه: وهو ما يعادل ورقة حساب، كل صف فيها مشاهدة (عمل أدبي) وكل عمود متغيّر.</p>
+    <p>لكي يعمل المثال دون ملف، نبني الـ DataFrame انطلاقًا من قاموس: يصبح كل مفتاح اسمَ عمود. وتجمع المدوّنة أعمالًا بالفرنسية والعربية والإنجليزية؛ والعناوين العربية مكتوبة بحروف لاتينية (فـ <em>Al-Ayyam</em>، أي «الأيام»، تُرجم إلى الفرنسية بعنوان <em>Le Livre des jours</em>). وأعداد الكلمات قيم مدوَّرة مختلَقة لأجل التمرين، وليست إحصاءات حقيقية.</p>
+    <figure class="code">
+      <figcaption class="code-legende">corpus_pandas.py</figcaption>
+      <pre><code class="language-python">import pandas as pd
+
+donnees = {
+    "titre": ["Les Misérables", "Les Fleurs du mal", "Bel-Ami", "La Grande Maison",
+              "Nedjma", "Al-Ayyam", "Bayn al-Qasrayn", "Awraq al-Zaytun",
+              "Frankenstein", "Leaves of Grass"],
+    "auteur": ["Victor Hugo", "Charles Baudelaire", "Guy de Maupassant", "Mohammed Dib",
+               "Kateb Yacine", "Taha Hussein", "Naguib Mahfouz", "Mahmoud Darwich",
+               "Mary Shelley", "Walt Whitman"],
+    "annee": [1862, 1857, 1885, 1952, 1956, 1929, 1956, 1964, 1818, 1855],
+    "genre": ["roman", "poésie", "roman", "roman", "roman",
+              "récit", "roman", "poésie", "roman", "poésie"],
+    "langue": ["français", "français", "français", "français", "français",
+               "arabe", "arabe", "arabe", "anglais", "anglais"],
+    "nb_mots": [530000, 28000, 125000, 62000, 95000,
+                48000, 160000, 12000, 75000, 45000],   # valeurs fictives
+}
+df = pd.DataFrame(donnees)       # un tableau : une clé = une colonne
+print(df.head())                 # les 5 premières lignes</code></pre>
+      <pre class="sortie"><samp>               titre              auteur  annee   genre    langue  nb_mots
+0     Les Misérables         Victor Hugo   1862   roman  français   530000
+1  Les Fleurs du mal  Charles Baudelaire   1857  poésie  français    28000
+2            Bel-Ami   Guy de Maupassant   1885   roman  français   125000
+3   La Grande Maison        Mohammed Dib   1952   roman  français    62000
+4             Nedjma        Kateb Yacine   1956   roman  français    95000</samp></pre>
+    </figure>
+
+    <h4>قراءة ملف CSV</h4>
+    <p>في العمل الفعلي، يأتي الجدول من ملف <dfn>CSV</dfn> (<span class="terme-en" lang="fr">valeurs séparées par des virgules</span>): ملف نصي كل سطر فيه سجلّ، وأعمدته مفصولة بفواصل. لنحفظ جدولنا، ثم نُعِد قراءته بواسطة <code>pd.read_csv()</code>.</p>
+    <figure class="code">
+      <figcaption class="code-legende">oeuvres.csv (الأسطر الأربعة الأولى)</figcaption>
+      <pre><code>titre,auteur,annee,genre,langue,nb_mots
+Les Misérables,Victor Hugo,1862,roman,français,530000
+Les Fleurs du mal,Charles Baudelaire,1857,poésie,français,28000
+Bel-Ami,Guy de Maupassant,1885,roman,français,125000</code></pre>
+    </figure>
+    <figure class="code">
+      <figcaption class="code-legende">lire_csv.py</figcaption>
+      <pre><code class="language-python">df.to_csv("oeuvres.csv", index=False, encoding="utf-8")   # enregistrer en CSV
+df = pd.read_csv("oeuvres.csv", encoding="utf-8")         # relire le fichier
+print(df.shape)                                           # (lignes, colonnes)</code></pre>
+      <pre class="sortie"><samp>(10, 6)</samp></pre>
+    </figure>
+
+    <h4>الاستكشاف: head و info و describe</h4>
+    <p>تعرض <code>head()</code> الصفوف الأولى، و<code>tail()</code> الصفوف الأخيرة، و<code>shape</code> الأبعاد. وتسرد <code>info()</code> الأعمدة ونوع كل منها وعدد القيم غير الفارغة، مما يكشف البيانات الناقصة؛ وتلخّص <code>describe()</code> الأعمدة العددية.</p>
+    <figure class="code">
+      <figcaption class="code-legende">info(): المخرجات المحصَّلة مع pandas 3</figcaption>
+      <pre><code class="language-python">df.info()</code></pre>
+      <pre class="sortie"><samp>&lt;class 'pandas.DataFrame'&gt;
+RangeIndex: 10 entries, 0 to 9
+Data columns (total 6 columns):
+ #   Column   Non-Null Count  Dtype
+---  ------   --------------  -----
+ 0   titre    10 non-null     str  
+ 1   auteur   10 non-null     str  
+ 2   annee    10 non-null     int64
+ 3   genre    10 non-null     str  
+ 4   langue   10 non-null     str  
+ 5   nb_mots  10 non-null     int64
+dtypes: int64(2), str(4)
+memory usage: 612.0 bytes</samp></pre>
+    </figure>
+    <p>مع pandas 2، تظهر أعمدة النص بالنوع <code>object</code> بدل <code>str</code>، ويختلف السطر الأول اختلافًا طفيفًا؛ أما المحتوى فهو نفسه.</p>
+    <figure class="code">
+      <figcaption class="code-legende">describe()</figcaption>
+      <pre><code class="language-python">print(df.describe())</code></pre>
+      <pre class="sortie"><samp>             annee        nb_mots
+count    10.000000      10.000000
+mean   1903.400000  118000.000000
+std      53.814909  151524.108826
+min    1818.000000   12000.000000
+25%    1858.250000   45750.000000
+50%    1907.000000   68500.000000
+75%    1955.000000  117500.000000
+max    1964.000000  530000.000000</samp></pre>
+    </figure>
+    <p><code>count</code> هو عدد القيم، و<code>mean</code> المتوسط، و<code>std</code> الانحراف المعياري، و<code>25%</code> و<code>50%</code> و<code>75%</code> هي <dfn>الربيعات</dfn> (والربيع 50% هو الوسيط). ويختلف الانحراف المعياري في pandas (151524) عن نظيره في NumPy (143748): فـ pandas تقسم على n − 1، وNumPy تقسم على n، إلا إذا كتبنا <code>nb_mots.std(ddof=1)</code>.</p>
+
+    <h4>الاختيار والتصفية والفرز</h4>
+    <p>اسم العمود بين قوسين مربّعين يُرجع Series؛ أما قائمة الأسماء، ومن هنا القوسان المربّعان المضاعفان، فتُرجع DataFrame.</p>
+    <figure class="code">
+      <figcaption class="code-legende">selection.py</figcaption>
+      <pre><code class="language-python">print(df["nb_mots"].tail(3))              # une colonne : une Series
+print(df[["titre", "annee"]].tail(3))     # plusieurs colonnes : un DataFrame</code></pre>
+      <pre class="sortie"><samp>7    12000
+8    75000
+9    45000
+Name: nb_mots, dtype: int64
+             titre  annee
+7  Awraq al-Zaytun   1964
+8     Frankenstein   1818
+9  Leaves of Grass   1855</samp></pre>
+    </figure>
+    <p>لـ<dfn>التصفية</dfn>، نكتب شرطًا على عمود: فيُنتج Series من <code>True</code> و<code>False</code>، وتحتفظ <code>df[condition]</code> بالصفوف التي يكون فيها الشرط صحيحًا. وتُجمع الشروط بواسطة <code>&amp;</code> (و) أو <code>|</code> (أو)، مع وضع كلٍّ منها بين قوسين. ويُحتفظ بالفهرس الأصلي (5، 6، 7)؛ وتحوّل <code>tolist()</code> الـ Series إلى قائمة.</p>
+    <figure class="code">
+      <figcaption class="code-legende">filtres.py</figcaption>
+      <pre><code class="language-python">en_arabe = df[df["langue"] == "arabe"]                    # filtrer les lignes
+print(en_arabe[["titre", "auteur", "annee"]])
+
+romans_xix = df[(df["genre"] == "roman") &amp; (df["annee"] &lt; 1900)]
+print(romans_xix["titre"].tolist())</code></pre>
+      <pre class="sortie"><samp>             titre           auteur  annee
+5         Al-Ayyam     Taha Hussein   1929
+6  Bayn al-Qasrayn   Naguib Mahfouz   1956
+7  Awraq al-Zaytun  Mahmoud Darwich   1964
+['Les Misérables', 'Bel-Ami', 'Frankenstein']</samp></pre>
+    </figure>
+    <p>تفرز <code>sort_values()</code> الصفوف بحسب عمود؛ و<code>ascending=False</code> تعكس الترتيب.</p>
+    <figure class="code">
+      <figcaption class="code-legende">tri.py</figcaption>
+      <pre><code class="language-python">plus_longs = df.sort_values("nb_mots", ascending=False)   # tri décroissant
+print(plus_longs[["titre", "nb_mots"]].head(3))</code></pre>
+      <pre class="sortie"><samp>             titre  nb_mots
+0   Les Misérables   530000
+6  Bayn al-Qasrayn   160000
+2          Bel-Ami   125000</samp></pre>
+    </figure>
+
+    <h4>التجميع والعدّ</h4>
+    <p>توزّع <code>groupby()</code> الصفوف في مجموعات بحسب عمود، ثم تحسب على كل مجموعة: «كم كلمة في المتوسط لكل جنس أدبي؟». وتعدّ <code>value_counts()</code> مرات ورود كل قيمة، من الأكثر تكرارًا إلى الأندر.</p>
+    <figure class="code">
+      <figcaption class="code-legende">groupes.py</figcaption>
+      <pre><code class="language-python">print(df.groupby("genre")["nb_mots"].mean().round())      # moyenne par genre
+print(df["langue"].value_counts())                        # effectifs par langue</code></pre>
+      <pre class="sortie"><samp>genre
+poésie     28333.0
+roman     174500.0
+récit      48000.0
+Name: nb_mots, dtype: float64
+langue
+français    5
+arabe       3
+anglais     2
+Name: count, dtype: int64</samp></pre>
+    </figure>
+    <p>رُتِّب الجنس «récit» (السرد) بعد «roman» (الرواية): إذ يرتّب Python السلاسل بحسب رقم Unicode لمحارفها، والحرف «é» يأتي بعد جميع الحروف الخالية من العلامات (الدرس 5 يصحّح هذا الفخّ). ومع وجود نص سردي واحد فقط في المدوّنة، فإن «متوسط» هذا الجنس لا يعني الكثير أصلًا: فالحساب الدقيق لا يصنع استنتاجًا متينًا.</p>
+
+    <h4>إضافة عمود</h4>
+    <p>نُنشئ عمودًا بإسناد عملية حسابية إلى اسم جديد؛ وتشمل العملية العمودَ كلّه. <code>round()</code> تقرّب، و<code>astype(int)</code> تحوّل إلى أعداد صحيحة.</p>
+    <figure class="code">
+      <figcaption class="code-legende">nouvelles_colonnes.py</figcaption>
+      <pre><code class="language-python">df["siecle"] = (df["annee"] - 1) // 100 + 1               # calcul sur toute la colonne
+df["pages"] = (df["nb_mots"] / 250).round().astype(int)
+print(df[["titre", "siecle", "pages"]].head(4))</code></pre>
+      <pre class="sortie"><samp>               titre  siecle  pages
+0     Les Misérables      19   2120
+1  Les Fleurs du mal      19    112
+2            Bel-Ami      19    500
+3   La Grande Maison      20    248</samp></pre>
+    </figure>
+
+    <h4>كلمة عن matplotlib</h4>
+    <p>ترسم matplotlib الرسوم البيانية، وتستعملها pandas مباشرة: فحين تُطبَّق <code>plot(kind="bar")</code> على Series، ترسم مخططًا بالأشرطة.</p>
+    <figure class="code">
+      <figcaption class="code-legende">graphique.py</figcaption>
+      <pre><code class="language-python">import matplotlib.pyplot as plt
+
+moyennes = df.groupby("genre")["nb_mots"].mean()
+moyennes.plot(kind="bar")                     # un diagramme en barres
+plt.title("Longueur moyenne des œuvres par genre")
+plt.xlabel("Genre")
+plt.ylabel("Nombre de mots (valeurs fictives)")
+plt.tight_layout()
+plt.savefig("mots_par_genre.png")             # enregistrer l'image
+plt.show()                                    # l'afficher</code></pre>
+    </figure>
+    <p>ترسم هذه الشيفرة ثلاثة أشرطة عمودية، واحدًا لكل جنس (poésie، roman، récit)، ارتفاع كلٍّ منها هو متوسط عدد الكلمات؛ ويتفوّق شريط الرواية بوضوح. والعنوان وأسماء المحاور ليست للزينة: فمن دونها يتعذّر تأويل الرسم البياني. وتحفظ <code>savefig()</code> صورة PNG يمكن إدراجها في مذكرة.</p>
+  </article>
+
+  <!-- ============================================================ 4 -->
+  <article class="lecon" id="c2-objet">
+    <h3>مدخل إلى البرمجة كائنية التوجّه</h3>
+    <p>حتى الآن، كانت البيانات والمعالجات منفصلة. أما <dfn>البرمجة كائنية التوجّه</dfn> (<span class="terme-en" lang="fr">programmation orientée objet</span>) فتجمع بينها: إذ يضمّ <dfn>الكائن</dfn> (<span class="terme-en" lang="fr">objet</span>) بيانات هي <dfn>سماته</dfn> (<span class="terme-en" lang="fr">attributs</span>)، والأفعال التي تنطبق عليها، وهي <dfn>طرائقه</dfn>. وأنتم تستعملون الكائنات من قبل: فالـ DataFrame يملك السمة <code>shape</code> والطريقة <code>head()</code>.</p>
+
+    <h4>الصنف والمثيل والسمات والطرائق</h4>
+    <p><dfn>الصنف</dfn> (<span class="terme-en" lang="fr">classe</span>) قالب؛ وكل كائن يُصنع بهذا القالب <dfn>مثيل</dfn> (<span class="terme-en" lang="fr">instance</span>) للصنف. ويصف الصنف <code>Texte</code> ما هو النص في نظر برنامجنا: عنوان، ومؤلف، ومحتوى، وثلاثة أفعال.</p>
+    <figure class="code">
+      <figcaption class="code-legende">texte.py</figcaption>
+      <pre><code class="language-python">from collections import Counter
+
+class Texte:
+    """Un texte littéraire : un titre, un auteur, un contenu."""
+
+    def __init__(self, titre, auteur, contenu):
+        self.titre = titre            # attributs : les données de l'objet
+        self.auteur = auteur
+        self.contenu = contenu
+
+    def mots(self):
+        """Liste des mots, en minuscules et sans ponctuation."""
+        propre = self.contenu.lower()
+        for signe in ".,;:!?'-":
+            propre = propre.replace(signe, " ")
+        return propre.split()
+
+    def nb_mots(self):
+        return len(self.mots())
+
+    def mots_frequents(self, n=3):
+        """Les n mots les plus fréquents, avec leur nombre d'occurrences."""
+        return Counter(self.mots()).most_common(n)</code></pre>
+    </figure>
+    <ul>
+      <li><code>__init__</code> هي <dfn>المُنشئ</dfn> (<span class="terme-en" lang="fr">constructeur</span>): يستدعيها Python تلقائيًا عند إنشاء كل مثيل لملء سماته.</li>
+      <li><code>self</code> يدلّ على المثيل نفسه: <code>self.titre</code> تعني «عنوان هذا النص بعينه». ويأتي معاملًا أول في كل طريقة، لكنكم لا تمرّرونه أبدًا: فـ Python يتكفّل بذلك.</li>
+      <li><code>Counter</code>، من الوحدة <code>collections</code>، يعدّ عناصر قائمة؛ و<code>most_common(n)</code> تُرجع العناصر n الأكثر تكرارًا (انظروا الدرس 5).</li>
+    </ul>
+    <figure class="code">
+      <figcaption class="code-legende">instance.py: فيكتور هوغو، «Demain, dès l'aube…»، <em>Les Contemplations</em> (1856)</figcaption>
+      <pre><code class="language-python">strophe = ("Demain, dès l'aube, à l'heure où blanchit la campagne,\n"
+           "Je partirai. Vois-tu, je sais que tu m'attends.\n"
+           "J'irai par la forêt, j'irai par la montagne.\n"
+           "Je ne puis demeurer loin de toi plus longtemps.")
+
+demain = Texte("Demain, dès l'aube", "Victor Hugo", strophe)   # une instance
+print(demain.auteur)             # lire un attribut
+print(demain.nb_mots(), "mots")  # appeler une méthode
+print(demain.mots_frequents(3))</code></pre>
+      <pre class="sortie"><samp>Victor Hugo
+40 mots
+[('la', 3), ('je', 3), ('l', 2)]</samp></pre>
+    </figure>
+    <p>نُنشئ مثيلًا باستدعاء الصنف كما تُستدعى الدالّة. والكلمات الأكثر تكرارًا <dfn>كلمات وظيفية</dfn> (<em>la</em>، <em>je</em>) وحرف «l» منفرد، ناتج عن التقطيع الساذج لـ <em>l'aube</em> و<em>l'heure</em>: فالحذف (<span class="terme-en" lang="fr">élision</span>) صعوبة معروفة في المعالجة الآلية للغة الفرنسية.</p>
+
+    <h4>التركيب: مدوّنة مكوَّنة من نصوص</h4>
+    <p>يمكن للكائن أن يحتوي على كائنات أخرى: فالصنف <code>Corpus</code> يملك قائمة من مثيلات <code>Texte</code>. هذا هو <dfn>التركيب</dfn> (<span class="terme-en" lang="fr">composition</span>). يعرف النص كيف يعدّ كلماته؛ وتجمع المدوّنة كلمات نصوصها.</p>
+    <figure class="code">
+      <figcaption class="code-legende">corpus.py</figcaption>
+      <pre><code class="language-python">class Corpus:
+    """Une collection de textes : un Corpus contient des objets Texte."""
+
+    def __init__(self, nom):
+        self.nom = nom
+        self.textes = []                     # liste vide au départ
+
+    def ajouter(self, texte):
+        self.textes.append(texte)
+
+    def total_mots(self):
+        return sum(t.nb_mots() for t in self.textes)
+
+    def resume(self):
+        print(f"{self.nom} : {len(self.textes)} textes, {self.total_mots()} mots")
+        for t in self.textes:
+            print(f"- {t.titre} ({t.auteur}) : {t.nb_mots()} mots")
+
+invitation = Texte("L'Invitation au voyage", "Charles Baudelaire",
+                   "Mon enfant, ma sœur, Songe à la douceur D'aller là-bas vivre ensemble !")
+captain = Texte("O Captain! My Captain!", "Walt Whitman",
+                "O Captain! my Captain! our fearful trip is done,")
+
+poesie = Corpus("Poèmes du XIXe siècle")
+for t in [demain, invitation, captain]:
+    poesie.ajouter(t)
+poesie.resume()</code></pre>
+      <pre class="sortie"><samp>Poèmes du XIXe siècle : 3 textes, 63 mots
+- Demain, dès l'aube (Victor Hugo) : 40 mots
+- L'Invitation au voyage (Charles Baudelaire) : 14 mots
+- O Captain! My Captain! (Walt Whitman) : 9 mots</samp></pre>
+    </figure>
+    <p>تُفوِّض <code>total_mots()</code> العدَّ إلى الطريقة <code>nb_mots()</code> في كل نص. وتُعالَج قصيدة والت ويتمان الإنجليزية (1865) كما تُعالَج القصائد الفرنسية.</p>
+
+    <h4>الوراثة: القصيدة نصّ</h4>
+    <p>تُعرِّف <dfn>الوراثة</dfn> (<span class="terme-en" lang="fr">héritage</span>) صنفًا انطلاقًا من صنف آخر. فـ <code>class Poeme(Texte)</code> تعني أن القصيدة نصّ من نوع خاص: فهي تتلقى سمات <code>Texte</code> وطرائقه، وهو صنفها <dfn>الأم</dfn>، وتضيف ما يخصّها، وهو هنا عدّ الأبيات.</p>
+    <figure class="code">
+      <figcaption class="code-legende">heritage.py</figcaption>
+      <pre><code class="language-python">class Poeme(Texte):                  # Poeme hérite de Texte
+    """Un texte en vers : chaque vers occupe une ligne."""
+
+    def nb_vers(self):
+        return len([v for v in self.contenu.split("\n") if v.strip()])
+
+demain_p = Poeme("Demain, dès l'aube", "Victor Hugo", strophe)
+print(demain_p.nb_vers(), "vers,", demain_p.nb_mots(), "mots")   # méthode héritée
+print(isinstance(demain_p, Texte))</code></pre>
+      <pre class="sortie"><samp>4 vers, 40 mots
+True</samp></pre>
+    </figure>
+    <p>لا يعرّف <code>Poeme</code> لا <code>__init__</code> ولا <code>nb_mots()</code>: بل يستعمل ما في <code>Texte</code>. وتؤكّد <code>isinstance()</code> أن القصيدة نصّ أيضًا.</p>
+
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>البرمجة الإجرائية</h4>
+        <p>متتالية من التعليمات والدوالّ التي تتلقى البيانات في شكل معاملات.</p>
+        <ul>
+          <li>تنتقل البيانات من دالّة إلى أخرى: <code>compter_mots(texte)</code>.</li>
+          <li>بسيطة ومباشرة في السكربت القصير.</li>
+          <li>يصعب تنظيمها حين يكبر المشروع.</li>
+        </ul>
+      </div>
+      <div class="comparaison-col">
+        <h4>البرمجة كائنية التوجّه</h4>
+        <p>كائنات تحمل بياناتها وطرائقها.</p>
+        <ul>
+          <li>يعمل الكائن على بياناته الخاصة: <code>texte.nb_mots()</code>.</li>
+          <li>ملائمة للمشاريع الطويلة الأمد وللأدوات القابلة لإعادة الاستعمال.</li>
+          <li>كتابة أكثر في البداية؛ وبهذه الطريقة بُنيت pandas و scikit-learn.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- ============================================================ 5 -->
+  <article class="lecon" id="c2-fichiers">
+    <h3>قراءة الملفات النصية ومعالجتها</h3>
+    <p>تأتي المدوّنة النصية في الغالب على شكل ملفات <dfn>نص خام</dfn> (<code>.txt</code>)، بلا تنسيق، يمكن لأي برنامج قراءتها. وسنشتغل على قصيدة «Le Dormeur du val» (النائم في الوادي) لآرثر رامبو (1870)، وهي سونيتة يكشف بيتها الأخير أن الجندي النائم ميّت.</p>
+
+    <h4>كتابة ملف وقراءته</h4>
+    <p>تفتح <code>open()</code> ملفًا في <dfn>نمط</dfn> (<span class="terme-en" lang="fr">mode</span>) معيّن: <code>"r"</code> للقراءة (افتراضيًا)، و<code>"w"</code> للكتابة (يُمحى المحتوى الموجود)، و<code>"a"</code> للإضافة في النهاية. وتُغلق الكتلة <code>with</code> الملف تلقائيًا، حتى في حال حدوث خطأ. وتسمح علامات التنصيص الثلاثية بكتابة سلسلة على عدة أسطر.</p>
+    <figure class="code">
+      <figcaption class="code-legende">ecrire.py: آرثر رامبو، «Le Dormeur du val» (1870)</figcaption>
+      <pre><code class="language-python">poeme = """C'est un trou de verdure où chante une rivière,
+Accrochant follement aux herbes des haillons
+D'argent ; où le soleil, de la montagne fière,
+Luit : c'est un petit val qui mousse de rayons.
+
+Un soldat jeune, bouche ouverte, tête nue,
+Et la nuque baignant dans le frais cresson bleu,
+Dort ; il est étendu dans l'herbe, sous la nue,
+Pâle dans son lit vert où la lumière pleut.
+
+Les pieds dans les glaïeuls, il dort. Souriant comme
+Sourirait un enfant malade, il fait un somme :
+Nature, berce-le chaudement : il a froid.
+
+Les parfums ne font pas frissonner sa narine ;
+Il dort dans le soleil, la main sur sa poitrine
+Tranquille. Il a deux trous rouges au côté droit.
+"""
+with open("dormeur.txt", "w", encoding="utf-8") as f:   # "w" : écriture
+    f.write(poeme)</code></pre>
+    </figure>
+    <figure class="code">
+      <figcaption class="code-legende">lire.py</figcaption>
+      <pre><code class="language-python">with open("dormeur.txt", encoding="utf-8") as f:
+    texte = f.read()                  # tout le fichier en une seule chaîne
+print(len(texte), "caractères")
+
+with open("dormeur.txt", encoding="utf-8") as f:
+    lignes = f.readlines()            # une liste : une chaîne par ligne
+vers = [l.strip() for l in lignes if l.strip()]   # on ignore les lignes vides
+print(len(lignes), "lignes,", len(vers), "vers")
+print(vers[-1])</code></pre>
+      <pre class="sortie"><samp>662 caractères
+17 lignes, 14 vers
+Tranquille. Il a deux trous rouges au côté droit.</samp></pre>
+    </figure>
+    <p>تُرجع <code>read()</code> المحتوى كلّه في سلسلة واحدة؛ و<code>readlines()</code> قائمة أسطر، ينتهي كلٌّ منها بمحرف نهاية السطر <code>\n</code>، الذي تحذفه <code>strip()</code>. وتضمّ الأسطر الـ 17 أربعة عشر بيتًا و3 أسطر فارغة بين المقاطع.</p>
+
+    <h4>تصفّح مجلد</h4>
+    <p>تمثّل الوحدة <code>pathlib</code> المسارات بكائنات <code>Path</code>: <code>/</code> تركّب مسارًا، و<code>glob("*.txt")</code> تجد ملفات &lrm;.txt، و<code>read_text()</code> و<code>write_text()</code> تقرآن وتكتبان في سطر واحد. ويضع هذا البرنامج في مجلد <code>corpus</code> قصيدة رامبو وبيتًا شهيرًا للمتنبي (القرن العاشر)، ثم يعدّ كلماتهما عدًّا تقريبيًا.</p>
+    <figure class="code">
+      <figcaption class="code-legende">dossier.py</figcaption>
+      <pre><code class="language-python">from pathlib import Path
+
+dossier = Path("corpus")
+dossier.mkdir(exist_ok=True)                    # crée le dossier s'il n'existe pas
+(dossier / "rimbaud_dormeur.txt").write_text(poeme, encoding="utf-8")
+(dossier / "mutanabbi.txt").write_text(
+    "الخيل والليل والبيداء تعرفني\nوالسيف والرمح والقرطاس والقلم", encoding="utf-8")
+
+for chemin in sorted(dossier.glob("*.txt")):    # tous les .txt, triés par nom
+    contenu = chemin.read_text(encoding="utf-8")
+    print(chemin.name, ":", len(contenu.split()), "mots")</code></pre>
+      <pre class="sortie"><samp>mutanabbi.txt : 8 mots
+rimbaud_dormeur.txt : 122 mots</samp></pre>
+    </figure>
+    <p>هذا العدّ بالمسافات تقريبي، وتختلف دقته من لغة إلى أخرى. ففي الفرنسية، تضع قواعد الطباعة مسافة قبل «;» و«:»، فيعدّهما <code>split()</code> كلمتين. وفي العربية، يتصل حرف العطف <em>الواو</em> وأداة التعريف <em>ال</em> بالكلمة التالية: فـ والليل («و» + «الليل») تُعدّ كلمة واحدة. ومقارنة مدوّنات متعددة اللغات تفرض تحديد ما هي «الكلمة» قبل العدّ.</p>
+
+    <h4>البحث</h4>
+    <p>تجيب <code>in</code> بصحيح أو خطأ، وتعطي <code>find()</code> موضع أول ورود (&lrm;-1 إن لم يوجد)، وتعدّ <code>count()</code> مرات الورود. وثلاثتها حساسة لـ<dfn>حالة الأحرف</dfn>، أي الكبيرة والصغيرة (<span class="terme-en" lang="fr">casse</span>): فكلمة «Dort»، في بداية البيت، لا يُعثر عليها إلا بعد التحويل إلى أحرف صغيرة.</p>
+    <p><dfn>التعبير النمطي</dfn> (<span class="terme-en" lang="fr">expression régulière</span>، أو regex)، الذي تعالجه الوحدة <code>re</code>، نمطٌ يصف عائلة كاملة من السلاسل. ففي <code>r"\w+ment\b"</code>، يدلّ <code>\w</code> على حرف أو رقم، و<code>+</code> على «مرة واحدة أو أكثر»، و<code>\b</code> على حدّ الكلمة؛ و<code>|</code> تعني «أو». ويُنشئ الحرف <code>r</code> قبل علامات التنصيص <dfn>سلسلة خامًا</dfn> (<span class="terme-en" lang="fr">chaîne brute</span>)، تنقل الشرطات المائلة العكسية كما هي.</p>
+    <figure class="code">
+      <figcaption class="code-legende">rechercher.py</figcaption>
+      <pre><code class="language-python">import re
+
+print("montagne" in texte)            # True ou False
+print(texte.find("soleil"))           # position de la 1re occurrence (-1 si absent)
+print(texte.count("dort"))            # sensible à la casse : « Dort » est ignoré
+print(texte.lower().count("dort"))
+
+print(re.findall(r"\w+ment\b", texte))                      # mots terminés par « ment »
+print(re.findall(r"\b[Dd]ort\b|\bsomme\b|\blit\b", texte))  # le champ lexical du sommeil</code></pre>
+      <pre class="sortie"><samp>True
+110
+2
+3
+['follement', 'chaudement']
+['Dort', 'lit', 'dort', 'somme', 'dort']</samp></pre>
+    </figure>
+    <p>يعثر النمط المنتهي بـ «ment» على الظرفين الواردين في القصيدة، لكنه قد يلتقط أيضًا اسمًا مثل <em>moment</em>. أما التعبير الثاني فيرصد الحقل المعجمي للنوم: خمسة ورودات في أربعة عشر بيتًا، تمهّد للقفلة.</p>
+
+    <h4>عدّ التواترات</h4>
+    <p>يبني <code>Counter</code>، انطلاقًا من قائمة، ما يشبه قاموسًا يربط كل كلمة بعدد مرات ظهورها. ونميّز بين <dfn>الورودات</dfn> (<span class="terme-en" lang="fr">occurrences</span>)، أي كل ظهور لكلمة، و<dfn>الصيغ</dfn> (<span class="terme-en" lang="fr">formes</span>)، أي الكلمات المختلفة.</p>
+    <figure class="code">
+      <figcaption class="code-legende">frequences.py</figcaption>
+      <pre><code class="language-python">from collections import Counter
+
+mots = re.findall(r"\w+", texte.lower())      # découpage en mots
+freq = Counter(mots)
+print(len(mots), "mots,", len(freq), "formes différentes")
+print(freq.most_common(3))
+
+mots_vides = {"il", "dans", "le", "la", "les", "un", "une", "de", "des", "l", "d",
+              "c", "est", "a", "sa", "son", "où", "au", "aux", "sur", "qui", "et"}
+pleins = [m for m in mots if m not in mots_vides]
+print(Counter(pleins).most_common(3))</code></pre>
+      <pre class="sortie"><samp>121 mots, 86 formes différentes
+[('il', 6), ('un', 5), ('la', 5)]
+[('dort', 3), ('soleil', 2), ('nue', 2)]</samp></pre>
+    </figure>
+    <p>دون تصفية، تعود المراتب الأولى إلى <dfn>الكلمات الفارغة</dfn> (<span class="terme-en" lang="fr">mots vides</span>)، أي أدوات التعريف والضمائر الموجودة في كل النصوص. وبعد استبعادها، تتصدّر <em>dort</em> القائمة. وللعدّ حدوده: فـ <em>nue</em> («tête nue»، أي حاسر الرأس) و<em>nue</em> («sous la nue»، أي تحت السحاب) تُجمعان معًا، في حين تُفصل <em>trou</em> (البيت الأول) عن <em>trous</em> (البيت الأخير)، وهما الكلمتان اللتان تؤطّران السونيتة. وتجميع صيغ الكلمة الواحدة هو دور <dfn>الردّ إلى المدخل المعجمي</dfn> (<span class="terme-en" lang="fr">lemmatisation</span>)، الذي تنجزه أدوات مثل spaCy.</p>
+
+    <h4>الفرز</h4>
+    <p>تُرجع <code>sorted()</code> قائمة جديدة مفروزة. ويتلقى معاملها <code>key</code> دالّةً تحسب، لكل عنصر، القيمة التي يُفرز بحسبها؛ و<code>reverse=True</code> تعكس الترتيب. وتُنشئ <code>lambda</code> دالّة صغيرة بلا اسم: <code>lambda paire: paire[1]</code> تتلقى زوجًا (كلمة، تواتر) وتُرجع التواتر.</p>
+    <figure class="code">
+      <figcaption class="code-legende">trier.py</figcaption>
+      <pre><code class="language-python"># Trier les formes par longueur (key=len), de la plus longue à la plus courte
+print(sorted(freq, key=len, reverse=True)[:4])
+
+# Trier les paires (mot, fréquence) selon la fréquence : key reçoit une fonction
+paires = sorted(freq.items(), key=lambda paire: paire[1], reverse=True)
+print(paires[:3])
+
+titres = ["Nedjma", "Émaux et Camées", "Bel-Ami", "La Soif"]
+print(sorted(titres))                                     # « É » est rangé après « Z »
+print(sorted(titres, key=lambda t: t.replace("É", "E")))  # correction simple</code></pre>
+      <pre class="sortie"><samp>['accrochant', 'chaudement', 'frissonner', 'tranquille']
+[('il', 6), ('un', 5), ('la', 5)]
+['Bel-Ami', 'La Soif', 'Nedjma', 'Émaux et Camées']
+['Bel-Ami', 'Émaux et Camées', 'La Soif', 'Nedjma']</samp></pre>
+    </figure>
+    <p>يستعيد الفرز بحسب التواتر نتيجةَ <code>most_common()</code>. ويصحّح المثال الأخير الفخّ الذي رأيناه مع pandas: فقد كان <em>Émaux et Camées</em> لتيوفيل غوتييه مرتّبًا بعد <em>Nedjma</em>. ولفرز فهرس كامل، تُزال كل العلامات من المفتاح بالاستعانة بالوحدة <code>unicodedata</code>.</p>
+
+    <h4>فهرس سياقي بصيغة KWIC</h4>
+    <p>يعرض <dfn>الفهرس السياقي</dfn> (<span class="terme-en" lang="fr">concordance</span>) كلَّ ورود لكلمة محاطًا بسياقه الأيسر والأيمن، وكلُّ الورودات مصطفّة على الكلمة المبحوث عنها. ويُسمّى هذا الشكل <dfn>KWIC</dfn> (من الإنجليزية keyword in context؛ <span class="terme-en" lang="fr">mot-clé en contexte</span>، أي «الكلمة المفتاحية في سياقها»): فالقراءة العمودية تُظهر انتظامات تفلت من القراءة الخطية.</p>
+    <figure class="code">
+      <figcaption class="code-legende">concordance.py</figcaption>
+      <pre><code class="language-python">def kwic(texte, mot, largeur=30):
+    """Concordance : chaque occurrence de mot, avec son contexte gauche et droit."""
+    # Mettre tout le poème sur une ligne, en marquant la fin des vers par « / »
+    plat = " / ".join(l.strip() for l in texte.splitlines() if l.strip())
+    for m in re.finditer(rf"\b{mot}\b", plat, flags=re.IGNORECASE):
+        gauche = plat[max(0, m.start() - largeur):m.start()]
+        droite = plat[m.end():m.end() + largeur]
+        print(f"{gauche:&gt;{largeur}}[{m.group()}]{droite}")
+
+kwic(texte, "dort")</code></pre>
+      <pre class="sortie"><samp>dans le frais cresson bleu, / [Dort] ; il est étendu dans l'herbe,
+s pieds dans les glaïeuls, il [dort]. Souriant comme / Sourirait u
+s frissonner sa narine ; / Il [dort] dans le soleil, la main sur s</samp></pre>
+    </figure>
+    <p>تُجمع الأبيات في سطر واحد ويُفصل بينها بالعلامة «/»، وهو العرف المتّبع في الاستشهاد بأبيات متتالية. وتعطي <code>re.finditer()</code> موضع كل تطابق (<code>start()</code>، <code>end()</code>)، ونقتطع حوله ثلاثين محرفًا. ويجمع البادئ <code>rf</code> بين السلسلة الخام وf-string؛ وفي <code>{gauche:&gt;{largeur}}</code>، تحاذي <code>&gt;</code> السياقَ الأيسر إلى اليمين، مما يضع الكلمات المفتاحية في عمود واحد. وهكذا نرى <em>dort</em> يعود في كل مقطع من المقاطع الثلاثة الأخيرة، كلازمة تمهّد للكشف الأخير.</p>
+
+    <aside class="encadre encadre--shs">
+      <p class="encadre-titre">الفهارس السياقية، من الكتاب المقدّس إلى الإنسانيات الرقمية</p>
+      <p>سبق الفهرسُ السياقي المعلوماتيةَ بزمن طويل: فمنذ القرن الثالث عشر، كانت فهارس سياقية مخطوطة للكتاب المقدّس اللاتيني تُحصي كل المواضع التي ترد فيها كلمة ما. وفي 1949، شرع اليسوعي الإيطالي روبيرتو بوسا (Roberto Busa) مع IBM في إنجاز <em>Index Thomisticus</em>، وهو فهرس سياقي محوسَب لأعمال توما الأكويني، كثيرًا ما يُقدَّم بوصفه شهادة ميلاد الإنسانيات الرقمية. وقد شاع شكل KWIC نحو عام 1960 على يد هانس بيتر لون (Hans Peter Luhn)، المهندس في IBM.</p>
+      <p>تُنتج برمجيات مجانية مثل AntConc و TXM و Voyant Tools فهارس سياقية ببضع نقرات. لكن معرفة برمجة فهرس بأنفسكم تتيح لكم تكييف النمط والمدوّنة مع سؤالكم البحثي: مقارنة استعمالات كلمة عند كاتب ياسين وعند محمد ديب، أو تتبّع مصطلح في رواية وفي ترجمتها، أو رصد الصيغ المتكرّرة في خطاب سياسي.</p>
+    </aside>
+  </article>
+
+  <!-- ============================================================ 6 -->
+  <article class="lecon" id="c2-rapports">
+    <h3>إدارة تقارير بسيطة: Excel و PDF</h3>
+    <p>ينبغي أن يكون التحليل قابلًا للتبليغ إلى المشرف على المذكرة أو إلى لجنة المناقشة. ويهيمن شكلان: مصنّف Excel، الذي يستطيع كل واحد فتحه وفرزه وإتمامه، وملف PDF، الثابت والجاهز للطباعة. وتعتمد الأمثلة على الـ DataFrame <code>df</code> من الدرس 3.</p>
+
+    <h4>التصدير إلى Excel</h4>
+    <p>تكتب <code>to_excel()</code> ملفًا بامتداد <code>.xlsx</code>، شريطة أن تكون المكتبة <dfn>openpyxl</dfn> مثبّتة؛ و<code>index=False</code> تُسقط أرقام الصفوف. ولكتابة عدة أوراق في المصنّف نفسه، نفتح <code>pd.ExcelWriter</code> داخل كتلة <code>with</code>: فكل استدعاء لـ <code>to_excel()</code> يُنشئ ورقة يحدّد اسمَها <code>sheet_name</code>. وتُعيد <code>read_excel()</code> قراءة ورقة.</p>
+    <figure class="code">
+      <figcaption class="code-legende">rapport_excel.py</figcaption>
+      <pre><code class="language-python">df.to_excel("oeuvres.xlsx", index=False)       # un fichier, une feuille
+
+par_genre = df.groupby("genre")["nb_mots"].agg(["count", "mean"]).round()
+with pd.ExcelWriter("rapport_corpus.xlsx") as writer:     # plusieurs feuilles
+    df.to_excel(writer, sheet_name="Oeuvres", index=False)
+    par_genre.to_excel(writer, sheet_name="Par genre")
+
+relu = pd.read_excel("rapport_corpus.xlsx", sheet_name="Par genre")
+print(relu)</code></pre>
+      <pre class="sortie"><samp>    genre  count    mean
+0  poésie      3   28333
+1   roman      6  174500
+2   récit      1   48000</samp></pre>
+    </figure>
+    <p>تحسب <code>agg(["count", "mean"])</code> عدة إحصاءات لكل مجموعة. والفهرس <code>genre</code>، المكتوب في الورقة «Par genre»، يعود عمودًا عاديًا عند إعادة القراءة.</p>
+
+    <h4>إنشاء ملف PDF بواسطة fpdf2</h4>
+    <p>تبني المكتبة <dfn>fpdf2</dfn> المستند صفحةً صفحة. ثبّتوها بالأمر <code>pip install fpdf2</code>، لا <code>fpdf</code>، وهي نسخة قديمة مهجورة؛ ويُكتب الاستيراد <code>from fpdf import FPDF</code>. تكتب <code>cell()</code> سطرًا داخل مستطيل (العرض 0: حتى الهامش الأيمن؛ ثم الارتفاع)، وتكتب <code>multi_cell()</code> فقرةً تنتقل إلى السطر تلقائيًا. ويعيد <code>new_x="LMARGIN", new_y="NEXT"</code> المؤشّر إلى بداية السطر التالي.</p>
+    <figure class="code">
+      <figcaption class="code-legende">rapport_pdf.py</figcaption>
+      <pre><code class="language-python">from fpdf import FPDF
+
+pdf = FPDF()
+pdf.add_page()
+pdf.set_font("Helvetica", style="B", size=16)
+pdf.cell(0, 10, "Rapport sur le corpus", new_x="LMARGIN", new_y="NEXT")
+pdf.set_font("Helvetica", size=11)
+for ligne in df.itertuples():                  # une ligne du DataFrame à la fois
+    pdf.cell(0, 7, f"{ligne.titre} ({ligne.auteur}, {ligne.annee})",
+             new_x="LMARGIN", new_y="NEXT")
+pdf.multi_cell(0, 7, "Remarque : les nombres de mots sont des valeurs fictives, "
+                     "choisies pour l'exercice. Le texte long passe à la ligne "
+                     "automatiquement grâce à multi_cell.")
+pdf.output("rapport_corpus.pdf")</code></pre>
+    </figure>
+    <p>تمرّ <code>itertuples()</code> على الـ DataFrame صفًّا صفًّا؛ ويعرض كل صف أعمدته بوصفها سمات (<code>ligne.titre</code>). ويحتوي ملف PDF الناتج على عنوان بخط عريض، وقائمة الأعمال العشرة، والملاحظة الختامية.</p>
+
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Helvetica لا تعرف العربية ولا «œ»</p>
+      <p>تقتصر الخطوط المدمجة في fpdf2 (Helvetica، Times، Courier) على مجموعة المحارف Latin-1: فالحروف الفرنسية ذات العلامات موجودة فيها، لكن ليس فيها الحرف المركّب «œ»، ولا الفاصلة العليا الطباعية «’»، ولا الأبجدية العربية. فالتعليمة <code>pdf.cell(0, 10, "Les œuvres")</code> تُطلق الخطأ <code>FPDFUnicodeEncodingException</code>. ويجب حينئذ تحميل خط Unicode بصيغة TTF بواسطة <code>pdf.add_font()</code>.</p>
+    </aside>
+    <p>للعربية، اختاروا خطًا يحتوي على هذه الأبجدية، مثل Amiri أو Noto Naskh Arabic (مجانيان على Google Fonts)، وضعوا ملف <code>.ttf</code> بجانب السكربت. وفعّلوا أيضًا <dfn>تشكيل النص</dfn> (<span class="terme-en" lang="fr">mise en forme du texte</span>)، الذي يصل الحروف بحسب موضعها في الكلمة ويكتب من اليمين إلى اليسار؛ ويتطلّب ذلك الحزمة <code>uharfbuzz</code>.</p>
+    <figure class="code">
+      <figcaption class="code-legende">rapport_arabe.py</figcaption>
+      <pre><code class="language-python">from fpdf import FPDF
+
+pdf = FPDF()
+pdf.add_page()
+pdf.add_font("Amiri", fname="Amiri-Regular.ttf")   # fichier .ttf placé à côté du script
+pdf.set_font("Amiri", size=16)
+pdf.set_text_shaping(True)        # lettres liées, écriture de droite à gauche (uharfbuzz)
+pdf.cell(0, 12, "بين القصرين", new_x="LMARGIN", new_y="NEXT")
+pdf.cell(0, 12, "نجيب محفوظ", new_x="LMARGIN", new_y="NEXT")
+pdf.output("rapport_arabe.pdf")</code></pre>
+    </figure>
+
+    <h4>قراءة ملف PDF بواسطة pypdf</h4>
+    <p>لاستخراج نص من ملف PDF، توفّر المكتبة <dfn>pypdf</dfn> الصنف <code>PdfReader</code>: سمته <code>pages</code> قائمة صفحات، و<code>extract_text()</code> تُرجع نص صفحة.</p>
+    <figure class="code">
+      <figcaption class="code-legende">lire_pdf.py</figcaption>
+      <pre><code class="language-python">from pypdf import PdfReader
+
+lecteur = PdfReader("rapport_corpus.pdf")
+print(len(lecteur.pages), "page(s)")
+texte_pdf = lecteur.pages[0].extract_text()
+print(texte_pdf.splitlines()[:3])</code></pre>
+      <pre class="sortie"><samp>1 page(s)
+['Rapport sur le corpus', 'Les Misérables (Victor Hugo, 1862)', 'Les Fleurs du mal (Charles Baudelaire, 1857)']</samp></pre>
+    </figure>
+    <p>يفترض الاستخراج وجود طبقة نصية. أما الكتاب المرقمَن فليس سوى سلسلة من الصور: فيلزم حينئذ <dfn>التعرّف الضوئي على الحروف</dfn> (<abbr title="التعرّف الضوئي على الحروف (optical character recognition)">OCR</abbr>، <span class="terme-en" lang="fr">reconnaissance optique de caractères</span>). تحقّقوا دائمًا من النتيجة: فقد تخرج الأعمدة والحواشي السفلية مختلطة الترتيب.</p>
+
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">ما ينبغي تذكّره</p>
+      <ul>
+        <li>اشتغلوا في دفتر تفاعلي (Colab أو Jupyter)، وافتحوا ملفاتكم بـ <code>encoding="utf-8"</code>.</li>
+        <li>اختاروا البنية بحسب الترتيب وقابلية التعديل والتكرار: قائمة، أو صفّ، أو قاموس، أو مجموعة.</li>
+        <li>تقرأ pandas ملف CSV، وتستكشفه (<code>head</code>، <code>info</code>، <code>describe</code>)، وتصفّيه، وتفرزه، وتلخّصه (<code>groupby</code>، <code>value_counts</code>). انظروا إلى الوسيط إلى جانب المتوسط.</li>
+        <li>يجمع الصنف البيانات والطرائق؛ ويُهيكل التركيبُ (المدوّنة تحتوي على نصوص) والوراثةُ (القصيدة نصّ) المشاريعَ.</li>
+        <li>البحث (<code>in</code>، <code>find</code>، <code>re</code>)، والعدّ (<code>Counter</code>)، والفرز (<code>sorted</code>)، وإنتاج فهرس سياقي KWIC هي الحركات الأساسية للقراءة بالأدوات الرقمية.</li>
+        <li>تحوّل <code>to_excel()</code> و fpdf2 نتائجكم إلى مستندات قابلة للمشاركة؛ ولكتابة العربية أو «œ» في ملف PDF، حمّلوا خط Unicode.</li>
+      </ul>
+    </aside>
+
+    <div class="quiz">
+      <p class="quiz-question">مع fpdf2 وخط Helvetica، لماذا تُحدث التعليمة <code>pdf.cell(0, 10, "Les œuvres de Taha Hussein")</code> خطأً؟</p>
+      <ul class="quiz-options">
+        <li><button type="button" class="quiz-option">لأن fpdf2 ترفض أسماء المؤلفين غير الفرنسيين</button></li>
+        <li><button type="button" class="quiz-option" data-correct>لأن الحرف المركّب «œ» ليس من محارف الخط المدمج Helvetica</button></li>
+        <li><button type="button" class="quiz-option">لأنه يجب أولًا تصدير الـ DataFrame بواسطة <code>to_excel()</code></button></li>
+        <li><button type="button" class="quiz-option">لأن ملف Python ليس محفوظًا بترميز UTF-8</button></li>
+      </ul>
+      <p class="quiz-explication" hidden>تقتصر الخطوط المدمجة في fpdf2 على مجموعة Latin-1، التي تحتوي على «é» أو «à» لكن ليس على «œ». واسم طه حسين، المكتوب بحروف لاتينية، لا يطرح أي مشكلة. ولكتابة «œ» أو العربية، يجب تحميل خط Unicode بواسطة <code>pdf.add_font()</code>.</p>
+    </div>
+  </article>
+</section>
