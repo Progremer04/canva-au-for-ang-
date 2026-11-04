@@ -1,0 +1,596 @@
+<section class="chapitre" id="chapitre-3" aria-labelledby="chapitre-3-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">Chapitre 3 · 6 semaines</p>
+    <h2 class="titre-section" id="chapitre-3-titre">Types d'IA et approches</h2>
+    <p class="chapeau">Les quatre grandes familles de l'intelligence artificielle : systèmes experts, apprentissage automatique, apprentissage profond et apprentissage par renforcement. À la fin du chapitre, vous saurez expliquer le principe de chacune, lire ses formules de base et exécuter un premier exemple en Python.</p>
+    <ul class="puces"><li class="puce">Cours magistral</li><li class="puce">TD</li><li class="puce">TP</li><li class="puce puce--outil">scikit-learn</li><li class="puce puce--outil">transformers</li></ul>
+  </header>
+
+  <nav class="sommaire-chapitre" aria-label="Sommaire du chapitre 3">
+    <ol>
+      <li><a href="#c3-symbolique">IA symbolique : les systèmes experts</a></li>
+      <li><a href="#c3-ml">Apprentissage automatique</a></li>
+      <li><a href="#c3-algorithmes">Quelques algorithmes de ML</a></li>
+      <li><a href="#c3-deep">Apprentissage profond</a></li>
+      <li><a href="#c3-renforcement">Apprentissage par renforcement</a></li>
+      <li><a href="#c3-synthese">Synthèse</a></li>
+    </ol>
+  </nav>
+
+  <article class="lecon" id="c3-symbolique">
+    <h3>IA symbolique : les systèmes experts</h3>
+    <p>L'<dfn>IA symbolique</dfn> représente le savoir par des symboles lisibles par un humain, des faits et des règles, plutôt que par des nombres appris sur des données. Son produit le plus connu est le <dfn>système expert</dfn> (<span class="terme-en" lang="en">expert system</span>), un programme qui reproduit le raisonnement d'un spécialiste dans un domaine étroit. La démarche est familière aux littéraires : un traité de versification qui énonce « un sonnet compte quatorze vers répartis en deux quatrains et deux tercets » formule déjà une règle.</p>
+
+    <h4>Les trois composants</h4>
+    <dl class="definitions">
+      <div><dt>Base de faits</dt><dd>Ce que l'on sait de la situation étudiée (« le poème a 14 vers »). Elle s'enrichit au fil du raisonnement.</dd></div>
+      <div><dt>Base de règles</dt><dd>Les connaissances du domaine, sous la forme SI prémisses ALORS conclusion ; les prémisses sont reliées par ET, noté aussi ∩.</dd></div>
+      <div><dt>Moteur d'inférence</dt><dd>Le programme qui repère les règles applicables, les déclenche et ajoute leurs conclusions à la base de faits. Il ne dépend pas du domaine : on passe de la médecine à la poésie en changeant seulement les règles.</dd></div>
+    </dl>
+
+    <h4>Chaînage avant et chaînage arrière</h4>
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>Chaînage avant</h4>
+        <p>Le <dfn>chaînage avant</dfn> (<span class="terme-en" lang="en">forward chaining</span>) est guidé par les données. On part des faits, on déclenche une règle dont toutes les prémisses sont connues, on ajoute sa conclusion, et l'on recommence jusqu'à atteindre le but ou jusqu'à ce qu'aucune règle ne produise de fait nouveau.</p>
+        <ul>
+          <li>Des faits vers le but : « que puis-je déduire ? »</li>
+          <li>Inconvénient : il peut déduire beaucoup de faits inutiles.</li>
+        </ul>
+      </div>
+      <div class="comparaison-col">
+        <h4>Chaînage arrière</h4>
+        <p>Le <dfn>chaînage arrière</dfn> (<span class="terme-en" lang="en">backward chaining</span>) est guidé par le but. On part de l'hypothèse à prouver, on cherche les règles qui la concluent, et leurs prémisses deviennent des sous-buts, jusqu'à retomber sur des faits connus. Il convient au diagnostic.</p>
+        <ul>
+          <li>Du but vers les faits : « que me faut-il pour prouver ceci ? »</li>
+          <li>Avantage : seules les règles utiles au but sont examinées.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h4>Résolution de conflits et faits non déductibles</h4>
+    <p>Quand plusieurs règles sont applicables en même temps, le moteur doit en choisir une : c'est la <dfn>résolution de conflit</dfn>. La stratégie du TD suit un <strong>ordre des règles</strong> fixé à l'avance : à chaque cycle, on déclenche la première règle applicable dans cet ordre, puis on repart du début de la liste. Une règle déjà déclenchée ne l'est pas une seconde fois. Les <dfn>faits non déductibles</dfn> n'apparaissent dans la conclusion d'aucune règle : seuls l'observation ou l'utilisateur peuvent les fournir (H, G et K dans l'exercice du TD). En chaînage arrière, un sous-but non déductible absent de la base fait échouer la piste, ou conduit le système à interroger l'utilisateur.</p>
+
+    <h4>Exemple : reconnaître une forme poétique</h4>
+    <p>Le sonnet italien ou français (Pétrarque, Ronsard, Baudelaire) compte deux quatrains et deux tercets ; le sonnet anglais, dit shakespearien, trois quatrains et un distique. Traduisons ces définitions en règles. Les observations (« 14 vers », « 2 tercets »…) sont les faits non déductibles.</p>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Base de règles du mini-système expert, dans l'ordre de priorité</caption>
+      <thead><tr><th scope="col">Règle</th><th scope="col">SI (prémisses)</th><th scope="col">ALORS (conclusion)</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">R1</th><td>3 vers ET syllabes 5-7-5</td><td>haïku</td></tr>
+        <tr><th scope="row">R2</th><td>14 vers ET 2 quatrains ET 2 tercets</td><td>sonnet</td></tr>
+        <tr><th scope="row">R3</th><td>14 vers ET 3 quatrains ET 1 distique</td><td>sonnet</td></tr>
+        <tr><th scope="row">R4</th><td>sonnet ET 2 tercets</td><td>sonnet italien ou français</td></tr>
+        <tr><th scope="row">R5</th><td>sonnet ET 1 distique</td><td>sonnet anglais</td></tr>
+        <tr><th scope="row">R6</th><td>sonnet</td><td>forme fixe</td></tr>
+        <tr><th scope="row">R7</th><td>haïku</td><td>forme fixe</td></tr>
+      </tbody>
+    </table></div>
+    <p>Déroulons le chaînage avant sur le sonnet de Joachim Du Bellay « Heureux qui, comme Ulysse, a fait un beau voyage » (<em>Les Regrets</em>, 1558).</p>
+    <ol class="etapes">
+      <li><p class="etape-titre">Base de faits initiale</p><p>{14 vers, 2 quatrains, 2 tercets, alexandrins}. Aucune règle n'utilise « alexandrins » : ce fait restera inerte.</p></li>
+      <li><p class="etape-titre">Cycle 1</p><p>R1 échoue (pas de « 3 vers ») ; R2 est applicable : on ajoute « sonnet ».</p></li>
+      <li><p class="etape-titre">Cycle 2</p><p>On repart de R1. R1 et R3 échouent, R2 est déjà déclenchée ; R4 s'applique : on ajoute « sonnet italien ou français ».</p></li>
+      <li><p class="etape-titre">Cycle 3</p><p>R5 échoue (pas de « 1 distique ») ; R6 s'applique : on ajoute « forme fixe ».</p></li>
+      <li><p class="etape-titre">Cycle 4 : arrêt</p><p>Aucune règle ne produit plus de fait nouveau. Trois faits ont été déduits.</p></li>
+    </ol>
+    <p>En chaînage arrière, l'hypothèse « sonnet anglais ? » exigerait, par R5, « sonnet » et « 1 distique ». Ce dernier fait est non déductible et absent de la base : l'hypothèse est rejetée aussitôt.</p>
+    <p>En Python, chaque règle est un couple (prémisses, conclusion). L'expression <code>premisses &lt;= faits</code> teste si toutes les prémisses sont dans la base ; exiger une conclusion nouvelle empêche une règle de se déclencher deux fois ; le <code>else</code> de la boucle <code>for</code> s'exécute quand aucune règle n'a été déclenchée.</p>
+    <figure class="code">
+      <figcaption class="code-legende">chainage_avant.py</figcaption>
+      <pre><code class="language-python"># Chaînage avant générique : une règle = (ensemble de prémisses, conclusion)
+regles = [
+    ({"3 vers", "syllabes 5-7-5"}, "haïku"),                     # R1
+    ({"14 vers", "2 quatrains", "2 tercets"}, "sonnet"),         # R2
+    ({"14 vers", "3 quatrains", "1 distique"}, "sonnet"),        # R3
+    ({"sonnet", "2 tercets"}, "sonnet italien ou français"),     # R4
+    ({"sonnet", "1 distique"}, "sonnet anglais"),                # R5
+    ({"sonnet"}, "forme fixe"),                                  # R6
+    ({"haïku"}, "forme fixe"),                                   # R7
+]
+
+def chainage_avant(faits, regles):
+    faits = set(faits)  # copie : on ne modifie pas la base d'origine
+    while True:
+        for i, (premisses, conclusion) in enumerate(regles, start=1):
+            # règle applicable : prémisses toutes connues, conclusion nouvelle
+            if premisses &lt;= faits and conclusion not in faits:
+                faits.add(conclusion)
+                print(f"R{i} déclenchée → {conclusion}")
+                break  # résolution de conflit : on repart de R1
+        else:
+            return faits  # aucune règle ne produit de fait nouveau : arrêt
+
+# Du Bellay, « Heureux qui, comme Ulysse… » (Les Regrets, 1558)
+base = {"14 vers", "2 quatrains", "2 tercets", "alexandrins"}
+resultat = chainage_avant(base, regles)
+print(sorted(resultat - base))</code></pre>
+      <pre class="sortie"><samp>R2 déclenchée → sonnet
+R4 déclenchée → sonnet italien ou français
+R6 déclenchée → forme fixe
+['forme fixe', 'sonnet', 'sonnet italien ou français']</samp></pre>
+    </figure>
+    <p>L'exercice 1 du TD (ordre R3 R7 R1 R4 R5 R2 R6, faits non déductibles H, G et K, base initiale {H, K}, but C) peut être déroulé ici pas à pas, cycle par cycle.</p>
+    <div class="demo" data-demo="chainage-avant"></div>
+
+    <h4>Trois systèmes experts historiques</h4>
+    <div class="grille-cartes">
+      <article class="carte">
+        <h4>DENDRAL</h4>
+        <p>Stanford, à partir de 1965 (Edward Feigenbaum, Joshua Lederberg, Bruce Buchanan) : déduire la structure de molécules organiques à partir de spectres de masse. On le considère souvent comme le premier système expert.</p>
+      </article>
+      <article class="carte">
+        <h4>MYCIN</h4>
+        <p>Stanford, années 1970 (Edward Shortliffe) : diagnostiquer des infections bactériennes du sang et proposer un antibiotique. Chaînage arrière, « facteurs de certitude », explication de ses questions. Il n'a jamais servi en routine à l'hôpital.</p>
+      </article>
+      <article class="carte">
+        <h4>XCON (R1)</h4>
+        <p>John McDermott (Carnegie Mellon) pour Digital Equipment Corporation (DEC), début des années 1980 : configurer les commandes d'ordinateurs VAX. Chaînage avant, plusieurs milliers de règles.</p>
+      </article>
+    </div>
+
+    <h4>Forces et limites</h4>
+    <p>La force de l'IA symbolique est l'<strong>explicabilité</strong> : chaque conclusion se justifie par la chaîne exacte des règles déclenchées, ce qui rend le raisonnement traçable et corrigible, sans grandes quantités de données. Deux limites ont pourtant provoqué le déclin des systèmes experts à la fin des années 1980. Le <dfn>goulot d'étranglement de l'acquisition des connaissances</dfn> : les experts savent faire plus qu'ils ne savent dire, et traduire leur savoir en règles demande des mois d'entretiens. La <dfn>fragilité</dfn> : hors des cas prévus, le système échoue. Un sonnet imprimé d'un seul bloc, ou aux strophes inversées comme en ont écrit certains poètes du XIX<sup>e</sup> siècle, ne déclenche aucune règle, là où un lecteur reconnaît aussitôt la forme.</p>
+  </article>
+
+  <article class="lecon" id="c3-ml">
+    <h3>L'apprentissage automatique (Machine Learning)</h3>
+    <p>Beaucoup de savoirs résistent à la mise en règles : vous reconnaissez la prose de Kateb Yacine en quelques lignes, sans pouvoir énumérer les règles de ce jugement. L'<dfn>apprentissage automatique</dfn> (<span class="terme-en" lang="en">machine learning</span>, ML) renverse la démarche : on fournit des exemples au programme, qui en extrait lui-même des régularités. Selon la définition de Tom Mitchell (1997), ici paraphrasée, un programme apprend quand ses performances sur une tâche, mesurées d'une certaine façon, s'améliorent avec l'expérience. Concrètement, apprendre signifie ajuster les <dfn>paramètres</dfn> d'un modèle, c'est-à-dire des nombres, jusqu'à ce qu'il reproduise au mieux les exemples connus.</p>
+    <dl class="definitions">
+      <div><dt>Attributs</dt><dd>Les caractéristiques de chaque exemple, exprimées par des nombres (<span class="terme-en" lang="en">features</span>) : nombre de mots, présence du mot « gratuit ».</dd></div>
+      <div><dt>Étiquette</dt><dd>La bonne réponse connue pour un exemple (<span class="terme-en" lang="en">label</span>) : « spam » ou « non-spam ». Elle n'existe qu'en apprentissage supervisé.</dd></div>
+      <div><dt>Modèle</dt><dd>La formule qui transforme les attributs en prédiction.</dd></div>
+      <div><dt>Entraînement</dt><dd>L'ajustement des paramètres sur des exemples (<span class="terme-en" lang="en">training</span>).</dd></div>
+      <div><dt>Prédiction</dt><dd>L'application du modèle entraîné à un exemple nouveau.</dd></div>
+      <div><dt>Évaluation</dt><dd>La mesure de la qualité des prédictions sur des exemples jamais vus.</dd></div>
+    </dl>
+
+    <h4>Évaluer un modèle</h4>
+    <p>On n'évalue jamais un modèle sur les exemples qui ont servi à l'entraîner, pas plus qu'on ne juge un étudiant sur des questions dont il connaît les réponses par cœur. On partage le corpus en un <dfn>jeu d'entraînement</dfn> (souvent 70 à 80 % des exemples) et un <dfn>jeu de test</dfn>, avec la fonction <code>train_test_split</code> de scikit-learn. Supposons un filtre anti-spam testé sur 100 courriels, dont 40 spams. La <dfn>matrice de confusion</dfn> croise la vraie catégorie et la prédiction ; « spam », la catégorie recherchée, est dite positive.</p>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Matrice de confusion d'un filtre anti-spam sur 100 courriels (chiffres fictifs)</caption>
+      <thead><tr><th scope="col">Vraie catégorie</th><th scope="col">Prédit « spam »</th><th scope="col">Prédit « non-spam »</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Spam (40)</th><td>30 vrais positifs (VP)</td><td>10 faux négatifs (FN)</td></tr>
+        <tr><th scope="row">Non-spam (60)</th><td>2 faux positifs (FP)</td><td>58 vrais négatifs (VN)</td></tr>
+      </tbody>
+    </table></div>
+    <p class="formule">exactitude = (VP + VN) / total = (30 + 58) / 100 = 0,88</p>
+    <p class="formule">précision = VP / (VP + FP) = 30 / 32 ≈ 0,94</p>
+    <p class="formule">rappel = VP / (VP + FN) = 30 / 40 = 0,75</p>
+    <p>L'<dfn>exactitude</dfn> (<span class="terme-en" lang="en">accuracy</span>) est la part de courriels bien classés. La <dfn>précision</dfn> dit si le filtre a raison quand il signale un spam : 94 % du temps, il n'envoie donc presque jamais à la corbeille le message de votre directeur de mémoire. Le <dfn>rappel</dfn> dit quelle part des spams il attrape : 75 %, un spam sur quatre passe encore. Les deux mesures tirent souvent en sens contraire. Méfiez-vous des classes déséquilibrées : si 5 % des courriels sont des spams, tout déclarer « non-spam » donne 95 % d'exactitude avec un rappel nul.</p>
+
+    <h4>Le surapprentissage</h4>
+    <p>Il y a <dfn>surapprentissage</dfn> (<span class="terme-en" lang="en">overfitting</span>) quand le modèle apprend aussi les accidents de ses exemples : si tous les spams d'entraînement contenaient par hasard le mot « jeudi », l'annonce de votre séminaire du jeudi finirait à la corbeille. Symptôme : d'excellents résultats sur le jeu d'entraînement, de bien moins bons sur le jeu de test. Remèdes : plus de données, un modèle plus simple, moins d'attributs.</p>
+
+    <h4>Classification d'emails : « spam » ou « non-spam »</h4>
+    <p>Il faut d'abord transformer les textes en nombres. Le <dfn>sac de mots</dfn> (<span class="terme-en" lang="en">bag of words</span>) décrit chaque message par le nombre d'occurrences de chaque mot du vocabulaire, sans tenir compte de l'ordre : « cliquez ici, cliquez vite » devient {cliquez : 2, ici : 1, vite : 1}. Le <dfn>classifieur bayésien naïf</dfn> apprend la fréquence de chaque mot dans les spams et dans les autres messages, puis combine les indices de tous les mots d'un message nouveau pour choisir la catégorie la plus probable. Il est « naïf » parce qu'il traite les mots comme indépendants, ce qui est faux mais fonctionne bien.</p>
+    <p class="formule">P(spam | message) ∝ P(spam) × P(mot₁ | spam) × … × P(motₙ | spam)</p>
+    <p>Le symbole ∝ signifie « proportionnel à » ; on fait le même calcul pour « non-spam » et l'on compare.</p>
+    <figure class="code">
+      <figcaption class="code-legende">spam_bayes.py</figcaption>
+      <pre><code class="language-python">from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+
+# Corpus d'entraînement : 8 messages étiquetés à la main
+messages = [
+    "Gagnez un téléphone gratuit, cliquez vite sur ce lien",
+    "Offre exceptionnelle : crédit gratuit, cliquez ici",
+    "Vous avez gagné un prix, envoyez vos coordonnées bancaires",
+    "Promotion gratuite : gagnez de l'argent vite",
+    "Le séminaire de littérature comparée est reporté à jeudi",
+    "Voici le chapitre corrigé de mon mémoire",
+    "Pouvez-vous m'envoyer la bibliographie du cours ?",
+    "Réunion du laboratoire lundi à dix heures",
+]
+etiquettes = ["spam"] * 4 + ["non-spam"] * 4
+
+# 1. Sac de mots : chaque message devient un vecteur de comptes de mots
+vectoriseur = CountVectorizer()
+X = vectoriseur.fit_transform(messages)
+
+# 2. Entraînement du classifieur bayésien naïf
+modele = MultinomialNB()
+modele.fit(X, etiquettes)
+
+# 3. Prédiction sur deux messages jamais vus
+nouveaux = [
+    "Cliquez ici pour gagner un voyage gratuit",
+    "Le cours de jeudi porte sur la bibliographie du mémoire",
+]
+predictions = modele.predict(vectoriseur.transform(nouveaux))
+for message, etiquette in zip(nouveaux, predictions):
+    print(f"{etiquette:&gt;8} | {message}")</code></pre>
+      <pre class="sortie"><samp>    spam | Cliquez ici pour gagner un voyage gratuit
+non-spam | Le cours de jeudi porte sur la bibliographie du mémoire</samp></pre>
+    </figure>
+    <p>Le verbe « gagner » est absent du corpus d'entraînement, qui ne contient que « gagnez » et « gagné » : ce sont « cliquez », « ici », « gratuit » et « un » qui décident. Une lemmatisation avec spaCy regrouperait ces formes.</p>
+
+    <h4>Recommandations</h4>
+    <p>Le <dfn>filtrage fondé sur le contenu</dfn> recommande des livres qui ressemblent, par leurs caractéristiques (auteur, genre, mots-clés), à ceux que le lecteur a déjà empruntés : après <em>Nedjma</em>, <em>Le Polygone étoilé</em> du même Kateb Yacine. Le <dfn>filtrage collaboratif</dfn> (<span class="terme-en" lang="en">collaborative filtering</span>) ignore le contenu et s'appuie sur les autres lecteurs : « ceux qui ont emprunté les mêmes livres que vous ont aussi emprunté… ». Pour comparer deux lecteurs, on les représente par des listes de 0 et de 1, une valeur par livre, et l'on calcule leur <dfn>similarité cosinus</dfn> : 1 pour des emprunts identiques, 0 s'ils n'ont aucun livre en commun.</p>
+    <p class="formule">cos(A, B) = (A · B) / (‖A‖ × ‖B‖)</p>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Emprunts de trois lecteurs d'une bibliothèque universitaire (1 = emprunté, exemple fictif)</caption>
+      <thead><tr><th scope="col">Lecteur</th><th scope="col"><em>Nedjma</em></th><th scope="col"><em>Le Fils du pauvre</em></th><th scope="col"><em>La Grande Maison</em></th><th scope="col"><em>L'Amour, la fantasia</em></th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Amina</th><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+        <tr><th scope="row">Karim</th><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><th scope="row">Sofia</th><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+      </tbody>
+    </table></div>
+    <p>A · B compte les livres communs et ‖A‖ est la racine carrée du nombre de livres empruntés par A. Amina et Karim : cos = 2 / (√3 × √2) ≈ 0,82 ; Karim et Sofia : cos = 0. Amina étant la plus proche de Karim, on lui recommande le livre qu'elle a lu et lui non, <em>La Grande Maison</em> de Mohammed Dib (fonction <code>cosine_similarity</code> de scikit-learn). Revers de ces systèmes : ils enferment facilement les lecteurs dans leurs habitudes et favorisent les titres déjà populaires.</p>
+
+    <h4>Identification d'images (ex. des visages)</h4>
+    <p>Pour un ordinateur, une image est un tableau de nombres : 28 × 28 pixels en niveaux de gris font 784 valeurs entre 0 (noir) et 255 (blanc) ; en couleurs, chaque pixel en compte trois (rouge, vert, bleu). Longtemps, les attributs (contours, contrastes, distance entre les yeux) ont été conçus à la main ; la méthode de Paul Viola et Michael Jones (2001) détectait ainsi les visages en temps réel. Depuis 2012, l'apprentissage profond domine, car les réseaux apprennent eux-mêmes leurs attributs à partir de millions d'images. On distingue la <dfn>détection</dfn> (où est le visage ?), la <dfn>vérification</dfn> (est-ce la même personne ?) et l'<dfn>identification</dfn> (qui est-ce ?).</p>
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Reconnaissance faciale : un enjeu éthique</p>
+      <p>L'identification de visages à grande échelle permet une surveillance permanente de l'espace public, sans consentement, qui menace la vie privée et peut dissuader de manifester. Elle pose aussi un problème de biais. En 2018, l'étude « Gender Shades » de Joy Buolamwini et Timnit Gebru a évalué trois systèmes commerciaux de classification du genre sur des photographies de parlementaires africains et européens : les erreurs atteignaient 34,7 % pour les femmes à la peau foncée, contre au plus 0,8 % pour les hommes à la peau claire, en raison notamment de données d'entraînement déséquilibrées. Le règlement européen sur l'IA (<abbr title="Artificial Intelligence Act">AI Act</abbr>), adopté en 2024, interdit en principe l'identification biométrique à distance « en temps réel » dans l'espace public à des fins répressives, sauf exceptions encadrées.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="c3-algorithmes">
+    <h3>Quelques algorithmes d'apprentissage automatique</h3>
+    <p>Les données des exemples sont fictives et minuscules, pour que vous puissiez refaire les calculs à la main.</p>
+
+    <h4>a. La régression linéaire</h4>
+    <p>La <dfn>régression linéaire</dfn> prédit un nombre en traçant la droite qui passe au plus près d'un nuage de points : par exemple, le temps de lecture d'un roman en fonction de son nombre de pages.</p>
+    <p class="formule">ŷ = w · x + b</p>
+    <p>x est le nombre de pages, ŷ (« y chapeau ») le temps prédit, w la pente (en heures par page) et b un temps fixe. La méthode des <dfn>moindres carrés</dfn> choisit les valeurs de w et b qui minimisent la moyenne des carrés des écarts entre temps réels yᵢ et temps prédits ŷᵢ ; le carré empêche les écarts de se compenser et pénalise les grosses erreurs.</p>
+    <p class="formule">J(w, b) = (1/n) × Σ (yᵢ − ŷᵢ)²</p>
+    <figure class="code">
+      <figcaption class="code-legende">regression_lecture.py</figcaption>
+      <pre><code class="language-python">from sklearn.linear_model import LinearRegression
+
+# Données fictives : nombre de pages (x) et heures de lecture relevées (y)
+pages = [[100], [150], [220], [300], [380], [450]]
+heures = [2.4, 3.6, 4.8, 6.7, 8.0, 9.6]
+
+modele = LinearRegression()
+modele.fit(pages, heures)  # moindres carrés : cherche w et b
+
+w, b = modele.coef_[0], modele.intercept_
+print(f"w = {w:.4f} heure par page, b = {b:.2f} heure")
+print(f"Prévision pour 250 pages : {modele.predict([[250]])[0]:.1f} h")</code></pre>
+      <pre class="sortie"><samp>w = 0.0203 heure par page, b = 0.45 heure
+Prévision pour 250 pages : 5.5 h</samp></pre>
+    </figure>
+    <p>Une page demande environ 0,020 heure, un peu plus d'une minute : pour 250 pages, 0,0203 × 250 + 0,45 ≈ 5,5 heures. La droite ne vaut que dans l'intervalle observé. Avec plusieurs variables, ŷ = w₁ · x₁ + w₂ · x₂ + … + b, on parle de régression multiple (mini-projet 4).</p>
+
+    <h4>b. La descente de gradient</h4>
+    <p>La plupart des modèles ne se résolvent pas d'un coup : on cherche leurs paramètres par petits pas avec la <dfn>descente de gradient</dfn> (<span class="terme-en" lang="en">gradient descent</span>). Imaginez un randonneur dans le brouillard : il ne voit pas la vallée, mais il sent la pente sous ses pieds et fait chaque fois un pas vers le bas. La vallée est la <dfn>fonction de coût</dfn> J(w), qui mesure l'erreur pour chaque valeur du paramètre w ; la pente est son <dfn>gradient</dfn>.</p>
+    <p class="formule">w ← w − η · ∂J/∂w</p>
+    <p>La flèche signifie « remplacer par ». Si la pente ∂J/∂w est positive, w diminue ; si elle est négative, w augmente. Le nombre η (êta) est le <dfn>taux d'apprentissage</dfn> (<span class="terme-en" lang="en">learning rate</span>), la longueur du pas. Prenons J(w) = (w − 3)², minimale en w = 3, de pente 2 · (w − 3). Depuis w = 0 avec η = 0,1, la pente vaut −6, donc w devient 0 − 0,1 × (−6) = 0,6, puis 1,08, et ainsi de suite vers 3.</p>
+    <figure class="code">
+      <figcaption class="code-legende">descente_gradient.py</figcaption>
+      <pre><code class="language-python"># Descente de gradient sur J(w) = (w - 3)², dont le minimum est en w = 3
+w = 0.0     # point de départ
+eta = 0.1   # taux d'apprentissage η
+for etape in range(1, 6):
+    gradient = 2 * (w - 3)   # dérivée de J au point w
+    w = w - eta * gradient   # un pas dans le sens de la descente
+    print(f"étape {etape} : w = {w:.3f}   J(w) = {(w - 3) ** 2:.3f}")</code></pre>
+      <pre class="sortie"><samp>étape 1 : w = 0.600   J(w) = 5.760
+étape 2 : w = 1.080   J(w) = 3.686
+étape 3 : w = 1.464   J(w) = 2.359
+étape 4 : w = 1.771   J(w) = 1.510
+étape 5 : w = 2.017   J(w) = 0.966</samp></pre>
+    </figure>
+    <p>Avec un pas trop grand (η = 1,1), w saute par-dessus le minimum (6,6, puis −1,32, puis 8,18) et s'en éloigne : l'algorithme diverge. Avec un pas trop petit (η = 0,01), w n'atteint que 0,29 après cinq pas. Un vrai modèle compte des milliers ou des milliards de paramètres, mais le principe reste le même.</p>
+    <div class="demo" data-demo="descente-gradient"></div>
+
+    <h4>c. Classification selon les attributs</h4>
+    <p>La <dfn>stylométrie</dfn> mesure le style par des statistiques, notamment pour l'<dfn>attribution d'auteur</dfn>. Les mots-outils (articles, prépositions, conjonctions) y sont précieux, car chaque écrivain les emploie de façon régulière et peu consciente, quel que soit le sujet. Le domaine est bien réel : Frederick Mosteller et David Wallace ont attribué en 1964 à James Madison les douze <em>Federalist Papers</em> disputés ; Florian Cafiero et Jean-Baptiste Camps ont conclu en 2019 que Molière était bien l'auteur de ses pièces. Décrivons chaque extrait par la longueur moyenne de ses phrases et la part de ses mots-outils.</p>
+    <p>Les <dfn>k plus proches voisins</dfn> (k-NN, <span class="terme-en" lang="en">k-nearest neighbors</span>) cherchent les k extraits d'auteur connu les plus proches de l'extrait anonyme et les font voter. La proximité est la distance ordinaire :</p>
+    <p class="formule">d(x, y) = √((x₁ − y₁)² + (x₂ − y₂)²)</p>
+    <p>L'extrait anonyme (27 ; 46) est à √8 ≈ 2,8 de (29 ; 44), à 3 de (30 ; 46) et à √29 ≈ 5,4 de (32 ; 48), trois extraits de l'auteur A : le vote désigne A. Si les attributs n'ont pas la même échelle, on les standardise d'abord. L'<dfn>arbre de décision</dfn>, lui, apprend une suite de questions « attribut ≤ seuil ? » : une base de règles SI … ALORS, mais apprise à partir des données.</p>
+    <figure class="code">
+      <figcaption class="code-legende">attribution_auteur.py</figcaption>
+      <pre><code class="language-python">from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier, export_text
+
+# Données fictives : [longueur moyenne des phrases (mots), part des mots-outils (%)]
+extraits = [[32, 48], [29, 44], [35, 50], [30, 46],   # auteur A
+            [14, 41], [12, 45], [16, 40], [13, 43]]   # auteur B
+auteurs = ["A"] * 4 + ["B"] * 4
+anonyme = [[27, 46]]  # extrait dont on cherche l'auteur
+
+# k plus proches voisins : vote des 3 extraits les plus ressemblants
+knn = KNeighborsClassifier(n_neighbors=3).fit(extraits, auteurs)
+print("k-NN  :", knn.predict(anonyme)[0])
+
+# Arbre de décision : une suite de questions « attribut &lt;= seuil ? »
+arbre = DecisionTreeClassifier(max_depth=2, random_state=0).fit(extraits, auteurs)
+print("Arbre :", arbre.predict(anonyme)[0])
+print(export_text(arbre, feature_names=["long_phrases", "mots_outils"]))</code></pre>
+      <pre class="sortie"><samp>k-NN  : A
+Arbre : A
+|--- long_phrases &lt;= 22.50
+|   |--- class: B
+|--- long_phrases &gt;  22.50
+|   |--- class: A</samp></pre>
+    </figure>
+    <p>Une seule question suffit à l'arbre : les phrases de B sont courtes, celles de A longues ; la part des mots-outils, qui se chevauche entre les deux auteurs, n'est pas retenue.</p>
+
+    <h4>d. Le regroupement en clusters (k-means)</h4>
+    <p>Le <dfn>regroupement</dfn> (<span class="terme-en" lang="en">clustering</span>) forme des groupes d'objets semblables sans aucune étiquette : c'est de l'apprentissage non supervisé, et l'outil du mini-projet 2 sur les enquêtes. L'algorithme <dfn>k-means</dfn> (k-moyennes) procède ainsi :</p>
+    <ol class="etapes">
+      <li><p class="etape-titre">Choisir k</p><p>On fixe le nombre de groupes voulus, par exemple k = 3.</p></li>
+      <li><p class="etape-titre">Placer k centres</p><p>On choisit k points de départ, les <dfn>centroïdes</dfn>, souvent au hasard parmi les données.</p></li>
+      <li><p class="etape-titre">Affecter</p><p>Chaque individu rejoint le groupe du centroïde le plus proche.</p></li>
+      <li><p class="etape-titre">Recalculer les centres</p><p>Chaque centroïde est placé à la moyenne des individus de son groupe.</p></li>
+      <li><p class="etape-titre">Répéter</p><p>On reprend les étapes 3 et 4 jusqu'à ce que plus aucun individu ne change de groupe.</p></li>
+    </ol>
+    <div class="demo" data-demo="kmeans"></div>
+    <p>Pour choisir k, on calcule l'<dfn>inertie</dfn>, somme des carrés des distances entre chaque individu et le centre de son groupe. Elle baisse toujours quand k augmente ; la <dfn>méthode du coude</dfn> retient la valeur de k à partir de laquelle elle ne baisse presque plus.</p>
+    <p class="formule">inertie = Σ distance(individu, centre de son groupe)²</p>
+    <figure class="code">
+      <figcaption class="code-legende">kmeans_enquete.py</figcaption>
+      <pre><code class="language-python">from sklearn.cluster import KMeans
+
+# Enquête fictive : [heures de lecture par semaine, heures d'écrans par jour]
+reponses = [[10, 1], [12, 2], [9, 1],     # grands lecteurs
+            [2, 6], [1, 7], [3, 6],       # grands utilisateurs d'écrans
+            [5, 3], [6, 4], [5, 4]]       # profils intermédiaires
+
+# Méthode du coude : inertie (dispersion interne) selon le nombre k de groupes
+for k in range(1, 6):
+    km = KMeans(n_clusters=k, n_init=10, random_state=0).fit(reponses)
+    print(f"k = {k} : inertie = {km.inertia_:.1f}")
+
+# Modèle retenu : k = 3
+km = KMeans(n_clusters=3, n_init=10, random_state=0).fit(reponses)
+print("Groupes :", km.labels_)
+print("Centres :", km.cluster_centers_.round(1).tolist())</code></pre>
+      <pre class="sortie"><samp>k = 1 : inertie = 152.4
+k = 2 : inertie = 36.7
+k = 3 : inertie = 9.3
+k = 4 : inertie = 4.5
+k = 5 : inertie = 2.3
+Groupes : [1 1 1 0 0 0 2 2 2]
+Centres : [[2.0, 6.3], [10.3, 1.3], [5.3, 3.7]]</samp></pre>
+    </figure>
+    <p>Le coude se situe à k = 3. Les numéros de groupe sont arbitraires : c'est au chercheur d'interpréter chaque centre (grands lecteurs, grands utilisateurs d'écrans, profils intermédiaires) et de nommer les groupes.</p>
+
+    <h4>e. Autres algorithmes</h4>
+    <div class="grille-cartes">
+      <article class="carte">
+        <h4>SVM</h4>
+        <p>Les machines à vecteurs de support (<code>SVC</code>) cherchent la frontière qui sépare deux catégories avec la plus grande marge possible, et ont longtemps compté parmi les meilleurs classifieurs de textes.</p>
+      </article>
+      <article class="carte">
+        <h4>Forêts aléatoires</h4>
+        <p>Une forêt aléatoire (<code>RandomForestClassifier</code>) fait voter des centaines d'arbres de décision entraînés chacun sur une partie tirée au hasard des exemples et des attributs.</p>
+      </article>
+      <article class="carte">
+        <h4>Réduction de dimension (ACP)</h4>
+        <p>L'analyse en composantes principales (<code>PCA</code>) résume des dizaines de variables en deux ou trois axes qui conservent l'essentiel de leur dispersion, pour représenter une enquête ou un corpus sur un plan.</p>
+      </article>
+    </div>
+  </article>
+
+  <article class="lecon" id="c3-deep">
+    <h3>L'apprentissage profond (Deep Learning)</h3>
+    <p>L'<dfn>apprentissage profond</dfn> (<span class="terme-en" lang="en">deep learning</span>) est la branche de l'apprentissage automatique qui utilise des <dfn>réseaux de neurones artificiels</dfn> à nombreuses couches. On lui doit les progrès récents en reconnaissance d'images et de la parole, en traduction et en génération de texte. L'analogie avec le cerveau reste lointaine : un neurone artificiel n'est qu'un petit calcul.</p>
+
+    <h4>Le neurone artificiel</h4>
+    <p>Un neurone multiplie chacune de ses entrées par un <dfn>poids</dfn>, additionne le tout, ajoute un <dfn>biais</dfn>, puis applique une <dfn>fonction d'activation</dfn>.</p>
+    <p class="formule">z = w₁ · x₁ + w₂ · x₂ + w₃ · x₃ + b</p>
+    <p class="formule">sortie = f(z)</p>
+    <p>La fonction d'activation la plus courante, ReLU, vaut f(z) = max(0, z). Avec x = (2 ; 1 ; 0), w = (0,5 ; −1 ; 2) et b = 0,5 : z = 1 − 1 + 0 + 0,5 = 0,5, et la sortie vaut 0,5. Le perceptron de Frank Rosenblatt (1958) était un neurone de ce type.</p>
+
+    <h4>Couches et profondeur</h4>
+    <p>Les neurones forment des <dfn>couches</dfn> : couche d'entrée, <dfn>couches cachées</dfn>, couche de sortie. Un réseau est <dfn>profond</dfn> quand il empile de nombreuses couches cachées, chacune construisant une représentation plus abstraite que la précédente : pour une image, des bords, puis des formes, puis des parties d'objets. Personne ne programme ces étapes ; elles émergent de l'entraînement.</p>
+    <figure class="schema">
+      <svg viewBox="0 0 640 320" role="img" aria-labelledby="c3-reseau-t">
+        <title id="c3-reseau-t">Réseau de neurones à trois entrées, une couche cachée de quatre neurones et deux sorties</title>
+        <line class="svg-trait" x1="189.5" y1="105.5" x2="300.5" y2="79.5"/>
+        <line class="svg-trait" x1="186.4" y1="121.5" x2="303.6" y2="203.5"/>
+        <line class="svg-trait" x1="183.0" y1="125.2" x2="307.0" y2="269.8"/>
+        <line class="svg-trait" x1="186.4" y1="168.5" x2="303.6" y2="86.5"/>
+        <line class="svg-trait" x1="189.5" y1="184.5" x2="300.5" y2="210.5"/>
+        <line class="svg-trait" x1="186.4" y1="191.5" x2="303.6" y2="273.5"/>
+        <line class="svg-trait" x1="183.0" y1="234.8" x2="307.0" y2="90.2"/>
+        <line class="svg-trait" x1="189.5" y1="245.5" x2="300.5" y2="219.5"/>
+        <line class="svg-trait" x1="189.5" y1="254.5" x2="300.5" y2="280.5"/>
+        <line class="svg-trait" x1="338.1" y1="83.5" x2="451.9" y2="136.5"/>
+        <line class="svg-trait" x1="334.6" y1="88.6" x2="455.4" y2="201.4"/>
+        <line class="svg-trait" x1="340.0" y1="145.0" x2="450.0" y2="145.0"/>
+        <line class="svg-trait" x1="338.1" y1="153.5" x2="451.9" y2="206.5"/>
+        <line class="svg-trait" x1="338.1" y1="206.5" x2="451.9" y2="153.5"/>
+        <line class="svg-trait" x1="340.0" y1="215.0" x2="450.0" y2="215.0"/>
+        <line class="svg-trait" x1="334.6" y1="271.4" x2="455.4" y2="158.6"/>
+        <line class="svg-trait" x1="338.1" y1="276.5" x2="451.9" y2="223.5"/>
+        <line class="svg-trait-accent" x1="189.5" y1="114.5" x2="300.5" y2="140.5"/>
+        <line class="svg-trait-accent" x1="189.5" y1="175.5" x2="300.5" y2="149.5"/>
+        <line class="svg-trait-accent" x1="186.4" y1="238.5" x2="303.6" y2="156.5"/>
+        <circle class="svg-noeud" cx="170" cy="110" r="20"/>
+        <circle class="svg-noeud" cx="170" cy="180" r="20"/>
+        <circle class="svg-noeud" cx="170" cy="250" r="20"/>
+        <circle class="svg-noeud" cx="320" cy="75" r="20"/>
+        <circle class="svg-noeud-accent" cx="320" cy="145" r="20"/>
+        <circle class="svg-noeud" cx="320" cy="215" r="20"/>
+        <circle class="svg-noeud" cx="320" cy="285" r="20"/>
+        <circle class="svg-noeud" cx="470" cy="145" r="20"/>
+        <circle class="svg-noeud" cx="470" cy="215" r="20"/>
+        <text class="svg-texte" x="136" y="115" text-anchor="end">phrases</text>
+        <text class="svg-texte" x="136" y="185" text-anchor="end">mots-outils</text>
+        <text class="svg-texte" x="136" y="255" text-anchor="end">ponctuation</text>
+        <text class="svg-texte" x="504" y="150" text-anchor="start">auteur A</text>
+        <text class="svg-texte" x="504" y="220" text-anchor="start">auteur B</text>
+        <text class="svg-texte-doux" x="170" y="30" text-anchor="middle">Entrées</text>
+        <text class="svg-texte-doux" x="320" y="30" text-anchor="middle">Couche cachée</text>
+        <text class="svg-texte-doux" x="470" y="30" text-anchor="middle">Sorties</text>
+      </svg>
+      <figcaption>Trois attributs stylométriques en entrée, quatre neurones cachés, deux scores en sortie (un par auteur). Le neurone mis en évidence calcule la somme pondérée de ses trois entrées. Ce petit réseau a 3 × 4 + 4 × 2 = 20 poids et 6 biais.</figcaption>
+    </figure>
+
+    <h4>Apprendre : rétropropagation, données et GPU</h4>
+    <p>Les poids partent de valeurs aléatoires. Pour chaque exemple, le réseau calcule sa réponse ; on mesure l'erreur par rapport à la réponse attendue ; puis on remonte de la sortie vers l'entrée pour attribuer à chaque poids sa part de responsabilité. C'est la <dfn>rétropropagation</dfn> (<span class="terme-en" lang="en">backpropagation</span>), popularisée en 1986 par David Rumelhart, Geoffrey Hinton et Ronald Williams. Chaque poids est alors corrigé par descente de gradient, et l'on recommence sur des millions d'exemples.</p>
+    <p>Ces idées anciennes ne sont devenues efficaces qu'au début des années 2010, grâce à des données massives (des millions d'images annotées, le texte du Web) et aux <dfn>GPU</dfn>, des processeurs graphiques qui effectuent en parallèle d'immenses quantités de multiplications. En 2012, le réseau AlexNet d'Alex Krizhevsky, Ilya Sutskever et Geoffrey Hinton a remporté le concours de reconnaissance d'images ImageNet avec une avance nette. Le plus petit GPT-2 (2019) compte déjà plus de cent millions de paramètres, et l'entraînement des grands modèles consomme beaucoup d'énergie.</p>
+
+    <h4>Deux architectures classiques : CNN et RNN</h4>
+    <div class="comparaison">
+      <div class="comparaison-col">
+        <h4>Réseaux convolutifs (CNN)</h4>
+        <p>Conçus pour les images, à partir des travaux de Yann LeCun sur les chiffres manuscrits (fin des années 1980), ils font glisser sur l'image de petits <dfn>filtres</dfn>, des grilles de poids de 3 × 3 par exemple. À chaque position, le filtre calcule une somme pondérée des pixels : la réponse est forte là où se trouve le motif qu'il encode.</p>
+        <ul>
+          <li>Ce qu'un filtre « voit » : d'abord des bords et des contrastes, puis, plus loin dans le réseau, des textures, des lettres, des yeux.</li>
+          <li>Usages en SHS : transcription de manuscrits, analyse de photographies.</li>
+        </ul>
+      </div>
+      <div class="comparaison-col">
+        <h4>Réseaux récurrents (RNN, LSTM)</h4>
+        <p>Ils lisent une séquence élément par élément, un mot après l'autre, en mettant à jour un <dfn>état caché</dfn>, sorte de mémoire de ce qui précède. Les <dfn>LSTM</dfn> (Sepp Hochreiter et Jürgen Schmidhuber, 1997) y ajoutent des « portes » qui décident quoi retenir et quoi oublier.</p>
+        <ul>
+          <li>Usages : traduction, parole, génération de texte avant 2017.</li>
+          <li>Limites : lecture séquentielle, donc lente ; mémoire qui s'estompe sur les longs textes.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h4>Génération de texte avec les Transformers</h4>
+    <p>En 2017, l'article « <em lang="en">Attention Is All You Need</em> » (Ashish Vaswani et ses coauteurs, Google) propose le <dfn>Transformer</dfn>, qui traite tous les mots d'un passage en même temps et calcule leurs relations par un mécanisme d'attention. Trois notions permettent de le comprendre.</p>
+    <dl class="definitions">
+      <div><dt>Tokens</dt><dd>Le texte est découpé en <dfn>tokens</dfn> (« jetons ») : mots, morceaux de mots, ponctuation. Un mot rare est coupé en plusieurs morceaux ; le vocabulaire de GPT-2 compte un peu plus de 50 000 tokens.</dd></div>
+      <div><dt>Plongements</dt><dd>Chaque token devient un vecteur de plusieurs centaines de nombres, son <dfn>plongement</dfn> (<span class="terme-en" lang="en">embedding</span>). Les mots employés dans des contextes semblables reçoivent des vecteurs proches : c'est l'hypothèse distributionnelle, que le linguiste J. R. Firth résumait en 1957 par « <em lang="en">You shall know a word by the company it keeps</em> ».</dd></div>
+      <div><dt>Attention</dt><dd>Chaque token calcule à quel point il doit « regarder » chacun des autres. Dans « L'étudiante a rendu son mémoire au professeur parce qu'elle avait terminé », le token « elle » doit regarder surtout « étudiante ».</dd></div>
+    </dl>
+    <p class="formule">Attention(Q, K, V) = softmax(Q · Kᵀ / √d) · V</p>
+    <p>Chaque token émet une question (Q), présente une clé (K) et porte une valeur (V) ; le produit Q · Kᵀ mesure l'accord entre questions et clés, divisé par √d pour rester modéré, et softmax le transforme en proportions dont la somme vaut 1.</p>
+    <p>Les <dfn>encodeurs</dfn>, comme BERT (Google, 2018), lisent la phrase dans les deux sens et servent à comprendre un texte : classification, sentiment, entités nommées d'un discours politique (mini-projet 3). Il en existe pour le français (CamemBERT) et pour l'arabe (AraBERT). Les <dfn>décodeurs</dfn>, comme la série GPT (OpenAI, depuis 2018), lisent de gauche à droite et prédisent le token suivant : ce sont eux qui génèrent du texte.</p>
+    <p>Générer, c'est boucler : le modèle calcule une probabilité pour chaque token du vocabulaire, on en tire un au sort selon ces probabilités, on l'ajoute au texte, et l'on recommence. La <dfn>température</dfn> T règle ce tirage à partir des scores bruts zᵢ du modèle :</p>
+    <p class="formule">p(tokenᵢ) = exp(zᵢ / T) / Σⱼ exp(zⱼ / T)</p>
+    <p>Avec T &lt; 1, les écarts s'accentuent et le texte devient prévisible ; avec T &gt; 1, ils s'aplatissent et le texte devient surprenant, puis incohérent. Pour exécuter les exemples : <code>pip install transformers torch</code> ; le modèle est téléchargé au premier lancement.</p>
+    <figure class="code">
+      <figcaption class="code-legende">generation_texte.py</figcaption>
+      <pre><code class="language-python">from transformers import pipeline, set_seed
+
+# GPT-2 : petit modèle génératif publié en 2019, entraîné sur des textes anglais
+generateur = pipeline("text-generation", model="gpt2")
+set_seed(42)  # rend le tirage reproductible sur une même installation
+
+debut = "The old librarian opened the forbidden book and"
+sorties = generateur(debut, max_new_tokens=40, do_sample=True,
+                     temperature=0.8, num_return_sequences=2)
+for s in sorties:
+    print(s["generated_text"], end="\n\n")</code></pre>
+    </figure>
+    <p>La suite générée dépend de la graine, de la température et des versions installées : elle n'est pas reproduite ici. Comparez <code>temperature=0.3</code> et <code>temperature=1.5</code>. GPT-2 est un modèle anglais ; pour le français ou l'arabe, choisissez sur le Hub de Hugging Face un modèle multilingue ou propre à la langue visée, et remplacez le nom passé à <code>model=</code>. L'analyse de sentiment (mini-projet 1) passe par le même mécanisme :</p>
+    <figure class="code">
+      <figcaption class="code-legende">sentiment_transformers.py</figcaption>
+      <pre><code class="language-python">from transformers import pipeline
+
+# Modèle anglais affiné sur des phrases de critiques de films (corpus SST-2)
+analyseur = pipeline("sentiment-analysis",
+                     model="distilbert/distilbert-base-uncased-finetuned-sst-2-english")
+avis = ["I loved this novel, the characters are unforgettable.",
+        "The ending was a real disappointment."]
+for texte, resultat in zip(avis, analyseur(avis)):
+    print(resultat["label"], "|", texte)</code></pre>
+      <pre class="sortie"><samp>POSITIVE | I loved this novel, the characters are unforgettable.
+NEGATIVE | The ending was a real disappointment.</samp></pre>
+    </figure>
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Hallucinations et sources</p>
+      <p>Un modèle génératif produit la suite la plus plausible, pas la plus vraie. Il peut inventer avec aplomb une citation, une date ou une référence bibliographique complète qui n'existe pas : on parle d'<dfn>hallucination</dfn>. Pour un mémoire, ne citez jamais une source que vous n'avez pas retrouvée et lue vous-même, vérifiez chaque citation dans l'édition d'origine et signalez l'usage de ces outils selon les règles de votre établissement.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="c3-renforcement">
+    <h3>L'apprentissage par renforcement (Reinforcement Learning)</h3>
+    <p>L'<dfn>apprentissage par renforcement</dfn> (<span class="terme-en" lang="en">reinforcement learning</span>, RL) se passe d'exemples étiquetés : un agent agit, observe les conséquences et reçoit des récompenses ou des pénalités. Il apprend par essais et erreurs, comme on apprend à faire du vélo.</p>
+    <dl class="definitions">
+      <div><dt>Agent</dt><dd>Celui qui décide : programme de jeu, robot, agent conversationnel.</dd></div>
+      <div><dt>Environnement</dt><dd>Le monde avec lequel il interagit : plateau, pièce, utilisateur.</dd></div>
+      <div><dt>État (s)</dt><dd>La situation à un instant donné.</dd></div>
+      <div><dt>Action (a)</dt><dd>Ce que l'agent peut faire dans cet état.</dd></div>
+      <div><dt>Récompense (r)</dt><dd>Le nombre renvoyé après l'action, positif ou négatif.</dd></div>
+      <div><dt>Politique (π)</dt><dd>La stratégie qui dit quelle action choisir dans chaque état : c'est elle que l'on apprend.</dd></div>
+    </dl>
+    <figure class="schema">
+      <svg viewBox="0 0 640 280" role="img" aria-labelledby="c3-boucle-t">
+        <title id="c3-boucle-t">Boucle d'interaction entre l'agent et son environnement</title>
+        <defs><marker id="c3-fleche" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="svg-pointe" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+        <rect class="svg-noeud-accent" x="50" y="110" width="200" height="72" rx="12"/>
+        <text class="svg-texte" x="150" y="141" text-anchor="middle">Agent</text>
+        <text class="svg-texte-doux" x="150" y="163" text-anchor="middle">politique π</text>
+        <rect class="svg-noeud" x="390" y="110" width="200" height="72" rx="12"/>
+        <text class="svg-texte" x="490" y="141" text-anchor="middle">Environnement</text>
+        <text class="svg-texte-doux" x="490" y="163" text-anchor="middle">jeu, robot, dialogue</text>
+        <line class="svg-trait" x1="150" y1="110" x2="150" y2="60"/>
+        <line class="svg-trait" x1="150" y1="60" x2="490" y2="60"/>
+        <line class="svg-trait" x1="490" y1="60" x2="490" y2="108" marker-end="url(#c3-fleche)"/>
+        <text class="svg-texte" x="320" y="46" text-anchor="middle">action a</text>
+        <line class="svg-trait" x1="490" y1="182" x2="490" y2="232"/>
+        <line class="svg-trait" x1="490" y1="232" x2="150" y2="232"/>
+        <line class="svg-trait" x1="150" y1="232" x2="150" y2="184" marker-end="url(#c3-fleche)"/>
+        <text class="svg-texte" x="320" y="258" text-anchor="middle">nouvel état s′ et récompense r</text>
+      </svg>
+      <figcaption>À chaque pas, l'agent choisit une action selon sa politique ; l'environnement lui renvoie un nouvel état et une récompense, qui servent à améliorer la politique.</figcaption>
+    </figure>
+
+    <h4>Explorer ou exploiter ?</h4>
+    <p>L'<dfn>exploitation</dfn> consiste à choisir l'action qui a le mieux réussi jusqu'ici, l'<dfn>exploration</dfn> à en essayer une moins connue. Relire un auteur aimé est une valeur sûre ; mais sans jamais ouvrir d'autres livres, on ne découvre pas ses prochains auteurs préférés. La stratégie dite ε-gloutonne choisit la meilleure action connue, sauf dans une petite proportion ε des cas (10 % par exemple), où elle tire une action au hasard.</p>
+
+    <h4>Le Q-learning</h4>
+    <p>Dans le <dfn>Q-learning</dfn> (Christopher Watkins, 1989), l'agent tient une table Q(s, a) qui estime, pour chaque état et chaque action, la récompense totale qu'il peut espérer. Après chaque action, il corrige la case concernée :</p>
+    <p class="formule">Q(s, a) ← Q(s, a) + α · [r + γ · max Q(s′, a′) − Q(s, a)]</p>
+    <dl class="definitions">
+      <div><dt>Q(s, a)</dt><dd>L'estimation actuelle de la valeur de l'action a dans l'état s.</dd></div>
+      <div><dt>α (alpha)</dt><dd>Le taux d'apprentissage, entre 0 et 1 : la part de la nouvelle expérience que l'on intègre.</dd></div>
+      <div><dt>r</dt><dd>La récompense immédiate.</dd></div>
+      <div><dt>γ (gamma)</dt><dd>Le facteur d'actualisation, entre 0 et 1 : proche de 0, l'agent ne pense qu'au gain immédiat ; proche de 1, il vise le long terme.</dd></div>
+      <div><dt>max Q(s′, a′)</dt><dd>La meilleure valeur espérée depuis le nouvel état s′, parmi toutes les actions a′ possibles.</dd></div>
+      <div><dt>Crochets</dt><dd>La cible r + γ · max Q(s′, a′), moins l'ancienne estimation : c'est la « surprise », dont on corrige une fraction α.</dd></div>
+    </dl>
+    <p>Un agent explore un labyrinthe. Au carrefour s, il prend à droite, reçoit r = 1 et arrive en s′, où la meilleure action connue vaut 4. Avant ce pas, Q(s, droite) = 2 ; on prend α = 0,5 et γ = 0,9.</p>
+    <ol class="etapes">
+      <li><p class="etape-titre">Cible</p><p>r + γ · max Q(s′, a′) = 1 + 0,9 × 4 = 4,6.</p></li>
+      <li><p class="etape-titre">Surprise</p><p>4,6 − 2 = 2,6.</p></li>
+      <li><p class="etape-titre">Correction</p><p>α × 2,6 = 0,5 × 2,6 = 1,3.</p></li>
+      <li><p class="etape-titre">Nouvelle valeur</p><p>Q(s, droite) = 2 + 1,3 = 3,3.</p></li>
+    </ol>
+    <p>L'action s'est révélée meilleure que prévu : sa valeur monte, mais à mi-chemin de la cible seulement, pour ne pas surréagir à une seule expérience.</p>
+
+    <h4>Applications</h4>
+    <ul>
+      <li><strong>Jeux.</strong> En mars 2016, AlphaGo (DeepMind) a battu le joueur de go sud-coréen Lee Sedol par quatre victoires à une, en combinant réseaux profonds, recherche arborescente et renforcement fondé sur des parties jouées contre lui-même.</li>
+      <li><strong>Robotique.</strong> Un robot apprend à marcher ou à saisir des objets par essais et erreurs, le plus souvent d'abord en simulation, car les essais réels sont lents et coûteux.</li>
+      <li><strong>Agents conversationnels.</strong> Le <dfn>RLHF</dfn> (<span class="terme-en" lang="en">reinforcement learning from human feedback</span>) a servi à ajuster InstructGPT (OpenAI, 2022) puis ChatGPT : des annotateurs humains comparent plusieurs réponses, un « modèle de récompense » apprend leurs préférences, et le modèle de langage est ajusté par renforcement pour maximiser cette récompense. Question pour les SHS : quelles valeurs, quelle culture et quelle langue ces préférences transmettent-elles ?</li>
+    </ul>
+  </article>
+
+  <article class="lecon" id="c3-synthese">
+    <h3>Synthèse</h3>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Les quatre familles de l'IA comparées</caption>
+      <thead><tr><th scope="col">Famille</th><th scope="col">Principe</th><th scope="col">Données nécessaires</th><th scope="col">Explicabilité</th><th scope="col">Exemple en SHS</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">IA symbolique</th><td>Règles SI … ALORS écrites par des experts</td><td>Aucune donnée d'entraînement, mais des connaissances formalisées</td><td>Élevée : chaîne de règles traçable</td><td>Identifier une forme poétique</td></tr>
+        <tr><th scope="row">Apprentissage automatique</th><td>Paramètres ajustés sur des exemples décrits par des attributs</td><td>Des centaines ou des milliers d'exemples</td><td>Variable : bonne pour un arbre, faible pour une forêt</td><td>Attribuer un texte anonyme ; dégager des profils d'enquête</td></tr>
+        <tr><th scope="row">Apprentissage profond</th><td>Réseaux de neurones à nombreuses couches</td><td>Des millions d'exemples et des GPU, ou un modèle pré-entraîné</td><td>Faible : des millions de paramètres</td><td>Transcrire des manuscrits ; analyser le sentiment de messages</td></tr>
+        <tr><th scope="row">Apprentissage par renforcement</th><td>Essais et erreurs guidés par des récompenses</td><td>Un environnement, réel ou simulé, et une récompense</td><td>Faible à moyenne</td><td>Simuler des agents sociaux ; ajuster un agent conversationnel</td></tr>
+      </tbody>
+    </table></div>
+    <aside class="encadre encadre--retenir">
+      <p class="encadre-titre">À retenir</p>
+      <ul>
+        <li>Un système expert combine base de faits, base de règles et moteur d'inférence ; le chaînage avant va des faits vers le but, le chaînage arrière du but vers les faits.</li>
+        <li>Un modèle de ML s'entraîne sur un jeu d'entraînement et s'évalue sur un jeu de test (exactitude, précision, rappel) ; gare au surapprentissage.</li>
+        <li>La régression prédit un nombre, la classification une catégorie, le clustering forme des groupes sans étiquettes ; la descente de gradient ajuste les paramètres.</li>
+        <li>L'apprentissage profond empile des couches entraînées par rétropropagation : CNN pour les images, RNN pour les séquences, Transformers pour le langage. Générer, c'est prédire le token suivant : vérifiez toujours.</li>
+        <li>Le renforcement apprend une politique à partir de récompenses ; les familles se combinent, comme dans AlphaGo ou le RLHF.</li>
+      </ul>
+    </aside>
+    <div class="quiz">
+      <p class="quiz-question">Vous disposez de 2 000 réponses à une enquête sur les pratiques de lecture, sans catégories définies à l'avance, et vous voulez faire apparaître des profils de lecteurs. Quelle approche choisir ?</p>
+      <ul class="quiz-options">
+        <li><button type="button" class="quiz-option">Un système expert en chaînage arrière</button></li>
+        <li><button type="button" class="quiz-option">Une régression linéaire</button></li>
+        <li><button type="button" class="quiz-option" data-correct>Un regroupement par k-means</button></li>
+        <li><button type="button" class="quiz-option">Le Q-learning</button></li>
+      </ul>
+      <p class="quiz-explication" hidden>Sans étiquettes, et pour former des groupes d'individus semblables, il faut un algorithme non supervisé : k-means, avec la méthode du coude pour choisir le nombre de groupes. Un système expert suppose des règles déjà connues, la régression prédit un nombre, et le Q-learning suppose un agent qui agit et reçoit des récompenses.</p>
+    </div>
+  </article>
+</section>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le Plan Directeur Python · Leçon 2</title>
+<meta name="description" content="Leçon 2 du cours d'IA : les bases de Python, du premier script au premier chatbot, en français, en anglais et en arabe.">
+<meta name="theme-color" content="#07070a">
+<link rel="stylesheet" href="assets/css/polices.css">
+<style>
+/* ==========================================================================
+   « Le Plan Directeur Python » (leçon 2) : 15 diapositives illustrées, en trois langues.
+   Produit par tools/lecon2.py à partir de docs/_sources/lecon2/ : ne pas modifier docs/lecon2_python.html à la main.
+   ========================================================================== */
+:root {
+  --fond: #07070a; --surface: #151515; --surface-2: #1f1f25; --ligne: #2e2e35; --texte: #f5f5f5; --doux: #a9a9b6;
+  --c1: #ffff00; --c2: #87ceeb; --c3: #ff512f; --c4: #dd2476; --c5: #1c64ff; --juste: #6fdcaa;
+  --prisme: linear-gradient(90deg, var(--c1), var(--c2), var(--c3), var(--c4), var(--c5));
+  --f-titre: Literata, Georgia, "Times New Roman", serif;
+  --f-ui: Rajdhani, "Segoe UI", system-ui, sans-serif;
+  --f-code: "JetBrains Mono", Consolas, monospace;
+  color-scheme: dark;
+}
+:root[lang="ar"] {
+  --f-titre: "El Messiri", "Noto Naskh Arabic", Tahoma, serif;
+  --f-ui: "El Messiri", Tahoma, system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--fond); color: var(--texte); }
+body { font-family: var(--f-ui); font-size: 17px; line-height: 1.5; min-height: 100vh; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+.icone { width: 1.15em; height: 1.15em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+:root[dir="rtl"] .icone--sens { transform: scaleX(-1); }
+
+.barre { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  padding: 10px max(16px, env(safe-area-inset-left)); background: rgba(7, 7, 10, .92); border-bottom: 1px solid var(--ligne);
+  backdrop-filter: blur(8px); }
+.barre::after { content: ""; position: absolute; inset: auto 0 -1px 0; height: 2px; background: var(--prisme); opacity: .7; }
+.bouton { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border: 1px solid var(--ligne); border-radius: 999px;
+  background: var(--surface); text-decoration: none; cursor: pointer; font-weight: 600; letter-spacing: .02em; min-height: 38px; }
+.bouton:hover, .bouton:focus-visible { border-color: var(--c2); }
+.bouton:focus-visible, .vignette:focus-visible, .langues button:focus-visible { outline: 2px solid var(--c2); outline-offset: 2px; }
+.barre__titre { flex: 1 1 200px; min-width: 0; }
+.barre__titre small { display: block; color: var(--doux); font-size: 13px; text-transform: uppercase; letter-spacing: .08em; }
+.barre__titre strong { font-family: var(--f-titre); font-size: 19px; }
+:root[lang="ar"] .barre__titre small { text-transform: none; letter-spacing: 0; }
+.langues { display: inline-flex; border: 1px solid var(--ligne); border-radius: 999px; overflow: hidden; }
+.langues button { border: 0; background: transparent; padding: 6px 12px; cursor: pointer; min-height: 38px; font-weight: 600; }
+.langues button[aria-pressed="true"] { background: var(--texte); color: var(--fond); }
+
+main { max-width: 1240px; margin: 0 auto; padding: 18px 16px 48px; }
+.scene { position: relative; margin: 0; border-radius: 14px; overflow: hidden; background: #22252b; border: 1px solid var(--ligne);
+  aspect-ratio: 1920 / 1072; touch-action: pan-y; }
+.scene img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.scene__nav { position: absolute; top: 0; bottom: 0; width: 18%; display: flex; align-items: center; justify-content: center;
+  border: 0; background: transparent; cursor: pointer; opacity: 0; transition: opacity .2s; }
+.scene:hover .scene__nav, .scene__nav:focus-visible { opacity: 1; }
+.scene__nav span { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: rgba(7, 7, 10, .75); border: 1px solid var(--ligne); }
+.scene__nav[disabled] { visibility: hidden; }
+.scene__nav--prec { inset-inline-start: 0; }
+.scene__nav--suiv { inset-inline-end: 0; }
+.scene:fullscreen { border-radius: 0; border: 0; background: #000; aspect-ratio: auto; }
+.progression { height: 4px; margin-top: 10px; border-radius: 2px; background: var(--surface-2); overflow: hidden; }
+.progression div { height: 100%; background: var(--prisme); transition: width .25s; }
+
+.commandes { display: flex; align-items: center; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+.commandes h1 { flex: 1 1 260px; margin: 0; font-family: var(--f-titre); font-size: clamp(20px, 3vw, 28px); line-height: 1.25; }
+.compteur { font-family: var(--f-code); color: var(--doux); font-size: 15px; direction: ltr; unicode-bidi: isolate; }
+
+.code { margin-top: 18px; border: 1px solid var(--ligne); border-radius: 12px; background: var(--surface); overflow: hidden; }
+.code[hidden] { display: none; }
+.code__tete { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-bottom: 1px solid var(--ligne); background: var(--surface-2); }
+.code__tete strong { flex: 1; font-size: 15px; }
+.code pre { margin: 0; padding: 14px 16px; overflow-x: auto; font-family: var(--f-code); font-size: 15px; line-height: 1.55; direction: ltr; text-align: left; tab-size: 4; }
+.code p { margin: 0; padding: 0 16px 12px; color: var(--doux); font-size: 15px; }
+
+.sommaire { margin-top: 32px; }
+.sommaire h2 { font-size: 14px; text-transform: uppercase; letter-spacing: .1em; color: var(--doux); margin: 0 0 12px; }
+:root[lang="ar"] .sommaire h2 { text-transform: none; letter-spacing: 0; font-size: 17px; }
+.vignettes { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; list-style: none; margin: 0; padding: 0; }
+.vignette { display: block; width: 100%; padding: 0; border: 1px solid var(--ligne); border-radius: 10px; overflow: hidden; background: var(--surface); cursor: pointer; text-align: start; }
+.vignette img { display: block; width: 100%; aspect-ratio: 1920 / 1072; object-fit: cover; }
+.vignette span { display: block; padding: 6px 9px 8px; font-size: 14px; line-height: 1.3; color: var(--doux); }
+.vignette b { color: var(--texte); font-family: var(--f-code); font-weight: 500; margin-inline-end: 6px; }
+.vignette[aria-current="true"] { border-color: var(--c2); box-shadow: 0 0 0 1px var(--c2); }
+.vignette[aria-current="true"] span { color: var(--texte); }
+
+@media (max-width: 640px) {
+  .barre__titre { flex-basis: 100%; order: -1; }
+  .scene__nav { opacity: 1; width: 22%; }
+  .scene__nav span { width: 38px; height: 38px; }
+  .bouton__texte { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-maison" viewBox="0 0 24 24"><path d="M3 11 12 3l9 8"/><path d="M5 10v10h14V10"/></symbol>
+  <symbol id="i-precedent" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+  <symbol id="i-suivant" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="i-telecharger" viewBox="0 0 24 24"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></symbol>
+  <symbol id="i-plein-ecran" viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></symbol>
+  <symbol id="i-copier" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h9"/></symbol>
+</svg>
+
+<header class="barre">
+  <a class="bouton" id="accueil" href="index.html"><svg class="icone"><use href="#i-maison"/></svg><span class="bouton__texte" data-t="accueil">Accueil</span></a>
+  <div class="barre__titre"><small data-t="lecon">Leçon 2</small><strong data-t="titre">Le Plan Directeur Python</strong></div>
+  <div class="langues" role="group" aria-label="Langue" id="langues">
+    <button type="button" data-langue="fr" lang="fr">FR</button><button type="button" data-langue="en" lang="en">EN</button><button type="button" data-langue="ar" lang="ar">عربي</button>
+  </div>
+  <a class="bouton" id="pdf" href="assets/telechargements/lecon2-python-fr.pdf" download><svg class="icone"><use href="#i-telecharger"/></svg><span data-t="pdf">PDF</span></a>
+</header>
+
+<main id="contenu">
+  <figure class="scene" id="scene">
+    <img id="image" src="assets/img/lecon2/fr/01.webp" width="1920" height="1072" alt="">
+    <button type="button" class="scene__nav scene__nav--prec" id="prec"><span><svg class="icone icone--sens"><use href="#i-precedent"/></svg></span></button>
+    <button type="button" class="scene__nav scene__nav--suiv" id="suiv"><span><svg class="icone icone--sens"><use href="#i-suivant"/></svg></span></button>
+  </figure>
+  <div class="progression" aria-hidden="true"><div id="barre"></div></div>
+
+  <div class="commandes">
+    <h1 id="titre-diapo" aria-live="polite"></h1>
+    <span class="compteur" id="compteur"></span>
+    <button type="button" class="bouton" id="plein"><svg class="icone"><use href="#i-plein-ecran"/></svg><span class="bouton__texte" data-t="plein_ecran">Plein écran</span></button>
+  </div>
+
+  <section class="code" id="code" hidden>
+    <div class="code__tete"><strong data-t="code">Le code de la diapositive</strong>
+      <button type="button" class="bouton" id="copier"><svg class="icone"><use href="#i-copier"/></svg><span id="copier-texte" data-t="copier">Copier</span></button></div>
+    <pre><code id="code-texte" translate="no"></code></pre>
+    <p data-t="essayer"></p>
+  </section>
+
+  <section class="sommaire" aria-labelledby="sommaire-titre">
+    <h2 id="sommaire-titre" data-t="sommaire">Toutes les diapositives</h2>
+    <ol class="vignettes" id="vignettes"></ol>
+  </section>
+</main>
+
+<script>
+/*@@DONNEES@@*/
+(function () {
+  "use strict";
+  var D = window.LECON2, N = D.diapos.length, LANGUES = ["fr", "en", "ar"];
+  var $ = function (id) { return document.getElementById(id); };
+  var params = new URLSearchParams(location.search);
+  var langue = LANGUES.indexOf(params.get("lang")) >= 0 ? params.get("lang") : "fr";
+  var index = Math.min(N - 1, Math.max(0, (parseInt(location.hash.slice(1), 10) || 1) - 1));
+
+  function img(l, i) { return "assets/img/lecon2/" + l + "/" + String(i + 1).padStart(2, "0") + ".webp"; }
+
+  function vignettes() {
+    var ol = $("vignettes"); ol.textContent = "";
+    D.diapos.forEach(function (d, i) {
+      var li = document.createElement("li"), b = document.createElement("button"), im = document.createElement("img"), s = document.createElement("span"), n = document.createElement("b");
+      b.type = "button"; b.className = "vignette"; b.addEventListener("click", function () { aller(i); $("scene").scrollIntoView({ behavior: "smooth", block: "start" }); });
+      im.src = img(langue, i); im.alt = ""; im.loading = "lazy"; im.width = 320; im.height = 179;
+      n.textContent = i + 1; s.appendChild(n); s.appendChild(document.createTextNode(d[langue]));
+      b.appendChild(im); b.appendChild(s); li.appendChild(b); ol.appendChild(li);
+    });
+  }
+
+  function afficher() {
+    var d = D.diapos[index], t = D.textes[langue];
+    $("image").src = img(langue, index);
+    $("image").alt = (index + 1) + " / " + N + " : " + d[langue];
+    $("titre-diapo").textContent = d[langue];
+    $("compteur").textContent = (index + 1) + " / " + N;
+    $("barre").style.width = ((index + 1) / N * 100) + "%";
+    $("prec").disabled = index === 0; $("suiv").disabled = index === N - 1;
+    $("code").hidden = !d.code; $("code-texte").textContent = d.code;
+    $("copier-texte").textContent = t.copier;
+    Array.prototype.forEach.call(document.querySelectorAll(".vignette"), function (v, i) { v.setAttribute("aria-current", i === index ? "true" : "false"); });
+    [index - 1, index + 1].forEach(function (i) { if (i >= 0 && i < N) new Image().src = img(langue, i); });
+    history.replaceState(null, "", location.pathname + location.search + "#" + (index + 1));
+  }
+
+  function aller(i) { if (i < 0 || i >= N || i === index) return; index = i; afficher(); }
+
+  function changerLangue(l) {
+    langue = l; var t = D.textes[l], racine = document.documentElement;
+    racine.lang = l; racine.dir = l === "ar" ? "rtl" : "ltr";
+    document.title = t.titre + " · " + t.lecon;
+    document.querySelector('meta[name="description"]').content = t.description;
+    Array.prototype.forEach.call(document.querySelectorAll("[data-t]"), function (e) { e.textContent = t[e.getAttribute("data-t")]; });
+    $("prec").setAttribute("aria-label", t.precedente); $("suiv").setAttribute("aria-label", t.suivante);
+    $("plein").setAttribute("aria-label", t.plein_ecran); $("langues").setAttribute("aria-label", t.langue);
+    $("accueil").href = l === "fr" ? "index.html" : l + "/index.html";
+    $("pdf").href = "assets/telechargements/lecon2-python-" + l + ".pdf";
+    Array.prototype.forEach.call(document.querySelectorAll("[data-langue]"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-langue") === l ? "true" : "false"); });
+    params.set("lang", l);
+    history.replaceState(null, "", location.pathname + "?" + params.toString() + "#" + (index + 1));
+    vignettes(); afficher();
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll("[data-langue]"), function (b) {
+    b.addEventListener("click", function () { changerLangue(b.getAttribute("data-langue")); });
+  });
+  $("prec").addEventListener("click", function () { aller(index - 1); });
+  $("suiv").addEventListener("click", function () { aller(index + 1); });
+  $("plein").addEventListener("click", function () {
+    var s = $("scene");
+    if (document.fullscreenElement) document.exitFullscreen(); else if (s.requestFullscreen) s.requestFullscreen();
+  });
+  $("copier").addEventListener("click", function () {
+    var t = D.textes[langue], texte = D.diapos[index].code;
+    function ok() { $("copier-texte").textContent = t.copie; setTimeout(function () { $("copier-texte").textContent = t.copier; }, 1600); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(texte).then(ok, function () {});
+    else { var z = document.createElement("textarea"); z.value = texte; document.body.appendChild(z); z.select(); try { document.execCommand("copy"); ok(); } catch (e) {} z.remove(); }
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.altKey || e.ctrlKey || e.metaKey || /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
+    var rtl = document.documentElement.dir === "rtl";
+    if (e.key === "ArrowRight" || e.key === "ArrowLeft") { aller(index + ((e.key === "ArrowRight") !== rtl ? 1 : -1)); e.preventDefault(); }
+    else if (e.key === "PageDown" || (e.key === " " && e.target === document.body)) { aller(index + 1); e.preventDefault(); }
+    else if (e.key === "PageUp") { aller(index - 1); e.preventDefault(); }
+    else if (e.key === "Home") { aller(0); e.preventDefault(); }
+    else if (e.key === "End") { aller(N - 1); e.preventDefault(); }
+    else if (e.key === "f" || e.key === "F") $("plein").click();
+  });
+  var x0 = null;
+  $("scene").addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  $("scene").addEventListener("touchend", function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, rtl = document.documentElement.dir === "rtl"; x0 = null;
+    if (Math.abs(dx) > 40) aller(index + ((dx < 0) !== rtl ? 1 : -1));
+  });
+  window.addEventListener("hashchange", function () {
+    var i = (parseInt(location.hash.slice(1), 10) || 1) - 1; if (i >= 0 && i < N) aller(i);
+  });
+  changerLangue(langue);
+})();
+</script>
+</body>
+</html>

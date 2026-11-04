@@ -1,0 +1,450 @@
+<section class="chapitre" id="mini-projet" aria-labelledby="mini-projet-titre">
+  <header class="chapitre-tete">
+    <p class="surtitre">3 weeks · supervised independent work</p>
+    <h2 class="titre-section" id="mini-projet-titre">Mini-project</h2>
+    <p class="chapeau">The mini-project is handed out at the end of chapter 2. It takes you through a small but complete piece of research: you ask a question, gather data, process it in Python, then interpret the results with the critical eye of your discipline.</p>
+    <ul class="puces">
+      <li class="puce">Supervised independent work</li>
+      <li class="puce">5 subjects to choose from</li>
+      <li class="puce">Notebook, report, oral presentation</li>
+    </ul>
+  </header>
+
+  <nav class="sommaire-chapitre" aria-label="Mini-project contents">
+    <ol>
+      <li><a href="#mp-livrables">Deliverables and schedule</a></li>
+      <li><a href="#mp-sujet-1">Subject 1. Sentiment analysis</a></li>
+      <li><a href="#mp-sujet-2">Subject 2. Survey clustering</a></li>
+      <li><a href="#mp-sujet-3">Subject 3. Political speeches</a></li>
+      <li><a href="#mp-sujet-4">Subject 4. Predictive modeling</a></li>
+      <li><a href="#mp-sujet-5">Subject 5. Network analysis</a></li>
+      <li><a href="#mp-evaluation">Self-assessment grid</a></li>
+    </ol>
+  </nav>
+
+  <aside class="encadre encadre--attention">
+    <p class="encadre-titre">One subject or three? Check the instructions</p>
+    <p>The official syllabus gives two different instructions. In the presentation of the mini-project, it says: "Work on 1 subject of your choice from" the five subjects. In the "Teaching method" part, it says: "Mini-project (complete at least 3 of the 5 proposed subjects)".</p>
+    <p>Check with your teacher which rule applies before you start. If you must work on several subjects, adapt the schedule below together with your teacher.</p>
+  </aside>
+
+  <aside class="encadre encadre--retenir">
+    <p class="encadre-titre">Rules for all subjects</p>
+    <ul>
+      <li><strong>Sources.</strong> For each dataset, note who produced it, where you found it, on what date and how you collected it.</li>
+      <li><strong>Privacy.</strong> Remove people's names, usernames and identifiers. In Algeria, Law No. 18-07 of 10 June 2018 governs the processing of personal data. For a questionnaire, ask the respondents for their consent and keep them anonymous.</li>
+      <li><strong>Rights.</strong> Respect the platforms' terms of use and copyright: you may analyze a recent novel, but you may not republish it online.</li>
+      <li><strong>Reproducibility.</strong> Another person must be able to rerun your notebook and get the same results.</li>
+      <li><strong>Transparency.</strong> If you use a generative AI assistant to write code or rephrase a text, say so in the report and check everything it produces.</li>
+    </ul>
+  </aside>
+
+  <article class="lecon" id="mp-livrables">
+    <h3>Deliverables and schedule</h3>
+    <p>Whatever the subject, you must produce three things. The exact arrangements (due date, length of the oral presentation, how to submit) are set by your teacher.</p>
+    <div class="grille-cartes">
+      <article class="carte">
+        <h4>The notebook</h4>
+        <p>A Jupyter <dfn>notebook</dfn> is a document that mixes code cells, results and explanatory text. Yours must run without errors from start to finish after a kernel restart. Include the data, or explain exactly how to obtain it.</p>
+      </article>
+      <article class="carte">
+        <h4>The report (4 to 6 pages)</h4>
+        <p>Suggested outline: research question, data, method, results, interpretation, limitations and ethical issues, references. Charts are numbered, given a title and discussed in the text.</p>
+      </article>
+      <article class="carte">
+        <h4>The oral presentation</h4>
+        <p>A short presentation: your question, your main result, one limitation of your approach. Be ready to show a code cell and explain what it does.</p>
+      </article>
+    </div>
+
+    <h4>Suggested three-week schedule</h4>
+    <ol class="etapes">
+      <li><p class="etape-titre">Week 1 · Choose and define your scope</p><p>Choose the subject, write a precise research question and one or two hypotheses. Ask your teacher to approve this framework.</p></li>
+      <li><p class="etape-titre">Week 1 · Gather the data</p><p>Collect the corpus or the answers, write a source sheet, anonymize, then load everything into a pandas table.</p></li>
+      <li><p class="etape-titre">Week 2 · Explore and clean</p><p>Count, sort, find duplicates and missing values, and make a few descriptive charts. Write down each cleaning decision.</p></li>
+      <li><p class="etape-titre">Week 2 · Apply the method</p><p>Use the tool or algorithm of your subject. Check the results on a small sample that you read or check yourself.</p></li>
+      <li><p class="etape-titre">Week 3 · Interpret and discuss</p><p>Go back to the texts or the data to explain what the figures show. Identify biases and limitations.</p></li>
+      <li><p class="etape-titre">Week 3 · Write and present</p><p>Write the report, rerun the whole notebook, prepare the oral presentation.</p></li>
+    </ol>
+  </article>
+
+  <article class="lecon" id="mp-sujet-1">
+    <h3>Subject 1. Sentiment analysis on social media</h3>
+    <p><dfn>Sentiment analysis</dfn> (<span class="terme-en" lang="fr">analyse de sentiments</span>) gives a text a <dfn>polarity</dfn>: positive, negative or neutral, sometimes with an intensity score. The simplest tools rely on a lexicon of scored words; the most recent ones are language models trained on annotated texts.</p>
+    <dl class="definitions">
+      <div><dt>Objective</dt><dd>Analyze text corpora from social networks (Twitter, Facebook, etc.) to determine users' sentiments about a particular topic, for example a political campaign, a health crisis or a social event.</dd></div>
+      <div><dt>Possible research question</dt><dd>How did internet users receive the film or TV adaptation of a novel? Does the tone of the comments change between the announcement of the adaptation and its release, and does it depend on the language of the comments?</dd></div>
+      <div><dt>Data</dt><dd>Read access to the X (formerly Twitter) API became paid in 2023. This strongly limits the use of the Tweepy library for student work. Prefer existing public corpora: Sentiment140 (tweets in English), the Allociné corpus (film reviews in French, available on the Hugging Face Hub), LABR (readers' book reviews in Arabic), or public datasets from a platform such as Kaggle. You can also collect a few hundred public comments by hand (under YouTube videos, online press articles, or readers' reviews). Respect the site's terms of use and delete the usernames.</dd></div>
+      <div><dt>Deliverables</dt><dd>The anonymized corpus (CSV file with the source and date of each text), the notebook, a hand-annotated sample to check the tool, charts (distribution of sentiments, change over time, possibly a map), the report.</dd></div>
+    </dl>
+    <h4>Tools listed in the syllabus</h4>
+    <ul class="puces">
+      <li class="puce puce--outil">Python</li>
+      <li class="puce puce--outil">TextBlob</li>
+      <li class="puce puce--outil">VADER</li>
+      <li class="puce puce--outil">Tweepy (for Twitter)</li>
+      <li class="puce puce--outil">pandas</li>
+      <li class="puce puce--outil">matplotlib</li>
+      <li class="puce puce--outil">GeoPandas</li>
+    </ul>
+    <p>GeoPandas is used to draw maps. It is only useful if your texts are linked to a place (wilaya, country), which is rare in public data.</p>
+    <h4>Approach</h4>
+    <ol class="etapes">
+      <li><p class="etape-titre">Define the topic</p><p>Set the object (a work, an event), the period and the language or languages you study.</p></li>
+      <li><p class="etape-titre">Build the corpus</p><p>Gather the texts in a table with at least the columns <code>texte</code>, <code>date</code>, <code>langue</code> and <code>source</code>.</p></li>
+      <li><p class="etape-titre">Clean</p><p>Remove duplicates, links and empty messages. Keep the emoticons: VADER takes them into account.</p></li>
+      <li><p class="etape-titre">Annotate a sample by hand</p><p>Read about fifty texts and note their polarity yourself. This sample will be your reference.</p></li>
+      <li><p class="etape-titre">Apply the tool and compare</p><p>Compute the scores, then count, on the sample, the cases where the tool agrees with your reading.</p></li>
+      <li><p class="etape-titre">Visualize</p><p>Chart of the distribution of sentiments, curve of the change week by week, map with GeoPandas if a place is known.</p></li>
+      <li><p class="etape-titre">Interpret</p><p>Reread the most positive and the most negative texts, and look for the tool's typical errors (irony, negation, dialect).</p></li>
+    </ol>
+    <figure class="code">
+      <figcaption class="code-legende">sentiments_vader.py</figcaption>
+      <pre><code class="language-python"># Sentiment analysis with VADER (a tool designed for English)
+import pandas as pd
+import matplotlib.pyplot as plt
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+
+# Small sample corpus: comments on the adaptation of a novel
+commentaires = [
+    "I loved this adaptation, the actors were brilliant!",
+    "The ending was terrible and far too long.",
+    "An ordinary film, nothing special.",
+    "Not bad at all, but the book is much better.",
+]
+df = pd.DataFrame({"texte": commentaires})
+
+analyseur = SentimentIntensityAnalyzer()
+# "compound" score: from -1 (very negative) to +1 (very positive)
+df["score"] = df["texte"].apply(lambda t: analyseur.polarity_scores(t)["compound"])
+
+def etiqueter(score):
+    # Thresholds of ±0.05 recommended by the authors of VADER
+    if score &gt;= 0.05:
+        return "positif"
+    if score &lt;= -0.05:
+        return "négatif"
+    return "neutre"
+
+df["sentiment"] = df["score"].apply(etiqueter)
+print(df[["score", "sentiment"]])
+df["sentiment"].value_counts().plot(kind="bar", title="Répartition des sentiments")
+plt.show()</code></pre>
+    </figure>
+    <p>Installation: <code>pip install vaderSentiment pandas matplotlib</code>. Run the program, then compare each score with your own reading: for you, is a comment such as "nothing special" neutral or negative?</p>
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">What about texts in French or Arabic?</p>
+      <p>VADER's lexicon is in English. On French text, it recognizes almost no words and returns scores close to zero. Here are three solutions to test on your annotated sample:</p>
+      <ul>
+        <li>a multilingual model from the <code>transformers</code> library, for example <code>cardiffnlp/twitter-xlm-roberta-base-sentiment</code>, trained on tweets in several languages including Arabic, French and English (check the list of languages on the model card);</li>
+        <li>TextBlob with the <code>textblob-fr</code> extension, which adds an analyzer for French; it is an old extension, so check that it works with your version of Python;</li>
+        <li>machine translation into English before VADER, with a note in the report that translation can change the tone.</li>
+      </ul>
+      <p>None of these tools deals well with darja written in Latin script ("arabizi") or with irony: plan a manual check.</p>
+    </aside>
+    <aside class="encadre encadre--shs">
+      <p class="encadre-titre">Link to comparative literature</p>
+      <p>Sentiment analysis can become a tool for studying reception. Compare readers' reviews of the same novel read in its original language and in translation: do Arabic-, French- and English-speaking readers value the same aspects of the work? This connects with the notion of the "horizon of expectations" proposed by Hans Robert Jauss. Keep in mind that a score measures the color of the words used, not the quality of a critical judgment.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="mp-sujet-2">
+    <h3>Subject 2. Clustering social behavior in surveys</h3>
+    <p><dfn>Clustering</dfn> (<span class="terme-en" lang="fr">clustering, partitionnement</span>) groups together individuals who resemble each other, without being given categories in advance: it is unsupervised learning. The <dfn>k-means</dfn> (<span class="terme-en" lang="fr">k-moyennes</span>) algorithm looks for k groups in which each member is close to the center of its group.</p>
+    <dl class="definitions">
+      <div><dt>Objective</dt><dd>Use clustering techniques to group individuals with similar social behaviors based on survey data. This can be useful for segmenting a population into distinct interest groups.</dd></div>
+      <div><dt>Possible research question</dt><dd>Are there distinct reader profiles among Master's students: reading languages (Arabic, French, English), medium (paper, screen), frequency, favorite genres?</dd></div>
+      <div><dt>Data</dt><dd>A questionnaire that you design yourself (closed questions, scales from 1 to 5 or from 1 to 10), anonymous and filled in with the respondents' consent. Or data from international surveys: the World Values Survey, cited in the course references (<a href="https://wmich.edu/economics/world-values-survey" target="_blank" rel="noopener">overview by Western Michigan University</a>, data on the <a href="https://www.worldvaluessurvey.org" target="_blank" rel="noopener">official website</a> after you accept the terms of use), or the Arab Barometer, which surveyed Algerians in several waves. Work on one country and about ten chosen variables.</dd></div>
+      <div><dt>Deliverables</dt><dd>The variable dictionary (question asked, coding of the answers), the notebook, the justification for the number of groups, a table of average profiles, charts, the report.</dd></div>
+    </dl>
+    <h4>Tools listed in the syllabus</h4>
+    <ul class="puces">
+      <li class="puce puce--outil">Python</li>
+      <li class="puce puce--outil">pandas</li>
+      <li class="puce puce--outil">sklearn</li>
+      <li class="puce puce--outil">matplotlib</li>
+      <li class="puce puce--outil">seaborn</li>
+      <li class="puce puce--outil">scikit-learn</li>
+    </ul>
+    <p>The syllabus lists both sklearn and scikit-learn: they are the same library. You install it under the name <code>scikit-learn</code> and import it under the name <code>sklearn</code>.</p>
+    <h4>Approach</h4>
+    <ol class="etapes">
+      <li><p class="etape-titre">Choose and code the variables</p><p>Turn each answer into a number (scales) or into 0/1 columns for multiple-choice answers (<code>pd.get_dummies</code>).</p></li>
+      <li><p class="etape-titre">Handle missing answers</p><p>Remove questionnaires that are too incomplete, or replace a missing value with the median, and say so.</p></li>
+      <li><p class="etape-titre">Standardize</p><p>Put the variables on the same scale. Otherwise, the variable with the largest numbers dominates the distance calculation.</p></li>
+      <li><p class="etape-titre">Choose the number of groups</p><p>Try several values of k and compare them with the elbow method and the silhouette score (<code>silhouette_score</code>).</p></li>
+      <li><p class="etape-titre">Run k-means</p><p>Assign a group to each respondent.</p></li>
+      <li><p class="etape-titre">Describe the profiles</p><p>Compute the mean of each variable per group, then name the groups with caution.</p></li>
+      <li><p class="etape-titre">Test the stability</p><p>Rerun with another <code>random_state</code> or another k: the main profiles should remain recognizable.</p></li>
+    </ol>
+    <figure class="code">
+      <figcaption class="code-legende">clustering_enquete.py</figcaption>
+      <pre><code class="language-python"># Group respondents by their answers (k-means)
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+
+# Fictional answers from 10 people (scales from 1 to 10)
+# With your data: df = pd.read_csv("enquete.csv")
+df = pd.DataFrame({
+    "confiance_institutions": [2, 3, 8, 9, 7, 2, 5, 6, 8, 1],
+    "attachement_traditions": [9, 8, 3, 2, 4, 9, 6, 5, 3, 10],
+    "usage_reseaux":          [7, 8, 2, 3, 4, 6, 9, 8, 2, 7],
+})
+
+# Put all variables on the same scale (mean 0, standard deviation 1)
+X = StandardScaler().fit_transform(df)
+
+modele = KMeans(n_clusters=3, n_init=10, random_state=0)
+df["groupe"] = modele.fit_predict(X)
+
+# Average profile of each group: this is what you must interpret
+print(df.groupby("groupe").mean().round(1))
+print(df["groupe"].value_counts())
+
+sns.scatterplot(data=df, x="confiance_institutions", y="attachement_traditions", hue="groupe", palette="deep")
+plt.title("Groupes de répondants (données fictives)")
+plt.show()</code></pre>
+    </figure>
+    <p>The group numbers (0, 1, 2) mean nothing in themselves: only the table of means lets you describe each profile.</p>
+    <aside class="encadre encadre--shs">
+      <p class="encadre-titre">Link to the humanities and social sciences (SHS) and literature</p>
+      <p>Using the World Values Survey, Ronald Inglehart, whose 1997 book appears in the course references, and Christian Welzel proposed a "cultural map" that places societies on two axes: traditional or secular-rational values, and survival or self-expression values. Your clustering also produces a typology. Like Max Weber's ideal types, its groups are constructions: they simplify reality to make it readable. Applied to the reading practices of multilingual readers, it can shed light on the place of each language in the literary life of students.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="mp-sujet-3">
+    <h3>Subject 3. Text analysis for information extraction from political speeches</h3>
+    <p>A <dfn>named entity</dfn> (<span class="terme-en" lang="fr">entité nommée</span>) is an expression that refers to a specific being or object: a person, a place, an organization, a date. <dfn>Topic modeling</dfn> (<span class="terme-en" lang="fr">modélisation thématique</span>) finds groups of words that often appear together in a corpus. Its best-known method, <abbr title="Latent Dirichlet Allocation">LDA</abbr>, was proposed by David Blei, Andrew Ng and Michael Jordan in 2003.</p>
+    <dl class="definitions">
+      <div><dt>Objective</dt><dd>Use AI to extract the main themes and named entities (names of people, places, dates) from political speeches. This can be used to understand politicians' concerns and to analyze their rhetoric.</dd></div>
+      <div><dt>Possible research question</dt><dd>Which themes and which places dominate the speeches given by heads of state during the general debate of the United Nations General Assembly? Do they vary by region or by the original language of the speech?</dd></div>
+      <div><dt>Data</dt><dd>Public transcripts of speeches: official websites of presidencies and governments, the vie-publique.fr website (a collection of French public speeches), or the UN General Debate Corpus, which brings together the speeches of the UN general debate since 1970 (in English). For each speech, note the speaker, the date, the place and the language, and state whether it is the original or a translation.</dd></div>
+      <div><dt>Deliverables</dt><dd>The corpus with its metadata, the notebook, a table of the most frequent entities, the list of topics with your interpretations, word clouds and charts, the report.</dd></div>
+    </dl>
+    <h4>Tools listed in the syllabus</h4>
+    <ul class="puces">
+      <li class="puce puce--outil">Python</li>
+      <li class="puce puce--outil">spaCy</li>
+      <li class="puce puce--outil">Transformers (BERT)</li>
+      <li class="puce puce--outil">gensim (LDA)</li>
+      <li class="puce puce--outil">matplotlib</li>
+      <li class="puce puce--outil">WordCloud</li>
+    </ul>
+    <h4>Approach</h4>
+    <ol class="etapes">
+      <li><p class="etape-titre">Build the corpus</p><p>One file per speech, or a table with one row per speech and its metadata.</p></li>
+      <li><p class="etape-titre">Clean</p><p>Remove notes that are not part of the speech ("applause", headers, page numbers).</p></li>
+      <li><p class="etape-titre">Preprocess with spaCy</p><p>Split the text into words, reduce each word to its <dfn>lemma</dfn> (its dictionary form), remove stop words (articles, prepositions).</p></li>
+      <li><p class="etape-titre">Extract and count the entities</p><p>People, places, organizations; count them per speech and per speaker.</p></li>
+      <li><p class="etape-titre">Model the topics</p><p>Try several numbers of topics and keep the one whose word lists are easiest to interpret. Read the most representative speeches for each topic.</p></li>
+      <li><p class="etape-titre">Visualize</p><p>Frequency charts, word clouds by speaker or by period.</p></li>
+      <li><p class="etape-titre">Analyze the rhetoric</p><p>Go back to the passages: which phrases, which places, which dates does the speaker use, and for what effect?</p></li>
+    </ol>
+    <figure class="code">
+      <figcaption class="code-legende">discours_entites_themes.py</figcaption>
+      <pre><code class="language-python"># Named entities (spaCy), topics (LDA with gensim) and word cloud
+# Install the model first: python -m spacy download fr_core_news_sm
+import spacy
+from gensim import corpora
+from gensim.models import LdaModel
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+
+nlp = spacy.load("fr_core_news_sm")
+
+# 1. Named entities in a sentence made up for the example
+doc = nlp("À Constantine, le ministre Karim Benali a évoqué avec l'UNESCO la rénovation de la médina.")
+for ent in doc.ents:
+    print(ent.text, "-&gt;", ent.label_)
+
+# 2. LDA: each speech becomes a list of lemmas without stop words
+discours = [
+    "Nous investirons dans les écoles, les universités et la formation des jeunes.",
+    "La santé publique exige des hôpitaux modernes et des médecins mieux formés.",
+    "Les jeunes diplômés doivent trouver un emploi grâce à la formation.",
+    "Nos hôpitaux et nos écoles sont au cœur du service public.",
+]
+textes = [[t.lemma_.lower() for t in nlp(d) if t.is_alpha and not t.is_stop] for d in discours]
+dictionnaire = corpora.Dictionary(textes)
+corpus = [dictionnaire.doc2bow(t) for t in textes]
+lda = LdaModel(corpus, num_topics=2, id2word=dictionnaire, passes=20, random_state=0)
+for numero, mots in lda.print_topics(num_words=4):
+    print("Thème", numero, ":", mots)
+
+# 3. Word cloud of the whole corpus
+nuage = WordCloud(width=800, height=400, background_color="white").generate(" ".join(sum(textes, [])))
+plt.imshow(nuage, interpolation="bilinear")
+plt.axis("off")
+plt.show()</code></pre>
+    </figure>
+    <p>Of course, four sentences are not enough for LDA: this skeleton shows how the steps follow one another. On a real corpus, plan for several dozen speeches at the very least.</p>
+    <aside class="encadre encadre--attention">
+      <p class="encadre-titre">Limitations of the available models</p>
+      <ul>
+        <li>spaCy's French models (<code>fr_core_news_sm</code>, <code>fr_core_news_md</code>…) recognize four types of entities: persons (<code>PER</code>), places (<code>LOC</code>), organizations (<code>ORG</code>) and miscellaneous (<code>MISC</code>). They do not detect dates. Use regular expressions (the <code>re</code> module) or a BERT-type model fine-tuned for entity recognition. Choose it on the Hugging Face Hub, and check which languages and entity types it covers.</li>
+        <li>spaCy does not offer an official trained model for Arabic. For speeches in Arabic, look for dedicated tools (for example CAMeL Tools) or Arabic BERT models, and check them on a sample.</li>
+      </ul>
+    </aside>
+    <aside class="encadre encadre--shs">
+      <p class="encadre-titre">Link to literature</p>
+      <p>The same tools apply to novels. If you extract all the places mentioned in a corpus of novels, you can draw a literary geography, in the spirit of Franco Moretti's <em>Atlas of the European Novel 1800-1900</em>. Compare, for example, the places in Algerian novels written in French and in Arabic. Finally, note that the English word <em>topic</em> comes from the Greek <em>topos</em>, the "place" of classical rhetoric: in its own way, topic modeling rediscovers the commonplaces of a discourse.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="mp-sujet-4">
+    <h3>Subject 4. Predictive modeling of social behavior from consumption data</h3>
+    <p>A <dfn>predictive model</dfn> learns from examples whose outcome is known, in order to estimate the outcome of new cases: this is supervised learning. <dfn>Logistic regression</dfn> (<span class="terme-en" lang="fr">régression logistique</span>), despite its name, is used to classify: it computes a probability between 0 and 1, for example the probability that a person attends an event.</p>
+    <dl class="definitions">
+      <div><dt>Objective</dt><dd>Build a predictive model to estimate consumers' social behaviors (for example the probability of buying products or of taking part in social events) based on various variables.</dd></div>
+      <div><dt>Possible research question</dt><dd>Which factors (age, reading practices, distance, cost, language of the event) are associated with students' attendance at cultural events: book fair, literary café, meeting with an author?</dd></div>
+      <div><dt>Data</dt><dd>A questionnaire that you design, with a final question such as "Did you attend a literary event this year? (yes/no)". With only a few dozen answers, be very careful in your conclusions. To practice on larger data, the UCI Machine Learning Repository offers public datasets on consumer behavior, such as "Online Shoppers Purchasing Intention" (whether or not a visit to an online store ends in a purchase) or "Bank Marketing" (whether or not a customer subscribes to a bank offer).</dd></div>
+      <div><dt>Deliverables</dt><dd>The questionnaire or the description of the public dataset, the notebook, the comparison with a naive baseline model, the evaluation metrics, the interpretation of the coefficients, the report.</dd></div>
+    </dl>
+    <h4>Tools listed in the syllabus</h4>
+    <ul class="puces">
+      <li class="puce puce--outil">Python</li>
+      <li class="puce puce--outil">sklearn</li>
+      <li class="puce puce--outil">pandas</li>
+      <li class="puce puce--outil">matplotlib</li>
+      <li class="puce puce--outil">seaborn</li>
+    </ul>
+    <h4>Approach</h4>
+    <ol class="etapes">
+      <li><p class="etape-titre">Define the variable to predict</p><p>A column coded 1 (attended, bought) or 0 (did not).</p></li>
+      <li><p class="etape-titre">Choose the explanatory variables</p><p>Code them as numbers; turn categories into 0/1 columns.</p></li>
+      <li><p class="etape-titre">Explore</p><p>With seaborn, compare the distributions of the variables for participants and non-participants.</p></li>
+      <li><p class="etape-titre">Split training and test data</p><p>The model learns on some of the rows and is evaluated on the others, which it has never seen.</p></li>
+      <li><p class="etape-titre">Train and compare</p><p>Compare logistic regression with a naive model that always predicts the most frequent answer: a good model must do better.</p></li>
+      <li><p class="etape-titre">Evaluate</p><p><dfn>Accuracy</dfn> (<span class="terme-en" lang="fr">exactitude</span>) is the share of correct predictions; <dfn>precision</dfn> is the share of real participants among those that the model predicts as participants; <dfn>recall</dfn> (<span class="terme-en" lang="fr">rappel</span>) is the share of real participants that the model finds.</p></li>
+      <li><p class="etape-titre">Interpret and discuss</p><p>The sign of the coefficients (<code>modele.coef_</code>) shows the direction of the association, not a cause. Discuss the biases of the sample.</p></li>
+    </ol>
+    <figure class="code">
+      <figcaption class="code-legende">prediction_participation.py</figcaption>
+      <pre><code class="language-python"># Predict attendance at a cultural event (logistic regression)
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, classification_report
+
+# Fictional data: 1 = attended the literary café, 0 = did not
+df = pd.DataFrame({
+    "age":           [19, 23, 35, 42, 51, 28, 33, 60, 21, 45, 38, 25, 55, 30, 48, 22],
+    "livres_par_an": [12, 8, 2, 1, 0, 10, 5, 3, 15, 2, 6, 9, 1, 7, 0, 11],
+    "distance_km":   [2, 5, 20, 30, 15, 3, 8, 25, 1, 18, 6, 4, 40, 10, 22, 2],
+    "participe":     [1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1],
+})
+X = df[["age", "livres_par_an", "distance_km"]]
+y = df["participe"]
+
+# 75% of the rows for training, 25% for evaluation
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=0, stratify=y)
+
+modele = LogisticRegression(max_iter=1000)
+modele.fit(X_train, y_train)
+y_pred = modele.predict(X_test)
+
+print("Exactitude :", accuracy_score(y_test, y_pred))
+print(classification_report(y_test, y_pred, zero_division=0))
+
+# Probability that a new person will attend
+nouvelle = pd.DataFrame({"age": [27], "livres_par_an": [6], "distance_km": [5]})
+print("Probabilité :", modele.predict_proba(nouvelle)[0, 1].round(2))</code></pre>
+    </figure>
+    <p>Here, the test set contains only four people and the fictional data are very regular: a high score would prove nothing. On your own data, look above all at the confusion matrix (<code>confusion_matrix</code>) and at the comparison with the naive model.</p>
+    <aside class="encadre encadre--shs">
+      <p class="encadre-titre">Link to the sociology of culture and to literature</p>
+      <p>Pierre Bourdieu, in <em>La Distinction</em> (1979), showed that cultural practices are linked to educational capital and social background: these variables belong in your model, if you collect them with the respondents' agreement. On the literary side, researchers have tried to predict the success of novels from their textual features, such as Jodie Archer and Matthew Jockers in <em>The Bestseller Code</em> (2016). This work is debated: predicting is not explaining, and a model trained on past successes tends to reproduce the tastes of the past.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="mp-sujet-5">
+    <h3>Subject 5. Social network analysis (sociology of networks)</h3>
+    <p>A <dfn>graph</dfn> represents relationships: <dfn>nodes</dfn> (people, characters) connected by <dfn>links</dfn> or edges (friendship, exchange of letters, presence in the same scene). Social network analysis (<span class="terme-en" lang="fr">analyse des réseaux sociaux</span>, <abbr title="Social Network Analysis">SNA</abbr>) measures the position of each member in this network. <dfn>Degree centrality</dfn> gives the share of the other nodes to which a node is directly connected; <dfn>betweenness centrality</dfn> (<span class="terme-en" lang="fr">centralité d'intermédiarité</span>) shows how often a node lies on the shortest paths between the others, in other words how much it acts as a bridge.</p>
+    <dl class="definitions">
+      <div><dt>Objective</dt><dd>Use social network analysis (SNA) techniques to study the relationships between individuals in a social network, using structured data.</dd></div>
+      <div><dt>Possible research question</dt><dd>Can we see the fragmented structure of <em>Nedjma</em> (Kateb Yacine, 1956) in the network of its characters? Who connects the groups, who stays on the margins, and does the network change from one part of the novel to another?</dd></div>
+      <div><dt>Data</dt><dd>Structured data, that is, a table of links (source, target, weight). You can build it by hand, noting section by section which characters appear together; or from an anonymous survey on the relationships in a group (a sociogram), with the participants' consent. For practice, NetworkX contains classic networks: <code>nx.les_miserables_graph()</code> (co-appearances of the characters in <em>Les Misérables</em>), <code>nx.florentine_families_graph()</code> (marriages between Florentine families of the Renaissance) and <code>nx.karate_club_graph()</code> (the karate club studied by Wayne Zachary in 1977). <em>Nedjma</em> is protected by copyright: share your link tables, not the digitized text.</dd></div>
+      <div><dt>Deliverables</dt><dd>The link table (CSV) with the rule that defines a link, the notebook, the centrality measures, a Python visualization and a Gephi visualization, the GEXF file, the report.</dd></div>
+    </dl>
+    <h4>Tools listed in the syllabus</h4>
+    <ul class="puces">
+      <li class="puce puce--outil">Python</li>
+      <li class="puce puce--outil">NetworkX</li>
+      <li class="puce puce--outil">Gephi</li>
+      <li class="puce puce--outil">matplotlib</li>
+      <li class="puce puce--outil">pandas</li>
+    </ul>
+    <p>Gephi is free software for network visualization. It is installed separately from Python. NetworkX does the calculations; Gephi does the layout.</p>
+    <h4>Approach</h4>
+    <ol class="etapes">
+      <li><p class="etape-titre">Define nodes and links</p><p>Who counts as a character? What is a link: appearing in the same section, talking to each other, writing to each other? Write this rule down: everything else depends on it.</p></li>
+      <li><p class="etape-titre">Build the link table</p><p>One row per pair of characters, with a weight (number of shared sections). Save it as a CSV file.</p></li>
+      <li><p class="etape-titre">Create the graph</p><p>Load the table with pandas, then <code>nx.from_pandas_edgelist(df, "source", "cible", "poids")</code>.</p></li>
+      <li><p class="etape-titre">Compute the measures</p><p>Degree, betweenness, and possibly communities with <code>nx.community.louvain_communities</code>.</p></li>
+      <li><p class="etape-titre">Visualize</p><p>A first drawing with matplotlib, then a careful layout in Gephi from the GEXF file.</p></li>
+      <li><p class="etape-titre">Compare</p><p>Change the link rule, compare two parts of the novel, or compare with another novel.</p></li>
+      <li><p class="etape-titre">Interpret</p><p>Compare the figures with your reading: is a character who is central to the network also central to the meaning of the work?</p></li>
+    </ol>
+    <figure class="code">
+      <figcaption class="code-legende">reseau_nedjma.py</figcaption>
+      <pre><code class="language-python"># Character network of "Nedjma" (Kateb Yacine, 1956)
+import networkx as nx
+import matplotlib.pyplot as plt
+
+# ILLUSTRATIVE links and weights: in your project, compute them from the
+# text (number of passages where two characters appear together).
+liens = [
+    ("Nedjma", "Rachid", 5), ("Nedjma", "Mourad", 4), ("Nedjma", "Lakhdar", 4),
+    ("Nedjma", "Mustapha", 3), ("Rachid", "Si Mokhtar", 6), ("Rachid", "Mourad", 3),
+    ("Lakhdar", "Mustapha", 4), ("Mourad", "Lakhdar", 3), ("Si Mokhtar", "Nedjma", 2),
+]
+G = nx.Graph()
+G.add_weighted_edges_from(liens)   # also creates the "weight" attribute
+
+degre = nx.degree_centrality(G)             # share of the other characters connected
+passage = nx.betweenness_centrality(G)      # "bridge" role between characters
+for p in sorted(G.nodes, key=degre.get, reverse=True):
+    print(f"{p:&lt;11} degré = {degre[p]:.2f}   intermédiarité = {passage[p]:.2f}")
+
+# Quick drawing (line width = link weight)
+pos = nx.spring_layout(G, seed=1)
+epaisseurs = [G[u][v]["weight"] for u, v in G.edges]
+nx.draw_networkx(G, pos, width=epaisseurs, node_color="lightgray", node_size=1200)
+plt.axis("off")
+plt.show()
+
+# Export for Gephi (File &gt; Open)
+nx.write_gexf(G, "nedjma.gexf")</code></pre>
+    </figure>
+    <p>The six characters are really those of the novel, but the links and weights in this script are invented for the example: do not quote them as a result. Add to the list the other characters that you note while reading.</p>
+    <aside class="encadre encadre--shs">
+      <p class="encadre-titre">Link to comparative literature</p>
+      <p>Franco Moretti, in "Network Theory, Plot Analysis" (2011), represented the plot of <em>Hamlet</em> as a network and observed what happens to the play when a character is removed. You can compare the network of <em>Nedjma</em>, a novel with a fragmented chronology, with that of a novel with a linear structure, or with the embedded tales of the <em>One Thousand and One Nights</em>, where the network of narrators reveals the architecture of the book.</p>
+    </aside>
+  </article>
+
+  <article class="lecon" id="mp-evaluation">
+    <h3>Self-assessment grid</h3>
+    <p>The official grading of the mini-project follows the regulations in force, as the syllabus states ("Evaluation (identical to the regulations in force)"). This grid does not award points: it helps you review your work before you hand it in.</p>
+    <div class="tableau-defilant"><table class="tableau">
+      <caption>Mini-project review criteria</caption>
+      <thead><tr><th scope="col">Criterion</th><th scope="col">Expected</th></tr></thead>
+      <tbody>
+        <tr><td>Research question</td><td>Written as one clear sentence, linked to the humanities and social sciences (SHS) or to literature, and realistic for three weeks of work.</td></tr>
+        <tr><td>Data</td><td>Source, date and collection method stated; data anonymized; terms of use and copyright respected.</td></tr>
+        <tr><td>Data preparation</td><td>Each cleaning step is described and justified (duplicates, missing values, stop words, coding of the answers).</td></tr>
+        <tr><td>Method</td><td>The choice of tool or algorithm is explained; the parameters are stated (number of groups, number of topics, thresholds).</td></tr>
+        <tr><td>Code</td><td>The notebook runs from start to finish without errors; the code is commented; unnecessary cells have been removed.</td></tr>
+        <tr><td>Checking</td><td>The results are compared with a human reading of a sample or with a simple baseline model.</td></tr>
+        <tr><td>Results</td><td>Tables and charts are readable, have titles and labeled axes, and are discussed in the text.</td></tr>
+        <tr><td>Interpretation</td><td>Return to the texts or the data; conclusions in proportion to the size and quality of the corpus.</td></tr>
+        <tr><td>Limitations and ethics</td><td>Biases, languages not covered by the tools, privacy, any use of generative AI tools declared.</td></tr>
+        <tr><td>Report and oral presentation</td><td>Structured report of 4 to 6 pages, complete references; clear oral presentation, within the time allowed.</td></tr>
+      </tbody>
+    </table></div>
+  </article>
+</section>
