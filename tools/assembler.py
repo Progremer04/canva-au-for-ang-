@@ -22,7 +22,7 @@ from pathlib import Path
 
 import diapos
 import lecon1
-import lecon2
+import lecons
 import verrou
 
 RACINE = Path(__file__).resolve().parent.parent
@@ -327,18 +327,21 @@ def page_outil(langue, cle, lien_systeme):
 
 # Page d'accueil : légère, elle mène à tout. (cible, icône, teinte, {langue: (titre, texte)}, info)
 TUILES_ETUDIANTS = [
-    ("telechargements.html", "i-telecharger", "juste", {"fr": ("Télécharger (PowerPoint, PDF)", "Les leçons 1 et 2 et chaque chapitre du cours, en PowerPoint ou en PDF."),
-                                                        "en": ("Download (PowerPoint, PDF)", "Lessons 1 and 2 and every chapter of the course, as PowerPoint or PDF."),
-                                                        "ar": ("تنزيل (PowerPoint و PDF)", "الدرسان 1 و2 وكل فصول المقياس بصيغة PowerPoint أو PDF.")}),
-    ("questions.html", "i-bulle", "braise", {"fr": ("Poser une question", "Écrivez à l'enseignant : texte, message vocal, photo ou fichier. Il vous répond ici."),
-                                            "en": ("Ask a question", "Write to the teacher: text, voice message, photo or file. The answer arrives here."),
-                                            "ar": ("اطرح سؤالًا", "راسل الأستاذ: نص أو رسالة صوتية أو صورة أو ملف، ويجيبك هنا.")}),
+    ("telechargements.html", "i-telecharger", "juste", {"fr": ("Télécharger (PowerPoint, PDF)", "Les leçons 1, 2 et 3 et chaque chapitre du cours, en PowerPoint ou en PDF."),
+                                                        "en": ("Download (PowerPoint, PDF)", "Lessons 1, 2 and 3 and every chapter of the course, as PowerPoint or PDF."),
+                                                        "ar": ("تنزيل (PowerPoint و PDF)", "الدروس 1 و2 و3 وكل فصول المقياس بصيغة PowerPoint أو PDF.")}),
     ("{{LECON1}}", "i-ecran", "cobalt", {"fr": ("Leçon 1 : de l'automate à l'agent", "L'histoire de l'IA en 110 diapositives animées, avec photos, vidéos et quiz."),
                                        "en": ("Lesson 1: from automaton to agent", "The history of AI in 110 animated slides, with photos, videos and quizzes."),
                                        "ar": ("الدرس 1: من الآلة الذاتية الحركة إلى الوكيل الذكي", "تاريخ الذكاء الاصطناعي في 110 شرائح متحركة، مع صور وفيديوهات واختبارات.")}),
     ("{{LECON2}}", "i-ecran", "soleil", {"fr": ("Leçon 2 : le Plan Directeur Python", "Les bases de Python en 15 diapositives illustrées, du premier script au premier chatbot, avec le code à copier."),
                                        "en": ("Lesson 2: the Python Blueprint", "Python basics in 15 illustrated slides, from first script to first chatbot, with code to copy."),
                                        "ar": ("الدرس 2: مخطط بايثون الهندسي", "أساسيات بايثون في 15 شريحة مصوّرة، من أول سكريبت إلى أول بوت محادثة، مع الشيفرة جاهزة للنسخ.")}),
+    ("{{LECON3}}", "i-bulle", "fuchsia", {"fr": ("Leçon 3 : l'ingénierie de prompt", "Rôle, contexte, chaîne de pensée : écrire des prompts qui marchent, en 15 diapositives, avec les prompts à copier."),
+                                         "en": ("Lesson 3: prompt engineering", "Role, context, chain-of-thought: writing prompts that work, in 15 slides, with prompts to copy."),
+                                         "ar": ("الدرس 3: هندسة الأوامر", "الدور والسياق وسلسلة الأفكار: كتابة أوامر فعّالة في 15 شريحة، مع أوامر جاهزة للنسخ.")}),
+    ("questions.html", "i-bulle", "braise", {"fr": ("Poser une question", "Écrivez à l'enseignant : texte, message vocal, photo ou fichier. Il vous répond ici."),
+                                            "en": ("Ask a question", "Write to the teacher: text, voice message, photo or file. The answer arrives here."),
+                                            "ar": ("اطرح سؤالًا", "راسل الأستاذ: نص أو رسالة صوتية أو صورة أو ملف، ويجيبك هنا.")}),
     ("cours.html", "i-livre", "ciel", {"fr": ("Le cours", "Les trois chapitres expliqués pas à pas, avec des démonstrations à essayer."),
                                       "en": ("The course", "The three chapters explained step by step, with demos to try."),
                                       "ar": ("المقياس", "الفصول الثلاثة مشروحة خطوة بخطوة، مع عروض تفاعلية للتجريب.")}),
@@ -413,9 +416,13 @@ def lien_lecon1(langue):
     return "chapitr1_first_lesson.html" if langue == "fr" else f"../chapitr1_first_lesson.html?lang={langue}"
 
 
-def lien_lecon2(langue):
-    """La leçon 2 (tools/lecon2.py) est elle aussi un seul fichier trilingue, à la racine de docs/."""
-    return "lecon2_python.html" if langue == "fr" else f"../lecon2_python.html?lang={langue}"
+# Leçons illustrées (tools/lecons.py) : un seul fichier trilingue par leçon, à la racine de docs/.
+LECONS_ILLUSTREES = {2: ("lecon2_python.html", "lecon2-python"), 3: ("lecon3_prompts.html", "lecon3-prompts")}
+
+
+def lien_lecon(numero, langue):
+    page = LECONS_ILLUSTREES[numero][0]
+    return page if langue == "fr" else f"../{page}?lang={langue}"
 
 
 def tuiles(entrees, langue):
@@ -424,7 +431,7 @@ def tuiles(entrees, langue):
         cible, icone, teinte, textes = e[:4]
         info = e[4] if len(e) > 4 else None
         titre, texte = textes[langue]
-        cible = cible.replace("{{LECON1}}", lien_lecon1(langue)).replace("{{LECON2}}", lien_lecon2(langue))
+        cible = cible.replace("{{LECON1}}", lien_lecon1(langue)).replace("{{LECON2}}", lien_lecon(2, langue)).replace("{{LECON3}}", lien_lecon(3, langue))
         attr_info = f' data-info="{info}"' if info else ""
         items.append(f'      <li><a class="tuile teinte-{teinte}" href="{cible}"{attr_info}>'
                      f'<span class="tuile__icone" aria-hidden="true"><svg class="icone"><use href="#{icone}"/></svg></span>'
@@ -460,23 +467,26 @@ def accueil(langue, lien_systeme):
 
 TEXTES_TELECHARGER = {
     "fr": {"titre": "Télécharger · Cours d'IA", "surtitre": "PowerPoint et PDF", "h1": "Télécharger le cours",
-           "chapeau": "Les leçons 1 et 2 et chaque chapitre du cours en PowerPoint (.pptx) ou en PDF. Le fichier se prépare dans votre navigateur : gardez la page ouverte quelques secondes après le clic.",
+           "chapeau": "Les leçons 1, 2 et 3 et chaque chapitre du cours en PowerPoint (.pptx) ou en PDF. Le fichier se prépare dans votre navigateur : gardez la page ouverte quelques secondes après le clic.",
            "lecon": "Leçon 1 : de l'automate à l'agent", "lecon_texte": "Les 110 diapositives, telles qu'à l'écran (photos et dessins compris), une par page.",
            "lecon2": "Leçon 2 : le Plan Directeur Python", "lecon2_texte": "Les 15 diapositives, une par page.",
+           "lecon3": "Leçon 3 : l'ingénierie de prompt", "lecon3_texte": "Les 15 diapositives, une par page.",
            "ouvrir_lecon2": "Ouvrir", "chapitres": "Les chapitres du cours", "chapitres_texte": "PowerPoint : un diaporama modifiable, une diapositive par partie. PDF : le texte complet du chapitre (dans la fenêtre d'impression, choisissez « Enregistrer au format PDF »).",
            "seances": "Diaporamas des séances", "seances_texte": "Les diaporamas de chaque séance (avec les notes de l'enseignant) se téléchargent en PowerPoint et en PDF depuis la page Diaporamas, après le code de l'enseignant.",
            "ouvrir": "Ouvrir les diaporamas", "nav": "Menu"},
     "en": {"titre": "Downloads · AI Course", "surtitre": "PowerPoint and PDF", "h1": "Download the course",
-           "chapeau": "Lessons 1 and 2 and every chapter of the course as PowerPoint (.pptx) or PDF. The file is prepared in your browser: keep the page open for a few seconds after clicking.",
+           "chapeau": "Lessons 1, 2 and 3 and every chapter of the course as PowerPoint (.pptx) or PDF. The file is prepared in your browser: keep the page open for a few seconds after clicking.",
            "lecon": "Lesson 1: from automaton to agent", "lecon_texte": "All 110 slides as they look on screen (photos and drawings included), one per page.",
            "lecon2": "Lesson 2: the Python Blueprint", "lecon2_texte": "All 15 slides, one per page.",
+           "lecon3": "Lesson 3: prompt engineering", "lecon3_texte": "All 15 slides, one per page.",
            "ouvrir_lecon2": "Open", "chapitres": "The course chapters", "chapitres_texte": "PowerPoint: an editable deck, one slide per part. PDF: the full text of the chapter (in the print window, choose “Save as PDF”).",
            "seances": "Session slide decks", "seances_texte": "Each session's slide deck (with the teacher's notes) downloads as PowerPoint and PDF from the Slides page, after the teacher code.",
            "ouvrir": "Open the slides", "nav": "Menu"},
     "ar": {"titre": "التنزيل · مقياس الذكاء الاصطناعي", "surtitre": "PowerPoint و PDF", "h1": "تنزيل المقياس",
-           "chapeau": "الدرسان 1 و2 وكل فصول المقياس بصيغة PowerPoint ‏(.pptx) أو PDF. يُحضَّر الملف في متصفحك: أبقِ الصفحة مفتوحة بضع ثوانٍ بعد النقر.",
+           "chapeau": "الدروس 1 و2 و3 وكل فصول المقياس بصيغة PowerPoint ‏(.pptx) أو PDF. يُحضَّر الملف في متصفحك: أبقِ الصفحة مفتوحة بضع ثوانٍ بعد النقر.",
            "lecon": "الدرس 1: من الآلة الذاتية الحركة إلى الوكيل", "lecon_texte": "الشرائح الـ110 كما تظهر على الشاشة (مع الصور والرسوم)، شريحة في كل صفحة.",
            "lecon2": "الدرس 2: مخطط بايثون الهندسي", "lecon2_texte": "الشرائح الـ15، شريحة في كل صفحة.",
+           "lecon3": "الدرس 3: هندسة الأوامر", "lecon3_texte": "الشرائح الـ15، شريحة في كل صفحة.",
            "ouvrir_lecon2": "فتح", "chapitres": "فصول المقياس", "chapitres_texte": "PowerPoint: عرض قابل للتعديل، شريحة لكل جزء. PDF: النص الكامل للفصل (في نافذة الطباعة اختر «حفظ بصيغة PDF»).",
            "seances": "عروض الحصص", "seances_texte": "تُنزَّل عروض كل حصة (مع ملاحظات الأستاذ) بصيغة PowerPoint و PDF من صفحة العروض التقديمية، بعد رمز الأستاذ.",
            "ouvrir": "فتح العروض التقديمية", "nav": "القائمة"},
@@ -496,13 +506,15 @@ def telechargements(langue, lien_systeme):
         f'<li class="telechargement"><span class="telechargement__nom">{NOMS_LANGUES[l]}</span>'
         f'<span class="telechargement__liens">{liens(f"{conf["base"]}chapitr1_first_lesson.html?lang={l}&telecharger=pptx", f"{conf["base"]}chapitr1_first_lesson.html?lang={l}&telecharger=pdf")}</span></li>'
         for l in ("fr", "en", "ar"))
-    lecon2 = "".join(
-        f'<li class="telechargement"><span class="telechargement__nom">{NOMS_LANGUES[l]}</span>'
-        f'<span class="telechargement__liens"><a class="bouton bouton--petit" href="{conf["base"]}lecon2_python.html?lang={l}">'
-        f'<svg class="icone" aria-hidden="true"><use href="#i-ecran"/></svg>{t["ouvrir_lecon2"]}</a>'
-        f'<a class="bouton bouton--petit" href="{conf["base"]}assets/telechargements/lecon2-python-{l}.pptx" download>{ico}PowerPoint</a>'
-        f'<a class="bouton bouton--petit" href="{conf["base"]}assets/telechargements/lecon2-python-{l}.pdf" download>{ico}PDF</a></span></li>'
-        for l in ("fr", "en", "ar"))
+    def lecon_illustree(numero):
+        page, fichiers = LECONS_ILLUSTREES[numero]
+        return "".join(
+            f'<li class="telechargement"><span class="telechargement__nom">{NOMS_LANGUES[l]}</span>'
+            f'<span class="telechargement__liens"><a class="bouton bouton--petit" href="{conf["base"]}{page}?lang={l}">'
+            f'<svg class="icone" aria-hidden="true"><use href="#i-ecran"/></svg>{t["ouvrir_lecon2"]}</a>'
+            f'<a class="bouton bouton--petit" href="{conf["base"]}assets/telechargements/{fichiers}-{l}.pptx" download>{ico}PowerPoint</a>'
+            f'<a class="bouton bouton--petit" href="{conf["base"]}assets/telechargements/{fichiers}-{l}.pdf" download>{ico}PDF</a></span></li>'
+            for l in ("fr", "en", "ar"))
     noms = {cible: textes[langue] for cible, _m, textes in NAV}
     chapitres = "".join(
         f'<li class="telechargement"><span class="telechargement__nom">{noms[c]}</span>'
@@ -515,7 +527,8 @@ def telechargements(langue, lien_systeme):
              f'    <p class="outil-tete__chapeau">{t["chapeau"]}</p>\n'
              f'  </section>\n'
              f'  <section class="telechargements" aria-labelledby="t-lecon"><h2 id="t-lecon">{t["lecon"]}</h2><p>{t["lecon_texte"]}</p><ul>{lecon}</ul></section>\n'
-             f'  <section class="telechargements" aria-labelledby="t-lecon2"><h2 id="t-lecon2">{t["lecon2"]}</h2><p>{t["lecon2_texte"]}</p><ul>{lecon2}</ul></section>\n'
+             f'  <section class="telechargements" aria-labelledby="t-lecon2"><h2 id="t-lecon2">{t["lecon2"]}</h2><p>{t["lecon2_texte"]}</p><ul>{lecon_illustree(2)}</ul></section>\n'
+             f'  <section class="telechargements" aria-labelledby="t-lecon3"><h2 id="t-lecon3">{t["lecon3"]}</h2><p>{t["lecon3_texte"]}</p><ul>{lecon_illustree(3)}</ul></section>\n'
              f'  <section class="telechargements" aria-labelledby="t-chap"><h2 id="t-chap">{t["chapitres"]}</h2><p>{t["chapitres_texte"]}</p><ul>{chapitres}</ul></section>\n'
              f'  <section class="telechargements" aria-labelledby="t-seances"><h2 id="t-seances">{t["seances"]}</h2><p>{t["seances_texte"]}</p>'
              f'<p><a class="bouton bouton--petit" href="diaporamas.html"><svg class="icone" aria-hidden="true"><use href="#i-ecran"/></svg>{t["ouvrir"]}</a></p></section>\n'
@@ -588,8 +601,8 @@ def main():
     for fichier in sorted((DOCS / "assets" / "diapos").glob("diapos-*.js")):
         verrou.proteger_diapos(fichier)
     lecon1.construire()
-    if lecon2.construire():
-        print("[x] la leçon 2 a des erreurs : elle n'a pas été reconstruite (détail : python3 tools/lecon2.py)")
+    if lecons.construire():
+        print("[x] des leçons illustrées ont des erreurs : elles n'ont pas été reconstruites (détail : python3 tools/lecons.py)")
     for langue, conf in LANGUES.items():
         lien = a.lien_systeme or f"{conf['base']}systeme-de-design.html"
         conf["sortie"].parent.mkdir(parents=True, exist_ok=True)

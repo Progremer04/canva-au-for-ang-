@@ -1,53 +1,158 @@
 {
-  "textes": {
-    "fr": {"titre": "Le Plan Directeur Python", "lecon": "Leçon 2", "sous_titre": "Du premier script à la première IA, en 15 diapositives",
-           "accueil": "Accueil", "pdf": "PDF", "precedente": "Diapositive précédente", "suivante": "Diapositive suivante",
-           "plein_ecran": "Plein écran", "sommaire": "Toutes les diapositives", "code": "Le code de la diapositive",
-           "copier": "Copier", "copie": "Copié !", "essayer": "Collez ce code dans Google Colab (ou tout éditeur Python) pour l'exécuter.",
-           "langue": "Langue", "description": "Leçon 2 du cours d'IA : les bases de Python, du premier script au premier chatbot, en français, en anglais et en arabe."},
-    "en": {"titre": "The Python Blueprint", "lecon": "Lesson 2", "sous_titre": "From first script to first AI, in 15 slides",
-           "accueil": "Home", "pdf": "PDF", "precedente": "Previous slide", "suivante": "Next slide",
-           "plein_ecran": "Full screen", "sommaire": "All slides", "code": "The code on this slide",
-           "copier": "Copy", "copie": "Copied!", "essayer": "Paste this code into Google Colab (or any Python editor) to run it.",
-           "langue": "Language", "description": "Lesson 2 of the AI course: Python basics, from first script to first chatbot, in French, English and Arabic."},
-    "ar": {"titre": "مخطط بايثون الهندسي", "lecon": "الدرس 2", "sous_titre": "من أول سكريبت إلى أول ذكاء اصطناعي، في 15 شريحة",
-           "accueil": "الرئيسية", "pdf": "PDF", "precedente": "الشريحة السابقة", "suivante": "الشريحة التالية",
-           "plein_ecran": "ملء الشاشة", "sommaire": "كل الشرائح", "code": "شيفرة هذه الشريحة",
-           "copier": "نسخ", "copie": "نُسخت!", "essayer": "الصق هذه الشيفرة في Google Colab (أو أي محرر بايثون) لتشغيلها.",
-           "langue": "اللغة", "description": "الدرس 2 من مقياس الذكاء الاصطناعي: أساسيات بايثون، من أول سكريبت إلى أول بوت محادثة، بالفرنسية والإنجليزية والعربية."}
+ "page": "lecon2_python.html",
+ "images": "lecon2",
+ "fichiers": "lecon2-python",
+ "genre": "code",
+ "ratio": "1920 / 1072",
+ "textes": {
+  "fr": {
+   "titre": "Le Plan Directeur Python",
+   "lecon": "Leçon 2",
+   "sous_titre": "Du premier script à la première IA, en 15 diapositives",
+   "accueil": "Accueil",
+   "pdf": "PDF",
+   "precedente": "Diapositive précédente",
+   "suivante": "Diapositive suivante",
+   "plein_ecran": "Plein écran",
+   "sommaire": "Toutes les diapositives",
+   "code": "Le code de la diapositive",
+   "copier": "Copier",
+   "copie": "Copié !",
+   "essayer": "Collez ce code dans Google Colab (ou tout éditeur Python) pour l'exécuter.",
+   "langue": "Langue",
+   "description": "Leçon 2 du cours d'IA : les bases de Python, du premier script au premier chatbot, en français, en anglais et en arabe.",
+   "theme_jour": "Passer au thème Jour",
+   "theme_nuit": "Passer au thème Nuit"
   },
-  "diapos": [
-    {"fr": "Le Plan Directeur Python : du premier script à la première IA",
-     "en": "The Python Blueprint: from first script to first AI",
-     "ar": "مخطط بايثون الهندسي: من أول سكريبت إلى أول ذكاء اصطناعي",
-     "code": ""},
-    {"fr": "Parler le langage de la machine", "en": "Speaking the machine's language", "ar": "التحدث بلغة الآلة",
-     "code": "print(\"Hello World\")"},
-    {"fr": "Variables : nommer votre mémoire", "en": "Variables: naming your memory", "ar": "المتغيرات: تسمية الذاكرة",
-     "code": "name = \"Bob\"\n\nprint(\"Hello \" + name + \"!\")   # old, rigid way\nprint(f\"Hello {name}!\")        # f-string"},
-    {"fr": "Les matières premières (types de données atomiques)", "en": "The raw materials (atomic data types)", "ar": "المواد الخام (أنواع البيانات الأساسية)",
-     "code": "fruit = \"Apple\"     # str\ncount = -10         # int\npi = 3.1415         # float\nis_open = True      # bool\n\nprint(type(fruit), type(count), type(pi), type(is_open))"},
-    {"fr": "Structurer les données complexes", "en": "Structuring complex data", "ar": "هيكلة البيانات المعقدة",
-     "code": "names = ['Agnetha', 'Björn', 'Benny', 'Anni-Frid']   # list\ncoordinates = (2.5, 1.5)                            # tuple\nnumbers = {1, 2, 3, 3, 4, 4, 5}                     # set\nscores = {'Bob': 1, 'James': 2}                     # dict\n\nprint(numbers)   # {1, 2, 3, 4, 5}"},
-    {"fr": "Imposer les règles (sécurité du typage)", "en": "Enforcing the rules (type safety)", "ar": "فرض القواعد (سلامة الأنواع)",
-     "code": "text = \"10\"\nnumber = int(text)\nprint(number + 5)   # 15\n\nage: int = 10"},
-    {"fr": "Les portes logiques : faire des comparaisons", "en": "The logic gates: making comparisons", "ar": "البوابات المنطقية: إجراء المقارنات",
-     "code": "print(1 > 2)    # False\nprint(1 < 2)    # True\nprint(2 >= 2)   # True\nprint(1 <= 2)   # True\nprint(1 == 1)   # True\nprint(1 != 2)   # True"},
-    {"fr": "Bifurquer le chemin (flux de contrôle)", "en": "Forking the path (control flow)", "ar": "تفرّع المسار (التحكم في التدفق)",
-     "code": "user_input = input(\"You: \").lower()\n\nif user_input == \"hello\":\n    print(\"Bot: Hello!\")\nelif user_input == \"how are you\":\n    print(\"Bot: Good, how about you?\")\nelse:\n    print(\"Bot: Sorry, I did not understand that.\")"},
-    {"fr": "Les moteurs de l'automatisation : for vs while", "en": "The engines of automation: for vs. while", "ar": "محركات الأتمتة: حلقة For مقابل While",
-     "code": "for i in range(3):\n    print(\"hello\")\n\ncount = 0\nwhile True:\n    print(\"hello\")\n    count += 1\n    if count == 3:\n        break"},
-    {"fr": "Fonctions : usines logiques réutilisables", "en": "Functions: reusable logic factories", "ar": "الدوال: مصانع منطقية قابلة لإعادة الاستخدام",
-     "code": "def add(a, b):\n    return a + b\n\nprint(add(10, 15))   # 25\n\ndef greet(name, greeting='Hi'):\n    return f\"{greeting}, {name}!\"\n\nprint(greet(\"Bob\"))           # Hi, Bob!\nprint(greet(\"Bob\", \"Hello\"))  # Hello, Bob!"},
-    {"fr": "Le filet de sécurité (try / except)", "en": "The safety net (try / except)", "ar": "شبكة الأمان (Try / Except)",
-     "code": "try:\n    number = int(\"fifteen\")\n    print(number + 10)\nexcept ValueError:\n    print(\"Please type a number.\")"},
-    {"fr": "Emprunter des super-pouvoirs (imports externes)", "en": "Borrowing superpowers (external imports)", "ar": "استعارة القدرات الخارقة (المكتبات الخارجية)",
-     "code": "import math\nfrom math import sqrt\n\nprint(sqrt(4))       # 2.0\nprint(math.tan(2))"},
-    {"fr": "Synthèse phase I : architecture du chatbot", "en": "Synthesis phase I: chatbot architecture", "ar": "المرحلة التركيبية الأولى: معمارية البوت",
-     "code": ""},
-    {"fr": "Synthèse phase II : la machine finale", "en": "Synthesis phase II: the finished machine", "ar": "المرحلة التركيبية الثانية: الآلة المكتملة",
-     "code": "while True:\n    user_input = input(\"You: \").lower()\n    if user_input in ['hi', 'hello']:\n        print(\"Bot: Hi there!\")\n    elif user_input in ['add', '+']:\n        try:\n            num1 = float(input(\"First number: \"))\n            num2 = float(input(\"Second number: \"))\n            print(f\"Bot: {num1 + num2}\")\n        except ValueError:\n            print(\"Bot: Invalid number.\")\n    else:\n        print(\"Bot: I don't understand.\")"},
-    {"fr": "L'état d'esprit du développeur", "en": "The developer's mindset", "ar": "عقلية المطور البرمجي",
-     "code": ""}
-  ]
+  "en": {
+   "titre": "The Python Blueprint",
+   "lecon": "Lesson 2",
+   "sous_titre": "From first script to first AI, in 15 slides",
+   "accueil": "Home",
+   "pdf": "PDF",
+   "precedente": "Previous slide",
+   "suivante": "Next slide",
+   "plein_ecran": "Full screen",
+   "sommaire": "All slides",
+   "code": "The code on this slide",
+   "copier": "Copy",
+   "copie": "Copied!",
+   "essayer": "Paste this code into Google Colab (or any Python editor) to run it.",
+   "langue": "Language",
+   "description": "Lesson 2 of the AI course: Python basics, from first script to first chatbot, in French, English and Arabic.",
+   "theme_jour": "Switch to the Day theme",
+   "theme_nuit": "Switch to the Night theme"
+  },
+  "ar": {
+   "titre": "مخطط بايثون الهندسي",
+   "lecon": "الدرس 2",
+   "sous_titre": "من أول سكريبت إلى أول ذكاء اصطناعي، في 15 شريحة",
+   "accueil": "الرئيسية",
+   "pdf": "PDF",
+   "precedente": "الشريحة السابقة",
+   "suivante": "الشريحة التالية",
+   "plein_ecran": "ملء الشاشة",
+   "sommaire": "كل الشرائح",
+   "code": "شيفرة هذه الشريحة",
+   "copier": "نسخ",
+   "copie": "نُسخت!",
+   "essayer": "الصق هذه الشيفرة في Google Colab (أو أي محرر بايثون) لتشغيلها.",
+   "langue": "اللغة",
+   "description": "الدرس 2 من مقياس الذكاء الاصطناعي: أساسيات بايثون، من أول سكريبت إلى أول بوت محادثة، بالفرنسية والإنجليزية والعربية.",
+   "theme_jour": "التبديل إلى المظهر النهاري",
+   "theme_nuit": "التبديل إلى المظهر الليلي"
+  }
+ },
+ "diapos": [
+  {
+   "fr": "Le Plan Directeur Python : du premier script à la première IA",
+   "en": "The Python Blueprint: from first script to first AI",
+   "ar": "مخطط بايثون الهندسي: من أول سكريبت إلى أول ذكاء اصطناعي",
+   "code": ""
+  },
+  {
+   "fr": "Parler le langage de la machine",
+   "en": "Speaking the machine's language",
+   "ar": "التحدث بلغة الآلة",
+   "code": "print(\"Hello World\")"
+  },
+  {
+   "fr": "Variables : nommer votre mémoire",
+   "en": "Variables: naming your memory",
+   "ar": "المتغيرات: تسمية الذاكرة",
+   "code": "name = \"Bob\"\n\nprint(\"Hello \" + name + \"!\")   # old, rigid way\nprint(f\"Hello {name}!\")        # f-string"
+  },
+  {
+   "fr": "Les matières premières (types de données atomiques)",
+   "en": "The raw materials (atomic data types)",
+   "ar": "المواد الخام (أنواع البيانات الأساسية)",
+   "code": "fruit = \"Apple\"     # str\ncount = -10         # int\npi = 3.1415         # float\nis_open = True      # bool\n\nprint(type(fruit), type(count), type(pi), type(is_open))"
+  },
+  {
+   "fr": "Structurer les données complexes",
+   "en": "Structuring complex data",
+   "ar": "هيكلة البيانات المعقدة",
+   "code": "names = ['Agnetha', 'Björn', 'Benny', 'Anni-Frid']   # list\ncoordinates = (2.5, 1.5)                            # tuple\nnumbers = {1, 2, 3, 3, 4, 4, 5}                     # set\nscores = {'Bob': 1, 'James': 2}                     # dict\n\nprint(numbers)   # {1, 2, 3, 4, 5}"
+  },
+  {
+   "fr": "Imposer les règles (sécurité du typage)",
+   "en": "Enforcing the rules (type safety)",
+   "ar": "فرض القواعد (سلامة الأنواع)",
+   "code": "text = \"10\"\nnumber = int(text)\nprint(number + 5)   # 15\n\nage: int = 10"
+  },
+  {
+   "fr": "Les portes logiques : faire des comparaisons",
+   "en": "The logic gates: making comparisons",
+   "ar": "البوابات المنطقية: إجراء المقارنات",
+   "code": "print(1 > 2)    # False\nprint(1 < 2)    # True\nprint(2 >= 2)   # True\nprint(1 <= 2)   # True\nprint(1 == 1)   # True\nprint(1 != 2)   # True"
+  },
+  {
+   "fr": "Bifurquer le chemin (flux de contrôle)",
+   "en": "Forking the path (control flow)",
+   "ar": "تفرّع المسار (التحكم في التدفق)",
+   "code": "user_input = input(\"You: \").lower()\n\nif user_input == \"hello\":\n    print(\"Bot: Hello!\")\nelif user_input == \"how are you\":\n    print(\"Bot: Good, how about you?\")\nelse:\n    print(\"Bot: Sorry, I did not understand that.\")"
+  },
+  {
+   "fr": "Les moteurs de l'automatisation : for vs while",
+   "en": "The engines of automation: for vs. while",
+   "ar": "محركات الأتمتة: حلقة For مقابل While",
+   "code": "for i in range(3):\n    print(\"hello\")\n\ncount = 0\nwhile True:\n    print(\"hello\")\n    count += 1\n    if count == 3:\n        break"
+  },
+  {
+   "fr": "Fonctions : usines logiques réutilisables",
+   "en": "Functions: reusable logic factories",
+   "ar": "الدوال: مصانع منطقية قابلة لإعادة الاستخدام",
+   "code": "def add(a, b):\n    return a + b\n\nprint(add(10, 15))   # 25\n\ndef greet(name, greeting='Hi'):\n    return f\"{greeting}, {name}!\"\n\nprint(greet(\"Bob\"))           # Hi, Bob!\nprint(greet(\"Bob\", \"Hello\"))  # Hello, Bob!"
+  },
+  {
+   "fr": "Le filet de sécurité (try / except)",
+   "en": "The safety net (try / except)",
+   "ar": "شبكة الأمان (Try / Except)",
+   "code": "try:\n    number = int(\"fifteen\")\n    print(number + 10)\nexcept ValueError:\n    print(\"Please type a number.\")"
+  },
+  {
+   "fr": "Emprunter des super-pouvoirs (imports externes)",
+   "en": "Borrowing superpowers (external imports)",
+   "ar": "استعارة القدرات الخارقة (المكتبات الخارجية)",
+   "code": "import math\nfrom math import sqrt\n\nprint(sqrt(4))       # 2.0\nprint(math.tan(2))"
+  },
+  {
+   "fr": "Synthèse phase I : architecture du chatbot",
+   "en": "Synthesis phase I: chatbot architecture",
+   "ar": "المرحلة التركيبية الأولى: معمارية البوت",
+   "code": ""
+  },
+  {
+   "fr": "Synthèse phase II : la machine finale",
+   "en": "Synthesis phase II: the finished machine",
+   "ar": "المرحلة التركيبية الثانية: الآلة المكتملة",
+   "code": "while True:\n    user_input = input(\"You: \").lower()\n    if user_input in ['hi', 'hello']:\n        print(\"Bot: Hi there!\")\n    elif user_input in ['add', '+']:\n        try:\n            num1 = float(input(\"First number: \"))\n            num2 = float(input(\"Second number: \"))\n            print(f\"Bot: {num1 + num2}\")\n        except ValueError:\n            print(\"Bot: Invalid number.\")\n    else:\n        print(\"Bot: I don't understand.\")"
+  },
+  {
+   "fr": "L'état d'esprit du développeur",
+   "en": "The developer's mindset",
+   "ar": "عقلية المطور البرمجي",
+   "code": ""
+  }
+ ]
 }
