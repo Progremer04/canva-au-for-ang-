@@ -3,6 +3,7 @@
 
   leçon 2 « Le Plan Directeur Python »  -> docs/lecon2_python.html
   leçon 3 « Maîtrise des Prompts IA »   -> docs/lecon3_prompts.html
+  leçon 4 « Maîtriser les agents IA »   -> docs/lecon4_agents.html
 
   python3 tools/lecons.py
 
@@ -14,7 +15,7 @@ Fichiers: docs/assets/telechargements/<fichiers>-{fr,en,ar}.{pdf,pptx}
 
 Réglages de diapos.json : « page » (fichier produit), « images » (dossier des images), « fichiers » (début du nom
 des PDF/PowerPoint), « genre » (« code » : du Python, affiché tel quel ; « prompt » : du texte, dans la langue de
-la page), « ratio » (largeur / hauteur des images). « code » vaut un texte (le même pour toutes les langues) ou
+la page ; « markdown » : un fichier .md, en police à chasse fixe mais dans le sens de la langue), « ratio » (largeur / hauteur des images). « code » vaut un texte (le même pour toutes les langues) ou
 {"fr": …, "en": …, "ar": …} ; vide si la diapositive ne montre rien à copier.
 
 La page suit la langue de ?lang=fr|en|ar, ouvre la diapositive #N, et partage le thème Nuit / Jour du site.
@@ -34,7 +35,7 @@ RACINE = Path(__file__).resolve().parent.parent
 DOCS = RACINE / "docs"
 SOURCES = DOCS / "_sources"
 GABARIT = SOURCES / "lecons" / "gabarit.html"
-LECONS = (2, 3)
+LECONS = (2, 3, 4)
 LANGUES = ("fr", "en", "ar")
 REGLAGES = ("page", "images", "fichiers", "genre", "ratio")
 
@@ -43,8 +44,8 @@ def verifier(lecon):
     erreurs = [f"réglage « {r} » manquant" for r in REGLAGES if not lecon.get(r)]
     if erreurs:
         return erreurs
-    if lecon["genre"] not in ("code", "prompt"):
-        erreurs.append("« genre » doit valoir « code » ou « prompt »")
+    if lecon["genre"] not in ("code", "prompt", "markdown"):
+        erreurs.append("« genre » doit valoir « code », « prompt » ou « markdown »")
     cles = set(lecon["textes"]["fr"])
     for l in LANGUES:
         if set(lecon["textes"].get(l, {})) != cles:

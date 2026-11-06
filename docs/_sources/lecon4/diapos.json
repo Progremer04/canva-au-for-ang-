@@ -1,0 +1,174 @@
+{
+ "page": "lecon4_agents.html",
+ "images": "lecon4",
+ "fichiers": "lecon4-agents",
+ "genre": "markdown",
+ "ratio": "1920 / 1080",
+ "textes": {
+  "fr": {
+   "titre": "Maîtriser les agents IA",
+   "lecon": "Leçon 4",
+   "sous_titre": "AGENTS.md et SKILL.md : des règles et des recettes pour l'IA, en 15 diapositives",
+   "accueil": "Accueil",
+   "pdf": "PDF",
+   "precedente": "Diapositive précédente",
+   "suivante": "Diapositive suivante",
+   "plein_ecran": "Plein écran",
+   "sommaire": "Toutes les diapositives",
+   "code": "Le fichier à copier",
+   "copier": "Copier",
+   "copie": "Copié !",
+   "essayer": "Enregistrez ce texte dans un fichier .md à la racine de votre projet (ou dans le dossier skills/) : votre assistant IA le lira.",
+   "langue": "Langue",
+   "theme_jour": "Passer au thème Jour",
+   "theme_nuit": "Passer au thème Nuit",
+   "description": "Leçon 4 du cours d'IA : les agents IA, AGENTS.md et SKILL.md, en français, en anglais et en arabe."
+  },
+  "en": {
+   "titre": "Mastering AI Agents",
+   "lecon": "Lesson 4",
+   "sous_titre": "AGENTS.md and SKILL.md: rules and recipes for AI, in 15 slides",
+   "accueil": "Home",
+   "pdf": "PDF",
+   "precedente": "Previous slide",
+   "suivante": "Next slide",
+   "plein_ecran": "Full screen",
+   "sommaire": "All slides",
+   "code": "The file to copy",
+   "copier": "Copy",
+   "copie": "Copied!",
+   "essayer": "Save this text as a .md file at the root of your project (or in the skills/ folder): your AI assistant will read it.",
+   "langue": "Language",
+   "theme_jour": "Switch to the Day theme",
+   "theme_nuit": "Switch to the Night theme",
+   "description": "Lesson 4 of the AI course: AI agents, AGENTS.md and SKILL.md, in French, English and Arabic."
+  },
+  "ar": {
+   "titre": "إتقان وكلاء الذكاء الاصطناعي",
+   "lecon": "الدرس 4",
+   "sous_titre": "ملفّا AGENTS.md و SKILL.md: قواعد ووصفات للذكاء الاصطناعي، في 15 شريحة",
+   "accueil": "الرئيسية",
+   "pdf": "PDF",
+   "precedente": "الشريحة السابقة",
+   "suivante": "الشريحة التالية",
+   "plein_ecran": "ملء الشاشة",
+   "sommaire": "كل الشرائح",
+   "code": "الملف جاهز للنسخ",
+   "copier": "نسخ",
+   "copie": "نُسخ!",
+   "essayer": "احفظ هذا النص في ملف ‎.md في جذر مشروعك (أو في المجلد ‎skills/‎): سيقرؤه مساعد الذكاء الاصطناعي.",
+   "langue": "اللغة",
+   "theme_jour": "التبديل إلى المظهر النهاري",
+   "theme_nuit": "التبديل إلى المظهر الليلي",
+   "description": "الدرس 4 من مقياس الذكاء الاصطناعي: وكلاء الذكاء الاصطناعي وملفّا AGENTS.md و SKILL.md، بالفرنسية والإنجليزية والعربية."
+  }
+ },
+ "diapos": [
+  {
+   "fr": "Maîtriser les agents IA : guide du débutant pour AGENTS.md et SKILL.md",
+   "en": "Mastering AI Agents: a beginner's guide to AGENTS.md and SKILL.md",
+   "ar": "إتقان وكلاء الذكاء الاصطناعي: دليل المبتدئين لملفّي AGENTS.md و SKILL.md",
+   "code": ""
+  },
+  {
+   "fr": "Le problème : l'amnésie de l'IA",
+   "en": "The problem: AI amnesia",
+   "ar": "المشكلة: فقدان الذاكرة لدى الذكاء الاصطناعي",
+   "code": ""
+  },
+  {
+   "fr": "Le langage universel : Markdown (.md)",
+   "en": "The universal language: Markdown (.md)",
+   "ar": "اللغة العالمية المشتركة: Markdown ‏(.md)",
+   "code": {
+    "fr": "# Titre\n\n- Élément de liste\n- Un autre élément",
+    "en": "# Heading\n\n- Bullet item\n- Another item",
+    "ar": "# عنوان رئيسي\n\n- عنصر قائمة\n- عنصر آخر"
+   }
+  },
+  {
+   "fr": "L'écosystème des instructions",
+   "en": "The ecosystem of instructions",
+   "ar": "منظومة التعليمات البرمجية",
+   "code": ""
+  },
+  {
+   "fr": "La différence fondamentale : règles vs recettes",
+   "en": "The core difference: rules vs. recipes",
+   "ar": "الفرق الجوهري: القواعد مقابل الوصفات",
+   "code": ""
+  },
+  {
+   "fr": "Concevoir vos règles internes",
+   "en": "Designing your house rules",
+   "ar": "تصميم قواعد العمل الخاصة بك",
+   "code": {
+    "fr": "# AGENTS.md\n\n## Style de communication\nCeci est le projet Bright Bakery. Ne modifiez jamais les prix. Vérifiez l'orthographe avant de terminer.\n\n## Conventions de travail\nUtilisez toujours le développement piloté par les tests (TDD). Écrivez le test avant d'écrire le code.\n\n## Invariants du produit\nOuverture par défaut (fail-open) : si la requête d'un utilisateur échoue, ne plantez pas l'application, enregistrez simplement l'erreur.",
+    "en": "# AGENTS.md\n\n## Communication style\nThis is the Bright Bakery project. Never change the prices. Check spelling before finishing.\n\n## Working conventions\nAlways use Test-Driven Development (TDD). Write the test before writing the code.\n\n## Product invariants\nGates fail open: if a user prompt fails, do not crash the app, just log the error.",
+    "ar": "# AGENTS.md\n\n## أسلوب التواصل\nهذا هو مشروع مخبز Bright Bakery. لا تغيّر الأسعار أبدًا. دقّق الإملاء قبل الانتهاء.\n\n## أعراف العمل\nاستخدم دائمًا التطوير القائم على الاختبار (TDD). اكتب الاختبار قبل كتابة الكود.\n\n## ثوابت المنتج\nالاستمرار عند الفشل (fail-open): إذا فشل طلب المستخدم، لا تُسقط التطبيق، بل سجّل الخطأ فقط."
+   }
+  },
+  {
+   "fr": "Gardez le sac à dos de l'IA léger",
+   "en": "Keep the AI's backpack light",
+   "ar": "اجعل حقيبة ظهر الذكاء الاصطناعي خفيفة",
+   "code": ""
+  },
+  {
+   "fr": "SKILL.md : le livre de recettes à la demande",
+   "en": "SKILL.md: the on-demand cookbook",
+   "ar": "ملف SKILL.md: كتاب الوصفات عند الطلب",
+   "code": ""
+  },
+  {
+   "fr": "Anatomie d'une compétence parfaite",
+   "en": "Anatomy of a perfect skill",
+   "ar": "تشريح المهارة المثالية (Skill)",
+   "code": {
+    "fr": "---\nname: nom-de-la-competence\ndescription: Utiliser ceci lorsqu'un point d'avancement est demandé.\n---\n\n# Nom de la compétence\n\n## Étapes\n1. …\n2. …\n3. …\n\n## Référence\n- Le format attendu est dans modele.md.",
+    "en": "---\nname: skill-name\ndescription: Use this when asked for a status update.\n---\n\n# Skill name\n\n## Steps\n1. …\n2. …\n3. …\n\n## Reference\n- The expected format is in template.md.",
+    "ar": "---\nname: skill-name\ndescription: استخدم هذا الملف عند طلب تحديث عن حالة العمل.\n---\n\n# اسم المهارة\n\n## الخطوات\n1. …\n2. …\n3. …\n\n## المرجع\n- التنسيق المطلوب موجود في template.md."
+   }
+  },
+  {
+   "fr": "Guider l'IA avec des mots-clés directeurs",
+   "en": "Steering with leading words",
+   "ar": "توجيه الذكاء الاصطناعي بالكلمات المفتاحية القائدة",
+   "code": ""
+  },
+  {
+   "fr": "Exemple concret : le rapport mensuel des ventes",
+   "en": "Real-world example: the monthly sales report",
+   "ar": "مثال واقعي: تقرير المبيعات الشهري",
+   "code": ""
+  },
+  {
+   "fr": "Construire la compétence : étape par étape",
+   "en": "Building the skill: step by step",
+   "ar": "بناء المهارة: خطوة بخطوة",
+   "code": ""
+  },
+  {
+   "fr": "Joindre les documents de référence",
+   "en": "Attaching the reference material",
+   "ar": "إرفاق المواد المرجعية والقوالب",
+   "code": {
+    "fr": "---\nname: rapport-mensuel\ndescription: Utiliser ceci lorsque le rapport mensuel des ventes est demandé.\n---\n\n# Rapport mensuel des ventes\n\n## Étapes\n1. Ouvrir le rapport du mois dernier.\n2. Ajouter les nouvelles données de ventes du mois (fichier CSV).\n3. Comparer les chiffres pour calculer la croissance.\n4. Rédiger un court résumé en suivant le format de report_template.md.",
+    "en": "---\nname: monthly-report\ndescription: Use this when asked for the monthly sales report.\n---\n\n# Monthly sales report\n\n## Steps\n1. Open last month's report.\n2. Add this month's fresh sales data (CSV file).\n3. Compare the numbers to calculate growth.\n4. Write a short summary using the format in report_template.md.",
+    "ar": "---\nname: monthly-report\ndescription: استخدم هذا الملف عند طلب تقرير المبيعات الشهري.\n---\n\n# تقرير المبيعات الشهري\n\n## الخطوات\n1. افتح تقرير الشهر الماضي.\n2. أضف بيانات المبيعات الجديدة لهذا الشهر (ملف CSV).\n3. قارن الأرقام لحساب نسبة النمو.\n4. اكتب ملخصًا قصيرًا باستخدام التنسيق الموجود في report_template.md."
+   }
+  },
+  {
+   "fr": "Les règles d'or de l'élagage",
+   "en": "The golden rules of pruning",
+   "ar": "القواعد الذهبية للتقليم والتنقيح",
+   "code": ""
+  },
+  {
+   "fr": "Vous êtes le pilote",
+   "en": "You are the pilot",
+   "ar": "أنت قائد الطائرة",
+   "code": ""
+  }
+ ]
+}

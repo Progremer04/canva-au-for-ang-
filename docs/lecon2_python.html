@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="assets/css/polices.css">
 <style>
 /* ==========================================================================
-   Visionneuse des leçons illustrées (leçons 2 et 3) : diapositives en images, en trois langues.
+   Visionneuse des leçons illustrées (leçons 2, 3 et 4) : diapositives en images, en trois langues.
    Produit par tools/lecons.py à partir de docs/_sources/lecons/gabarit.html et docs/_sources/lecon<N>/diapos.json :
    ne pas modifier les pages produites à la main.
    ========================================================================== */
@@ -95,6 +95,9 @@ main { max-width: 1240px; margin: 0 auto; padding: 18px 16px 48px; }
 .code__tete strong { flex: 1; font-size: 15px; }
 .code pre { margin: 0; padding: 14px 16px; overflow-x: auto; font-family: var(--f-code); font-size: 15px; line-height: 1.55; direction: ltr; text-align: left; tab-size: 4; }
 .code--prompt pre { white-space: pre-wrap; overflow-wrap: anywhere; font-family: var(--f-texte); font-size: 16.5px; line-height: 1.65; direction: inherit; text-align: start; }
+.code--markdown pre { white-space: pre-wrap; overflow-wrap: anywhere; direction: inherit; text-align: start; }
+.code--markdown pre span { display: block; min-height: 1.55em; text-align: start; }
+:root[lang="ar"] .code--markdown pre { font-family: "JetBrains Mono", "Noto Naskh Arabic", monospace; font-size: 16px; }
 .code pre code { font: inherit; }
 .code p { margin: 0; padding: 0 16px 12px; color: var(--doux); font-size: 15px; }
 
@@ -176,7 +179,7 @@ window.LECON = {"page":"lecon2_python.html","images":"lecon2","fichiers":"lecon2
   var langue = LANGUES.indexOf(params.get("lang")) >= 0 ? params.get("lang") : "fr";
   var index = Math.min(N - 1, Math.max(0, (parseInt(location.hash.slice(1), 10) || 1) - 1));
   racine.style.setProperty("--ratio", D.ratio);
-  if (D.genre === "prompt") $("code").classList.add("code--prompt");
+  if (D.genre !== "code") $("code").classList.add("code--" + D.genre);
 
   function img(l, i) { return "assets/img/" + D.images + "/" + l + "/" + String(i + 1).padStart(2, "0") + ".webp"; }
   function code(d) { return typeof d.code === "string" ? d.code : (d.code[langue] || ""); }
@@ -218,11 +221,20 @@ window.LECON = {"page":"lecon2_python.html","images":"lecon2","fichiers":"lecon2
     $("compteur").textContent = (index + 1) + " / " + N;
     $("barre").style.width = ((index + 1) / N * 100) + "%";
     $("prec").disabled = index === 0; $("suiv").disabled = index === N - 1;
-    $("code").hidden = !c; $("code-texte").textContent = c;
+    $("code").hidden = !c; afficherCode(c);
     $("copier-texte").textContent = t.copier;
     Array.prototype.forEach.call(document.querySelectorAll(".vignette"), function (v, i) { v.setAttribute("aria-current", i === index ? "true" : "false"); });
     [index - 1, index + 1].forEach(function (i) { if (i >= 0 && i < N) new Image().src = img(langue, i); });
     history.replaceState(null, "", location.pathname + location.search + "#" + (index + 1));
+  }
+
+  /* Fichier Markdown : une ligne = un bloc dont le sens suit son premier caractère (titres latins à gauche, arabe à droite). */
+  function afficherCode(c) {
+    var cible = $("code-texte"); cible.textContent = "";
+    if (D.genre !== "markdown") { cible.textContent = c; return; }
+    c.split("\n").forEach(function (ligne) {
+      var s = document.createElement("span"); s.dir = "auto"; s.textContent = ligne; cible.appendChild(s);
+    });
   }
 
   function aller(i) { if (i < 0 || i >= N || i === index) return; index = i; afficher(); }
